@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>9 класс — Геометрия</title>
+
+<style>
+:root{
+  --bg:#0e0f13;
+  --panel:#161922;
+  --text:#e8e8e8;
+  --muted:#a0a0a0;
+  --accent:#00ff66;
+  --border:rgba(0,255,102,0.35);
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+}
+
+header{
+  padding:10px 20px;
+  background:#121521;
+  border-bottom:1px solid var(--border);
+}
+
+.container{
+  max-width:900px;
+  margin:0 auto;
+  padding:18px 20px;
+}
+
+.logo{
+  color:var(--accent);
+  font-weight:700;
+  font-size:20px;
+}
+
+nav a{
+  color:var(--text);
+  text-decoration:none;
+  margin-right:10px;
+  font-size:14px;
+  border:1px solid var(--border);
+  padding:5px 8px;
+  border-radius:8px;
+}
+
+nav a:hover{
+  color:var(--accent);
+  border-color:var(--accent);
+}
+
+/* HERO */
+.hero{
+  margin-top:18px;
+  padding:20px;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:12px;
+}
+
+.hero h1{
+  margin:0;
+  color:var(--accent);
+}
+
+/* MENU */
+.topics{
+  margin-top:20px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:12px;
+}
+
+.topic-card{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:12px 22px 12px 22px;
+  padding:15px;
+  transition:.2s;
+}
+
+.topic-card:hover{
+  transform:translateY(-3px);
+  border-color:var(--accent);
+}
+
+.topic-card a{
+  text-decoration:none;
+  color:var(--accent);
+  font-weight:600;
+}
+
+/* TOPIC BLOCK */
+.topic{
+  margin-top:40px;
+  padding:20px;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:12px;
+}
+
+.topic h2{
+  margin-top:0;
+  color:var(--accent);
+}
+
+.block-title{
+  margin-top:15px;
+  font-size:15px;
+}
+
+.box{
+  margin-top:10px;
+  padding:12px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  color:var(--muted);
+  font-size:14px;
+}
+
+.task{
+  margin-top:10px;
+  padding:12px;
+  border:1px dashed var(--border);
+  border-radius:10px;
+  font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="container">
+  <div class="logo">MATH PORTAL</div>
+  <nav>
+    <a href="/index.html">Главная</a>
+    <a href="/class9/algebra/class9alg.html">Алгебра</a>
+    <a href="/class9/geometry/class9geom.html">Геометрия</a>
+  </nav>
+</div>
+</header>
+
+<main class="container">
+
+<section class="hero">
+  <h1>9 класс — Геометрия</h1>
+  <p>Теория, задачи и подготовка к экзамену.</p>
+</section>
+
+<!-- MENU -->
+<section class="topics">
+
+  <div class="topic-card"><a href="#g1">Окружность</a></div>
+  <div class="topic-card"><a href="#g2">Вписанные и описанные окружности</a></div>
+  <div class="topic-card"><a href="#g3">Теоремы синусов и косинусов</a></div>
+  <div class="topic-card"><a href="#g4">Правильные многоугольники</a></div>
+  <div class="topic-card"><a href="#g5">Длина окружности и площадь круга</a></div>
+
+</section>
+
+<!-- TOPICS -->
+
+<div id="g1" class="topic">
+  <h2>Окружность</h2>
+
+  <div class="block-title">📘 Теория</div>
+  <div class="box">
+    Окружность — множество точек, равноудалённых от центра.
+  </div>
+
+  <div class="block-title">✏️ Задания</div>
+  <div class="task">1. Найти радиус по диаметру</div>
+</div>
+
+
+<div id="g2" class="topic">
+  <h2>Вписанные и описанные окружности</h2>
+
+  <div class="block-title">📘 Теория</div>
+  <div class="box">
+    Вписанная окружность касается всех сторон многоугольника.
+  </div>
+
+  <div class="block-title">✏️ Задания</div>
+  <div class="task">1. Найти центр вписанной окружности</div>
+</div>
+
+
+<div id="g3" class="topic">
+  <h2>Теоремы синусов и косинусов</h2>
+
+  <div class="block-title">📘 Теория</div>
+  <div class="box">
+    Связь сторон и углов треугольника через синусы и косинусы.
+  </div>
+
+  <div class="block-title">✏️ Задания</div>
+  <div class="task">1. Найти сторону по теореме косинусов</div>
+</div>
+
+
+<div id="g4" class="topic">
+  <h2>Правильные многоугольники</h2>
+
+  <div class="block-title">📘 Теория</div>
+  <div class="box">
+    Многоугольник, у которого все стороны и углы равны.
+  </div>
+
+  <div class="block-title">✏️ Задания</div>
+  <div class="task">1. Найти угол правильного шестиугольника</div>
+</div>
+
+
+<div id="g5" class="topic">
+  <h2>Длина окружности и площадь круга</h2>
+
+  <div class="block-title">📘 Теория</div>
+  <div class="box">
+    Формулы: C = 2πr, S = πr².
+  </div>
+
+  <div class="block-title">✏️ Задания</div>
+  <div class="task">1. Найти площадь круга</div>
+</div>
+
+</main>
+
+</body>
+</html>

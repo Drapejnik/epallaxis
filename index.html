@@ -1,217 +1,340 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Math Portal — Главная</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>EPALLAXIS</title>
 
-  <style>
-    :root {
-      --bg: #0e0f13;
-      --panel: #161922;
-      --text: #e8e8e8;
-      --muted: #a0a0a0;
-      --accent: #00ff66;
-      --border: rgba(0, 255, 102, 0.35);
-    }
+<style>
+:root{
+  --bg:#060a10;
+  --panel:#0f1720;
+  --text:#e8f0ea;
+  --muted:#9aa4b2;
+  --accent:#22ff88;
+  --border:rgba(34,255,136,0.18);
+}
 
-    * {
-      box-sizing: border-box;
-    }
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
+}
 
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-    }
+body{
+  background:radial-gradient(1200px 600px at 20% 0%, #0d1f18 0%, var(--bg) 60%);
+  color:var(--text);
+}
 
-    header {
-      padding: 20px;
-      border-bottom: 1px solid var(--border);
-      background: #121521;
-    }
+/* ================= HEADER ================= */
 
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 20px;
-    }
+header{
+  position:sticky;
+  top:0;
+  background:rgba(6,10,16,0.75);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+  padding:18px 20px;
+}
 
-    .logo {
-      font-size: 22px;
-      font-weight: 700;
-      color: var(--accent);
-    }
+.brand{
+  max-width:1100px;
+  margin:0 auto;
+}
 
-    nav {
-      margin-top: 10px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
+.brand h1{
+  font-size:22px;
+  letter-spacing:2px;
+}
 
-    nav a {
-      text-decoration: none;
-      color: var(--text);
-      padding: 8px 12px;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      transition: 0.2s;
-    }
+.brand p{
+  font-size:12px;
+  color:var(--muted);
+  margin-top:4px;
+}
 
-    nav a:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
+/* ================= HERO ================= */
 
-    .hero {
-      margin-top: 30px;
-      padding: 25px;
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-    }
+.hero{
+  max-width:1100px;
+  margin:0 auto;
+  padding:70px 20px 40px;
+  display:flex;
+  justify-content:space-between;
+  gap:40px;
+  align-items:center;
+}
 
-    .hero h1 {
-      margin: 0 0 10px;
-      font-size: 26px;
-    }
+.hero h1{
+  font-size:52px;
+  line-height:1.05;
+}
 
-    .hero p {
-      color: var(--muted);
-    }
+.hero h1 span{
+  color:var(--accent);
+}
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 12px;
-      margin-top: 25px;
-    }
+.hero p{
+  margin-top:12px;
+  color:var(--muted);
+  max-width:420px;
+}
 
-    .card {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 18px;
-      transition: 0.2s;
-    }
+.buttons{
+  margin-top:20px;
+}
 
-    .card:hover {
-      border-color: var(--accent);
-      transform: translateY(-3px);
-    }
+.btn{
+  display:inline-block;
+  padding:11px 14px;
+  border-radius:12px;
+  cursor:pointer;
+  border:1px solid var(--accent);
+  color:var(--accent);
+  transition:0.25s;
+}
 
-    .card h3 {
-      margin: 0 0 10px;
-      color: var(--accent);
-    }
+.btn:hover{
+  background:rgba(34,255,136,0.08);
+  transform:translateY(-2px);
+}
 
-    .btn {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 8px 12px;
-      border: 1px solid var(--accent);
-      color: var(--accent);
-      text-decoration: none;
-      border-radius: 8px;
-      transition: 0.2s;
-    }
+/* ================= INFO SNIPPET ================= */
 
-    .btn:hover {
-      background: var(--accent);
-      color: #0e0f13;
-    }
+.snippet{
+  max-width:1100px;
+  margin:0 auto;
+  padding:0 20px 30px;
+  color:var(--muted);
+  font-size:14px;
+}
 
-    footer {
-      margin-top: 40px;
-      padding: 20px;
-      text-align: center;
-      color: var(--muted);
-      border-top: 1px solid var(--border);
-    }
-  </style>
+/* ================= GRID ================= */
+
+.grid{
+  max-width:1100px;
+  margin:0 auto;
+  padding:20px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:16px;
+}
+
+.card{
+  background:linear-gradient(145deg,#0f1720,#111c26);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:18px;
+  cursor:pointer;
+  transition:0.3s;
+  position:relative;
+}
+
+.card:hover{
+  transform:translateY(-6px);
+  border-color:var(--accent);
+  box-shadow:0 0 30px rgba(34,255,136,0.08);
+}
+
+.card h3{
+  margin-top:10px;
+}
+
+.card p{
+  margin-top:6px;
+  color:var(--muted);
+  font-size:13px;
+}
+
+/* ================= OVERLAY ================= */
+
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.6);
+  backdrop-filter:blur(10px);
+  display:none;
+  align-items:center;
+  justify-content:center;
+}
+
+.overlay.active{
+  display:flex;
+  animation:fade 0.25s ease;
+}
+
+.panel{
+  width:340px;
+  background:#0f1720;
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:18px;
+  box-shadow:0 0 50px rgba(0,0,0,0.6);
+  transform:translateY(20px);
+  animation:slide 0.25s forwards;
+}
+
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes slide{to{transform:translateY(0)}}
+
+.option{
+  padding:12px;
+  margin-top:10px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  cursor:pointer;
+  transition:0.25s;
+}
+
+.option:hover{
+  border-color:var(--accent);
+  background:rgba(34,255,136,0.05);
+}
+
+/* ================= FOOTNOTE ================= */
+
+footer{
+  text-align:center;
+  padding:40px 20px;
+  color:var(--muted);
+  border-top:1px solid var(--border);
+  margin-top:40px;
+}
+
+</style>
 </head>
 
 <body>
 
 <header>
-  <div class="container">
-    <div class="logo">MATH PORTAL</div>
-
-    <nav>
-      <a href="index.html">Главная</a>
-      <a href="algebra.html">Алгебра</a>
-      <a href="geometry.html">Геометрия</a>
-      <a href="analysis.html">Анализ</a>
-    </nav>
+  <div class="brand">
+    <h1>EPALLAXIS</h1>
+    <p>Ἐπαλλάσσω — приводить систему в порядок</p>
   </div>
 </header>
 
-<main class="container">
+<section class="hero">
+  <div>
+    <h1>МАТЕМАТИКА<br><span>5–11 КЛАССЫ</span></h1>
+    <p>Структурированная система обучения: теория, практика, экзамены.</p>
 
-  <section class="hero">
-    <h1>Образовательный сайт по математике</h1>
-    <p>
-      Выберите класс (5–11), чтобы перейти к материалам.  
-      Каждый класс содержит теорию, примеры и задания.
-    </p>
-  </section>
-
-  <section class="grid">
-
-    <div class="card">
-      <h3>5 класс</h3>
-      <p>Базовая арифметика и основы математики.</p>
-      <a class="btn" href="class5.html">Открыть</a>
+    <div class="buttons">
+      <div class="btn" onclick="scrollToClasses()">Выбрать класс</div>
     </div>
+  </div>
+</section>
 
-    <div class="card">
-      <h3>6 класс</h3>
-      <p>Дроби, пропорции, расширение базовых навыков.</p>
-      <a class="btn" href="class6.html">Открыть</a>
-    </div>
+<div class="snippet">
+  EPALLAXIS — цифровая образовательная система, где математика выстраивается как логическая структура знаний.
+</div>
 
-    <div class="card">
-      <h3>7 класс</h3>
-      <p>Уравнения, функции и начало алгебры.</p>
-      <a class="btn" href="class7.html">Открыть</a>
-    </div>
-
-    <div class="card">
-      <h3>8 класс</h3>
-      <p>Линейные и квадратные уравнения, геометрия.</p>
-      <a class="btn" href="class8.html">Открыть</a>
-    </div>
-
-    <div class="card">
-      <h3>9 класс</h3>
-      <p>Системы уравнений, подготовка к экзаменам.</p>
-      <a class="btn" href="class9.html">Открыть</a>
-    </div>
-
-    <div class="card">
-      <h3>10 класс</h3>
-      <p>Функции, тригонометрия, расширенная алгебра.</p>
-      <a class="btn" href="class10.html">Открыть</a>
-    </div>
-
-    <div class="card">
-      <h3>11 класс</h3>
-      <p>Высшая математика и подготовка к поступлению.</p>
-      <a class="btn" href="class11.html">Открыть</a>
-    </div>
-
-  </section>
-
-</main>
+<section class="grid" id="grid"></section>
 
 <footer>
-  <div class="container">
-    © 2026 Math Portal — все права защищены
-  </div>
+  EPALLAXIS — Mathematics System 2026
 </footer>
+
+<!-- OVERLAY -->
+<div class="overlay" id="overlay">
+  <div class="panel">
+    <h3 id="title">Выбор направления</h3>
+    <div id="options"></div>
+  </div>
+</div>
+
+<script>
+
+const classes=[
+  {n:5},
+  {n:6},
+  {n:7},
+  {n:8},
+  {n:9},
+  {n:10},
+  {n:11}
+];
+
+const grid=document.getElementById("grid");
+const overlay=document.getElementById("overlay");
+const options=document.getElementById("options");
+const title=document.getElementById("title");
+
+classes.forEach(c=>{
+  const el=document.createElement("div");
+  el.className="card";
+  el.innerHTML=`<h3>${c.n} класс</h3><p>Открыть учебную структуру</p>`;
+  el.onclick=()=>openClass(c.n);
+  grid.appendChild(el);
+});
+
+/* ================= NAV LOGIC ================= */
+
+function openClass(n){
+
+  options.innerHTML="";
+  overlay.classList.add("active");
+
+  let items=[];
+
+  if(n<=6){
+    items=["Темы"];
+  }
+
+  else if(n<=8){
+    items=["Алгебра","Геометрия"];
+  }
+
+  else if(n===9){
+    items=["Алгебра","Геометрия","Экзамен"];
+  }
+
+  else if(n===10){
+    items=["Алгебра","Геометрия"];
+  }
+
+  else{
+    items=["Алгебра","Геометрия","ЦЭ / ЦТ"];
+  }
+
+  title.innerText=n+" класс";
+
+  items.forEach(i=>{
+    const d=document.createElement("div");
+    d.className="option";
+    d.innerText=i;
+    d.onclick=()=>select(i,n);
+    options.appendChild(d);
+  });
+}
+
+/* ================= SELECTION ================= */
+
+function select(type,n){
+  overlay.classList.remove("active");
+
+  setTimeout(()=>{
+    const target=document.getElementById("grid");
+    target.scrollIntoView({behavior:"smooth"});
+  },200);
+
+  console.log("Selected:",n,type);
+}
+
+/* ================= SCROLL ================= */
+
+function scrollToClasses(){
+  document.getElementById("grid").scrollIntoView({behavior:"smooth"});
+}
+
+/* close overlay */
+overlay.onclick=(e)=>{
+  if(e.target===overlay){
+    overlay.classList.remove("active");
+  }
+};
+
+</script>
 
 </body>
 </html>

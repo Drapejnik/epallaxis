@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>9 класс — Алгебра</title>
+
+<style>
+:root{
+  --bg:#0e0f13;
+  --panel:#161922;
+  --text:#e8e8e8;
+  --muted:#a0a0a0;
+  --accent:#00ff66;
+  --border:rgba(0,255,102,0.35);
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+}
+
+header{
+  padding:10px 20px;
+  background:#121521;
+  border-bottom:1px solid var(--border);
+}
+
+.container{
+  max-width:900px;
+  margin:0 auto;
+  padding:18px 20px;
+}
+
+.logo{
+  color:var(--accent);
+  font-weight:700;
+  font-size:20px;
+}
+
+nav a{
+  color:var(--text);
+  text-decoration:none;
+  margin-right:10px;
+  font-size:14px;
+  border:1px solid var(--border);
+  padding:5px 8px;
+  border-radius:8px;
+}
+
+nav a:hover{
+  color:var(--accent);
+  border-color:var(--accent);
+}
+
+/* HERO */
+.hero{
+  margin-top:18px;
+  padding:20px;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:12px;
+}
+
+.hero h1{
+  margin:0;
+  color:var(--accent);
+}
+
+/* ТЕМЫ МЕНЮ */
+.topics{
+  margin-top:20px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:12px;
+}
+
+.topic-card{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:12px 22px 12px 22px;
+  padding:15px;
+  transition:.2s;
+}
+
+.topic-card:hover{
+  transform:translateY(-3px);
+  border-color:var(--accent);
+}
+
+.topic-card a{
+  text-decoration:none;
+  color:var(--accent);
+  font-weight:600;
+}
+
+/* БЛОК ТЕМЫ */
+.topic{
+  margin-top:40px;
+  padding:20px;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:12px;
+}
+
+.topic h2{
+  color:var(--accent);
+  margin-top:0;
+}
+
+/* теория / задачи */
+.block-title{
+  margin-top:15px;
+  color:var(--text);
+  font-size:16px;
+}
+
+.box{
+  margin-top:10px;
+  padding:12px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  color:var(--muted);
+  font-size:14px;
+}
+
+.task{
+  margin-top:10px;
+  padding:12px;
+  border:1px dashed var(--border);
+  border-radius:10px;
+  font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="container">
+  <div class="logo">MATH PORTAL</div>
+  <nav>
+    <a href="../../index.html">Главная</a>
+    <a href="../geometry/class9geom.html">Геометрия</a>
+  </nav>
+</div>
+</header>
+
+<main class="container">
+
+<section class="hero">
+  <h1>9 класс — Алгебра</h1>
+  <p>Выбери тему ниже и переходи к теории и заданиям.</p>
+</section>
+
+<!-- МЕНЮ ТЕМ -->
+<section class="topics">
+
+  <div class="topic-card"><a href="#t1">Рациональные выражения</a></div>
+  <div class="topic-card"><a href="#t2">Уравнения и системы</a></div>
+  <div class="topic-card"><a href="#t3">Неравенства</a></div>
+  <div class="topic-card"><a href="#t4">Функции и графики</a></div>
+  <div class="topic-card"><a href="#t5">Преобразования графиков</a></div>
+  <div class="topic-card"><a href="#t6">Прогрессии</a></div>
+
+</section>
+
+<!-- ТЕМЫ -->
+
+<div id="t1" class="topic">
+  <h2>Рациональные выражения</h2>
+
+  <div class="block-title">📘 Теория</div>
+  <div class="box">
+    Рациональные выражения — это выражения, содержащие дроби с переменными в числителе или знаменателе.
+  </div>
+
+  <div class="block-title">✏️ Задания</div>
+  <div class="task">1. Упростить выражение (x² - 9)/(x - 3)</div>
+  <div class="task">2. Найти область допустимых значений</div>
+</div>
+
+
+<div id="t2" class="topic">
+  <h2>Уравнения и системы</h2>
+
+  <div class="block-title">📘 Теория</div>
+  <div class="box">
+    Система уравнений — набор уравнений, для которых ищется общее решение.
+  </div>
+
+  <div class="block-title">✏️ Задания</div>
+  <div class="task">1. Решить систему методом подстановки</div>
+</div>
+
+
+<div id="t3" class="topic">
+  <h2>Неравенства</h2>
+
+  <div class="block-title">📘 Теория</div>
+  <div class="box">
+    Неравенства показывают отношение больше/меньше между выражениями.
+  </div>
+
+  <div class="block-title">✏️ Задания</div>
+  <div class="task">1. Решить линейное неравенство</div>
+</div>
+
+
+<div id="t4" class="topic">
+  <h2>Функции и графики</h2>
+
+  <div class="block-title">📘 Теория</div>
+  <div class="box">
+    Функция — зависимость одной переменной от другой.
+  </div>
+
+  <div class="block-title">✏️ Задания</div>
+  <div class="task">1. Построить график y = 2x + 1</div>
+</div>
+
+
+<div id="t5" class="topic">
+  <h2>Преобразования графиков</h2>
+
+  <div class="block-title">📘 Теория</div>
+  <div class="box">
+    Сдвиги и растяжения графиков функций.
+  </div>
+
+  <div class="block-title">✏️ Задания</div>
+  <div class="task">1. Построить y = (x-2)²</div>
+</div>
+
+
+<div id="t6" class="topic">
+  <h2>Арифметическая и геометрическая прогрессии</h2>
+
+  <div class="block-title">📘 Теория</div>
+  <div class="box">
+    Последовательности чисел с постоянной разностью или отношением.
+  </div>
+
+  <div class="block-title">✏️ Задания</div>
+  <div class="task">1. Найти 10-й член арифметической прогрессии</div>
+</div>
+
+</main>
+
+</body>
+</html>
