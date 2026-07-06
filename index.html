@@ -14,7 +14,17 @@
       --text: #e8f0ea;
       --muted: #9aa4b2;
       --accent: #22ff88;
+      --gold: #ffd700;
+      --gold-light: #ffe066;
+      --gold-dark: #b8860b;
+      --silver: #c0c0c0;
+      --silver-light: #e8e8e8;
+      --silver-dark: #a0a0a0;
+      --exam-blue: #1a2a4a;
+      --exam-blue-light: #3a5a8a;
       --border: rgba(34, 255, 136, 0.18);
+      --gold-border: rgba(255, 215, 0, 0.5);
+      --exam-border: rgba(192, 192, 192, 0.4);
     }
 
     * {
@@ -118,7 +128,7 @@
       box-shadow: 0 0 20px rgba(34, 255, 136, 0.1);
     }
 
-    /* ===== Hero Box (статичный декоративный блок) ===== */
+    /* ===== Hero Box ===== */
     .hero-box {
       width: 280px;
       height: 240px;
@@ -136,7 +146,6 @@
       padding: 15px;
     }
 
-    /* Сетка (линии) */
     .hero-box::before {
       content: "";
       position: absolute;
@@ -148,7 +157,6 @@
       opacity: 0.7;
     }
 
-    /* Символы внутри сетки */
     .hero-box .symbol {
       font-size: clamp(18px, 2.5vw, 26px);
       color: rgba(34, 255, 136, 0.3);
@@ -164,7 +172,7 @@
       transform: scale(1.1);
     }
 
-    /* ===== GRID КАРТОЧЕК ===== */
+    /* ===== GRID ===== */
     .grid {
       max-width: 1100px;
       margin: 0 auto;
@@ -181,9 +189,12 @@
       border-radius: 18px;
       padding: 18px;
       cursor: pointer;
-      transition: 0.3s;
+      transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       display: flex;
       flex-direction: column;
+      position: relative;
+      overflow: visible;
+      z-index: 1;
     }
 
     .card:hover {
@@ -214,6 +225,302 @@
 
     .card:hover .go {
       transform: translateX(4px);
+    }
+
+    /* =============================================================
+       11 КЛАСС — ЗОЛОТАЯ ЧЕМПИОНСКАЯ КАРТОЧКА (УЛУЧШЕНА В 10 РАЗ)
+    ============================================================= */
+    .card-gold {
+      border: 2px solid var(--gold-border);
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.12), rgba(255, 215, 0, 0.03), rgba(255, 215, 0, 0.12));
+      background-size: 300% 300%;
+      animation: goldPulse 3s ease-in-out infinite;
+      box-shadow: 0 0 50px rgba(255, 215, 0, 0.08);
+      z-index: 2;
+      overflow: visible !important;
+    }
+
+    .card-gold::before {
+      content: "";
+      position: absolute;
+      inset: -3px;
+      border-radius: 20px;
+      padding: 3px;
+      background: conic-gradient(from var(--angle), var(--gold), var(--gold-light), var(--gold), var(--gold-dark), var(--gold));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      animation: rotateBorder 8s linear infinite;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    @property --angle {
+      syntax: '<angle>';
+      initial-value: 0deg;
+      inherits: false;
+    }
+
+    @keyframes rotateBorder {
+      to { --angle: 360deg; }
+    }
+
+    .card-gold:hover {
+      transform: translateY(-10px) scale(1.03);
+      border-color: var(--gold);
+      box-shadow: 0 0 80px rgba(255, 215, 0, 0.35), 0 0 150px rgba(255, 215, 0, 0.15);
+    }
+
+    .card-gold .go {
+      color: var(--gold);
+      text-shadow: 0 0 25px rgba(255, 215, 0, 0.4);
+    }
+
+    /* Декорации золота */
+    .gold-deco {
+      position: absolute;
+      pointer-events: none;
+      z-index: 5;
+      transition: transform 0.4s ease, filter 0.4s ease;
+    }
+
+    .laurel-left-gold {
+      top: -12px;
+      left: -12px;
+      font-size: 44px;
+      animation: laurelSway 3.5s ease-in-out infinite;
+      filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.5));
+    }
+
+    .laurel-right-gold {
+      top: -12px;
+      right: -12px;
+      font-size: 44px;
+      animation: laurelSway 3.5s ease-in-out infinite reverse;
+      filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.5));
+    }
+
+    @keyframes laurelSway {
+      0%, 100% { transform: rotate(-8deg) scale(1); }
+      50% { transform: rotate(8deg) scale(1.08); }
+    }
+
+    .trophy-gold {
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 56px;
+      animation: trophyFloatGold 3s ease-in-out infinite;
+      filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.6));
+      text-shadow: 0 0 40px rgba(255, 215, 0, 0.3);
+      z-index: 6;
+    }
+
+    @keyframes trophyFloatGold {
+      0%, 100% { transform: translateX(-50%) translateY(0) scale(1) rotate(-3deg); }
+      50% { transform: translateX(-50%) translateY(-12px) scale(1.08) rotate(3deg); }
+    }
+
+    .ribbon-gold {
+      bottom: 10px;
+      left: 10px;
+      font-size: 28px;
+      animation: ribbonWave 4s ease-in-out infinite;
+      filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.3));
+    }
+
+    @keyframes ribbonWave {
+      0%, 100% { transform: rotate(-5deg) scale(1); }
+      50% { transform: rotate(5deg) scale(1.1); }
+    }
+
+    .sparkle-gold {
+      position: absolute;
+      font-size: 14px;
+      color: var(--gold);
+      opacity: 0;
+      animation: sparkleFallGold 5s linear infinite;
+      pointer-events: none;
+      z-index: 4;
+      text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+    }
+
+    .sparkle-gold:nth-child(1) { left: 5%; animation-delay: 0s; }
+    .sparkle-gold:nth-child(2) { left: 15%; animation-delay: 0.8s; }
+    .sparkle-gold:nth-child(3) { left: 25%; animation-delay: 1.6s; }
+    .sparkle-gold:nth-child(4) { left: 35%; animation-delay: 0.4s; }
+    .sparkle-gold:nth-child(5) { left: 45%; animation-delay: 2.0s; }
+    .sparkle-gold:nth-child(6) { left: 55%; animation-delay: 1.2s; }
+    .sparkle-gold:nth-child(7) { left: 65%; animation-delay: 2.8s; }
+    .sparkle-gold:nth-child(8) { left: 75%; animation-delay: 0.2s; }
+    .sparkle-gold:nth-child(9) { left: 85%; animation-delay: 1.0s; }
+    .sparkle-gold:nth-child(10) { left: 95%; animation-delay: 2.4s; }
+
+    @keyframes sparkleFallGold {
+      0% { opacity: 0; transform: translateY(-30px) scale(0.5) rotate(0deg); }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { opacity: 0; transform: translateY(160px) scale(1.3) rotate(720deg); }
+    }
+
+    .card-gold:hover .sparkle-gold {
+      animation-duration: 3s;
+    }
+
+    .card-gold:hover .trophy-gold {
+      animation-duration: 1.5s;
+    }
+
+    .card-gold:hover .laurel-left-gold,
+    .card-gold:hover .laurel-right-gold {
+      animation-duration: 1.8s;
+    }
+
+    @keyframes goldPulse {
+      0%, 100% { background-position: 0% 50%; box-shadow: 0 0 40px rgba(255, 215, 0, 0.05); }
+      50% { background-position: 100% 50%; box-shadow: 0 0 70px rgba(255, 215, 0, 0.15); }
+    }
+
+    /* =============================================================
+       9 КЛАСС — СЕРЕБРЯНО-СИНЯЯ АКАДЕМИЧЕСКАЯ КАРТОЧКА (УЛУЧШЕНА В 10 РАЗ)
+    ============================================================= */
+    .card-exam {
+      border: 2px solid var(--exam-border);
+      background: linear-gradient(135deg, rgba(192, 192, 192, 0.08), rgba(26, 42, 74, 0.06), rgba(192, 192, 192, 0.08));
+      background-size: 300% 300%;
+      animation: examPulse 4s ease-in-out infinite;
+      box-shadow: 0 0 40px rgba(192, 192, 192, 0.04);
+      z-index: 2;
+      overflow: visible !important;
+    }
+
+    .card-exam::before {
+      content: "";
+      position: absolute;
+      inset: -3px;
+      border-radius: 20px;
+      padding: 3px;
+      background: conic-gradient(from var(--angle-exam), var(--silver), var(--exam-blue-light), var(--silver), var(--exam-blue), var(--silver));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      animation: rotateBorderExam 10s linear infinite;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    @property --angle-exam {
+      syntax: '<angle>';
+      initial-value: 0deg;
+      inherits: false;
+    }
+
+    @keyframes rotateBorderExam {
+      to { --angle-exam: 360deg; }
+    }
+
+    .card-exam:hover {
+      transform: translateY(-10px) scale(1.03);
+      border-color: var(--silver);
+      box-shadow: 0 0 70px rgba(192, 192, 192, 0.25), 0 0 140px rgba(26, 42, 74, 0.15);
+    }
+
+    .card-exam .go {
+      color: var(--silver);
+      text-shadow: 0 0 20px rgba(192, 192, 192, 0.3);
+    }
+
+    /* Декорации экзамена */
+    .exam-deco {
+      position: absolute;
+      pointer-events: none;
+      z-index: 5;
+      transition: transform 0.4s ease, filter 0.4s ease;
+    }
+
+    .cap-exam {
+      top: -12px;
+      left: -8px;
+      font-size: 42px;
+      animation: capFloat 5s ease-in-out infinite;
+      filter: drop-shadow(0 0 20px rgba(192, 192, 192, 0.4));
+    }
+
+    @keyframes capFloat {
+      0%, 100% { transform: translateY(0) rotate(-5deg) scale(1); }
+      50% { transform: translateY(-10px) rotate(5deg) scale(1.05); }
+    }
+
+    .scroll-exam {
+      bottom: -8px;
+      left: 10px;
+      font-size: 32px;
+      animation: scrollSway 4s ease-in-out infinite;
+      filter: drop-shadow(0 0 15px rgba(192, 192, 192, 0.2));
+    }
+
+    @keyframes scrollSway {
+      0%, 100% { transform: rotate(-10deg) scale(1); }
+      50% { transform: rotate(10deg) scale(1.1); }
+    }
+
+    .diploma-exam {
+      bottom: -8px;
+      right: 10px;
+      font-size: 34px;
+      animation: diplomaFloat 3.5s ease-in-out infinite;
+      filter: drop-shadow(0 0 15px rgba(192, 192, 192, 0.2));
+    }
+
+    @keyframes diplomaFloat {
+      0%, 100% { transform: translateY(0) rotate(3deg) scale(1); }
+      50% { transform: translateY(-6px) rotate(-3deg) scale(1.05); }
+    }
+
+    /* Множество серебряных искр */
+    .sparkle-exam {
+      position: absolute;
+      font-size: 12px;
+      color: var(--silver);
+      opacity: 0;
+      animation: sparkleFallExam 6s linear infinite;
+      pointer-events: none;
+      z-index: 4;
+      text-shadow: 0 0 6px rgba(192, 192, 192, 0.4);
+    }
+
+    .sparkle-exam:nth-child(1) { left: 8%; animation-delay: 0s; }
+    .sparkle-exam:nth-child(2) { left: 20%; animation-delay: 1.0s; }
+    .sparkle-exam:nth-child(3) { left: 32%; animation-delay: 2.0s; }
+    .sparkle-exam:nth-child(4) { left: 44%; animation-delay: 0.5s; }
+    .sparkle-exam:nth-child(5) { left: 56%; animation-delay: 2.5s; }
+    .sparkle-exam:nth-child(6) { left: 68%; animation-delay: 1.5s; }
+    .sparkle-exam:nth-child(7) { left: 80%; animation-delay: 3.0s; }
+    .sparkle-exam:nth-child(8) { left: 92%; animation-delay: 0.3s; }
+
+    @keyframes sparkleFallExam {
+      0% { opacity: 0; transform: translateY(-40px) scale(0.4) rotate(0deg); }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { opacity: 0; transform: translateY(180px) scale(1.2) rotate(720deg); }
+    }
+
+    .card-exam:hover .sparkle-exam {
+      animation-duration: 4s;
+    }
+
+    .card-exam:hover .cap-exam {
+      animation-duration: 2s;
+    }
+
+    .card-exam:hover .scroll-exam,
+    .card-exam:hover .diploma-exam {
+      animation-duration: 2s;
+    }
+
+    @keyframes examPulse {
+      0%, 100% { background-position: 0% 50%; box-shadow: 0 0 30px rgba(192, 192, 192, 0.03); }
+      50% { background-position: 100% 50%; box-shadow: 0 0 60px rgba(192, 192, 192, 0.12); }
     }
 
     /* ===== OVERLAY ===== */
@@ -275,6 +582,92 @@
       transform: scale(1.02);
     }
 
+    /* ===== КНОПКА ЦЭ/ЦТ (УЛУЧШЕНА В 15 РАЗ) ===== */
+    .option-champion-gold {
+      border: 2px solid var(--gold-border);
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 215, 0, 0.02));
+      animation: goldPulse 2s ease-in-out infinite;
+      font-weight: 800;
+      color: var(--gold);
+      position: relative;
+      overflow: visible;
+      padding: 18px 20px;
+      font-size: clamp(18px, 2.5vw, 24px);
+      letter-spacing: 1px;
+      text-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
+      box-shadow: 0 0 30px rgba(255, 215, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .option-champion-gold::before {
+      content: "🏆";
+      margin-right: 10px;
+      display: inline-block;
+      animation: trophyFloatGold 2s ease-in-out infinite;
+    }
+
+    .option-champion-gold::after {
+      content: "🏁";
+      margin-left: 10px;
+      display: inline-block;
+      animation: torchFloat 3s ease-in-out infinite;
+    }
+
+    .option-champion-gold .stars {
+      display: inline-block;
+      margin: 0 6px;
+      animation: sparkleFallGold 2s linear infinite;
+    }
+
+    .option-champion-gold:hover {
+      transform: scale(1.08);
+      border-color: var(--gold);
+      background: rgba(255, 215, 0, 0.15);
+      box-shadow: 0 0 80px rgba(255, 215, 0, 0.3), 0 0 150px rgba(255, 215, 0, 0.1);
+      color: #fff;
+      text-shadow: 0 0 40px rgba(255, 215, 0, 0.6);
+    }
+
+    /* ===== КНОПКА "ЭКЗАМЕН" ДЛЯ 9 КЛАССА (УЛУЧШЕННАЯ) ===== */
+    .option-exam {
+      border: 2px solid var(--exam-border);
+      background: linear-gradient(135deg, rgba(192, 192, 192, 0.08), rgba(26, 42, 74, 0.05));
+      animation: examPulse 3s ease-in-out infinite;
+      font-weight: 700;
+      color: var(--silver);
+      position: relative;
+      overflow: visible;
+      padding: 16px 20px;
+      font-size: clamp(17px, 2.3vw, 22px);
+      letter-spacing: 0.5px;
+      text-shadow: 0 0 20px rgba(192, 192, 192, 0.15);
+      box-shadow: 0 0 20px rgba(192, 192, 192, 0.05);
+      transition: all 0.3s ease;
+    }
+
+    .option-exam::before {
+      content: "🎓";
+      margin-right: 10px;
+      display: inline-block;
+      animation: capFloat 3s ease-in-out infinite;
+    }
+
+    .option-exam::after {
+      content: "📜";
+      margin-left: 10px;
+      display: inline-block;
+      animation: scrollSway 3s ease-in-out infinite;
+    }
+
+    .option-exam:hover {
+      transform: scale(1.06);
+      border-color: var(--silver);
+      background: rgba(192, 192, 192, 0.12);
+      box-shadow: 0 0 60px rgba(192, 192, 192, 0.2), 0 0 120px rgba(26, 42, 74, 0.1);
+      color: #fff;
+      text-shadow: 0 0 30px rgba(192, 192, 192, 0.5);
+    }
+
     /* ===== FOOTER ===== */
     footer {
       text-align: center;
@@ -288,21 +681,21 @@
     /* ============================================================
        АДАПТИВНОСТЬ
     ============================================================ */
-
-    /* Планшеты и маленькие ноутбуки */
     @media (max-width: 900px) {
       .hero {
         padding: 30px 20px 20px;
         gap: 20px;
       }
-
       .hero-box {
         width: 220px;
         height: 200px;
       }
+      .laurel-left-gold, .laurel-right-gold { font-size: 34px; }
+      .trophy-gold { font-size: 44px; }
+      .cap-exam { font-size: 34px; }
+      .scroll-exam, .diploma-exam { font-size: 26px; }
     }
 
-    /* Телефоны */
     @media (max-width: 640px) {
       .hero {
         flex-direction: column;
@@ -310,13 +703,11 @@
         text-align: center;
         padding: 20px 16px 10px;
       }
-
       .hero-content p {
         max-width: 100%;
         margin-left: auto;
         margin-right: auto;
       }
-
       .hero-box {
         width: 100%;
         height: 180px;
@@ -325,45 +716,84 @@
         grid-template-rows: repeat(3, 1fr);
         padding: 10px;
       }
-
       .grid {
         grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
         gap: 12px;
         padding: 12px;
       }
-
       .card {
         padding: 14px;
+        overflow: hidden;
       }
-
       .overlay-panel {
         padding: 16px;
         width: 95%;
         max-width: 360px;
       }
-
       .option {
         padding: 16px;
         font-size: 18px;
       }
-
       header {
         padding: 10px 16px;
       }
-
       .btn {
         padding: 14px 28px;
         width: 100%;
         max-width: 260px;
       }
-
       .buttons {
         display: flex;
         justify-content: center;
       }
+
+      /* Уменьшаем декор для 11 */
+      .laurel-left-gold, .laurel-right-gold {
+        font-size: 24px !important;
+        top: -6px;
+        left: -6px;
+        right: -6px;
+      }
+      .trophy-gold {
+        font-size: 32px !important;
+        bottom: -8px;
+      }
+      .ribbon-gold { font-size: 18px; left: 4px; bottom: 4px; }
+      .sparkle-gold { font-size: 10px; }
+
+      /* Уменьшаем декор для 9 */
+      .cap-exam {
+        font-size: 24px !important;
+        top: -6px;
+        left: -4px;
+      }
+      .scroll-exam, .diploma-exam {
+        font-size: 20px !important;
+        bottom: -4px;
+      }
+      .sparkle-exam { font-size: 9px; }
+
+      .card-gold::before, .card-exam::before {
+        display: none;
+      }
+      .option-champion-gold {
+        font-size: 16px;
+        padding: 14px;
+      }
+      .option-champion-gold::before,
+      .option-champion-gold::after {
+        font-size: 18px;
+      }
+      .option-exam {
+        font-size: 15px;
+        padding: 14px;
+      }
+      .option-exam::before,
+      .option-exam::after {
+        font-size: 18px;
+      }
     }
 
-    /* Очень маленькие телефоны (ширина < 400px) */
     @media (max-width: 400px) {
       .hero-content h1 {
         font-size: 28px;
@@ -432,37 +862,77 @@
   </div>
 
   <script>
-    // ===== Данные классов =====
     const classes = [5, 6, 7, 8, 9, 10, 11];
-
     const grid = document.getElementById('grid');
     const overlay = document.getElementById('overlay');
     const optionsContainer = document.getElementById('optionsContainer');
     const overlayTitle = document.getElementById('overlayTitle');
 
-    // ===== Генерация карточек =====
+    // Генерация карточек
     classes.forEach(n => {
       const card = document.createElement('div');
       card.className = 'card';
-      card.innerHTML = `
-        <h3>${n} класс</h3>
-        <p>Базовая структура обучения</p>
-        <div class="go">перейти →</div>
-      `;
+
+      if (n === 11) {
+        // Золотая карточка 11 класса
+        card.classList.add('card-gold');
+        card.innerHTML = `
+          <span class="gold-deco laurel-left-gold">🌿</span>
+          <span class="gold-deco laurel-right-gold">🌿</span>
+          <span class="gold-deco trophy-gold">🏆</span>
+          <span class="gold-deco ribbon-gold">🎗️</span>
+          <span class="sparkle-gold">✦</span>
+          <span class="sparkle-gold">✦</span>
+          <span class="sparkle-gold">✦</span>
+          <span class="sparkle-gold">✦</span>
+          <span class="sparkle-gold">✦</span>
+          <span class="sparkle-gold">✦</span>
+          <span class="sparkle-gold">✦</span>
+          <span class="sparkle-gold">✦</span>
+          <span class="sparkle-gold">✦</span>
+          <span class="sparkle-gold">✦</span>
+          <h3>${n} класс</h3>
+          <p>Чемпионский выпуск!</p>
+          <div class="go">перейти →</div>
+        `;
+      } else if (n === 9) {
+        // Серебряно-синяя академическая карточка 9 класса (улучшена в 10 раз)
+        card.classList.add('card-exam');
+        card.innerHTML = `
+          <span class="exam-deco cap-exam">🎓</span>
+          <span class="exam-deco scroll-exam">📜</span>
+          <span class="exam-deco diploma-exam">📄</span>
+          <span class="sparkle-exam">✦</span>
+          <span class="sparkle-exam">✦</span>
+          <span class="sparkle-exam">✦</span>
+          <span class="sparkle-exam">✦</span>
+          <span class="sparkle-exam">✦</span>
+          <span class="sparkle-exam">✦</span>
+          <span class="sparkle-exam">✦</span>
+          <span class="sparkle-exam">✦</span>
+          <h3>${n} класс</h3>
+          <p>Экзаменационный выпуск</p>
+          <div class="go">перейти →</div>
+        `;
+      } else {
+        card.innerHTML = `
+          <h3>${n} класс</h3>
+          <p>Базовая структура обучения</p>
+          <div class="go">перейти →</div>
+        `;
+      }
+
       card.addEventListener('click', () => openClass(n));
       grid.appendChild(card);
     });
 
-    // ===== Логика открытия класса =====
+    // Логика открытия класса
     function openClass(n) {
       if (n <= 6) {
-        // Для 5–6 сразу переходим на страницу класса (пока заглушка)
-        // В будущем будет class.html?class=...
         alert(`Переход к ${n} классу (страница в разработке)`);
         return;
       }
 
-      // Для 7–11 показываем оверлей с предметами
       overlay.classList.add('active');
       optionsContainer.innerHTML = '';
       overlayTitle.textContent = `${n} класс`;
@@ -476,29 +946,39 @@
       items.forEach(item => {
         const option = document.createElement('div');
         option.className = 'option';
-        option.textContent = item;
+
+        if (n === 11 && item === 'ЦЭ / ЦТ') {
+          option.classList.add('option-champion-gold');
+          option.innerHTML = `
+            <span class="stars">✧</span>
+            ${item}
+            <span class="stars">✧</span>
+          `;
+        } else if (n === 9 && item === 'Экзамен') {
+          option.classList.add('option-exam');
+          option.innerHTML = item;
+        } else {
+          option.textContent = item;
+        }
+
         option.addEventListener('click', () => {
           overlay.classList.remove('active');
-          // Заглушка: переход к предмету (позже class.html?class=...&subject=...)
           alert(`Переход к ${n} классу, предмет "${item}" (страница в разработке)`);
         });
         optionsContainer.appendChild(option);
       });
     }
 
-    // ===== Закрытие оверлея по клику на фон =====
     overlay.addEventListener('click', (e) => {
       if (e.target === overlay) {
         overlay.classList.remove('active');
       }
     });
 
-    // ===== Скролл к карточкам =====
     function scrollToClasses() {
       document.getElementById('grid').scrollIntoView({ behavior: 'smooth' });
     }
 
-    // ===== Закрытие оверлея по ESC (опционально) =====
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && overlay.classList.contains('active')) {
         overlay.classList.remove('active');
