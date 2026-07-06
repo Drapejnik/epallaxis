@@ -9,6 +9,7 @@
 :root{
   --bg:#060a10;
   --panel:#0f1720;
+  --panel2:#111c26;
   --text:#e8f0ea;
   --muted:#9aa4b2;
   --accent:#22ff88;
@@ -25,6 +26,7 @@
 body{
   background:radial-gradient(1200px 600px at 20% 0%, #0d1f18 0%, var(--bg) 60%);
   color:var(--text);
+  overflow-x:hidden;
 }
 
 /* ================= HEADER ================= */
@@ -32,6 +34,7 @@ body{
 header{
   position:sticky;
   top:0;
+  z-index:100;
   background:rgba(6,10,16,0.75);
   backdrop-filter:blur(14px);
   border-bottom:1px solid var(--border);
@@ -100,16 +103,6 @@ header{
   transform:translateY(-2px);
 }
 
-/* ================= INFO SNIPPET ================= */
-
-.snippet{
-  max-width:1100px;
-  margin:0 auto;
-  padding:0 20px 30px;
-  color:var(--muted);
-  font-size:14px;
-}
-
 /* ================= GRID ================= */
 
 .grid{
@@ -121,30 +114,80 @@ header{
   gap:16px;
 }
 
+/* ================= CARD ================= */
+
 .card{
-  background:linear-gradient(145deg,#0f1720,#111c26);
+  background:linear-gradient(145deg,var(--panel),var(--panel2));
   border:1px solid var(--border);
   border-radius:18px;
   padding:18px;
   cursor:pointer;
   transition:0.3s;
-  position:relative;
 }
 
 .card:hover{
   transform:translateY(-6px);
   border-color:var(--accent);
-  box-shadow:0 0 30px rgba(34,255,136,0.08);
+  box-shadow:0 0 25px rgba(34,255,136,0.08);
 }
 
-.card h3{
-  margin-top:10px;
-}
+.card h3{margin-top:8px}
+.card p{margin-top:6px;color:var(--muted);font-size:13px}
 
-.card p{
-  margin-top:6px;
-  color:var(--muted);
+.go{
+  margin-top:12px;
+  color:var(--accent);
   font-size:13px;
+}
+
+/* ================= HERO BOX (LAVA FIXED) ================= */
+
+.hero-box{
+  width:300px;
+  height:260px;
+  border-radius:22px;
+  border:1px solid var(--border);
+  background:linear-gradient(145deg,var(--panel),var(--panel2));
+  position:relative;
+  overflow:hidden;
+  flex-shrink:0;
+  box-shadow:0 0 40px rgba(34,255,136,0.05);
+}
+
+/* grid */
+.hero-box::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(transparent 49%, rgba(34,255,136,0.04) 50%, transparent 51%),
+    linear-gradient(90deg, transparent 49%, rgba(34,255,136,0.04) 50%, transparent 51%);
+  background-size:34px 34px;
+  opacity:0.7;
+}
+
+/* glow */
+.hero-box::after{
+  content:"";
+  position:absolute;
+  inset:-40%;
+  background:radial-gradient(circle at 50% 70%, rgba(34,255,136,0.12), transparent 60%);
+  animation:breath 6s ease-in-out infinite;
+}
+
+@keyframes breath{
+  0%,100%{transform:scale(1);opacity:0.4;}
+  50%{transform:scale(1.08);opacity:0.6;}
+}
+
+/* lava symbols */
+.lava{
+  position:absolute;
+  bottom:-20px;
+  color:rgba(34,255,136,0.35);
+  font-size:14px;
+  pointer-events:none;
+  text-shadow:0 0 10px rgba(34,255,136,0.25);
 }
 
 /* ================= OVERLAY ================= */
@@ -152,31 +195,37 @@ header{
 .overlay{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,0.6);
+  background:rgba(0,0,0,0.55);
   backdrop-filter:blur(10px);
-  display:none;
+  display:flex;
   align-items:center;
   justify-content:center;
+
+  opacity:0;
+  pointer-events:none;
+  transition:0.3s ease;
 }
 
 .overlay.active{
-  display:flex;
-  animation:fade 0.25s ease;
+  opacity:1;
+  pointer-events:auto;
 }
 
 .panel{
   width:340px;
-  background:#0f1720;
+  background:var(--panel);
   border:1px solid var(--border);
   border-radius:18px;
   padding:18px;
-  box-shadow:0 0 50px rgba(0,0,0,0.6);
-  transform:translateY(20px);
-  animation:slide 0.25s forwards;
+  transform:translateY(20px) scale(0.97);
+  opacity:0;
+  transition:0.3s ease;
 }
 
-@keyframes fade{from{opacity:0}to{opacity:1}}
-@keyframes slide{to{transform:translateY(0)}}
+.overlay.active .panel{
+  transform:translateY(0) scale(1);
+  opacity:1;
+}
 
 .option{
   padding:12px;
@@ -192,16 +241,6 @@ header{
   background:rgba(34,255,136,0.05);
 }
 
-/* ================= FOOTNOTE ================= */
-
-footer{
-  text-align:center;
-  padding:40px 20px;
-  color:var(--muted);
-  border-top:1px solid var(--border);
-  margin-top:40px;
-}
-
 </style>
 </head>
 
@@ -209,7 +248,7 @@ footer{
 
 <header>
   <div class="brand">
-    <h1>EPALLAXIS</h1>
+    <h1>EPALLAXIS <span style="color:#22ff88">math</span></h1>
     <p>Ἐπαλλάσσω — приводить систему в порядок</p>
   </div>
 </header>
@@ -218,113 +257,91 @@ footer{
   <div>
     <h1>МАТЕМАТИКА<br><span>5–11 КЛАССЫ</span></h1>
     <p>Структурированная система обучения: теория, практика, экзамены.</p>
-
     <div class="buttons">
       <div class="btn" onclick="scrollToClasses()">Выбрать класс</div>
     </div>
   </div>
-</section>
 
-<div class="snippet">
-  EPALLAXIS — цифровая образовательная система, где математика выстраивается как логическая структура знаний.
-</div>
+  <div class="hero-box" id="lavaBox"></div>
+</section>
 
 <section class="grid" id="grid"></section>
 
-<footer>
+<footer style="text-align:center;padding:40px;color:var(--muted)">
   EPALLAXIS — Mathematics System 2026
 </footer>
 
 <!-- OVERLAY -->
 <div class="overlay" id="overlay">
   <div class="panel">
-    <h3 id="title">Выбор направления</h3>
+    <h3 id="title">Выбор</h3>
     <div id="options"></div>
   </div>
 </div>
 
 <script>
 
-const classes=[
-  {n:5},
-  {n:6},
-  {n:7},
-  {n:8},
-  {n:9},
-  {n:10},
-  {n:11}
-];
+const classes=[5,6,7,8,9,10,11];
 
 const grid=document.getElementById("grid");
 const overlay=document.getElementById("overlay");
 const options=document.getElementById("options");
 const title=document.getElementById("title");
 
-classes.forEach(c=>{
+function classLink(n){
+  return `class${n}.html`;
+}
+
+/* ================= CARDS ================= */
+
+classes.forEach(n=>{
   const el=document.createElement("div");
   el.className="card";
-  el.innerHTML=`<h3>${c.n} класс</h3><p>Открыть учебную структуру</p>`;
-  el.onclick=()=>openClass(c.n);
+
+  el.innerHTML=`
+    <h3>${n} класс</h3>
+    <p>Базовая структура обучения</p>
+    <div class="go">перейти →</div>
+  `;
+
+  el.onclick=()=>openClass(n);
   grid.appendChild(el);
 });
 
-/* ================= NAV LOGIC ================= */
+/* ================= NAV ================= */
 
 function openClass(n){
 
-  options.innerHTML="";
+  if(n<=6){
+    window.location.href = classLink(n);
+    return;
+  }
+
   overlay.classList.add("active");
+  options.innerHTML="";
+  title.innerText=n+" класс";
 
   let items=[];
 
-  if(n<=6){
-    items=["Темы"];
-  }
-
-  else if(n<=8){
-    items=["Алгебра","Геометрия"];
-  }
-
-  else if(n===9){
-    items=["Алгебра","Геометрия","Экзамен"];
-  }
-
-  else if(n===10){
-    items=["Алгебра","Геометрия"];
-  }
-
-  else{
-    items=["Алгебра","Геометрия","ЦЭ / ЦТ"];
-  }
-
-  title.innerText=n+" класс";
+  if(n<=8) items=["Алгебра","Геометрия"];
+  else if(n===9) items=["Алгебра","Геометрия","Экзамен"];
+  else if(n===10) items=["Алгебра","Геометрия"];
+  else items=["Алгебра","Геометрия","ЦЭ / ЦТ"];
 
   items.forEach(i=>{
     const d=document.createElement("div");
     d.className="option";
     d.innerText=i;
-    d.onclick=()=>select(i,n);
+
+    d.onclick=()=>{
+      overlay.classList.remove("active");
+      setTimeout(()=>{
+        window.location.href = classLink(n) + "?type=" + encodeURIComponent(i);
+      },250);
+    };
+
     options.appendChild(d);
   });
-}
-
-/* ================= SELECTION ================= */
-
-function select(type,n){
-  overlay.classList.remove("active");
-
-  setTimeout(()=>{
-    const target=document.getElementById("grid");
-    target.scrollIntoView({behavior:"smooth"});
-  },200);
-
-  console.log("Selected:",n,type);
-}
-
-/* ================= SCROLL ================= */
-
-function scrollToClasses(){
-  document.getElementById("grid").scrollIntoView({behavior:"smooth"});
 }
 
 /* close overlay */
@@ -333,6 +350,61 @@ overlay.onclick=(e)=>{
     overlay.classList.remove("active");
   }
 };
+
+function scrollToClasses(){
+  document.getElementById("grid").scrollIntoView({behavior:"smooth"});
+}
+
+/* ================= LAVA LAMP ================= */
+
+const box=document.getElementById("lavaBox");
+const symbols=["√","∑","π","∫","∞","x²","a","b","c","∠"];
+
+function spawn(){
+  const el=document.createElement("div");
+  el.className="lava";
+  el.innerText=symbols[Math.floor(Math.random()*symbols.length)];
+
+  const x = Math.random()*260;
+  el.style.left = x+"px";
+
+  const size = 12 + Math.random()*16;
+  el.style.fontSize = size+"px";
+
+  const duration = 4000 + Math.random()*3000;
+  el.style.animation = `rise ${duration}ms linear forwards`;
+
+  box.appendChild(el);
+
+  let y = 0;
+  const speed = 0.6 + Math.random()*0.7;
+
+  function move(){
+    y += speed;
+    el.style.transform = `translateY(${-y}px)`;
+
+    if(y > 320){
+      el.remove();
+      return;
+    }
+    requestAnimationFrame(move);
+  }
+
+  requestAnimationFrame(move);
+}
+
+const style=document.createElement("style");
+style.innerHTML=`
+@keyframes rise{
+  from{opacity:0; transform:translateY(0);}
+  10%{opacity:1;}
+  to{opacity:0; transform:translateY(-320px);}
+}
+`;
+document.head.appendChild(style);
+
+/* density */
+setInterval(spawn, 120);
 
 </script>
 
