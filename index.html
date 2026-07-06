@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ААААА</title>
+  <title>Math Portal — Главная</title>
 
   <style>
     :root {
-      --bg: #0f1115;
-      --panel: #161a22;
-      --text: #e6e6e6;
+      --bg: #0e0f13;
+      --panel: #161922;
+      --text: #e8e8e8;
       --muted: #a0a0a0;
       --accent: #00ff66;
       --border: rgba(0, 255, 102, 0.35);
@@ -30,7 +30,7 @@
     header {
       padding: 20px;
       border-bottom: 1px solid var(--border);
-      background: linear-gradient(180deg, #121621, #0f1115);
+      background: #121521;
     }
 
     .container {
@@ -43,7 +43,6 @@
       font-size: 22px;
       font-weight: 700;
       color: var(--accent);
-      letter-spacing: 1px;
     }
 
     nav {
@@ -65,7 +64,6 @@
     nav a:hover {
       border-color: var(--accent);
       color: var(--accent);
-      transform: translateY(-1px);
     }
 
     .hero {
@@ -78,7 +76,7 @@
 
     .hero h1 {
       margin: 0 0 10px;
-      font-size: 28px;
+      font-size: 26px;
     }
 
     .hero p {
@@ -87,16 +85,16 @@
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 15px;
-      margin-top: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 25px;
     }
 
     .card {
       background: var(--panel);
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 15px;
+      padding: 18px;
       transition: 0.2s;
     }
 
@@ -106,7 +104,7 @@
     }
 
     .card h3 {
-      margin-top: 0;
+      margin: 0 0 10px;
       color: var(--accent);
     }
 
@@ -123,7 +121,7 @@
 
     .btn:hover {
       background: var(--accent);
-      color: #0f1115;
+      color: #0e0f13;
     }
 
     footer {
@@ -140,10 +138,10 @@
 
 <header>
   <div class="container">
-    <div class="logo">MATH HUB // DARK MODE</div>
+    <div class="logo">MATH PORTAL</div>
 
     <nav>
-      <a href="index.html">МАИН</a>
+      <a href="index.html">Главная</a>
       <a href="algebra.html">Алгебра</a>
       <a href="geometry.html">Геометрия</a>
       <a href="analysis.html">Анализ</a>
@@ -154,31 +152,55 @@
 <main class="container">
 
   <section class="hero">
-    <h1>Учись математике как в игре</h1>
+    <h1>Образовательный сайт по математике</h1>
     <p>
-      Понятные уроки, структура как в прокачке персонажа и чистый минималистичный интерфейс.
-      Выбирай раздел и начинай обучение.
+      Выберите класс (5–11), чтобы перейти к материалам.  
+      Каждый класс содержит теорию, примеры и задания.
     </p>
   </section>
 
   <section class="grid">
 
     <div class="card">
-      <h3>Алгебра</h3>
-      <p>Уравнения, функции, преобразования и основы вычислений.</p>
-      <a class="btn" href="algebra.html">Перейти</a>
+      <h3>5 класс</h3>
+      <p>Базовая арифметика и основы математики.</p>
+      <a class="btn" href="class5.html">Открыть</a>
     </div>
 
     <div class="card">
-      <h3>Геометрия</h3>
-      <p>Фигуры, теоремы, доказательства и пространственное мышление.</p>
-      <a class="btn" href="geometry.html">Перейти</a>
+      <h3>6 класс</h3>
+      <p>Дроби, пропорции, расширение базовых навыков.</p>
+      <a class="btn" href="class6.html">Открыть</a>
     </div>
 
     <div class="card">
-      <h3>Математический анализ</h3>
-      <p>Пределы, производные, интегралы и основы высшей математики.</p>
-      <a class="btn" href="analysis.html">Перейти</a>
+      <h3>7 класс</h3>
+      <p>Уравнения, функции и начало алгебры.</p>
+      <a class="btn" href="class7.html">Открыть</a>
+    </div>
+
+    <div class="card">
+      <h3>8 класс</h3>
+      <p>Линейные и квадратные уравнения, геометрия.</p>
+      <a class="btn" href="class8.html">Открыть</a>
+    </div>
+
+    <div class="card">
+      <h3>9 класс</h3>
+      <p>Системы уравнений, подготовка к экзаменам.</p>
+      <a class="btn" href="class9.html">Открыть</a>
+    </div>
+
+    <div class="card">
+      <h3>10 класс</h3>
+      <p>Функции, тригонометрия, расширенная алгебра.</p>
+      <a class="btn" href="class10.html">Открыть</a>
+    </div>
+
+    <div class="card">
+      <h3>11 класс</h3>
+      <p>Высшая математика и подготовка к поступлению.</p>
+      <a class="btn" href="class11.html">Открыть</a>
     </div>
 
   </section>
@@ -187,7 +209,7 @@
 
 <footer>
   <div class="container">
-    © 2026 Math Hub — образовательная платформа
+    © 2026 Math Portal — все права защищены
   </div>
 </footer>
 
