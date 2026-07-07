@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>В разработке — EPALLAXIS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #060a10;
+            --panel: #0f1720;
+            --panel2: #111c26;
+            --text: #e8f0ea;
+            --muted: #9aa4b2;
+            --accent: #22ff88;
+            --border: rgba(34, 255, 136, 0.18);
+            --glow: rgba(34, 255, 136, 0.12);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            max-width: 100vw;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: radial-gradient(1200px 600px at 20% 0%, #0d1f18 0%, var(--bg) 60%);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .container {
+            max-width: 650px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            background: linear-gradient(145deg, var(--panel), var(--panel2));
+            border: 1px solid var(--border);
+            border-radius: 32px;
+            padding: 50px 40px 40px;
+            box-shadow: 0 0 60px var(--glow);
+            backdrop-filter: blur(6px);
+            transition: box-shadow 0.4s;
+            animation: fadeIn 1s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .container:hover {
+            box-shadow: 0 0 80px rgba(34, 255, 136, 0.18);
+        }
+
+        h1 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 6px;
+            letter-spacing: -0.5px;
+        }
+
+        h1 span {
+            color: var(--accent);
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--muted);
+            margin-bottom: 4px;
+            font-weight: 300;
+        }
+
+        .joke {
+            color: var(--accent);
+            font-size: 1rem;
+            font-style: italic;
+            margin: 12px 0 20px;
+            min-height: 28px;
+            opacity: 0.9;
+        }
+
+        .hint {
+            color: var(--muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .btn-home {
+            display: inline-block;
+            background: transparent;
+            color: var(--accent);
+            padding: 12px 32px;
+            border: 1.5px solid var(--accent);
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.3s;
+            letter-spacing: 0.3px;
+        }
+
+        .btn-home:hover {
+            background: rgba(34, 255, 136, 0.08);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(34, 255, 136, 0.2);
+        }
+
+        .formula {
+            color: var(--muted);
+            font-size: 0.85rem;
+            margin-top: 30px;
+            opacity: 0.5;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+        }
+
+        .floating-symbol {
+            position: absolute;
+            color: rgba(34, 255, 136, 0.12);
+            font-size: 28px;
+            pointer-events: none;
+            animation: rise linear infinite;
+            user-select: none;
+            text-shadow: 0 0 15px rgba(34, 255, 136, 0.05);
+        }
+
+        @keyframes rise {
+            0% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-100vh);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 30px 20px 30px;
+                border-radius: 24px;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            .subtitle {
+                font-size: 0.95rem;
+            }
+            .joke {
+                font-size: 0.9rem;
+            }
+            .hint {
+                font-size: 0.85rem;
+            }
+            .btn-home {
+                font-size: 14px;
+                padding: 10px 24px;
+            }
+            .floating-symbol {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            h1 {
+                font-size: 1.4rem;
+            }
+            .container {
+                padding: 20px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="symbols-container"></div>
+
+    <div class="container">
+        <h1>Раздел <span>в разработке</span></h1>
+        <p class="subtitle">Мы уже считаем, решаем и доказываем</p>
+        <p class="joke" id="joke"></p>
+        <p class="hint">
+            Этот раздел ещё не готов, но мы работаем над ним.<br>
+            Скоро здесь появится теория, практика и много заданий.
+        </p>
+        <a href="../../index.html" class="btn-home">← На главную</a>
+        <p class="formula">∫ d(раздел) = EPALLAXIS + C</p>
+    </div>
+
+    <script>
+        // ===== 10 шуток по геометрии для 8 класса =====
+        const jokes = [
+            'Параллелограмм: противоположные стороны равны, а страница и релиз — пока нет.',
+            'Трапеция: основания параллельны, как мы и наш прогресс.',
+            'Окружность: центр есть, радиус пока не найден.',
+            'Вписанный угол опирается на дугу, как мы опираемся на чай в процессе разработки.',
+            'Теорема Пифагора: квадрат гипотенузы равен сумме квадратов катетов, а страница пока в квадрате.',
+            'Подобие треугольников: страница похожа на готовую, но не равна.',
+            'Средняя линия треугольника параллельна основанию, как мы параллельны дедлайнам.',
+            'Площадь трапеции: полусумма оснований на высоту, у страницы высота пока нулевая.',
+            'Ромб: все стороны равны, но страница не готова.',
+            'Четырёхугольник: сумма углов = 360°, а мы уже столько градусов потратили на разработку.'
+        ];
+
+        document.getElementById('joke').textContent = jokes[Math.floor(Math.random() * jokes.length)];
+
+        // ===== Фоновые символы (только движущиеся) =====
+        const floatSymbols = ['√', '∑', 'π', '∫', '∞', 'x²', '∠', 'α', 'β', 'γ', '∂', '∇', 'Δ', 'θ', 'λ', 'μ', 'σ', 'τ', 'φ', 'ω'];
+
+        function createSymbol() {
+            const el = document.createElement('div');
+            el.className = 'floating-symbol';
+            el.textContent = floatSymbols[Math.floor(Math.random() * floatSymbols.length)];
+            el.style.left = Math.random() * 100 + '%';
+            el.style.fontSize = (18 + Math.random() * 32) + 'px';
+            el.style.animationDuration = (5 + Math.random() * 7) + 's';
+            // Убираем animationDelay — символы не стоят на месте
+            document.getElementById('symbols-container').appendChild(el);
+
+            setTimeout(() => {
+                el.remove();
+            }, parseFloat(el.style.animationDuration) * 1000 + 500);
+        }
+
+        for (let i = 0; i < 20; i++) {
+            setTimeout(createSymbol, i * 150);
+        }
+        setInterval(createSymbol, 500);
+    </script>
+</body>
+</html>
