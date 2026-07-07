@@ -6,7 +6,7 @@
   <title>Алгебра 9 класс — EPALLAXIS</title>
 
   <style>
-    /* ===== Переменные темы ===== */
+    /* ===== Переменные темы с RGB для теней ===== */
     :root {
       --bg: #060a10;
       --panel: #0f1720;
@@ -14,6 +14,7 @@
       --text: #e8f0ea;
       --muted: #9aa4b2;
       --accent: #22ff88;
+      --accent-rgb: 34, 255, 136;
       --border: rgba(34, 255, 136, 0.18);
     }
 
@@ -24,6 +25,7 @@
       --text: #f5ede4;
       --muted: #c4b8a8;
       --accent: #ff8c42;
+      --accent-rgb: 255, 140, 66;
       --border: rgba(255, 140, 66, 0.25);
     }
 
@@ -34,6 +36,7 @@
       --text: #f0eaff;
       --muted: #b8aad4;
       --accent: #aa66ff;
+      --accent-rgb: 170, 102, 255;
       --border: rgba(170, 102, 255, 0.25);
     }
 
@@ -44,6 +47,7 @@
       --text: #e8eeff;
       --muted: #aab8d4;
       --accent: #4a9eff;
+      --accent-rgb: 74, 158, 255;
       --border: rgba(74, 158, 255, 0.25);
     }
 
@@ -78,7 +82,7 @@
     body.theme-blue { background: radial-gradient(1200px 600px at 20% 0%, #0d1a2a 0%, var(--bg) 60%); }
 
     /* ============================================================
-       ИДЕЯ 4: «Дышащие» фоновые символы
+       Фоновые символы
     ============================================================ */
     .bg-symbols {
       position: fixed;
@@ -106,7 +110,7 @@
     }
 
     /* ============================================================
-       HEADER + ИДЕЯ 1: ПРОГРЕСС-БАР (всегда виден)
+       HEADER + ПРОГРЕСС-БАР
     ============================================================ */
     header {
       position: sticky;
@@ -154,7 +158,6 @@
       transition: color 0.5s;
     }
 
-    /* Прогресс-бар в шапке (тонкая линия) */
     .progress-bar {
       width: 100%;
       height: 2px;
@@ -174,7 +177,7 @@
     }
 
     /* ============================================================
-       ЗАГОЛОВОК СТРАНИЦЫ (без прогресс-бара, он в шапке)
+       ЗАГОЛОВОК СТРАНИЦЫ
     ============================================================ */
     .page-title {
       max-width: 1100px;
@@ -204,7 +207,7 @@
     }
 
     /* ============================================================
-       ИДЕЯ 5: СВЕТОВОЙ БЛИК НА КАРТОЧКЕ
+       КАРТОЧКИ (с улучшениями 1, 2, 3)
     ============================================================ */
     .topic-card {
       background: linear-gradient(145deg, var(--panel), var(--panel2));
@@ -220,7 +223,32 @@
       opacity: 0;
       animation: cardReveal 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     }
-    /* Световой блик */
+
+    .topic-card:hover {
+      transform: translateY(-6px) scale(1.01);
+      border-color: var(--accent);
+      box-shadow: 0 8px 40px rgba(var(--accent-rgb), 0.15),
+                  0 0 60px rgba(var(--accent-rgb), 0.05);
+    }
+
+    .topic-card:active {
+      transform: scale(0.97);
+      transition: transform 0.08s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    body.theme-orange .topic-card:hover {
+      box-shadow: 0 8px 40px rgba(255, 140, 66, 0.20),
+                  0 0 60px rgba(255, 140, 66, 0.08);
+    }
+    body.theme-purple .topic-card:hover {
+      box-shadow: 0 8px 40px rgba(170, 102, 255, 0.20),
+                  0 0 60px rgba(170, 102, 255, 0.08);
+    }
+    body.theme-blue .topic-card:hover {
+      box-shadow: 0 8px 40px rgba(74, 158, 255, 0.20),
+                  0 0 60px rgba(74, 158, 255, 0.08);
+    }
+
     .topic-card::before {
       content: "";
       position: absolute;
@@ -238,51 +266,73 @@
       left: 100%;
     }
 
-    /* ИДЕЯ 3: Анимация появления с вращением */
     @keyframes cardReveal {
-      0% {
-        opacity: 0;
-        transform: translateY(20px) scale(0.95) rotate(-2deg);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0) scale(1) rotate(0deg);
-      }
+      0% { opacity: 0; transform: translateY(20px) scale(0.95) rotate(-2deg); }
+      100% { opacity: 1; transform: translateY(0) scale(1) rotate(0deg); }
     }
-
-    .topic-card:hover {
-      transform: translateY(-6px) scale(1.01);
-      border-color: var(--accent);
-      box-shadow: 0 8px 40px rgba(34, 255, 136, 0.08);
-    }
-    body.theme-orange .topic-card:hover { box-shadow: 0 8px 40px rgba(255, 140, 66, 0.12); }
-    body.theme-purple .topic-card:hover { box-shadow: 0 8px 40px rgba(170, 102, 255, 0.12); }
-    body.theme-blue .topic-card:hover { box-shadow: 0 8px 40px rgba(74, 158, 255, 0.12); }
 
     /* ============================================================
-       ИДЕЯ 2: ИНТЕРАКТИВНЫЙ НОМЕР ТЕМЫ
+       "Глава 1." — в одну строку, оба акцентные, но разные размеры
     ============================================================ */
     .topic-number {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--muted);
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      margin-bottom: 6px;
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+      flex-wrap: wrap;
+      margin-bottom: 2px;
       transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-      display: inline-block;
-      width: fit-content;
     }
-    .topic-card:hover .topic-number,
-    .topic-card:active .topic-number {
-      font-size: 20px;
+
+    .topic-number .chapter-label {
+      font-size: 14px;
+      font-weight: 500;
       color: var(--accent);
-      transform: translateX(4px);
-      text-shadow: 0 0 20px var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: color 0.5s, text-shadow 0.5s;
+    }
+
+    .topic-number .chapter-number {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+      transition: color 0.5s, text-shadow 0.5s;
+    }
+
+    /* Линия под всей строкой "Глава 1." */
+    .topic-number::after {
+      content: "";
+      display: block;
+      width: 30px;
+      height: 2px;
+      background: var(--accent);
+      margin-top: 4px;
+      border-radius: 2px;
+      transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+                  background 0.5s;
+      box-shadow: 0 0 12px var(--accent);
+      flex-basis: 100%;
+    }
+
+    /* Расширение линии при наведении (десктоп) и при нажатии (мобилка) */
+    .topic-card:hover .topic-number::after,
+    .topic-card:active .topic-number::after {
+      width: 60px;
+    }
+
+    /* При наведении на карточку — номер и слово слегка светятся */
+    .topic-card:hover .topic-number .chapter-label,
+    .topic-card:hover .topic-number .chapter-number {
+      text-shadow: 0 0 30px var(--accent);
+    }
+    .topic-card:active .topic-number .chapter-label,
+    .topic-card:active .topic-number .chapter-number {
+      text-shadow: 0 0 30px var(--accent);
     }
 
     .topic-title {
-      font-size: clamp(18px, 2vw, 24px);
+      font-size: clamp(20px, 2.2vw, 28px);
       font-weight: 600;
       margin-bottom: 8px;
       line-height: 1.2;
@@ -291,9 +341,17 @@
     .topic-description {
       font-size: 14px;
       color: var(--muted);
-      line-height: 1.5;
+      line-height: 1.6;
       flex: 1;
       transition: color 0.5s;
+    }
+
+    .topic-description .section {
+      display: block;
+      margin-top: 2px;
+      font-size: 13px;
+      color: var(--muted);
+      opacity: 0.7;
     }
 
     .topic-arrow {
@@ -312,21 +370,21 @@
     }
 
     /* ============================================================
-       СЕТКА КАРТОЧЕК
+       СЕТКА
     ============================================================ */
     .topics-grid {
       max-width: 1100px;
       margin: 10px auto 0;
       width: 100%;
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
       position: relative;
       z-index: 2;
     }
 
     /* ============================================================
-       ПЛАВАЮЩАЯ КНОПКА С ФИЗИКОЙ
+       ПЛАВАЮЩАЯ КНОПКА
     ============================================================ */
     .back-link {
       position: fixed;
@@ -368,9 +426,9 @@
       .brand p { font-size: 11px; }
       .page-title { margin-top: 20px; }
       .progress-bar { margin-top: 6px; height: 2px; }
-      .topics-grid { grid-template-columns: 1fr; gap: 14px; }
+      .topics-grid { grid-template-columns: 1fr; gap: 16px; }
       .topic-card { padding: 18px; }
-      .topic-title { font-size: 20px; }
+      .topic-title { font-size: 22px; }
       .back-link {
         bottom: 16px;
         left: 16px;
@@ -379,17 +437,24 @@
         backdrop-filter: blur(10px);
       }
       .topic-card::before { display: none; }
+      .topic-number .chapter-label { font-size: 12px; }
+      .topic-number .chapter-number { font-size: 17px; }
+      .topic-number::after { width: 24px; }
+      .topic-card:hover .topic-number::after,
+      .topic-card:active .topic-number::after { width: 40px; }
     }
 
     @media (max-width: 400px) {
       .topic-card { padding: 16px; }
-      .topic-title { font-size: 18px; }
+      .topic-title { font-size: 20px; }
       .back-link {
         bottom: 12px;
         left: 12px;
         padding: 6px 14px;
         font-size: 12px;
       }
+      .topic-number .chapter-number { font-size: 15px; }
+      .topic-number .chapter-label { font-size: 11px; }
     }
 
     @media (min-width: 641px) {
@@ -401,12 +466,12 @@
 <body>
 
   <!-- ============================================================
-       ИДЕЯ 4: Дышащие фоновые символы
+       Фоновые символы
   ============================================================ -->
   <div class="bg-symbols" id="bgSymbols"></div>
 
   <!-- ============================================================
-       HEADER + ИДЕЯ 1: ПРОГРЕСС-БАР (всегда виден)
+       HEADER + ПРОГРЕСС-БАР
   ============================================================ -->
   <header>
     <div class="header-row">
@@ -421,26 +486,26 @@
   </header>
 
   <!-- ============================================================
-       ЗАГОЛОВОК СТРАНИЦЫ
+       ЗАГОЛОВОК
   ============================================================ -->
   <div class="page-title">
     <h1>Алгебра <span>9 класс</span></h1>
-    <p>Выберите тему, чтобы начать изучение</p>
+    <p>Выберите главу, чтобы начать изучение</p>
   </div>
 
   <!-- ============================================================
-       СЕТКА КАРТОЧЕК (ИДЕИ 2, 3, 5)
+       СЕТКА КАРТОЧЕК
   ============================================================ -->
   <section class="topics-grid" id="topicsGrid"></section>
 
   <!-- ============================================================
-       ПЛАВАЮЩАЯ КНОПКА С ФИЗИКОЙ
+       ПЛАВАЮЩАЯ КНОПКА
   ============================================================ -->
   <a href="../../index.html" class="back-link" id="backLink">← На главную</a>
 
   <script>
     // ================================================================
-    // 1. ПРИМЕНЕНИЕ СОХРАНЁННОЙ ТЕМЫ
+    // 1. ТЕМА
     // ================================================================
     (function applyTheme() {
       const theme = localStorage.getItem('epallaxis-theme') || 'green';
@@ -450,7 +515,7 @@
     })();
 
     // ================================================================
-    // 2. ИДЕЯ 4: ГЕНЕРАЦИЯ ДЫШАЩИХ ФОНОВЫХ СИМВОЛОВ
+    // 2. ФОНОВЫЕ СИМВОЛЫ
     // ================================================================
     (function createBgSymbols() {
       const container = document.getElementById('bgSymbols');
@@ -470,7 +535,7 @@
     })();
 
     // ================================================================
-    // 3. ИДЕЯ 1: ПРОГРЕСС-БАР В ШАПКЕ (всегда виден)
+    // 3. ПРОГРЕСС-БАР
     // ================================================================
     (function setupProgressBar() {
       const fill = document.getElementById('progressFill');
@@ -487,44 +552,90 @@
     })();
 
     // ================================================================
-    // 4. ИДЕЯ 2,3,5: ГЕНЕРАЦИЯ КАРТОЧЕК С ЗАДЕРЖКАМИ
+    // 4. ДАННЫЕ ГЛАВ
     // ================================================================
-    const topics = [
-      { number: '01', title: 'Глава 1. Рациональные выражения', description: 'Рациональная дробь. Основное свойство РД, сокращение РД. Сложение, вычитание, умножение, деление РД.' },
-      { number: '02', title: 'Неравенства', description: 'Линейные и квадратные неравенства. Метод интервалов. Системы неравенств.' },
-      { number: '03', title: 'Системы уравнений', description: 'Решение систем двух уравнений с двумя неизвестными. Графический метод.' },
-      { number: '04', title: 'Функции и графики', description: 'Квадратичная функция. Построение графиков. Свойства функций.' },
-      { number: '05', title: 'Арифметическая прогрессия', description: 'Формула n-го члена. Сумма первых n членов. Применение.' },
-      { number: '06', title: 'Геометрическая прогрессия', description: 'Знаменатель. Формула суммы. Бесконечно убывающая прогрессия.' },
-      { number: '07', title: 'Элементы комбинаторики', description: 'Перестановки, размещения, сочетания. Основные формулы.' },
-      { number: '08', title: 'Вероятность событий', description: 'Классическое определение вероятности. Сложение и умножение вероятностей.' },
-      { number: '09', title: 'Тригонометрия (введение)', description: 'Синус, косинус, тангенс острого угла. Основные тригонометрические тождества.' },
-      { number: '10', title: 'Текстовые задачи', description: 'Задачи на движение, работу, проценты. Составление уравнений.' },
+    const chapters = [
+      {
+        number: '1',
+        title: 'Рациональные выражения',
+        sections: [
+          'Рациональная дробь',
+          'Основное свойство рациональной дроби. Сокращение',
+          'Сложение и вычитание рациональных дробей',
+          'Умножение и деление рациональных дробей',
+          'Преобразования рациональных выражений'
+        ]
+      },
+      {
+        number: '2',
+        title: 'Функции',
+        sections: [
+          'Функция числового аргумента. Область определения, множество значений',
+          'Свойства функции',
+          'Чётные и нечётные функции',
+          'Построение графиков y = f(x) ± b, y = f(x ± a)'
+        ]
+      },
+      {
+        number: '3',
+        title: 'Дробно-рациональные уравнения и неравенства',
+        sections: [
+          'Дробно-рациональные уравнения',
+          'Системы нелинейных уравнений',
+          'Формула длины отрезка. Уравнение окружности',
+          'Дробно-рациональные неравенства. Метод интервалов'
+        ]
+      },
+      {
+        number: '4',
+        title: 'Прогрессии',
+        sections: [
+          'Числовая последовательность',
+          'Арифметическая прогрессия',
+          'Формула суммы n первых членов арифметической прогрессии',
+          'Геометрическая прогрессия',
+          'Формула суммы n первых членов геометрической прогрессии',
+          'Сумма бесконечно убывающей геометрической прогрессии'
+        ]
+      }
     ];
 
+    // ================================================================
+    // 5. ГЕНЕРАЦИЯ КАРТОЧЕК
+    // ================================================================
     const grid = document.getElementById('topicsGrid');
 
-    topics.forEach((topic, index) => {
+    chapters.forEach((chapter, index) => {
       const card = document.createElement('div');
       card.className = 'topic-card';
-      card.style.animationDelay = `${0.1 + index * 0.07}s`;
+      card.style.animationDelay = `${0.1 + index * 0.1}s`;
+
+      let sectionsHtml = '';
+      chapter.sections.forEach(sec => {
+        sectionsHtml += `<span class="section">§ ${sec}</span>`;
+      });
 
       card.innerHTML = `
-        <div class="topic-number">${topic.number}</div>
-        <div class="topic-title">${topic.title}</div>
-        <div class="topic-description">${topic.description}</div>
+        <div class="topic-number">
+          <span class="chapter-label">Глава</span>
+          <span class="chapter-number">${chapter.number}.</span>
+        </div>
+        <div class="topic-title">${chapter.title}</div>
+        <div class="topic-description">
+          ${sectionsHtml}
+        </div>
         <div class="topic-arrow">→</div>
       `;
 
       card.addEventListener('click', () => {
-        alert(`Тема "${topic.title}" в разработке. Скоро здесь появится теория и практика.`);
+        alert(`Глава "${chapter.title}" в разработке. Скоро здесь появится теория и практика.`);
       });
 
       grid.appendChild(card);
     });
 
     // ================================================================
-    // 5. ФИЗИКА КНОПКИ (сопротивление среде)
+    // 6. ФИЗИКА КНОПКИ
     // ================================================================
     const backLink = document.getElementById('backLink');
 
