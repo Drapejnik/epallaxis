@@ -18,7 +18,6 @@
       --border: rgba(34, 255, 136, 0.18);
     }
 
-    /* ===== Плавные переходы ===== */
     * {
       transition: background 0.5s cubic-bezier(0.22, 1, 0.36, 1),
                   border-color 0.5s cubic-bezier(0.22, 1, 0.36, 1),
@@ -26,7 +25,6 @@
                   box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    /* ===== Базовые стили ===== */
     * {
       margin: 0;
       padding: 0;
@@ -45,9 +43,7 @@
       position: relative;
     }
 
-    /* ============================================================
-       Фоновые символы (зелёный оттенок)
-    ============================================================ */
+    /* ===== Фоновые символы ===== */
     .bg-symbols {
       position: fixed;
       top: 0;
@@ -73,9 +69,7 @@
       50% { opacity: 0.08; transform: scale(1.05); }
     }
 
-    /* ============================================================
-       HEADER + ПРОГРЕСС-БАР
-    ============================================================ */
+    /* ===== HEADER ===== */
     header {
       position: sticky;
       top: 0;
@@ -112,14 +106,12 @@
 
     .brand h1 span {
       color: var(--accent);
-      transition: color 0.5s;
     }
 
     .brand p {
       font-size: clamp(11px, 1.5vw, 14px);
       color: var(--muted);
       margin-top: 2px;
-      transition: color 0.5s;
     }
 
     .progress-bar {
@@ -140,9 +132,7 @@
       box-shadow: 0 0 12px var(--accent);
     }
 
-    /* ============================================================
-       ЗАГОЛОВОК СТРАНИЦЫ
-    ============================================================ */
+    /* ===== ЗАГОЛОВОК ===== */
     .page-title {
       max-width: 1100px;
       margin: 30px auto 10px;
@@ -160,19 +150,26 @@
 
     .page-title h1 span {
       color: var(--accent);
-      transition: color 0.5s;
     }
 
     .page-title p {
       color: var(--muted);
       font-size: clamp(14px, 1.5vw, 18px);
       margin-top: 6px;
-      transition: color 0.5s;
     }
 
-    /* ============================================================
-       КАРТОЧКИ (с улучшениями 1, 2, 3)
-    ============================================================ */
+    /* ===== КАРТОЧКИ ГЛАВ ===== */
+    .topics-grid {
+      max-width: 1100px;
+      margin: 10px auto 0;
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+      position: relative;
+      z-index: 2;
+    }
+
     .topic-card {
       background: linear-gradient(145deg, var(--panel), var(--panel2));
       border: 1px solid var(--border);
@@ -222,9 +219,6 @@
       100% { opacity: 1; transform: translateY(0) scale(1) rotate(0deg); }
     }
 
-    /* ============================================================
-       "Глава I." — зелёный акцент
-    ============================================================ */
     .topic-number {
       display: flex;
       align-items: baseline;
@@ -240,7 +234,6 @@
       color: var(--accent);
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      transition: color 0.5s, text-shadow 0.5s;
     }
 
     .topic-number .chapter-number {
@@ -248,7 +241,6 @@
       font-weight: 700;
       color: var(--accent);
       line-height: 1;
-      transition: color 0.5s, text-shadow 0.5s;
     }
     .topic-number .chapter-number::after {
       content: ".";
@@ -264,8 +256,7 @@
       background: var(--accent);
       margin-top: 4px;
       border-radius: 2px;
-      transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-                  background 0.5s;
+      transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
       box-shadow: 0 0 12px var(--accent);
       flex-basis: 100%;
     }
@@ -294,7 +285,6 @@
       color: var(--muted);
       line-height: 1.6;
       flex: 1;
-      transition: color 0.5s;
     }
 
     .topic-description .section {
@@ -312,7 +302,7 @@
       font-size: 18px;
       font-weight: 500;
       opacity: 0.6;
-      transition: transform 0.3s, opacity 0.3s, color 0.5s;
+      transition: transform 0.3s, opacity 0.3s;
     }
 
     .topic-card:hover .topic-arrow {
@@ -320,23 +310,98 @@
       opacity: 1;
     }
 
-    /* ============================================================
-       СЕТКА
-    ============================================================ */
-    .topics-grid {
+    /* ===== МАТЕРИАЛЫ ===== */
+    .materials-section {
       max-width: 1100px;
-      margin: 10px auto 0;
+      margin: 40px auto 10px;
       width: 100%;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 24px;
       position: relative;
       z-index: 2;
     }
 
-    /* ============================================================
-       ПЛАВАЮЩАЯ КНОПКА (зелёная)
-    ============================================================ */
+    .materials-section h2 {
+      font-size: clamp(22px, 3vw, 32px);
+      font-weight: 600;
+      margin-bottom: 20px;
+      letter-spacing: -0.3px;
+    }
+
+    .materials-section h2 span {
+      color: var(--accent);
+    }
+
+    .materials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .material-card {
+      background: linear-gradient(145deg, var(--panel), var(--panel2));
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px 18px;
+      transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), background 0.5s, border-color 0.5s, box-shadow 0.5s;
+      text-decoration: none;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      opacity: 0;
+      animation: cardReveal 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    .material-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+      box-shadow: 0 8px 30px rgba(var(--accent-rgb), 0.10);
+    }
+
+    .material-card .icon {
+      font-size: 24px;
+      flex-shrink: 0;
+      color: var(--accent);
+    }
+
+    .material-card .info {
+      flex: 1;
+    }
+
+    .material-card .info .name {
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 1.2;
+    }
+
+    .material-card .info .badge {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 2px;
+      opacity: 0.6;
+      display: inline-block;
+    }
+
+    .material-card .arrow {
+      color: var(--accent);
+      opacity: 0.4;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    .material-card:hover .arrow {
+      transform: translateX(4px);
+      opacity: 1;
+    }
+
+    .loading-msg, .error-msg {
+      color: var(--muted);
+      font-size: 16px;
+      padding: 20px 0;
+      text-align: center;
+      opacity: 0.7;
+    }
+    .error-msg { color: #ff6b6b; opacity: 1; }
+
+    /* ===== КНОПКА НАЗАД ===== */
     .back-link {
       position: fixed;
       bottom: 24px;
@@ -364,9 +429,7 @@
       box-shadow: 0 6px 30px rgba(34, 255, 136, 0.15);
     }
 
-    /* ============================================================
-       АДАПТИВНОСТЬ
-    ============================================================ */
+    /* ===== АДАПТИВ ===== */
     @media (max-width: 640px) {
       body { padding: 0 16px 30px; }
       header { margin: 0 -16px; padding-left: 16px; padding-right: 16px; }
@@ -376,12 +439,12 @@
       .topics-grid { grid-template-columns: 1fr; gap: 16px; }
       .topic-card { padding: 18px; }
       .topic-title { font-size: 22px; }
+      .materials-grid { grid-template-columns: 1fr; }
       .back-link {
         bottom: 16px;
         left: 16px;
         padding: 8px 18px;
         font-size: 13px;
-        backdrop-filter: blur(10px);
       }
       .topic-card::before { display: none; }
       .topic-number .chapter-label { font-size: 12px; }
@@ -412,14 +475,10 @@
 
 <body>
 
-  <!-- ============================================================
-       Фоновые символы
-    ============================================================ -->
+  <!-- Фоновые символы -->
   <div class="bg-symbols" id="bgSymbols"></div>
 
-  <!-- ============================================================
-       HEADER + ПРОГРЕСС-БАР
-    ============================================================ -->
+  <!-- HEADER -->
   <header>
     <div class="header-row">
       <div class="brand">
@@ -432,27 +491,35 @@
     </div>
   </header>
 
-  <!-- ============================================================
-       ЗАГОЛОВОК
-    ============================================================ -->
+  <!-- ЗАГОЛОВОК -->
   <div class="page-title">
     <h1>Алгебра <span>9 класс</span></h1>
     <p>Выберите главу, чтобы начать изучение</p>
   </div>
 
-  <!-- ============================================================
-       СЕТКА КАРТОЧЕК
-    ============================================================ -->
+  <!-- СЕТКА ГЛАВ -->
   <section class="topics-grid" id="topicsGrid"></section>
 
   <!-- ============================================================
-       ПЛАВАЮЩАЯ КНОПКА
-    ============================================================ -->
+       БЛОК "МАТЕРИАЛЫ К ГЛАВЕ" (из Google Sheets)
+  ============================================================ -->
+  <section class="materials-section" id="materialsSection" style="display:none;">
+    <h2>Материалы к <span>главе I</span></h2>
+    <div class="materials-grid" id="materialsGrid">
+      <div class="loading-msg">⏳ Загрузка материалов...</div>
+    </div>
+    <!-- Кнопка для принудительного обновления (на случай ошибки) -->
+    <button onclick="loadMaterials()" style="margin-top:16px; background:transparent; border:1px solid var(--border); color:var(--muted); padding:8px 20px; border-radius:30px; cursor:pointer; font-size:14px; transition:0.3s;">
+      🔄 Обновить материалы
+    </button>
+  </section>
+
+  <!-- КНОПКА НАЗАД -->
   <a href="../../index.html" class="back-link" id="backLink">← На главную</a>
 
   <script>
     // ================================================================
-    // 1. ДАННЫЕ ГЛАВ
+    // 1. ГЛАВЫ
     // ================================================================
     const chapters = [
       {
@@ -501,44 +568,7 @@
     ];
 
     // ================================================================
-    // 2. ФОНОВЫЕ СИМВОЛЫ
-    // ================================================================
-    (function createBgSymbols() {
-      const container = document.getElementById('bgSymbols');
-      if (!container) return;
-      const symbols = ['∫', '∑', 'π', '√', '∞', '∂', '∇', 'Δ', 'θ', 'λ', 'σ', 'φ', 'ω', 'x²', '∠'];
-      for (let i = 0; i < 12; i++) {
-        const span = document.createElement('span');
-        span.textContent = symbols[Math.floor(Math.random() * symbols.length)];
-        const size = 60 + Math.random() * 100;
-        span.style.fontSize = size + 'px';
-        span.style.left = Math.random() * 100 + '%';
-        span.style.top = Math.random() * 100 + '%';
-        span.style.animationDelay = (Math.random() * 10) + 's';
-        span.style.opacity = 0.02 + Math.random() * 0.06;
-        container.appendChild(span);
-      }
-    })();
-
-    // ================================================================
-    // 3. ПРОГРЕСС-БАР
-    // ================================================================
-    (function setupProgressBar() {
-      const fill = document.getElementById('progressFill');
-      if (!fill) return;
-      const updateProgress = () => {
-        const scrollTop = window.scrollY;
-        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-        fill.style.width = Math.min(100, progress) + '%';
-      };
-      window.addEventListener('scroll', updateProgress, { passive: true });
-      window.addEventListener('resize', updateProgress, { passive: true });
-      updateProgress();
-    })();
-
-    // ================================================================
-    // 4. ГЕНЕРАЦИЯ КАРТОЧЕК
+    // 2. ГЕНЕРАЦИЯ КАРТОЧЕК ГЛАВ
     // ================================================================
     const grid = document.getElementById('topicsGrid');
 
@@ -565,17 +595,164 @@
       `;
 
       card.addEventListener('click', () => {
-        alert(`Глава "${chapter.title}" в разработке. Скоро здесь появится теория и практика.`);
+        const materialsSection = document.getElementById('materialsSection');
+        materialsSection.style.display = 'block';
+        // Обновляем заголовок с номером главы
+        const h2 = materialsSection.querySelector('h2 span');
+        if (h2) h2.textContent = `главе ${chapter.number}`;
+        materialsSection.scrollIntoView({ behavior: 'smooth' });
+        loadMaterials();
       });
 
       grid.appendChild(card);
     });
 
     // ================================================================
-    // 5. ФИЗИКА КНОПКИ (сопротивление среде)
+    // 3. ПОДГРУЗКА МАТЕРИАЛОВ ИЗ GOOGLE SHEETS (через CSV)
     // ================================================================
-    const backLink = document.getElementById('backLink');
+    // ВАША ССЫЛКА НА ОПУБЛИКОВАННУЮ ТАБЛИЦУ
+    const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT26wJo6YqIuMWa8GtnOyhAItVGXClBA4-K-1aLtndE2RfO9Obl0KqMwdVFTmGXT4nTzg4d-fLePjxm/pubhtml';
 
+    let materialsLoaded = false;
+
+    async function loadMaterials() {
+      // Если уже загружены, всё равно перезагружаем (по кнопке или повторному клику)
+      const grid = document.getElementById('materialsGrid');
+      grid.innerHTML = `<div class="loading-msg">⏳ Загрузка материалов...</div>`;
+
+      try {
+        // Формируем ссылку на CSV-экспорт
+        const csvUrl = SHEET_URL.replace('/pubhtml', '/pub?output=csv');
+        console.log('📥 Загрузка CSV с:', csvUrl);
+
+        const response = await fetch(csvUrl);
+        if (!response.ok) throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+
+        const csvText = await response.text();
+        console.log('✅ CSV получен, длина:', csvText.length);
+
+        // Разбиваем на строки
+        const lines = csvText.split('\n').filter(line => line.trim() !== '');
+        if (lines.length < 2) {
+          grid.innerHTML = `<div class="loading-msg">📭 В таблице нет данных. Добавьте хотя бы одну строку с названием и ссылкой.</div>`;
+          return;
+        }
+
+        // Парсим заголовки (первая строка)
+        const headers = lines[0].split(',').map(h => h.trim().replace(/^"|"$/g, ''));
+        console.log('📋 Заголовки колонок:', headers);
+
+        // Находим индексы нужных колонок
+        const orderIdx = headers.findIndex(h => h.toLowerCase() === 'порядок');
+        const nameIdx = headers.findIndex(h => 
+          h.toLowerCase() === 'название карточки параграфа' || 
+          h.toLowerCase() === 'название'
+        );
+        const linkIdx = headers.findIndex(h => h.toLowerCase() === 'ссылка');
+
+        if (nameIdx === -1 || linkIdx === -1) {
+          grid.innerHTML = `<div class="error-msg">⚠️ В таблице не найдены колонки "Название" и "Ссылка". Проверьте заголовки.</div>`;
+          return;
+        }
+
+        const items = [];
+        for (let i = 1; i < lines.length; i++) {
+          const values = lines[i].split(',').map(v => v.trim().replace(/^"|"$/g, ''));
+          if (values.length <= Math.max(nameIdx, linkIdx)) continue;
+          const name = values[nameIdx] || '';
+          const link = values[linkIdx] || '';
+          const order = parseInt(values[orderIdx]) || i;
+          if (name && link) {
+            items.push({ order, name, link });
+          }
+        }
+
+        if (items.length === 0) {
+          grid.innerHTML = `<div class="loading-msg">📭 Нет строк с заполненными названием и ссылкой. Добавьте их в таблицу.</div>`;
+          return;
+        }
+
+        // Сортируем по порядку
+        items.sort((a, b) => a.order - b.order);
+        console.log('📦 Получено элементов:', items.length);
+
+        renderMaterials(items);
+        materialsLoaded = true;
+      } catch (error) {
+        console.error('❌ Ошибка загрузки:', error);
+        grid.innerHTML = `<div class="error-msg">⚠️ Не удалось загрузить материалы. Ошибка: ${error.message || 'неизвестная'}</div>`;
+      }
+    }
+
+    function renderMaterials(items) {
+      const grid = document.getElementById('materialsGrid');
+      grid.innerHTML = '';
+      items.forEach((item, index) => {
+        const card = document.createElement('a');
+        card.className = 'material-card';
+        card.href = item.link;
+        card.target = '_blank';
+        card.style.animationDelay = `${0.1 + index * 0.05}s`;
+
+        // Определяем иконку по названию
+        let icon = '📄';
+        const lower = item.name.toLowerCase();
+        if (lower.includes('теория')) icon = '📘';
+        else if (lower.includes('практика')) icon = '✏️';
+        else if (lower.includes('тест')) icon = '📝';
+        else if (lower.includes('видео')) icon = '🎥';
+        else if (lower.includes('презентация')) icon = '📊';
+        else if (lower.includes('задание')) icon = '📋';
+
+        card.innerHTML = `
+          <span class="icon">${icon}</span>
+          <div class="info">
+            <div class="name">${item.name}</div>
+            <span class="badge">📎 Google Диск</span>
+          </div>
+          <span class="arrow">→</span>
+        `;
+
+        grid.appendChild(card);
+      });
+    }
+
+    // ================================================================
+    // 4. ФОНОВЫЕ СИМВОЛЫ, ПРОГРЕСС-БАР, ФИЗИКА КНОПКИ
+    // ================================================================
+    (function createBgSymbols() {
+      const container = document.getElementById('bgSymbols');
+      if (!container) return;
+      const symbols = ['∫', '∑', 'π', '√', '∞', '∂', '∇', 'Δ', 'θ', 'λ', 'σ', 'φ', 'ω', 'x²', '∠'];
+      for (let i = 0; i < 12; i++) {
+        const span = document.createElement('span');
+        span.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+        const size = 60 + Math.random() * 100;
+        span.style.fontSize = size + 'px';
+        span.style.left = Math.random() * 100 + '%';
+        span.style.top = Math.random() * 100 + '%';
+        span.style.animationDelay = (Math.random() * 10) + 's';
+        span.style.opacity = 0.02 + Math.random() * 0.06;
+        container.appendChild(span);
+      }
+    })();
+
+    (function setupProgressBar() {
+      const fill = document.getElementById('progressFill');
+      if (!fill) return;
+      const updateProgress = () => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        fill.style.width = Math.min(100, progress) + '%';
+      };
+      window.addEventListener('scroll', updateProgress, { passive: true });
+      window.addEventListener('resize', updateProgress, { passive: true });
+      updateProgress();
+    })();
+
+    // Физика кнопки
+    const backLink = document.getElementById('backLink');
     const SPRING = 0.12;
     const DAMPING = 0.88;
     const MAX_OFFSET = 35;
