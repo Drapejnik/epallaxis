@@ -272,7 +272,7 @@
     }
 
     /* ============================================================
-       "Глава 1." — в одну строку, оба акцентные, но разные размеры
+       "Глава I." — римские цифры, оба акцентные, но разные размеры
     ============================================================ */
     .topic-number {
       display: flex;
@@ -298,9 +298,17 @@
       color: var(--accent);
       line-height: 1;
       transition: color 0.5s, text-shadow 0.5s;
+      /* Убираем точку, чтобы римская цифра выглядела чище */
     }
 
-    /* Линия под всей строкой "Глава 1." */
+    /* Убираем точку после римской цифры */
+    .topic-number .chapter-number::after {
+      content: ".";
+      font-weight: 400;
+      opacity: 0.6;
+    }
+
+    /* Линия под всей строкой "Глава I." */
     .topic-number::after {
       content: "";
       display: block;
@@ -323,9 +331,7 @@
 
     /* При наведении на карточку — номер и слово слегка светятся */
     .topic-card:hover .topic-number .chapter-label,
-    .topic-card:hover .topic-number .chapter-number {
-      text-shadow: 0 0 30px var(--accent);
-    }
+    .topic-card:hover .topic-number .chapter-number,
     .topic-card:active .topic-number .chapter-label,
     .topic-card:active .topic-number .chapter-number {
       text-shadow: 0 0 30px var(--accent);
@@ -505,7 +511,7 @@
 
   <script>
     // ================================================================
-    // 1. ТЕМА
+    // 1. ПРИМЕНЕНИЕ ТЕМЫ
     // ================================================================
     (function applyTheme() {
       const theme = localStorage.getItem('epallaxis-theme') || 'green';
@@ -552,11 +558,13 @@
     })();
 
     // ================================================================
-    // 4. ДАННЫЕ ГЛАВ
+    // 4. ДАННЫЕ ГЛАВ (с римскими цифрами)
     // ================================================================
+    const romanNumerals = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'];
+
     const chapters = [
       {
-        number: '1',
+        number: 'I',
         title: 'Рациональные выражения',
         sections: [
           'Рациональная дробь',
@@ -567,7 +575,7 @@
         ]
       },
       {
-        number: '2',
+        number: 'II',
         title: 'Функции',
         sections: [
           'Функция числового аргумента. Область определения, множество значений',
@@ -577,7 +585,7 @@
         ]
       },
       {
-        number: '3',
+        number: 'III',
         title: 'Дробно-рациональные уравнения и неравенства',
         sections: [
           'Дробно-рациональные уравнения',
@@ -587,7 +595,7 @@
         ]
       },
       {
-        number: '4',
+        number: 'IV',
         title: 'Прогрессии',
         sections: [
           'Числовая последовательность',
@@ -618,7 +626,7 @@
       card.innerHTML = `
         <div class="topic-number">
           <span class="chapter-label">Глава</span>
-          <span class="chapter-number">${chapter.number}.</span>
+          <span class="chapter-number">${chapter.number}</span>
         </div>
         <div class="topic-title">${chapter.title}</div>
         <div class="topic-description">
