@@ -392,7 +392,7 @@
       opacity: 1;
     }
 
-    .loading-msg, .error-msg {
+    .loading-msg, .error-msg, .empty-msg {
       color: var(--muted);
       font-size: 16px;
       padding: 20px 0;
@@ -400,6 +400,7 @@
       opacity: 0.7;
     }
     .error-msg { color: #ff6b6b; opacity: 1; }
+    .empty-msg { opacity: 0.5; font-style: italic; }
 
     /* ===== КНОПКА НАЗАД ===== */
     .back-link {
@@ -501,15 +502,15 @@
   <section class="topics-grid" id="topicsGrid"></section>
 
   <!-- ============================================================
-       БЛОК "МАТЕРИАЛЫ К ГЛАВЕ" (из Google Sheets)
+       БЛОК "МАТЕРИАЛЫ К ГЛАВЕ"
   ============================================================ -->
   <section class="materials-section" id="materialsSection" style="display:none;">
     <h2>Материалы к <span>главе I</span></h2>
     <div class="materials-grid" id="materialsGrid">
       <div class="loading-msg">⏳ Загрузка материалов...</div>
     </div>
-    <!-- Кнопка для принудительного обновления (на случай ошибки) -->
-    <button onclick="loadMaterials()" style="margin-top:16px; background:transparent; border:1px solid var(--border); color:var(--muted); padding:8px 20px; border-radius:30px; cursor:pointer; font-size:14px; transition:0.3s;">
+    <!-- Кнопка для принудительного обновления -->
+    <button onclick="forceReload()" style="margin-top:16px; background:transparent; border:1px solid var(--border); color:var(--muted); padding:8px 20px; border-radius:30px; cursor:pointer; font-size:14px; transition:0.3s;">
       🔄 Обновить материалы
     </button>
   </section>
@@ -519,12 +520,14 @@
 
   <script>
     // ================================================================
-    // 1. ГЛАВЫ
+    // 1. ДАННЫЕ ГЛАВ (арабские номера для ссылок, римские для отображения)
     // ================================================================
     const chapters = [
       {
-        number: 'I',
+        id: 1,
+        roman: 'I',
         title: 'Рациональные выражения',
+        sheetUrl: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT26wJo6YqIuMWa8GtnOyhAItVGXClBA4-K-1aLtndE2RfO9Obl0KqMwdVFTmGXT4nTzg4d-fLePjxm/pubhtml',
         sections: [
           'Рациональная дробь',
           'Основное свойство рациональной дроби. Сокращение',
@@ -534,8 +537,10 @@
         ]
       },
       {
-        number: 'II',
+        id: 2,
+        roman: 'II',
         title: 'Функции',
+        sheetUrl: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS3MyhOtLcoAX9Vk8wwvctJ0kqs07kMMuft7F47QMizhrs9aoN7yf_mwTQbGCyQml8IBGgNQHwUeYve/pubhtml',
         sections: [
           'Функция числового аргумента. Область определения, множество значений',
           'Свойства функции',
@@ -544,8 +549,10 @@
         ]
       },
       {
-        number: 'III',
+        id: 3,
+        roman: 'III',
         title: 'Дробно-рациональные уравнения и неравенства',
+        sheetUrl: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTMEQnDidXTjG8LiSe42NkCG--a1WClr2NpWDfSponjpbMqVo4rwdau1warnSntHbnErSLvV5eVUEeN/pubhtml',
         sections: [
           'Дробно-рациональные уравнения',
           'Системы нелинейных уравнений',
@@ -554,8 +561,10 @@
         ]
       },
       {
-        number: 'IV',
+        id: 4,
+        roman: 'IV',
         title: 'Прогрессии',
+        sheetUrl: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQRnMZ4PUuRh5CYwgnZuYe4BECJU4hTlZ4EO9ttMbiP2NWzozCWvZAg2kKexDuvFejj6NBpaIbYew57/pubhtml',
         sections: [
           'Числовая последовательность',
           'Арифметическая прогрессия',
@@ -585,7 +594,7 @@
       card.innerHTML = `
         <div class="topic-number">
           <span class="chapter-label">Глава</span>
-          <span class="chapter-number">${chapter.number}</span>
+          <span class="chapter-number">${chapter.roman}</span>
         </div>
         <div class="topic-title">${chapter.title}</div>
         <div class="topic-description">
@@ -595,63 +604,70 @@
       `;
 
       card.addEventListener('click', () => {
-        const materialsSection = document.getElementById('materialsSection');
-        materialsSection.style.display = 'block';
-        // Обновляем заголовок с номером главы
-        const h2 = materialsSection.querySelector('h2 span');
-        if (h2) h2.textContent = `главе ${chapter.number}`;
-        materialsSection.scrollIntoView({ behavior: 'smooth' });
-        loadMaterials();
+        showMaterialsForChapter(chapter.id, chapter.roman, chapter.title);
       });
 
       grid.appendChild(card);
     });
 
     // ================================================================
-    // 3. ПОДГРУЗКА МАТЕРИАЛОВ ИЗ GOOGLE SHEETS (через CSV)
+    // 3. ПОКАЗ МАТЕРИАЛОВ ДЛЯ ГЛАВЫ
     // ================================================================
-    // ВАША ССЫЛКА НА ОПУБЛИКОВАННУЮ ТАБЛИЦУ
-    const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT26wJo6YqIuMWa8GtnOyhAItVGXClBA4-K-1aLtndE2RfO9Obl0KqMwdVFTmGXT4nTzg4d-fLePjxm/pubhtml';
+    let currentChapterId = null;
 
-    let materialsLoaded = false;
+    async function showMaterialsForChapter(chapterId, romanNumeral, chapterTitle) {
+      const section = document.getElementById('materialsSection');
+      const h2 = section.querySelector('h2 span');
+      if (h2) h2.textContent = `главе ${romanNumeral}`;
 
-    async function loadMaterials() {
-      // Если уже загружены, всё равно перезагружаем (по кнопке или повторному клику)
+      section.style.display = 'block';
+      section.scrollIntoView({ behavior: 'smooth' });
+
+      currentChapterId = chapterId;
+
+      const chapterData = chapters.find(ch => ch.id === chapterId);
+      if (!chapterData) {
+        document.getElementById('materialsGrid').innerHTML = `<div class="error-msg">⚠️ Ошибка: глава не найдена.</div>`;
+        return;
+      }
+
+      await loadMaterialsForChapter(chapterData);
+    }
+
+    // ================================================================
+    // 4. ЗАГРУЗКА CSV ИЗ КОНКРЕТНОЙ ТАБЛИЦЫ
+    // ================================================================
+    async function loadMaterialsForChapter(chapterData) {
       const grid = document.getElementById('materialsGrid');
       grid.innerHTML = `<div class="loading-msg">⏳ Загрузка материалов...</div>`;
 
       try {
-        // Формируем ссылку на CSV-экспорт
-        const csvUrl = SHEET_URL.replace('/pubhtml', '/pub?output=csv');
-        console.log('📥 Загрузка CSV с:', csvUrl);
+        const csvUrl = chapterData.sheetUrl.replace('/pubhtml', '/pub?output=csv');
+        console.log(`📥 Загрузка CSV для главы ${chapterData.id} (${chapterData.roman}):`, csvUrl);
 
         const response = await fetch(csvUrl);
         if (!response.ok) throw new Error(`HTTP ${response.status}: ${response.statusText}`);
 
         const csvText = await response.text();
-        console.log('✅ CSV получен, длина:', csvText.length);
+        console.log(`✅ CSV для главы ${chapterData.id} получен, длина:`, csvText.length);
 
-        // Разбиваем на строки
         const lines = csvText.split('\n').filter(line => line.trim() !== '');
         if (lines.length < 2) {
-          grid.innerHTML = `<div class="loading-msg">📭 В таблице нет данных. Добавьте хотя бы одну строку с названием и ссылкой.</div>`;
+          grid.innerHTML = `<div class="empty-msg">📭 В таблице нет данных. Добавьте материалы.</div>`;
           return;
         }
 
-        // Парсим заголовки (первая строка)
+        // Парсим заголовки
         const headers = lines[0].split(',').map(h => h.trim().replace(/^"|"$/g, ''));
-        console.log('📋 Заголовки колонок:', headers);
+        console.log(`📋 Заголовки колонок для главы ${chapterData.id}:`, headers);
 
-        // Находим индексы нужных колонок
+        // Находим индексы нужных колонок (по вашим названиям)
         const orderIdx = headers.findIndex(h => h.toLowerCase() === 'порядок');
-        const nameIdx = headers.findIndex(h => 
-          h.toLowerCase() === 'название карточки параграфа' || 
-          h.toLowerCase() === 'название'
-        );
+        const nameIdx = headers.findIndex(h => h.toLowerCase() === 'название карточки параграфа');
         const linkIdx = headers.findIndex(h => h.toLowerCase() === 'ссылка');
 
         if (nameIdx === -1 || linkIdx === -1) {
-          grid.innerHTML = `<div class="error-msg">⚠️ В таблице не найдены колонки "Название" и "Ссылка". Проверьте заголовки.</div>`;
+          grid.innerHTML = `<div class="error-msg">⚠️ В таблице не найдены колонки "Название карточки параграфа" и "Ссылка". Проверьте заголовки.</div>`;
           return;
         }
 
@@ -668,22 +684,23 @@
         }
 
         if (items.length === 0) {
-          grid.innerHTML = `<div class="loading-msg">📭 Нет строк с заполненными названием и ссылкой. Добавьте их в таблицу.</div>`;
+          grid.innerHTML = `<div class="empty-msg">📭 Нет строк с заполненными названием и ссылкой.</div>`;
           return;
         }
 
-        // Сортируем по порядку
         items.sort((a, b) => a.order - b.order);
-        console.log('📦 Получено элементов:', items.length);
+        console.log(`📦 Для главы ${chapterData.id} получено элементов:`, items.length);
 
         renderMaterials(items);
-        materialsLoaded = true;
       } catch (error) {
-        console.error('❌ Ошибка загрузки:', error);
+        console.error(`❌ Ошибка загрузки для главы ${chapterData.id}:`, error);
         grid.innerHTML = `<div class="error-msg">⚠️ Не удалось загрузить материалы. Ошибка: ${error.message || 'неизвестная'}</div>`;
       }
     }
 
+    // ================================================================
+    // 5. ОТОБРАЖЕНИЕ МАТЕРИАЛОВ
+    // ================================================================
     function renderMaterials(items) {
       const grid = document.getElementById('materialsGrid');
       grid.innerHTML = '';
@@ -694,7 +711,6 @@
         card.target = '_blank';
         card.style.animationDelay = `${0.1 + index * 0.05}s`;
 
-        // Определяем иконку по названию
         let icon = '📄';
         const lower = item.name.toLowerCase();
         if (lower.includes('теория')) icon = '📘';
@@ -718,7 +734,19 @@
     }
 
     // ================================================================
-    // 4. ФОНОВЫЕ СИМВОЛЫ, ПРОГРЕСС-БАР, ФИЗИКА КНОПКИ
+    // 6. ПРИНУДИТЕЛЬНОЕ ОБНОВЛЕНИЕ (кнопка)
+    // ================================================================
+    function forceReload() {
+      if (currentChapterId) {
+        const chapterData = chapters.find(ch => ch.id === currentChapterId);
+        if (chapterData) {
+          loadMaterialsForChapter(chapterData);
+        }
+      }
+    }
+
+    // ================================================================
+    // 7. ФОНОВЫЕ СИМВОЛЫ
     // ================================================================
     (function createBgSymbols() {
       const container = document.getElementById('bgSymbols');
@@ -737,6 +765,9 @@
       }
     })();
 
+    // ================================================================
+    // 8. ПРОГРЕСС-БАР
+    // ================================================================
     (function setupProgressBar() {
       const fill = document.getElementById('progressFill');
       if (!fill) return;
@@ -751,7 +782,9 @@
       updateProgress();
     })();
 
-    // Физика кнопки
+    // ================================================================
+    // 9. ФИЗИКА КНОПКИ (сопротивление среде)
+    // ================================================================
     const backLink = document.getElementById('backLink');
     const SPRING = 0.12;
     const DAMPING = 0.88;
