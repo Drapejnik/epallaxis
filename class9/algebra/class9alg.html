@@ -6,7 +6,7 @@
   <title>Алгебра 9 класс — EPALLAXIS</title>
 
   <style>
-    /* ===== Переменные темы с RGB для теней ===== */
+    /* ===== Алгебра — зелёная тема ===== */
     :root {
       --bg: #060a10;
       --panel: #0f1720;
@@ -16,39 +16,6 @@
       --accent: #22ff88;
       --accent-rgb: 34, 255, 136;
       --border: rgba(34, 255, 136, 0.18);
-    }
-
-    body.theme-orange {
-      --bg: #0a0a06;
-      --panel: #1a180f;
-      --panel2: #262018;
-      --text: #f5ede4;
-      --muted: #c4b8a8;
-      --accent: #ff8c42;
-      --accent-rgb: 255, 140, 66;
-      --border: rgba(255, 140, 66, 0.25);
-    }
-
-    body.theme-purple {
-      --bg: #0a0616;
-      --panel: #1a1028;
-      --panel2: #241838;
-      --text: #f0eaff;
-      --muted: #b8aad4;
-      --accent: #aa66ff;
-      --accent-rgb: 170, 102, 255;
-      --border: rgba(170, 102, 255, 0.25);
-    }
-
-    body.theme-blue {
-      --bg: #060a1a;
-      --panel: #0f1a2a;
-      --panel2: #182838;
-      --text: #e8eeff;
-      --muted: #aab8d4;
-      --accent: #4a9eff;
-      --accent-rgb: 74, 158, 255;
-      --border: rgba(74, 158, 255, 0.25);
     }
 
     /* ===== Плавные переходы ===== */
@@ -77,12 +44,9 @@
       transition: background 0.5s cubic-bezier(0.22, 1, 0.36, 1);
       position: relative;
     }
-    body.theme-orange { background: radial-gradient(1200px 600px at 20% 0%, #2a1f0d 0%, var(--bg) 60%); }
-    body.theme-purple { background: radial-gradient(1200px 600px at 20% 0%, #1a0d2a 0%, var(--bg) 60%); }
-    body.theme-blue { background: radial-gradient(1200px 600px at 20% 0%, #0d1a2a 0%, var(--bg) 60%); }
 
     /* ============================================================
-       Фоновые символы
+       Фоновые символы (зелёный оттенок)
     ============================================================ */
     .bg-symbols {
       position: fixed;
@@ -96,7 +60,7 @@
     }
     .bg-symbols span {
       position: absolute;
-      color: rgba(255,255,255,0.03);
+      color: rgba(34, 255, 136, 0.04);
       font-size: 80px;
       font-weight: 700;
       font-family: 'Georgia', serif;
@@ -236,19 +200,6 @@
       transition: transform 0.08s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    body.theme-orange .topic-card:hover {
-      box-shadow: 0 8px 40px rgba(255, 140, 66, 0.20),
-                  0 0 60px rgba(255, 140, 66, 0.08);
-    }
-    body.theme-purple .topic-card:hover {
-      box-shadow: 0 8px 40px rgba(170, 102, 255, 0.20),
-                  0 0 60px rgba(170, 102, 255, 0.08);
-    }
-    body.theme-blue .topic-card:hover {
-      box-shadow: 0 8px 40px rgba(74, 158, 255, 0.20),
-                  0 0 60px rgba(74, 158, 255, 0.08);
-    }
-
     .topic-card::before {
       content: "";
       position: absolute;
@@ -272,7 +223,7 @@
     }
 
     /* ============================================================
-       "Глава I." — римские цифры, оба акцентные, но разные размеры
+       "Глава I." — зелёный акцент
     ============================================================ */
     .topic-number {
       display: flex;
@@ -298,17 +249,13 @@
       color: var(--accent);
       line-height: 1;
       transition: color 0.5s, text-shadow 0.5s;
-      /* Убираем точку, чтобы римская цифра выглядела чище */
     }
-
-    /* Убираем точку после римской цифры */
     .topic-number .chapter-number::after {
       content: ".";
       font-weight: 400;
       opacity: 0.6;
     }
 
-    /* Линия под всей строкой "Глава I." */
     .topic-number::after {
       content: "";
       display: block;
@@ -323,13 +270,11 @@
       flex-basis: 100%;
     }
 
-    /* Расширение линии при наведении (десктоп) и при нажатии (мобилка) */
     .topic-card:hover .topic-number::after,
     .topic-card:active .topic-number::after {
       width: 60px;
     }
 
-    /* При наведении на карточку — номер и слово слегка светятся */
     .topic-card:hover .topic-number .chapter-label,
     .topic-card:hover .topic-number .chapter-number,
     .topic-card:active .topic-number .chapter-label,
@@ -390,7 +335,7 @@
     }
 
     /* ============================================================
-       ПЛАВАЮЩАЯ КНОПКА
+       ПЛАВАЮЩАЯ КНОПКА (зелёная)
     ============================================================ */
     .back-link {
       position: fixed;
@@ -418,10 +363,6 @@
       background: rgba(34, 255, 136, 0.08);
       box-shadow: 0 6px 30px rgba(34, 255, 136, 0.15);
     }
-
-    body.theme-orange .back-link:hover { background: rgba(255, 140, 66, 0.10); box-shadow: 0 6px 30px rgba(255, 140, 66, 0.15); }
-    body.theme-purple .back-link:hover { background: rgba(170, 102, 255, 0.10); box-shadow: 0 6px 30px rgba(170, 102, 255, 0.15); }
-    body.theme-blue .back-link:hover { background: rgba(74, 158, 255, 0.10); box-shadow: 0 6px 30px rgba(74, 158, 255, 0.15); }
 
     /* ============================================================
        АДАПТИВНОСТЬ
@@ -473,12 +414,12 @@
 
   <!-- ============================================================
        Фоновые символы
-  ============================================================ -->
+    ============================================================ -->
   <div class="bg-symbols" id="bgSymbols"></div>
 
   <!-- ============================================================
        HEADER + ПРОГРЕСС-БАР
-  ============================================================ -->
+    ============================================================ -->
   <header>
     <div class="header-row">
       <div class="brand">
@@ -493,7 +434,7 @@
 
   <!-- ============================================================
        ЗАГОЛОВОК
-  ============================================================ -->
+    ============================================================ -->
   <div class="page-title">
     <h1>Алгебра <span>9 класс</span></h1>
     <p>Выберите главу, чтобы начать изучение</p>
@@ -501,67 +442,18 @@
 
   <!-- ============================================================
        СЕТКА КАРТОЧЕК
-  ============================================================ -->
+    ============================================================ -->
   <section class="topics-grid" id="topicsGrid"></section>
 
   <!-- ============================================================
        ПЛАВАЮЩАЯ КНОПКА
-  ============================================================ -->
+    ============================================================ -->
   <a href="../../index.html" class="back-link" id="backLink">← На главную</a>
 
   <script>
     // ================================================================
-    // 1. ПРИМЕНЕНИЕ ТЕМЫ
+    // 1. ДАННЫЕ ГЛАВ
     // ================================================================
-    (function applyTheme() {
-      const theme = localStorage.getItem('epallaxis-theme') || 'green';
-      if (theme !== 'green') {
-        document.body.classList.add('theme-' + theme);
-      }
-    })();
-
-    // ================================================================
-    // 2. ФОНОВЫЕ СИМВОЛЫ
-    // ================================================================
-    (function createBgSymbols() {
-      const container = document.getElementById('bgSymbols');
-      if (!container) return;
-      const symbols = ['∫', '∑', 'π', '√', '∞', '∂', '∇', 'Δ', 'θ', 'λ', 'σ', 'φ', 'ω', 'x²', '∠'];
-      for (let i = 0; i < 12; i++) {
-        const span = document.createElement('span');
-        span.textContent = symbols[Math.floor(Math.random() * symbols.length)];
-        const size = 60 + Math.random() * 100;
-        span.style.fontSize = size + 'px';
-        span.style.left = Math.random() * 100 + '%';
-        span.style.top = Math.random() * 100 + '%';
-        span.style.animationDelay = (Math.random() * 10) + 's';
-        span.style.opacity = 0.02 + Math.random() * 0.06;
-        container.appendChild(span);
-      }
-    })();
-
-    // ================================================================
-    // 3. ПРОГРЕСС-БАР
-    // ================================================================
-    (function setupProgressBar() {
-      const fill = document.getElementById('progressFill');
-      if (!fill) return;
-      const updateProgress = () => {
-        const scrollTop = window.scrollY;
-        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-        fill.style.width = Math.min(100, progress) + '%';
-      };
-      window.addEventListener('scroll', updateProgress, { passive: true });
-      window.addEventListener('resize', updateProgress, { passive: true });
-      updateProgress();
-    })();
-
-    // ================================================================
-    // 4. ДАННЫЕ ГЛАВ (с римскими цифрами)
-    // ================================================================
-    const romanNumerals = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'];
-
     const chapters = [
       {
         number: 'I',
@@ -609,7 +501,44 @@
     ];
 
     // ================================================================
-    // 5. ГЕНЕРАЦИЯ КАРТОЧЕК
+    // 2. ФОНОВЫЕ СИМВОЛЫ
+    // ================================================================
+    (function createBgSymbols() {
+      const container = document.getElementById('bgSymbols');
+      if (!container) return;
+      const symbols = ['∫', '∑', 'π', '√', '∞', '∂', '∇', 'Δ', 'θ', 'λ', 'σ', 'φ', 'ω', 'x²', '∠'];
+      for (let i = 0; i < 12; i++) {
+        const span = document.createElement('span');
+        span.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+        const size = 60 + Math.random() * 100;
+        span.style.fontSize = size + 'px';
+        span.style.left = Math.random() * 100 + '%';
+        span.style.top = Math.random() * 100 + '%';
+        span.style.animationDelay = (Math.random() * 10) + 's';
+        span.style.opacity = 0.02 + Math.random() * 0.06;
+        container.appendChild(span);
+      }
+    })();
+
+    // ================================================================
+    // 3. ПРОГРЕСС-БАР
+    // ================================================================
+    (function setupProgressBar() {
+      const fill = document.getElementById('progressFill');
+      if (!fill) return;
+      const updateProgress = () => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        fill.style.width = Math.min(100, progress) + '%';
+      };
+      window.addEventListener('scroll', updateProgress, { passive: true });
+      window.addEventListener('resize', updateProgress, { passive: true });
+      updateProgress();
+    })();
+
+    // ================================================================
+    // 4. ГЕНЕРАЦИЯ КАРТОЧЕК
     // ================================================================
     const grid = document.getElementById('topicsGrid');
 
@@ -643,7 +572,7 @@
     });
 
     // ================================================================
-    // 6. ФИЗИКА КНОПКИ
+    // 5. ФИЗИКА КНОПКИ (сопротивление среде)
     // ================================================================
     const backLink = document.getElementById('backLink');
 
