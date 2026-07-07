@@ -228,7 +228,7 @@
     }
 
     /* =============================================================
-       11 КЛАСС — ЗОЛОТАЯ ЧЕМПИОНСКАЯ КАРТОЧКА (УЛУЧШЕНА В 10 РАЗ)
+       11 КЛАСС — ЗОЛОТАЯ ЧЕМПИОНСКАЯ КАРТОЧКА
     ============================================================= */
     .card-gold {
       border: 2px solid var(--gold-border);
@@ -276,7 +276,6 @@
       text-shadow: 0 0 25px rgba(255, 215, 0, 0.4);
     }
 
-    /* Декорации золота */
     .gold-deco {
       position: absolute;
       pointer-events: none;
@@ -366,11 +365,9 @@
     .card-gold:hover .sparkle-gold {
       animation-duration: 3s;
     }
-
     .card-gold:hover .trophy-gold {
       animation-duration: 1.5s;
     }
-
     .card-gold:hover .laurel-left-gold,
     .card-gold:hover .laurel-right-gold {
       animation-duration: 1.8s;
@@ -382,7 +379,7 @@
     }
 
     /* =============================================================
-       9 КЛАСС — СЕРЕБРЯНО-СИНЯЯ АКАДЕМИЧЕСКАЯ КАРТОЧКА (УЛУЧШЕНА В 10 РАЗ)
+       9 КЛАСС — СЕРЕБРЯНО-СИНЯЯ АКАДЕМИЧЕСКАЯ КАРТОЧКА
     ============================================================= */
     .card-exam {
       border: 2px solid var(--exam-border);
@@ -430,7 +427,6 @@
       text-shadow: 0 0 20px rgba(192, 192, 192, 0.3);
     }
 
-    /* Декорации экзамена */
     .exam-deco {
       position: absolute;
       pointer-events: none;
@@ -477,7 +473,6 @@
       50% { transform: translateY(-6px) rotate(-3deg) scale(1.05); }
     }
 
-    /* Множество серебряных искр */
     .sparkle-exam {
       position: absolute;
       font-size: 12px;
@@ -508,11 +503,9 @@
     .card-exam:hover .sparkle-exam {
       animation-duration: 4s;
     }
-
     .card-exam:hover .cap-exam {
       animation-duration: 2s;
     }
-
     .card-exam:hover .scroll-exam,
     .card-exam:hover .diploma-exam {
       animation-duration: 2s;
@@ -574,6 +567,8 @@
       transition: 0.25s;
       font-size: clamp(16px, 2vw, 20px);
       text-align: center;
+      position: relative;
+      overflow: visible;
     }
 
     .option:hover {
@@ -582,15 +577,13 @@
       transform: scale(1.02);
     }
 
-    /* ===== КНОПКА ЦЭ/ЦТ (УЛУЧШЕНА В 15 РАЗ) ===== */
+    /* ===== КНОПКА "ЦЭ / ЦТ" (УЛУЧШЕНА) ===== */
     .option-champion-gold {
       border: 2px solid var(--gold-border);
       background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 215, 0, 0.02));
-      animation: goldPulse 2s ease-in-out infinite;
+      animation: goldPulse 2s ease-in-out infinite, floatButton 4s ease-in-out infinite;
       font-weight: 800;
       color: var(--gold);
-      position: relative;
-      overflow: visible;
       padding: 18px 20px;
       font-size: clamp(18px, 2.5vw, 24px);
       letter-spacing: 1px;
@@ -628,15 +621,39 @@
       text-shadow: 0 0 40px rgba(255, 215, 0, 0.6);
     }
 
-    /* ===== КНОПКА "ЭКЗАМЕН" ДЛЯ 9 КЛАССА (УЛУЧШЕННАЯ) ===== */
+    /* Золотые звёзды вокруг */
+    .star-gold {
+      position: absolute;
+      font-size: 14px;
+      color: var(--gold);
+      text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+      animation: orbitGold 6s linear infinite;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .star-gold:nth-child(1) { top: -10px; left: 10%; animation-delay: 0s; }
+    .star-gold:nth-child(2) { top: -10px; right: 10%; animation-delay: 1s; }
+    .star-gold:nth-child(3) { bottom: -10px; left: 20%; animation-delay: 2s; }
+    .star-gold:nth-child(4) { bottom: -10px; right: 20%; animation-delay: 3s; }
+
+    @keyframes orbitGold {
+      0% { transform: rotate(0deg) translateX(-20px) scale(1); opacity: 0.3; }
+      50% { transform: rotate(180deg) translateX(-30px) scale(1.3); opacity: 1; }
+      100% { transform: rotate(360deg) translateX(-20px) scale(1); opacity: 0.3; }
+    }
+
+    .option-champion-gold:hover .star-gold {
+      animation-duration: 3s;
+    }
+
+    /* ===== КНОПКА "ЭКЗАМЕН" (УЛУЧШЕНА) ===== */
     .option-exam {
       border: 2px solid var(--exam-border);
       background: linear-gradient(135deg, rgba(192, 192, 192, 0.08), rgba(26, 42, 74, 0.05));
-      animation: examPulse 3s ease-in-out infinite;
+      animation: examPulse 3s ease-in-out infinite, floatButton 5s ease-in-out infinite;
       font-weight: 700;
       color: var(--silver);
-      position: relative;
-      overflow: visible;
       padding: 16px 20px;
       font-size: clamp(17px, 2.3vw, 22px);
       letter-spacing: 0.5px;
@@ -668,6 +685,37 @@
       text-shadow: 0 0 30px rgba(192, 192, 192, 0.5);
     }
 
+    /* Серебряные звёзды вокруг */
+    .star-silver-btn {
+      position: absolute;
+      font-size: 12px;
+      color: var(--silver);
+      text-shadow: 0 0 10px rgba(192, 192, 192, 0.6);
+      animation: orbitSilver 8s linear infinite;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .star-silver-btn:nth-child(1) { top: -8px; left: 15%; animation-delay: 0s; }
+    .star-silver-btn:nth-child(2) { top: -8px; right: 15%; animation-delay: 2s; }
+    .star-silver-btn:nth-child(3) { bottom: -8px; left: 25%; animation-delay: 4s; }
+    .star-silver-btn:nth-child(4) { bottom: -8px; right: 25%; animation-delay: 6s; }
+
+    @keyframes orbitSilver {
+      0% { transform: rotate(0deg) translateX(-15px) scale(0.8); opacity: 0.2; }
+      50% { transform: rotate(180deg) translateX(-25px) scale(1.2); opacity: 1; }
+      100% { transform: rotate(360deg) translateX(-15px) scale(0.8); opacity: 0.2; }
+    }
+
+    .option-exam:hover .star-silver-btn {
+      animation-duration: 4s;
+    }
+
+    @keyframes floatButton {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+
     /* ===== FOOTER ===== */
     footer {
       text-align: center;
@@ -682,133 +730,48 @@
        АДАПТИВНОСТЬ
     ============================================================ */
     @media (max-width: 900px) {
-      .hero {
-        padding: 30px 20px 20px;
-        gap: 20px;
-      }
-      .hero-box {
-        width: 220px;
-        height: 200px;
-      }
+      .hero { padding: 30px 20px 20px; gap: 20px; }
+      .hero-box { width: 220px; height: 200px; }
       .laurel-left-gold, .laurel-right-gold { font-size: 34px; }
       .trophy-gold { font-size: 44px; }
       .cap-exam { font-size: 34px; }
       .scroll-exam, .diploma-exam { font-size: 26px; }
+      .star-gold, .star-silver-btn { font-size: 10px; }
     }
 
     @media (max-width: 640px) {
-      .hero {
-        flex-direction: column;
-        align-items: stretch;
-        text-align: center;
-        padding: 20px 16px 10px;
-      }
-      .hero-content p {
-        max-width: 100%;
-        margin-left: auto;
-        margin-right: auto;
-      }
-      .hero-box {
-        width: 100%;
-        height: 180px;
-        margin-top: 10px;
-        grid-template-columns: repeat(4, 1fr);
-        grid-template-rows: repeat(3, 1fr);
-        padding: 10px;
-      }
-      .grid {
-        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-        gap: 12px;
-        padding: 12px;
-      }
-      .card {
-        padding: 14px;
-        overflow: hidden;
-      }
-      .overlay-panel {
-        padding: 16px;
-        width: 95%;
-        max-width: 360px;
-      }
-      .option {
-        padding: 16px;
-        font-size: 18px;
-      }
-      header {
-        padding: 10px 16px;
-      }
-      .btn {
-        padding: 14px 28px;
-        width: 100%;
-        max-width: 260px;
-      }
-      .buttons {
-        display: flex;
-        justify-content: center;
-      }
+      .hero { flex-direction: column; align-items: stretch; text-align: center; padding: 20px 16px 10px; }
+      .hero-content p { max-width: 100%; margin: auto; }
+      .hero-box { width: 100%; height: 180px; margin-top: 10px; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(3, 1fr); padding: 10px; }
+      .grid { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; padding: 12px; }
+      .card { padding: 14px; overflow: hidden; }
+      .overlay-panel { padding: 16px; width: 95%; max-width: 360px; }
+      .option { padding: 16px; font-size: 18px; }
+      header { padding: 10px 16px; }
+      .btn { padding: 14px 28px; width: 100%; max-width: 260px; }
+      .buttons { display: flex; justify-content: center; }
 
-      /* Уменьшаем декор для 11 */
-      .laurel-left-gold, .laurel-right-gold {
-        font-size: 24px !important;
-        top: -6px;
-        left: -6px;
-        right: -6px;
-      }
-      .trophy-gold {
-        font-size: 32px !important;
-        bottom: -8px;
-      }
+      .laurel-left-gold, .laurel-right-gold { font-size: 24px !important; top: -6px; left: -6px; right: -6px; }
+      .trophy-gold { font-size: 32px !important; bottom: -8px; }
       .ribbon-gold { font-size: 18px; left: 4px; bottom: 4px; }
       .sparkle-gold { font-size: 10px; }
-
-      /* Уменьшаем декор для 9 */
-      .cap-exam {
-        font-size: 24px !important;
-        top: -6px;
-        left: -4px;
-      }
-      .scroll-exam, .diploma-exam {
-        font-size: 20px !important;
-        bottom: -4px;
-      }
+      .cap-exam { font-size: 24px !important; top: -6px; left: -4px; }
+      .scroll-exam, .diploma-exam { font-size: 20px !important; bottom: -4px; }
       .sparkle-exam { font-size: 9px; }
+      .card-gold::before, .card-exam::before { display: none; }
 
-      .card-gold::before, .card-exam::before {
-        display: none;
-      }
-      .option-champion-gold {
-        font-size: 16px;
-        padding: 14px;
-      }
-      .option-champion-gold::before,
-      .option-champion-gold::after {
-        font-size: 18px;
-      }
-      .option-exam {
-        font-size: 15px;
-        padding: 14px;
-      }
-      .option-exam::before,
-      .option-exam::after {
-        font-size: 18px;
-      }
+      .option-champion-gold { font-size: 16px; padding: 14px; }
+      .option-champion-gold::before, .option-champion-gold::after { font-size: 18px; }
+      .option-exam { font-size: 15px; padding: 14px; }
+      .option-exam::before, .option-exam::after { font-size: 18px; }
+      .star-gold, .star-silver-btn { font-size: 8px; }
     }
 
     @media (max-width: 400px) {
-      .hero-content h1 {
-        font-size: 28px;
-      }
-      .hero-box {
-        height: 150px;
-        gap: 4px;
-      }
-      .grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 8px;
-      }
-      .card h3 {
-        font-size: 16px;
-      }
+      .hero-content h1 { font-size: 28px; }
+      .hero-box { height: 150px; gap: 4px; }
+      .grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+      .card h3 { font-size: 16px; }
     }
   </style>
 </head>
@@ -874,42 +837,31 @@
       card.className = 'card';
 
       if (n === 11) {
-        // Золотая карточка 11 класса
         card.classList.add('card-gold');
         card.innerHTML = `
           <span class="gold-deco laurel-left-gold">🌿</span>
           <span class="gold-deco laurel-right-gold">🌿</span>
           <span class="gold-deco trophy-gold">🏆</span>
           <span class="gold-deco ribbon-gold">🎗️</span>
-          <span class="sparkle-gold">✦</span>
-          <span class="sparkle-gold">✦</span>
-          <span class="sparkle-gold">✦</span>
-          <span class="sparkle-gold">✦</span>
-          <span class="sparkle-gold">✦</span>
-          <span class="sparkle-gold">✦</span>
-          <span class="sparkle-gold">✦</span>
-          <span class="sparkle-gold">✦</span>
-          <span class="sparkle-gold">✦</span>
-          <span class="sparkle-gold">✦</span>
+          <span class="sparkle-gold">✦</span><span class="sparkle-gold">✦</span>
+          <span class="sparkle-gold">✦</span><span class="sparkle-gold">✦</span>
+          <span class="sparkle-gold">✦</span><span class="sparkle-gold">✦</span>
+          <span class="sparkle-gold">✦</span><span class="sparkle-gold">✦</span>
+          <span class="sparkle-gold">✦</span><span class="sparkle-gold">✦</span>
           <h3>${n} класс</h3>
           <p>Чемпионский выпуск!</p>
           <div class="go">перейти →</div>
         `;
       } else if (n === 9) {
-        // Серебряно-синяя академическая карточка 9 класса (улучшена в 10 раз)
         card.classList.add('card-exam');
         card.innerHTML = `
           <span class="exam-deco cap-exam">🎓</span>
           <span class="exam-deco scroll-exam">📜</span>
           <span class="exam-deco diploma-exam">📄</span>
-          <span class="sparkle-exam">✦</span>
-          <span class="sparkle-exam">✦</span>
-          <span class="sparkle-exam">✦</span>
-          <span class="sparkle-exam">✦</span>
-          <span class="sparkle-exam">✦</span>
-          <span class="sparkle-exam">✦</span>
-          <span class="sparkle-exam">✦</span>
-          <span class="sparkle-exam">✦</span>
+          <span class="sparkle-exam">✦</span><span class="sparkle-exam">✦</span>
+          <span class="sparkle-exam">✦</span><span class="sparkle-exam">✦</span>
+          <span class="sparkle-exam">✦</span><span class="sparkle-exam">✦</span>
+          <span class="sparkle-exam">✦</span><span class="sparkle-exam">✦</span>
           <h3>${n} класс</h3>
           <p>Экзаменационный выпуск</p>
           <div class="go">перейти →</div>
@@ -950,13 +902,23 @@
         if (n === 11 && item === 'ЦЭ / ЦТ') {
           option.classList.add('option-champion-gold');
           option.innerHTML = `
+            <span class="star-gold">✦</span>
+            <span class="star-gold">✦</span>
+            <span class="star-gold">✦</span>
+            <span class="star-gold">✦</span>
             <span class="stars">✧</span>
             ${item}
             <span class="stars">✧</span>
           `;
         } else if (n === 9 && item === 'Экзамен') {
           option.classList.add('option-exam');
-          option.innerHTML = item;
+          option.innerHTML = `
+            <span class="star-silver-btn">✧</span>
+            <span class="star-silver-btn">✧</span>
+            <span class="star-silver-btn">✧</span>
+            <span class="star-silver-btn">✧</span>
+            ${item}
+          `;
         } else {
           option.textContent = item;
         }

@@ -23,6 +23,12 @@
             box-sizing: border-box;
         }
 
+        html, body {
+            width: 100%;
+            max-width: 100vw;
+            overflow-x: hidden;  /* ← убираем горизонтальную прокрутку */
+        }
+
         body {
             font-family: 'Inter', -apple-system, sans-serif;
             background: radial-gradient(1200px 600px at 20% 0%, #0d1f18 0%, var(--bg) 60%);
@@ -49,6 +55,14 @@
             box-shadow: 0 0 60px var(--glow);
             backdrop-filter: blur(6px);
             transition: box-shadow 0.4s;
+            /* Добавленная анимация появления */
+            animation: fadeIn 1s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .container:hover {
@@ -120,7 +134,6 @@
             font-style: italic;
         }
 
-        /* ===== Плавающие символы — от низа до верха ===== */
         .floating-symbol {
             position: absolute;
             color: rgba(34, 255, 136, 0.12);
@@ -201,24 +214,22 @@
     </div>
 
     <script>
-        // ===== 10 шуток для 5 класса =====
+        // ===== 10 шуток для 8 класса (более взрослые) =====
         const jokes = [
-            'Мы решаем пример, но ответ пока в черновике.',
-            'Страница складывается, как 2+2, но не торопитесь.',
-            'Здесь будет математика, а пока — переменная.',
-            'Мы учим таблицу умножения, страница появится скоро.',
-            'Ошибка 404: задача не решена, ищем решение.',
-            'Страница в процессе вычисления, подождите.',
-            'Как в уравнении: неизвестное скоро найдётся.',
-            'Мы считаем до ста, страница готова на 50.',
-            'Математика любит порядок, страница наводит красоту.',
-            'Мы перемножаем знания, чтобы ты всё понял.'
+            'Дискриминант положительный — страница скоро появится.',
+            'Теорема Пифагора: гипотенуза готова, а катеты ещё нет.',
+            'Мы решаем квадратное уравнение — ответ в разработке.',
+            'Уравнение готовности: x² + готовность = 0, корни пока комплексные.',
+            'Функция страницы стремится к бесконечности, но мы её ограничим.',
+            'Страница в системе координат — пока в первой четверти.',
+            'Мы ищем корни, но пока нашли только дискриминант.',
+            'Производная от готовности положительна, ждите релиза.',
+            'Парабола ветвями вверх — страница скоро поднимется.'
         ];
 
-        // ===== Выбор случайной шутки =====
         document.getElementById('joke').textContent = jokes[Math.floor(Math.random() * jokes.length)];
 
-        // ===== Фоновые символы =====
+        // ===== Фоновые символы (только движущиеся) =====
         const floatSymbols = ['√', '∑', 'π', '∫', '∞', 'x²', '∠', 'α', 'β', 'γ', '∂', '∇', 'Δ', 'θ', 'λ', 'μ', 'σ', 'τ', 'φ', 'ω'];
 
         function createSymbol() {
@@ -228,18 +239,18 @@
             el.style.left = Math.random() * 100 + '%';
             el.style.fontSize = (18 + Math.random() * 32) + 'px';
             el.style.animationDuration = (5 + Math.random() * 7) + 's';
-            el.style.animationDelay = Math.random() * 5 + 's';
+            // Убираем animationDelay — символы не стоят на месте
             document.getElementById('symbols-container').appendChild(el);
 
             setTimeout(() => {
                 el.remove();
-            }, parseFloat(el.style.animationDuration) * 1000 + parseFloat(el.style.animationDelay) * 1000 + 500);
+            }, parseFloat(el.style.animationDuration) * 1000 + 500);
         }
 
         for (let i = 0; i < 20; i++) {
-            setTimeout(createSymbol, i * 200);
+            setTimeout(createSymbol, i * 150);
         }
-        setInterval(createSymbol, 600);
+        setInterval(createSymbol, 500);
     </script>
 </body>
 </html>

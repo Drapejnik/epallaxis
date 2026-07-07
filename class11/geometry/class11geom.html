@@ -16,13 +16,7 @@
             --border: rgba(34, 255, 136, 0.18);
             --glow: rgba(34, 255, 136, 0.12);
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Inter', -apple-system, sans-serif;
             background: radial-gradient(1200px 600px at 20% 0%, #0d1f18 0%, var(--bg) 60%);
@@ -35,7 +29,6 @@
             overflow: hidden;
             position: relative;
         }
-
         .container {
             max-width: 650px;
             width: 100%;
@@ -49,12 +42,15 @@
             box-shadow: 0 0 60px var(--glow);
             backdrop-filter: blur(6px);
             transition: box-shadow 0.4s;
+            /* Добавленная анимация появления */
+            animation: fadeIn 1s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
         }
-
-        .container:hover {
-            box-shadow: 0 0 80px rgba(34, 255, 136, 0.18);
+        @keyframes fadeIn {
+            to { opacity: 1; transform: translateY(0); }
         }
-
+        .container:hover { box-shadow: 0 0 80px rgba(34, 255, 136, 0.18); }
         h1 {
             font-family: 'Playfair Display', Georgia, serif;
             font-size: 2.4rem;
@@ -63,18 +59,13 @@
             margin-bottom: 6px;
             letter-spacing: -0.5px;
         }
-
-        h1 span {
-            color: var(--accent);
-        }
-
+        h1 span { color: var(--accent); }
         .subtitle {
             font-size: 1.1rem;
             color: var(--muted);
             margin-bottom: 4px;
             font-weight: 300;
         }
-
         .joke {
             color: var(--accent);
             font-size: 1rem;
@@ -83,14 +74,12 @@
             min-height: 28px;
             opacity: 0.9;
         }
-
         .hint {
             color: var(--muted);
             font-size: 0.95rem;
             line-height: 1.6;
             margin-bottom: 30px;
         }
-
         .btn-home {
             display: inline-block;
             background: transparent;
@@ -104,13 +93,11 @@
             transition: all 0.3s;
             letter-spacing: 0.3px;
         }
-
         .btn-home:hover {
             background: rgba(34, 255, 136, 0.08);
             transform: translateY(-3px);
             box-shadow: 0 8px 30px rgba(34, 255, 136, 0.2);
         }
-
         .formula {
             color: var(--muted);
             font-size: 0.85rem;
@@ -119,8 +106,6 @@
             font-family: 'Playfair Display', serif;
             font-style: italic;
         }
-
-        /* ===== Плавающие символы — от низа до верха ===== */
         .floating-symbol {
             position: absolute;
             color: rgba(34, 255, 136, 0.12);
@@ -130,64 +115,29 @@
             user-select: none;
             text-shadow: 0 0 15px rgba(34, 255, 136, 0.05);
         }
-
         @keyframes rise {
-            0% {
-                transform: translateY(100vh);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.7;
-            }
-            90% {
-                opacity: 0.7;
-            }
-            100% {
-                transform: translateY(-100vh);
-                opacity: 0;
-            }
+            0% { transform: translateY(100vh); opacity: 0; }
+            10% { opacity: 0.7; }
+            90% { opacity: 0.7; }
+            100% { transform: translateY(-100vh); opacity: 0; }
         }
-
         @media (max-width: 600px) {
-            .container {
-                padding: 30px 20px 30px;
-                border-radius: 24px;
-            }
-            h1 {
-                font-size: 1.8rem;
-            }
-            .subtitle {
-                font-size: 0.95rem;
-            }
-            .joke {
-                font-size: 0.9rem;
-            }
-            .hint {
-                font-size: 0.85rem;
-            }
-            .btn-home {
-                font-size: 14px;
-                padding: 10px 24px;
-            }
-            .floating-symbol {
-                font-size: 20px;
-            }
+            .container { padding: 30px 20px 30px; border-radius: 24px; }
+            h1 { font-size: 1.8rem; }
+            .subtitle { font-size: 0.95rem; }
+            .joke { font-size: 0.9rem; }
+            .hint { font-size: 0.85rem; }
+            .btn-home { font-size: 14px; padding: 10px 24px; }
+            .floating-symbol { font-size: 20px; }
         }
-
         @media (max-width: 400px) {
-            h1 {
-                font-size: 1.4rem;
-            }
-            .container {
-                padding: 20px 16px;
-            }
+            h1 { font-size: 1.4rem; }
+            .container { padding: 20px 16px; }
         }
     </style>
 </head>
 <body>
-
     <div id="symbols-container"></div>
-
     <div class="container">
         <h1>Раздел <span>в разработке</span></h1>
         <p class="subtitle">Мы уже считаем, решаем и доказываем</p>
@@ -199,26 +149,23 @@
         <a href="index.html" class="btn-home">← На главную</a>
         <p class="formula">∫ d(раздел) = EPALLAXIS + C</p>
     </div>
-
     <script>
-        // ===== 10 шуток для 5 класса =====
+        // ===== 10 шуток по геометрии для 11 класса =====
         const jokes = [
-            'Мы решаем пример, но ответ пока в черновике.',
-            'Страница складывается, как 2+2, но не торопитесь.',
-            'Здесь будет математика, а пока — переменная.',
-            'Мы учим таблицу умножения, страница появится скоро.',
-            'Ошибка 404: задача не решена, ищем решение.',
-            'Страница в процессе вычисления, подождите.',
-            'Как в уравнении: неизвестное скоро найдётся.',
-            'Мы считаем до ста, страница готова на 50.',
-            'Математика любит порядок, страница наводит красоту.',
-            'Мы перемножаем знания, чтобы ты всё понял.'
+            'Стереометрия: многогранник готов, но страница пока плоская.',
+            'Объём шара вычислен, а страница ещё не заполнена.',
+            'Площадь поверхности: страница пока только в двух измерениях.',
+            'Векторы: направление к релизу определено, длина пока неизвестна.',
+            'Угол между плоскостями: разработка и релиз почти параллельны.',
+            'Сечение: страница разрезана, но мы её склеим.',
+            'Координаты: страница в точке (0,0,0) — ждём движения.',
+            'Пирамида: основание есть, высота в разработке.',
+            'Цилиндр: объём уже есть, а страница всё крутится.',
+            'Сфера: страница вокруг нас, но пока не открыта.'
         ];
-
-        // ===== Выбор случайной шутки =====
         document.getElementById('joke').textContent = jokes[Math.floor(Math.random() * jokes.length)];
 
-        // ===== Фоновые символы =====
+        // ===== Фоновые символы (только движущиеся) =====
         const floatSymbols = ['√', '∑', 'π', '∫', '∞', 'x²', '∠', 'α', 'β', 'γ', '∂', '∇', 'Δ', 'θ', 'λ', 'μ', 'σ', 'τ', 'φ', 'ω'];
 
         function createSymbol() {
@@ -228,18 +175,20 @@
             el.style.left = Math.random() * 100 + '%';
             el.style.fontSize = (18 + Math.random() * 32) + 'px';
             el.style.animationDuration = (5 + Math.random() * 7) + 's';
-            el.style.animationDelay = Math.random() * 5 + 's';
+            // animationDelay УДАЛЁН — символы начинают двигаться сразу
             document.getElementById('symbols-container').appendChild(el);
-
+            // Удаляем через время, равное длительности анимации + небольшой запас
             setTimeout(() => {
                 el.remove();
-            }, parseFloat(el.style.animationDuration) * 1000 + parseFloat(el.style.animationDelay) * 1000 + 500);
+            }, parseFloat(el.style.animationDuration) * 1000 + 500);
         }
 
+        // Создаём начальные символы с небольшим интервалом
         for (let i = 0; i < 20; i++) {
-            setTimeout(createSymbol, i * 200);
+            setTimeout(createSymbol, i * 150);
         }
-        setInterval(createSymbol, 600);
+        // Постоянно добавляем новые символы
+        setInterval(createSymbol, 500);
     </script>
 </body>
 </html>
