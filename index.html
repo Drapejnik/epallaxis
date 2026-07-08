@@ -6,7 +6,7 @@
   <title>EPALLAXIS</title>
 
   <style>
-    /* ===== Глобальные переменные (только зелёная тема) ===== */
+    /* ===== Глобальные переменные ===== */
     :root {
       --bg: #060a10;
       --panel: #0f1720;
@@ -15,11 +15,6 @@
       --muted: #9aa4b2;
       --accent: #22ff88;
       --border: rgba(34, 255, 136, 0.18);
-    }
-
-    /* ===== Плавные переходы (для анимаций, но не для смены темы) ===== */
-    * {
-      transition: transform 0.3s ease, opacity 0.3s ease;
     }
 
     /* ===== Базовые стили ===== */
@@ -33,7 +28,6 @@
     body {
       background: radial-gradient(1200px 600px at 20% 0%, #0d1f18 0%, var(--bg) 60%);
       color: var(--text);
-      overflow-x: hidden;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -41,7 +35,7 @@
     }
 
     /* ============================================================
-       БАЗОВЫЕ КЛЮЧЕВЫЕ КАДРЫ ДЛЯ АНИМАЦИЙ
+       БАЗОВЫЕ КЛЮЧЕВЫЕ КАДРЫ (ТОЛЬКО ДЛЯ ПОЯВЛЕНИЯ)
     ============================================================ */
     @keyframes fadeInDown {
       0% { opacity: 0; transform: translateY(-30px); }
@@ -74,12 +68,15 @@
     }
 
     /* ============================================================
-       HEADER
+       HEADER (исправлен)
     ============================================================ */
     header {
       position: sticky;
       top: 0;
       z-index: 100;
+      width: 100%;
+      left: 0;
+      right: 0;
       background: rgba(6, 10, 16, 0.75);
       backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
@@ -223,6 +220,7 @@
       transition: 0.3s;
       opacity: 0;
       animation: heroSymbolsFade 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      will-change: transform, opacity;
     }
 
     .hero-box .symbol:nth-child(1) { animation-delay: 0.5s; }
@@ -262,7 +260,7 @@
       border-radius: 18px;
       padding: 18px;
       cursor: pointer;
-      transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color 0.4s, box-shadow 0.4s;
       display: flex;
       flex-direction: column;
       position: relative;
@@ -271,6 +269,7 @@
       opacity: 0;
       transform: translateY(30px) scale(0.97);
       animation: cardFadeIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      will-change: transform, opacity;
     }
 
     .card:hover {
@@ -296,7 +295,7 @@
       color: var(--accent);
       font-size: clamp(13px, 1.2vw, 15px);
       font-weight: 500;
-      transition: 0.3s;
+      transition: transform 0.3s;
     }
 
     .card:hover .go {
@@ -657,7 +656,6 @@
       transform: scale(1.02);
     }
 
-    /* ===== Спецстиль для опции "Геометрия" — синий ===== */
     .option-geometry:hover,
     .option-geometry:active {
       border-color: #4a9eff;
@@ -665,7 +663,6 @@
       transform: scale(1.02);
     }
 
-    /* ===== КНОПКА "ЭКЗАМЕН" — фиксированный серебряный стиль ===== */
     .option-exam {
       border: 2px solid rgba(192, 192, 192, 0.6);
       background: linear-gradient(135deg, rgba(192, 192, 192, 0.12), rgba(26, 42, 74, 0.08));
@@ -700,7 +697,6 @@
       text-shadow: 0 0 30px rgba(192, 192, 192, 0.5);
     }
 
-    /* ===== КНОПКА "ЦЭ / ЦТ" — фиксированный золотой стиль ===== */
     .option-champion-gold {
       border: 2px solid rgba(255, 215, 0, 0.6);
       background: linear-gradient(135deg, rgba(255, 215, 0, 0.12), rgba(255, 215, 0, 0.03));
@@ -753,7 +749,7 @@
     }
 
     /* ============================================================
-       АДАПТИВНОСТЬ
+       АДАПТИВНОСТЬ И ОПТИМИЗАЦИЯ ДЛЯ МОБИЛЬНЫХ
     ============================================================ */
     @media (max-width: 900px) {
       .hero { padding: 30px 20px 20px; gap: 20px; }
@@ -765,26 +761,101 @@
     }
 
     @media (max-width: 640px) {
-      .hero { flex-direction: column; align-items: stretch; text-align: center; padding: 20px 16px 10px; }
-      .hero-content p { max-width: 100%; margin: auto; }
-      .hero-box { width: 100%; height: 180px; margin-top: 10px; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(3, 1fr); padding: 10px; }
-      .grid { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; padding: 12px; }
-      .card { padding: 14px; overflow: hidden; }
-      .overlay-panel { padding: 16px; width: 95%; max-width: 360px; }
-      .option { padding: 16px; font-size: 18px; }
-      header { padding: 10px 16px; flex-wrap: wrap; gap: 8px; }
-      .brand p { font-size: 11px; }
-      .btn { padding: 14px 28px; width: 100%; max-width: 260px; }
-      .buttons { display: flex; justify-content: center; }
+      /* Отключаем ресурсоёмкие постоянные анимации */
+      .card-gold,
+      .card-exam {
+        animation: cardFadeIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards !important; /* только появление */
+      }
+      .card-gold::before,
+      .card-exam::before {
+        display: none !important;
+      }
+      .gold-deco,
+      .exam-deco,
+      .sparkle-gold,
+      .sparkle-exam {
+        animation: none !important;
+      }
+      .sparkle-gold,
+      .sparkle-exam {
+        opacity: 0 !important;
+      }
+      .option-champion-gold,
+      .option-exam {
+        animation: none !important;
+      }
+      .option-champion-gold::before,
+      .option-champion-gold::after,
+      .option-exam::before,
+      .option-exam::after {
+        animation: none !important;
+      }
+      .option-champion-gold .stars {
+        animation: none !important;
+      }
+
+      /* Упрощаем header – убираем размытие для производительности */
+      header {
+        backdrop-filter: none !important;
+        background: rgba(6, 10, 16, 0.92);
+        padding: 10px 16px;
+      }
+
+      /* Остальные адаптивные стили */
+      .hero {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+        padding: 20px 16px 10px;
+      }
+      .hero-content p {
+        max-width: 100%;
+        margin: auto;
+      }
+      .hero-box {
+        width: 100%;
+        height: 180px;
+        margin-top: 10px;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        padding: 10px;
+      }
+      .grid {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 12px;
+        padding: 12px;
+      }
+      .card {
+        padding: 14px;
+        overflow: hidden;
+      }
+      .overlay-panel {
+        padding: 16px;
+        width: 95%;
+        max-width: 360px;
+      }
+      .option {
+        padding: 16px;
+        font-size: 18px;
+      }
+      .brand p {
+        font-size: 11px;
+      }
+      .btn {
+        padding: 14px 28px;
+        width: 100%;
+        max-width: 260px;
+      }
+      .buttons {
+        display: flex;
+        justify-content: center;
+      }
 
       .laurel-left-gold, .laurel-right-gold { font-size: 24px !important; top: -6px; left: -6px; right: -6px; }
       .trophy-gold { font-size: 32px !important; bottom: -8px; }
       .ribbon-gold { font-size: 18px; left: 4px; bottom: 4px; }
-      .sparkle-gold { font-size: 10px; }
       .cap-exam { font-size: 24px !important; top: -6px; left: -4px; }
       .scroll-exam, .diploma-exam { font-size: 20px !important; bottom: -4px; }
-      .sparkle-exam { font-size: 9px; }
-      .card-gold::before, .card-exam::before { display: none; }
 
       .option-champion-gold { font-size: 16px; padding: 14px; }
       .option-champion-gold::before, .option-champion-gold::after { font-size: 18px; }
@@ -799,9 +870,7 @@
       .card h3 { font-size: 16px; }
     }
 
-    /* ============================================================
-       ВСПОМОГАТЕЛЬНЫЕ АНИМАЦИИ
-    ============================================================ */
+    /* Вспомогательные анимации (определены выше, дублируем на всякий случай) */
     @keyframes rotateBorder { to { --angle: 360deg; } }
     @keyframes rotateBorderExam { to { --angle-exam: 360deg; } }
     @keyframes laurelSway { 0%,100% { transform: rotate(-8deg) scale(1); } 50% { transform: rotate(8deg) scale(1.08); } }
@@ -819,13 +888,11 @@
 </head>
 
 <body>
-
   <header>
     <div class="brand">
       <h1>EPALLAXIS <span>math</span></h1>
       <p>Ἐπαλλάσσω — приводить систему в порядок</p>
     </div>
-    <!-- Переключатель тем удалён -->
   </header>
 
   <section class="hero">
@@ -993,7 +1060,6 @@
         const option = document.createElement('div');
         option.className = 'option';
 
-        // Для "Геометрия" добавляем специальный класс для синего свечения
         if (item === 'Геометрия') {
           option.classList.add('option-geometry');
         }
@@ -1038,6 +1104,5 @@
       document.getElementById('grid').scrollIntoView({ behavior: 'smooth' });
     }
   </script>
-
 </body>
 </html>
