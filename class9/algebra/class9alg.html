@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -138,7 +137,7 @@
       width: 100%;
       height: 0%;
       background: var(--accent);
-      transition: height 0.25s ease-out;
+      transition: height 0.4s cubic-bezier(0.22, 1, 0.36, 1);
       box-shadow: 0 0 12px var(--accent);
       will-change: height;
     }
@@ -536,6 +535,9 @@
     const container = document.getElementById('roadmapItems');
     const lineFill = document.getElementById('lineFill');
 
+    // Активная глава (индекс)
+    let activeIndex = -1;
+
     function buildRoadmap() {
       container.innerHTML = '';
       chapters.forEach((ch, idx) => {
@@ -587,52 +589,29 @@
         container.appendChild(item);
       });
 
-      // Observer для появления
+      // Observer для анимации появления
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) entry.target.classList.add('visible');
         });
-        updateLineProgress();
       }, { threshold: 0.15 });
 
       document.querySelectorAll('.roadmap-item').forEach(el => observer.observe(el));
-      window.addEventListener('scroll', updateLineProgress, { passive: true });
-      window.addEventListener('resize', updateLineProgress, { passive: true });
-      requestAnimationFrame(updateLineProgress);
+
+      // Инициализация линии (пустая)
+      updateLineProgress();
     }
 
     // ================================================================
-    // 3. ПРОГРЕСС ЛИНИИ (МОНОТОННЫЙ)
+    // 3. ОБНОВЛЕНИЕ ЛИНИИ ПРОГРЕССА (на основе активной главы)
     // ================================================================
-    let progressAnimId = null;
-    let lastProgress = 0;
-
     function updateLineProgress() {
-      if (progressAnimId) cancelAnimationFrame(progressAnimId);
-      progressAnimId = requestAnimationFrame(() => {
-        const items = document.querySelectorAll('.roadmap-item');
-        if (!items.length) return;
-
-        const viewportTop = window.scrollY;
-        let passed = 0;
-
-        items.forEach(item => {
-          const rect = item.getBoundingClientRect();
-          const itemTop = rect.top + window.scrollY;
-          // Считаем карточку пройденной, если её верхняя граница выше окна + небольшой буфер
-          if (itemTop < viewportTop + 30) {
-            passed++;
-          }
-        });
-
-        // Прогресс не может уменьшаться — монотонно растёт
-        const rawProgress = Math.min(100, (passed / items.length) * 100);
-        const progress = Math.max(lastProgress, rawProgress);
-        lastProgress = progress;
-
-        lineFill.style.height = progress + '%';
-        progressAnimId = null;
-      });
+      const total = chapters.length;
+      let progress = 0;
+      if (activeIndex !== -1) {
+        progress = ((activeIndex + 1) / total) * 100;
+      }
+      lineFill.style.height = progress + '%';
     }
 
     // ================================================================
@@ -664,7 +643,7 @@
         topicCountCache.set(ch.id, count);
         const badge = document.getElementById(`badge-${ch.id}`);
         if (badge) {
-          badge.textContent = `${count} тем`;
+          badge.textContent = `${count} шт.`;
           badge.classList.remove('loading');
         }
         return count;
@@ -681,6 +660,13 @@
     async function showChapter(id) {
       const ch = chapters.find(c => c.id === id);
       if (!ch) return;
+
+      // Обновляем активный индекс
+      const newIndex = chapters.findIndex(c => c.id === id);
+      if (newIndex !== -1) {
+        activeIndex = newIndex;
+        updateLineProgress();
+      }
 
       const section = document.getElementById('materialsSection');
       const h2 = section.querySelector('h2 span');
@@ -755,7 +741,7 @@
         topicCountCache.set(chapter.id, count);
         const badge = document.getElementById(`badge-${chapter.id}`);
         if (badge) {
-          badge.textContent = `${count} тем`;
+          badge.textContent = `${count} шт.`;
           badge.classList.remove('loading');
         }
 
@@ -805,7 +791,7 @@
     });
 
     // ================================================================
-    // 8. ПРОГРЕСС-БАР В ХЕДЕРЕ
+    // 8. ПРОГРЕСС-БАР В ХЕДЕРЕ (скролл страницы)
     // ================================================================
     (function initProgress() {
       const fill = document.getElementById('progressFill');
@@ -874,9 +860,8 @@
     buildRoadmap();
     loadAllTopicCounts();
 
-    // (опционально) автозагрузка первой главы
+    // (опционально) автозагрузка первой главы – закомментировано
     // if (chapters.length) showChapter(chapters[0].id);
   </script>
-
 </body>
 </html>
