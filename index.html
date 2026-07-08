@@ -73,10 +73,10 @@
     header {
       position: sticky;
       top: 0;
-      z-index: 100;
-      width: 100%;
       left: 0;
       right: 0;
+      width: 100%;
+      z-index: 100;
       background: rgba(6, 10, 16, 0.75);
       backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
@@ -86,6 +86,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      box-sizing: border-box;
     }
 
     .brand {
@@ -303,7 +304,7 @@
     }
 
     /* =============================================================
-       11 КЛАСС — ЗОЛОТАЯ ЧЕМПИОНСКАЯ КАРТОЧКА
+       11 КЛАСС — ЗОЛОТАЯ КАРТОЧКА
     ============================================================= */
     .card-gold {
       border: 2px solid rgba(255, 215, 0, 0.5);
@@ -336,10 +337,7 @@
       initial-value: 0deg;
       inherits: false;
     }
-
-    @keyframes rotateBorder {
-      to { --angle: 360deg; }
-    }
+    @keyframes rotateBorder { to { --angle: 360deg; } }
 
     .card-gold:hover {
       transform: translateY(-10px) scale(1.03);
@@ -366,7 +364,6 @@
       animation: laurelSway 3.5s ease-in-out infinite;
       filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.5));
     }
-
     .laurel-right-gold {
       top: -12px;
       right: -12px;
@@ -374,7 +371,6 @@
       animation: laurelSway 3.5s ease-in-out infinite reverse;
       filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.5));
     }
-
     @keyframes laurelSway {
       0%, 100% { transform: rotate(-8deg) scale(1); }
       50% { transform: rotate(8deg) scale(1.08); }
@@ -390,7 +386,6 @@
       text-shadow: 0 0 40px rgba(255, 215, 0, 0.3);
       z-index: 6;
     }
-
     @keyframes trophyFloatGold {
       0%, 100% { transform: translateX(-50%) translateY(0) scale(1) rotate(-3deg); }
       50% { transform: translateX(-50%) translateY(-12px) scale(1.08) rotate(3deg); }
@@ -403,7 +398,6 @@
       animation: ribbonWave 4s ease-in-out infinite;
       filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.3));
     }
-
     @keyframes ribbonWave {
       0%, 100% { transform: rotate(-5deg) scale(1); }
       50% { transform: rotate(5deg) scale(1.1); }
@@ -419,7 +413,6 @@
       z-index: 4;
       text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
     }
-
     .sparkle-gold:nth-child(1) { left: 5%; animation-delay: 0s; }
     .sparkle-gold:nth-child(2) { left: 15%; animation-delay: 0.8s; }
     .sparkle-gold:nth-child(3) { left: 25%; animation-delay: 1.6s; }
@@ -438,16 +431,10 @@
       100% { opacity: 0; transform: translateY(160px) scale(1.3) rotate(720deg); }
     }
 
-    .card-gold:hover .sparkle-gold {
-      animation-duration: 3s;
-    }
-    .card-gold:hover .trophy-gold {
-      animation-duration: 1.5s;
-    }
+    .card-gold:hover .sparkle-gold { animation-duration: 3s; }
+    .card-gold:hover .trophy-gold { animation-duration: 1.5s; }
     .card-gold:hover .laurel-left-gold,
-    .card-gold:hover .laurel-right-gold {
-      animation-duration: 1.8s;
-    }
+    .card-gold:hover .laurel-right-gold { animation-duration: 1.8s; }
 
     @keyframes goldPulse {
       0%, 100% { background-position: 0% 50%; box-shadow: 0 0 40px rgba(255, 215, 0, 0.05); }
@@ -455,7 +442,7 @@
     }
 
     /* =============================================================
-       9 КЛАСС — СЕРЕБРЯНО-СИНЯЯ АКАДЕМИЧЕСКАЯ КАРТОЧКА
+       9 КЛАСС — СЕРЕБРЯНАЯ КАРТОЧКА
     ============================================================= */
     .card-exam {
       border: 2px solid rgba(192, 192, 192, 0.4);
@@ -488,10 +475,7 @@
       initial-value: 0deg;
       inherits: false;
     }
-
-    @keyframes rotateBorderExam {
-      to { --angle-exam: 360deg; }
-    }
+    @keyframes rotateBorderExam { to { --angle-exam: 360deg; } }
 
     .card-exam:hover {
       transform: translateY(-10px) scale(1.03);
@@ -518,7 +502,6 @@
       animation: capFloat 5s ease-in-out infinite;
       filter: drop-shadow(0 0 20px rgba(192, 192, 192, 0.4));
     }
-
     @keyframes capFloat {
       0%, 100% { transform: translateY(0) rotate(-5deg) scale(1); }
       50% { transform: translateY(-10px) rotate(5deg) scale(1.05); }
@@ -531,7 +514,6 @@
       animation: scrollSway 4s ease-in-out infinite;
       filter: drop-shadow(0 0 15px rgba(192, 192, 192, 0.2));
     }
-
     @keyframes scrollSway {
       0%, 100% { transform: rotate(-10deg) scale(1); }
       50% { transform: rotate(10deg) scale(1.1); }
@@ -544,7 +526,6 @@
       animation: diplomaFloat 3.5s ease-in-out infinite;
       filter: drop-shadow(0 0 15px rgba(192, 192, 192, 0.2));
     }
-
     @keyframes diplomaFloat {
       0%, 100% { transform: translateY(0) rotate(3deg) scale(1); }
       50% { transform: translateY(-6px) rotate(-3deg) scale(1.05); }
@@ -560,7 +541,6 @@
       z-index: 4;
       text-shadow: 0 0 6px rgba(192, 192, 192, 0.4);
     }
-
     .sparkle-exam:nth-child(1) { left: 8%; animation-delay: 0s; }
     .sparkle-exam:nth-child(2) { left: 20%; animation-delay: 1.0s; }
     .sparkle-exam:nth-child(3) { left: 32%; animation-delay: 2.0s; }
@@ -577,16 +557,10 @@
       100% { opacity: 0; transform: translateY(180px) scale(1.2) rotate(720deg); }
     }
 
-    .card-exam:hover .sparkle-exam {
-      animation-duration: 4s;
-    }
-    .card-exam:hover .cap-exam {
-      animation-duration: 2s;
-    }
+    .card-exam:hover .sparkle-exam { animation-duration: 4s; }
+    .card-exam:hover .cap-exam { animation-duration: 2s; }
     .card-exam:hover .scroll-exam,
-    .card-exam:hover .diploma-exam {
-      animation-duration: 2s;
-    }
+    .card-exam:hover .diploma-exam { animation-duration: 2s; }
 
     @keyframes examPulse {
       0%, 100% { background-position: 0% 50%; box-shadow: 0 0 30px rgba(192, 192, 192, 0.03); }
@@ -750,21 +724,13 @@
 
     /* ============================================================
        АДАПТИВНОСТЬ И ОПТИМИЗАЦИЯ ДЛЯ МОБИЛЬНЫХ
-    ============================================================ */
-    @media (max-width: 900px) {
-      .hero { padding: 30px 20px 20px; gap: 20px; }
-      .hero-box { width: 220px; height: 200px; }
-      .laurel-left-gold, .laurel-right-gold { font-size: 34px; }
-      .trophy-gold { font-size: 44px; }
-      .cap-exam { font-size: 34px; }
-      .scroll-exam, .diploma-exam { font-size: 26px; }
-    }
+       ============================================================ */
 
-    @media (max-width: 640px) {
-      /* Отключаем ресурсоёмкие постоянные анимации */
+    /* Отключаем тяжёлые анимации на всех устройствах с шириной ≤ 900px */
+    @media (max-width: 900px) {
       .card-gold,
       .card-exam {
-        animation: cardFadeIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards !important; /* только появление */
+        animation: cardFadeIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards !important;
       }
       .card-gold::before,
       .card-exam::before {
@@ -794,14 +760,15 @@
         animation: none !important;
       }
 
-      /* Упрощаем header – убираем размытие для производительности */
+      /* Убираем размытие для производительности */
       header {
         backdrop-filter: none !important;
         background: rgba(6, 10, 16, 0.92);
-        padding: 10px 16px;
       }
+    }
 
-      /* Остальные адаптивные стили */
+    /* Стили для самых маленьких экранов (≤640px) – размеры и отступы */
+    @media (max-width: 640px) {
       .hero {
         flex-direction: column;
         align-items: stretch;
@@ -851,39 +818,73 @@
         justify-content: center;
       }
 
-      .laurel-left-gold, .laurel-right-gold { font-size: 24px !important; top: -6px; left: -6px; right: -6px; }
-      .trophy-gold { font-size: 32px !important; bottom: -8px; }
-      .ribbon-gold { font-size: 18px; left: 4px; bottom: 4px; }
-      .cap-exam { font-size: 24px !important; top: -6px; left: -4px; }
-      .scroll-exam, .diploma-exam { font-size: 20px !important; bottom: -4px; }
+      .laurel-left-gold,
+      .laurel-right-gold {
+        font-size: 24px !important;
+        top: -6px;
+        left: -6px;
+        right: -6px;
+      }
+      .trophy-gold {
+        font-size: 32px !important;
+        bottom: -8px;
+      }
+      .ribbon-gold {
+        font-size: 18px;
+        left: 4px;
+        bottom: 4px;
+      }
+      .cap-exam {
+        font-size: 24px !important;
+        top: -6px;
+        left: -4px;
+      }
+      .scroll-exam,
+      .diploma-exam {
+        font-size: 20px !important;
+        bottom: -4px;
+      }
 
-      .option-champion-gold { font-size: 16px; padding: 14px; }
-      .option-champion-gold::before, .option-champion-gold::after { font-size: 18px; }
-      .option-exam { font-size: 15px; padding: 14px; }
-      .option-exam::before, .option-exam::after { font-size: 18px; }
+      .option-champion-gold {
+        font-size: 16px;
+        padding: 14px;
+      }
+      .option-champion-gold::before,
+      .option-champion-gold::after {
+        font-size: 18px;
+      }
+      .option-exam {
+        font-size: 15px;
+        padding: 14px;
+      }
+      .option-exam::before,
+      .option-exam::after {
+        font-size: 18px;
+      }
     }
 
     @media (max-width: 400px) {
-      .hero-content h1 { font-size: 28px; }
-      .hero-box { height: 150px; gap: 4px; }
-      .grid { grid-template-columns: 1fr 1fr; gap: 8px; }
-      .card h3 { font-size: 16px; }
+      .hero-content h1 {
+        font-size: 28px;
+      }
+      .hero-box {
+        height: 150px;
+        gap: 4px;
+      }
+      .grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+      .card h3 {
+        font-size: 16px;
+      }
     }
 
-    /* Вспомогательные анимации (определены выше, дублируем на всякий случай) */
-    @keyframes rotateBorder { to { --angle: 360deg; } }
-    @keyframes rotateBorderExam { to { --angle-exam: 360deg; } }
-    @keyframes laurelSway { 0%,100% { transform: rotate(-8deg) scale(1); } 50% { transform: rotate(8deg) scale(1.08); } }
-    @keyframes trophyFloatGold { 0%,100% { transform: translateX(-50%) translateY(0) scale(1) rotate(-3deg); } 50% { transform: translateX(-50%) translateY(-12px) scale(1.08) rotate(3deg); } }
-    @keyframes ribbonWave { 0%,100% { transform: rotate(-5deg) scale(1); } 50% { transform: rotate(5deg) scale(1.1); } }
-    @keyframes sparkleFallGold { 0% { opacity:0; transform:translateY(-30px) scale(0.5) rotate(0deg); } 10%{opacity:1;} 90%{opacity:1;} 100%{opacity:0; transform:translateY(160px) scale(1.3) rotate(720deg); } }
-    @keyframes goldPulse { 0%,100% { background-position: 0% 50%; box-shadow:0 0 40px rgba(255,215,0,0.05); } 50% { background-position: 100% 50%; box-shadow:0 0 70px rgba(255,215,0,0.15); } }
-    @keyframes capFloat { 0%,100% { transform: translateY(0) rotate(-5deg) scale(1); } 50% { transform: translateY(-10px) rotate(5deg) scale(1.05); } }
-    @keyframes scrollSway { 0%,100% { transform: rotate(-10deg) scale(1); } 50% { transform: rotate(10deg) scale(1.1); } }
-    @keyframes diplomaFloat { 0%,100% { transform: translateY(0) rotate(3deg) scale(1); } 50% { transform: translateY(-6px) rotate(-3deg) scale(1.05); } }
-    @keyframes sparkleFallExam { 0% { opacity:0; transform:translateY(-40px) scale(0.4) rotate(0deg); } 10%{opacity:1;} 90%{opacity:1;} 100%{opacity:0; transform:translateY(180px) scale(1.2) rotate(720deg); } }
-    @keyframes examPulse { 0%,100% { background-position: 0% 50%; box-shadow:0 0 30px rgba(192,192,192,0.03); } 50% { background-position: 100% 50%; box-shadow:0 0 60px rgba(192,192,192,0.12); } }
-    @keyframes floatButton { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+    /* Вспомогательные анимации (определены выше, но оставляем для десктопа) */
+    @keyframes floatButton {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
   </style>
 </head>
 
