@@ -6,7 +6,7 @@
   <title>Сборник заданий — Рациональные выражения | EPALLAXIS</title>
 
   <!-- ===== FAVICON ===== -->
-  <link rel="icon" type="image/png" href="icon.png" />
+  <link rel="icon" type="image/png" href="../../../icon.png" />
 
   <!-- ===== KATEX ===== -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" />
@@ -58,18 +58,8 @@
       100% { opacity: 1; transform: translateY(0); }
     }
 
-    @keyframes cardSlide {
-      0% { opacity: 0; transform: translateY(30px) scale(0.98); }
-      100% { opacity: 1; transform: translateY(0) scale(1); }
-    }
-
-    @keyframes glowPulse {
-      0%, 100% { opacity: 0.3; }
-      50% { opacity: 0.8; }
-    }
-
     /* ============================================================
-       HEADER (текстовый бренд)
+       HEADER — ссылка белая, слово "algebra" зелёное
     ============================================================ */
     header {
       position: sticky;
@@ -98,14 +88,19 @@
       gap: 2px;
     }
 
+    .brand a {
+      text-decoration: none;
+      color: var(--text); /* ← явно задаём белый цвет для ссылки */
+    }
+
     .brand h1 {
       font-size: clamp(20px, 4vw, 28px);
       letter-spacing: 2px;
       line-height: 1.1;
     }
 
-    .brand h1 span {
-      color: var(--accent);
+    .brand h1 .accent-word {
+      color: #22ff88; /* зелёный */
     }
 
     .brand p {
@@ -126,7 +121,7 @@
     }
 
     /* ============================================================
-       ЗАГОЛОВОК СБОРНИКА (УЛУЧШЕННЫЙ)
+       ЗАГОЛОВОК СБОРНИКА
     ============================================================ */
     .collection-header {
       text-align: center;
@@ -137,7 +132,6 @@
       position: relative;
     }
 
-    /* Декоративные математические символы по бокам */
     .collection-header .deco-left,
     .collection-header .deco-right {
       position: absolute;
@@ -214,7 +208,7 @@
     }
 
     /* ============================================================
-       КАРТОЧКА (ТИП ЗАДАНИЯ)
+       КАРТОЧКИ — без анимации появления
     ============================================================ */
     .task-card {
       background: linear-gradient(145deg, var(--panel), var(--panel2));
@@ -226,19 +220,10 @@
       margin-bottom: 28px;
       box-shadow: 0 8px 50px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.03);
       transition: transform 0.3s ease, box-shadow 0.4s ease, border-color 0.4s ease;
-      opacity: 0;
-      animation: cardSlide 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
       position: relative;
       overflow: hidden;
       width: 100%;
     }
-
-    .task-card:nth-child(1) { animation-delay: 0.1s; }
-    .task-card:nth-child(2) { animation-delay: 0.18s; }
-    .task-card:nth-child(3) { animation-delay: 0.26s; }
-    .task-card:nth-child(4) { animation-delay: 0.34s; }
-    .task-card:nth-child(5) { animation-delay: 0.42s; }
-    .task-card:nth-child(6) { animation-delay: 0.50s; }
 
     .task-card:hover {
       transform: translateY(-3px);
@@ -246,7 +231,6 @@
       box-shadow: 0 12px 70px rgba(34, 255, 136, 0.06), 0 0 100px rgba(34, 255, 136, 0.02);
     }
 
-    /* Левая акцентная полоса */
     .task-card::before {
       content: "";
       position: absolute;
@@ -264,7 +248,6 @@
       opacity: 1;
     }
 
-    /* ===== ЗАГОЛОВОК ТИПА ===== */
     .task-card-header {
       display: flex;
       align-items: baseline;
@@ -291,7 +274,6 @@
       letter-spacing: -0.2px;
     }
 
-    /* ===== ЗАДАНИЯ ===== */
     .task-list {
       list-style: none;
       counter-reset: task-item;
@@ -372,7 +354,7 @@
     }
 
     /* ============================================================
-       КНОПКА НА ГЛАВНУЮ
+       КНОПКА НАЗАД
     ============================================================ */
     .back-link {
       position: fixed;
@@ -461,11 +443,13 @@
 <body>
 
   <!-- ============================================================
-       HEADER (текстовый бренд)
+       HEADER — ссылка белая, слово "algebra" зелёное
   ============================================================ -->
   <header>
     <div class="brand">
-      <h1>EPALLAXIS <span>algebra</span></h1>
+      <a href="../../../index.html">
+        <h1>EPALLAXIS <span class="accent-word">algebra</span></h1>
+      </a>
       <p>Ἐπαλλάσσω — приводить систему в порядок</p>
     </div>
   </header>
@@ -473,7 +457,7 @@
   <div class="container">
 
     <!-- ============================================================
-       ЗАГОЛОВОК СБОРНИКА (УЛУЧШЕННЫЙ)
+       ЗАГОЛОВОК СБОРНИКА
     ============================================================ -->
     <div class="collection-header">
       <span class="deco-left">∫ ∑</span>
@@ -483,9 +467,7 @@
       <div class="divider"></div>
     </div>
 
-    <!-- ============================================================
-       ТИП 1
-    ============================================================ -->
+    <!-- ===== ТИП 1 ===== -->
     <div class="task-card" id="type1">
       <div class="task-card-header">
         <span class="task-type-number">Тип 1</span>
@@ -553,9 +535,7 @@
       </ol>
     </div>
 
-    <!-- ============================================================
-       ТИП 2
-    ============================================================ -->
+    <!-- ===== ТИП 2 ===== -->
     <div class="task-card" id="type2">
       <div class="task-card-header">
         <span class="task-type-number">Тип 2</span>
@@ -597,9 +577,7 @@
       </ol>
     </div>
 
-    <!-- ============================================================
-       ТИП 3
-    ============================================================ -->
+    <!-- ===== ТИП 3 ===== -->
     <div class="task-card" id="type3">
       <div class="task-card-header">
         <span class="task-type-number">Тип 3</span>
@@ -659,9 +637,7 @@
       </ol>
     </div>
 
-    <!-- ============================================================
-       ТИП 4
-    ============================================================ -->
+    <!-- ===== ТИП 4 ===== -->
     <div class="task-card" id="type4">
       <div class="task-card-header">
         <span class="task-type-number">Тип 4</span>
@@ -719,9 +695,7 @@
       </ol>
     </div>
 
-    <!-- ============================================================
-       ТИП 5
-    ============================================================ -->
+    <!-- ===== ТИП 5 ===== -->
     <div class="task-card" id="type5">
       <div class="task-card-header">
         <span class="task-type-number">Тип 5</span>
@@ -751,9 +725,7 @@
       </ol>
     </div>
 
-    <!-- ============================================================
-       ТИП 6
-    ============================================================ -->
+    <!-- ===== ТИП 6 ===== -->
     <div class="task-card" id="type6">
       <div class="task-card-header">
         <span class="task-type-number">Тип 6</span>
@@ -786,9 +758,9 @@
   </div>
 
   <!-- ============================================================
-       КНОПКА НА ГЛАВНУЮ
+       КНОПКА НАЗАД
   ============================================================ -->
-  <a href="index.html" class="back-link">← На главную</a>
+  <a href="../class9alg.html" class="back-link">← Назад к темам</a>
 
   <!-- ============================================================
        РЕНДЕРИНГ KATEX
@@ -808,7 +780,6 @@
       }
     });
 
-    // ===== ПЛАВНЫЙ ПЕРЕХОД МЕЖДУ СТРАНИЦАМИ =====
     document.addEventListener('click', function(e) {
       const link = e.target.closest('a');
       if (link && link.href && link.href.indexOf(window.location.origin) === 0 && !link.target && link.getAttribute('href') !== '#') {
