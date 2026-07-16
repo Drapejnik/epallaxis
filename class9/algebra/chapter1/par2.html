@@ -3,18 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-  <title>Сборник заданий — Основное свойство рациональной дроби | EPALLAXIS</title>
-
-  <!-- ===== FAVICON ===== -->
+  <title>Основное свойство рациональной дроби | EPALLAXIS</title>
   <link rel="icon" type="image/png" href="../../../icon.png" />
-
-  <!-- ===== KATEX ===== -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" />
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
-
   <style>
-    /* ===== все стили как в предыдущей версии ===== */
     :root {
       --bg: #060a10;
       --panel: rgba(15, 23, 32, 0.65);
@@ -26,21 +20,8 @@
       --border: rgba(34, 255, 136, 0.10);
       --quiz-border: rgba(34, 255, 136, 0.3);
     }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
-    }
-
-    html, body {
-      width: 100%;
-      max-width: 100vw;
-      overflow-x: hidden;
-      scroll-behavior: smooth;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif; }
+    html, body { width: 100%; max-width: 100vw; overflow-x: hidden; scroll-behavior: smooth; }
     body {
       background: radial-gradient(1200px 600px at 20% 0%, #0d1f18 0%, var(--bg) 60%);
       color: var(--text);
@@ -48,19 +29,7 @@
       display: flex;
       flex-direction: column;
       padding: 0 20px 40px;
-      transition: opacity 0.5s ease;
     }
-
-    @keyframes fadeInDown {
-      0% { opacity: 0; transform: translateY(-30px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeInUp {
-      0% { opacity: 0; transform: translateY(40px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-
     header {
       position: sticky;
       top: 0;
@@ -69,56 +38,21 @@
       backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
       padding: 14px 20px;
-      opacity: 0;
-      animation: fadeInDown 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
       display: flex;
       justify-content: space-between;
       align-items: center;
       width: 100%;
-      max-width: 100vw;
-      box-sizing: border-box;
       margin: 0 -20px 0;
       padding-left: 20px;
       padding-right: 20px;
     }
+    .brand { display: flex; flex-direction: column; gap: 2px; }
+    .brand a { text-decoration: none; color: var(--text); }
+    .brand h1 { font-size: clamp(20px, 4vw, 28px); letter-spacing: 2px; line-height: 1.1; }
+    .brand h1 .accent-word { color: #22ff88; }
+    .brand p { font-size: clamp(11px, 1.5vw, 14px); color: var(--muted); margin-top: 2px; }
 
-    .brand {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .brand a {
-      text-decoration: none;
-      color: var(--text);
-    }
-
-    .brand h1 {
-      font-size: clamp(20px, 4vw, 28px);
-      letter-spacing: 2px;
-      line-height: 1.1;
-    }
-
-    .brand h1 .accent-word {
-      color: #22ff88;
-    }
-
-    .brand p {
-      font-size: clamp(11px, 1.5vw, 14px);
-      color: var(--muted);
-      margin-top: 2px;
-    }
-
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      width: 100%;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      overflow-x: hidden;
-      padding-top: 20px;
-    }
+    .container { max-width: 1100px; margin: 0 auto; width: 100%; flex: 1; padding-top: 20px; }
 
     .nav-internal {
       display: flex;
@@ -134,7 +68,6 @@
       top: 80px;
       z-index: 50;
     }
-
     .nav-internal a {
       color: var(--muted);
       text-decoration: none;
@@ -144,48 +77,20 @@
       border-radius: 40px;
       border: 1px solid transparent;
       transition: all 0.3s ease;
-      letter-spacing: 0.3px;
       white-space: nowrap;
     }
-
-    .nav-internal a:hover {
-      color: var(--text);
-      border-color: var(--border);
-      background: rgba(34, 255, 136, 0.03);
-    }
-
-    .nav-internal a.active {
-      color: var(--accent);
-      border-color: var(--accent);
-      background: rgba(34, 255, 136, 0.08);
-      box-shadow: 0 0 20px rgba(34, 255, 136, 0.05);
-    }
-
-    .nav-internal a.quiz-link {
-      color: var(--accent);
-      opacity: 0.7;
-    }
-    .nav-internal a.quiz-link:hover {
-      opacity: 1;
-    }
-    .nav-internal a.quiz-link.active {
-      opacity: 1;
-      border-color: var(--accent);
-      background: rgba(34, 255, 136, 0.12);
-      box-shadow: 0 0 30px rgba(34, 255, 136, 0.1);
-    }
+    .nav-internal a:hover { color: var(--text); border-color: var(--border); background: rgba(34,255,136,0.03); }
+    .nav-internal a.active { color: var(--accent); border-color: var(--accent); background: rgba(34,255,136,0.08); }
+    .nav-internal a.quiz-link { color: var(--accent); opacity: 0.7; }
+    .nav-internal a.quiz-link:hover { opacity: 1; }
+    .nav-internal a.quiz-link.active { opacity: 1; border-color: var(--accent); background: rgba(34,255,136,0.12); }
 
     .collection-header {
       text-align: center;
       padding: 70px 0 25px;
-      opacity: 0;
-      animation: fadeInUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-      animation-delay: 0.15s;
       position: relative;
     }
-
-    .collection-header .deco-left,
-    .collection-header .deco-right {
+    .collection-header .deco-left, .collection-header .deco-right {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
@@ -193,34 +98,22 @@
       color: var(--accent);
       opacity: 0.06;
       font-family: 'Georgia', serif;
-      font-weight: 300;
-      letter-spacing: 10px;
       pointer-events: none;
       user-select: none;
     }
-
-    .collection-header .deco-left {
-      left: 0;
-      text-align: left;
-    }
-
-    .collection-header .deco-right {
-      right: 0;
-      text-align: right;
-    }
-
+    .collection-header .deco-left { left: 0; }
+    .collection-header .deco-right { right: 0; }
     .collection-header h1 {
       font-size: clamp(34px, 5vw, 48px);
       font-weight: 700;
       color: var(--text);
       font-family: 'Georgia', serif;
       letter-spacing: -0.5px;
-      text-shadow: 0 0 80px rgba(34, 255, 136, 0.08);
-      position: relative;
+      text-shadow: 0 0 80px rgba(34,255,136,0.08);
       display: inline-block;
       padding: 0 20px;
+      position: relative;
     }
-
     .collection-header h1::after {
       content: "";
       position: absolute;
@@ -232,32 +125,17 @@
       background: linear-gradient(90deg, transparent, var(--accent), transparent);
       border-radius: 2px;
       opacity: 0.5;
-      box-shadow: 0 0 30px var(--accent);
     }
-
     .collection-header h2 {
       font-size: clamp(20px, 2.5vw, 28px);
       font-weight: 400;
       color: var(--text);
       margin-top: 16px;
       opacity: 0.85;
-      letter-spacing: 0.3px;
     }
-
-    .collection-header h2 span {
-      color: var(--accent);
-      text-shadow: 0 0 50px rgba(34, 255, 136, 0.12);
-    }
-
-    .collection-header .divider {
-      width: 100px;
-      height: 2px;
-      background: var(--accent);
-      margin: 14px auto 0;
-      border-radius: 2px;
-      opacity: 0.3;
-      box-shadow: 0 0 25px var(--accent);
-    }
+    .collection-header h2 span { color: var(--accent); text-shadow: 0 0 50px rgba(34,255,136,0.12); }
+    .collection-header .divider { width: 100px; height: 2px; background: var(--accent); margin: 14px auto 0; border-radius: 2px; opacity: 0.3; }
+    .collection-header .sub { font-size: 16px; color: var(--muted); margin-top: 6px; }
 
     .progress-container {
       display: flex;
@@ -271,36 +149,10 @@
       padding: 6px 16px 6px 6px;
       border-radius: 40px;
       border: 1px solid var(--border);
-      backdrop-filter: blur(4px);
     }
-
-    .progress-bar {
-      flex: 1;
-      height: 6px;
-      background: var(--border);
-      border-radius: 6px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .progress-fill {
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, var(--accent), #66ffaa);
-      border-radius: 6px;
-      transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-      box-shadow: 0 0 20px var(--accent);
-    }
-
-    .progress-text {
-      font-size: 14px;
-      color: var(--muted);
-      white-space: nowrap;
-      font-weight: 500;
-      min-width: 60px;
-      text-align: right;
-    }
-
+    .progress-bar { flex: 1; height: 6px; background: var(--border); border-radius: 6px; overflow: hidden; }
+    .progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--accent), #66ffaa); border-radius: 6px; transition: width 0.4s; }
+    .progress-text { font-size: 14px; color: var(--muted); white-space: nowrap; font-weight: 500; min-width: 60px; text-align: right; }
     .reset-btn {
       background: transparent;
       border: none;
@@ -309,39 +161,24 @@
       font-size: 14px;
       padding: 4px 10px;
       border-radius: 40px;
-      transition: all 0.3s;
-      font-weight: 400;
-      letter-spacing: 0.3px;
-      white-space: nowrap;
+      transition: 0.3s;
     }
-
-    .reset-btn:hover {
-      color: var(--accent);
-      background: var(--accent-dim);
-    }
+    .reset-btn:hover { color: var(--accent); background: var(--accent-dim); }
 
     .task-card {
       background: linear-gradient(145deg, var(--panel), var(--panel2));
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
       border: 1px solid var(--border);
       border-radius: 24px;
       padding: 28px 30px 24px;
       margin-bottom: 28px;
-      box-shadow: 0 8px 50px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.03);
-      transition: transform 0.3s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+      box-shadow: 0 8px 50px rgba(0,0,0,0.25);
+      transition: transform 0.3s, border-color 0.3s;
       position: relative;
       overflow: hidden;
       width: 100%;
       scroll-margin-top: 150px;
     }
-
-    .task-card:hover {
-      transform: translateY(-3px);
-      border-color: var(--accent);
-      box-shadow: 0 12px 70px rgba(34, 255, 136, 0.06), 0 0 100px rgba(34, 255, 136, 0.02);
-    }
-
+    .task-card:hover { transform: translateY(-3px); border-color: var(--accent); }
     .task-card::before {
       content: "";
       position: absolute;
@@ -354,94 +191,35 @@
       opacity: 0.5;
       transition: opacity 0.4s;
     }
+    .task-card:hover::before { opacity: 1; }
 
-    .task-card:hover::before {
-      opacity: 1;
-    }
+    .task-card-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .task-type-number { font-size: 20px; font-weight: 700; color: var(--accent); opacity: 0.7; font-family: 'Georgia', serif; flex-shrink: 0; }
+    .task-type-title { font-size: clamp(22px, 2.5vw, 30px); font-weight: 600; color: var(--text); letter-spacing: -0.2px; }
 
-    .task-card-header {
-      display: flex;
-      align-items: baseline;
-      gap: 16px;
-      margin-bottom: 18px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid rgba(255,255,255,0.04);
-    }
-
-    .task-type-number {
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--accent);
-      opacity: 0.7;
-      letter-spacing: 0.5px;
-      font-family: 'Georgia', serif;
-      flex-shrink: 0;
-    }
-
-    .task-type-title {
-      font-size: clamp(22px, 2.5vw, 30px);
-      font-weight: 600;
-      color: var(--text);
-      letter-spacing: -0.2px;
-    }
-
-    /* ===== Стиль для разделов "Часть N" ===== */
     .part-header {
       margin-top: 24px;
       margin-bottom: 12px;
       padding: 8px 16px;
-      background: rgba(34, 255, 136, 0.05);
+      background: rgba(34,255,136,0.05);
       border-left: 3px solid var(--accent);
       border-radius: 0 8px 8px 0;
       font-size: clamp(16px, 1.8vw, 20px);
       font-weight: 600;
       color: var(--accent);
-      letter-spacing: 0.5px;
       opacity: 0.8;
     }
-
-    .part-header:first-of-type {
-      margin-top: 0;
-    }
+    .part-header:first-of-type { margin-top: 0; }
 
     .task-card.quiz-card {
       border: 2px solid var(--quiz-border);
-      background: linear-gradient(145deg, rgba(34, 255, 136, 0.04), var(--panel2));
-      box-shadow: 0 8px 60px rgba(34, 255, 136, 0.03);
-      position: relative;
+      background: linear-gradient(145deg, rgba(34,255,136,0.04), var(--panel2));
     }
+    .task-card.quiz-card::before { background: var(--accent); opacity: 0.8; width: 6px; }
+    .task-card.quiz-card .task-type-number { color: var(--accent); opacity: 1; font-size: 28px; }
+    .task-card.quiz-card .task-type-title { color: var(--accent); text-shadow: 0 0 30px rgba(34,255,136,0.1); }
 
-    .task-card.quiz-card::before {
-      background: var(--accent);
-      opacity: 0.8;
-      width: 6px;
-    }
-
-    .task-card.quiz-card .task-type-number {
-      color: var(--accent);
-      opacity: 1;
-      font-size: 28px;
-    }
-
-    .task-card.quiz-card .task-type-title {
-      color: var(--accent);
-      text-shadow: 0 0 30px rgba(34, 255, 136, 0.1);
-    }
-
-    .task-card.quiz-card .task-list > li::before {
-      color: var(--accent);
-      opacity: 0.6;
-    }
-
-    .task-card.quiz-card .task-list > li:hover::before {
-      opacity: 1;
-    }
-
-    .task-list {
-      list-style: none;
-      counter-reset: task-item;
-    }
-
+    .task-list { list-style: none; counter-reset: task-item; }
     .task-list > li {
       counter-increment: task-item;
       padding: 8px 0;
@@ -450,29 +228,13 @@
       line-height: 2;
       color: var(--text);
       border-bottom: 1px solid rgba(255,255,255,0.02);
-      transition: background 0.2s;
       display: flex;
       align-items: flex-start;
       gap: 12px;
     }
+    .task-list > li:last-child { border-bottom: none; }
 
-    .task-list > li:last-child {
-      border-bottom: none;
-    }
-
-    .task-list > li:hover {
-      background: rgba(34, 255, 136, 0.02);
-      border-radius: 6px;
-    }
-
-    .task-checkbox {
-      position: absolute;
-      opacity: 0;
-      width: 0;
-      height: 0;
-      pointer-events: none;
-    }
-
+    .task-checkbox { position: absolute; opacity: 0; width: 0; height: 0; pointer-events: none; }
     .task-checkbox + .task-checkbox-label {
       display: inline-flex;
       align-items: center;
@@ -488,7 +250,6 @@
       cursor: pointer;
       position: relative;
     }
-
     .task-checkbox + .task-checkbox-label::after {
       content: "";
       position: absolute;
@@ -499,136 +260,31 @@
       background: var(--accent);
       border-radius: 3px;
       transform: scale(0);
-      transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);
-      box-shadow: 0 0 8px var(--accent);
+      transition: transform 0.2s;
     }
+    .task-checkbox:checked + .task-checkbox-label { border-color: var(--accent); background: rgba(34,255,136,0.05); }
+    .task-checkbox:checked + .task-checkbox-label::after { transform: scale(1); }
+    .task-checkbox:focus-visible + .task-checkbox-label { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .task-checkbox-label:hover { border-color: var(--accent); }
+    .task-checkbox:checked ~ .task-text { text-decoration: line-through; opacity: 0.5; }
 
-    .task-checkbox:checked + .task-checkbox-label {
-      border-color: var(--accent);
-      background: rgba(34, 255, 136, 0.05);
-    }
-
-    .task-checkbox:checked + .task-checkbox-label::after {
-      transform: scale(1);
-    }
-
-    .task-checkbox:focus-visible + .task-checkbox-label {
-      outline: 2px solid var(--accent);
-      outline-offset: 2px;
-    }
-
-    .task-checkbox-label:hover {
-      border-color: var(--accent);
-    }
-
-    .task-checkbox:checked ~ .task-text {
-      text-decoration: line-through;
-      opacity: 0.5;
-    }
-
-    .task-list > li::before {
-      content: counter(task-item) ".";
-      position: relative;
-      left: 0;
-      top: 0;
+    .task-number {
+      font-weight: 600;
       color: var(--accent);
-      font-weight: 500;
-      font-size: 17px;
-      opacity: 0.35;
+      opacity: 0.6;
+      margin-right: 8px;
       font-family: 'Georgia', serif;
-      transition: opacity 0.3s;
       flex-shrink: 0;
-      width: 32px;
+      min-width: 40px;
       display: inline-block;
       text-align: right;
-      margin-right: 4px;
     }
+    .task-text { flex: 1; transition: opacity 0.3s, text-decoration 0.3s; }
+    .task-sub { list-style: none; padding-left: 20px; margin-top: 2px; display: inline; }
+    .task-sub li { display: inline-block; margin-right: 18px; font-size: 14.5px; color: var(--muted); }
+    .task-sub li::before { content: attr(data-label) ")"; color: var(--accent); font-weight: 500; opacity: 0.4; margin-right: 4px; font-size: 13px; }
+    .task-math-line { display: block; padding: 4px 0 4px 20px; font-size: 14.5px; color: var(--muted); font-family: 'Georgia', 'Times New Roman', serif; line-height: 1.9; }
 
-    .task-list > li:hover::before {
-      opacity: 0.8;
-    }
-
-    .task-text {
-      flex: 1;
-      transition: opacity 0.3s, text-decoration 0.3s;
-    }
-
-    .task-sub {
-      list-style: none;
-      padding-left: 20px;
-      margin-top: 2px;
-      display: inline;
-    }
-
-    .task-sub li {
-      display: inline-block;
-      margin-right: 18px;
-      font-size: 14.5px;
-      color: var(--muted);
-    }
-
-    .task-sub li::before {
-      content: attr(data-label) ")";
-      color: var(--accent);
-      font-weight: 500;
-      opacity: 0.4;
-      margin-right: 4px;
-      font-size: 13px;
-    }
-
-    .task-math-line {
-      display: block;
-      padding: 4px 0 4px 20px;
-      font-size: 14.5px;
-      color: var(--muted);
-      font-family: 'Georgia', 'Times New Roman', serif;
-      letter-spacing: 0.3px;
-      line-height: 1.9;
-    }
-
-    .task-math-line .math {
-      color: var(--text);
-    }
-
-    /* ===== ПОДСКАЗКИ ===== */
-    .term {
-      display: inline-block;
-      border-bottom: 1px dashed var(--accent);
-      color: var(--accent);
-      cursor: pointer;
-      transition: all 0.2s;
-      padding: 0 2px;
-      position: relative;
-    }
-
-    .term:hover {
-      background: var(--accent-dim);
-      border-bottom-color: transparent;
-    }
-
-    .term-tooltip {
-      display: none;
-      position: fixed;
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 12px 16px;
-      max-width: 320px;
-      font-size: 14px;
-      line-height: 1.5;
-      color: var(--text);
-      box-shadow: 0 8px 40px rgba(0,0,0,0.5);
-      backdrop-filter: blur(12px);
-      z-index: 999;
-      pointer-events: none;
-      transition: opacity 0.2s;
-    }
-
-    .term-tooltip.visible {
-      display: block;
-    }
-
-    /* ===== КНОПКИ ВНИЗУ ===== */
     .back-link {
       position: fixed;
       bottom: 24px;
@@ -645,17 +301,8 @@
       font-weight: 500;
       transition: all 0.3s;
       box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-      letter-spacing: 0.3px;
     }
-
-    .back-link:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-      background: rgba(34, 255, 136, 0.08);
-      box-shadow: 0 6px 30px rgba(34, 255, 136, 0.15);
-      transform: translateY(-2px);
-    }
-
+    .back-link:hover { border-color: var(--accent); color: var(--accent); background: rgba(34,255,136,0.08); transform: translateY(-2px); }
     .top-link {
       position: fixed;
       bottom: 76px;
@@ -671,1875 +318,527 @@
       font-weight: 500;
       transition: all 0.3s;
       box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-      letter-spacing: 0.3px;
       cursor: pointer;
     }
+    .top-link:hover { border-color: var(--accent); color: var(--accent); background: rgba(34,255,136,0.08); transform: translateY(-2px); }
 
-    .top-link:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-      background: rgba(34, 255, 136, 0.08);
-      box-shadow: 0 6px 30px rgba(34, 255, 136, 0.15);
-      transform: translateY(-2px);
-    }
-
-    /* ===== АДАПТИВНОСТЬ ===== */
     @media (max-width: 640px) {
       body { padding: 0 12px 30px; }
       header { padding: 10px 12px; margin: 0 -12px; }
-
-      .nav-internal {
-        padding: 8px 12px;
-        gap: 6px;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        scrollbar-width: none;
-        -webkit-overflow-scrolling: touch;
-        top: 70px;
-        margin-bottom: 16px;
-        border-radius: 12px;
-      }
+      .nav-internal { padding: 8px 12px; gap: 6px; flex-wrap: nowrap; overflow-x: auto; top: 70px; margin-bottom: 16px; border-radius: 12px; scrollbar-width: none; }
       .nav-internal::-webkit-scrollbar { display: none; }
-      .nav-internal a {
-        font-size: 12px;
-        padding: 4px 12px;
-        white-space: nowrap;
-      }
-
-      .collection-header {
-        padding: 50px 0 20px;
-      }
-      .collection-header .deco-left,
-      .collection-header .deco-right {
-        display: none;
-      }
+      .nav-internal a { font-size: 12px; padding: 4px 12px; }
+      .collection-header { padding: 50px 0 20px; }
+      .collection-header .deco-left, .collection-header .deco-right { display: none; }
       .collection-header h1 { font-size: 28px; padding: 0; }
       .collection-header h1::after { width: 40%; }
       .collection-header h2 { font-size: 18px; margin-top: 10px; }
       .collection-header .divider { width: 70px; }
-
-      .progress-container {
-        max-width: 100%;
-        padding: 4px 12px 4px 4px;
-        gap: 8px;
-      }
+      .progress-container { max-width: 100%; padding: 4px 12px 4px 4px; gap: 8px; }
       .progress-text { font-size: 12px; min-width: 50px; }
       .reset-btn { font-size: 12px; padding: 2px 8px; }
-
-      .task-card {
-        padding: 18px 14px 16px;
-        border-radius: 18px;
-        margin-bottom: 18px;
-        scroll-margin-top: 120px;
-      }
-
+      .task-card { padding: 18px 14px 16px; border-radius: 18px; margin-bottom: 18px; scroll-margin-top: 120px; }
       .task-card-header { gap: 10px; flex-wrap: wrap; }
       .task-type-number { font-size: 15px; }
       .task-type-title { font-size: 18px; }
-
-      .part-header {
-        font-size: 15px;
-        padding: 6px 12px;
-        margin-top: 18px;
-      }
-
-      .task-list > li {
-        font-size: 15px;
-        line-height: 1.9;
-        padding: 6px 0;
-        gap: 10px;
-      }
-
-      .task-checkbox + .task-checkbox-label {
-        width: 26px;
-        height: 26px;
-        margin-top: 4px;
-        border-radius: 8px;
-      }
-      .task-checkbox + .task-checkbox-label::after {
-        width: 14px;
-        height: 14px;
-        top: 4px;
-        left: 4px;
-      }
-
-      .task-list > li::before {
-        font-size: 14px;
-        width: 26px;
-      }
-
-      .task-sub li {
-        font-size: 13px;
-        margin-right: 10px;
-      }
-
-      .task-math-line {
-        font-size: 13px;
-        padding-left: 12px;
-      }
-
-      .back-link {
-        bottom: 16px;
-        left: 16px;
-        padding: 8px 18px;
-        font-size: 13px;
-      }
-
-      .top-link {
-        bottom: 64px;
-        left: 16px;
-        padding: 8px 14px;
-        font-size: 13px;
-      }
-
-      .term-tooltip {
-        max-width: 280px;
-        font-size: 13px;
-        padding: 10px 14px;
-      }
-
-      .task-card.quiz-card .task-type-number {
-        font-size: 22px;
-      }
+      .part-header { font-size: 15px; padding: 6px 12px; margin-top: 18px; }
+      .task-list > li { font-size: 15px; line-height: 1.9; padding: 6px 0; gap: 10px; }
+      .task-checkbox + .task-checkbox-label { width: 26px; height: 26px; margin-top: 4px; border-radius: 8px; }
+      .task-checkbox + .task-checkbox-label::after { width: 14px; height: 14px; top: 4px; left: 4px; }
+      .task-number { font-size: 13px; min-width: 32px; }
+      .task-sub li { font-size: 13px; margin-right: 10px; }
+      .back-link { bottom: 16px; left: 16px; padding: 8px 18px; font-size: 13px; }
+      .top-link { bottom: 64px; left: 16px; padding: 8px 14px; font-size: 13px; }
     }
-
     @media (max-width: 400px) {
       .task-card { padding: 14px 10px 12px; }
       .collection-header h1 { font-size: 24px; }
-      .task-list > li {
-        font-size: 14px;
-        line-height: 1.8;
-        padding: 5px 0;
-      }
-      .task-list > li::before { font-size: 12px; width: 22px; }
+      .task-list > li { font-size: 14px; line-height: 1.8; padding: 5px 0; }
+      .task-number { font-size: 12px; min-width: 28px; }
       .task-sub li { font-size: 12px; margin-right: 6px; }
       .task-type-title { font-size: 16px; }
       .task-type-number { font-size: 13px; }
-      .task-checkbox + .task-checkbox-label {
-        width: 22px;
-        height: 22px;
-        border-radius: 6px;
-      }
-      .task-checkbox + .task-checkbox-label::after {
-        width: 12px;
-        height: 12px;
-        top: 3px;
-        left: 3px;
-      }
-      .term-tooltip { max-width: 240px; font-size: 12px; }
+      .task-checkbox + .task-checkbox-label { width: 22px; height: 22px; border-radius: 6px; }
+      .task-checkbox + .task-checkbox-label::after { width: 12px; height: 12px; top: 3px; left: 3px; }
       .nav-internal a { font-size: 11px; padding: 3px 10px; }
-      .task-card.quiz-card .task-type-number {
-        font-size: 18px;
-      }
-      .part-header {
-        font-size: 13px;
-        padding: 4px 10px;
-      }
+      .part-header { font-size: 13px; padding: 4px 10px; }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <div class="brand">
-      <a href="../../../index.html">
-        <h1>EPALLAXIS <span class="accent-word">algebra</span></h1>
-      </a>
-      <p>Ἐπαλλάσσω — приводить систему в порядок</p>
+<header>
+  <div class="brand">
+    <a href="../../../index.html">
+      <h1>EPALLAXIS <span class="accent-word">algebra</span></h1>
+    </a>
+    <p>Ἐπαλλάσσω — приводить систему в порядок</p>
+  </div>
+</header>
+
+<div class="container">
+
+  <nav class="nav-internal" id="navInternal">
+    <a href="#type1" class="active">Тип 1</a>
+    <a href="#type2">Тип 2</a>
+    <a href="#type3">Тип 3</a>
+    <a href="#type4">Тип 4</a>
+    <a href="#type5">Тип 5</a>
+    <a href="#type6">Тип 6</a>
+    <a href="#quiz" class="quiz-link">✦ Проверка знаний</a>
+  </nav>
+
+  <div class="collection-header">
+    <span class="deco-left">∫ ∑</span>
+    <span class="deco-right">π ∞</span>
+    <h1>Сборник упражнений</h1>
+    <h2>по теме <span>«Основное свойство рациональной дроби. Сокращение рациональных дробей»</span></h2>
+    <div class="divider"></div>
+    <div class="sub">К § 2 учебника «Алгебра 9»</div>
+
+    <div class="progress-container">
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+      <span class="progress-text" id="progressText">0 из 0</span>
+      <button class="reset-btn" id="resetBtn">✕ сброс</button>
     </div>
-  </header>
-
-  <div class="container">
-
-    <nav class="nav-internal" id="navInternal">
-      <a href="#type1" class="active">Тип 1</a>
-      <a href="#type2">Тип 2</a>
-      <a href="#type3">Тип 3</a>
-      <a href="#type4">Тип 4</a>
-      <a href="#type5">Тип 5</a>
-      <a href="#type6">Тип 6</a>
-      <a href="#quiz" class="quiz-link">✦ Проверка знаний</a>
-    </nav>
-
-    <div class="collection-header">
-      <span class="deco-left">∫ ∑</span>
-      <span class="deco-right">π ∞</span>
-      <h1>Сборник упражнений</h1>
-      <h2>по теме <span>«Основное свойство рациональной дроби. Сокращение»</span></h2>
-      <div class="divider"></div>
-
-      <div class="progress-container" id="progressContainer">
-        <div class="progress-bar">
-          <div class="progress-fill" id="progressFill"></div>
-        </div>
-        <span class="progress-text" id="progressText">0 из 0</span>
-        <button class="reset-btn" id="resetBtn">✕ сброс</button>
-      </div>
-    </div>
-
-    <!-- ============================================================
-       ТИП 1 — ПРИМЕНЕНИЕ ОСНОВНОГО СВОЙСТВА ДРОБИ
-    ============================================================ -->
-    <div class="task-card" id="type1">
-      <div class="task-card-header">
-        <span class="task-type-number">Тип 1</span>
-        <span class="task-type-title">Применение основного свойства дроби</span>
-      </div>
-
-      <!-- Часть 1 -->
-      <div class="part-header">Часть 1</div>
-      <ol class="task-list">
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-1" data-task-id="task-1">
-          <label for="task-1" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Выберите верное равенство для дроби \(\dfrac{5a}{a-b}\):
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{5a}{a-b} = \dfrac{5a}{b-a}\)</li>
-              <li data-label="b">\(\dfrac{5a}{a-b} = -\dfrac{5a}{b-a}\)</li>
-              <li data-label="c">\(\dfrac{5a}{a-b} = \dfrac{5a}{a+b}\)</li>
-              <li data-label="d">\(\dfrac{5a}{a-b} = -\dfrac{5a}{a+b}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-2" data-task-id="task-2">
-          <label for="task-2" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Определите <span class="term" data-definition="Выражение, на которое можно разделить и числитель, и знаменатель дроби (при этом получается тождественно равная дробь).">общий множитель</span> числителя и знаменателя дроби:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{12a^2b}{18ab^2}\)</li>
-              <li data-label="b">\(\dfrac{15x^3y^2}{25x^2y^3}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-3" data-task-id="task-3">
-          <label for="task-3" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Используя <span class="term" data-definition="Умножение числителя и знаменателя дроби на одно и то же выражение (не равное нулю), чтобы получить дробь с заданным знаменателем.">приведение дроби к новому знаменателю</span>, приведите дробь \(\dfrac{3x}{y}\) к знаменателю \(y^2\).
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-4" data-task-id="task-4">
-          <label for="task-4" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Приведите дробь \(\dfrac{2a}{a+b}\) к знаменателю \(a^2+ab\).
-          </span>
-        </li>
-      </ol>
-
-      <!-- Часть 2 -->
-      <div class="part-header">Часть 2</div>
-      <ol class="task-list" start="5">
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-5" data-task-id="task-5">
-          <label for="task-5" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Укажите выражение, на которое нужно умножить числитель и знаменатель дроби \(\dfrac{x}{x-2}\), чтобы получить дробь со знаменателем \(x^2-4\):
-            <ul class="task-sub">
-              <li data-label="a">\(x+2\)</li>
-              <li data-label="b">\(x-2\)</li>
-              <li data-label="c">\(x\)</li>
-              <li data-label="d">\(2\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-6" data-task-id="task-6">
-          <label for="task-6" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Приведите дробь \(\dfrac{5m}{m+3n}\) к знаменателю \(m^2-9n^2\).
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-7" data-task-id="task-7">
-          <label for="task-7" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Приведите дробь \(\dfrac{7}{a-b}\) к знаменателю \(b-a\).
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-8" data-task-id="task-8">
-          <label for="task-8" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Определите, на какое выражение нужно разделить числитель и знаменатель дроби \(\dfrac{14x^3y^2}{21x^2y^3}\), чтобы получить \(\dfrac{2x}{3y}\).
-          </span>
-        </li>
-      </ol>
-
-      <!-- Часть 3 -->
-      <div class="part-header">Часть 3</div>
-      <ol class="task-list" start="9">
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-9" data-task-id="task-9">
-          <label for="task-9" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Приведите дробь \(\dfrac{3a}{a-2b}\) к знаменателю \(a^2-4b^2\).
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-10" data-task-id="task-10">
-          <label for="task-10" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Приведите дробь \(\dfrac{2x}{x+5}\) к знаменателю \(x^2+10x+25\).
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-11" data-task-id="task-11">
-          <label for="task-11" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Верно ли, что \(\dfrac{a}{b} = \dfrac{-a}{-b}\) при всех допустимых значениях переменных? Ответ обоснуйте, используя <span class="term" data-definition="Если числитель и знаменатель дроби умножить или разделить на одно и то же выражение, не равное нулю, то получится дробь, тождественно равная данной.">основное свойство рациональной дроби</span>.
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-12" data-task-id="task-12">
-          <label for="task-12" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Замените \(*\) таким выражением, чтобы равенство стало тождеством:
-            \[
-            \dfrac{5x}{x-1} = \dfrac{*}{x^2-1}
-            \]
-          </span>
-        </li>
-      </ol>
-
-      <!-- Часть 4 -->
-      <div class="part-header">Часть 4</div>
-      <ol class="task-list" start="13">
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-13" data-task-id="task-13">
-          <label for="task-13" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Приведите дробь \(\dfrac{2m+1}{m-3}\) к знаменателю \(m^2-9\).
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-14" data-task-id="task-14">
-          <label for="task-14" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Приведите дробь \(\dfrac{3x-2}{2x+1}\) к знаменателю \(4x^2-1\).
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-15" data-task-id="task-15">
-          <label for="task-15" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Приведите дробь \(\dfrac{3}{a-2}\) к знаменателю \(2a-4\).
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-16" data-task-id="task-16">
-          <label for="task-16" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Замените \(*\) таким выражением, чтобы равенство стало тождеством:
-            \[
-            \dfrac{2a}{a+b} = \dfrac{*}{a^2-b^2}
-            \]
-          </span>
-        </li>
-      </ol>
-
-      <!-- Часть 5 -->
-      <div class="part-header">Часть 5</div>
-      <ol class="task-list" start="17">
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-17" data-task-id="task-17">
-          <label for="task-17" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Приведите дробь \(\dfrac{x^2}{x-1}\) к знаменателю \(x^3-1\).
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-18" data-task-id="task-18">
-          <label for="task-18" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Приведите дробь \(\dfrac{3y}{y+2}\) к знаменателю \(y^3+8\).
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-19" data-task-id="task-19">
-          <label for="task-19" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Докажите, что \(\dfrac{a}{b} = \dfrac{a(a+b)}{b(a+b)}\) при всех допустимых значениях переменных (используйте <span class="term" data-definition="Если числитель и знаменатель дроби умножить или разделить на одно и то же выражение, не равное нулю, то получится дробь, тождественно равная данной.">основное свойство</span>).
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-20" data-task-id="task-20">
-          <label for="task-20" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Приведите дробь \(\dfrac{2x-1}{x^2+x+1}\) к знаменателю \(x^3-1\).
-          </span>
-        </li>
-      </ol>
-    </div>
-
-    <!-- ============================================================
-       ТИП 2 — СОКРАЩЕНИЕ ДРОБЕЙ (ОДНОЧЛЕНЫ И МНОГОЧЛЕНЫ)
-    ============================================================ -->
-    <div class="task-card" id="type2">
-      <div class="task-card-header">
-        <span class="task-type-number">Тип 2</span>
-        <span class="task-type-title">Сокращение дробей (одночлены и многочлены)</span>
-      </div>
-
-      <!-- Часть 1 -->
-      <div class="part-header">Часть 1</div>
-      <ol class="task-list" start="21">
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-21" data-task-id="task-21">
-          <label for="task-21" class="task-checkbox-label"></label>
-          <span class="task-text">
-            <span class="term" data-definition="Разделить числитель и знаменатель дроби на их общий множитель (не равный нулю).">Выполните сокращение</span> дроби:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{6a^3}{9a^2}\)</li>
-              <li data-label="b">\(\dfrac{14x^2y}{21xy^2}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-22" data-task-id="task-22">
-          <label for="task-22" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Найдите дробь, равную данной, после <span class="term" data-definition="Разделить числитель и знаменатель дроби на их общий множитель (не равный нулю).">сокращения</span>:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{25m^4n^3}{15m^2n^5}\)</li>
-              <li data-label="b">\(\dfrac{8a^5b^2}{12a^3b^4}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-23" data-task-id="task-23">
-          <label for="task-23" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Упростите дробное выражение:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{3x+3y}{6x}\)</li>
-              <li data-label="b">\(\dfrac{7a-7b}{14a}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-24" data-task-id="task-24">
-          <label for="task-24" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Представьте дробь в несократимом виде:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{5m-5n}{m^2-n^2}\)</li>
-              <li data-label="b">\(\dfrac{2x+2y}{x^2-y^2}\)</li>
-            </ul>
-          </span>
-        </li>
-      </ol>
-
-      <!-- Часть 2 -->
-      <div class="part-header">Часть 2</div>
-      <ol class="task-list" start="25">
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-25" data-task-id="task-25">
-          <label for="task-25" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Выполните сокращение дроби:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{4a-8b}{12a}\)</li>
-              <li data-label="b">\(\dfrac{9x+3y}{6x+2y}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-26" data-task-id="task-26">
-          <label for="task-26" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Найдите дробь, равную данной, после сокращения:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{x^2-4x}{x^2-16}\)</li>
-              <li data-label="b">\(\dfrac{a^2-9a}{a^2-81}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-27" data-task-id="task-27">
-          <label for="task-27" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Упростите дробное выражение:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{3m^2-6mn}{m^2-4mn+4n^2}\)</li>
-              <li data-label="b">\(\dfrac{5a^2+10ab}{a^2+4ab+4b^2}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-28" data-task-id="task-28">
-          <label for="task-28" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Представьте дробь в несократимом виде:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{2x^2-8y^2}{4x-8y}\)</li>
-              <li data-label="b">\(\dfrac{3a^2-27b^2}{6a+18b}\)</li>
-            </ul>
-          </span>
-        </li>
-      </ol>
-
-      <!-- Часть 3 -->
-      <div class="part-header">Часть 3</div>
-      <ol class="task-list" start="29">
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-29" data-task-id="task-29">
-          <label for="task-29" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Выполните сокращение дроби:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{x^2-2x+1}{x-1}\)</li>
-              <li data-label="b">\(\dfrac{a^2+4a+4}{a+2}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-30" data-task-id="task-30">
-          <label for="task-30" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Найдите дробь, равную данной, после сокращения:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{m^2-6m+9}{m-3}\)</li>
-              <li data-label="b">\(\dfrac{4b^2-4b+1}{2b-1}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-31" data-task-id="task-31">
-          <label for="task-31" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Упростите дробное выражение:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{x^2-9}{x^2-6x+9}\)</li>
-              <li data-label="b">\(\dfrac{16-a^2}{a^2-8a+16}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-32" data-task-id="task-32">
-          <label for="task-32" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Представьте дробь в несократимом виде:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{25x^2-1}{25x^2-10x+1}\)</li>
-              <li data-label="b">\(\dfrac{9a^2-4}{9a^2-12a+4}\)</li>
-            </ul>
-          </span>
-        </li>
-      </ol>
-
-      <!-- Часть 4 -->
-      <div class="part-header">Часть 4</div>
-      <ol class="task-list" start="33">
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-33" data-task-id="task-33">
-          <label for="task-33" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Выполните сокращение дроби, используя вынесение <span class="term" data-definition="Выражение, на которое можно разделить и числитель, и знаменатель дроби (при этом получается тождественно равная дробь).">общего множителя</span>:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{6ab-9b^2}{3a^2-9ab}\)</li>
-              <li data-label="b">\(\dfrac{8x^2-4xy}{4xy-2y^2}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-34" data-task-id="task-34">
-          <label for="task-34" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Найдите дробь, равную данной, после сокращения:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{15m^2n-5mn^2}{10m^2n^2-5mn^3}\)</li>
-              <li data-label="b">\(\dfrac{12a^3b-18a^2b^2}{24a^2b^2-36ab^3}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-35" data-task-id="task-35">
-          <label for="task-35" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Упростите дробное выражение:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{x^3-4x}{x^2-4x+4}\)</li>
-              <li data-label="b">\(\dfrac{a^4-16}{a^2+4a+4}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-36" data-task-id="task-36">
-          <label for="task-36" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Представьте дробь в несократимом виде:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{2x^3-2x}{x^2-2x+1}\)</li>
-              <li data-label="b">\(\dfrac{3a^3-3a}{a^2-2a+1}\)</li>
-            </ul>
-          </span>
-        </li>
-      </ol>
-
-      <!-- Часть 5 -->
-      <div class="part-header">Часть 5</div>
-      <ol class="task-list" start="37">
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-37" data-task-id="task-37">
-          <label for="task-37" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Выполните сокращение дроби:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{(2x-6y)^2}{x^2-9y^2}\)</li>
-              <li data-label="b">\(\dfrac{(3a+6b)^2}{a^2-4b^2}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-38" data-task-id="task-38">
-          <label for="task-38" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Найдите дробь, равную данной, после сокращения:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{(4m-8n)^2}{m^2-4mn+4n^2}\)</li>
-              <li data-label="b">\(\dfrac{(6x+12y)^2}{9x^2-36y^2}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-39" data-task-id="task-39">
-          <label for="task-39" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Упростите дробное выражение:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{x^5-x^3}{x^3-x}\)</li>
-              <li data-label="b">\(\dfrac{a^6-a^4}{a^4-a^2}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-40" data-task-id="task-40">
-          <label for="task-40" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Представьте дробь в несократимом виде:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{m^4-1}{m^2-1}\)</li>
-              <li data-label="b">\(\dfrac{n^6-1}{n^3-1}\)</li>
-            </ul>
-          </span>
-        </li>
-      </ol>
-    </div>
-
-    <!-- ============================================================
-       ТИП 3 — СОКРАЩЕНИЕ С ИСПОЛЬЗОВАНИЕМ ФОРМУЛ СОКРАЩЁННОГО УМНОЖЕНИЯ
-    ============================================================ -->
-    <div class="task-card" id="type3">
-      <div class="task-card-header">
-        <span class="task-type-number">Тип 3</span>
-        <span class="task-type-title">Сокращение с использованием формул сокращённого умножения</span>
-      </div>
-
-      <!-- Часть 1 -->
-      <div class="part-header">Часть 1</div>
-      <ol class="task-list" start="41">
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-41" data-task-id="task-41">
-          <label for="task-41" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Примените <span class="term" data-definition="(a-b)(a+b)=a²-b² — разность квадратов; (a±b)²=a²±2ab+b² — квадрат суммы/разности; a³±b³=(a±b)(a²∓ab+b²) — сумма/разность кубов.">формулу разности квадратов</span> и сократите дробь:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{a^2-4}{a-2}\)</li>
-              <li data-label="b">\(\dfrac{x^2-9}{x+3}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-42" data-task-id="task-42">
-          <label for="task-42" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Упростите дробь, используя формулу разности квадратов:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{25m^2-1}{5m-1}\)</li>
-              <li data-label="b">\(\dfrac{4n^2-9}{2n-3}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-43" data-task-id="task-43">
-          <label for="task-43" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Примените <span class="term" data-definition="(a-b)(a+b)=a²-b² — разность квадратов; (a±b)²=a²±2ab+b² — квадрат суммы/разности; a³±b³=(a±b)(a²∓ab+b²) — сумма/разность кубов.">формулу квадрата разности</span> и сократите дробь:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{x^2-6x+9}{x-3}\)</li>
-              <li data-label="b">\(\dfrac{a^2+10a+25}{a+5}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-44" data-task-id="task-44">
-          <label for="task-44" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Сократите дробь, используя формулу разности квадратов:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{16x^2-9y^2}{4x-3y}\)</li>
-              <li data-label="b">\(\dfrac{25a^2-4b^2}{5a-2b}\)</li>
-            </ul>
-          </span>
-        </li>
-      </ol>
-
-      <!-- Часть 2 -->
-      <div class="part-header">Часть 2</div>
-      <ol class="task-list" start="45">
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-45" data-task-id="task-45">
-          <label for="task-45" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Примените <span class="term" data-definition="(a-b)(a+b)=a²-b² — разность квадратов; (a±b)²=a²±2ab+b² — квадрат суммы/разности; a³±b³=(a±b)(a²∓ab+b²) — сумма/разность кубов.">формулы сокращённого умножения</span> и сократите дробь:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{x^2-4x+4}{x^2-4}\)</li>
-              <li data-label="b">\(\dfrac{a^2+6a+9}{a^2-9}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-46" data-task-id="task-46">
-          <label for="task-46" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Упростите дробь, используя формулы сокращённого умножения:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{4m^2-4m+1}{4m^2-1}\)</li>
-              <li data-label="b">\(\dfrac{9n^2+12n+4}{9n^2-4}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-47" data-task-id="task-47">
-          <label for="task-47" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Сократите дробь, используя формулы сокращённого умножения:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{x^4-16}{x^2+4}\)</li>
-              <li data-label="b">\(\dfrac{a^6-1}{a^3+1}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-48" data-task-id="task-48">
-          <label for="task-48" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Примените формулы сокращённого умножения и сократите дробь:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{(x+2)^2-9}{x^2-1}\)</li>
-              <li data-label="b">\(\dfrac{(a-3)^2-4}{a^2-25}\)</li>
-            </ul>
-          </span>
-        </li>
-      </ol>
-
-      <!-- Часть 3 -->
-      <div class="part-header">Часть 3</div>
-      <ol class="task-list" start="49">
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-49" data-task-id="task-49">
-          <label for="task-49" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Упростите дробь:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{x^2-10x+25}{25-x^2}\)</li>
-              <li data-label="b">\(\dfrac{a^2+14a+49}{49-a^2}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-50" data-task-id="task-50">
-          <label for="task-50" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Сократите дробь:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{4x^2-20x+25}{25-4x^2}\)</li>
-              <li data-label="b">\(\dfrac{9a^2+12a+4}{9a^2-4}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-51" data-task-id="task-51">
-          <label for="task-51" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Примените формулы сокращённого умножения и сократите дробь:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{x^2-2xy+y^2}{x^2-y^2}\)</li>
-              <li data-label="b">\(\dfrac{a^2+4ab+4b^2}{a^2-4b^2}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-52" data-task-id="task-52">
-          <label for="task-52" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Сократите дробь, используя формулы сокращённого умножения:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{4x^2-12xy+9y^2}{4x^2-9y^2}\)</li>
-              <li data-label="b">\(\dfrac{25a^2+20ab+4b^2}{25a^2-4b^2}\)</li>
-            </ul>
-          </span>
-        </li>
-      </ol>
-
-      <!-- Часть 4 -->
-      <div class="part-header">Часть 4</div>
-      <ol class="task-list" start="53">
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-53" data-task-id="task-53">
-          <label for="task-53" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Упростите дробь:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{1-8x+16x^2}{16x^2-1}\)</li>
-              <li data-label="b">\(\dfrac{9a^2-6a+1}{1-9a^2}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-54" data-task-id="task-54">
-          <label for="task-54" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Сократите дробь:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{x^2-8x+16}{16-x^2}\)</li>
-              <li data-label="b">\(\dfrac{a^2+12a+36}{36-a^2}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-55" data-task-id="task-55">
-          <label for="task-55" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Примените формулы сокращённого умножения и сократите дробь:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{x^3-27}{x^2-9}\)</li>
-              <li data-label="b">\(\dfrac{a^3+8}{a^2-4}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-56" data-task-id="task-56">
-          <label for="task-56" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Сократите дробь, используя формулы сокращённого умножения:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{8x^3-1}{4x^2-1}\)</li>
-              <li data-label="b">\(\dfrac{27a^3+8}{9a^2-4}\)</li>
-            </ul>
-          </span>
-        </li>
-      </ol>
-
-      <!-- Часть 5 -->
-      <div class="part-header">Часть 5</div>
-      <ol class="task-list" start="57">
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-57" data-task-id="task-57">
-          <label for="task-57" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Примените формулы сокращённого умножения и сократите дробь:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{(x-1)^2-9}{x^2-2x-8}\)</li>
-              <li data-label="b">\(\dfrac{(a+2)^2-16}{a^2+4a-12}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-58" data-task-id="task-58">
-          <label for="task-58" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Упростите дробь, используя формулы сокращённого умножения:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{x^4-8x^2+16}{x^2-4}\)</li>
-              <li data-label="b">\(\dfrac{a^4-10a^2+25}{a^2-5}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-59" data-task-id="task-59">
-          <label for="task-59" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Сократите дробь:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{(3x-2)^2-(x+1)^2}{x^2-3x+2}\)</li>
-              <li data-label="b">\(\dfrac{(2a+1)^2-(a-3)^2}{a^2-4a+3}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-60" data-task-id="task-60">
-          <label for="task-60" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Примените формулы сокращённого умножения и сократите дробь:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{x^4-2x^2+1}{x^2-2x+1}\)</li>
-              <li data-label="b">\(\dfrac{a^4+4a^2+4}{a^2+2a+2}\)</li>
-            </ul>
-          </span>
-        </li>
-      </ol>
-    </div>
-
-    <!-- ============================================================
-       ТИП 4 — СОКРАЩЕНИЕ С ИСПОЛЬЗОВАНИЕМ ГРУППИРОВКИ И РАЗЛОЖЕНИЯ КВАДРАТНОГО ТРЁХЧЛЕНА
-    ============================================================ -->
-    <div class="task-card" id="type4">
-      <div class="task-card-header">
-        <span class="task-type-number">Тип 4</span>
-        <span class="task-type-title">Сокращение с использованием группировки и разложения квадратного трёхчлена</span>
-      </div>
-
-      <!-- Часть 1 -->
-      <div class="part-header">Часть 1</div>
-      <ol class="task-list" start="61">
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-61" data-task-id="task-61">
-          <label for="task-61" class="task-checkbox-label"></label>
-          <span class="task-text">
-            <span class="term" data-definition="Разложение многочлена на множители путём объединения его членов в группы так, чтобы в каждой группе можно было вынести общий множитель, а затем вынести общий множитель за скобки уже для всех групп.">Разложите на множители способом группировки</span> и сократите дробь:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{ax+ay+bx+by}{a+b}\)</li>
-              <li data-label="b">\(\dfrac{mx-my+nx-ny}{x-y}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-62" data-task-id="task-62">
-          <label for="task-62" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Примените способ группировки и сократите дробь:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{2a-2b+ac-bc}{a-b}\)</li>
-              <li data-label="b">\(\dfrac{3x+3y+mx+my}{x+y}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-63" data-task-id="task-63">
-          <label for="task-63" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Разложите на множители и сократите дробь:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{x^2+xy+2x+2y}{x+2}\)</li>
-              <li data-label="b">\(\dfrac{a^2-ab+3a-3b}{a-3}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-64" data-task-id="task-64">
-          <label for="task-64" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Сократите дробь, используя группировку:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{5m-5n+mn-n^2}{m-n}\)</li>
-              <li data-label="b">\(\dfrac{2x^2-2xy+xy-y^2}{2x+y}\)</li>
-            </ul>
-          </span>
-        </li>
-      </ol>
-
-      <!-- Часть 2 -->
-      <div class="part-header">Часть 2</div>
-      <ol class="task-list" start="65">
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-65" data-task-id="task-65">
-          <label for="task-65" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Примените способ группировки и сократите дробь:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{x^2-xy-2x+2y}{x-2}\)</li>
-              <li data-label="b">\(\dfrac{a^2+ab-3a-3b}{a-3}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-66" data-task-id="task-66">
-          <label for="task-66" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Разложите на множители и сократите дробь:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{3x^2-3xy-2x+2y}{x-y}\)</li>
-              <li data-label="b">\(\dfrac{4a^2+4ab-3a-3b}{a+b}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-67" data-task-id="task-67">
-          <label for="task-67" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Сократите дробь, используя группировку:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{x^2+5x-xy-5y}{x+5}\)</li>
-              <li data-label="b">\(\dfrac{a^2-7a+ab-7b}{a-7}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-68" data-task-id="task-68">
-          <label for="task-68" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Примените способ группировки и сократите дробь:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{2x^2+4x-xy-2y}{x+2}\)</li>
-              <li data-label="b">\(\dfrac{3a^2-6a+ab-2b}{a-2}\)</li>
-            </ul>
-          </span>
-        </li>
-      </ol>
-
-      <!-- Часть 3 -->
-      <div class="part-header">Часть 3</div>
-      <ol class="task-list" start="69">
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-69" data-task-id="task-69">
-          <label for="task-69" class="task-checkbox-label"></label>
-          <span class="task-text">
-            <span class="term" data-definition="Многочлен вида ax²+bx+c (a≠0). Его корни находятся по формуле x₁,₂ = (-b±√D)/(2a), D=b²-4ac. Если D≥0, то ax²+bx+c=a(x-x₁)(x-x₂).">Разложите квадратный трёхчлен</span> на множители и сократите дробь:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{x^2-5x+6}{x-2}\)</li>
-              <li data-label="b">\(\dfrac{a^2+7a+12}{a+3}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-70" data-task-id="task-70">
-          <label for="task-70" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Сократите дробь, используя разложение квадратного трёхчлена:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{x^2-3x-10}{x-5}\)</li>
-              <li data-label="b">\(\dfrac{a^2+2a-8}{a-2}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-71" data-task-id="task-71">
-          <label for="task-71" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Примените разложение квадратного трёхчлена и сократите дробь:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{2x^2-5x-3}{x-3}\)</li>
-              <li data-label="b">\(\dfrac{3a^2+5a-2}{a+2}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-72" data-task-id="task-72">
-          <label for="task-72" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Разложите на множители и сократите дробь:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{x^2+4x-12}{x^2-4}\)</li>
-              <li data-label="b">\(\dfrac{a^2-5a-14}{a^2-49}\)</li>
-            </ul>
-          </span>
-        </li>
-      </ol>
-
-      <!-- Часть 4 -->
-      <div class="part-header">Часть 4</div>
-      <ol class="task-list" start="73">
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-73" data-task-id="task-73">
-          <label for="task-73" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Сократите дробь, используя <span class="term" data-definition="Представление многочлена в виде произведения более простых выражений с помощью вынесения общего множителя, формул сокращённого умножения, способа группировки или разложения квадратного трёхчлена.">разложение на множители</span>:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{x^2-5x+4}{x^2-3x-4}\)</li>
-              <li data-label="b">\(\dfrac{a^2+3a-10}{a^2-a-6}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-74" data-task-id="task-74">
-          <label for="task-74" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Примените разложение на множители и сократите дробь:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{2x^2-3x-2}{x^2-2x-3}\)</li>
-              <li data-label="b">\(\dfrac{3a^2+2a-1}{a^2-a-6}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-75" data-task-id="task-75">
-          <label for="task-75" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Сократите дробь (комбинация способов):
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{x^2-2x-8}{x^2-4x+4}\)</li>
-              <li data-label="b">\(\dfrac{a^2+6a-7}{a^2-2a+1}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-76" data-task-id="task-76">
-          <label for="task-76" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Разложите на множители и сократите дробь (комбинация способов):
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{x^3-2x^2-9x+18}{x^2-9}\)</li>
-              <li data-label="b">\(\dfrac{a^3+3a^2-4a-12}{a^2-4}\)</li>
-            </ul>
-          </span>
-        </li>
-      </ol>
-
-      <!-- Часть 5 -->
-      <div class="part-header">Часть 5</div>
-      <ol class="task-list" start="77">
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-77" data-task-id="task-77">
-          <label for="task-77" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Сократите дробь, используя разложение на множители:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{x^2-4x+3}{x^2-7x+12}\)</li>
-              <li data-label="b">\(\dfrac{a^2+5a+6}{a^2+6a+8}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-78" data-task-id="task-78">
-          <label for="task-78" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Примените разложение на множители и сократите дробь:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{2x^2+3x-2}{2x^2-3x+1}\)</li>
-              <li data-label="b">\(\dfrac{3a^2-4a+1}{3a^2+2a-1}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-79" data-task-id="task-79">
-          <label for="task-79" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Сократите дробь (комбинация способов):
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{x^3+2x^2-4x-8}{x^2-4}\)</li>
-              <li data-label="b">\(\dfrac{a^3-3a^2-9a+27}{a^2-9}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-80" data-task-id="task-80">
-          <label for="task-80" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Разложите на множители и сократите дробь (комбинация способов):
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{x^4-5x^2+4}{x^2-4}\)</li>
-              <li data-label="b">\(\dfrac{a^4-10a^2+9}{a^2-9}\)</li>
-            </ul>
-          </span>
-        </li>
-      </ol>
-    </div>
-
-    <!-- ============================================================
-       ТИП 5 — НАХОЖДЕНИЕ ЗНАЧЕНИЯ ВЫРАЖЕНИЯ ПОСЛЕ СОКРАЩЕНИЯ
-    ============================================================ -->
-    <div class="task-card" id="type5">
-      <div class="task-card-header">
-        <span class="task-type-number">Тип 5</span>
-        <span class="task-type-title">Нахождение значения выражения после сокращения</span>
-      </div>
-
-      <!-- Часть 1 -->
-      <div class="part-header">Часть 1</div>
-      <ol class="task-list" start="81">
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-81" data-task-id="task-81">
-          <label for="task-81" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Упростите выражение и найдите его значение:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{x^2-4}{x-2}\) при \(x=5\)</li>
-              <li data-label="b">\(\dfrac{a^2-9}{a+3}\) при \(a=7\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-82" data-task-id="task-82">
-          <label for="task-82" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Вычислите значение выражения после <span class="term" data-definition="Разделить числитель и знаменатель дроби на их общий множитель (не равный нулю).">сокращения</span>:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{4m^2-1}{2m-1}\) при \(m=3\)</li>
-              <li data-label="b">\(\dfrac{9n^2-4}{3n-2}\) при \(n=4\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-83" data-task-id="task-83">
-          <label for="task-83" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Упростите выражение и найдите его значение:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{x^2+6x+9}{x+3}\) при \(x=-2\)</li>
-              <li data-label="b">\(\dfrac{a^2-8a+16}{a-4}\) при \(a=6\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-84" data-task-id="task-84">
-          <label for="task-84" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Найдите значение выражения после сокращения:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{5a^2-5b^2}{a-b}\) при \(a=3, b=1\)</li>
-              <li data-label="b">\(\dfrac{2x^2-8y^2}{x-2y}\) при \(x=5, y=2\)</li>
-            </ul>
-          </span>
-        </li>
-      </ol>
-
-      <!-- Часть 2 -->
-      <div class="part-header">Часть 2</div>
-      <ol class="task-list" start="85">
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-85" data-task-id="task-85">
-          <label for="task-85" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Упростите выражение и найдите его значение:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{3x^2-12}{x^2-4}\) при \(x=5\)</li>
-              <li data-label="b">\(\dfrac{2a^2-18}{a^2-9}\) при \(a=7\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-86" data-task-id="task-86">
-          <label for="task-86" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Вычислите значение выражения после сокращения:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{m^3-8}{m-2}\) при \(m=3\)</li>
-              <li data-label="b">\(\dfrac{n^3+27}{n+3}\) при \(n=1\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-87" data-task-id="task-87">
-          <label for="task-87" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Упростите выражение и найдите его значение:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{x^2-2x-3}{x-3}\) при \(x=5\)</li>
-              <li data-label="b">\(\dfrac{a^2+3a-10}{a-2}\) при \(a=4\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-88" data-task-id="task-88">
-          <label for="task-88" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Найдите значение выражения после сокращения:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{3x^2-5x-2}{x-2}\) при \(x=3\)</li>
-              <li data-label="b">\(\dfrac{2a^2+3a-2}{a+2}\) при \(a=1\)</li>
-            </ul>
-          </span>
-        </li>
-      </ol>
-
-      <!-- Часть 3 -->
-      <div class="part-header">Часть 3</div>
-      <ol class="task-list" start="89">
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-89" data-task-id="task-89">
-          <label for="task-89" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Упростите выражение и найдите его значение:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{(x-1)^2-4}{x^2-9}\) при \(x=5\)</li>
-              <li data-label="b">\(\dfrac{(a+2)^2-1}{a^2-4}\) при \(a=3\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-90" data-task-id="task-90">
-          <label for="task-90" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Вычислите значение выражения после сокращения:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{x^2-4x+4}{x^2-4}\) при \(x=6\)</li>
-              <li data-label="b">\(\dfrac{a^2+6a+9}{a^2-9}\) при \(a=4\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-91" data-task-id="task-91">
-          <label for="task-91" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Упростите выражение и найдите его значение:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{4x^2-12x+9}{2x-3}\) при \(x=2,5\)</li>
-              <li data-label="b">\(\dfrac{9a^2+12a+4}{3a+2}\) при \(a=-\dfrac{1}{3}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-92" data-task-id="task-92">
-          <label for="task-92" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Найдите значение выражения после сокращения:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{5x^3-5x}{x^2-2x+1}\) при \(x=3\)</li>
-              <li data-label="b">\(\dfrac{3a^3-3a}{a^2-2a+1}\) при \(a=4\)</li>
-            </ul>
-          </span>
-        </li>
-      </ol>
-
-      <!-- Часть 4 -->
-      <div class="part-header">Часть 4</div>
-      <ol class="task-list" start="93">
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-93" data-task-id="task-93">
-          <label for="task-93" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Упростите выражение и найдите его значение:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{x^2-5x+4}{x^2-3x-4}\) при \(x=6\)</li>
-              <li data-label="b">\(\dfrac{a^2+3a-10}{a^2-a-6}\) при \(a=5\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-94" data-task-id="task-94">
-          <label for="task-94" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Вычислите значение выражения после сокращения:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{2x^2-3x-2}{x^2-2x-3}\) при \(x=4\)</li>
-              <li data-label="b">\(\dfrac{3a^2+2a-1}{a^2-a-6}\) при \(a=2\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-95" data-task-id="task-95">
-          <label for="task-95" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Упростите выражение и найдите его значение:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{(2x+1)^2-9}{x^2-2x-3}\) при \(x=5\)</li>
-              <li data-label="b">\(\dfrac{(3a-2)^2-4}{a^2-4}\) при \(a=3\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-96" data-task-id="task-96">
-          <label for="task-96" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Найдите значение выражения после сокращения:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{x^4-16}{x^2-4x+4}\) при \(x=3\)</li>
-              <li data-label="b">\(\dfrac{a^4-81}{a^2+6a+9}\) при \(a=2\)</li>
-            </ul>
-          </span>
-        </li>
-      </ol>
-
-      <!-- Часть 5 -->
-      <div class="part-header">Часть 5</div>
-      <ol class="task-list" start="97">
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-97" data-task-id="task-97">
-          <label for="task-97" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Вычислите значение выражения после сокращения:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{a^3+a^2}{a^2}\) при \(a=2\sqrt{3}\)</li>
-              <li data-label="b">\(\dfrac{b^5-b^3}{b^2-1}\) при \(b=0,5\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-98" data-task-id="task-98">
-          <label for="task-98" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Упростите выражение и найдите его значение:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{x^2-9}{3-x}\) при \(x=5,65\)</li>
-              <li data-label="b">\(\dfrac{3a^2-15ab}{25b^2-a^2}\) при \(a=15, b=2\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-99" data-task-id="task-99">
-          <label for="task-99" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Найдите значение выражения после сокращения:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{m^2-9m}{81m-m^3}\) при \(m=21\)</li>
-              <li data-label="b">\(\dfrac{4xy+81-4x^2-y^2}{y+9-2x}\) при \(x=18,05, y=-232\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-100" data-task-id="task-100">
-          <label for="task-100" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Вычислите значение выражения после сокращения:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{x^3-4x^2+3x}{x}\) при \(x=\sqrt{3}\)</li>
-              <li data-label="b">\(\dfrac{a^4-5a^2+4}{a^2-4}\) при \(a=\sqrt{5}\)</li>
-            </ul>
-          </span>
-        </li>
-      </ol>
-    </div>
-
-    <!-- ============================================================
-       ТИП 6 — ЗАДАНИЯ ПОВЫШЕННОЙ СЛОЖНОСТИ
-    ============================================================ -->
-    <div class="task-card" id="type6">
-      <div class="task-card-header">
-        <span class="task-type-number">Тип 6</span>
-        <span class="task-type-title">Задания повышенной сложности</span>
-      </div>
-
-      <!-- Часть 1 -->
-      <div class="part-header">Часть 1</div>
-      <ol class="task-list" start="101">
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-101" data-task-id="task-101">
-          <label for="task-101" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Сократите дробь с иррациональными коэффициентами:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{x^2-(2+\sqrt{3})x+2\sqrt{3}}{x^2-4}\)</li>
-              <li data-label="b">\(\dfrac{a^2-(\sqrt{5}+\sqrt{2})a+\sqrt{10}}{a^2-7}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-102" data-task-id="task-102">
-          <label for="task-102" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Упростите дробное выражение с иррациональными коэффициентами:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{x^2+(\sqrt{7}-3)x-3\sqrt{7}}{x^2-9}\)</li>
-              <li data-label="b">\(\dfrac{a^2-(\sqrt{3}+\sqrt{11})a+\sqrt{33}}{a^2-14}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-103" data-task-id="task-103">
-          <label for="task-103" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Докажите <span class="term" data-definition="Два выражения называются тождественно равными, если они принимают равные значения при всех допустимых значениях входящих в них переменных.">тождество</span>:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{(m-n)^2-(m+n)^2}{4mn}=-1\)</li>
-              <li data-label="b">\(\dfrac{x^2+xy}{x+y}=\dfrac{x^3-x}{x^2-1}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-104" data-task-id="task-104">
-          <label for="task-104" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Докажите, что значение дроби не зависит от значений переменных:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{(x-1)^2+1}{x^2-2x+2}\)</li>
-              <li data-label="b">\(\dfrac{(a+2)^2+4}{a^2+4a+8}\)</li>
-            </ul>
-          </span>
-        </li>
-      </ol>
-
-      <!-- Часть 2 -->
-      <div class="part-header">Часть 2</div>
-      <ol class="task-list" start="105">
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-105" data-task-id="task-105">
-          <label for="task-105" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Сократите дробь с использованием алгебраических преобразований:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{x^4+4}{x^2-2x+2}\)</li>
-              <li data-label="b">\(\dfrac{a^4+4}{a^2-2a+2}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-106" data-task-id="task-106">
-          <label for="task-106" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Упростите дробное выражение:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{x^4+2x^2-3}{x^3-2x^2-x+2}\)</li>
-              <li data-label="b">\(\dfrac{a^4+2a^2-3}{a^3-2a^2-a+2}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-107" data-task-id="task-107">
-          <label for="task-107" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Сократите дробь:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{5a^2-4ab-b^2}{b^2+7ab+10a^2}\)</li>
-              <li data-label="b">\(\dfrac{20a^2+8ab-b^2}{b^2+5ab+6a^2}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-108" data-task-id="task-108">
-          <label for="task-108" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Упростите рациональное выражение:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{(4x+5)^2+2(16x^2-25)+(4x-5)^2}{(4x+5)^2-2(16x^2-25)+(4x-5)^2}\)</li>
-              <li data-label="b">\(\dfrac{(3a+2)^2+2(9a^2-4)+(3a-2)^2}{(3a+2)^2-2(9a^2-4)+(3a-2)^2}\)</li>
-            </ul>
-          </span>
-        </li>
-      </ol>
-
-      <!-- Часть 3 -->
-      <div class="part-header">Часть 3</div>
-      <ol class="task-list" start="109">
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-109" data-task-id="task-109">
-          <label for="task-109" class="task-checkbox-label"></label>
-          <span class="task-text">
-            <span class="term" data-definition="Множество точек координатной плоскости, координаты которых удовлетворяют уравнению y=f(x). При построении графика дробно-рациональной функции после сокращения необходимо учесть выколотые точки (где исходная функция не определена).">Сократите дробь и постройте график</span> функции:
-            <ul class="task-sub">
-              <li data-label="a">\(y=\dfrac{x^2-4}{x-2}\)</li>
-              <li data-label="b">\(y=\dfrac{9-x^2}{x+3}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-110" data-task-id="task-110">
-          <label for="task-110" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Постройте график функции, предварительно сократив дробь:
-            <ul class="task-sub">
-              <li data-label="a">\(y=\dfrac{x^2-5x+6}{x-3}\)</li>
-              <li data-label="b">\(y=\dfrac{x^2+x-12}{x+4}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-111" data-task-id="task-111">
-          <label for="task-111" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Упростите функцию и постройте её график:
-            <ul class="task-sub">
-              <li data-label="a">\(y=\dfrac{5x^2-10x}{5x}\)</li>
-              <li data-label="b">\(y=\dfrac{4x^2+12x}{4x}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-112" data-task-id="task-112">
-          <label for="task-112" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Приведите функцию к линейному виду и постройте график:
-            <ul class="task-sub">
-              <li data-label="a">\(y=\dfrac{(x-1)^2}{x-1}\)</li>
-              <li data-label="b">\(y=\dfrac{(2x-x^2)^2}{x^3+2x^2}\)</li>
-            </ul>
-          </span>
-        </li>
-      </ol>
-
-      <!-- Часть 4 -->
-      <div class="part-header">Часть 4</div>
-      <ol class="task-list" start="113">
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-113" data-task-id="task-113">
-          <label for="task-113" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Сократите дробь с натуральным параметром \(n\):
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{x^{2n}-1}{(x^n+1)^2}\)</li>
-              <li data-label="b">\(\dfrac{x^{2n}-y^{4n}}{(x^n+y^{2n})^2}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-114" data-task-id="task-114">
-          <label for="task-114" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Упростите дробное выражение с параметрами:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{48a^{m-2}b^{n-3}}{144a^{m-1}b^n}\)</li>
-              <li data-label="b">\(\dfrac{0,12x^{2m}y^{3n+1}z^{2k-1}}{0,36x^{m-1}y^{3n-2}z^{2k+1}}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-115" data-task-id="task-115">
-          <label for="task-115" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Сократите дробь с иррациональными коэффициентами:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{x^2-(\sqrt{7}+\sqrt{11})x+\sqrt{77}}{x^2+(\sqrt{3}-\sqrt{7})x-\sqrt{21}}\)</li>
-              <li data-label="b">\(\dfrac{a^2-(\sqrt{5}+\sqrt{13})a+\sqrt{65}}{a^2+(\sqrt{2}-\sqrt{5})a-\sqrt{10}}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-116" data-task-id="task-116">
-          <label for="task-116" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Сократите алгебраическую дробь:
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{3x^3-6x^2y+3xy^2}{(3x-3y)^3}\)</li>
-              <li data-label="b">\(\dfrac{4a^3-8a^2b+4ab^2}{(2a-2b)^3}\)</li>
-            </ul>
-          </span>
-        </li>
-      </ol>
-
-      <!-- Часть 5 -->
-      <div class="part-header">Часть 5</div>
-      <ol class="task-list" start="117">
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-117" data-task-id="task-117">
-          <label for="task-117" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Сократите дробь и найдите <span class="term" data-definition="Множество всех значений переменной, при которых знаменатель дроби не равен нулю.">область определения</span> функции:
-            <ul class="task-sub">
-              <li data-label="a">\(f(x)=\dfrac{x^2-2x-3}{x-3}\)</li>
-              <li data-label="b">\(g(x)=\dfrac{x^2+4x-5}{x-1}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-118" data-task-id="task-118">
-          <label for="task-118" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Упростите функцию и найдите её область определения:
-            <ul class="task-sub">
-              <li data-label="a">\(h(x)=\dfrac{x^2-6x+8}{x-4}\)</li>
-              <li data-label="b">\(p(x)=\dfrac{x^2+3x-10}{x+5}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-119" data-task-id="task-119">
-          <label for="task-119" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Сократите дробь с модулем и найдите область определения:
-            <ul class="task-sub">
-              <li data-label="a">\(f(x)=\dfrac{x^2-4|x|-5}{|x|-5}\)</li>
-              <li data-label="b">\(g(x)=\dfrac{x^2-|x|-2}{2-|x|}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-120" data-task-id="task-120">
-          <label for="task-120" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Приведите функцию к линейному виду и найдите область определения:
-            <ul class="task-sub">
-              <li data-label="a">\(y=\dfrac{x^2-2x}{x-2}\)</li>
-              <li data-label="b">\(y=\dfrac{x^3-4x}{x^2-4}\)</li>
-            </ul>
-          </span>
-        </li>
-      </ol>
-    </div>
-
-    <!-- ============================================================
-       РАЗДЕЛ "ПРОВЕРКА ЗНАНИЙ"
-    ============================================================ -->
-    <div class="task-card quiz-card" id="quiz">
-      <div class="task-card-header">
-        <span class="task-type-number">✦</span>
-        <span class="task-type-title" style="font-size: clamp(24px, 3vw, 34px); color: var(--accent);">Проверка знаний</span>
-      </div>
-      <ol class="task-list" start="121">
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-121" data-task-id="task-121">
-          <label for="task-121" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Выберите верное равенство для дроби \(\dfrac{3x}{x-y}\):
-            <ul class="task-sub">
-              <li data-label="a">\(\dfrac{3x}{x-y} = \dfrac{3x}{y-x}\)</li>
-              <li data-label="b">\(\dfrac{3x}{x-y} = -\dfrac{3x}{y-x}\)</li>
-              <li data-label="c">\(\dfrac{3x}{x-y} = \dfrac{3x}{x+y}\)</li>
-              <li data-label="d">\(\dfrac{3x}{x-y} = -\dfrac{3x}{x+y}\)</li>
-            </ul>
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-122" data-task-id="task-122">
-          <label for="task-122" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Определите <span class="term" data-definition="Выражение, на которое можно разделить и числитель, и знаменатель дроби (при этом получается тождественно равная дробь).">общий множитель</span> числителя и знаменателя дроби \(\dfrac{18a^3b^2}{24a^2b^3}\).
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-123" data-task-id="task-123">
-          <label for="task-123" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Приведите дробь \(\dfrac{4m}{m+n}\) к знаменателю \(m^2-n^2\).
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-124" data-task-id="task-124">
-          <label for="task-124" class="task-checkbox-label"></label>
-          <span class="task-text">
-            <span class="term" data-definition="Разделить числитель и знаменатель дроби на их общий множитель (не равный нулю).">Выполните сокращение</span> дроби \(\dfrac{6x^2-12xy}{3x-6y}\).
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-125" data-task-id="task-125">
-          <label for="task-125" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Упростите дробь \(\dfrac{x^2-6x+9}{9-x^2}\).
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-126" data-task-id="task-126">
-          <label for="task-126" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Сократите дробь \(\dfrac{4a^2-12a+9}{4a^2-9}\).
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-127" data-task-id="task-127">
-          <label for="task-127" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Примените <span class="term" data-definition="Представление многочлена в виде произведения более простых выражений с помощью вынесения общего множителя, формул сокращённого умножения, способа группировки или разложения квадратного трёхчлена.">разложение на множители</span> и сократите дробь \(\dfrac{2x^2-3x-2}{x^2-4}\).
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-128" data-task-id="task-128">
-          <label for="task-128" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Найдите значение выражения \(\dfrac{m^5+m^3}{m^3}\) при \(m=2\sqrt{3}\).
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-129" data-task-id="task-129">
-          <label for="task-129" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Упростите дробь \(\dfrac{(x-2)^2-1}{x^2-3x+2}\).
-          </span>
-        </li>
-        <li>
-          <input type="checkbox" class="task-checkbox" id="task-130" data-task-id="task-130">
-          <label for="task-130" class="task-checkbox-label"></label>
-          <span class="task-text">
-            Докажите <span class="term" data-definition="Два выражения называются тождественно равными, если они принимают равные значения при всех допустимых значениях входящих в них переменных.">тождество</span>: \(\dfrac{x^2+xy}{x+y} = \dfrac{x^3-x}{x^2-1}\) при всех допустимых значениях переменных.
-          </span>
-        </li>
-      </ol>
-    </div>
-
   </div>
 
-  <!-- ===== КНОПКИ ВНИЗУ ===== -->
-  <a href="../class9alg.html" class="back-link">← Назад к темам</a>
-  <button class="top-link" id="topBtn">↑ Наверх</button>
+  <!-- ===== ТИП 1 ===== -->
+  <div class="task-card" id="type1">
+    <div class="task-card-header">
+      <span class="task-type-number">Тип 1</span>
+      <span class="task-type-title">Применение основного свойства дроби</span>
+    </div>
 
-  <!-- ===== JAVASCRIPT ===== -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // ===== 1. ПРОГРЕСС =====
-      const checkboxes = document.querySelectorAll('.task-checkbox');
-      const progressFill = document.getElementById('progressFill');
-      const progressText = document.getElementById('progressText');
-      const resetBtn = document.getElementById('resetBtn');
+    <div class="part-header">Часть 1</div>
+    <ol class="task-list">
+      <li><input type="checkbox" class="task-checkbox" id="task-1-1" data-task-id="task-1-1"><label for="task-1-1" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">1.1</span> Выберите верное равенство для дроби \(\dfrac{5a}{a-b}\):<ul class="task-sub"><li data-label="a">\(\dfrac{5a}{a-b} = \dfrac{5a}{b-a}\)</li><li data-label="b">\(\dfrac{5a}{a-b} = -\dfrac{5a}{b-a}\)</li><li data-label="c">\(\dfrac{5a}{a-b} = \dfrac{5a}{a+b}\)</li><li data-label="d">\(\dfrac{5a}{a-b} = -\dfrac{5a}{a+b}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-1-2" data-task-id="task-1-2"><label for="task-1-2" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">1.2</span> Определите общий множитель числителя и знаменателя дроби:<ul class="task-sub"><li data-label="a">\(\dfrac{12a^2b}{18ab^2}\)</li><li data-label="b">\(\dfrac{15x^3y^2}{25x^2y^3}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-1-3" data-task-id="task-1-3"><label for="task-1-3" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">1.3</span> Приведите дробь \(\dfrac{3x}{y}\) к знаменателю \(y^2\).</span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-1-4" data-task-id="task-1-4"><label for="task-1-4" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">1.4</span> Приведите дробь \(\dfrac{2a}{a+b}\) к знаменателю \(a^2+ab\).</span></li>
+    </ol>
 
-      function updateProgress() {
-        const total = checkboxes.length;
-        const checked = document.querySelectorAll('.task-checkbox:checked').length;
-        const percent = total > 0 ? Math.round((checked / total) * 100) : 0;
-        progressFill.style.width = percent + '%';
-        progressText.textContent = `${checked} из ${total}`;
+    <div class="part-header">Часть 2</div>
+    <ol class="task-list" start="5">
+      <li><input type="checkbox" class="task-checkbox" id="task-1-5" data-task-id="task-1-5"><label for="task-1-5" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">1.5</span> Укажите выражение, на которое нужно умножить числитель и знаменатель дроби \(\dfrac{x}{x-2}\), чтобы получить дробь со знаменателем \(x^2-4\):<ul class="task-sub"><li data-label="a">\(x+2\)</li><li data-label="b">\(x-2\)</li><li data-label="c">\(x\)</li><li data-label="d">\(2\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-1-6" data-task-id="task-1-6"><label for="task-1-6" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">1.6</span> Приведите дробь \(\dfrac{5m}{m+3n}\) к знаменателю \(m^2-9n^2\).</span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-1-7" data-task-id="task-1-7"><label for="task-1-7" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">1.7</span> Приведите дробь \(\dfrac{7}{a-b}\) к знаменателю \(b-a\).</span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-1-8" data-task-id="task-1-8"><label for="task-1-8" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">1.8</span> Определите, на какое выражение нужно разделить числитель и знаменатель дроби \(\dfrac{14x^3y^2}{21x^2y^3}\), чтобы получить \(\dfrac{2x}{3y}\).</span></li>
+    </ol>
+
+    <div class="part-header">Часть 3</div>
+    <ol class="task-list" start="9">
+      <li><input type="checkbox" class="task-checkbox" id="task-1-9" data-task-id="task-1-9"><label for="task-1-9" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">1.9</span> Приведите дробь \(\dfrac{3a}{a-2b}\) к знаменателю \(a^2-4b^2\).</span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-1-10" data-task-id="task-1-10"><label for="task-1-10" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">1.10</span> Приведите дробь \(\dfrac{2x}{x+5}\) к знаменателю \(x^2+10x+25\).</span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-1-11" data-task-id="task-1-11"><label for="task-1-11" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">1.11</span> Верно ли, что \(\dfrac{a}{b} = \dfrac{-a}{-b}\) при всех допустимых значениях переменных? Ответ обоснуйте.</span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-1-12" data-task-id="task-1-12"><label for="task-1-12" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">1.12</span> Замените \(*\) таким выражением, чтобы равенство стало тождеством: \(\dfrac{5x}{x-1} = \dfrac{*}{x^2-1}\).</span></li>
+    </ol>
+
+    <div class="part-header">Часть 4</div>
+    <ol class="task-list" start="13">
+      <li><input type="checkbox" class="task-checkbox" id="task-1-13" data-task-id="task-1-13"><label for="task-1-13" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">1.13</span> Приведите дробь \(\dfrac{2m+1}{m-3}\) к знаменателю \(m^2-9\).</span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-1-14" data-task-id="task-1-14"><label for="task-1-14" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">1.14</span> Приведите дробь \(\dfrac{3x-2}{2x+1}\) к знаменателю \(4x^2-1\).</span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-1-15" data-task-id="task-1-15"><label for="task-1-15" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">1.15</span> Приведите дробь \(\dfrac{3}{a-2}\) к знаменателю \(2a-4\).</span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-1-16" data-task-id="task-1-16"><label for="task-1-16" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">1.16</span> Замените \(*\) таким выражением, чтобы равенство стало тождеством: \(\dfrac{2a}{a+b} = \dfrac{*}{a^2-b^2}\).</span></li>
+    </ol>
+
+    <div class="part-header">Часть 5</div>
+    <ol class="task-list" start="17">
+      <li><input type="checkbox" class="task-checkbox" id="task-1-17" data-task-id="task-1-17"><label for="task-1-17" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">1.17</span> Приведите дробь \(\dfrac{x^2}{x-1}\) к знаменателю \(x^3-1\).</span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-1-18" data-task-id="task-1-18"><label for="task-1-18" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">1.18</span> Приведите дробь \(\dfrac{3y}{y+2}\) к знаменателю \(y^3+8\).</span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-1-19" data-task-id="task-1-19"><label for="task-1-19" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">1.19</span> Докажите, что \(\dfrac{a}{b} = \dfrac{a(a+b)}{b(a+b)}\) при всех допустимых значениях переменных.</span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-1-20" data-task-id="task-1-20"><label for="task-1-20" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">1.20</span> Приведите дробь \(\dfrac{2x-1}{x^2+x+1}\) к знаменателю \(x^3-1\).</span></li>
+    </ol>
+  </div>
+
+  <!-- ===== ТИП 2 ===== -->
+  <div class="task-card" id="type2">
+    <div class="task-card-header">
+      <span class="task-type-number">Тип 2</span>
+      <span class="task-type-title">Сокращение дробей (одночлены и многочлены)</span>
+    </div>
+
+    <div class="part-header">Часть 1</div>
+    <ol class="task-list">
+      <li><input type="checkbox" class="task-checkbox" id="task-2-1" data-task-id="task-2-1"><label for="task-2-1" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">2.1</span> Выполните сокращение дроби:<ul class="task-sub"><li data-label="a">\(\dfrac{6a^3}{9a^2}\)</li><li data-label="b">\(\dfrac{14x^2y}{21xy^2}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-2-2" data-task-id="task-2-2"><label for="task-2-2" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">2.2</span> Найдите дробь, равную данной, после сокращения:<ul class="task-sub"><li data-label="a">\(\dfrac{25m^4n^3}{15m^2n^5}\)</li><li data-label="b">\(\dfrac{8a^5b^2}{12a^3b^4}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-2-3" data-task-id="task-2-3"><label for="task-2-3" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">2.3</span> Упростите дробное выражение:<ul class="task-sub"><li data-label="a">\(\dfrac{3x+3y}{6x}\)</li><li data-label="b">\(\dfrac{7a-7b}{14a}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-2-4" data-task-id="task-2-4"><label for="task-2-4" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">2.4</span> Представьте дробь в несократимом виде:<ul class="task-sub"><li data-label="a">\(\dfrac{5m-5n}{m^2-n^2}\)</li><li data-label="b">\(\dfrac{2x+2y}{x^2-y^2}\)</li></ul></span></li>
+    </ol>
+
+    <div class="part-header">Часть 2</div>
+    <ol class="task-list" start="5">
+      <li><input type="checkbox" class="task-checkbox" id="task-2-5" data-task-id="task-2-5"><label for="task-2-5" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">2.5</span> Выполните сокращение дроби:<ul class="task-sub"><li data-label="a">\(\dfrac{4a-8b}{12a}\)</li><li data-label="b">\(\dfrac{9x+3y}{6x+2y}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-2-6" data-task-id="task-2-6"><label for="task-2-6" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">2.6</span> Найдите дробь, равную данной, после сокращения:<ul class="task-sub"><li data-label="a">\(\dfrac{x^2-4x}{x^2-16}\)</li><li data-label="b">\(\dfrac{a^2-9a}{a^2-81}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-2-7" data-task-id="task-2-7"><label for="task-2-7" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">2.7</span> Упростите дробное выражение:<ul class="task-sub"><li data-label="a">\(\dfrac{3m^2-6mn}{m^2-4mn+4n^2}\)</li><li data-label="b">\(\dfrac{5a^2+10ab}{a^2+4ab+4b^2}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-2-8" data-task-id="task-2-8"><label for="task-2-8" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">2.8</span> Представьте дробь в несократимом виде:<ul class="task-sub"><li data-label="a">\(\dfrac{2x^2-8y^2}{4x-8y}\)</li><li data-label="b">\(\dfrac{3a^2-27b^2}{6a+18b}\)</li></ul></span></li>
+    </ol>
+
+    <div class="part-header">Часть 3</div>
+    <ol class="task-list" start="9">
+      <li><input type="checkbox" class="task-checkbox" id="task-2-9" data-task-id="task-2-9"><label for="task-2-9" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">2.9</span> Выполните сокращение дроби:<ul class="task-sub"><li data-label="a">\(\dfrac{x^2-2x+1}{x-1}\)</li><li data-label="b">\(\dfrac{a^2+4a+4}{a+2}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-2-10" data-task-id="task-2-10"><label for="task-2-10" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">2.10</span> Найдите дробь, равную данной, после сокращения:<ul class="task-sub"><li data-label="a">\(\dfrac{m^2-6m+9}{m-3}\)</li><li data-label="b">\(\dfrac{4b^2-4b+1}{2b-1}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-2-11" data-task-id="task-2-11"><label for="task-2-11" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">2.11</span> Упростите дробное выражение:<ul class="task-sub"><li data-label="a">\(\dfrac{x^2-9}{x^2-6x+9}\)</li><li data-label="b">\(\dfrac{16-a^2}{a^2-8a+16}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-2-12" data-task-id="task-2-12"><label for="task-2-12" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">2.12</span> Представьте дробь в несократимом виде:<ul class="task-sub"><li data-label="a">\(\dfrac{25x^2-1}{25x^2-10x+1}\)</li><li data-label="b">\(\dfrac{9a^2-4}{9a^2-12a+4}\)</li></ul></span></li>
+    </ol>
+
+    <div class="part-header">Часть 4</div>
+    <ol class="task-list" start="13">
+      <li><input type="checkbox" class="task-checkbox" id="task-2-13" data-task-id="task-2-13"><label for="task-2-13" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">2.13</span> Выполните сокращение дроби, используя вынесение общего множителя:<ul class="task-sub"><li data-label="a">\(\dfrac{6ab-9b^2}{3a^2-9ab}\)</li><li data-label="b">\(\dfrac{8x^2-4xy}{4xy-2y^2}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-2-14" data-task-id="task-2-14"><label for="task-2-14" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">2.14</span> Найдите дробь, равную данной, после сокращения:<ul class="task-sub"><li data-label="a">\(\dfrac{15m^2n-5mn^2}{10m^2n^2-5mn^3}\)</li><li data-label="b">\(\dfrac{12a^3b-18a^2b^2}{24a^2b^2-36ab^3}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-2-15" data-task-id="task-2-15"><label for="task-2-15" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">2.15</span> Упростите дробное выражение:<ul class="task-sub"><li data-label="a">\(\dfrac{x^3-4x}{x^2-4x+4}\)</li><li data-label="b">\(\dfrac{a^4-16}{a^2+4a+4}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-2-16" data-task-id="task-2-16"><label for="task-2-16" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">2.16</span> Представьте дробь в несократимом виде:<ul class="task-sub"><li data-label="a">\(\dfrac{2x^3-2x}{x^2-2x+1}\)</li><li data-label="b">\(\dfrac{3a^3-3a}{a^2-2a+1}\)</li></ul></span></li>
+    </ol>
+
+    <div class="part-header">Часть 5</div>
+    <ol class="task-list" start="17">
+      <li><input type="checkbox" class="task-checkbox" id="task-2-17" data-task-id="task-2-17"><label for="task-2-17" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">2.17</span> Выполните сокращение дроби:<ul class="task-sub"><li data-label="a">\(\dfrac{(2x-6y)^2}{x^2-9y^2}\)</li><li data-label="b">\(\dfrac{(3a+6b)^2}{a^2-4b^2}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-2-18" data-task-id="task-2-18"><label for="task-2-18" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">2.18</span> Найдите дробь, равную данной, после сокращения:<ul class="task-sub"><li data-label="a">\(\dfrac{(4m-8n)^2}{m^2-4mn+4n^2}\)</li><li data-label="b">\(\dfrac{(6x+12y)^2}{9x^2-36y^2}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-2-19" data-task-id="task-2-19"><label for="task-2-19" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">2.19</span> Упростите дробное выражение:<ul class="task-sub"><li data-label="a">\(\dfrac{x^5-x^3}{x^3-x}\)</li><li data-label="b">\(\dfrac{a^6-a^4}{a^4-a^2}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-2-20" data-task-id="task-2-20"><label for="task-2-20" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">2.20</span> Представьте дробь в несократимом виде:<ul class="task-sub"><li data-label="a">\(\dfrac{m^4-1}{m^2-1}\)</li><li data-label="b">\(\dfrac{n^6-1}{n^3-1}\)</li></ul></span></li>
+    </ol>
+  </div>
+
+  <!-- ===== ТИП 3 ===== -->
+  <div class="task-card" id="type3">
+    <div class="task-card-header">
+      <span class="task-type-number">Тип 3</span>
+      <span class="task-type-title">Сокращение с использованием формул сокращённого умножения</span>
+    </div>
+
+    <div class="part-header">Часть 1</div>
+    <ol class="task-list">
+      <li><input type="checkbox" class="task-checkbox" id="task-3-1" data-task-id="task-3-1"><label for="task-3-1" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">3.1</span> Примените формулу разности квадратов и сократите дробь:<ul class="task-sub"><li data-label="a">\(\dfrac{a^2-4}{a-2}\)</li><li data-label="b">\(\dfrac{x^2-9}{x+3}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-3-2" data-task-id="task-3-2"><label for="task-3-2" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">3.2</span> Упростите дробь, используя формулу разности квадратов:<ul class="task-sub"><li data-label="a">\(\dfrac{25m^2-1}{5m-1}\)</li><li data-label="b">\(\dfrac{4n^2-9}{2n-3}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-3-3" data-task-id="task-3-3"><label for="task-3-3" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">3.3</span> Примените формулу квадрата разности и сократите дробь:<ul class="task-sub"><li data-label="a">\(\dfrac{x^2-6x+9}{x-3}\)</li><li data-label="b">\(\dfrac{a^2+10a+25}{a+5}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-3-4" data-task-id="task-3-4"><label for="task-3-4" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">3.4</span> Сократите дробь, используя формулу разности квадратов:<ul class="task-sub"><li data-label="a">\(\dfrac{16x^2-9y^2}{4x-3y}\)</li><li data-label="b">\(\dfrac{25a^2-4b^2}{5a-2b}\)</li></ul></span></li>
+    </ol>
+
+    <div class="part-header">Часть 2</div>
+    <ol class="task-list" start="5">
+      <li><input type="checkbox" class="task-checkbox" id="task-3-5" data-task-id="task-3-5"><label for="task-3-5" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">3.5</span> Примените формулы сокращённого умножения и сократите дробь:<ul class="task-sub"><li data-label="a">\(\dfrac{x^2-4x+4}{x^2-4}\)</li><li data-label="b">\(\dfrac{a^2+6a+9}{a^2-9}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-3-6" data-task-id="task-3-6"><label for="task-3-6" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">3.6</span> Упростите дробь, используя формулы сокращённого умножения:<ul class="task-sub"><li data-label="a">\(\dfrac{4m^2-4m+1}{4m^2-1}\)</li><li data-label="b">\(\dfrac{9n^2+12n+4}{9n^2-4}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-3-7" data-task-id="task-3-7"><label for="task-3-7" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">3.7</span> Сократите дробь, используя формулы сокращённого умножения:<ul class="task-sub"><li data-label="a">\(\dfrac{x^4-16}{x^2+4}\)</li><li data-label="b">\(\dfrac{a^6-1}{a^3+1}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-3-8" data-task-id="task-3-8"><label for="task-3-8" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">3.8</span> Примените формулы сокращённого умножения и сократите дробь:<ul class="task-sub"><li data-label="a">\(\dfrac{(x+2)^2-9}{x^2-1}\)</li><li data-label="b">\(\dfrac{(a-3)^2-4}{a^2-25}\)</li></ul></span></li>
+    </ol>
+
+    <div class="part-header">Часть 3</div>
+    <ol class="task-list" start="9">
+      <li><input type="checkbox" class="task-checkbox" id="task-3-9" data-task-id="task-3-9"><label for="task-3-9" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">3.9</span> Упростите дробь:<ul class="task-sub"><li data-label="a">\(\dfrac{x^2-10x+25}{25-x^2}\)</li><li data-label="b">\(\dfrac{a^2+14a+49}{49-a^2}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-3-10" data-task-id="task-3-10"><label for="task-3-10" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">3.10</span> Сократите дробь:<ul class="task-sub"><li data-label="a">\(\dfrac{4x^2-20x+25}{25-4x^2}\)</li><li data-label="b">\(\dfrac{9a^2+12a+4}{9a^2-4}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-3-11" data-task-id="task-3-11"><label for="task-3-11" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">3.11</span> Примените формулы сокращённого умножения и сократите дробь:<ul class="task-sub"><li data-label="a">\(\dfrac{x^2-2xy+y^2}{x^2-y^2}\)</li><li data-label="b">\(\dfrac{a^2+4ab+4b^2}{a^2-4b^2}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-3-12" data-task-id="task-3-12"><label for="task-3-12" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">3.12</span> Сократите дробь, используя формулы сокращённого умножения:<ul class="task-sub"><li data-label="a">\(\dfrac{4x^2-12xy+9y^2}{4x^2-9y^2}\)</li><li data-label="b">\(\dfrac{25a^2+20ab+4b^2}{25a^2-4b^2}\)</li></ul></span></li>
+    </ol>
+
+    <div class="part-header">Часть 4</div>
+    <ol class="task-list" start="13">
+      <li><input type="checkbox" class="task-checkbox" id="task-3-13" data-task-id="task-3-13"><label for="task-3-13" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">3.13</span> Упростите дробь:<ul class="task-sub"><li data-label="a">\(\dfrac{1-8x+16x^2}{16x^2-1}\)</li><li data-label="b">\(\dfrac{9a^2-6a+1}{1-9a^2}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-3-14" data-task-id="task-3-14"><label for="task-3-14" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">3.14</span> Сократите дробь:<ul class="task-sub"><li data-label="a">\(\dfrac{x^2-8x+16}{16-x^2}\)</li><li data-label="b">\(\dfrac{a^2+12a+36}{36-a^2}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-3-15" data-task-id="task-3-15"><label for="task-3-15" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">3.15</span> Примените формулы сокращённого умножения и сократите дробь:<ul class="task-sub"><li data-label="a">\(\dfrac{x^3-27}{x^2-9}\)</li><li data-label="b">\(\dfrac{a^3+8}{a^2-4}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-3-16" data-task-id="task-3-16"><label for="task-3-16" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">3.16</span> Сократите дробь, используя формулы сокращённого умножения:<ul class="task-sub"><li data-label="a">\(\dfrac{8x^3-1}{4x^2-1}\)</li><li data-label="b">\(\dfrac{27a^3+8}{9a^2-4}\)</li></ul></span></li>
+    </ol>
+
+    <div class="part-header">Часть 5</div>
+    <ol class="task-list" start="17">
+      <li><input type="checkbox" class="task-checkbox" id="task-3-17" data-task-id="task-3-17"><label for="task-3-17" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">3.17</span> Примените формулы сокращённого умножения и сократите дробь:<ul class="task-sub"><li data-label="a">\(\dfrac{(x-1)^2-9}{x^2-2x-8}\)</li><li data-label="b">\(\dfrac{(a+2)^2-16}{a^2+4a-12}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-3-18" data-task-id="task-3-18"><label for="task-3-18" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">3.18</span> Упростите дробь, используя формулы сокращённого умножения:<ul class="task-sub"><li data-label="a">\(\dfrac{x^4-8x^2+16}{x^2-4}\)</li><li data-label="b">\(\dfrac{a^4-10a^2+25}{a^2-5}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-3-19" data-task-id="task-3-19"><label for="task-3-19" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">3.19</span> Сократите дробь:<ul class="task-sub"><li data-label="a">\(\dfrac{(3x-2)^2-(x+1)^2}{x^2-3x+2}\)</li><li data-label="b">\(\dfrac{(2a+1)^2-(a-3)^2}{a^2-4a+3}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-3-20" data-task-id="task-3-20"><label for="task-3-20" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">3.20</span> Примените формулы сокращённого умножения и сократите дробь:<ul class="task-sub"><li data-label="a">\(\dfrac{x^4-2x^2+1}{x^2-2x+1}\)</li><li data-label="b">\(\dfrac{a^4+4a^2+4}{a^2+2a+2}\)</li></ul></span></li>
+    </ol>
+  </div>
+
+  <!-- ===== ТИП 4 ===== -->
+  <div class="task-card" id="type4">
+    <div class="task-card-header">
+      <span class="task-type-number">Тип 4</span>
+      <span class="task-type-title">Сокращение с использованием группировки и разложения квадратного трёхчлена</span>
+    </div>
+
+    <div class="part-header">Часть 1</div>
+    <ol class="task-list">
+      <li><input type="checkbox" class="task-checkbox" id="task-4-1" data-task-id="task-4-1"><label for="task-4-1" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">4.1</span> Разложите на множители способом группировки и сократите дробь:<ul class="task-sub"><li data-label="a">\(\dfrac{ax+ay+bx+by}{a+b}\)</li><li data-label="b">\(\dfrac{mx-my+nx-ny}{x-y}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-4-2" data-task-id="task-4-2"><label for="task-4-2" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">4.2</span> Примените способ группировки и сократите дробь:<ul class="task-sub"><li data-label="a">\(\dfrac{2a-2b+ac-bc}{a-b}\)</li><li data-label="b">\(\dfrac{3x+3y+mx+my}{x+y}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-4-3" data-task-id="task-4-3"><label for="task-4-3" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">4.3</span> Разложите на множители и сократите дробь:<ul class="task-sub"><li data-label="a">\(\dfrac{x^2+xy+2x+2y}{x+2}\)</li><li data-label="b">\(\dfrac{a^2-ab+3a-3b}{a-3}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-4-4" data-task-id="task-4-4"><label for="task-4-4" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">4.4</span> Сократите дробь, используя группировку:<ul class="task-sub"><li data-label="a">\(\dfrac{5m-5n+mn-n^2}{m-n}\)</li><li data-label="b">\(\dfrac{2x^2-2xy+xy-y^2}{2x+y}\)</li></ul></span></li>
+    </ol>
+
+    <div class="part-header">Часть 2</div>
+    <ol class="task-list" start="5">
+      <li><input type="checkbox" class="task-checkbox" id="task-4-5" data-task-id="task-4-5"><label for="task-4-5" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">4.5</span> Примените способ группировки и сократите дробь:<ul class="task-sub"><li data-label="a">\(\dfrac{x^2-xy-2x+2y}{x-2}\)</li><li data-label="b">\(\dfrac{a^2+ab-3a-3b}{a-3}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-4-6" data-task-id="task-4-6"><label for="task-4-6" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">4.6</span> Разложите на множители и сократите дробь:<ul class="task-sub"><li data-label="a">\(\dfrac{3x^2-3xy-2x+2y}{x-y}\)</li><li data-label="b">\(\dfrac{4a^2+4ab-3a-3b}{a+b}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-4-7" data-task-id="task-4-7"><label for="task-4-7" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">4.7</span> Сократите дробь, используя группировку:<ul class="task-sub"><li data-label="a">\(\dfrac{x^2+5x-xy-5y}{x+5}\)</li><li data-label="b">\(\dfrac{a^2-7a+ab-7b}{a-7}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-4-8" data-task-id="task-4-8"><label for="task-4-8" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">4.8</span> Примените способ группировки и сократите дробь:<ul class="task-sub"><li data-label="a">\(\dfrac{2x^2+4x-xy-2y}{x+2}\)</li><li data-label="b">\(\dfrac{3a^2-6a+ab-2b}{a-2}\)</li></ul></span></li>
+    </ol>
+
+    <div class="part-header">Часть 3</div>
+    <ol class="task-list" start="9">
+      <li><input type="checkbox" class="task-checkbox" id="task-4-9" data-task-id="task-4-9"><label for="task-4-9" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">4.9</span> Разложите квадратный трёхчлен на множители и сократите дробь:<ul class="task-sub"><li data-label="a">\(\dfrac{x^2-5x+6}{x-2}\)</li><li data-label="b">\(\dfrac{a^2+7a+12}{a+3}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-4-10" data-task-id="task-4-10"><label for="task-4-10" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">4.10</span> Сократите дробь, используя разложение квадратного трёхчлена:<ul class="task-sub"><li data-label="a">\(\dfrac{x^2-3x-10}{x-5}\)</li><li data-label="b">\(\dfrac{a^2+2a-8}{a-2}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-4-11" data-task-id="task-4-11"><label for="task-4-11" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">4.11</span> Примените разложение квадратного трёхчлена и сократите дробь:<ul class="task-sub"><li data-label="a">\(\dfrac{2x^2-5x-3}{x-3}\)</li><li data-label="b">\(\dfrac{3a^2+5a-2}{a+2}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-4-12" data-task-id="task-4-12"><label for="task-4-12" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">4.12</span> Разложите на множители и сократите дробь:<ul class="task-sub"><li data-label="a">\(\dfrac{x^2+4x-12}{x^2-4}\)</li><li data-label="b">\(\dfrac{a^2-5a-14}{a^2-49}\)</li></ul></span></li>
+    </ol>
+
+    <div class="part-header">Часть 4</div>
+    <ol class="task-list" start="13">
+      <li><input type="checkbox" class="task-checkbox" id="task-4-13" data-task-id="task-4-13"><label for="task-4-13" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">4.13</span> Сократите дробь, используя разложение на множители:<ul class="task-sub"><li data-label="a">\(\dfrac{x^2-5x+4}{x^2-3x-4}\)</li><li data-label="b">\(\dfrac{a^2+3a-10}{a^2-a-6}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-4-14" data-task-id="task-4-14"><label for="task-4-14" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">4.14</span> Примените разложение на множители и сократите дробь:<ul class="task-sub"><li data-label="a">\(\dfrac{2x^2-3x-2}{x^2-2x-3}\)</li><li data-label="b">\(\dfrac{3a^2+2a-1}{a^2-a-6}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-4-15" data-task-id="task-4-15"><label for="task-4-15" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">4.15</span> Сократите дробь (комбинация способов):<ul class="task-sub"><li data-label="a">\(\dfrac{x^2-2x-8}{x^2-4x+4}\)</li><li data-label="b">\(\dfrac{a^2+6a-7}{a^2-2a+1}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-4-16" data-task-id="task-4-16"><label for="task-4-16" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">4.16</span> Разложите на множители и сократите дробь (комбинация способов):<ul class="task-sub"><li data-label="a">\(\dfrac{x^3-2x^2-9x+18}{x^2-9}\)</li><li data-label="b">\(\dfrac{a^3+3a^2-4a-12}{a^2-4}\)</li></ul></span></li>
+    </ol>
+
+    <div class="part-header">Часть 5</div>
+    <ol class="task-list" start="17">
+      <li><input type="checkbox" class="task-checkbox" id="task-4-17" data-task-id="task-4-17"><label for="task-4-17" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">4.17</span> Сократите дробь, используя разложение на множители:<ul class="task-sub"><li data-label="a">\(\dfrac{x^2-4x+3}{x^2-7x+12}\)</li><li data-label="b">\(\dfrac{a^2+5a+6}{a^2+6a+8}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-4-18" data-task-id="task-4-18"><label for="task-4-18" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">4.18</span> Примените разложение на множители и сократите дробь:<ul class="task-sub"><li data-label="a">\(\dfrac{2x^2+3x-2}{2x^2-3x+1}\)</li><li data-label="b">\(\dfrac{3a^2-4a+1}{3a^2+2a-1}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-4-19" data-task-id="task-4-19"><label for="task-4-19" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">4.19</span> Сократите дробь (комбинация способов):<ul class="task-sub"><li data-label="a">\(\dfrac{x^3+2x^2-4x-8}{x^2-4}\)</li><li data-label="b">\(\dfrac{a^3-3a^2-9a+27}{a^2-9}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-4-20" data-task-id="task-4-20"><label for="task-4-20" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">4.20</span> Разложите на множители и сократите дробь (комбинация способов):<ul class="task-sub"><li data-label="a">\(\dfrac{x^4-5x^2+4}{x^2-4}\)</li><li data-label="b">\(\dfrac{a^4-10a^2+9}{a^2-9}\)</li></ul></span></li>
+    </ol>
+  </div>
+
+  <!-- ===== ТИП 5 ===== -->
+  <div class="task-card" id="type5">
+    <div class="task-card-header">
+      <span class="task-type-number">Тип 5</span>
+      <span class="task-type-title">Нахождение значения выражения после сокращения</span>
+    </div>
+
+    <div class="part-header">Часть 1</div>
+    <ol class="task-list">
+      <li><input type="checkbox" class="task-checkbox" id="task-5-1" data-task-id="task-5-1"><label for="task-5-1" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">5.1</span> Упростите выражение и найдите его значение:<ul class="task-sub"><li data-label="a">\(\dfrac{x^2-4}{x-2}\) при \(x=5\)</li><li data-label="b">\(\dfrac{a^2-9}{a+3}\) при \(a=7\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-5-2" data-task-id="task-5-2"><label for="task-5-2" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">5.2</span> Вычислите значение выражения после сокращения:<ul class="task-sub"><li data-label="a">\(\dfrac{4m^2-1}{2m-1}\) при \(m=3\)</li><li data-label="b">\(\dfrac{9n^2-4}{3n-2}\) при \(n=4\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-5-3" data-task-id="task-5-3"><label for="task-5-3" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">5.3</span> Упростите выражение и найдите его значение:<ul class="task-sub"><li data-label="a">\(\dfrac{x^2+6x+9}{x+3}\) при \(x=-2\)</li><li data-label="b">\(\dfrac{a^2-8a+16}{a-4}\) при \(a=6\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-5-4" data-task-id="task-5-4"><label for="task-5-4" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">5.4</span> Найдите значение выражения после сокращения:<ul class="task-sub"><li data-label="a">\(\dfrac{5a^2-5b^2}{a-b}\) при \(a=3, b=1\)</li><li data-label="b">\(\dfrac{2x^2-8y^2}{x-2y}\) при \(x=5, y=2\)</li></ul></span></li>
+    </ol>
+
+    <div class="part-header">Часть 2</div>
+    <ol class="task-list" start="5">
+      <li><input type="checkbox" class="task-checkbox" id="task-5-5" data-task-id="task-5-5"><label for="task-5-5" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">5.5</span> Упростите выражение и найдите его значение:<ul class="task-sub"><li data-label="a">\(\dfrac{3x^2-12}{x^2-4}\) при \(x=5\)</li><li data-label="b">\(\dfrac{2a^2-18}{a^2-9}\) при \(a=7\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-5-6" data-task-id="task-5-6"><label for="task-5-6" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">5.6</span> Вычислите значение выражения после сокращения:<ul class="task-sub"><li data-label="a">\(\dfrac{m^3-8}{m-2}\) при \(m=3\)</li><li data-label="b">\(\dfrac{n^3+27}{n+3}\) при \(n=1\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-5-7" data-task-id="task-5-7"><label for="task-5-7" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">5.7</span> Упростите выражение и найдите его значение:<ul class="task-sub"><li data-label="a">\(\dfrac{x^2-2x-3}{x-3}\) при \(x=5\)</li><li data-label="b">\(\dfrac{a^2+3a-10}{a-2}\) при \(a=4\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-5-8" data-task-id="task-5-8"><label for="task-5-8" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">5.8</span> Найдите значение выражения после сокращения:<ul class="task-sub"><li data-label="a">\(\dfrac{3x^2-5x-2}{x-2}\) при \(x=3\)</li><li data-label="b">\(\dfrac{2a^2+3a-2}{a+2}\) при \(a=1\)</li></ul></span></li>
+    </ol>
+
+    <div class="part-header">Часть 3</div>
+    <ol class="task-list" start="9">
+      <li><input type="checkbox" class="task-checkbox" id="task-5-9" data-task-id="task-5-9"><label for="task-5-9" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">5.9</span> Упростите выражение и найдите его значение:<ul class="task-sub"><li data-label="a">\(\dfrac{(x-1)^2-4}{x^2-9}\) при \(x=5\)</li><li data-label="b">\(\dfrac{(a+2)^2-1}{a^2-4}\) при \(a=3\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-5-10" data-task-id="task-5-10"><label for="task-5-10" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">5.10</span> Вычислите значение выражения после сокращения:<ul class="task-sub"><li data-label="a">\(\dfrac{x^2-4x+4}{x^2-4}\) при \(x=6\)</li><li data-label="b">\(\dfrac{a^2+6a+9}{a^2-9}\) при \(a=4\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-5-11" data-task-id="task-5-11"><label for="task-5-11" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">5.11</span> Упростите выражение и найдите его значение:<ul class="task-sub"><li data-label="a">\(\dfrac{4x^2-12x+9}{2x-3}\) при \(x=2,5\)</li><li data-label="b">\(\dfrac{9a^2+12a+4}{3a+2}\) при \(a=-\dfrac{1}{3}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-5-12" data-task-id="task-5-12"><label for="task-5-12" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">5.12</span> Найдите значение выражения после сокращения:<ul class="task-sub"><li data-label="a">\(\dfrac{5x^3-5x}{x^2-2x+1}\) при \(x=3\)</li><li data-label="b">\(\dfrac{3a^3-3a}{a^2-2a+1}\) при \(a=4\)</li></ul></span></li>
+    </ol>
+
+    <div class="part-header">Часть 4</div>
+    <ol class="task-list" start="13">
+      <li><input type="checkbox" class="task-checkbox" id="task-5-13" data-task-id="task-5-13"><label for="task-5-13" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">5.13</span> Упростите выражение и найдите его значение:<ul class="task-sub"><li data-label="a">\(\dfrac{x^2-5x+4}{x^2-3x-4}\) при \(x=6\)</li><li data-label="b">\(\dfrac{a^2+3a-10}{a^2-a-6}\) при \(a=5\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-5-14" data-task-id="task-5-14"><label for="task-5-14" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">5.14</span> Вычислите значение выражения после сокращения:<ul class="task-sub"><li data-label="a">\(\dfrac{2x^2-3x-2}{x^2-2x-3}\) при \(x=4\)</li><li data-label="b">\(\dfrac{3a^2+2a-1}{a^2-a-6}\) при \(a=2\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-5-15" data-task-id="task-5-15"><label for="task-5-15" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">5.15</span> Упростите выражение и найдите его значение:<ul class="task-sub"><li data-label="a">\(\dfrac{(2x+1)^2-9}{x^2-2x-3}\) при \(x=5\)</li><li data-label="b">\(\dfrac{(3a-2)^2-4}{a^2-4}\) при \(a=3\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-5-16" data-task-id="task-5-16"><label for="task-5-16" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">5.16</span> Найдите значение выражения после сокращения:<ul class="task-sub"><li data-label="a">\(\dfrac{x^4-16}{x^2-4x+4}\) при \(x=3\)</li><li data-label="b">\(\dfrac{a^4-81}{a^2+6a+9}\) при \(a=2\)</li></ul></span></li>
+    </ol>
+
+    <div class="part-header">Часть 5</div>
+    <ol class="task-list" start="17">
+      <li><input type="checkbox" class="task-checkbox" id="task-5-17" data-task-id="task-5-17"><label for="task-5-17" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">5.17</span> Вычислите значение выражения после сокращения:<ul class="task-sub"><li data-label="a">\(\dfrac{a^3+a^2}{a^2}\) при \(a=2\sqrt{3}\)</li><li data-label="b">\(\dfrac{b^5-b^3}{b^2-1}\) при \(b=0,5\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-5-18" data-task-id="task-5-18"><label for="task-5-18" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">5.18</span> Упростите выражение и найдите его значение:<ul class="task-sub"><li data-label="a">\(\dfrac{x^2-9}{3-x}\) при \(x=5,65\)</li><li data-label="b">\(\dfrac{3a^2-15ab}{25b^2-a^2}\) при \(a=15, b=2\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-5-19" data-task-id="task-5-19"><label for="task-5-19" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">5.19</span> Найдите значение выражения после сокращения:<ul class="task-sub"><li data-label="a">\(\dfrac{m^2-9m}{81m-m^3}\) при \(m=21\)</li><li data-label="b">\(\dfrac{4xy+81-4x^2-y^2}{y+9-2x}\) при \(x=18,05, y=-232\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-5-20" data-task-id="task-5-20"><label for="task-5-20" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">5.20</span> Вычислите значение выражения после сокращения:<ul class="task-sub"><li data-label="a">\(\dfrac{x^3-4x^2+3x}{x}\) при \(x=\sqrt{3}\)</li><li data-label="b">\(\dfrac{a^4-5a^2+4}{a^2-4}\) при \(a=\sqrt{5}\)</li></ul></span></li>
+    </ol>
+  </div>
+
+  <!-- ===== ТИП 6 ===== -->
+  <div class="task-card" id="type6">
+    <div class="task-card-header">
+      <span class="task-type-number">Тип 6</span>
+      <span class="task-type-title">Задания повышенной сложности</span>
+    </div>
+
+    <div class="part-header">Часть 1</div>
+    <ol class="task-list">
+      <li><input type="checkbox" class="task-checkbox" id="task-6-1" data-task-id="task-6-1"><label for="task-6-1" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">6.1</span> Сократите дробь с иррациональными коэффициентами:<ul class="task-sub"><li data-label="a">\(\dfrac{x^2-(2+\sqrt{3})x+2\sqrt{3}}{x^2-4}\)</li><li data-label="b">\(\dfrac{a^2-(\sqrt{5}+\sqrt{2})a+\sqrt{10}}{a^2-7}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-6-2" data-task-id="task-6-2"><label for="task-6-2" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">6.2</span> Упростите дробное выражение с иррациональными коэффициентами:<ul class="task-sub"><li data-label="a">\(\dfrac{x^2+(\sqrt{7}-3)x-3\sqrt{7}}{x^2-9}\)</li><li data-label="b">\(\dfrac{a^2-(\sqrt{3}+\sqrt{11})a+\sqrt{33}}{a^2-14}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-6-3" data-task-id="task-6-3"><label for="task-6-3" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">6.3</span> Докажите тождество:<ul class="task-sub"><li data-label="a">\(\dfrac{(m-n)^2-(m+n)^2}{4mn}=-1\)</li><li data-label="b">\(\dfrac{x^2+xy}{x+y}=\dfrac{x^3-x}{x^2-1}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-6-4" data-task-id="task-6-4"><label for="task-6-4" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">6.4</span> Докажите, что значение дроби не зависит от значений переменных:<ul class="task-sub"><li data-label="a">\(\dfrac{(x-1)^2+1}{x^2-2x+2}\)</li><li data-label="b">\(\dfrac{(a+2)^2+4}{a^2+4a+8}\)</li></ul></span></li>
+    </ol>
+
+    <div class="part-header">Часть 2</div>
+    <ol class="task-list" start="5">
+      <li><input type="checkbox" class="task-checkbox" id="task-6-5" data-task-id="task-6-5"><label for="task-6-5" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">6.5</span> Сократите дробь с использованием алгебраических преобразований:<ul class="task-sub"><li data-label="a">\(\dfrac{x^4+4}{x^2-2x+2}\)</li><li data-label="b">\(\dfrac{a^4+4}{a^2-2a+2}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-6-6" data-task-id="task-6-6"><label for="task-6-6" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">6.6</span> Упростите дробное выражение:<ul class="task-sub"><li data-label="a">\(\dfrac{x^4+2x^2-3}{x^3-2x^2-x+2}\)</li><li data-label="b">\(\dfrac{a^4+2a^2-3}{a^3-2a^2-a+2}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-6-7" data-task-id="task-6-7"><label for="task-6-7" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">6.7</span> Сократите дробь:<ul class="task-sub"><li data-label="a">\(\dfrac{5a^2-4ab-b^2}{b^2+7ab+10a^2}\)</li><li data-label="b">\(\dfrac{20a^2+8ab-b^2}{b^2+5ab+6a^2}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-6-8" data-task-id="task-6-8"><label for="task-6-8" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">6.8</span> Упростите рациональное выражение:<ul class="task-sub"><li data-label="a">\(\dfrac{(4x+5)^2+2(16x^2-25)+(4x-5)^2}{(4x+5)^2-2(16x^2-25)+(4x-5)^2}\)</li><li data-label="b">\(\dfrac{(3a+2)^2+2(9a^2-4)+(3a-2)^2}{(3a+2)^2-2(9a^2-4)+(3a-2)^2}\)</li></ul></span></li>
+    </ol>
+
+    <div class="part-header">Часть 3</div>
+    <ol class="task-list" start="9">
+      <li><input type="checkbox" class="task-checkbox" id="task-6-9" data-task-id="task-6-9"><label for="task-6-9" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">6.9</span> Сократите дробь и постройте график функции:<ul class="task-sub"><li data-label="a">\(y=\dfrac{x^2-4}{x-2}\)</li><li data-label="b">\(y=\dfrac{9-x^2}{x+3}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-6-10" data-task-id="task-6-10"><label for="task-6-10" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">6.10</span> Постройте график функции, предварительно сократив дробь:<ul class="task-sub"><li data-label="a">\(y=\dfrac{x^2-5x+6}{x-3}\)</li><li data-label="b">\(y=\dfrac{x^2+x-12}{x+4}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-6-11" data-task-id="task-6-11"><label for="task-6-11" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">6.11</span> Упростите функцию и постройте её график:<ul class="task-sub"><li data-label="a">\(y=\dfrac{5x^2-10x}{5x}\)</li><li data-label="b">\(y=\dfrac{4x^2+12x}{4x}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-6-12" data-task-id="task-6-12"><label for="task-6-12" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">6.12</span> Приведите функцию к линейному виду и постройте график:<ul class="task-sub"><li data-label="a">\(y=\dfrac{(x-1)^2}{x-1}\)</li><li data-label="b">\(y=\dfrac{(2x-x^2)^2}{x^3+2x^2}\)</li></ul></span></li>
+    </ol>
+
+    <div class="part-header">Часть 4</div>
+    <ol class="task-list" start="13">
+      <li><input type="checkbox" class="task-checkbox" id="task-6-13" data-task-id="task-6-13"><label for="task-6-13" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">6.13</span> Сократите дробь с натуральным параметром \(n\):<ul class="task-sub"><li data-label="a">\(\dfrac{x^{2n}-1}{(x^n+1)^2}\)</li><li data-label="b">\(\dfrac{x^{2n}-y^{4n}}{(x^n+y^{2n})^2}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-6-14" data-task-id="task-6-14"><label for="task-6-14" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">6.14</span> Упростите дробное выражение с параметрами:<ul class="task-sub"><li data-label="a">\(\dfrac{48a^{m-2}b^{n-3}}{144a^{m-1}b^n}\)</li><li data-label="b">\(\dfrac{0,12x^{2m}y^{3n+1}z^{2k-1}}{0,36x^{m-1}y^{3n-2}z^{2k+1}}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-6-15" data-task-id="task-6-15"><label for="task-6-15" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">6.15</span> Сократите дробь с иррациональными коэффициентами:<ul class="task-sub"><li data-label="a">\(\dfrac{x^2-(\sqrt{7}+\sqrt{11})x+\sqrt{77}}{x^2+(\sqrt{3}-\sqrt{7})x-\sqrt{21}}\)</li><li data-label="b">\(\dfrac{a^2-(\sqrt{5}+\sqrt{13})a+\sqrt{65}}{a^2+(\sqrt{2}-\sqrt{5})a-\sqrt{10}}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-6-16" data-task-id="task-6-16"><label for="task-6-16" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">6.16</span> Сократите алгебраическую дробь:<ul class="task-sub"><li data-label="a">\(\dfrac{3x^3-6x^2y+3xy^2}{(3x-3y)^3}\)</li><li data-label="b">\(\dfrac{4a^3-8a^2b+4ab^2}{(2a-2b)^3}\)</li></ul></span></li>
+    </ol>
+
+    <div class="part-header">Часть 5</div>
+    <ol class="task-list" start="17">
+      <li><input type="checkbox" class="task-checkbox" id="task-6-17" data-task-id="task-6-17"><label for="task-6-17" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">6.17</span> Сократите дробь и найдите область определения функции:<ul class="task-sub"><li data-label="a">\(f(x)=\dfrac{x^2-2x-3}{x-3}\)</li><li data-label="b">\(g(x)=\dfrac{x^2+4x-5}{x-1}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-6-18" data-task-id="task-6-18"><label for="task-6-18" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">6.18</span> Упростите функцию и найдите её область определения:<ul class="task-sub"><li data-label="a">\(h(x)=\dfrac{x^2-6x+8}{x-4}\)</li><li data-label="b">\(p(x)=\dfrac{x^2+3x-10}{x+5}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-6-19" data-task-id="task-6-19"><label for="task-6-19" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">6.19</span> Сократите дробь с модулем и найдите область определения:<ul class="task-sub"><li data-label="a">\(f(x)=\dfrac{x^2-4|x|-5}{|x|-5}\)</li><li data-label="b">\(g(x)=\dfrac{x^2-|x|-2}{2-|x|}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-6-20" data-task-id="task-6-20"><label for="task-6-20" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">6.20</span> Приведите функцию к линейному виду и найдите область определения:<ul class="task-sub"><li data-label="a">\(y=\dfrac{x^2-2x}{x-2}\)</li><li data-label="b">\(y=\dfrac{x^3-4x}{x^2-4}\)</li></ul></span></li>
+    </ol>
+  </div>
+
+  <!-- ===== ПРОВЕРКА ЗНАНИЙ ===== -->
+  <div class="task-card quiz-card" id="quiz">
+    <div class="task-card-header">
+      <span class="task-type-number">✦</span>
+      <span class="task-type-title" style="font-size: clamp(24px, 3vw, 34px); color: var(--accent);">Проверка знаний</span>
+    </div>
+    <ol class="task-list">
+      <li><input type="checkbox" class="task-checkbox" id="task-q1" data-task-id="task-q1"><label for="task-q1" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">1</span> Выберите верное равенство для дроби \(\dfrac{3x}{x-y}\):<ul class="task-sub"><li data-label="a">\(\dfrac{3x}{x-y} = \dfrac{3x}{y-x}\)</li><li data-label="b">\(\dfrac{3x}{x-y} = -\dfrac{3x}{y-x}\)</li><li data-label="c">\(\dfrac{3x}{x-y} = \dfrac{3x}{x+y}\)</li><li data-label="d">\(\dfrac{3x}{x-y} = -\dfrac{3x}{x+y}\)</li></ul></span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-q2" data-task-id="task-q2"><label for="task-q2" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">2</span> Определите общий множитель числителя и знаменателя дроби \(\dfrac{18a^3b^2}{24a^2b^3}\).</span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-q3" data-task-id="task-q3"><label for="task-q3" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">3</span> Приведите дробь \(\dfrac{4m}{m+n}\) к знаменателю \(m^2-n^2\).</span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-q4" data-task-id="task-q4"><label for="task-q4" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">4</span> Выполните сокращение дроби \(\dfrac{6x^2-12xy}{3x-6y}\).</span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-q5" data-task-id="task-q5"><label for="task-q5" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">5</span> Упростите дробь \(\dfrac{x^2-6x+9}{9-x^2}\).</span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-q6" data-task-id="task-q6"><label for="task-q6" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">6</span> Сократите дробь \(\dfrac{4a^2-12a+9}{4a^2-9}\).</span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-q7" data-task-id="task-q7"><label for="task-q7" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">7</span> Примените разложение на множители и сократите дробь \(\dfrac{2x^2-3x-2}{x^2-4}\).</span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-q8" data-task-id="task-q8"><label for="task-q8" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">8</span> Найдите значение выражения \(\dfrac{m^5+m^3}{m^3}\) при \(m=2\sqrt{3}\).</span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-q9" data-task-id="task-q9"><label for="task-q9" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">9</span> Упростите дробь \(\dfrac{(x-2)^2-1}{x^2-3x+2}\).</span></li>
+      <li><input type="checkbox" class="task-checkbox" id="task-q10" data-task-id="task-q10"><label for="task-q10" class="task-checkbox-label"></label><span class="task-text"><span class="task-number">10</span> Докажите, что \(\dfrac{x^2+xy}{x+y} = \dfrac{x^3-x}{x^2-1}\) при всех допустимых значениях переменных.</span></li>
+    </ol>
+  </div>
+
+</div>
+
+<!-- ===== КНОПКИ ===== -->
+<a href="../class9alg.html" class="back-link">← Назад к темам</a>
+<button class="top-link" id="topBtn">↑ Наверх</button>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // ===== ПРОГРЕСС =====
+    const checkboxes = document.querySelectorAll('.task-checkbox');
+    const progressFill = document.getElementById('progressFill');
+    const progressText = document.getElementById('progressText');
+    const resetBtn = document.getElementById('resetBtn');
+
+    function updateProgress() {
+      const total = checkboxes.length;
+      const checked = document.querySelectorAll('.task-checkbox:checked').length;
+      const percent = total > 0 ? Math.round((checked / total) * 100) : 0;
+      progressFill.style.width = percent + '%';
+      progressText.textContent = `${checked} из ${total}`;
+    }
+
+    checkboxes.forEach(cb => {
+      const id = cb.dataset.taskId;
+      if (id) {
+        const saved = localStorage.getItem('task_' + id);
+        if (saved === 'true') cb.checked = true;
       }
+      cb.addEventListener('change', function() {
+        if (this.dataset.taskId) localStorage.setItem('task_' + this.dataset.taskId, this.checked);
+        updateProgress();
+      });
+    });
 
-      checkboxes.forEach(cb => {
-        const id = cb.dataset.taskId;
-        if (id) {
-          const saved = localStorage.getItem('task_' + id);
-          if (saved === 'true') cb.checked = true;
-        }
-        cb.addEventListener('change', function() {
-          if (this.dataset.taskId) localStorage.setItem('task_' + this.dataset.taskId, this.checked);
-          updateProgress();
+    resetBtn.addEventListener('click', function() {
+      if (confirm('Сбросить все отметки о выполнении?')) {
+        checkboxes.forEach(cb => {
+          cb.checked = false;
+          if (cb.dataset.taskId) localStorage.removeItem('task_' + cb.dataset.taskId);
         });
-      });
-
-      resetBtn.addEventListener('click', function() {
-        if (confirm('Сбросить все отметки о выполнении?')) {
-          checkboxes.forEach(cb => {
-            cb.checked = false;
-            if (cb.dataset.taskId) localStorage.removeItem('task_' + cb.dataset.taskId);
-          });
-          updateProgress();
-        }
-      });
-      updateProgress();
-
-      // ===== 2. ПОДСКАЗКИ =====
-      const tooltip = document.createElement('div');
-      tooltip.className = 'term-tooltip';
-      document.body.appendChild(tooltip);
-
-      let activeTerm = null;
-
-      function showTooltip(e, text) {
-        tooltip.textContent = text;
-        tooltip.classList.add('visible');
-        const rect = e.target.getBoundingClientRect();
-        let left = rect.left + rect.width / 2 - tooltip.offsetWidth / 2;
-        let top = rect.bottom + 8;
-        if (left < 10) left = 10;
-        if (left + tooltip.offsetWidth > window.innerWidth - 10) {
-          left = window.innerWidth - tooltip.offsetWidth - 10;
-        }
-        if (top + tooltip.offsetHeight > window.innerHeight - 10) {
-          top = rect.top - tooltip.offsetHeight - 8;
-        }
-        tooltip.style.left = left + 'px';
-        tooltip.style.top = top + 'px';
+        updateProgress();
       }
+    });
+    updateProgress();
 
-      function hideTooltip() {
-        tooltip.classList.remove('visible');
-        activeTerm = null;
-      }
-
-      document.querySelectorAll('.term').forEach(term => {
-        const definition = term.dataset.definition;
-        if (!definition) return;
-
-        term.addEventListener('click', function(e) {
-          e.stopPropagation();
-          if (tooltip.classList.contains('visible') && activeTerm === this) {
-            hideTooltip();
-          } else {
-            showTooltip(e, definition);
-            activeTerm = this;
+    // ===== НАВИГАЦИЯ ПО ЯКОРЯМ =====
+    document.querySelectorAll('.nav-internal a').forEach(link => {
+      link.addEventListener('click', function(e) {
+        const targetId = this.getAttribute('href');
+        if (targetId && targetId.startsWith('#')) {
+          e.preventDefault();
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            const headerHeight = document.querySelector('header').offsetHeight;
+            const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20;
+            window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+            document.querySelectorAll('.nav-internal a').forEach(a => a.classList.remove('active'));
+            this.classList.add('active');
           }
+        }
+      });
+    });
+
+    // ===== ПОДСВЕТКА АКТИВНОЙ СЕКЦИИ =====
+    const sections = document.querySelectorAll('.task-card, #quiz');
+    const navLinks = document.querySelectorAll('.nav-internal a');
+    let ticking = false;
+    window.addEventListener('scroll', function() {
+      if (!ticking) {
+        window.requestAnimationFrame(function() {
+          let currentId = '';
+          sections.forEach(section => {
+            const rect = section.getBoundingClientRect();
+            if (rect.top <= 150) currentId = section.id;
+          });
+          navLinks.forEach(link => {
+            const href = link.getAttribute('href');
+            link.classList.toggle('active', href === '#' + currentId);
+          });
+          ticking = false;
         });
-      });
+        ticking = true;
+      }
+    });
 
-      document.addEventListener('click', function(e) {
-        if (!e.target.closest('.term') && tooltip.classList.contains('visible')) {
-          hideTooltip();
-        }
-      });
+    setTimeout(() => {
+      const firstSection = document.querySelector('.task-card');
+      if (firstSection) {
+        const id = firstSection.id;
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+        });
+      }
+    }, 100);
 
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && tooltip.classList.contains('visible')) {
-          hideTooltip();
-        }
-      });
+    // ===== КНОПКА "НАВЕРХ" =====
+    document.getElementById('topBtn').addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
 
-      // ===== 3. KATEX =====
+    // ===== ПЛАВНЫЙ ПЕРЕХОД ДЛЯ ВНЕШНИХ ССЫЛОК =====
+    document.addEventListener('click', function(e) {
+      const link = e.target.closest('a');
+      if (!link) return;
+      if (link.getAttribute('href') === '#') return;
+      if (link.href && link.href.indexOf(window.location.origin) === 0 && !link.target) {
+        if (link.getAttribute('href').startsWith('#')) return;
+        e.preventDefault();
+        document.body.style.opacity = '0';
+        document.body.style.transition = 'opacity 0.5s ease';
+        setTimeout(() => { window.location.href = link.href; }, 500);
+      }
+    });
+
+    // ===== KATEX =====
+    if (typeof renderMathInElement === 'function') {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: false},
+          {left: '\\(', right: '\\)', display: false},
+          {left: '\\[', right: '\\]', display: true}
+        ],
+        throwOnError: false
+      });
+    }
+    window.addEventListener('load', function() {
+      document.body.style.opacity = '1';
       if (typeof renderMathInElement === 'function') {
         renderMathInElement(document.body, {
           delimiters: [
@@ -2551,84 +850,8 @@
           throwOnError: false
         });
       }
-
-      // ===== 4. ПЛАВНЫЙ ПЕРЕХОД =====
-      document.addEventListener('click', function(e) {
-        const link = e.target.closest('a');
-        if (!link) return;
-        if (link.getAttribute('href') === '#') return;
-        if (link.href && link.href.indexOf(window.location.origin) === 0 && !link.target) {
-          if (link.getAttribute('href').startsWith('#')) return;
-          if (link.classList.contains('btn')) return;
-          e.preventDefault();
-          document.body.style.opacity = '0';
-          document.body.style.transition = 'opacity 0.5s ease';
-          setTimeout(() => { window.location.href = link.href; }, 500);
-        }
-      });
-
-      // ===== 5. ПРОКРУТКА К ЯКОРЯМ =====
-      document.querySelectorAll('.nav-internal a').forEach(link => {
-        link.addEventListener('click', function(e) {
-          const targetId = this.getAttribute('href');
-          if (targetId && targetId.startsWith('#')) {
-            e.preventDefault();
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-              const headerHeight = document.querySelector('header').offsetHeight;
-              const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20;
-              window.scrollTo({ top: targetPosition, behavior: 'smooth' });
-              document.querySelectorAll('.nav-internal a').forEach(a => a.classList.remove('active'));
-              this.classList.add('active');
-            }
-          }
-        });
-      });
-
-      // ===== 6. ПОДСВЕТКА АКТИВНОЙ СЕКЦИИ =====
-      const sections = document.querySelectorAll('.task-card, #quiz');
-      const navLinks = document.querySelectorAll('.nav-internal a');
-      let ticking = false;
-
-      window.addEventListener('scroll', function() {
-        if (!ticking) {
-          window.requestAnimationFrame(function() {
-            let currentId = '';
-            sections.forEach(section => {
-              const rect = section.getBoundingClientRect();
-              if (rect.top <= 150) currentId = section.id;
-            });
-            navLinks.forEach(link => {
-              const href = link.getAttribute('href');
-              link.classList.toggle('active', href === '#' + currentId);
-            });
-            ticking = false;
-          });
-          ticking = true;
-        }
-      });
-
-      setTimeout(() => {
-        const firstSection = document.querySelector('.task-card');
-        if (firstSection) {
-          const id = firstSection.id;
-          navLinks.forEach(link => {
-            link.classList.toggle('active', link.getAttribute('href') === '#' + id);
-          });
-        }
-      }, 100);
-
-      // ===== 7. КНОПКА "НАВЕРХ" =====
-      const topBtn = document.getElementById('topBtn');
-      topBtn.addEventListener('click', function() {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
-
-      window.addEventListener('load', function() {
-        document.body.style.opacity = '1';
-      });
     });
-  </script>
-
+  });
+</script>
 </body>
 </html>
