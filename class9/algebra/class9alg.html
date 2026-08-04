@@ -1482,7 +1482,93 @@ z-index:
 
 }
 
+.card-count {
 
+
+margin-top:
+
+18px;
+
+
+
+display:
+
+inline-flex;
+
+
+
+align-items:
+
+center;
+
+
+
+gap:
+
+8px;
+
+
+
+padding:
+
+8px 16px;
+
+
+
+border-radius:
+
+30px;
+
+
+
+background:
+
+rgba(
+34,
+255,
+136,
+0.08
+);
+
+
+
+border:
+
+1px solid
+rgba(
+34,
+255,
+136,
+0.25
+);
+
+
+
+color:
+
+var(--accent);
+
+
+
+font-size:
+
+13px;
+
+
+
+font-weight:
+
+700;
+
+
+
+letter-spacing:
+
+0.3px;
+
+
+
+}
 
 
 
@@ -3936,278 +4022,335 @@ roadmapItems.innerHTML =
 
 }
 
+
+async function getTaskCount(tableURL){
+
+
+try{
+
+
+if(
+!tableURL
+){
+
+return 0;
+
+}
+
+
+
+const csvURL =
+
+tableURL
+
+.replace(
+"/pubhtml",
+"/pub"
+)
+
+.replace(
+"?gid=",
+"?output=csv&gid="
+);
+
+
+
+const response =
+
+await fetch(
+csvURL
+);
+
+
+
+if(
+!response.ok
+){
+
+return 0;
+
+}
+
+
+
+const csv =
+
+await response.text();
+
+
+
+const rows =
+
+parseCSV(csv);
+
+
+
+if(
+rows.length < 2
+){
+
+return 0;
+
+}
+
+
+
+const headers =
+
+rows[0].map(
+
+item =>
+
+item
+.trim()
+.toLowerCase()
+
+);
+
+
+
+const activityIndex =
+
+headers.indexOf(
+"активность"
+);
+
+
+
+if(
+activityIndex === -1
+){
+
+return 0;
+
+}
+
+
+
+let count = 0;
+
+
+
+rows
+.slice(1)
+.forEach(
+
+row=>{
+
+
+const active =
+
+String(
+row[activityIndex]
+)
+
+.trim()
+
+.toLowerCase();
+
+
+
+if(
+active === "true"
+){
+
+count++;
+
+}
+
+
+
+}
+
+);
+
+
+
+return count;
+
+
+
+}
+
+catch(error){
+
+
+console.error(error);
+
+
+return 0;
+
+
+}
+
+
+}
+
 /* ================================================================
    ПОСТРОЕНИЕ КАРТОЧЕК ГЛАВ
 ================================================================ */
 
 
 
-function buildRoadmap(){
+async function buildRoadmap(){
 
+    roadmapItems.innerHTML = "";
 
 
-roadmapItems.innerHTML = "";
+    for(
+        let index = 0;
+        index < chapters.length;
+        index++
+    ){
 
 
+        const chapter = chapters[index];
 
 
+        const item = document.createElement("div");
 
 
+        item.className = "roadmap-item";
 
-chapters.forEach(
 
-(chapter,index)=>{
+        item.dataset.index = index;
 
 
+        item.style.transitionDelay =
+        `${index * 0.08}s`;
 
 
 
-const item =
+        const cardNumber =
+        chapter.chapter ||
+        `Глава ${index + 1}`;
 
-document.createElement(
-"div"
-);
 
 
+        const taskCount =
+        await getTaskCount(
+            chapter.table
+        );
 
 
 
+        item.innerHTML =
 
+        `
 
-item.className =
+        <div class="roadmap-marker"></div>
 
-"roadmap-item";
 
+        <div class="roadmap-card">
 
 
+            <div class="card-header">
 
 
+                <div class="card-number">
 
+                    ${escapeHTML(cardNumber)}
 
-item.dataset.index =
+                </div>
 
-index;
 
 
+                <div class="card-title">
 
+                    ${escapeHTML(chapter.title)}
 
+                </div>
 
 
 
+                <div class="card-icon">
 
-item.style.transitionDelay =
+                    📘
 
-`${index * 0.08}s`;
+                </div>
 
 
 
+                <div class="card-arrow">
 
+                    →
 
+                </div>
 
 
+            </div>
 
 
-const cardNumber =
 
-chapter.chapter ||
+            ${
+            chapter.text
 
-`Глава ${index + 1}`;
+            ?
 
+            `
 
+            <div class="card-text">
 
+                ${escapeHTML(chapter.text)}
 
+            </div>
 
+            `
 
+            :
 
+            ""
 
-item.innerHTML =
+            }
 
 
 
-`
+            <div class="card-count">
 
-<div class="roadmap-marker"></div>
+                📝 ${taskCount} заданий
 
+            </div>
 
 
 
+        </div>
 
-<div
+        `;
 
-class="roadmap-card"
 
-data-index="${index}">
 
+        roadmapItems.appendChild(item);
 
 
 
+        const card =
+        item.querySelector(".roadmap-card");
 
 
-<div class="card-header">
 
+        card.addEventListener(
 
+            "click",
 
+            ()=>{
 
+                openChapter(
+                    chapter,
+                    index
+                );
 
+            }
 
-<div class="card-number">
+        );
 
-${escapeHTML(cardNumber)}
 
-</div>
+    }
 
 
 
-
-
-
-<div class="card-title">
-
-${escapeHTML(chapter.title)}
-
-</div>
-
-
-
-
-
-
-<div class="card-icon">
-
-📘
-
-</div>
-
-
-
-
-
-
-<div class="card-arrow">
-
-→
-
-</div>
-
-
-
-
-
-
-</div>
-
-
-
-
-
-
-
-
-${
-chapter.text
-
-?
-
-`
-
-<div class="card-text">
-
-${escapeHTML(chapter.text)}
-
-</div>
-
-`
-
-:
-
-""
+    observeRoadmap();
 
 }
-
-
-
-
-
-
-
-</div>
-
-`;
-
-
-
-
-
-
-
-
-roadmapItems.appendChild(
-item
-);
-
-
-
-
-
-
-
-
-const card =
-
-item.querySelector(
-".roadmap-card"
-);
-
-
-
-
-
-
-
-
-card.addEventListener(
-
-"click",
-
-()=>{
-
-
-
-openChapter(
-
-chapter,
-
-index
-
-);
-
-
-
-}
-
-);
-
-
-
-
-
-
-}
-
-);
-
-
-
-
-
-
-
-observeRoadmap();
-
-
-
-}
-
 
 
 
@@ -4322,137 +4465,69 @@ index
 
 ){
 
+    currentChapter = chapter;
+
+    activeChapterIndex = index;
 
 
-currentChapter = chapter;
+    document
+    .querySelectorAll(".roadmap-item")
+    .forEach(item=>{
+
+        item.classList.remove("active");
+
+    });
 
 
-
-activeChapterIndex = index;
-
-
-
+    const currentItem = document.querySelector(
+        `.roadmap-item[data-index="${index}"]`
+    );
 
 
+    if(currentItem){
+
+        currentItem.classList.add("active");
+
+    }
 
 
-document
-.querySelectorAll(
-".roadmap-item"
-)
+    chapterName.textContent =
+    chapter.title ||
+    chapter.chapter ||
+    "глава";
 
-.forEach(
 
-item=>{
+    materialsSection.style.display = "block";
 
-item.classList.remove(
-"active"
-);
+
+    setTimeout(()=>{
+
+        materialsSection.scrollIntoView({
+
+            behavior:"smooth",
+
+            block:"start"
+
+        });
+
+    },200);
+
+
+    materialsGrid.innerHTML =
+
+    `
+    <div class="msg">
+    ⏳ Загрузка заданий...
+    </div>
+    `;
+
+
+    loadMaterials(chapter.table);
+
+
+    updateProgress();
 
 }
-
-);
-
-
-
-
-
-
-
-const currentItem =
-
-document.querySelector(
-
-`.roadmap-item[data-index="${index}"]`
-
-);
-
-
-
-
-
-
-
-if(currentItem){
-
-
-
-currentItem.classList.add(
-"active"
-);
-
-
-
-}
-
-
-
-
-
-
-
-chapterName.textContent =
-
-chapter.title ||
-
-chapter.chapter ||
-
-"глава";
-
-
-
-
-
-
-
-materialsSection.style.display =
-
-"block";
-
-
-
-
-
-
-
-materialsGrid.innerHTML =
-
-
-
-`
-
-<div class="msg">
-
-⏳ Загрузка заданий...
-
-</div>
-
-`;
-
-
-
-
-
-
-
-loadMaterials(
-
-chapter.table
-
-);
-
-
-
-
-
-
-
-updateProgress();
-
-
-
-}
-
 
 
 
