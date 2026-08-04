@@ -253,7 +253,7 @@
       margin: 0 auto;
       padding: 20px;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 16px;
       flex: 1;
     }
@@ -281,6 +281,30 @@
       border-color: var(--accent);
       box-shadow: 0 0 30px rgba(34, 255, 136, 0.08);
     }
+
+    .card-extra {
+  border: 2px solid rgba(34,255,136,0.35);
+  background:
+    linear-gradient(
+      145deg,
+      rgba(34,255,136,0.12),
+      rgba(15,23,32,0.9)
+    );
+}
+
+
+.card-extra:hover {
+  border-color: var(--accent);
+  box-shadow:
+    0 0 40px rgba(34,255,136,0.25);
+}
+
+
+.card-extra h3 {
+  color: var(--accent);
+}
+
+
 
     .card h3 {
       font-size: clamp(18px, 2.5vw, 24px);
@@ -796,6 +820,7 @@
         padding: 12px;
       }
       .card {
+        min-height:170px;
         padding: 14px;
         overflow: hidden;
       }
@@ -1014,6 +1039,39 @@
       card.addEventListener('click', () => openClass(n));
       grid.appendChild(card);
     });
+
+const extraCard = document.createElement('div');
+
+extraCard.className = 'card card-extra';
+
+extraCard.style.animationDelay = '1s';
+
+
+extraCard.innerHTML = `
+
+  <h3>
+    Еще
+  </h3>
+
+  <p>
+    Дополнительные материалы
+  </p>
+
+  <div class="go">
+    открыть →
+  </div>
+
+`;
+
+
+extraCard.addEventListener('click', () => {
+
+  window.location.href = 'extra/extra.html';
+
+});
+
+
+grid.appendChild(extraCard);
 
     function openClass(n) {
       if (n === 5) {
