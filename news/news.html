@@ -1,0 +1,1601 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Объявления — EPALLAXIS</title>
+
+<link rel="icon" type="image/png" href="../icon.png">
+
+
+<style>
+
+
+:root {
+
+  --bg:#060a10;
+
+  --panel:#101820;
+
+  --panel2:#141f2b;
+
+  --text:#e8f0ea;
+
+  --muted:#9aa4b2;
+
+
+  /* цвет объявлений */
+
+  --news:#7c8cff;
+
+  --news-soft:
+  rgba(124,140,255,.15);
+
+
+  --border:
+  rgba(124,140,255,.25);
+
+}
+
+
+
+
+* {
+
+margin:0;
+
+padding:0;
+
+box-sizing:border-box;
+
+font-family:
+system-ui,
+-apple-system,
+"Segoe UI",
+Roboto,
+Arial,
+sans-serif;
+
+}
+
+
+
+body {
+
+
+min-height:100vh;
+
+
+background:
+
+radial-gradient(
+900px 500px at 20% 0%,
+rgba(124,140,255,.18),
+transparent 60%
+),
+
+var(--bg);
+
+
+color:var(--text);
+
+
+padding-bottom:50px;
+
+
+opacity:0;
+
+
+animation:
+pageAppear .8s ease forwards;
+
+}
+
+
+
+@keyframes pageAppear {
+
+from {
+
+opacity:0;
+
+transform:translateY(15px);
+
+}
+
+
+to {
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+
+
+/* ======================
+HEADER
+====================== */
+
+
+header {
+
+
+position:sticky;
+
+top:0;
+
+z-index:10;
+
+
+padding:18px 20px;
+
+
+background:
+
+rgba(6,10,16,.85);
+
+
+backdrop-filter:
+blur(14px);
+
+
+border-bottom:
+
+1px solid var(--border);
+
+
+}
+
+
+
+.header-row {
+
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+
+}
+
+
+
+.logo {
+
+
+font-size:28px;
+
+font-weight:800;
+
+letter-spacing:2px;
+
+
+}
+
+
+
+.logo span {
+
+
+color:var(--news);
+
+}
+
+
+
+.subtitle {
+
+
+margin-top:4px;
+
+font-size:14px;
+
+color:var(--muted);
+
+
+}
+
+
+
+/* ======================
+CONTENT
+====================== */
+
+
+.container {
+
+
+width:100%;
+
+
+max-width:1200px;
+
+
+margin:
+
+35px auto;
+
+
+padding:
+
+0 20px;
+
+
+}
+
+
+
+.title {
+
+
+font-size:
+
+clamp(32px,5vw,48px);
+
+
+}
+
+
+
+.title span {
+
+
+color:var(--news);
+
+
+}
+
+
+
+.description {
+
+
+margin-top:10px;
+
+color:var(--muted);
+
+font-size:16px;
+
+
+}
+
+
+
+.update-btn {
+
+
+margin-top:25px;
+
+
+padding:
+
+10px 24px;
+
+
+border-radius:30px;
+
+
+border:
+
+1px solid var(--border);
+
+
+background:
+
+transparent;
+
+
+color:var(--news);
+
+
+cursor:pointer;
+
+
+font-size:15px;
+
+
+transition:.3s;
+
+
+}
+
+
+
+.update-btn:hover {
+
+
+background:
+
+var(--news-soft);
+
+
+box-shadow:
+
+0 0 25px rgba(124,140,255,.25);
+
+
+}
+
+
+
+.update-btn.loading {
+
+
+opacity:.5;
+
+pointer-events:none;
+
+
+}
+
+
+
+/* ======================
+CARDS
+====================== */
+
+
+.news-list {
+
+
+margin-top:30px;
+
+
+display:flex;
+
+flex-direction:column;
+
+
+gap:16px;
+
+
+}
+
+
+
+
+.news-card {
+
+
+width:100%;
+
+
+padding:
+
+25px 30px;
+
+
+border-radius:20px;
+
+
+background:
+
+linear-gradient(
+145deg,
+var(--panel),
+var(--panel2)
+);
+
+
+border:
+
+1px solid rgba(255,255,255,.08);
+
+
+position:relative;
+
+
+overflow:hidden;
+
+
+text-decoration:none;
+
+
+color:var(--text);
+
+
+transition:.35s;
+
+
+animation:
+
+cardAppear .6s ease forwards;
+
+
+
+opacity:0;
+
+
+}
+
+
+
+@keyframes cardAppear {
+
+
+from {
+
+opacity:0;
+
+transform:
+
+translateY(20px);
+
+}
+
+
+to {
+
+opacity:1;
+
+transform:
+
+translateY(0);
+
+}
+
+
+}
+
+
+
+.news-card::before {
+
+
+content:"";
+
+
+position:absolute;
+
+
+left:0;
+
+top:0;
+
+
+height:100%;
+
+
+width:5px;
+
+
+background:
+
+var(--news);
+
+
+}
+
+
+
+
+.news-card:hover {
+
+
+transform:
+
+translateY(-5px);
+
+
+border-color:
+
+var(--news);
+
+
+box-shadow:
+
+
+0 15px 45px
+
+rgba(0,0,0,.35),
+
+
+0 0 30px
+
+rgba(124,140,255,.15);
+
+
+
+}
+
+
+
+.news-title {
+
+
+font-size:24px;
+
+font-weight:700;
+
+
+}
+
+
+
+.news-description {
+
+
+margin-top:10px;
+
+
+color:var(--muted);
+
+
+line-height:1.5;
+
+
+font-size:16px;
+
+
+}
+
+
+
+.news-link {
+
+
+margin-top:15px;
+
+
+display:inline-block;
+
+
+color:var(--news);
+
+
+font-weight:600;
+
+
+}
+
+/* ======================
+   MOBILE
+====================== */
+
+
+@media(max-width:700px){
+
+
+header {
+
+padding:
+
+15px 12px;
+
+}
+
+
+
+.container {
+
+
+padding:
+
+0 12px;
+
+
+margin-top:
+
+25px;
+
+
+}
+
+
+
+.logo {
+
+font-size:
+
+22px;
+
+}
+
+
+
+.subtitle {
+
+font-size:
+
+12px;
+
+}
+
+
+
+.news-card {
+
+
+padding:
+
+20px;
+
+
+}
+
+
+
+.news-title {
+
+
+font-size:
+
+20px;
+
+
+}
+
+
+
+.news-description {
+
+
+font-size:
+
+14px;
+
+
+}
+
+
+
+.update-btn {
+
+
+width:100%;
+
+
+}
+
+
+}
+
+
+
+
+/* ======================
+   MESSAGE
+====================== */
+
+
+.message {
+
+
+text-align:center;
+
+
+padding:
+
+40px 20px;
+
+
+color:
+
+var(--muted);
+
+
+font-size:16px;
+
+
+}
+
+
+.message.error {
+
+
+color:#ff7777;
+
+
+}
+
+
+/* ======================
+   LOADING EFFECT
+====================== */
+
+
+.loading-dot {
+
+
+display:inline-block;
+
+
+animation:
+
+loadingPulse 1.4s infinite;
+
+
+}
+
+
+
+@keyframes loadingPulse {
+
+
+0% {
+
+opacity:.3;
+
+}
+
+
+50% {
+
+opacity:1;
+
+}
+
+
+100% {
+
+opacity:.3;
+
+}
+
+
+}
+
+/* ======================
+   FLOAT HOME BUTTON
+====================== */
+
+.home-btn {
+
+  position:fixed;
+
+
+  left:25px;
+
+
+  bottom:25px;
+
+
+  z-index:100;
+
+
+
+  padding:12px 26px;
+
+
+  border-radius:40px;
+
+
+  text-decoration:none;
+
+
+  color:#f5d76e;
+
+
+  background:
+
+  rgba(16,24,32,.88);
+
+
+
+  border:
+
+  1px solid rgba(245,215,110,.35);
+
+
+
+  backdrop-filter:blur(12px);
+
+
+
+  font-size:15px;
+
+
+  font-weight:600;
+
+
+
+  transition:.35s;
+
+
+
+  box-shadow:
+
+  0 10px 40px rgba(0,0,0,.35);
+
+
+}
+
+
+
+.home-btn:hover {
+
+
+  transform:
+
+translateY(-5px);
+
+
+  background:
+
+  rgba(245,215,110,.12);
+
+
+  border-color:
+
+  #f5d76e;
+
+
+  box-shadow:
+
+  0 0 35px rgba(245,215,110,.25);
+
+
+}
+
+
+
+@media(max-width:700px){
+
+.home-btn {
+
+  left:15px;
+
+  bottom:15px;
+
+  padding:10px 20px;
+
+  width:auto;
+
+  text-align:center;
+
+}
+
+}
+</style>
+
+</head>
+
+
+<body>
+
+
+
+<header>
+
+
+<div class="header-row">
+
+
+<div>
+
+
+<div class="logo">
+
+EPALLAXIS <span>news</span>
+
+</div>
+
+
+<div class="subtitle">
+
+Объявления и важные сообщения
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</header>
+
+
+
+
+<main class="container">
+
+
+<h1 class="title">
+
+Объявления <span>EPALLAXIS</span>
+
+</h1>
+
+
+<p class="description">
+
+Новости проекта, обновления и важная информация
+
+</p>
+
+
+
+<button 
+class="update-btn"
+id="updateBtn">
+
+🔄 Обновить объявления
+
+</button>
+
+
+
+<div 
+class="news-list"
+id="newsList">
+
+
+<div class="message">
+
+<span class="loading-dot">
+⏳
+</span>
+
+Загрузка объявлений...
+
+</div>
+
+
+</div>
+
+
+
+</main>
+
+
+
+<script>
+
+
+// =====================================
+// GOOGLE SHEETS
+// =====================================
+
+
+const SHEET_URL = 
+"https://docs.google.com/spreadsheets/d/e/2PACX-1vT4byAxgoS02BNYbnY_SzIdwuasKnsuoJvWjiXZ20nO6Pb75eSMgoUJkYbG4na_f0zb-rcqsEQC9gBi/pubhtml?gid=0&single=true";
+
+
+
+// ВАЖНО:
+// берем CSV,
+// а не HTML.
+// Так Google отдаёт актуальные данные.
+
+
+const CSV_URL =
+SHEET_URL
+.replace(
+"/pubhtml",
+"/pub"
+)
+.replace(
+"?gid=0&single=true",
+"?output=csv"
+);
+
+
+
+const newsList =
+document.getElementById("newsList");
+
+
+const updateBtn =
+document.getElementById("updateBtn");
+
+
+
+let loading = false;
+
+
+
+// =====================================
+// CSV PARSER
+// =====================================
+
+
+function parseCSV(text){
+
+
+const rows=[];
+
+
+let row=[];
+
+let value="";
+
+let quotes=false;
+
+
+
+for(
+let i=0;
+i<text.length;
+i++
+){
+
+
+const char=text[i];
+
+
+if(char === '"'){
+
+
+if(
+quotes &&
+text[i+1]==='"'
+){
+
+value+='"';
+
+i++;
+
+}
+
+else {
+
+
+quotes=!quotes;
+
+
+}
+
+
+}
+
+else if(
+char==="," &&
+!quotes
+){
+
+
+row.push(value);
+
+value="";
+
+
+}
+
+
+else if(
+(char==="\n" || char==="\r")
+&& !quotes
+){
+
+
+if(value!=="" || row.length){
+
+
+row.push(value);
+
+rows.push(row);
+
+
+}
+
+
+row=[];
+
+value="";
+
+
+}
+
+else {
+
+
+value+=char;
+
+
+}
+
+
+}
+
+
+
+if(value || row.length){
+
+
+row.push(value);
+
+rows.push(row);
+
+
+}
+
+
+return rows;
+
+
+}
+
+
+
+// =====================================
+// LOAD DATA
+// =====================================
+
+
+async function loadNews(){
+
+
+
+if(loading)
+
+return;
+
+
+
+loading=true;
+
+
+
+updateBtn.classList.add("loading");
+
+
+updateBtn.textContent=
+"⏳ Загрузка...";
+
+
+
+newsList.innerHTML=
+
+`
+
+<div class="message">
+
+<span class="loading-dot">
+⏳
+</span>
+
+Получение объявлений...
+
+</div>
+
+`;
+
+
+
+try{
+
+
+const response =
+await fetch(
+CSV_URL +
+"&t=" +
+Date.now()
+);
+
+
+
+if(!response.ok)
+
+throw new Error(
+"Ошибка загрузки таблицы"
+);
+
+
+
+const csv =
+await response.text();
+
+
+
+const data =
+parseCSV(csv);
+
+
+
+renderNews(data);
+
+
+
+}
+
+catch(error){
+
+
+
+newsList.innerHTML=
+
+`
+
+<div class="message error">
+
+❌ Не удалось загрузить объявления
+
+</div>
+
+`;
+
+
+
+console.error(error);
+
+
+
+}
+
+
+finally{
+
+
+loading=false;
+
+
+updateBtn.classList.remove("loading");
+
+
+updateBtn.textContent=
+"🔄 Обновить объявления";
+
+
+}
+
+
+}
+
+
+
+
+
+// =====================================
+// RENDER NEWS
+// =====================================
+
+
+function renderNews(data){
+
+
+if(!data || data.length < 2){
+
+
+newsList.innerHTML = `
+
+<div class="message">
+
+📭 Объявлений пока нет
+
+</div>
+
+`;
+
+
+return;
+
+
+}
+
+
+
+
+// первая строка — заголовки
+
+const headers =
+data[0].map(item =>
+item.trim().toLowerCase()
+);
+
+
+
+// поиск нужных колонок
+
+const orderIndex =
+headers.indexOf("порядок");
+
+
+const titleIndex =
+headers.indexOf("заголовок");
+
+
+const descriptionIndex =
+headers.indexOf("описание");
+
+
+const linkIndex =
+headers.indexOf("ссылка");
+
+
+const activeIndex =
+headers.indexOf("активность");
+
+
+
+
+if(
+titleIndex === -1 ||
+descriptionIndex === -1
+){
+
+
+newsList.innerHTML = `
+
+<div class="message error">
+
+❌ Ошибка структуры таблицы
+
+</div>
+
+`;
+
+
+return;
+
+
+}
+
+
+
+
+let cards=[];
+
+
+
+data
+.slice(1)
+.forEach(row=>{
+
+
+
+const activeValue =
+row[activeIndex];
+
+
+// обработка чекбокса Google Sheets
+
+const isActive =
+String(activeValue)
+.trim()
+.toLowerCase()
+===
+"true";
+
+
+
+// если чекбокс выключен — пропускаем
+
+if(!isActive)
+
+return;
+
+
+
+cards.push({
+
+
+order:
+Number(row[orderIndex]) || 9999,
+
+
+title:
+row[titleIndex] || "Без заголовка",
+
+
+description:
+row[descriptionIndex] || "",
+
+
+link:
+row[linkIndex] || ""
+
+
+});
+
+
+
+});
+
+
+
+
+
+if(cards.length===0){
+
+
+newsList.innerHTML = `
+
+<div class="message">
+
+📭 Активных объявлений нет
+
+</div>
+
+`;
+
+
+return;
+
+
+}
+
+
+
+
+// сортировка по порядку
+
+
+cards.sort(
+(a,b)=>
+a.order-b.order
+);
+
+
+
+
+
+newsList.innerHTML="";
+
+
+
+
+
+cards.forEach(
+(card,index)=>{
+
+
+const element =
+document.createElement("a");
+
+
+
+element.className=
+"news-card";
+
+
+
+element.style.animationDelay =
+`${index*0.08}s`;
+
+
+
+if(card.link.trim()){
+
+
+element.href =
+card.link;
+
+
+element.target =
+"_blank";
+
+
+}
+
+
+
+element.innerHTML=
+
+`
+
+<div class="news-title">
+
+${escapeHTML(card.title)}
+
+</div>
+
+
+<div class="news-description">
+
+${escapeHTML(card.description)}
+
+</div>
+
+
+
+${
+card.link.trim()
+
+?
+
+`
+
+<div class="news-link">
+
+Открыть →
+
+</div>
+
+`
+
+:
+
+""
+
+}
+
+
+`;
+
+
+
+newsList.appendChild(element);
+
+
+
+});
+
+
+
+}
+
+
+
+
+// =====================================
+// ЗАЩИТА ОТ HTML В ТАБЛИЦЕ
+// =====================================
+
+
+function escapeHTML(text){
+
+
+return String(text)
+
+.replace(
+/&/g,
+"&amp;"
+)
+
+.replace(
+/</g,
+"&lt;"
+)
+
+.replace(
+/>/g,
+"&gt;"
+)
+
+.replace(
+/"/g,
+"&quot;"
+)
+
+.replace(
+/'/g,
+"&#039;"
+);
+
+
+}
+
+
+
+
+// =====================================
+// EVENTS
+// =====================================
+
+
+updateBtn.addEventListener(
+"click",
+loadNews
+);
+
+
+
+
+window.addEventListener(
+"load",
+loadNews
+);
+
+
+
+</script>
+
+<a href="../index.html" class="home-btn">
+
+🏠 На главную
+
+</a>
+</body>
+
+</html>

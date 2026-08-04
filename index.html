@@ -311,6 +311,50 @@
       margin-top: 8px;
     }
 
+/* =============================================================
+   ОБЪЯВЛЕНИЯ — САПФИРОВАЯ КАРТОЧКА
+============================================================= */
+
+.card-news {
+
+  border:2px solid rgba(120,160,255,.45);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(80,120,255,.18),
+      rgba(15,23,32,.95)
+    );
+
+  box-shadow:
+    0 0 35px rgba(80,120,255,.08);
+
+}
+
+
+.card-news:hover {
+
+  border-color:#789cff;
+
+  box-shadow:
+    0 0 60px rgba(80,120,255,.3);
+
+}
+
+
+.card-news h3 {
+
+  color:#9bb6ff;
+
+}
+
+
+.card-news .go {
+
+  color:#9bb6ff;
+
+}
+
     .card p {
       margin-top: 6px;
       color: var(--muted);
@@ -1072,6 +1116,43 @@ extraCard.addEventListener('click', () => {
 
 
 grid.appendChild(extraCard);
+
+const newsCard = document.createElement('div');
+
+
+newsCard.className = 'card card-news';
+
+
+newsCard.style.animationDelay = '1.1s';
+
+
+newsCard.innerHTML = `
+
+  <h3>
+    📢 Объявления
+  </h3>
+
+
+  <p>
+    Новости, обновления и важная информация
+  </p>
+
+
+  <div class="go">
+    открыть →
+  </div>
+
+`;
+
+
+newsCard.addEventListener('click', () => {
+
+  window.location.href = 'news/news.html';
+
+});
+
+
+grid.appendChild(newsCard);
 
     function openClass(n) {
       if (n === 5) {
