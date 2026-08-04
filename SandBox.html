@@ -1,1238 +1,2213 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Еще — EPALLAXIS</title>
+
+<title>
+Алгебра 9 класс — EPALLAXIS
+</title>
+
 
 <link rel="icon" type="image/png" href="../../icon.png">
 
+
+
 <style>
+
+
+/* ================================================================
+   EPALLAXIS ALGEBRA 9
+   PREMIUM DESIGN SYSTEM
+================================================================ */
+
+
+/* ================================================================
+   VARIABLES
+================================================================ */
+
 
 :root {
-  --bg: #060a10;
-  --panel: #101820;
-  --panel2: #141f2b;
-  --text: #e8f0ea;
-  --muted: #9aa4b2;
 
-  --accent: #22ff88;
-  --border: rgba(34,255,136,.18);
 
-  --radius: 18px;
+--bg:
+#060a10;
+
+
+--panel:
+#101923;
+
+
+--panel-light:
+#162535;
+
+
+--text:
+#edf5ef;
+
+
+--muted:
+#9aa8b5;
+
+
+
+/* АЛГЕБРА */
+
+--accent:
+#22ff88;
+
+
+
+--accent-soft:
+rgba(
+34,
+255,
+136,
+0.12
+);
+
+
+
+--border:
+rgba(
+34,
+255,
+136,
+0.18
+);
+
+
+
+--shadow:
+0 20px 60px
+rgba(
+0,
+0,
+0,
+0.35
+);
+
+
+
+--radius:
+22px;
+
+
+
+--transition:
+0.35s cubic-bezier(
+0.22,
+1,
+0.36,
+1
+);
+
+
 }
 
 
-/* =========================
+
+
+
+
+/* ================================================================
    RESET
-========================= */
+================================================================ */
+
 
 * {
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:
-    system-ui,
-    -apple-system,
-    "Segoe UI",
-    Roboto,
-    Arial,
-    sans-serif;
+
+
+margin:
+0;
+
+
+padding:
+0;
+
+
+box-sizing:
+border-box;
+
+
+font-family:
+
+system-ui,
+-apple-system,
+"Segoe UI",
+Roboto,
+Arial,
+sans-serif;
+
+
 }
+
+
+
+
+html {
+
+
+scroll-behavior:
+smooth;
+
+
+}
+
+
+
 
 
 body {
 
-  min-height:100vh;
 
-  background:
-    radial-gradient(
-      1000px 600px at 20% 0%,
-      #10251c 0%,
-      #060a10 60%
-    );
+min-height:
+100vh;
 
-  color:var(--text);
 
-  padding:0 20px 50px;
 
-}
+background:
 
 
+radial-gradient(
+900px 500px at 15% 0%,
+rgba(
+34,
+255,
+136,
+0.16
+),
+transparent 60%
+),
 
-/* =========================
-   HEADER
-========================= */
 
-header {
+radial-gradient(
+700px 400px at 90% 20%,
+rgba(
+34,
+255,
+136,
+0.05
+),
+transparent 70%
+),
 
-  position:sticky;
 
-  top:0;
+var(--bg);
 
-  z-index:100;
 
-  margin:0 -20px;
 
-  padding:18px 20px;
-
-  background:
-    rgba(6,10,16,.82);
-
-  backdrop-filter:blur(14px);
-
-  border-bottom:
-    1px solid var(--border);
-
-}
-
-
-
-.header-row {
-
-  display:flex;
-
-  justify-content:space-between;
-
-  align-items:center;
-
-}
-
-
-.logo {
-
-  font-size:28px;
-
-  font-weight:800;
-
-  letter-spacing:2px;
-
-}
-
-
-.logo span {
-
-  color:var(--accent);
-
-}
-
-
-.subtitle {
-
-  margin-top:4px;
-
-  color:var(--muted);
-
-  font-size:14px;
-
-}
-
-
-
-/* =========================
-   BUTTON UPDATE
-========================= */
-
-
-.reload-btn {
-
-  margin-top:20px;
-
-  background:transparent;
-
-  border:
-
-    1px solid var(--border);
-
-  color:var(--muted);
-
-  padding:
-
-    9px 22px;
-
-  border-radius:30px;
-
-  cursor:pointer;
-
-  font-size:14px;
-
-  transition:.3s;
-
-}
-
-
-.reload-btn:hover {
-
-  color:var(--accent);
-
-  border-color:var(--accent);
-
-  box-shadow:
-
-    0 0 20px
-
-    rgba(34,255,136,.15);
-
-}
-
-
-.reload-btn.loading {
-
-  opacity:.5;
-
-  pointer-events:none;
-
-}
-
-
-
-/* =========================
-   TITLE
-========================= */
-
-
-.page-title {
-
-  width:100%;
-
-  max-width:1200px;
-
-  margin:
-
-    35px auto 20px;
-
-}
-
-
-.page-title h1 {
-
-  font-size:
-
-    clamp(32px,5vw,46px);
-
-}
-
-
-.page-title span {
-
-  color:var(--accent);
-
-}
-
-
-.page-title p {
-
-  margin-top:8px;
-
-  color:var(--muted);
-
-  font-size:16px;
-
-}
-
-
-
-
-/* =========================
-   CARDS CONTAINER
-========================= */
-
-
-.cards {
-
-  width:100%;
-
-  max-width:1200px;
-
-  margin:
-
-    0 auto;
-
-  display:flex;
-
-  flex-direction:column;
-
-  gap:16px;
-
-}
-
-
-
-/* =========================
-   CARD
-========================= */
-
-
-.extra-card {
-
-  width:100%;
-
-  min-height:110px;
-
-
-  display:flex;
-
-  align-items:center;
-
-  gap:22px;
-
-
-  padding:
-
-    22px 28px;
-
-
-  border-radius:
-
-    var(--radius);
-
-
-  background:
-
-    linear-gradient(
-      145deg,
-      var(--panel),
-      var(--panel2)
-    );
-
-
-  border:
-
-    1px solid rgba(255,255,255,.08);
-
-
-  text-decoration:none;
-
-  color:var(--text);
-
-
-  position:relative;
-
-  overflow:hidden;
-
-
-  transition:
-
-    .35s;
-
-}
-
-
-
-.extra-card:hover {
-
-  transform:
-
-    translateY(-4px);
-
-
-  border-color:
-
-    var(--card-color);
-
-
-  box-shadow:
-
-    0 15px 40px
-
-    rgba(0,0,0,.35);
-
-}
-
-
-
-.extra-card::before {
-
-  content:"";
-
-  position:absolute;
-
-  left:0;
-
-  top:0;
-
-  width:5px;
-
-  height:100%;
-
-  background:
-
-    var(--card-color);
-
-}
-
-
-
-.card-icon {
-
-  flex-shrink:0;
-
-  width:60px;
-
-  height:60px;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-
-  border-radius:16px;
-
-
-  background:
-
-    color-mix(
-      in srgb,
-      var(--card-color) 15%,
-      transparent
-    );
-
-
-  font-size:32px;
-
-}
-
-
-
-.card-info {
-
-  flex:1;
-
-  min-width:0;
-
-}
-
-
-.card-name {
-
-  font-size:22px;
-
-  font-weight:650;
-
-  line-height:1.25;
-
-}
-
-
-.card-description {
-
-  margin-top:7px;
-
-  color:var(--muted);
-
-  font-size:15px;
-
-  line-height:1.45;
-
-  word-break:break-word;
-
-}
-
-
-
-.card-arrow {
-
-  font-size:28px;
-
-  color:var(--card-color);
-
-  opacity:.5;
-
-}
-
-
-
-/* =========================
-   EMPTY / ERROR
-========================= */
-
-
-.message {
-
-  text-align:center;
-
-  padding:40px 20px;
-
-  color:var(--muted);
-
-}
-
-
-.message.error {
-
-  color:#ff7777;
-
-}
-
-
-
-/* =========================
-   MOBILE
-========================= */
-
-
-@media(max-width:700px){
-
-
-body {
-
-  padding:
-
-    0 12px 40px;
-
-}
-
-
-header {
-
-  margin:
-
-    0 -12px;
-
-  padding:
-
-    15px 12px;
-
-}
-
-
-
-.logo {
-
-  font-size:22px;
-
-}
-
-
-.extra-card {
-
-  padding:
-
-    18px;
-
-  gap:14px;
-
-}
-
-
-.card-icon {
-
-  width:48px;
-
-  height:48px;
-
-  font-size:25px;
-
-}
-
-
-.card-name {
-
-  font-size:18px;
-
-}
-
-
-.card-description {
-
-  font-size:13px;
-
-}
-
-
-.card-arrow {
-
-  display:none;
-
-}
-
-
-}
-
-
-</style>
-
-</head>
-
-
-<body>
-
-
-<header>
-
-<div class="header-row">
-
-<div>
-
-<div class="logo">
-EPALLAXIS <span>extra</span>
-</div>
-
-<div class="subtitle">
-Дополнительные материалы и возможности
-</div>
-
-</div>
-
-</div>
-
-</header>
-
-
-
-<div class="page-title">
-
-<h1>
-Еще <span>материалы</span>
-</h1>
-
-<p>
-Полезные разделы, инструменты и дополнительные возможности
-</p>
-
-
-<button class="reload-btn" id="reloadBtn">
-🔄 Обновить карточки
-</button>
-
-
-</div>
-
-
-
-<div class="cards" id="cardsContainer">
-
-<div class="message">
-⏳ Загрузка карточек...
-</div>
-
-
-</div>
-
-<script>
-
-
-/* =====================================================
-   GOOGLE SHEET
-===================================================== */
-
-
-const sheetURL = 
-"https://docs.google.com/spreadsheets/d/e/2PACX-1vT-ffMQhoWFYjEYo_1zj42dMreh4l1HQKXEV9J_ZnI4NLkMvYVyL7KWmmdwRCX3qoHjSq8czHR-bvWX/pub?output=csv";
-
-
-
-const cardsContainer =
-document.getElementById("cardsContainer");
-
-
-const reloadBtn =
-document.getElementById("reloadBtn");
-
-
-
-/* =====================================================
-   RANDOM ICONS
-===================================================== */
-
-
-const icons = [
-
-"📘",
-"🧠",
-"⚙️",
-"🚀",
-"🎯",
-"💡",
-"🧩",
-"🛠️",
-"📚",
-"🔬",
-"🌐",
-"✨",
-"🎨",
-"📊",
-"🔥"
-
-];
-
-
-
-function randomIcon(){
-
-return icons[
-Math.floor(
-Math.random()*icons.length
-)
-];
-
-}
-
-
-
-
-/* =====================================================
-   PREMIUM COLORS
-===================================================== */
-
-
-const colors = [
-
-"#7C9A92",
-"#8A7C9A",
-"#9A8B7C",
-"#6F8FAF",
-"#8FAF8F",
-"#AF8F8F",
-"#7F8FAF",
-"#9F9A70",
-"#718A86",
-"#8B829A"
-
-];
-
-
-
-function randomColor(){
-
-return colors[
-Math.floor(
-Math.random()*colors.length
-)
-];
-
-}
-
-
-
-
-
-/* =====================================================
-   CSV PARSER
-===================================================== */
-
-
-function parseCSV(text){
-
-
-const rows=[];
-
-let row=[];
-let value="";
-let insideQuotes=false;
-
-
-
-for(let i=0;i<text.length;i++){
-
-
-const char=text[i];
-
-
-
-if(char === '"'){
-
-insideQuotes=!insideQuotes;
-
-continue;
-
-}
-
-
-
-if(char==="," && !insideQuotes){
-
-row.push(value.trim());
-
-value="";
-
-}
-
-else if(char==="\n" && !insideQuotes){
-
-row.push(value.trim());
-
-rows.push(row);
-
-row=[];
-
-value="";
-
-}
-
-else{
-
-value+=char;
-
-}
-
-}
-
-
-
-if(value || row.length){
-
-row.push(value.trim());
-
-rows.push(row);
-
-}
-
-
-
-return rows;
-
-
-}
-
-
-
-
-
-/* =====================================================
-   LOAD DATA
-===================================================== */
-
-
-async function loadCards(){
-
-
-reloadBtn.classList.add("loading");
-
-reloadBtn.textContent=
-"⏳ Обновление...";
-
-
-cardsContainer.innerHTML=
-`
-<div class="message">
-⏳ Загрузка карточек...
-</div>
-`;
-
-
-
-try{
-
-
-const response =
-await fetch(
-sheetURL + "&t=" + Date.now()
-);
-
-
-
-if(!response.ok){
-
-throw new Error(
-"Ошибка загрузки таблицы"
-);
-
-}
-
-
-
-const csv =
-await response.text();
-
-
-
-const rows =
-parseCSV(csv);
-
-
-
-if(rows.length < 2){
-
-throw new Error(
-"Таблица пустая"
-);
-
-}
-
-
-
-const headers =
-rows[0]
-.map(
-h=>h.toLowerCase().trim()
-);
-
-
-
-const orderIndex =
-headers.indexOf(
-"порядок"
-);
-
-
-const nameIndex =
-headers.indexOf(
-"название"
-);
-
-
-const descIndex =
-headers.indexOf(
-"описание"
-);
-
-
-const linkIndex =
-headers.indexOf(
-"ссылка"
-);
-
-
-const activeIndex =
-headers.indexOf(
-"активность"
-);
-
-
-
-
-if(
-orderIndex===-1 ||
-nameIndex===-1 ||
-descIndex===-1 ||
-linkIndex===-1 ||
-activeIndex===-1
-){
-
-throw new Error(
-"Не найдены нужные столбцы"
-);
-
-}
-
-
-
-
-
-const cards=[];
-
-
-
-for(let i=1;i<rows.length;i++){
-
-
-const row=rows[i];
-
-
-if(!row.length)
-continue;
-
-
-
-const active =
-String(row[activeIndex])
-.toLowerCase()
-.trim();
-
-
-
-if(active!=="true")
-continue;
-
-
-
-
-cards.push({
-
-order:
-Number(row[orderIndex])
-||9999,
-
-
-name:
-row[nameIndex]
-||"Без названия",
-
-
-description:
-row[descIndex]
-||"",
-
-
-link:
-row[linkIndex]
-||""
-
-});
-
-
-}
-
-
-
-
-cards.sort(
-(a,b)=>
-a.order-b.order
-);
-
-
-
-renderCards(cards);
-
-
-
-}
-
-catch(error){
-
-
-console.error(error);
-
-
-cardsContainer.innerHTML=
-`
-<div class="message error">
-⚠️ ${error.message}
-</div>
-`;
-
-}
-
-
-finally{
-
-
-reloadBtn.classList.remove("loading");
-
-reloadBtn.textContent=
-"🔄 Обновить карточки";
-
-
-}
-
-
-
-}
-
-
-
-
-
-/* =====================================================
-   CREATE CARDS
-===================================================== */
-
-
-function renderCards(cards){
-
-
-cardsContainer.innerHTML="";
-
-
-
-if(cards.length===0){
-
-cardsContainer.innerHTML=
-`
-<div class="message">
-Нет доступных материалов
-</div>
-`;
-
-return;
-
-}
-
-
-
-cards.forEach(cardData=>{
-
-
-const card =
-document.createElement("a");
-
-
-
-const color =
-randomColor();
-
-
-
-card.className=
-"extra-card";
-
-
-card.href =
-cardData.link;
-
-
-card.target =
-"_blank";
-
-
-
-card.style
-.setProperty(
-"--card-color",
-color
-);
-
-
-
-
-card.innerHTML=
-`
-
-<div class="card-icon">
-${randomIcon()}
-</div>
-
-
-<div class="card-info">
-
-
-<div class="card-name">
-${escapeHTML(cardData.name)}
-</div>
-
-
-<div class="card-description">
-${escapeHTML(cardData.description)}
-</div>
-
-
-</div>
-
-
-<div class="card-arrow">
-→
-</div>
-
-
-`;
-
-
-
-cardsContainer.appendChild(card);
-
-
-
-});
-
-
-}
-
-
-
-
-
-/* =====================================================
-   PROTECTION FROM HTML IN TABLE
-===================================================== */
-
-
-function escapeHTML(text){
-
-
-return String(text)
-
-.replace(
-/&/g,
-"&amp;"
-)
-
-.replace(
-/</g,
-"&lt;"
-)
-
-.replace(
-/>/g,
-"&gt;"
-)
-
-.replace(
-/"/g,
-"&quot;"
-)
-
-.replace(
-/'/g,
-"&#039;"
-);
-
-
-}
-
-
-
-
-
-
-/* =====================================================
-   UPDATE BUTTON
-===================================================== */
-
-
-reloadBtn.addEventListener(
-"click",
-loadCards
-);
-
-
-
-/* FIRST LOAD */
-
-
-loadCards();
-
-
-
-</script>
-
-<!-- =====================================================
-     BACK BUTTON
-===================================================== -->
-
-
-<a href="../../index.html" class="back-link">
-← На главную
-</a>
-
-
-
-<style>
-
-
-/* =====================================================
-   BACK BUTTON
-===================================================== */
-
-
-.back-link {
-
-
-position:fixed;
-
-
-left:24px;
-
-bottom:24px;
-
-
-z-index:1000;
+color:
+var(--text);
 
 
 
 padding:
 
-10px 22px;
+0 20px 60px;
+
+
+}
+
+
+
+
+
+
+/* ================================================================
+   HEADER
+================================================================ */
+
+
+header {
+
+
+position:
+sticky;
+
+
+top:
+0;
+
+
+z-index:
+100;
+
+
+
+background:
+
+rgba(
+6,
+10,
+16,
+0.82
+);
+
+
+
+backdrop-filter:
+
+blur(
+16px
+);
+
+
+
+border-bottom:
+
+1px solid
+var(--border);
+
+
+
+margin:
+
+0 -20px;
+
+
+
+padding:
+
+18px 20px 12px;
+
+
+}
+
+
+
+
+.header-row {
+
+
+display:flex;
+
+
+align-items:center;
+
+
+justify-content:space-between;
+
+
+}
+
+
+
+
+
+.brand h1 {
+
+
+font-size:
+
+clamp(
+24px,
+4vw,
+32px
+);
+
+
+
+font-weight:
+800;
+
+
+
+letter-spacing:
+2px;
+
+
+}
+
+
+
+
+.brand h1 span {
+
+
+color:
+
+var(--accent);
+
+
+}
+
+
+
+
+
+.brand p {
+
+
+margin-top:
+
+5px;
+
+
+
+font-size:
+
+14px;
+
+
+
+color:
+
+var(--muted);
+
+
+}
+
+
+
+
+
+
+/* ================================================================
+   HEADER PROGRESS
+================================================================ */
+
+
+.progress-bar {
+
+
+height:
+
+4px;
+
+
+
+width:
+
+100%;
+
+
+
+margin-top:
+
+14px;
+
+
+
+background:
+
+rgba(
+34,
+255,
+136,
+0.12
+);
+
+
+
+border-radius:
+
+20px;
+
+
+
+overflow:
+
+hidden;
+
+
+}
+
+
+
+
+
+.progress-bar .fill {
+
+
+height:
+
+100%;
+
+
+
+width:
+
+0%;
+
+
+
+background:
+
+linear-gradient(
+90deg,
+var(--accent),
+#8affbd
+);
+
+
+
+box-shadow:
+
+0 0 18px
+var(--accent);
+
+
+
+transition:
+
+width .35s ease;
+
+
+}
+
+
+
+
+
+
+/* ================================================================
+   PAGE TITLE
+================================================================ */
+
+
+.page-title {
+
+
+max-width:
+
+950px;
+
+
+
+margin:
+
+40px auto 30px;
+
+
+}
+
+
+
+
+
+.page-title h1 {
+
+
+font-size:
+
+clamp(
+32px,
+5vw,
+46px
+);
+
+
+
+font-weight:
+
+800;
+
+
+
+letter-spacing:
+
+-1px;
+
+
+}
+
+
+
+
+
+.page-title h1 span {
+
+
+color:
+
+var(--accent);
+
+
+}
+
+
+
+
+
+.page-title p {
+
+
+margin-top:
+
+10px;
+
+
+
+font-size:
+
+17px;
+
+
+
+line-height:
+
+1.5;
+
+
+
+color:
+
+var(--muted);
+
+
+}
+
+/* ================================================================
+   ROADMAP — ЛЕНТА ГЛАВ
+================================================================ */
+
+
+.roadmap {
+
+
+max-width:
+
+950px;
+
+
+
+margin:
+
+0 auto 50px;
+
+
+
+position:
+
+relative;
+
+
+}
+
+
+
+
+
+
+/* вертикальная линия */
+
+
+.roadmap-line {
+
+
+position:
+
+absolute;
+
+
+
+left:
+
+42px;
+
+
+
+top:
+
+0;
+
+
+
+bottom:
+
+0;
+
+
+
+width:
+
+3px;
+
+
+
+background:
+
+rgba(
+34,
+255,
+136,
+0.12
+);
+
+
+
+border-radius:
+
+10px;
+
+
+
+overflow:
+
+hidden;
+
+
+}
+
+
+
+
+
+.roadmap-line .fill {
+
+
+position:
+
+absolute;
+
+
+
+left:
+
+0;
+
+
+
+top:
+
+0;
+
+
+
+width:
+
+100%;
+
+
+
+height:
+
+0%;
+
+
+
+background:
+
+linear-gradient(
+180deg,
+var(--accent),
+#8affbd
+);
+
+
+
+box-shadow:
+
+0 0 18px
+var(--accent);
+
+
+
+transition:
+
+height .5s ease;
+
+
+}
+
+
+
+
+
+
+/* элемент главы */
+
+
+.roadmap-item {
+
+
+position:
+
+relative;
+
+
+
+padding-left:
+
+90px;
+
+
+
+padding-bottom:
+
+42px;
+
+
+
+opacity:
+
+0;
+
+
+
+transform:
+
+translateY(35px);
+
+
+
+transition:
+
+opacity .6s ease,
+transform .6s ease;
+
+
+}
+
+
+
+
+
+.roadmap-item.visible {
+
+
+opacity:
+
+1;
+
+
+
+transform:
+
+translateY(0);
+
+
+}
+
+
+
+
+
+
+/* маркер */
+
+
+.roadmap-marker {
+
+
+position:
+
+absolute;
+
+
+
+left:
+
+42px;
+
+
+
+top:
+
+30px;
+
+
+
+width:
+
+18px;
+
+
+
+height:
+
+18px;
+
+
+
+border-radius:
+
+50%;
+
+
+
+background:
+
+var(--bg);
 
 
 
 border:
 
-1px solid var(--border);
+3px solid
+rgba(
+34,
+255,
+136,
+0.25
+);
+
+
+
+transform:
+
+translateX(-50%);
+
+
+
+transition:
+
+all .35s ease;
+
+
+}
+
+
+
+
+
+.roadmap-item.active .roadmap-marker {
+
+
+background:
+
+var(--accent);
+
+
+
+border-color:
+
+var(--accent);
+
+
+
+box-shadow:
+
+0 0 30px
+rgba(
+34,
+255,
+136,
+0.65
+);
+
+
+}
+
+
+
+
+
+
+
+
+/* ================================================================
+   PREMIUM CARD ГЛАВЫ
+================================================================ */
+
+
+
+.roadmap-card {
+
+
+position:
+
+relative;
+
+
+
+overflow:
+
+hidden;
+
+
+
+background:
+
+
+linear-gradient(
+145deg,
+rgba(
+16,
+25,
+35,
+0.96
+),
+rgba(
+22,
+37,
+53,
+0.96
+)
+);
+
+
+
+border:
+
+1px solid
+rgba(
+255,
+255,
+255,
+0.06
+);
+
+
+
+border-radius:
+
+var(--radius);
+
+
+
+padding:
+
+28px 34px;
+
+
+
+cursor:
+
+pointer;
+
+
+
+box-shadow:
+
+0 10px 35px
+rgba(
+0,
+0,
+0,
+0.18
+);
+
+
+
+transition:
+
+transform .35s ease,
+border-color .35s ease,
+box-shadow .35s ease,
+background .35s ease;
+
+
+}
+
+
+
+
+
+/* зелёная линия сбоку */
+
+
+.roadmap-card::before {
+
+
+content:"";
+
+
+
+position:
+
+absolute;
+
+
+
+left:
+
+0;
+
+
+
+top:
+
+0;
+
+
+
+height:
+
+100%;
+
+
+
+width:
+
+5px;
+
+
+
+background:
+
+var(--accent);
+
+
+
+opacity:
+
+0.35;
+
+
+
+transition:
+
+opacity .3s ease;
+
+
+}
+
+
+
+
+
+.roadmap-card:hover {
+
+
+transform:
+
+translateX(12px)
+translateY(-5px);
+
+
+
+border-color:
+
+rgba(
+34,
+255,
+136,
+0.5
+);
+
+
+
+box-shadow:
+
+0 20px 60px
+rgba(
+34,
+255,
+136,
+0.16
+);
+
+
+}
+
+
+
+
+
+.roadmap-card:hover::before {
+
+
+opacity:
+
+1;
+
+
+}
+
+
+
+
+
+.roadmap-card.active {
+
+
+border-color:
+
+var(--accent);
+
+
+
+background:
+
+
+linear-gradient(
+145deg,
+rgba(
+34,
+255,
+136,
+0.09
+),
+rgba(
+22,
+37,
+53,
+0.98
+)
+);
+
+
+
+box-shadow:
+
+0 20px 60px
+rgba(
+34,
+255,
+136,
+0.22
+);
+
+
+}
+
+
+
+
+
+
+/* эффект блика */
+
+
+.roadmap-card::after {
+
+
+content:"";
+
+
+
+position:
+
+absolute;
+
+
+
+top:
+
+0;
+
+
+
+left:
+
+-120%;
+
+
+
+width:
+
+70%;
+
+
+
+height:
+
+100%;
+
+
+
+background:
+
+linear-gradient(
+90deg,
+transparent,
+rgba(
+255,
+255,
+255,
+0.08
+),
+transparent
+);
+
+
+
+transform:
+
+skewX(-25deg);
+
+
+
+transition:
+
+left .7s ease;
+
+
+
+pointer-events:
+
+none;
+
+
+}
+
+
+
+
+
+.roadmap-card:hover::after {
+
+
+left:
+
+150%;
+
+
+}
+
+
+
+
+
+
+/* ================================================================
+   ВЕРХ КАРТОЧКИ
+================================================================ */
+
+
+.card-header {
+
+
+display:flex;
+
+
+
+align-items:center;
+
+
+
+gap:
+
+18px;
+
+
+
+position:
+
+relative;
+
+
+
+z-index:
+
+2;
+
+
+}
+
+
+
+
+
+/* Глава X */
+
+
+.card-number {
+
+
+font-size:
+
+17px;
+
+
+
+font-weight:
+
+800;
+
+
+
+letter-spacing:
+
+1px;
+
+
+
+color:
+
+var(--accent);
+
+
+
+min-width:
+
+95px;
+
+
+
+white-space:
+
+nowrap;
+
+
+}
+
+
+
+
+
+/* Заголовок */
+
+
+.card-title {
+
+
+flex:
+
+1;
+
+
+
+font-size:
+
+clamp(
+21px,
+3vw,
+29px
+);
+
+
+
+font-weight:
+
+750;
+
+
+
+line-height:
+
+1.25;
+
+
+
+color:
+
+#ffffff;
+
+
+}
+
+
+
+
+
+.card-icon {
+
+
+font-size:
+
+34px;
+
+
+
+opacity:
+
+0.35;
+
+
+
+transition:
+
+.35s ease;
+
+
+}
+
+
+
+
+
+.roadmap-card:hover .card-icon {
+
+
+opacity:
+
+1;
+
+
+
+transform:
+
+scale(
+1.15
+);
+
+
+}
+
+/* ================================================================
+   ТЕКСТ В КАРТОЧКЕ ГЛАВЫ
+================================================================ */
+
+
+.card-text {
+
+
+margin-top:
+
+16px;
+
+
+
+font-size:
+
+15px;
+
+
+
+line-height:
+
+1.65;
+
+
+
+color:
+
+var(--muted);
+
+
+
+max-width:
+
+780px;
+
+
+
+position:
+
+relative;
+
+
+
+z-index:
+
+2;
+
+
+}
+
+
+
+
+
+
+
+/* ================================================================
+   СТРЕЛКА КАРТОЧКИ
+================================================================ */
+
+
+.card-arrow {
+
+
+position:
+
+absolute;
+
+
+
+right:
+
+28px;
+
+
+
+top:
+
+50%;
+
+
+
+transform:
+
+translateY(-50%);
+
+
+
+font-size:
+
+30px;
+
+
+
+color:
+
+var(--accent);
+
+
+
+opacity:
+
+0.25;
+
+
+
+transition:
+
+var(--transition);
+
+
+}
+
+
+
+
+
+
+.roadmap-card:hover .card-arrow {
+
+
+opacity:
+
+1;
+
+
+
+transform:
+
+translateY(-50%)
+translateX(8px);
+
+
+}
+
+
+
+
+
+
+/* ================================================================
+   MATERIALS — ЗАДАНИЯ
+================================================================ */
+
+
+.materials-section {
+
+
+max-width:
+
+950px;
+
+
+
+margin:
+
+0 auto 40px;
+
+
+
+display:
+
+none;
+
+
+}
+
+
+
+
+
+.materials-title {
+
+
+font-size:
+
+32px;
+
+
+
+font-weight:
+
+800;
+
+
+
+margin-bottom:
+
+24px;
+
+
+}
+
+
+
+
+
+.materials-title span {
+
+
+color:
+
+var(--accent);
+
+
+}
+
+
+
+
+
+
+.materials-grid {
+
+
+display:
+
+grid;
+
+
+
+grid-template-columns:
+
+repeat(
+auto-fill,
+minmax(
+240px,
+1fr
+)
+);
+
+
+
+gap:
+
+18px;
+
+
+}
+
+
+
+
+
+
+/* ================================================================
+   КАРТОЧКА ЗАДАНИЯ
+================================================================ */
+
+
+.material-card {
+
+
+position:
+
+relative;
+
+
+
+overflow:
+
+hidden;
+
+
+
+background:
+
+
+linear-gradient(
+145deg,
+rgba(
+16,
+25,
+35,
+0.96
+),
+rgba(
+22,
+37,
+53,
+0.96
+)
+);
+
+
+
+border:
+
+1px solid
+rgba(
+255,
+255,
+255,
+0.06
+);
+
+
+
+border-radius:
+
+18px;
+
+
+
+padding:
+
+20px;
+
+
+
+text-decoration:
+
+none;
+
+
+
+color:
+
+var(--text);
+
+
+
+display:
+
+flex;
+
+
+
+align-items:
+
+center;
+
+
+
+gap:
+
+15px;
+
+
+
+transition:
+
+var(--transition);
+
+
+
+opacity:
+
+0;
+
+
+
+animation:
+
+fadeUp .5s forwards;
+
+
+}
+
+
+
+
+
+
+.material-card::before {
+
+
+content:"";
+
+
+
+position:
+
+absolute;
+
+
+
+left:
+
+0;
+
+
+
+top:
+
+0;
+
+
+
+height:
+
+100%;
+
+
+
+width:
+
+4px;
+
+
+
+background:
+
+var(--accent);
+
+
+
+opacity:
+
+0.35;
+
+
+}
+
+
+
+
+
+
+.material-card:hover {
+
+
+transform:
+
+translateY(-6px);
+
+
+
+border-color:
+
+rgba(
+34,
+255,
+136,
+0.5
+);
+
+
+
+box-shadow:
+
+0 15px 40px
+rgba(
+34,
+255,
+136,
+0.14
+);
+
+
+}
+
+
+
+
+
+
+.material-icon {
+
+
+font-size:
+
+28px;
+
+
+
+flex-shrink:
+
+0;
+
+
+}
+
+
+
+
+
+
+.material-info {
+
+
+flex:
+
+1;
+
+
+}
+
+
+
+
+
+
+.material-name {
+
+
+font-size:
+
+17px;
+
+
+
+font-weight:
+
+700;
+
+
+
+line-height:
+
+1.35;
+
+
+}
+
+
+
+
+
+
+.material-badge {
+
+
+margin-top:
+
+6px;
+
+
+
+font-size:
+
+12px;
+
+
+
+color:
+
+var(--muted);
+
+
+}
+
+
+
+
+
+
+.material-arrow {
+
+
+font-size:
+
+24px;
+
+
+
+color:
+
+var(--accent);
+
+
+
+opacity:
+
+0.35;
+
+
+
+transition:
+
+.3s ease;
+
+
+}
+
+
+
+
+
+.material-card:hover .material-arrow {
+
+
+opacity:
+
+1;
+
+
+
+transform:
+
+translateX(6px);
+
+
+}
+
+
+
+
+
+
+/* ================================================================
+   MESSAGE BLOCKS
+================================================================ */
+
+
+.msg {
+
+
+padding:
+
+22px 10px;
+
+
+
+text-align:
+
+center;
+
+
+
+font-size:
+
+16px;
+
+
+
+color:
+
+var(--muted);
+
+
+}
+
+
+
+
+
+.msg.error {
+
+
+color:
+
+#ff7070;
+
+
+}
+
+
+
+
+
+
+/* ================================================================
+   BUTTON
+================================================================ */
+
+
+.reload-btn {
+
+
+margin-top:
+
+22px;
+
+
+
+padding:
+
+11px 24px;
+
+
+
+border-radius:
+
+30px;
+
+
+
+border:
+
+1px solid
+var(--border);
+
+
+
+background:
+
+transparent;
+
+
+
+color:
+
+var(--muted);
+
+
+
+cursor:
+
+pointer;
+
+
+
+transition:
+
+var(--transition);
+
+
+}
+
+
+
+
+
+.reload-btn:hover {
+
+
+color:
+
+var(--accent);
+
+
+
+border-color:
+
+var(--accent);
+
+
+
+background:
+
+rgba(
+34,
+255,
+136,
+0.06
+);
+
+
+}
+
+/* ================================================================
+   BACK BUTTON
+================================================================ */
+
+
+.back-link {
+
+
+position:
+
+fixed;
+
+
+
+left:
+
+24px;
+
+
+
+bottom:
+
+24px;
+
+
+
+z-index:
+
+1000;
+
+
+
+padding:
+
+11px 24px;
 
 
 
@@ -1244,13 +2219,27 @@ border-radius:
 
 background:
 
-rgba(6,10,16,.75);
+rgba(
+6,
+10,
+16,
+0.78
+);
 
 
 
 backdrop-filter:
 
-blur(12px);
+blur(
+12px
+);
+
+
+
+border:
+
+1px solid
+var(--border);
 
 
 
@@ -1260,7 +2249,9 @@ var(--muted);
 
 
 
-text-decoration:none;
+text-decoration:
+
+none;
 
 
 
@@ -1270,25 +2261,14 @@ font-size:
 
 
 
-font-weight:
-
-500;
-
-
-
 transition:
 
-.35s;
-
-
-
-box-shadow:
-
-0 5px 25px rgba(0,0,0,.35);
-
+var(--transition);
 
 
 }
+
+
 
 
 
@@ -1309,13 +2289,76 @@ var(--accent);
 
 background:
 
-rgba(34,255,136,.08);
+rgba(
+34,
+255,
+136,
+0.08
+);
 
 
 
 box-shadow:
 
-0 8px 30px rgba(34,255,136,.15);
+0 0 30px
+rgba(
+34,
+255,
+136,
+0.18
+);
+
+
+}
+
+
+
+
+
+
+/* ================================================================
+   ANIMATIONS
+================================================================ */
+
+
+@keyframes fadeUp {
+
+
+from {
+
+
+opacity:
+
+0;
+
+
+
+transform:
+
+translateY(25px)
+scale(.97);
+
+
+}
+
+
+
+to {
+
+
+opacity:
+
+1;
+
+
+
+transform:
+
+translateY(0)
+scale(1);
+
+
+}
 
 
 
@@ -1324,26 +2367,280 @@ box-shadow:
 
 
 
-/* =====================================================
-   SMALL MOBILE FIX
-===================================================== */
 
 
-@media(max-width:700px){
+
+@keyframes pulse {
 
 
-.back-link{
+0%,
+100% {
 
 
-left:16px;
+opacity:
+
+.5;
 
 
-bottom:16px;
+}
+
+
+
+50% {
+
+
+opacity:
+
+1;
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+/* ================================================================
+   MOBILE
+================================================================ */
+
+
+@media(max-width:768px){
+
+
+
+body {
 
 
 padding:
 
-8px 18px;
+0 12px 50px;
+
+
+}
+
+
+
+
+
+header {
+
+
+margin:
+
+0 -12px;
+
+
+}
+
+
+
+
+
+
+.page-title {
+
+
+margin-top:
+
+28px;
+
+
+}
+
+
+
+
+
+.roadmap-line {
+
+
+left:
+
+20px;
+
+
+}
+
+
+
+
+
+.roadmap-item {
+
+
+padding-left:
+
+55px;
+
+
+
+padding-bottom:
+
+30px;
+
+
+}
+
+
+
+
+
+.roadmap-marker {
+
+
+left:
+
+20px;
+
+
+
+width:
+
+15px;
+
+
+
+height:
+
+15px;
+
+
+}
+
+
+
+
+
+.roadmap-card {
+
+
+padding:
+
+20px;
+
+
+}
+
+
+
+
+
+.card-header {
+
+
+gap:
+
+12px;
+
+
+}
+
+
+
+
+
+.card-number {
+
+
+font-size:
+
+15px;
+
+
+
+min-width:
+
+75px;
+
+
+}
+
+
+
+
+
+.card-title {
+
+
+font-size:
+
+21px;
+
+
+}
+
+
+
+
+
+.card-icon {
+
+
+font-size:
+
+28px;
+
+
+}
+
+
+
+
+
+.card-arrow {
+
+
+right:
+
+15px;
+
+
+
+font-size:
+
+24px;
+
+
+}
+
+
+
+
+
+.materials-grid {
+
+
+grid-template-columns:
+
+1fr;
+
+
+}
+
+
+
+
+
+.back-link {
+
+
+left:
+
+16px;
+
+
+
+bottom:
+
+16px;
+
 
 
 font-size:
@@ -1359,10 +2656,2607 @@ font-size:
 
 
 
+
+
+
+@media(max-width:480px){
+
+
+
+.card-header {
+
+
+flex-wrap:
+
+wrap;
+
+
+}
+
+
+
+
+
+.card-number {
+
+
+width:
+
+100%;
+
+
+}
+
+
+
+
+
+.card-title {
+
+
+font-size:
+
+19px;
+
+
+}
+
+
+
+
+
+.card-icon {
+
+
+position:
+
+absolute;
+
+
+
+right:
+
+0;
+
+
+
+top:
+
+0;
+
+
+}
+
+
+
+
+
+.roadmap-card {
+
+
+padding:
+
+18px;
+
+
+}
+
+
+
+
+
+.material-card {
+
+
+padding:
+
+16px;
+
+
+}
+
+
+
+}
+
+
+
+/* ================================================================
+   END STYLE
+================================================================ */
+
+
 </style>
+
+</head>
+
+
+<body>
+
+
+
+
+
+<!-- ================================================================
+     HEADER
+================================================================ -->
+
+
+<header>
+
+
+
+<div class="header-row">
+
+
+
+<div class="brand">
+
+
+
+<h1>
+
+EPALLAXIS
+
+<span>
+
+algebra
+
+</span>
+
+</h1>
+
+
+
+
+
+<p>
+
+Ἐπαλλάσσω — приводить систему в порядок
+
+</p>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+<div class="progress-bar">
+
+
+<div
+
+class="fill"
+
+id="progressFill">
+
+</div>
+
+
+</div>
+
+
+
+</header>
+
+
+
+
+
+
+
+
+
+<!-- ================================================================
+     PAGE TITLE
+================================================================ -->
+
+
+
+<section class="page-title">
+
+
+
+<h1>
+
+
+Алгебра
+
+<span>
+
+9 класс
+
+</span>
+
+
+</h1>
+
+
+
+
+
+
+<p>
+
+
+Изучайте главы последовательно или выбирайте любую
+
+
+</p>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- ================================================================
+     ROADMAP
+================================================================ -->
+
+
+
+<section class="roadmap">
+
+
+
+<div class="roadmap-line">
+
+
+
+<div
+
+class="fill"
+
+id="lineFill">
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+<div
+
+id="roadmapItems">
+
+
+</div>
+
+
+
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- ================================================================
+     MATERIALS
+================================================================ -->
+
+
+
+<section
+
+class="materials-section"
+
+id="materialsSection">
+
+
+
+
+
+<h2 class="materials-title">
+
+
+Материалы к
+
+
+<span id="chapterName">
+
+
+главе
+
+
+</span>
+
+
+</h2>
+
+
+
+
+
+
+
+<div
+
+class="materials-grid"
+
+id="materialsGrid">
+
+
+
+
+
+
+<div class="msg">
+
+
+⏳ Загрузка заданий...
+
+
+</div>
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+<button
+
+class="reload-btn"
+
+id="reloadBtn">
+
+
+
+🔄 Обновить задания
+
+
+
+</button>
+
+
+
+
+
+
+
+</section>
+
+
+
+
+
+
+
+
+<!-- ================================================================
+     BACK BUTTON
+================================================================ -->
+
+
+
+<a
+
+href="../../index.html"
+
+class="back-link">
+
+
+
+← На главную
+
+
+
+</a>
+
+<script>
+
+
+/* ================================================================
+   GOOGLE SHEETS — ГЛАВЫ
+================================================================ */
+
+
+/*
+Таблица глав:
+
+Порядок
+Глава
+Заголовок
+Текст
+Таблица
+Активность
+
+
+Активность:
+TRUE  → показываем
+FALSE → скрываем
+
+
+Столбец "Таблица" содержит ссылку
+на таблицу заданий конкретной главы.
+*/
+
+
+
+
+
+const chaptersSheetURL =
+
+"https://docs.google.com/spreadsheets/d/e/2PACX-1vQvHTb3SOfhmvWJAmeFnHtiCj9JSMel_M1yHofabPwinYq4fSoCpy3GrP3r73ks3krE0p-snzXlK3cJ/pubhtml?gid=0&single=true";
+
+
+
+
+
+
+/* ================================================================
+   ELEMENTS
+================================================================ */
+
+
+
+const roadmapItems =
+
+document.getElementById(
+
+"roadmapItems"
+
+);
+
+
+
+
+
+const lineFill =
+
+document.getElementById(
+
+"lineFill"
+
+);
+
+
+
+
+
+const progressFill =
+
+document.getElementById(
+
+"progressFill"
+
+);
+
+
+
+
+
+const materialsSection =
+
+document.getElementById(
+
+"materialsSection"
+
+);
+
+
+
+
+
+const materialsGrid =
+
+document.getElementById(
+
+"materialsGrid"
+
+);
+
+
+
+
+
+const chapterName =
+
+document.getElementById(
+
+"chapterName"
+
+);
+
+
+
+
+
+const reloadBtn =
+
+document.getElementById(
+
+"reloadBtn"
+
+);
+
+
+
+
+
+
+
+/* ================================================================
+   DATA
+================================================================ */
+
+
+
+let chapters = [];
+
+
+
+
+
+let activeChapterIndex = -1;
+
+
+
+
+
+let currentChapter = null;
+
+
+
+
+
+
+
+
+
+/* ================================================================
+   CSV PARSER
+================================================================ */
+
+
+
+function parseCSV(text){
+
+
+
+const rows = [];
+
+
+
+let row = [];
+
+
+
+let value = "";
+
+
+
+let quotes = false;
+
+
+
+
+
+
+
+for(
+let i = 0;
+i < text.length;
+i++
+){
+
+
+
+const char = text[i];
+
+
+
+
+
+
+
+if(char === '"'){
+
+
+
+if(
+quotes &&
+text[i + 1] === '"'
+){
+
+
+
+value += '"';
+
+
+
+i++;
+
+
+
+}
+
+else{
+
+
+
+quotes = !quotes;
+
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+else if(
+char === "," &&
+!quotes
+){
+
+
+
+row.push(value);
+
+
+
+value = "";
+
+
+
+}
+
+
+
+
+
+
+else if(
+(
+char === "\n" ||
+char === "\r"
+)
+&&
+!quotes
+){
+
+
+
+if(
+value !== "" ||
+row.length > 0
+){
+
+
+
+row.push(value);
+
+
+
+rows.push(row);
+
+
+
+}
+
+
+
+row = [];
+
+
+
+value = "";
+
+
+
+}
+
+
+
+
+
+
+else{
+
+
+
+value += char;
+
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+if(
+value !== "" ||
+row.length > 0
+){
+
+
+
+row.push(value);
+
+
+
+rows.push(row);
+
+
+
+}
+
+
+
+
+
+
+return rows;
+
+
+
+}
+
+
+
+
+
+
+
+/* ================================================================
+   HTML SAFE
+================================================================ */
+
+
+
+function escapeHTML(text){
+
+
+
+return String(text)
+
+
+
+.replace(
+/&/g,
+"&amp;"
+)
+
+
+
+.replace(
+/</g,
+"&lt;"
+)
+
+
+
+.replace(
+/>/g,
+"&gt;"
+)
+
+
+
+.replace(
+/"/g,
+"&quot;"
+)
+
+
+
+.replace(
+/'/g,
+"&#039;"
+);
+
+
+
+}
+
+/* ================================================================
+   ЗАГРУЗКА ГЛАВ
+================================================================ */
+function convertToCSV(url){
+
+return url
+.replace(
+"/pubhtml",
+"/pub"
+)
+.replace(
+"&single=true",
+""
+)
+.includes("output=csv")
+
+?
+url
+
+:
+
+url
+.replace(
+"/pubhtml",
+"/pub"
+)
+.replace(
+"?gid=",
+"?output=csv&gid="
+)
+.replace(
+"&single=true",
+"");
+
+}
+
+
+async function loadChapters(){
+
+
+
+try{
+
+
+
+const csvURL = convertToCSV(chaptersSheetURL);
+
+
+
+
+
+
+
+
+const response =
+
+await fetch(
+
+csvURL +
+
+"&t=" +
+
+Date.now()
+
+);
+
+
+
+
+
+
+
+
+if(
+!response.ok
+){
+
+
+
+throw new Error(
+"Не удалось загрузить таблицу глав"
+);
+
+
+
+}
+
+
+
+
+
+
+
+
+const csv =
+
+await response.text();
+
+
+
+
+
+
+
+
+const rows =
+
+parseCSV(csv);
+
+
+
+
+
+
+
+
+if(
+rows.length < 2
+){
+
+
+
+throw new Error(
+"Таблица глав пустая"
+);
+
+
+
+}
+
+
+
+
+
+
+
+
+const headers =
+
+rows[0].map(
+
+item =>
+
+item
+.trim()
+.toLowerCase()
+
+);
+
+
+
+
+
+
+
+
+const orderIndex =
+
+headers.indexOf(
+"порядок"
+);
+
+
+
+
+
+const chapterIndex =
+
+headers.indexOf(
+"глава"
+);
+
+
+
+
+
+const titleIndex =
+
+headers.indexOf(
+"заголовок"
+);
+
+
+
+
+
+const textIndex =
+
+headers.indexOf(
+"текст"
+);
+
+
+
+
+
+const tableIndex =
+
+headers.indexOf(
+"таблица"
+);
+
+
+
+
+
+const activityIndex =
+
+headers.indexOf(
+"активность"
+);
+
+
+
+
+
+
+
+
+if(
+chapterIndex === -1 ||
+titleIndex === -1 ||
+tableIndex === -1 ||
+activityIndex === -1
+){
+
+
+
+throw new Error(
+"В таблице глав отсутствуют обязательные столбцы"
+);
+
+
+
+}
+
+
+
+
+
+
+
+
+chapters = [];
+
+
+
+
+
+
+
+
+rows
+.slice(1)
+.forEach(
+
+row => {
+
+
+
+
+
+
+const active =
+
+String(
+row[activityIndex]
+)
+
+.trim()
+
+.toLowerCase();
+
+
+
+
+
+
+
+
+if(
+active !== "true"
+){
+
+
+
+return;
+
+
+
+}
+
+
+
+
+
+
+
+
+chapters.push({
+
+
+
+order:
+
+Number(
+row[orderIndex]
+)
+
+|| 999,
+
+
+
+
+
+chapter:
+
+row[chapterIndex]
+
+||
+
+"",
+
+
+
+
+
+title:
+
+row[titleIndex]
+
+||
+
+"",
+
+
+
+
+
+text:
+
+row[textIndex]
+
+||
+
+"",
+
+
+
+
+
+table:
+
+row[tableIndex]
+
+||
+
+""
+
+
+
+});
+
+
+
+
+
+
+
+}
+
+);
+
+
+
+
+
+
+
+
+
+chapters.sort(
+
+(a,b)=>
+
+a.order - b.order
+
+);
+
+
+
+
+
+
+
+
+buildRoadmap();
+
+
+
+
+
+
+}
+
+catch(error){
+
+
+
+console.error(
+error
+);
+
+
+
+
+
+
+
+roadmapItems.innerHTML =
+
+
+
+`
+
+<div class="msg error">
+
+❌ ${escapeHTML(error.message)}
+
+</div>
+
+`;
+
+
+
+
+
+}
+
+
+
+}
+
+/* ================================================================
+   ПОСТРОЕНИЕ КАРТОЧЕК ГЛАВ
+================================================================ */
+
+
+
+function buildRoadmap(){
+
+
+
+roadmapItems.innerHTML = "";
+
+
+
+
+
+
+
+chapters.forEach(
+
+(chapter,index)=>{
+
+
+
+
+
+const item =
+
+document.createElement(
+"div"
+);
+
+
+
+
+
+
+
+item.className =
+
+"roadmap-item";
+
+
+
+
+
+
+
+item.dataset.index =
+
+index;
+
+
+
+
+
+
+
+
+item.style.transitionDelay =
+
+`${index * 0.08}s`;
+
+
+
+
+
+
+
+
+
+const cardNumber =
+
+chapter.chapter ||
+
+`Глава ${index + 1}`;
+
+
+
+
+
+
+
+
+item.innerHTML =
+
+
+
+`
+
+<div class="roadmap-marker"></div>
+
+
+
+
+
+<div
+
+class="roadmap-card"
+
+data-index="${index}">
+
+
+
+
+
+
+<div class="card-header">
+
+
+
+
+
+
+<div class="card-number">
+
+${escapeHTML(cardNumber)}
+
+</div>
+
+
+
+
+
+
+<div class="card-title">
+
+${escapeHTML(chapter.title)}
+
+</div>
+
+
+
+
+
+
+<div class="card-icon">
+
+📘
+
+</div>
+
+
+
+
+
+
+<div class="card-arrow">
+
+→
+
+</div>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+${
+chapter.text
+
+?
+
+`
+
+<div class="card-text">
+
+${escapeHTML(chapter.text)}
+
+</div>
+
+`
+
+:
+
+""
+
+}
+
+
+
+
+
+
+
+</div>
+
+`;
+
+
+
+
+
+
+
+
+roadmapItems.appendChild(
+item
+);
+
+
+
+
+
+
+
+
+const card =
+
+item.querySelector(
+".roadmap-card"
+);
+
+
+
+
+
+
+
+
+card.addEventListener(
+
+"click",
+
+()=>{
+
+
+
+openChapter(
+
+chapter,
+
+index
+
+);
+
+
+
+}
+
+);
+
+
+
+
+
+
+}
+
+);
+
+
+
+
+
+
+
+observeRoadmap();
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* ================================================================
+   АНИМАЦИЯ ПОЯВЛЕНИЯ
+================================================================ */
+
+
+
+function observeRoadmap(){
+
+
+
+const items =
+
+document.querySelectorAll(
+
+".roadmap-item"
+
+);
+
+
+
+
+
+
+
+
+const observer =
+
+new IntersectionObserver(
+
+entries=>{
+
+
+
+entries.forEach(
+
+entry=>{
+
+
+
+if(
+entry.isIntersecting
+){
+
+
+
+entry.target.classList.add(
+"visible"
+);
+
+
+
+}
+
+
+
+}
+
+);
+
+
+
+},
+
+{
+
+threshold:
+
+0.15
+
+}
+
+);
+
+
+
+
+
+
+
+
+items.forEach(
+
+item =>
+
+observer.observe(item)
+
+);
+
+
+
+}
+
+/* ================================================================
+   ОТКРЫТИЕ ГЛАВЫ
+================================================================ */
+
+
+
+function openChapter(
+
+chapter,
+
+index
+
+){
+
+
+
+currentChapter = chapter;
+
+
+
+activeChapterIndex = index;
+
+
+
+
+
+
+
+document
+.querySelectorAll(
+".roadmap-item"
+)
+
+.forEach(
+
+item=>{
+
+item.classList.remove(
+"active"
+);
+
+}
+
+);
+
+
+
+
+
+
+
+const currentItem =
+
+document.querySelector(
+
+`.roadmap-item[data-index="${index}"]`
+
+);
+
+
+
+
+
+
+
+if(currentItem){
+
+
+
+currentItem.classList.add(
+"active"
+);
+
+
+
+}
+
+
+
+
+
+
+
+chapterName.textContent =
+
+chapter.title ||
+
+chapter.chapter ||
+
+"глава";
+
+
+
+
+
+
+
+materialsSection.style.display =
+
+"block";
+
+
+
+
+
+
+
+materialsGrid.innerHTML =
+
+
+
+`
+
+<div class="msg">
+
+⏳ Загрузка заданий...
+
+</div>
+
+`;
+
+
+
+
+
+
+
+loadMaterials(
+
+chapter.table
+
+);
+
+
+
+
+
+
+
+updateProgress();
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* ================================================================
+   ЗАГРУЗКА ЗАДАНИЙ
+================================================================ */
+
+
+
+async function loadMaterials(
+
+tableURL
+
+){
+
+
+
+try{
+
+
+
+if(
+!tableURL ||
+tableURL.trim()===""
+){
+
+
+
+throw new Error(
+"Для этой главы не указана таблица заданий"
+);
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+const csvURL = convertToCSV(tableURL);
+
+
+
+
+
+
+
+
+const response =
+
+await fetch(
+
+csvURL +
+
+"&t=" +
+
+Date.now()
+
+);
+
+
+
+
+
+
+
+
+if(
+!response.ok
+){
+
+
+
+throw new Error(
+"Не удалось загрузить таблицу заданий"
+);
+
+
+
+}
+
+
+
+
+
+
+
+
+const csv =
+
+await response.text();
+
+
+
+
+
+
+
+
+const rows =
+
+parseCSV(csv);
+
+
+
+
+
+
+
+
+if(
+rows.length < 2
+){
+
+
+
+throw new Error(
+"Таблица заданий пустая"
+);
+
+
+
+}
+
+
+
+
+
+
+
+
+buildMaterials(
+
+rows
+
+);
+
+
+
+
+
+
+}
+
+catch(error){
+
+
+
+console.error(
+error
+);
+
+
+
+
+
+
+materialsGrid.innerHTML =
+
+
+
+`
+
+<div class="msg error">
+
+❌ ${escapeHTML(error.message)}
+
+</div>
+
+`;
+
+
+
+
+
+}
+
+
+
+}
+
+/* ================================================================
+   СОЗДАНИЕ КАРТОЧЕК ЗАДАНИЙ
+================================================================ */
+
+
+
+function buildMaterials(rows){
+
+
+
+const headers =
+
+rows[0].map(
+
+item =>
+
+item
+.trim()
+.toLowerCase()
+
+);
+
+
+
+
+
+
+
+const orderIndex =
+
+headers.indexOf(
+"порядок"
+);
+
+
+
+
+
+
+
+const nameIndex =
+
+headers.indexOf(
+"название"
+);
+
+
+
+
+
+
+
+const linkIndex =
+
+headers.indexOf(
+"ссылка"
+);
+
+
+
+
+
+
+
+const activityIndex =
+
+headers.indexOf(
+"активность"
+);
+
+
+
+
+
+
+
+if(
+nameIndex === -1 ||
+linkIndex === -1 ||
+activityIndex === -1
+){
+
+
+
+throw new Error(
+"В таблице заданий отсутствуют обязательные столбцы"
+);
+
+
+
+}
+
+
+
+
+
+
+
+const tasks = [];
+
+
+
+
+
+
+
+rows
+.slice(1)
+.forEach(
+
+row=>{
+
+
+
+const active =
+
+String(
+row[activityIndex]
+)
+
+.trim()
+
+.toLowerCase();
+
+
+
+
+
+
+
+
+if(
+active !== "true"
+){
+
+
+
+return;
+
+
+
+}
+
+
+
+
+
+
+
+
+tasks.push({
+
+
+
+order:
+
+Number(
+row[orderIndex]
+)
+
+||
+
+999,
+
+
+
+
+
+name:
+
+row[nameIndex]
+
+||
+
+"",
+
+
+
+
+
+link:
+
+row[linkIndex]
+
+||
+
+""
+
+
+
+});
+
+
+
+
+
+
+}
+
+);
+
+
+
+
+
+
+
+
+
+tasks.sort(
+
+(a,b)=>
+
+a.order-b.order
+
+);
+
+
+
+
+
+
+
+renderMaterials(
+
+tasks
+
+);
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* ================================================================
+   ОТОБРАЖЕНИЕ КАРТОЧЕК ЗАДАНИЙ
+================================================================ */
+
+
+
+function renderMaterials(tasks){
+
+
+
+materialsGrid.innerHTML = "";
+
+
+
+
+
+
+
+
+if(
+tasks.length === 0
+){
+
+
+
+materialsGrid.innerHTML =
+
+
+
+`
+
+<div class="msg">
+
+Нет активных заданий
+
+</div>
+
+`;
+
+
+
+return;
+
+
+
+}
+
+
+
+
+
+
+
+
+tasks.forEach(
+
+(task,index)=>{
+
+
+
+const card =
+
+document.createElement(
+"a"
+);
+
+
+
+
+
+
+
+
+card.className =
+
+"material-card";
+
+
+
+
+
+
+
+
+card.href =
+
+task.link;
+
+
+
+
+
+
+
+
+card.target =
+
+"_blank";
+
+
+
+
+
+
+
+
+card.rel =
+
+"noopener noreferrer";
+
+
+
+
+
+
+
+
+card.style.animationDelay =
+
+`${index * 0.06}s`;
+
+
+
+
+
+
+
+
+card.innerHTML =
+
+
+
+`
+
+<div class="material-icon">
+
+📝
+
+</div>
+
+
+
+
+
+<div class="material-info">
+
+
+
+<div class="material-name">
+
+${escapeHTML(task.name)}
+
+</div>
+
+
+
+
+
+<div class="material-badge">
+
+Задание ${index + 1}
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+<div class="material-arrow">
+
+→
+
+</div>
+
+`;
+
+
+
+
+
+
+
+
+materialsGrid.appendChild(
+
+card
+
+);
+
+
+
+}
+
+);
+
+
+
+}
+
+/* ================================================================
+   ОБНОВЛЕНИЕ ПРОГРЕССА
+================================================================ */
+
+
+
+function updateProgress(){
+
+
+
+if(
+chapters.length === 0
+){
+
+
+
+return;
+
+
+
+}
+
+
+
+
+
+
+
+
+const percent =
+
+
+
+(
+(activeChapterIndex + 1)
+
+/
+
+chapters.length
+
+)
+
+*
+
+100;
+
+
+
+
+
+
+
+if(progressFill){
+
+
+
+progressFill.style.width =
+
+percent + "%";
+
+}
+
+
+
+if(lineFill){
+
+
+
+lineFill.style.height =
+
+percent + "%";
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* ================================================================
+   КНОПКА ОБНОВЛЕНИЯ ЗАДАНИЙ
+================================================================ */
+
+
+
+reloadBtn.addEventListener(
+
+"click",
+
+()=>{
+
+
+
+if(
+currentChapter
+){
+
+
+
+loadMaterials(
+
+currentChapter.table
+
+);
+
+
+
+}
+
+
+
+}
+
+);
+
+
+
+
+
+
+
+
+
+/* ================================================================
+   ЗАПУСК СТРАНИЦЫ
+================================================================ */
+
+
+
+document.addEventListener(
+
+"DOMContentLoaded",
+
+()=>{
+
+
+
+loadChapters();
+
+
+
+}
+
+);
+
+
+
+
+
+</script>
+
+
+
 
 
 
 </body>
+
 
 </html>
