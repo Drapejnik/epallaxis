@@ -4,138 +4,61 @@
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Объявления — EPALLAXIS</title>
 
-<title>
-Геометрия 9 класс — EPALLAXIS
-</title>
-
-
-<link rel="icon" type="image/png" href="../../icon.png">
-
+<link rel="icon" type="image/png" href="../icon.png">
 
 
 <style>
 
 
-/* ================================================================
-   EPALLAXIS GEOMETRY 9
-   PREMIUM DESIGN SYSTEM
-================================================================ */
-
-
-/* ================================================================
-   VARIABLES
-================================================================ */
-
-
 :root {
 
+  --bg:#060a10;
 
---bg:
-#060a10;
+  --panel:#101820;
 
+  --panel2:#141f2b;
 
---panel:
-#101923;
+  --text:#e8f0ea;
 
-
---panel-light:
-#162535;
+  --muted:#9aa4b2;
 
 
---text:
-#edf5ef;
+  /* цвет объявлений */
+
+  --news:#7c8cff;
+
+  --news-soft:
+  rgba(124,140,255,.15);
 
 
---muted:
-#9aa8b5;
+  --border:
+  rgba(124,140,255,.25);
 
 
+  /* красный акцент важности */
 
-/* ГЕОМЕТРИЯ */
+  --danger:#ff5555;
 
---accent:
-#4da6ff;
-
-
-
---accent-soft:
-rgba(
-77,
-166,
-255,
-0.12
-);
-
-
-
---border:
-rgba(
-77,
-166,
-255,
-0.18
-);
-
-
-
---shadow:
-0 20px 60px
-rgba(
-0,
-0,
-0,
-0.35
-);
-
-
-
---radius:
-22px;
-
-
-
---transition:
-0.35s cubic-bezier(
-0.22,
-1,
-0.36,
-1
-);
-
+  --danger-soft:
+  rgba(255,85,85,.15);
 
 }
 
 
 
-
-
-
-/* ================================================================
-   RESET
-================================================================ */
-
-
 * {
 
+margin:0;
 
-margin:
-0;
+padding:0;
 
-
-padding:
-0;
-
-
-box-sizing:
-border-box;
-
+box-sizing:border-box;
 
 font-family:
-
 system-ui,
 -apple-system,
 "Segoe UI",
@@ -143,142 +66,100 @@ Roboto,
 Arial,
 sans-serif;
 
-
 }
-
-
-
-
-html {
-
-
-scroll-behavior:
-smooth;
-
-
-}
-
-
 
 
 
 body {
 
 
-min-height:
-100vh;
-
+min-height:100vh;
 
 
 background:
 
-
 radial-gradient(
-900px 500px at 15% 0%,
-rgba(
-77,
-166,
-255,
-0.16
-),
+900px 500px at 20% 0%,
+rgba(124,140,255,.18),
 transparent 60%
 ),
-
-
-radial-gradient(
-700px 400px at 90% 20%,
-rgba(
-77,
-166,
-255,
-0.05
-),
-transparent 70%
-),
-
 
 var(--bg);
 
 
-
-color:
-var(--text);
+color:var(--text);
 
 
+padding-bottom:50px;
 
-padding:
 
-0 20px 60px;
+opacity:0;
 
+
+animation:
+pageAppear .8s ease forwards;
 
 }
 
 
 
 
+@keyframes pageAppear {
+
+from {
+
+opacity:0;
+
+transform:translateY(15px);
+
+}
+
+
+to {
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
 
 
 
-/* ================================================================
-   HEADER
-================================================================ */
+/* ======================
+HEADER
+====================== */
 
 
 header {
 
 
-position:
-sticky;
+position:sticky;
+
+top:0;
+
+z-index:10;
 
 
-top:
-0;
-
-
-z-index:
-100;
-
+padding:18px 20px;
 
 
 background:
 
-rgba(
-6,
-10,
-16,
-0.82
-);
-
+rgba(6,10,16,.85);
 
 
 backdrop-filter:
-
-blur(
-16px
-);
-
+blur(14px);
 
 
 border-bottom:
 
-1px solid
-var(--border);
-
-
-
-margin:
-
-0 -20px;
-
-
-
-padding:
-
-18px 20px 12px;
+1px solid var(--border);
 
 
 }
-
 
 
 
@@ -287,11 +168,24 @@ padding:
 
 display:flex;
 
+justify-content:space-between;
 
 align-items:center;
 
 
-justify-content:space-between;
+}
+
+
+
+
+.logo {
+
+
+font-size:28px;
+
+font-weight:800;
+
+letter-spacing:2px;
 
 
 }
@@ -299,27 +193,66 @@ justify-content:space-between;
 
 
 
+.logo span {
 
-.brand h1 {
+
+color:var(--news);
+
+
+}
+
+
+
+
+.subtitle {
+
+
+margin-top:4px;
+
+font-size:14px;
+
+color:var(--muted);
+
+
+}
+
+
+
+/* ======================
+CONTENT
+====================== */
+
+
+.container {
+
+
+width:100%;
+
+
+max-width:1200px;
+
+
+margin:
+
+35px auto;
+
+
+padding:
+
+0 20px;
+
+
+}
+
+
+
+
+.title {
 
 
 font-size:
 
-clamp(
-24px,
-4vw,
-32px
-);
-
-
-
-font-weight:
-800;
-
-
-
-letter-spacing:
-2px;
+clamp(32px,5vw,48px);
 
 
 }
@@ -327,13 +260,10 @@ letter-spacing:
 
 
 
+.title span {
 
-.brand h1 span {
 
-
-color:
-
-var(--accent);
+color:var(--news);
 
 
 }
@@ -341,82 +271,87 @@ var(--accent);
 
 
 
-
-.brand p {
-
-
-margin-top:
-
-5px;
+.description {
 
 
+margin-top:10px;
 
-font-size:
+color:var(--muted);
 
-14px;
-
-
-
-color:
-
-var(--muted);
+font-size:16px;
 
 
 }
 
+/* ======================
+UPDATE BUTTON
+====================== */
 
 
+.update-btn {
 
 
+margin-top:25px;
 
 
-/* ================================================================
-   HEADER PROGRESS
-================================================================ */
+padding:
+
+10px 24px;
 
 
-.progress-bar {
+border-radius:30px;
 
 
-height:
+border:
 
-4px;
-
-
-
-width:
-
-100%;
-
-
-
-
-margin-top:
-
-14px;
-
+1px solid var(--border);
 
 
 background:
 
-rgba(
-77,
-166,
-255,
-0.12
-);
+transparent;
+
+
+color:var(--news);
+
+
+cursor:pointer;
+
+
+font-size:15px;
+
+
+transition:.3s;
+
+
+}
 
 
 
-border-radius:
 
-20px;
-
+.update-btn:hover {
 
 
-overflow:
+background:
 
-hidden;
+var(--news-soft);
+
+
+box-shadow:
+
+0 0 25px rgba(124,140,255,.25);
+
+
+}
+
+
+
+.update-btn.loading {
+
+
+opacity:.5;
+
+pointer-events:none;
 
 
 }
@@ -425,68 +360,86 @@ hidden;
 
 
 
-.progress-bar .fill {
+/* ======================
+NEWS CARDS
+====================== */
 
 
-height:
-
-100%;
+.news-list {
 
 
-
-width:
-
-0%;
+margin-top:30px;
 
 
+display:flex;
+
+flex-direction:column;
+
+
+gap:16px;
+
+
+}
+
+
+
+
+
+
+.news-card {
+
+
+width:100%;
+
+
+padding:
+
+25px 30px;
+
+
+border-radius:20px;
 
 
 background:
 
 linear-gradient(
-90deg,
-var(--accent),
-#9fd4ff
+145deg,
+var(--panel),
+var(--panel2)
 );
 
 
 
-box-shadow:
+border:
 
-0 0 18px
-var(--accent);
-
-
-
-transition:
-
-width .35s ease;
-
-
-}
+1px solid rgba(255,255,255,.08);
 
 
 
+position:relative;
+
+
+overflow:hidden;
+
+
+text-decoration:none;
+
+
+color:var(--text);
 
 
 
-/* ================================================================
-   PAGE TITLE
-================================================================ */
-
-
-.page-title {
-
-
-max-width:
-
-950px;
+transition:.35s;
 
 
 
-margin:
+animation:
 
-40px auto 30px;
+cardAppear .6s ease forwards;
+
+
+
+opacity:0;
 
 
 }
@@ -494,292 +447,28 @@ margin:
 
 
 
+@keyframes cardAppear {
 
-.page-title h1 {
 
+from {
 
-font-size:
 
-clamp(
-32px,
-5vw,
-46px
-);
-
-
-
-font-weight:
-
-800;
-
-
-
-letter-spacing:
-
--1px;
-
-
-}
-
-
-
-
-
-.page-title h1 span {
-
-
-color:
-
-var(--accent);
-
-
-}
-
-
-
-
-
-.page-title p {
-
-
-margin-top:
-
-10px;
-
-
-
-font-size:
-
-17px;
-
-
-
-line-height:
-
-1.5;
-
-
-
-color:
-
-var(--muted);
-
-
-}
-
-/* ================================================================
-   ROADMAP — ЛЕНТА ГЛАВ
-================================================================ */
-
-
-.roadmap {
-
-
-max-width:
-
-950px;
-
-
-
-margin:
-
-0 auto 50px;
-
-
-
-position:
-
-relative;
-
-
-}
-
-
-
-
-
-
-/* вертикальная линия */
-
-
-.roadmap-line {
-
-
-position:
-
-absolute;
-
-
-
-left:
-
-42px;
-
-
-
-top:
-
-0;
-
-
-
-bottom:
-
-0;
-
-
-
-width:
-
-3px;
-
-
-
-background:
-
-rgba(
-77,
-166,
-255,
-0.12
-);
-
-
-
-border-radius:
-
-10px;
-
-
-
-overflow:
-
-hidden;
-
-
-}
-
-
-
-
-
-.roadmap-line .fill {
-
-
-position:
-
-absolute;
-
-
-
-left:
-
-0;
-
-
-
-top:
-
-0;
-
-
-
-width:
-
-100%;
-
-
-
-height:
-
-0%;
-
-
-
-background:
-
-linear-gradient(
-180deg,
-var(--accent),
-#9fd4ff
-);
-
-
-
-box-shadow:
-
-0 0 18px
-var(--accent);
-
-
-
-transition:
-
-height .5s ease;
-
-
-}
-
-
-
-
-
-
-/* элемент главы */
-
-
-.roadmap-item {
-
-
-position:
-
-relative;
-
-
-
-padding-left:
-
-90px;
-
-
-
-padding-bottom:
-
-42px;
-
-
-
-opacity:
-
-0;
-
+opacity:0;
 
 
 transform:
 
-translateY(35px);
-
-
-
-transition:
-
-opacity .6s ease,
-transform .6s ease;
+translateY(20px);
 
 
 }
 
 
 
+to {
 
 
-.roadmap-item.visible {
-
-
-opacity:
-
-1;
-
+opacity:1;
 
 
 transform:
@@ -790,112 +479,6 @@ translateY(0);
 }
 
 
-
-
-
-/* маркер */
-
-
-.roadmap-marker {
-
-
-position:
-
-absolute;
-
-
-
-left:
-
-42px;
-
-
-
-top:
-
-30px;
-
-
-
-width:
-
-18px;
-
-
-
-height:
-
-18px;
-
-
-
-border-radius:
-
-50%;
-
-
-
-background:
-
-var(--bg);
-
-
-
-border:
-
-3px solid
-rgba(
-77,
-166,
-255,
-0.25
-);
-
-
-
-transform:
-
-translateX(-50%);
-
-
-
-transition:
-
-all .35s ease;
-
-
-}
-
-
-
-
-
-.roadmap-item.active .roadmap-marker {
-
-
-background:
-
-var(--accent);
-
-
-
-border-color:
-
-var(--accent);
-
-
-
-box-shadow:
-
-0 0 30px
-rgba(
-77,
-166,
-255,
-0.65
-);
-
-
 }
 
 
@@ -903,156 +486,33 @@ rgba(
 
 
 
-/* ================================================================
-   PREMIUM CARD ГЛАВЫ
-================================================================ */
+
+/* цветная линия слева */
 
 
-
-.roadmap-card {
-
-
-position:
-
-relative;
-
-
-
-overflow:
-
-hidden;
-
-
-
-background:
-
-
-linear-gradient(
-145deg,
-rgba(
-16,
-25,
-35,
-0.96
-),
-rgba(
-22,
-37,
-53,
-0.96
-)
-);
-
-
-
-border:
-
-1px solid
-rgba(
-255,
-255,
-255,
-0.06
-);
-
-
-
-border-radius:
-
-var(--radius);
-
-
-
-padding:
-
-28px 34px;
-
-
-
-cursor:
-
-pointer;
-
-
-
-box-shadow:
-
-0 10px 35px
-rgba(
-0,
-0,
-0,
-0.18
-);
-
-
-
-transition:
-
-transform .35s ease,
-border-color .35s ease,
-box-shadow .35s ease,
-background .35s ease;
-
-
-}
-
-
-
-
-
-.roadmap-card::before {
+.news-card::before {
 
 
 content:"";
 
 
-
-position:
-
-absolute;
+position:absolute;
 
 
+left:0;
 
-left:
-
-0;
-
+top:0;
 
 
-top:
-
-0;
+height:100%;
 
 
-
-height:
-
-100%;
-
-
-
-width:
-
-5px;
-
+width:5px;
 
 
 background:
 
-var(--accent);
-
-
-
-opacity:
-
-0.35;
-
-
-
-transition:
-
-opacity .3s ease;
+var(--news);
 
 
 }
@@ -1061,97 +521,35 @@ opacity .3s ease;
 
 
 
-.roadmap-card:hover {
+
+
+.news-card:hover {
 
 
 transform:
 
-translateX(12px)
 translateY(-5px);
 
 
 
 border-color:
 
-rgba(
-77,
-166,
-255,
-0.5
-);
+var(--news);
 
 
 
 box-shadow:
 
-0 20px 60px
-rgba(
-77,
-166,
-255,
-0.16
-);
+
+0 15px 45px
+
+rgba(0,0,0,.35),
 
 
-}
+0 0 30px
 
+rgba(124,140,255,.15);
 
-
-
-
-.roadmap-card:hover::before {
-
-
-opacity:
-
-1;
-
-
-}
-
-
-
-
-
-.roadmap-card.active {
-
-
-border-color:
-
-var(--accent);
-
-
-
-background:
-
-
-linear-gradient(
-145deg,
-rgba(
-77,
-166,
-255,
-0.09
-),
-rgba(
-22,
-37,
-53,
-0.98
-)
-);
-
-
-
-box-shadow:
-
-0 20px 60px
-rgba(
-77,
-166,
-255,
-0.22
-);
 
 
 }
@@ -1161,132 +559,21 @@ rgba(
 
 
 
-/* эффект блика */
 
 
-.roadmap-card::after {
+/* верх карточки */
 
 
-content:"";
-
-
-
-position:
-
-absolute;
-
-
-
-top:
-
-0;
-
-
-
-left:
-
--120%;
-
-
-
-width:
-
-70%;
-
-
-
-height:
-
-100%;
-
-
-
-background:
-
-linear-gradient(
-90deg,
-transparent,
-rgba(
-255,
-255,
-255,
-0.08
-),
-transparent
-);
-
-
-
-transform:
-
-skewX(-25deg);
-
-
-
-transition:
-
-left .7s ease;
-
-
-
-pointer-events:
-
-none;
-
-
-}
-
-
-
-
-
-.roadmap-card:hover::after {
-
-
-left:
-
-150%;
-
-
-}
-
-
-
-
-
-
-/* ================================================================
-   ВЕРХ КАРТОЧКИ
-================================================================ */
-
-
-
-.card-header {
+.news-header {
 
 
 display:flex;
-
 
 
 align-items:center;
 
 
-
-gap:
-
-18px;
-
-
-
-position:
-
-relative;
-
-
-
-z-index:
-
-2;
+gap:15px;
 
 
 }
@@ -1295,874 +582,24 @@ z-index:
 
 
 
-.card-number {
 
+/* красный знак */
 
-font-size:
 
-17px;
+.news-icon {
 
 
+width:42px;
 
-font-weight:
 
-800;
+height:42px;
 
 
+border-radius:50%;
 
-letter-spacing:
-
-1px;
-
-
-
-color:
-
-var(--accent);
-
-
-
-min-width:
-
-95px;
-
-
-
-white-space:
-
-nowrap;
-
-
-}
-
-
-
-
-
-.card-title {
-
-
-flex:
-
-1;
-
-
-
-font-size:
-
-clamp(
-21px,
-3vw,
-29px
-);
-
-
-
-font-weight:
-
-750;
-
-
-
-line-height:
-
-1.25;
-
-
-
-color:
-
-#ffffff;
-
-
-}
-
-
-
-
-
-.card-icon {
-
-
-font-size:
-
-34px;
-
-
-
-opacity:
-
-0.35;
-
-
-
-transition:
-
-.35s ease;
-
-
-}
-
-
-
-
-
-.roadmap-card:hover .card-icon {
-
-
-opacity:
-
-1;
-
-
-
-transform:
-
-scale(
-1.15
-);
-
-
-}
-
-
-
-
-
-
-/* ================================================================
-   ТЕКСТ В КАРТОЧКЕ ГЛАВЫ
-================================================================ */
-
-
-.card-text {
-
-
-margin-top:
-
-16px;
-
-
-
-font-size:
-
-15px;
-
-
-
-line-height:
-
-1.65;
-
-
-
-color:
-
-var(--muted);
-
-
-
-max-width:
-
-780px;
-
-
-
-position:
-
-relative;
-
-
-
-z-index:
-
-2;
-
-
-}
-
-
-
-
-
-.card-count {
-
-
-margin-top:
-
-18px;
-
-
-
-display:
-
-inline-flex;
-
-
-
-align-items:
-
-center;
-
-
-
-gap:
-
-8px;
-
-
-
-padding:
-
-8px 16px;
-
-
-
-border-radius:
-
-30px;
-
-
-
-background:
-
-rgba(
-77,
-166,
-255,
-0.08
-);
-
-
-
-border:
-
-1px solid
-rgba(
-77,
-166,
-255,
-0.25
-);
-
-
-
-color:
-
-var(--accent);
-
-
-
-font-size:
-
-13px;
-
-
-
-font-weight:
-
-700;
-
-
-
-letter-spacing:
-
-0.3px;
-
-
-
-}
-
-.card-arrow {
-
-
-position:
-
-absolute;
-
-
-
-right:
-
-28px;
-
-
-
-top:
-
-50%;
-
-
-
-transform:
-
-translateY(-50%);
-
-
-
-font-size:
-
-30px;
-
-
-
-color:
-
-var(--accent);
-
-
-
-opacity:
-
-0.25;
-
-
-
-transition:
-
-var(--transition);
-
-
-}
-
-
-
-
-
-.roadmap-card:hover .card-arrow {
-
-
-opacity:
-
-1;
-
-
-
-transform:
-
-translateY(-50%)
-translateX(8px);
-
-
-}
-
-
-
-
-
-
-/* ================================================================
-   MATERIALS — ЗАДАНИЯ
-================================================================ */
-
-
-.materials-section {
-
-
-max-width:
-
-950px;
-
-
-
-margin:
-
-0 auto 40px;
-
-
-
-display:
-
-none;
-
-
-}
-
-
-
-
-
-.materials-title {
-
-
-font-size:
-
-32px;
-
-
-
-font-weight:
-
-800;
-
-
-
-margin-bottom:
-
-24px;
-
-
-}
-
-
-
-
-
-.materials-title span {
-
-
-color:
-
-var(--accent);
-
-
-}
-
-
-
-
-
-.materials-grid {
-
-
-display:
-
-grid;
-
-
-
-grid-template-columns:
-
-repeat(
-auto-fill,
-minmax(
-240px,
-1fr
-)
-);
-
-
-
-gap:
-
-18px;
-
-
-}
-
-
-
-
-
-
-/* ================================================================
-   КАРТОЧКА ЗАДАНИЯ
-================================================================ */
-
-
-.material-card {
-
-
-position:
-
-relative;
-
-
-
-overflow:
-
-hidden;
-
-
-
-background:
-
-
-linear-gradient(
-145deg,
-rgba(
-16,
-25,
-35,
-0.96
-),
-rgba(
-22,
-37,
-53,
-0.96
-)
-);
-
-
-
-border:
-
-1px solid
-rgba(
-255,
-255,
-255,
-0.06
-);
-
-
-
-border-radius:
-
-18px;
-
-
-
-padding:
-
-20px;
-
-
-
-text-decoration:
-
-none;
-
-
-
-color:
-
-var(--text);
-
-
-
-display:
-
-flex;
-
-
-
-align-items:
-
-center;
-
-
-
-gap:
-
-15px;
-
-
-
-transition:
-
-var(--transition);
-
-
-
-opacity:
-
-0;
-
-
-
-animation:
-
-fadeUp .5s forwards;
-
-
-}
-
-
-
-
-
-.material-card::before {
-
-
-content:"";
-
-
-
-position:
-
-absolute;
-
-
-
-left:
-
-0;
-
-
-
-top:
-
-0;
-
-
-
-height:
-
-100%;
-
-
-
-width:
-
-4px;
-
-
-
-background:
-
-var(--accent);
-
-
-
-opacity:
-
-0.35;
-
-
-}
-
-
-
-
-
-.material-card:hover {
-
-
-transform:
-
-translateY(-6px);
-
-
-
-border-color:
-
-rgba(
-77,
-166,
-255,
-0.5
-);
-
-
-
-box-shadow:
-
-0 15px 40px
-rgba(
-77,
-166,
-255,
-0.14
-);
-
-
-}
-
-
-
-
-
-.material-icon {
-
-
-font-size:
-
-28px;
-
-
-
-flex-shrink:
-
-0;
-
-
-}
-
-
-
-
-
-.material-info {
-
-
-flex:
-
-1;
-
-
-}
-
-
-
-
-
-.material-name {
-
-
-font-size:
-
-17px;
-
-
-
-font-weight:
-
-700;
-
-
-
-line-height:
-
-1.35;
-
-
-}
-
-
-
-
-
-.material-badge {
-
-
-margin-top:
-
-6px;
-
-
-
-font-size:
-
-12px;
-
-
-
-color:
-
-var(--muted);
-
-
-}
-
-
-
-
-
-.material-arrow {
-
-
-font-size:
-
-24px;
-
-
-
-color:
-
-var(--accent);
-
-
-
-opacity:
-
-0.35;
-
-
-
-transition:
-
-.3s ease;
-
-
-}
-
-
-
-
-
-.material-card:hover .material-arrow {
-
-
-opacity:
-
-1;
-
-
-
-transform:
-
-translateX(6px);
-
-
-}
-
-
-
-
-
-
-/* ================================================================
-   MESSAGE BLOCKS
-================================================================ */
-
-
-.msg {
-
-
-padding:
-
-22px 10px;
-
-
-
-text-align:
-
-center;
-
-
-
-font-size:
-
-16px;
-
-
-
-color:
-
-var(--muted);
-
-
-}
-
-
-
-
-
-.msg.error {
-
-
-color:
-
-#ff7070;
-
-
-}
-
-
-/* ================================================================
-   UPDATE LOADING
-================================================================ */
-
-
-.update-loading {
 
 
 display:flex;
-
-
-flex-direction:column;
 
 
 align-items:center;
@@ -2172,10 +609,324 @@ justify-content:center;
 
 
 
-min-height:
+flex-shrink:0;
 
-160px;
 
+
+background:
+
+var(--danger-soft);
+
+
+
+border:
+
+1px solid rgba(255,85,85,.35);
+
+
+
+color:
+
+var(--danger);
+
+
+
+font-size:24px;
+
+
+
+font-weight:900;
+
+
+
+}
+
+
+
+
+
+.news-content {
+
+
+flex:1;
+
+
+}
+
+
+
+
+
+
+.news-title {
+
+
+font-size:24px;
+
+font-weight:700;
+
+
+}
+
+
+
+
+
+
+
+.news-date {
+
+
+margin-top:6px;
+
+
+font-size:13px;
+
+
+color:
+
+var(--muted);
+
+
+
+display:flex;
+
+
+align-items:center;
+
+
+gap:6px;
+
+
+}
+
+
+
+
+
+
+
+.news-description {
+
+
+margin-top:14px;
+
+
+color:var(--muted);
+
+
+line-height:1.5;
+
+
+font-size:16px;
+
+white-space:pre-line;
+
+}
+
+
+
+
+
+
+
+.news-link {
+
+margin-top:15px;
+
+display:inline-flex;
+
+align-items:center;
+
+gap:8px;
+
+color:var(--news);
+
+font-weight:600;
+
+font-size:15px;
+
+transition:.3s;
+
+}
+
+
+.news-link span {
+
+font-size:20px;
+
+transition:.3s;
+
+}
+
+
+.news-card:hover .news-link span {
+
+transform:translateX(5px);
+
+}
+
+
+
+/* ======================
+MESSAGE
+====================== */
+
+
+.message {
+
+
+text-align:center;
+
+
+padding:
+
+40px 20px;
+
+
+color:
+
+var(--muted);
+
+
+font-size:16px;
+
+
+}
+
+
+
+
+.message.error {
+
+
+color:#ff7777;
+
+
+}
+
+
+
+
+
+/* ======================
+LOADING
+====================== */
+
+
+.loading-dot {
+
+
+display:inline-block;
+
+
+animation:
+
+loadingPulse 1.4s infinite;
+
+
+}
+
+
+
+
+@keyframes loadingPulse {
+
+
+0% {
+
+
+opacity:.3;
+
+}
+
+
+50% {
+
+
+opacity:1;
+
+}
+
+
+100% {
+
+
+opacity:.3;
+
+}
+
+
+}
+/* ======================
+MOBILE
+====================== */
+
+
+@media(max-width:700px){
+
+
+header {
+
+padding:
+
+15px 12px;
+
+}
+
+
+
+.container {
+
+
+padding:
+
+0 12px;
+
+
+margin-top:
+
+25px;
+
+
+}
+
+
+
+.logo {
+
+font-size:
+
+22px;
+
+}
+
+
+
+.subtitle {
+
+font-size:
+
+12px;
+
+}
+
+
+
+
+.news-card {
+
+
+padding:
+
+20px;
+
+
+}
+
+
+
+.news-header {
 
 
 gap:
@@ -2183,77 +934,45 @@ gap:
 12px;
 
 
-
-animation:
-
-fadeUpdate .35s ease;
-
-
 }
 
 
 
+.news-icon {
 
 
-.update-loading-icon {
+width:
+
+36px;
+
+
+height:
+
+36px;
 
 
 font-size:
 
-34px;
-
-
-
-color:
-
-var(--accent);
-
-
-
-opacity:
-
-0.8;
+20px;
 
 
 }
 
 
 
-
-
-.update-loading-title {
+.news-title {
 
 
 font-size:
 
-21px;
-
-
-
-font-weight:
-
-800;
-
-
-
-letter-spacing:
-
-0.5px;
-
-
-
-color:
-
-var(--text);
+20px;
 
 
 }
 
 
 
-
-
-.update-loading-text {
+.news-description {
 
 
 font-size:
@@ -2261,246 +980,30 @@ font-size:
 14px;
 
 
-
-color:
-
-var(--muted);
-
-
 }
 
 
 
-
-
-
-@keyframes fadeUpdate {
-
-
-from {
-
-
-opacity:
-
-0;
-
-
-
-transform:
-
-translateY(8px);
-
-
-}
-
-
-
-to {
-
-
-opacity:
-
-1;
-
-
-
-transform:
-
-translateY(0);
-
-
-}
-
-
-}
-
-
-
-/* ================================================================
-   BUTTON
-================================================================ */
-
-
-.reload-btn {
-
-
-margin-top:
-
-22px;
-
-
-
-padding:
-
-11px 24px;
-
-
-
-border-radius:
-
-30px;
-
-
-
-border:
-
-1px solid
-var(--border);
-
-
-
-background:
-
-transparent;
-
-
-
-color:
-
-var(--muted);
-
-
-
-cursor:
-
-pointer;
-
-
-
-transition:
-
-var(--transition);
-
-
-}
-
-
-
-
-
-.reload-btn:hover {
-
-
-color:
-
-var(--accent);
-
-
-
-border-color:
-
-var(--accent);
-
-
-
-background:
-
-rgba(
-77,
-166,
-255,
-0.06
-);
-
-
-}
-
-
-
-
-
-
-/* ================================================================
-   BACK BUTTON
-================================================================ */
-
-
-.back-link {
-
-
-position:
-
-fixed;
-
-
-
-left:
-
-24px;
-
-
-
-bottom:
-
-24px;
-
-
-
-z-index:
-
-1000;
-
-
-
-padding:
-
-11px 24px;
-
-
-
-border-radius:
-
-40px;
-
-
-
-background:
-
-rgba(
-6,
-10,
-16,
-0.78
-);
-
-
-
-backdrop-filter:
-
-blur(
-12px
-);
-
-
-
-border:
-
-1px solid
-var(--border);
-
-
-
-color:
-
-var(--muted);
-
-
-
-text-decoration:
-
-none;
-
+.news-date {
 
 
 font-size:
 
-14px;
+12px;
+
+
+}
 
 
 
-transition:
 
-var(--transition);
+.update-btn {
+
+
+width:100%;
+
+
+}
 
 
 }
@@ -2509,41 +1012,71 @@ var(--transition);
 
 
 
-.back-link:hover {
 
 
-color:
+/* ======================
+FLOAT HOME BUTTON
+====================== */
 
-var(--accent);
+
+.home-btn {
+
+
+position:fixed;
+
+
+left:25px;
+
+
+bottom:25px;
+
+
+z-index:100;
 
 
 
-border-color:
+padding:12px 26px;
 
-var(--accent);
 
+border-radius:40px;
+
+
+text-decoration:none;
+
+
+color:#f5d76e;
 
 
 background:
 
-rgba(
-77,
-166,
-255,
-0.08
-);
+rgba(16,24,32,.88);
+
+
+
+border:
+
+1px solid rgba(245,215,110,.35);
+
+
+
+backdrop-filter:blur(12px);
+
+
+
+font-size:15px;
+
+
+font-weight:600;
+
+
+
+transition:.35s;
 
 
 
 box-shadow:
 
-0 0 30px
-rgba(
-77,
-166,
-255,
-0.18
-);
+0 10px 40px rgba(0,0,0,.35);
 
 
 }
@@ -2551,51 +1084,31 @@ rgba(
 
 
 
-
-
-/* ================================================================
-   ANIMATIONS
-================================================================ */
-
-
-@keyframes fadeUp {
-
-
-from {
-
-
-opacity:
-
-0;
+.home-btn:hover {
 
 
 
 transform:
 
-translateY(25px)
-scale(.97);
-
-
-}
+translateY(-5px);
 
 
 
-to {
+background:
 
-
-opacity:
-
-1;
+rgba(245,215,110,.12);
 
 
 
-transform:
+border-color:
 
-translateY(0)
-scale(1);
+#f5d76e;
 
 
-}
+
+box-shadow:
+
+0 0 35px rgba(245,215,110,.25);
 
 
 
@@ -2603,360 +1116,31 @@ scale(1);
 
 
 
+@media(max-width:700px){
 
 
-
-/* ================================================================
-   MOBILE
-================================================================ */
+.home-btn {
 
 
-@media(max-width:768px){
+left:15px;
+
+bottom:15px;
 
 
-
-body {
-
-
-padding:
-
-0 12px 50px;
+padding:10px 20px;
 
 
-}
+width:auto;
 
 
-
-
-
-header {
-
-
-margin:
-
-0 -12px;
+text-align:center;
 
 
 }
 
 
-
-
-
-.page-title {
-
-
-margin-top:
-
-28px;
-
-
 }
 
-
-
-
-
-.roadmap-line {
-
-
-left:
-
-20px;
-
-
-}
-
-
-
-
-
-.roadmap-item {
-
-
-padding-left:
-
-55px;
-
-
-
-padding-bottom:
-
-30px;
-
-
-}
-
-
-
-
-
-.roadmap-marker {
-
-
-left:
-
-20px;
-
-
-
-width:
-
-15px;
-
-
-
-height:
-
-15px;
-
-
-}
-
-
-
-
-
-.roadmap-card {
-
-
-padding:
-
-20px;
-
-
-}
-
-
-
-
-
-.card-header {
-
-
-gap:
-
-12px;
-
-
-}
-
-
-
-
-
-.card-number {
-
-
-font-size:
-
-15px;
-
-
-
-min-width:
-
-75px;
-
-
-}
-
-
-
-
-
-.card-title {
-
-
-font-size:
-
-21px;
-
-
-}
-
-
-
-
-
-.card-icon {
-
-
-font-size:
-
-28px;
-
-
-}
-
-
-
-
-
-.card-arrow {
-
-
-right:
-
-15px;
-
-
-
-font-size:
-
-24px;
-
-
-}
-
-
-
-
-
-.materials-grid {
-
-
-grid-template-columns:
-
-1fr;
-
-
-}
-
-
-
-
-
-.back-link {
-
-
-left:
-
-16px;
-
-
-
-bottom:
-
-16px;
-
-
-
-font-size:
-
-13px;
-
-
-}
-
-
-
-}
-
-
-
-
-
-
-@media(max-width:480px){
-
-
-
-.card-header {
-
-
-flex-wrap:
-
-wrap;
-
-
-}
-
-
-
-
-
-.card-number {
-
-
-width:
-
-100%;
-
-
-}
-
-
-
-
-
-.card-title {
-
-
-font-size:
-
-19px;
-
-
-}
-
-
-
-
-
-.card-icon {
-
-
-position:
-
-absolute;
-
-
-
-right:
-
-0;
-
-
-
-top:
-
-0;
-
-
-}
-
-
-
-
-
-.roadmap-card {
-
-
-padding:
-
-18px;
-
-
-}
-
-
-
-
-
-.material-card {
-
-
-padding:
-
-16px;
-
-
-}
-
-
-
-}
 
 
 </style>
@@ -2964,12 +1148,8 @@ padding:
 </head>
 
 
+
 <body>
-
-
-<!-- ================================================================
-     HEADER
-================================================================ -->
 
 
 <header>
@@ -2978,45 +1158,22 @@ padding:
 <div class="header-row">
 
 
-<div class="brand">
+<div>
 
 
-<h1>
+<div class="logo">
 
-EPALLAXIS
-
-<span>
-
-geometry
-
-</span>
-
-</h1>
-
-
-
-<p>
-
-Ἐπαλλάσσω — приводить систему в порядок
-
-</p>
-
+EPALLAXIS <span>news</span>
 
 </div>
 
 
+<div class="subtitle">
+
+Объявления и важные сообщения
+
 </div>
 
-
-
-<div class="progress-bar">
-
-
-<div
-
-class="fill"
-
-id="progressFill">
 
 </div>
 
@@ -3029,297 +1186,101 @@ id="progressFill">
 
 
 
-<!-- ================================================================
-     PAGE TITLE
-================================================================ -->
+
+<main class="container">
 
 
-<section class="page-title">
+<h1 class="title">
 
-
-<h1>
-
-
-Геометрия
-
-<span>
-
-9 класс
-
-</span>
-
+Объявления <span>EPALLAXIS</span>
 
 </h1>
 
 
 
-<p>
 
+<p class="description">
 
-Изучайте главы последовательно или выбирайте любую
+Новости проекта, обновления и важная информация
 
 </p>
 
 
-</section>
 
 
 
+<button 
+class="update-btn"
+id="updateBtn">
 
-<!-- ================================================================
-     ROADMAP
-================================================================ -->
-
-
-<section class="roadmap">
-
-
-<div class="roadmap-line">
-
-
-<div
-
-class="fill"
-
-id="lineFill">
-
-</div>
-
-
-</div>
-
-
-
-<div
-
-id="roadmapItems">
-
-
-</div>
-
-
-
-</section>
-
-
-
-
-
-<!-- ================================================================
-     MATERIALS
-================================================================ -->
-
-
-<section
-
-class="materials-section"
-
-id="materialsSection">
-
-
-<h2 class="materials-title">
-
-
-Материалы к
-
-
-<span id="chapterName">
-
-
-главе
-
-
-</span>
-
-
-</h2>
-
-
-
-
-<div
-
-class="materials-grid"
-
-id="materialsGrid">
-
-
-<div class="msg">
-
-
-⏳ Загрузка заданий...
-
-
-</div>
-
-
-</div>
-
-
-
-
-<button
-
-class="reload-btn"
-
-id="reloadBtn">
-
-
-🔄 Обновить задания
-
+🔄 Обновить объявления
 
 </button>
 
 
 
-</section>
+
+
+<div 
+class="news-list"
+id="newsList">
+
+
+<div class="message">
+
+
+<span class="loading-dot">
+
+⏳
+
+</span>
+
+
+Загрузка объявлений...
+
+</div>
+
+
+</div>
 
 
 
+</main>
 
 
-<!-- ================================================================
-     BACK BUTTON
-================================================================ -->
 
+<a href="../index.html" class="home-btn">
 
-<a
-
-href="../../index.html"
-
-class="back-link">
-
-
-← На главную
-
+🏠 На главную
 
 </a>
 
 <script>
 
 
-/* ================================================================
-   GOOGLE SHEETS — ГЛАВЫ
-================================================================ */
+// =====================================
+// GOOGLE SHEETS
+// =====================================
 
 
-/*
+const SHEET_URL = 
+"https://docs.google.com/spreadsheets/d/e/2PACX-1vT4byAxgoS02BNYbnY_SzIdwuasKnsuoJvWjiXZ20nO6Pb75eSMgoUJkYbG4na_f0zb-rcqsEQC9gBi/pubhtml?gid=0&single=true";
 
-Таблица глав:
 
-Порядок
-Глава
-Заголовок
-Текст
-Таблица
-Активность
 
 
-Активность:
-TRUE  → показываем
-FALSE → скрываем
+// CSV версия таблицы
 
+const CSV_URL =
 
-Столбец "Таблица" содержит ссылку
-на таблицу заданий конкретной главы.
-
-*/
-
-
-
-const chaptersSheetURL =
-
-"https://docs.google.com/spreadsheets/d/e/2PACX-1vQWaaGQ7ADjULC1oDegkCmYkx4Hf9jJDfkC8SeZlqkQHGSFvnETR1mKpSlnlc0PfuhX4byZXFzIAOch/pub?gid=0&single=true&output=csv";
-
-
-
-
-
-
-/* ================================================================
-   ELEMENTS
-================================================================ */
-
-
-
-const roadmapItems =
-
-document.getElementById(
-
-"roadmapItems"
-
-);
-
-
-
-
-
-const lineFill =
-
-document.getElementById(
-
-"lineFill"
-
-);
-
-
-
-
-
-const progressFill =
-
-document.getElementById(
-
-"progressFill"
-
-);
-
-
-
-
-
-const materialsSection =
-
-document.getElementById(
-
-"materialsSection"
-
-);
-
-
-
-
-
-const materialsGrid =
-
-document.getElementById(
-
-"materialsGrid"
-
-);
-
-
-
-
-
-const chapterName =
-
-document.getElementById(
-
-"chapterName"
-
-);
-
-
-
-
-
-const reloadBtn =
-
-document.getElementById(
-
-"reloadBtn"
-
+SHEET_URL
+.replace(
+"/pubhtml",
+"/pub"
+)
+.replace(
+"?gid=0&single=true",
+"?output=csv"
 );
 
 
@@ -3327,68 +1288,53 @@ document.getElementById(
 
 
 
-/* ================================================================
-   DATA
-================================================================ */
+const newsList =
+document.getElementById("newsList");
 
 
 
-let chapters = [];
+const updateBtn =
+document.getElementById("updateBtn");
 
 
 
-let activeChapterIndex = -1;
 
-
-
-let currentChapter = null;
-
+let loading = false;
 
 
 
 
 
-/* ================================================================
-   CSV PARSER
-================================================================ */
-
+// =====================================
+// CSV PARSER
+// =====================================
 
 
 function parseCSV(text){
 
 
-
-const rows = [];
-
+const rows=[];
 
 
-let row = [];
+let row=[];
 
 
-
-let value = "";
-
+let value="";
 
 
-let quotes = false;
-
-
+let quotes=false;
 
 
 
 
 for(
-let i = 0;
-i < text.length;
+let i=0;
+i<text.length;
 i++
 ){
 
 
-
-const char = text[i];
-
-
-
+const char=text[i];
 
 
 
@@ -3398,17 +1344,14 @@ if(char === '"'){
 
 if(
 quotes &&
-text[i + 1] === '"'
+text[i+1]==='"'
 ){
 
 
-
-value += '"';
-
+value+='"';
 
 
 i++;
-
 
 
 }
@@ -3416,49 +1359,34 @@ i++;
 else{
 
 
-
-quotes = !quotes;
-
+quotes=!quotes;
 
 
 }
 
 
-
 }
-
-
-
 
 
 
 else if(
-char === "," &&
+char==="," &&
 !quotes
 ){
-
 
 
 row.push(value);
 
 
-
-value = "";
-
+value="";
 
 
 }
 
 
 
-
-
-
 else if(
-(
-char === "\n" ||
-char === "\r"
-)
+(char==="\n" || char==="\r")
 &&
 !quotes
 ){
@@ -3466,49 +1394,38 @@ char === "\r"
 
 
 if(
-value !== "" ||
-row.length > 0
+value!=="" ||
+row.length
 ){
-
 
 
 row.push(value);
 
 
-
 rows.push(row);
 
 
-
 }
 
 
 
-row = [];
+row=[];
 
 
-
-value = "";
-
+value="";
 
 
 }
-
-
-
 
 
 
 else{
 
 
-
-value += char;
-
+value+=char;
 
 
 }
-
 
 
 }
@@ -3518,29 +1435,196 @@ value += char;
 
 
 if(
-value !== "" ||
-row.length > 0
+value ||
+row.length
 ){
-
 
 
 row.push(value);
 
 
-
 rows.push(row);
 
 
-
 }
-
-
 
 
 
 return rows;
 
 
+}
+
+
+
+
+
+
+// =====================================
+// LOAD NEWS
+// =====================================
+
+
+
+async function loadNews(){
+
+
+
+if(loading)
+
+return;
+
+
+
+
+loading=true;
+
+
+
+updateBtn.classList.add("loading");
+
+
+
+updateBtn.textContent =
+
+"⏳ Загрузка...";
+
+
+
+
+newsList.innerHTML =
+
+
+
+`
+
+<div class="message">
+
+
+<span class="loading-dot">
+
+⏳
+
+</span>
+
+
+Получение объявлений...
+
+</div>
+
+`;
+
+
+
+
+
+try{
+
+
+
+const response =
+
+await fetch(
+
+CSV_URL +
+
+"&t=" +
+
+Date.now()
+
+);
+
+
+
+
+
+if(!response.ok)
+
+throw new Error(
+"Ошибка загрузки таблицы"
+);
+
+
+
+
+
+const csv =
+
+await response.text();
+
+
+
+
+
+const data =
+
+parseCSV(csv);
+
+
+
+
+
+renderNews(data);
+
+
+
+
+}
+
+
+
+catch(error){
+
+
+
+newsList.innerHTML =
+
+
+
+`
+
+<div class="message error">
+
+❌ Не удалось загрузить объявления
+
+</div>
+
+`;
+
+
+
+console.error(error);
+
+
+
+}
+
+
+
+
+
+finally{
+
+
+
+loading=false;
+
+
+
+updateBtn.classList.remove("loading");
+
+
+
+updateBtn.textContent =
+
+
+"🔄 Обновить объявления";
+
+
+
+}
+
+
 
 }
 
@@ -3549,9 +1633,535 @@ return rows;
 
 
 
-/* ================================================================
-   HTML SAFE
-================================================================ */
+
+
+// =====================================
+// RENDER NEWS
+// =====================================
+
+
+
+function renderNews(data){
+
+
+
+if(
+!data ||
+data.length < 2
+){
+
+
+
+newsList.innerHTML =
+
+
+`
+
+<div class="message">
+
+📭 Объявлений пока нет
+
+</div>
+
+`;
+
+
+
+return;
+
+
+}
+
+
+
+
+
+
+const headers =
+
+data[0].map(
+
+item =>
+
+item
+.trim()
+.toLowerCase()
+
+);
+
+
+
+
+
+
+const orderIndex =
+
+headers.indexOf(
+"порядок"
+);
+
+
+
+
+
+const dateIndex =
+
+headers.indexOf(
+"дата"
+);
+
+
+const timeIndex =
+
+headers.indexOf(
+"время"
+);
+
+
+
+
+
+const titleIndex =
+
+headers.indexOf(
+"заголовок"
+);
+
+
+
+
+
+const descriptionIndex =
+
+headers.indexOf(
+"описание"
+);
+
+
+
+
+
+const linkIndex =
+
+headers.indexOf(
+"ссылка"
+);
+
+
+
+
+
+const activeIndex =
+
+headers.indexOf(
+"активность"
+);
+
+
+
+
+
+
+if(
+titleIndex === -1 ||
+descriptionIndex === -1
+){
+
+
+
+newsList.innerHTML =
+
+
+
+`
+
+<div class="message error">
+
+❌ Ошибка структуры таблицы
+
+</div>
+
+`;
+
+
+
+return;
+
+
+}
+
+
+
+
+
+
+
+let cards=[];
+
+
+
+
+
+
+data
+.slice(1)
+.forEach(row=>{
+
+
+
+
+
+const activeValue =
+
+row[activeIndex];
+
+
+
+
+
+const isActive =
+
+String(activeValue)
+
+.trim()
+
+.toLowerCase()
+
+===
+
+"true";
+
+
+
+
+
+
+if(!isActive)
+
+return;
+
+
+
+
+
+
+
+cards.push({
+
+
+
+order:
+
+Number(
+row[orderIndex]
+)
+
+||
+
+9999,
+
+
+
+
+
+date:
+
+[
+dateIndex !== -1 ? row[dateIndex] : "",
+timeIndex !== -1 ? row[timeIndex] : ""
+]
+.filter(Boolean)
+.join(" "),
+
+
+
+
+
+title:
+
+row[titleIndex]
+
+||
+
+"Без заголовка",
+
+
+
+
+
+description:
+
+row[descriptionIndex]
+
+||
+
+"",
+
+
+
+
+
+link:
+
+row[linkIndex]
+
+||
+
+""
+
+
+
+});
+
+
+
+
+
+});
+
+
+
+
+
+
+
+if(
+cards.length===0
+){
+
+
+
+newsList.innerHTML =
+
+
+
+`
+
+<div class="message">
+
+📭 Активных объявлений нет
+
+</div>
+
+`;
+
+
+
+return;
+
+
+}
+
+
+
+
+
+
+cards.sort(
+
+(a,b)=>
+
+a.order-b.order
+
+);
+
+
+
+
+
+
+renderCards(cards);
+
+
+
+
+
+}
+
+
+
+
+// =====================================
+// CREATE NEWS CARDS
+// =====================================
+
+
+function renderCards(cards){
+
+
+newsList.innerHTML = "";
+
+
+
+
+cards.forEach(
+
+(card,index)=>{
+
+
+
+const element =
+
+document.createElement("a");
+
+
+
+
+
+element.className =
+
+"news-card";
+
+
+
+
+
+element.style.animationDelay =
+
+`${index * 0.08}s`;
+
+
+
+
+
+
+
+if(card.link.trim()){
+
+
+
+element.href =
+
+card.link;
+
+
+
+element.target =
+
+"_blank";
+
+
+
+element.rel =
+
+"noopener noreferrer";
+
+
+}
+
+
+
+
+
+element.innerHTML =
+
+
+
+`
+
+<div class="news-header">
+
+
+<div class="news-icon">
+
+❗
+
+</div>
+
+
+
+
+<div class="news-content">
+
+
+
+<div class="news-title">
+
+${escapeHTML(card.title)}
+
+</div>
+
+
+
+
+<div class="news-date">
+
+📅 ${escapeHTML(card.date)}
+
+</div>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+<div class="news-description">
+
+${escapeHTML(card.description)}
+
+</div>
+
+
+
+
+
+${
+card.link.trim()
+
+?
+
+`
+
+<div class="news-link">
+
+Открыть <span>→</span>
+
+</div>
+
+`
+
+:
+
+""
+
+}
+
+
+`;
+
+
+
+
+
+newsList.appendChild(element);
+
+
+
+}
+
+
+);
+
+
+
+}
+
+
+
+
+
+
+
+// =====================================
+// HTML SAFE
+// =====================================
 
 
 
@@ -3560,7 +2170,6 @@ function escapeHTML(text){
 
 
 return String(text)
-
 
 
 .replace(
@@ -3604,895 +2213,19 @@ return String(text)
 
 
 
-/* ================================================================
-   CONVERT GOOGLE SHEETS URL
-================================================================ */
 
 
-function convertToCSV(url){
+// =====================================
+// EVENTS
+// =====================================
 
 
 
-return url
-
-.replace(
-"/pubhtml",
-"/pub"
-)
-
-.replace(
-"&single=true",
-""
-)
-
-.includes("output=csv")
-
-?
-
-url
-
-:
-
-url
-
-.replace(
-"/pubhtml",
-"/pub"
-)
-
-.replace(
-"?gid=",
-"?output=csv&gid="
-)
-
-.replace(
-"&single=true",
-""
-);
-
-
-
-}
-
-
-
-
-
-
-
-/* ================================================================
-   ЗАГРУЗКА ГЛАВ
-================================================================ */
-
-
-async function loadChapters(){
-
-
-
-try{
-
-
-
-const csvURL = convertToCSV(chaptersSheetURL);
-
-
-
-
-
-
-const response =
-
-await fetch(
-
-csvURL +
-
-"&t=" +
-
-Date.now()
-
-);
-
-
-
-
-
-
-if(
-!response.ok
-){
-
-
-
-throw new Error(
-"Не удалось загрузить таблицу глав"
-);
-
-
-
-}
-
-
-
-
-
-
-const csv =
-
-await response.text();
-
-
-
-
-
-
-const rows =
-
-parseCSV(csv);
-
-
-
-
-
-
-if(
-rows.length < 2
-){
-
-
-
-throw new Error(
-"Таблица глав пустая"
-);
-
-
-
-}
-
-
-
-
-
-
-const headers =
-
-rows[0].map(
-
-item =>
-
-item
-.trim()
-.toLowerCase()
-
-);
-
-
-
-
-
-
-const orderIndex =
-
-headers.indexOf(
-"порядок"
-);
-
-
-
-
-
-
-const chapterIndex =
-
-headers.indexOf(
-"глава"
-);
-
-
-
-
-
-
-const titleIndex =
-
-headers.indexOf(
-"заголовок"
-);
-
-
-
-
-
-
-const textIndex =
-
-headers.indexOf(
-"текст"
-);
-
-
-
-
-
-
-const tableIndex =
-
-headers.indexOf(
-"таблица"
-);
-
-
-
-
-
-
-const activityIndex =
-
-headers.indexOf(
-"активность"
-);
-
-
-
-
-
-
-
-if(
-chapterIndex === -1 ||
-titleIndex === -1 ||
-tableIndex === -1 ||
-activityIndex === -1
-){
-
-
-
-throw new Error(
-"В таблице глав отсутствуют обязательные столбцы"
-);
-
-
-
-}
-
-
-
-
-
-
-
-chapters = [];
-
-
-
-
-
-
-
-rows
-.slice(1)
-.forEach(
-
-row=>{
-
-
-
-
-
-
-const active =
-
-String(
-row[activityIndex]
-)
-
-.trim()
-
-.toLowerCase();
-
-
-
-
-
-
-if(
-active !== "true"
-){
-
-
-
-return;
-
-
-
-}
-
-
-
-
-
-
-chapters.push({
-
-
-
-order:
-
-Number(
-row[orderIndex]
-)
-
-||
-
-999,
-
-
-
-
-
-chapter:
-
-row[chapterIndex]
-
-||
-
-"",
-
-
-
-
-
-title:
-
-row[titleIndex]
-
-||
-
-"",
-
-
-
-
-
-text:
-
-row[textIndex]
-
-||
-
-"",
-
-
-
-
-
-table:
-
-row[tableIndex]
-
-||
-
-""
-
-
-
-
-
-});
-
-
-
-
-
-
-}
-
-);
-
-
-
-
-
-
-
-
-chapters.sort(
-
-(a,b)=>
-
-a.order - b.order
-
-);
-
-
-
-
-
-
-buildRoadmap();
-
-
-
-
-
-
-}
-
-catch(error){
-
-
-
-console.error(error);
-
-
-
-
-
-
-roadmapItems.innerHTML =
-
-
-
-`
-
-<div class="msg error">
-
-❌ ${escapeHTML(error.message)}
-
-</div>
-
-`;
-
-
-
-}
-
-
-
-}
-
-async function getTaskCount(tableURL){
-
-
-try{
-
-
-if(
-!tableURL
-){
-
-return 0;
-
-}
-
-
-
-const csvURL =
-
-tableURL
-
-.replace(
-"/pubhtml",
-"/pub"
-)
-
-.replace(
-"?gid=",
-"?output=csv&gid="
-);
-
-
-
-
-
-const response =
-
-await fetch(
-csvURL
-);
-
-
-
-
-
-if(
-!response.ok
-){
-
-return 0;
-
-}
-
-
-
-
-const csv =
-
-await response.text();
-
-
-
-
-
-const rows =
-
-parseCSV(csv);
-
-
-
-
-
-if(
-rows.length < 2
-){
-
-return 0;
-
-}
-
-
-
-
-
-const headers =
-
-rows[0].map(
-
-item =>
-
-item
-.trim()
-.toLowerCase()
-
-);
-
-
-
-
-
-const activityIndex =
-
-headers.indexOf(
-"активность"
-);
-
-
-
-
-
-if(
-activityIndex === -1
-){
-
-return 0;
-
-}
-
-
-
-
-
-let count = 0;
-
-
-
-
-
-rows
-.slice(1)
-.forEach(
-
-row=>{
-
-
-const active =
-
-String(
-row[activityIndex]
-)
-
-.trim()
-
-.toLowerCase();
-
-
-
-
-if(
-active === "true"
-){
-
-count++;
-
-}
-
-
-
-}
-
-);
-
-
-
-
-return count;
-
-
-
-}
-
-catch(error){
-
-
-console.error(error);
-
-
-return 0;
-
-
-}
-
-
-}
-
-
-
-
-
-
-
-
-/* ================================================================
-   ПОСТРОЕНИЕ КАРТОЧЕК ГЛАВ
-================================================================ */
-
-
-async function buildRoadmap(){
-
-
-roadmapItems.innerHTML = "";
-
-
-
-for(
-let index = 0;
-index < chapters.length;
-index++
-){
-
-
-
-const chapter = chapters[index];
-
-
-
-const item = document.createElement("div");
-
-
-
-item.className = "roadmap-item";
-
-
-
-item.dataset.index = index;
-
-
-
-item.style.transitionDelay =
-
-`${index * 0.08}s`;
-
-
-
-
-
-
-const taskCount =
-
-await getTaskCount(
-chapter.table
-);
-
-
-
-
-
-
-
-item.innerHTML =
-
-
-
-`
-
-<div class="roadmap-marker"></div>
-
-
-
-<div class="roadmap-card">
-
-
-
-<div class="card-header">
-
-
-
-<div class="card-number">
-
-
- ${escapeHTML(chapter.chapter)}
-
-
-</div>
-
-
-
-
-<div class="card-title">
-
-
-${escapeHTML(chapter.title)}
-
-
-</div>
-
-
-
-
-
-<div class="card-icon">
-
-
-📐
-
-
-</div>
-
-
-
-
-
-<div class="card-arrow">
-
-
-→
-
-
-</div>
-
-
-
-</div>
-
-
-
-
-
-
-
-${
-chapter.text
-
-?
-
-`
-
-<div class="card-text">
-
-${escapeHTML(chapter.text)}
-
-</div>
-
-`
-
-:
-
-""
-
-}
-
-
-
-
-
-
-
-
-<div class="card-count">
-
-
-📝 ${taskCount} заданий
-
-
-</div>
-
-
-
-
-</div>
-
-`;
-
-
-
-
-
-
-
-roadmapItems.appendChild(item);
-
-
-
-
-
-
-
-const card =
-
-item.querySelector(".roadmap-card");
-
-
-
-
-
-
-
-card.addEventListener(
+updateBtn.addEventListener(
 
 "click",
 
-()=>{
-
-
-openChapter(
-
-chapter,
-
-index
-
-);
-
-
-
-}
-
-);
-
-
-
-
-}
-
-
-
-
-
-observeRoadmap();
-
-
-
-}
-
-
-
-
-
-
-
-
-/* ================================================================
-   АНИМАЦИЯ ПОЯВЛЕНИЯ
-================================================================ */
-
-
-function observeRoadmap(){
-
-
-
-const items =
-
-document.querySelectorAll(
-
-".roadmap-item"
+loadNews
 
 );
 
@@ -4501,1130 +2234,21 @@ document.querySelectorAll(
 
 
 
-const observer =
 
-new IntersectionObserver(
+window.addEventListener(
 
-entries=>{
+"load",
 
-
-
-entries.forEach(
-
-entry=>{
-
-
-
-if(
-entry.isIntersecting
-){
-
-
-
-entry.target.classList.add(
-"visible"
-);
-
-
-
-}
-
-
-
-}
+loadNews
 
 );
 
-
-
-},
-
-
-
-{
-
-threshold:
-
-0.15
-
-}
-
-
-
-);
-
-
-
-
-
-
-items.forEach(
-
-item =>
-
-observer.observe(item)
-
-);
-
-
-
-}
-
-
-
-
-
-
-
-
-/* ================================================================
-   ОТКРЫТИЕ ГЛАВЫ
-================================================================ */
-
-
-function openChapter(
-
-chapter,
-
-index
-
-){
-
-
-
-currentChapter = chapter;
-
-
-
-activeChapterIndex = index;
-
-
-
-
-
-
-
-document
-
-.querySelectorAll(".roadmap-item")
-
-.forEach(item=>{
-
-
-item.classList.remove("active");
-
-
-});
-
-
-
-
-
-
-
-const currentItem = document.querySelector(
-
-`.roadmap-item[data-index="${index}"]`
-
-);
-
-
-
-
-
-
-if(currentItem){
-
-
-currentItem.classList.add("active");
-
-
-}
-
-
-
-
-
-
-
-
-chapterName.textContent =
-
-
-chapter.title ||
-
-`Глава ${chapter.chapter}`;
-
-
-
-
-
-
-
-
-materialsSection.style.display = "block";
-
-
-
-
-
-
-
-
-setTimeout(()=>{
-
-
-materialsSection.scrollIntoView({
-
-
-behavior:"smooth",
-
-
-block:"start"
-
-
-});
-
-
-
-},200);
-
-
-
-
-
-
-
-
-materialsGrid.innerHTML =
-
-
-
-`
-
-<div class="msg">
-
-
-⏳ Загрузка заданий...
-
-
-</div>
-
-`;
-
-
-
-
-
-
-
-
-loadMaterials(chapter.table);
-
-
-
-updateProgress();
-
-
-
-}
-
-
-
-
-
-
-
-
-/* ================================================================
-   ЗАГРУЗКА ЗАДАНИЙ
-================================================================ */
-
-
-async function loadMaterials(
-
-tableURL
-
-){
-
-
-
-try{
-
-
-
-if(
-!tableURL ||
-tableURL.trim()===""
-){
-
-
-
-throw new Error(
-
-"Для этой главы не указана таблица заданий"
-
-);
-
-
-
-}
-
-
-
-
-
-
-const csvURL = convertToCSV(tableURL);
-
-
-
-
-
-
-
-const response =
-
-await fetch(
-
-
-csvURL +
-
-"&t=" +
-
-Date.now()
-
-
-);
-
-
-
-
-
-
-if(
-!response.ok
-){
-
-
-
-throw new Error(
-
-"Не удалось загрузить таблицу заданий"
-
-);
-
-
-
-}
-
-
-
-
-
-
-
-const csv =
-
-await response.text();
-
-
-
-
-
-
-
-const rows =
-
-parseCSV(csv);
-
-
-
-
-
-
-
-if(
-rows.length < 2
-){
-
-
-
-throw new Error(
-
-"Таблица заданий пустая"
-
-);
-
-
-
-}
-
-
-
-
-
-
-
-buildMaterials(rows);
-
-
-
-
-
-
-}
-
-catch(error){
-
-
-
-console.error(error);
-
-
-
-
-
-
-materialsGrid.innerHTML =
-
-
-
-`
-
-<div class="msg error">
-
-
-❌ ${escapeHTML(error.message)}
-
-
-</div>
-
-
-`;
-
-
-
-}
-
-
-
-}
-
-/* ================================================================
-   СОЗДАНИЕ КАРТОЧЕК ЗАДАНИЙ
-================================================================ */
-
-
-function buildMaterials(rows){
-
-
-
-const headers =
-
-rows[0].map(
-
-item =>
-
-item
-.trim()
-.toLowerCase()
-
-);
-
-
-
-
-
-
-const orderIndex =
-
-headers.indexOf(
-"порядок"
-);
-
-
-
-
-
-
-const titleIndex =
-
-headers.indexOf(
-"заголовок"
-);
-
-
-
-
-
-
-const textIndex =
-
-headers.indexOf(
-"текст"
-);
-
-
-
-
-
-
-const linkIndex =
-
-headers.indexOf(
-"ссылка"
-);
-
-
-
-
-
-
-const activityIndex =
-
-headers.indexOf(
-"активность"
-);
-
-
-
-
-
-
-
-
-if(
-titleIndex === -1 ||
-linkIndex === -1 ||
-activityIndex === -1
-){
-
-
-
-throw new Error(
-
-"В таблице заданий отсутствуют обязательные столбцы"
-
-);
-
-
-
-}
-
-
-
-
-
-
-
-const tasks = [];
-
-
-
-
-
-
-
-rows
-.slice(1)
-.forEach(
-
-row=>{
-
-
-
-
-
-
-const active =
-
-String(
-row[activityIndex]
-)
-
-.trim()
-
-.toLowerCase();
-
-
-
-
-
-
-
-
-if(
-active !== "true"
-){
-
-
-
-return;
-
-
-
-}
-
-
-
-
-
-
-
-tasks.push({
-
-
-
-order:
-
-Number(
-row[orderIndex]
-)
-
-||
-
-999,
-
-
-
-
-
-
-title:
-
-row[titleIndex]
-
-||
-
-"",
-
-
-
-
-
-
-text:
-
-row[textIndex]
-
-||
-
-"",
-
-
-
-
-
-
-link:
-
-row[linkIndex]
-
-||
-
-""
-
-
-
-
-
-});
-
-
-
-
-
-
-
-}
-
-);
-
-
-
-
-
-
-
-tasks.sort(
-
-(a,b)=>
-
-a.order-b.order
-
-);
-
-
-
-
-
-
-
-renderMaterials(tasks);
-
-
-
-}
-
-
-
-
-
-
-
-
-/* ================================================================
-   ОТОБРАЖЕНИЕ КАРТОЧЕК ЗАДАНИЙ
-================================================================ */
-
-
-function renderMaterials(tasks){
-
-
-
-materialsGrid.innerHTML = "";
-
-
-
-
-
-
-
-if(
-tasks.length === 0
-){
-
-
-
-materialsGrid.innerHTML =
-
-
-
-`
-
-<div class="msg">
-
-
-Нет активных заданий
-
-
-</div>
-
-
-`;
-
-
-
-return;
-
-
-
-}
-
-
-
-
-
-
-
-tasks.forEach(
-
-(task,index)=>{
-
-
-
-
-
-
-
-const card =
-
-document.createElement(
-"a"
-);
-
-
-
-
-
-
-
-
-card.className =
-
-"material-card";
-
-
-
-
-
-
-
-
-card.href =
-
-task.link;
-
-
-
-
-
-
-
-
-card.target =
-
-"_blank";
-
-
-
-
-
-
-
-
-card.rel =
-
-"noopener noreferrer";
-
-
-
-
-
-
-
-
-card.style.animationDelay =
-
-`${index * 0.06}s`;
-
-
-
-
-
-
-
-
-card.innerHTML =
-
-
-
-`
-
-<div class="material-icon">
-
-
-📐
-
-
-</div>
-
-
-
-
-
-
-
-<div class="material-info">
-
-
-
-
-
-
-<div class="material-name">
-
-
-${escapeHTML(task.title)}
-
-
-</div>
-
-
-
-
-
-
-<div class="material-badge">
-
-
-${escapeHTML(task.text)}
-
-
-</div>
-
-
-
-
-
-
-
-</div>
-
-
-
-
-
-
-
-
-<div class="material-arrow">
-
-
-→
-
-
-</div>
-
-
-`;
-
-
-
-
-
-
-
-
-materialsGrid.appendChild(card);
-
-
-
-
-
-
-}
-
-);
-
-
-
-}
-
-
-
-
-
-
-
-
-
-/* ================================================================
-   ОБНОВЛЕНИЕ ПРОГРЕССА
-================================================================ */
-
-
-function updateProgress(){
-
-
-
-if(
-chapters.length === 0
-){
-
-
-
-return;
-
-
-
-}
-
-
-
-
-
-
-
-
-const percent =
-
-
-
-(
-
-(activeChapterIndex + 1)
-
-/
-
-chapters.length
-
-)
-
-*
-
-100;
-
-
-
-
-
-
-
-
-if(progressFill){
-
-
-
-progressFill.style.width =
-
-percent + "%";
-
-}
-
-
-
-
-
-if(lineFill){
-
-
-
-lineFill.style.height =
-
-percent + "%";
-
-}
-
-
-
-}
-
-
-
-
-
-
-
-
-/* ================================================================
-   КНОПКА ОБНОВЛЕНИЯ ЗАДАНИЙ
-================================================================ */
-
-
-reloadBtn.addEventListener(
-
-"click",
-
-async ()=>{
-
-
-if(
-!currentChapter ||
-reloadBtn.disabled
-){
-
-return;
-
-}
-
-
-
-reloadBtn.disabled = true;
-
-
-reloadBtn.textContent =
-"⏳ Обновление...";
-
-
-
-materialsGrid.innerHTML =
-
-
-`
-
-<div class="update-loading">
-
-
-<div class="update-loading-icon">
-
-◌
-
-</div>
-
-
-
-<div class="update-loading-title">
-
-Обновление материалов
-
-</div>
-
-
-
-<div class="update-loading-text">
-
-Синхронизация заданий
-
-</div>
-
-
-</div>
-
-`;
-
-
-
-
-await loadMaterials(
-
-currentChapter.table
-
-);
-
-
-
-reloadBtn.disabled = false;
-
-
-reloadBtn.textContent =
-
-"🔄 Обновить задания";
-
-
-
-}
-
-);
-
-
-
-
-
-
-
-
-/* ================================================================
-   ЗАПУСК СТРАНИЦЫ
-================================================================ */
-
-
-document.addEventListener(
-
-"DOMContentLoaded",
-
-()=>{
-
-
-
-loadChapters();
-
-
-
-}
-
-);
 
 
 
 </script>
 
 
-
-
-
 </body>
-
 
 </html>

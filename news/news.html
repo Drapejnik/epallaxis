@@ -38,8 +38,15 @@
   --border:
   rgba(124,140,255,.25);
 
-}
 
+  /* красный акцент важности */
+
+  --danger:#ff5555;
+
+  --danger-soft:
+  rgba(255,85,85,.15);
+
+}
 
 
 
@@ -93,6 +100,7 @@ animation:
 pageAppear .8s ease forwards;
 
 }
+
 
 
 
@@ -169,6 +177,7 @@ align-items:center;
 
 
 
+
 .logo {
 
 
@@ -183,12 +192,15 @@ letter-spacing:2px;
 
 
 
+
 .logo span {
 
 
 color:var(--news);
 
+
 }
+
 
 
 
@@ -234,6 +246,7 @@ padding:
 
 
 
+
 .title {
 
 
@@ -246,6 +259,7 @@ clamp(32px,5vw,48px);
 
 
 
+
 .title span {
 
 
@@ -253,6 +267,7 @@ color:var(--news);
 
 
 }
+
 
 
 
@@ -268,6 +283,9 @@ font-size:16px;
 
 }
 
+/* ======================
+UPDATE BUTTON
+====================== */
 
 
 .update-btn {
@@ -310,6 +328,7 @@ transition:.3s;
 
 
 
+
 .update-btn:hover {
 
 
@@ -339,8 +358,10 @@ pointer-events:none;
 
 
 
+
+
 /* ======================
-CARDS
+NEWS CARDS
 ====================== */
 
 
@@ -359,6 +380,8 @@ gap:16px;
 
 
 }
+
+
 
 
 
@@ -386,9 +409,11 @@ var(--panel2)
 );
 
 
+
 border:
 
 1px solid rgba(255,255,255,.08);
+
 
 
 position:relative;
@@ -403,7 +428,9 @@ text-decoration:none;
 color:var(--text);
 
 
+
 transition:.35s;
+
 
 
 animation:
@@ -419,33 +446,48 @@ opacity:0;
 
 
 
+
 @keyframes cardAppear {
 
 
 from {
 
+
 opacity:0;
+
 
 transform:
 
 translateY(20px);
 
+
 }
+
 
 
 to {
 
+
 opacity:1;
+
 
 transform:
 
 translateY(0);
 
-}
-
 
 }
 
+
+}
+
+
+
+
+
+
+
+/* цветная линия слева */
 
 
 .news-card::before {
@@ -478,6 +520,9 @@ var(--news);
 
 
 
+
+
+
 .news-card:hover {
 
 
@@ -486,9 +531,11 @@ transform:
 translateY(-5px);
 
 
+
 border-color:
 
 var(--news);
+
 
 
 box-shadow:
@@ -509,6 +556,108 @@ rgba(124,140,255,.15);
 
 
 
+
+
+
+
+
+/* верх карточки */
+
+
+.news-header {
+
+
+display:flex;
+
+
+align-items:center;
+
+
+gap:15px;
+
+
+}
+
+
+
+
+
+
+/* красный знак */
+
+
+.news-icon {
+
+
+width:42px;
+
+
+height:42px;
+
+
+border-radius:50%;
+
+
+
+display:flex;
+
+
+align-items:center;
+
+
+justify-content:center;
+
+
+
+flex-shrink:0;
+
+
+
+background:
+
+var(--danger-soft);
+
+
+
+border:
+
+1px solid rgba(255,85,85,.35);
+
+
+
+color:
+
+var(--danger);
+
+
+
+font-size:24px;
+
+
+
+font-weight:900;
+
+
+
+}
+
+
+
+
+
+.news-content {
+
+
+flex:1;
+
+
+}
+
+
+
+
+
+
 .news-title {
 
 
@@ -521,10 +670,46 @@ font-weight:700;
 
 
 
+
+
+
+
+.news-date {
+
+
+margin-top:6px;
+
+
+font-size:13px;
+
+
+color:
+
+var(--muted);
+
+
+
+display:flex;
+
+
+align-items:center;
+
+
+gap:6px;
+
+
+}
+
+
+
+
+
+
+
 .news-description {
 
 
-margin-top:10px;
+margin-top:14px;
 
 
 color:var(--muted);
@@ -535,30 +720,146 @@ line-height:1.5;
 
 font-size:16px;
 
+white-space:pre-line;
 
 }
+
+
+
+
 
 
 
 .news-link {
 
-
 margin-top:15px;
+
+display:inline-flex;
+
+align-items:center;
+
+gap:8px;
+
+color:var(--news);
+
+font-weight:600;
+
+font-size:15px;
+
+transition:.3s;
+
+}
+
+
+.news-link span {
+
+font-size:20px;
+
+transition:.3s;
+
+}
+
+
+.news-card:hover .news-link span {
+
+transform:translateX(5px);
+
+}
+
+
+
+/* ======================
+MESSAGE
+====================== */
+
+
+.message {
+
+
+text-align:center;
+
+
+padding:
+
+40px 20px;
+
+
+color:
+
+var(--muted);
+
+
+font-size:16px;
+
+
+}
+
+
+
+
+.message.error {
+
+
+color:#ff7777;
+
+
+}
+
+
+
+
+
+/* ======================
+LOADING
+====================== */
+
+
+.loading-dot {
 
 
 display:inline-block;
 
 
-color:var(--news);
+animation:
 
-
-font-weight:600;
+loadingPulse 1.4s infinite;
 
 
 }
 
+
+
+
+@keyframes loadingPulse {
+
+
+0% {
+
+
+opacity:.3;
+
+}
+
+
+50% {
+
+
+opacity:1;
+
+}
+
+
+100% {
+
+
+opacity:.3;
+
+}
+
+
+}
 /* ======================
-   MOBILE
+MOBILE
 ====================== */
 
 
@@ -612,10 +913,45 @@ font-size:
 
 
 
+
 .news-card {
 
 
 padding:
+
+20px;
+
+
+}
+
+
+
+.news-header {
+
+
+gap:
+
+12px;
+
+
+}
+
+
+
+.news-icon {
+
+
+width:
+
+36px;
+
+
+height:
+
+36px;
+
+
+font-size:
 
 20px;
 
@@ -648,6 +984,19 @@ font-size:
 
 
 
+.news-date {
+
+
+font-size:
+
+12px;
+
+
+}
+
+
+
+
 .update-btn {
 
 
@@ -662,176 +1011,105 @@ width:100%;
 
 
 
-/* ======================
-   MESSAGE
-====================== */
 
-
-.message {
-
-
-text-align:center;
-
-
-padding:
-
-40px 20px;
-
-
-color:
-
-var(--muted);
-
-
-font-size:16px;
-
-
-}
-
-
-.message.error {
-
-
-color:#ff7777;
-
-
-}
 
 
 /* ======================
-   LOADING EFFECT
+FLOAT HOME BUTTON
 ====================== */
 
-
-.loading-dot {
-
-
-display:inline-block;
-
-
-animation:
-
-loadingPulse 1.4s infinite;
-
-
-}
-
-
-
-@keyframes loadingPulse {
-
-
-0% {
-
-opacity:.3;
-
-}
-
-
-50% {
-
-opacity:1;
-
-}
-
-
-100% {
-
-opacity:.3;
-
-}
-
-
-}
-
-/* ======================
-   FLOAT HOME BUTTON
-====================== */
 
 .home-btn {
 
-  position:fixed;
+
+position:fixed;
 
 
-  left:25px;
+left:25px;
 
 
-  bottom:25px;
+bottom:25px;
 
 
-  z-index:100;
-
-
-
-  padding:12px 26px;
-
-
-  border-radius:40px;
-
-
-  text-decoration:none;
-
-
-  color:#f5d76e;
-
-
-  background:
-
-  rgba(16,24,32,.88);
+z-index:100;
 
 
 
-  border:
-
-  1px solid rgba(245,215,110,.35);
+padding:12px 26px;
 
 
-
-  backdrop-filter:blur(12px);
-
+border-radius:40px;
 
 
-  font-size:15px;
+text-decoration:none;
 
 
-  font-weight:600;
+color:#f5d76e;
 
 
+background:
 
-  transition:.35s;
+rgba(16,24,32,.88);
 
 
 
-  box-shadow:
+border:
 
-  0 10px 40px rgba(0,0,0,.35);
+1px solid rgba(245,215,110,.35);
+
+
+
+backdrop-filter:blur(12px);
+
+
+
+font-size:15px;
+
+
+font-weight:600;
+
+
+
+transition:.35s;
+
+
+
+box-shadow:
+
+0 10px 40px rgba(0,0,0,.35);
 
 
 }
+
 
 
 
 .home-btn:hover {
 
 
-  transform:
+
+transform:
 
 translateY(-5px);
 
 
-  background:
 
-  rgba(245,215,110,.12);
+background:
 
-
-  border-color:
-
-  #f5d76e;
+rgba(245,215,110,.12);
 
 
-  box-shadow:
 
-  0 0 35px rgba(245,215,110,.25);
+border-color:
+
+#f5d76e;
+
+
+
+box-shadow:
+
+0 0 35px rgba(245,215,110,.25);
+
 
 
 }
@@ -840,28 +1118,38 @@ translateY(-5px);
 
 @media(max-width:700px){
 
+
 .home-btn {
 
-  left:15px;
 
-  bottom:15px;
+left:15px;
 
-  padding:10px 20px;
+bottom:15px;
 
-  width:auto;
 
-  text-align:center;
+padding:10px 20px;
+
+
+width:auto;
+
+
+text-align:center;
+
 
 }
 
+
 }
+
+
+
 </style>
 
 </head>
 
 
-<body>
 
+<body>
 
 
 <header>
@@ -898,6 +1186,7 @@ EPALLAXIS <span>news</span>
 
 
 
+
 <main class="container">
 
 
@@ -908,11 +1197,15 @@ EPALLAXIS <span>news</span>
 </h1>
 
 
+
+
 <p class="description">
 
 Новости проекта, обновления и важная информация
 
 </p>
+
+
 
 
 
@@ -926,6 +1219,8 @@ id="updateBtn">
 
 
 
+
+
 <div 
 class="news-list"
 id="newsList">
@@ -933,9 +1228,13 @@ id="newsList">
 
 <div class="message">
 
+
 <span class="loading-dot">
+
 ⏳
+
 </span>
+
 
 Загрузка объявлений...
 
@@ -950,6 +1249,12 @@ id="newsList">
 
 
 
+<a href="../index.html" class="home-btn">
+
+🏠 На главную
+
+</a>
+
 <script>
 
 
@@ -963,13 +1268,11 @@ const SHEET_URL =
 
 
 
-// ВАЖНО:
-// берем CSV,
-// а не HTML.
-// Так Google отдаёт актуальные данные.
 
+// CSV версия таблицы
 
 const CSV_URL =
+
 SHEET_URL
 .replace(
 "/pubhtml",
@@ -982,8 +1285,12 @@ SHEET_URL
 
 
 
+
+
+
 const newsList =
 document.getElementById("newsList");
+
 
 
 const updateBtn =
@@ -991,7 +1298,10 @@ document.getElementById("updateBtn");
 
 
 
+
 let loading = false;
+
+
 
 
 
@@ -1008,9 +1318,12 @@ const rows=[];
 
 let row=[];
 
+
 let value="";
 
+
 let quotes=false;
+
 
 
 
@@ -1024,7 +1337,9 @@ i++
 const char=text[i];
 
 
+
 if(char === '"'){
+
 
 
 if(
@@ -1032,13 +1347,16 @@ quotes &&
 text[i+1]==='"'
 ){
 
+
 value+='"';
+
 
 i++;
 
+
 }
 
-else {
+else{
 
 
 quotes=!quotes;
@@ -1049,6 +1367,8 @@ quotes=!quotes;
 
 }
 
+
+
 else if(
 char==="," &&
 !quotes
@@ -1057,22 +1377,30 @@ char==="," &&
 
 row.push(value);
 
+
 value="";
 
 
 }
 
 
+
 else if(
 (char==="\n" || char==="\r")
-&& !quotes
+&&
+!quotes
 ){
 
 
-if(value!=="" || row.length){
+
+if(
+value!=="" ||
+row.length
+){
 
 
 row.push(value);
+
 
 rows.push(row);
 
@@ -1080,14 +1408,18 @@ rows.push(row);
 }
 
 
+
 row=[];
+
 
 value="";
 
 
 }
 
-else {
+
+
+else{
 
 
 value+=char;
@@ -1100,15 +1432,22 @@ value+=char;
 
 
 
-if(value || row.length){
+
+
+if(
+value ||
+row.length
+){
 
 
 row.push(value);
+
 
 rows.push(row);
 
 
 }
+
 
 
 return rows;
@@ -1118,9 +1457,13 @@ return rows;
 
 
 
+
+
+
 // =====================================
-// LOAD DATA
+// LOAD NEWS
 // =====================================
+
 
 
 async function loadNews(){
@@ -1133,6 +1476,7 @@ return;
 
 
 
+
 loading=true;
 
 
@@ -1140,20 +1484,29 @@ loading=true;
 updateBtn.classList.add("loading");
 
 
-updateBtn.textContent=
+
+updateBtn.textContent =
+
 "⏳ Загрузка...";
 
 
 
-newsList.innerHTML=
+
+newsList.innerHTML =
+
+
 
 `
 
 <div class="message">
 
+
 <span class="loading-dot">
+
 ⏳
+
 </span>
+
 
 Получение объявлений...
 
@@ -1163,15 +1516,25 @@ newsList.innerHTML=
 
 
 
+
+
 try{
 
 
+
 const response =
+
 await fetch(
+
 CSV_URL +
+
 "&t=" +
+
 Date.now()
+
 );
+
+
 
 
 
@@ -1183,13 +1546,21 @@ throw new Error(
 
 
 
+
+
 const csv =
+
 await response.text();
 
 
 
+
+
 const data =
+
 parseCSV(csv);
+
+
 
 
 
@@ -1197,13 +1568,18 @@ renderNews(data);
 
 
 
+
 }
+
+
 
 catch(error){
 
 
 
-newsList.innerHTML=
+newsList.innerHTML =
+
+
 
 `
 
@@ -1224,23 +1600,36 @@ console.error(error);
 }
 
 
+
+
+
 finally{
+
 
 
 loading=false;
 
 
+
 updateBtn.classList.remove("loading");
 
 
-updateBtn.textContent=
+
+updateBtn.textContent =
+
+
 "🔄 Обновить объявления";
 
 
+
 }
 
 
+
 }
+
+
+
 
 
 
@@ -1251,13 +1640,22 @@ updateBtn.textContent=
 // =====================================
 
 
+
 function renderNews(data){
 
 
-if(!data || data.length < 2){
+
+if(
+!data ||
+data.length < 2
+){
 
 
-newsList.innerHTML = `
+
+newsList.innerHTML =
+
+
+`
 
 <div class="message">
 
@@ -1268,6 +1666,7 @@ newsList.innerHTML = `
 `;
 
 
+
 return;
 
 
@@ -1276,35 +1675,89 @@ return;
 
 
 
-// первая строка — заголовки
+
 
 const headers =
-data[0].map(item =>
-item.trim().toLowerCase()
+
+data[0].map(
+
+item =>
+
+item
+.trim()
+.toLowerCase()
+
 );
 
 
 
-// поиск нужных колонок
+
+
 
 const orderIndex =
-headers.indexOf("порядок");
+
+headers.indexOf(
+"порядок"
+);
+
+
+
+
+
+const dateIndex =
+
+headers.indexOf(
+"дата"
+);
+
+
+const timeIndex =
+
+headers.indexOf(
+"время"
+);
+
+
+
 
 
 const titleIndex =
-headers.indexOf("заголовок");
+
+headers.indexOf(
+"заголовок"
+);
+
+
+
 
 
 const descriptionIndex =
-headers.indexOf("описание");
+
+headers.indexOf(
+"описание"
+);
+
+
+
 
 
 const linkIndex =
-headers.indexOf("ссылка");
+
+headers.indexOf(
+"ссылка"
+);
+
+
+
 
 
 const activeIndex =
-headers.indexOf("активность");
+
+headers.indexOf(
+"активность"
+);
+
+
 
 
 
@@ -1315,7 +1768,12 @@ descriptionIndex === -1
 ){
 
 
-newsList.innerHTML = `
+
+newsList.innerHTML =
+
+
+
+`
 
 <div class="message error">
 
@@ -1326,6 +1784,7 @@ newsList.innerHTML = `
 `;
 
 
+
 return;
 
 
@@ -1334,7 +1793,13 @@ return;
 
 
 
+
+
+
 let cards=[];
+
+
+
 
 
 
@@ -1344,22 +1809,32 @@ data
 
 
 
+
+
 const activeValue =
+
 row[activeIndex];
 
 
-// обработка чекбокса Google Sheets
+
+
 
 const isActive =
+
 String(activeValue)
+
 .trim()
+
 .toLowerCase()
+
 ===
+
 "true";
 
 
 
-// если чекбокс выключен — пропускаем
+
+
 
 if(!isActive)
 
@@ -1367,39 +1842,100 @@ return;
 
 
 
+
+
+
+
 cards.push({
 
 
+
 order:
-Number(row[orderIndex]) || 9999,
+
+Number(
+row[orderIndex]
+)
+
+||
+
+9999,
+
+
+
+
+
+date:
+
+[
+dateIndex !== -1 ? row[dateIndex] : "",
+timeIndex !== -1 ? row[timeIndex] : ""
+]
+.filter(Boolean)
+.join(" "),
+
+
+
 
 
 title:
-row[titleIndex] || "Без заголовка",
+
+row[titleIndex]
+
+||
+
+"Без заголовка",
+
+
+
 
 
 description:
-row[descriptionIndex] || "",
+
+row[descriptionIndex]
+
+||
+
+"",
+
+
+
 
 
 link:
-row[linkIndex] || ""
+
+row[linkIndex]
+
+||
+
+""
+
 
 
 });
 
 
 
+
+
 });
 
 
 
 
 
-if(cards.length===0){
 
 
-newsList.innerHTML = `
+if(
+cards.length===0
+){
+
+
+
+newsList.innerHTML =
+
+
+
+`
 
 <div class="message">
 
@@ -1410,6 +1946,7 @@ newsList.innerHTML = `
 `;
 
 
+
 return;
 
 
@@ -1418,61 +1955,125 @@ return;
 
 
 
-// сортировка по порядку
 
 
 cards.sort(
+
 (a,b)=>
+
 a.order-b.order
+
 );
 
 
 
 
 
-newsList.innerHTML="";
+
+renderCards(cards);
 
 
 
-
-
-cards.forEach(
-(card,index)=>{
-
-
-const element =
-document.createElement("a");
-
-
-
-element.className=
-"news-card";
-
-
-
-element.style.animationDelay =
-`${index*0.08}s`;
-
-
-
-if(card.link.trim()){
-
-
-element.href =
-card.link;
-
-
-element.target =
-"_blank";
 
 
 }
 
 
 
-element.innerHTML=
+
+// =====================================
+// CREATE NEWS CARDS
+// =====================================
+
+
+function renderCards(cards){
+
+
+newsList.innerHTML = "";
+
+
+
+
+cards.forEach(
+
+(card,index)=>{
+
+
+
+const element =
+
+document.createElement("a");
+
+
+
+
+
+element.className =
+
+"news-card";
+
+
+
+
+
+element.style.animationDelay =
+
+`${index * 0.08}s`;
+
+
+
+
+
+
+
+if(card.link.trim()){
+
+
+
+element.href =
+
+card.link;
+
+
+
+element.target =
+
+"_blank";
+
+
+
+element.rel =
+
+"noopener noreferrer";
+
+
+}
+
+
+
+
+
+element.innerHTML =
+
+
 
 `
+
+<div class="news-header">
+
+
+<div class="news-icon">
+
+❗
+
+</div>
+
+
+
+
+<div class="news-content">
+
+
 
 <div class="news-title">
 
@@ -1481,11 +2082,33 @@ ${escapeHTML(card.title)}
 </div>
 
 
+
+
+<div class="news-date">
+
+📅 ${escapeHTML(card.date)}
+
+</div>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
 <div class="news-description">
 
 ${escapeHTML(card.description)}
 
 </div>
+
+
 
 
 
@@ -1498,7 +2121,7 @@ card.link.trim()
 
 <div class="news-link">
 
-Открыть →
+Открыть <span>→</span>
 
 </div>
 
@@ -1515,11 +2138,16 @@ card.link.trim()
 
 
 
+
+
 newsList.appendChild(element);
 
 
 
-});
+}
+
+
+);
 
 
 
@@ -1528,35 +2156,49 @@ newsList.appendChild(element);
 
 
 
+
+
+
 // =====================================
-// ЗАЩИТА ОТ HTML В ТАБЛИЦЕ
+// HTML SAFE
 // =====================================
+
 
 
 function escapeHTML(text){
 
 
+
 return String(text)
+
 
 .replace(
 /&/g,
 "&amp;"
 )
 
+
+
 .replace(
 /</g,
 "&lt;"
 )
+
+
 
 .replace(
 />/g,
 "&gt;"
 )
 
+
+
 .replace(
 /"/g,
 "&quot;"
 )
+
+
 
 .replace(
 /'/g,
@@ -1564,7 +2206,11 @@ return String(text)
 );
 
 
+
 }
+
+
+
 
 
 
@@ -1574,28 +2220,35 @@ return String(text)
 // =====================================
 
 
+
 updateBtn.addEventListener(
+
 "click",
+
 loadNews
+
 );
+
+
+
 
 
 
 
 window.addEventListener(
+
 "load",
+
 loadNews
+
 );
+
 
 
 
 </script>
 
-<a href="../index.html" class="home-btn">
 
-🏠 На главную
-
-</a>
 </body>
 
 </html>
