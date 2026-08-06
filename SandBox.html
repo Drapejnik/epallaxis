@@ -9,7 +9,7 @@
 
 
 <title>
-Алгебра 9 класс — EPALLAXIS
+Геометрия 9 класс — EPALLAXIS
 </title>
 
 
@@ -21,7 +21,7 @@
 
 
 /* ================================================================
-   EPALLAXIS ALGEBRA 9
+   EPALLAXIS GEOMETRY 9
    PREMIUM DESIGN SYSTEM
 ================================================================ */
 
@@ -55,18 +55,18 @@
 
 
 
-/* АЛГЕБРА */
+/* ГЕОМЕТРИЯ */
 
 --accent:
-#22ff88;
+#4da6ff;
 
 
 
 --accent-soft:
 rgba(
-34,
+77,
+166,
 255,
-136,
 0.12
 );
 
@@ -74,9 +74,9 @@ rgba(
 
 --border:
 rgba(
-34,
+77,
+166,
 255,
-136,
 0.18
 );
 
@@ -176,9 +176,9 @@ background:
 radial-gradient(
 900px 500px at 15% 0%,
 rgba(
-34,
+77,
+166,
 255,
-136,
 0.16
 ),
 transparent 60%
@@ -188,9 +188,9 @@ transparent 60%
 radial-gradient(
 700px 400px at 90% 20%,
 rgba(
-34,
+77,
+166,
 255,
-136,
 0.05
 ),
 transparent 70%
@@ -212,6 +212,7 @@ padding:
 
 
 }
+
 
 
 
@@ -326,6 +327,7 @@ letter-spacing:
 
 
 
+
 .brand h1 span {
 
 
@@ -367,6 +369,7 @@ var(--muted);
 
 
 
+
 /* ================================================================
    HEADER PROGRESS
 ================================================================ */
@@ -387,6 +390,7 @@ width:
 
 
 
+
 margin-top:
 
 14px;
@@ -396,9 +400,9 @@ margin-top:
 background:
 
 rgba(
-34,
+77,
+166,
 255,
-136,
 0.12
 );
 
@@ -436,12 +440,13 @@ width:
 
 
 
+
 background:
 
 linear-gradient(
 90deg,
 var(--accent),
-#8affbd
+#9fd4ff
 );
 
 
@@ -633,9 +638,9 @@ width:
 background:
 
 rgba(
-34,
+77,
+166,
 255,
-136,
 0.12
 );
 
@@ -696,7 +701,7 @@ background:
 linear-gradient(
 180deg,
 var(--accent),
-#8affbd
+#9fd4ff
 );
 
 
@@ -788,7 +793,6 @@ translateY(0);
 
 
 
-
 /* маркер */
 
 
@@ -841,9 +845,9 @@ border:
 
 3px solid
 rgba(
-34,
+77,
+166,
 255,
-136,
 0.25
 );
 
@@ -885,16 +889,14 @@ box-shadow:
 
 0 0 30px
 rgba(
-34,
+77,
+166,
 255,
-136,
 0.65
 );
 
 
 }
-
-
 
 
 
@@ -999,9 +1001,6 @@ background .35s ease;
 
 
 
-/* зелёная линия сбоку */
-
-
 .roadmap-card::before {
 
 
@@ -1075,9 +1074,9 @@ translateY(-5px);
 border-color:
 
 rgba(
-34,
+77,
+166,
 255,
-136,
 0.5
 );
 
@@ -1087,9 +1086,9 @@ box-shadow:
 
 0 20px 60px
 rgba(
-34,
+77,
+166,
 255,
-136,
 0.16
 );
 
@@ -1129,9 +1128,9 @@ background:
 linear-gradient(
 145deg,
 rgba(
-34,
+77,
+166,
 255,
-136,
 0.09
 ),
 rgba(
@@ -1148,9 +1147,9 @@ box-shadow:
 
 0 20px 60px
 rgba(
-34,
+77,
+166,
 255,
-136,
 0.22
 );
 
@@ -1261,6 +1260,7 @@ left:
 ================================================================ */
 
 
+
 .card-header {
 
 
@@ -1293,9 +1293,6 @@ z-index:
 
 
 
-
-
-/* Глава X */
 
 
 .card-number {
@@ -1340,9 +1337,6 @@ nowrap;
 
 
 
-
-
-/* Заголовок */
 
 
 .card-title {
@@ -1431,6 +1425,11 @@ scale(
 
 }
 
+
+
+
+
+
 /* ================================================================
    ТЕКСТ В КАРТОЧКЕ ГЛАВЫ
 ================================================================ */
@@ -1486,12 +1485,93 @@ z-index:
 
 
 
+.card-count {
 
 
-/* ================================================================
-   СТРЕЛКА КАРТОЧКИ
-================================================================ */
+margin-top:
 
+18px;
+
+
+
+display:
+
+inline-flex;
+
+
+
+align-items:
+
+center;
+
+
+
+gap:
+
+8px;
+
+
+
+padding:
+
+8px 16px;
+
+
+
+border-radius:
+
+30px;
+
+
+
+background:
+
+rgba(
+77,
+166,
+255,
+0.08
+);
+
+
+
+border:
+
+1px solid
+rgba(
+77,
+166,
+255,
+0.25
+);
+
+
+
+color:
+
+var(--accent);
+
+
+
+font-size:
+
+13px;
+
+
+
+font-weight:
+
+700;
+
+
+
+letter-spacing:
+
+0.3px;
+
+
+
+}
 
 .card-arrow {
 
@@ -1544,7 +1624,6 @@ var(--transition);
 
 
 }
-
 
 
 
@@ -1638,7 +1717,6 @@ var(--accent);
 
 
 }
-
 
 
 
@@ -1795,7 +1873,6 @@ fadeUp .5s forwards;
 
 
 
-
 .material-card::before {
 
 
@@ -1850,7 +1927,6 @@ opacity:
 
 
 
-
 .material-card:hover {
 
 
@@ -1863,9 +1939,9 @@ translateY(-6px);
 border-color:
 
 rgba(
-34,
+77,
+166,
 255,
-136,
 0.5
 );
 
@@ -1875,15 +1951,14 @@ box-shadow:
 
 0 15px 40px
 rgba(
-34,
+77,
+166,
 255,
-136,
 0.14
 );
 
 
 }
-
 
 
 
@@ -1909,7 +1984,6 @@ flex-shrink:
 
 
 
-
 .material-info {
 
 
@@ -1919,7 +1993,6 @@ flex:
 
 
 }
-
 
 
 
@@ -1951,7 +2024,6 @@ line-height:
 
 
 
-
 .material-badge {
 
 
@@ -1973,7 +2045,6 @@ var(--muted);
 
 
 }
-
 
 
 
@@ -2080,7 +2151,168 @@ color:
 }
 
 
+/* ================================================================
+   UPDATE LOADING
+================================================================ */
 
+
+.update-loading {
+
+
+display:flex;
+
+
+flex-direction:column;
+
+
+align-items:center;
+
+
+justify-content:center;
+
+
+
+min-height:
+
+160px;
+
+
+
+gap:
+
+12px;
+
+
+
+animation:
+
+fadeUpdate .35s ease;
+
+
+}
+
+
+
+
+
+.update-loading-icon {
+
+
+font-size:
+
+34px;
+
+
+
+color:
+
+var(--accent);
+
+
+
+opacity:
+
+0.8;
+
+
+}
+
+
+
+
+
+.update-loading-title {
+
+
+font-size:
+
+21px;
+
+
+
+font-weight:
+
+800;
+
+
+
+letter-spacing:
+
+0.5px;
+
+
+
+color:
+
+var(--text);
+
+
+}
+
+
+
+
+
+.update-loading-text {
+
+
+font-size:
+
+14px;
+
+
+
+color:
+
+var(--muted);
+
+
+}
+
+
+
+
+
+
+@keyframes fadeUpdate {
+
+
+from {
+
+
+opacity:
+
+0;
+
+
+
+transform:
+
+translateY(8px);
+
+
+}
+
+
+
+to {
+
+
+opacity:
+
+1;
+
+
+
+transform:
+
+translateY(0);
+
+
+}
+
+
+}
 
 
 
@@ -2164,14 +2396,19 @@ var(--accent);
 background:
 
 rgba(
-34,
+77,
+166,
 255,
-136,
 0.06
 );
 
 
 }
+
+
+
+
+
 
 /* ================================================================
    BACK BUTTON
@@ -2290,9 +2527,9 @@ var(--accent);
 background:
 
 rgba(
-34,
+77,
+166,
 255,
-136,
 0.08
 );
 
@@ -2302,9 +2539,9 @@ box-shadow:
 
 0 0 30px
 rgba(
-34,
+77,
+166,
 255,
-136,
 0.18
 );
 
@@ -2369,43 +2606,6 @@ scale(1);
 
 
 
-
-@keyframes pulse {
-
-
-0%,
-100% {
-
-
-opacity:
-
-.5;
-
-
-}
-
-
-
-50% {
-
-
-opacity:
-
-1;
-
-
-}
-
-
-
-}
-
-
-
-
-
-
-
 /* ================================================================
    MOBILE
 ================================================================ */
@@ -2438,7 +2638,6 @@ margin:
 
 
 }
-
 
 
 
@@ -2760,21 +2959,12 @@ padding:
 }
 
 
-
-/* ================================================================
-   END STYLE
-================================================================ */
-
-
 </style>
 
 </head>
 
 
 <body>
-
-
-
 
 
 <!-- ================================================================
@@ -2785,13 +2975,10 @@ padding:
 <header>
 
 
-
 <div class="header-row">
 
 
-
 <div class="brand">
-
 
 
 <h1>
@@ -2800,13 +2987,11 @@ EPALLAXIS
 
 <span>
 
-algebra
+geometry
 
 </span>
 
 </h1>
-
-
 
 
 
@@ -2817,14 +3002,10 @@ algebra
 </p>
 
 
-
 </div>
 
 
-
 </div>
-
-
 
 
 
@@ -2843,13 +3024,7 @@ id="progressFill">
 </div>
 
 
-
 </header>
-
-
-
-
-
 
 
 
@@ -2859,15 +3034,13 @@ id="progressFill">
 ================================================================ -->
 
 
-
 <section class="page-title">
-
 
 
 <h1>
 
 
-Алгебра
+Геометрия
 
 <span>
 
@@ -2880,25 +3053,15 @@ id="progressFill">
 
 
 
-
-
-
 <p>
 
 
 Изучайте главы последовательно или выбирайте любую
 
-
 </p>
 
 
-
 </section>
-
-
-
-
-
 
 
 
@@ -2908,13 +3071,10 @@ id="progressFill">
 ================================================================ -->
 
 
-
 <section class="roadmap">
 
 
-
 <div class="roadmap-line">
-
 
 
 <div
@@ -2926,11 +3086,7 @@ id="lineFill">
 </div>
 
 
-
 </div>
-
-
-
 
 
 
@@ -2943,14 +3099,7 @@ id="roadmapItems">
 
 
 
-
-
-
 </section>
-
-
-
-
 
 
 
@@ -2961,15 +3110,11 @@ id="roadmapItems">
 ================================================================ -->
 
 
-
 <section
 
 class="materials-section"
 
 id="materialsSection">
-
-
-
 
 
 <h2 class="materials-title">
@@ -2992,18 +3137,11 @@ id="materialsSection">
 
 
 
-
-
-
 <div
 
 class="materials-grid"
 
 id="materialsGrid">
-
-
-
-
 
 
 <div class="msg">
@@ -3015,13 +3153,7 @@ id="materialsGrid">
 </div>
 
 
-
-
-
 </div>
-
-
-
 
 
 
@@ -3033,23 +3165,14 @@ class="reload-btn"
 id="reloadBtn">
 
 
-
 🔄 Обновить задания
-
 
 
 </button>
 
 
 
-
-
-
-
 </section>
-
-
-
 
 
 
@@ -3060,7 +3183,6 @@ id="reloadBtn">
 ================================================================ -->
 
 
-
 <a
 
 href="../../index.html"
@@ -3068,9 +3190,7 @@ href="../../index.html"
 class="back-link">
 
 
-
 ← На главную
-
 
 
 </a>
@@ -3084,6 +3204,7 @@ class="back-link">
 
 
 /*
+
 Таблица глав:
 
 Порядок
@@ -3101,15 +3222,14 @@ FALSE → скрываем
 
 Столбец "Таблица" содержит ссылку
 на таблицу заданий конкретной главы.
+
 */
-
-
 
 
 
 const chaptersSheetURL =
 
-"https://docs.google.com/spreadsheets/d/e/2PACX-1vQvHTb3SOfhmvWJAmeFnHtiCj9JSMel_M1yHofabPwinYq4fSoCpy3GrP3r73ks3krE0p-snzXlK3cJ/pubhtml?gid=0&single=true";
+"https://docs.google.com/spreadsheets/d/e/2PACX-1vQWaaGQ7ADjULC1oDegkCmYkx4Hf9jJDfkC8SeZlqkQHGSFvnETR1mKpSlnlc0PfuhX4byZXFzIAOch/pub?gid=0&single=true&output=csv";
 
 
 
@@ -3207,7 +3327,6 @@ document.getElementById(
 
 
 
-
 /* ================================================================
    DATA
 ================================================================ */
@@ -3218,18 +3337,11 @@ let chapters = [];
 
 
 
-
-
 let activeChapterIndex = -1;
 
 
 
-
-
 let currentChapter = null;
-
-
-
 
 
 
@@ -3265,7 +3377,6 @@ let quotes = false;
 
 
 
-
 for(
 let i = 0;
 i < text.length;
@@ -3275,7 +3386,6 @@ i++
 
 
 const char = text[i];
-
 
 
 
@@ -3407,7 +3517,6 @@ value += char;
 
 
 
-
 if(
 value !== "" ||
 row.length > 0
@@ -3429,13 +3538,11 @@ rows.push(row);
 
 
 
-
 return rows;
 
 
 
 }
-
 
 
 
@@ -3493,41 +3600,69 @@ return String(text)
 
 }
 
+
+
+
+
 /* ================================================================
-   ЗАГРУЗКА ГЛАВ
+   CONVERT GOOGLE SHEETS URL
 ================================================================ */
+
+
 function convertToCSV(url){
 
+
+
 return url
+
 .replace(
 "/pubhtml",
 "/pub"
 )
+
 .replace(
 "&single=true",
 ""
 )
+
 .includes("output=csv")
 
 ?
+
 url
 
 :
 
 url
+
 .replace(
 "/pubhtml",
 "/pub"
 )
+
 .replace(
 "?gid=",
 "?output=csv&gid="
 )
+
 .replace(
 "&single=true",
-"");
+""
+);
+
+
 
 }
+
+
+
+
+
+
+
+/* ================================================================
+   ЗАГРУЗКА ГЛАВ
+================================================================ */
 
 
 async function loadChapters(){
@@ -3545,8 +3680,6 @@ const csvURL = convertToCSV(chaptersSheetURL);
 
 
 
-
-
 const response =
 
 await fetch(
@@ -3558,8 +3691,6 @@ csvURL +
 Date.now()
 
 );
-
-
 
 
 
@@ -3585,8 +3716,6 @@ throw new Error(
 
 
 
-
-
 const csv =
 
 await response.text();
@@ -3596,13 +3725,9 @@ await response.text();
 
 
 
-
-
 const rows =
 
 parseCSV(csv);
-
-
 
 
 
@@ -3628,8 +3753,6 @@ throw new Error(
 
 
 
-
-
 const headers =
 
 rows[0].map(
@@ -3647,13 +3770,12 @@ item
 
 
 
-
-
 const orderIndex =
 
 headers.indexOf(
 "порядок"
 );
+
 
 
 
@@ -3669,11 +3791,13 @@ headers.indexOf(
 
 
 
+
 const titleIndex =
 
 headers.indexOf(
 "заголовок"
 );
+
 
 
 
@@ -3689,6 +3813,7 @@ headers.indexOf(
 
 
 
+
 const tableIndex =
 
 headers.indexOf(
@@ -3699,12 +3824,12 @@ headers.indexOf(
 
 
 
+
 const activityIndex =
 
 headers.indexOf(
 "активность"
 );
-
 
 
 
@@ -3735,9 +3860,7 @@ throw new Error(
 
 
 
-
 chapters = [];
-
 
 
 
@@ -3749,7 +3872,7 @@ rows
 .slice(1)
 .forEach(
 
-row => {
+row=>{
 
 
 
@@ -3765,8 +3888,6 @@ row[activityIndex]
 .trim()
 
 .toLowerCase();
-
-
 
 
 
@@ -3790,8 +3911,6 @@ return;
 
 
 
-
-
 chapters.push({
 
 
@@ -3802,7 +3921,9 @@ Number(
 row[orderIndex]
 )
 
-|| 999,
+||
+
+999,
 
 
 
@@ -3854,8 +3975,9 @@ row[tableIndex]
 
 
 
-});
 
+
+});
 
 
 
@@ -3865,7 +3987,6 @@ row[tableIndex]
 }
 
 );
-
 
 
 
@@ -3887,8 +4008,6 @@ a.order - b.order
 
 
 
-
-
 buildRoadmap();
 
 
@@ -3902,10 +4021,7 @@ catch(error){
 
 
 
-console.error(
-error
-);
-
+console.error(error);
 
 
 
@@ -3928,70 +4044,236 @@ roadmapItems.innerHTML =
 
 
 
-
-
 }
 
 
 
 }
 
-/* ================================================================
-   ПОСТРОЕНИЕ КАРТОЧЕК ГЛАВ
-================================================================ */
+async function getTaskCount(tableURL){
+
+
+try{
+
+
+if(
+!tableURL
+){
+
+return 0;
+
+}
 
 
 
-function buildRoadmap(){
+const csvURL =
 
+tableURL
 
+.replace(
+"/pubhtml",
+"/pub"
+)
 
-roadmapItems.innerHTML = "";
-
-
-
-
-
-
-
-chapters.forEach(
-
-(chapter,index)=>{
-
-
-
-
-
-const item =
-
-document.createElement(
-"div"
+.replace(
+"?gid=",
+"?output=csv&gid="
 );
 
 
 
 
 
+const response =
 
-
-item.className =
-
-"roadmap-item";
-
-
-
-
-
-
-
-item.dataset.index =
-
-index;
+await fetch(
+csvURL
+);
 
 
 
 
 
+if(
+!response.ok
+){
+
+return 0;
+
+}
+
+
+
+
+const csv =
+
+await response.text();
+
+
+
+
+
+const rows =
+
+parseCSV(csv);
+
+
+
+
+
+if(
+rows.length < 2
+){
+
+return 0;
+
+}
+
+
+
+
+
+const headers =
+
+rows[0].map(
+
+item =>
+
+item
+.trim()
+.toLowerCase()
+
+);
+
+
+
+
+
+const activityIndex =
+
+headers.indexOf(
+"активность"
+);
+
+
+
+
+
+if(
+activityIndex === -1
+){
+
+return 0;
+
+}
+
+
+
+
+
+let count = 0;
+
+
+
+
+
+rows
+.slice(1)
+.forEach(
+
+row=>{
+
+
+const active =
+
+String(
+row[activityIndex]
+)
+
+.trim()
+
+.toLowerCase();
+
+
+
+
+if(
+active === "true"
+){
+
+count++;
+
+}
+
+
+
+}
+
+);
+
+
+
+
+return count;
+
+
+
+}
+
+catch(error){
+
+
+console.error(error);
+
+
+return 0;
+
+
+}
+
+
+}
+
+
+
+
+
+
+
+
+/* ================================================================
+   ПОСТРОЕНИЕ КАРТОЧЕК ГЛАВ
+================================================================ */
+
+
+async function buildRoadmap(){
+
+
+roadmapItems.innerHTML = "";
+
+
+
+for(
+let index = 0;
+index < chapters.length;
+index++
+){
+
+
+
+const chapter = chapters[index];
+
+
+
+const item = document.createElement("div");
+
+
+
+item.className = "roadmap-item";
+
+
+
+item.dataset.index = index;
 
 
 
@@ -4004,15 +4286,11 @@ item.style.transitionDelay =
 
 
 
+const taskCount =
 
-
-
-const cardNumber =
-
-chapter.chapter ||
-
-`Глава ${index + 1}`;
-
+await getTaskCount(
+chapter.table
+);
 
 
 
@@ -4030,16 +4308,7 @@ item.innerHTML =
 
 
 
-
-
-<div
-
-class="roadmap-card"
-
-data-index="${index}">
-
-
-
+<div class="roadmap-card">
 
 
 
@@ -4047,26 +4316,24 @@ data-index="${index}">
 
 
 
-
-
-
 <div class="card-number">
 
-${escapeHTML(cardNumber)}
+
+ ${escapeHTML(chapter.chapter)}
+
 
 </div>
-
-
 
 
 
 
 <div class="card-title">
 
+
 ${escapeHTML(chapter.title)}
 
-</div>
 
+</div>
 
 
 
@@ -4074,10 +4341,11 @@ ${escapeHTML(chapter.title)}
 
 <div class="card-icon">
 
-📘
+
+📐
+
 
 </div>
-
 
 
 
@@ -4085,17 +4353,15 @@ ${escapeHTML(chapter.title)}
 
 <div class="card-arrow">
 
+
 →
 
+
 </div>
-
-
-
 
 
 
 </div>
-
 
 
 
@@ -4130,6 +4396,18 @@ ${escapeHTML(chapter.text)}
 
 
 
+
+<div class="card-count">
+
+
+📝 ${taskCount} заданий
+
+
+</div>
+
+
+
+
 </div>
 
 `;
@@ -4140,11 +4418,7 @@ ${escapeHTML(chapter.text)}
 
 
 
-
-roadmapItems.appendChild(
-item
-);
-
+roadmapItems.appendChild(item);
 
 
 
@@ -4154,10 +4428,7 @@ item
 
 const card =
 
-item.querySelector(
-".roadmap-card"
-);
-
+item.querySelector(".roadmap-card");
 
 
 
@@ -4170,7 +4441,6 @@ card.addEventListener(
 "click",
 
 ()=>{
-
 
 
 openChapter(
@@ -4190,13 +4460,7 @@ index
 
 
 
-
-
 }
-
-);
-
-
 
 
 
@@ -4215,11 +4479,9 @@ observeRoadmap();
 
 
 
-
 /* ================================================================
    АНИМАЦИЯ ПОЯВЛЕНИЯ
 ================================================================ */
-
 
 
 function observeRoadmap(){
@@ -4233,8 +4495,6 @@ document.querySelectorAll(
 ".roadmap-item"
 
 );
-
-
 
 
 
@@ -4279,6 +4539,8 @@ entry.target.classList.add(
 
 },
 
+
+
 {
 
 threshold:
@@ -4287,9 +4549,9 @@ threshold:
 
 }
 
+
+
 );
-
-
 
 
 
@@ -4308,10 +4570,16 @@ observer.observe(item)
 
 }
 
+
+
+
+
+
+
+
 /* ================================================================
    ОТКРЫТИЕ ГЛАВЫ
 ================================================================ */
-
 
 
 function openChapter(
@@ -4337,21 +4605,16 @@ activeChapterIndex = index;
 
 
 document
-.querySelectorAll(
-".roadmap-item"
-)
 
-.forEach(
+.querySelectorAll(".roadmap-item")
 
-item=>{
+.forEach(item=>{
 
-item.classList.remove(
-"active"
-);
 
-}
+item.classList.remove("active");
 
-);
+
+});
 
 
 
@@ -4359,9 +4622,7 @@ item.classList.remove(
 
 
 
-const currentItem =
-
-document.querySelector(
+const currentItem = document.querySelector(
 
 `.roadmap-item[data-index="${index}"]`
 
@@ -4372,15 +4633,10 @@ document.querySelector(
 
 
 
-
 if(currentItem){
 
 
-
-currentItem.classList.add(
-"active"
-);
-
+currentItem.classList.add("active");
 
 
 }
@@ -4391,13 +4647,13 @@ currentItem.classList.add(
 
 
 
+
 chapterName.textContent =
+
 
 chapter.title ||
 
-chapter.chapter ||
-
-"глава";
+`Глава ${chapter.chapter}`;
 
 
 
@@ -4405,9 +4661,34 @@ chapter.chapter ||
 
 
 
-materialsSection.style.display =
 
-"block";
+materialsSection.style.display = "block";
+
+
+
+
+
+
+
+
+setTimeout(()=>{
+
+
+materialsSection.scrollIntoView({
+
+
+behavior:"smooth",
+
+
+block:"start"
+
+
+});
+
+
+
+},200);
+
 
 
 
@@ -4423,7 +4704,9 @@ materialsGrid.innerHTML =
 
 <div class="msg">
 
+
 ⏳ Загрузка заданий...
+
 
 </div>
 
@@ -4435,15 +4718,8 @@ materialsGrid.innerHTML =
 
 
 
-loadMaterials(
 
-chapter.table
-
-);
-
-
-
-
+loadMaterials(chapter.table);
 
 
 
@@ -4460,11 +4736,9 @@ updateProgress();
 
 
 
-
 /* ================================================================
    ЗАГРУЗКА ЗАДАНИЙ
 ================================================================ */
-
 
 
 async function loadMaterials(
@@ -4487,18 +4761,14 @@ tableURL.trim()===""
 
 
 throw new Error(
+
 "Для этой главы не указана таблица заданий"
+
 );
 
 
 
 }
-
-
-
-
-
-
 
 
 
@@ -4513,10 +4783,10 @@ const csvURL = convertToCSV(tableURL);
 
 
 
-
 const response =
 
 await fetch(
+
 
 csvURL +
 
@@ -4524,9 +4794,8 @@ csvURL +
 
 Date.now()
 
+
 );
-
-
 
 
 
@@ -4540,13 +4809,14 @@ if(
 
 
 throw new Error(
+
 "Не удалось загрузить таблицу заданий"
+
 );
 
 
 
 }
-
 
 
 
@@ -4564,11 +4834,9 @@ await response.text();
 
 
 
-
 const rows =
 
 parseCSV(csv);
-
 
 
 
@@ -4583,7 +4851,9 @@ rows.length < 2
 
 
 throw new Error(
+
 "Таблица заданий пустая"
+
 );
 
 
@@ -4596,12 +4866,7 @@ throw new Error(
 
 
 
-
-buildMaterials(
-
-rows
-
-);
+buildMaterials(rows);
 
 
 
@@ -4614,9 +4879,7 @@ catch(error){
 
 
 
-console.error(
-error
-);
+console.error(error);
 
 
 
@@ -4631,13 +4894,14 @@ materialsGrid.innerHTML =
 
 <div class="msg error">
 
+
 ❌ ${escapeHTML(error.message)}
+
 
 </div>
 
+
 `;
-
-
 
 
 
@@ -4650,7 +4914,6 @@ materialsGrid.innerHTML =
 /* ================================================================
    СОЗДАНИЕ КАРТОЧЕК ЗАДАНИЙ
 ================================================================ */
-
 
 
 function buildMaterials(rows){
@@ -4674,7 +4937,6 @@ item
 
 
 
-
 const orderIndex =
 
 headers.indexOf(
@@ -4686,13 +4948,22 @@ headers.indexOf(
 
 
 
-
-const nameIndex =
+const titleIndex =
 
 headers.indexOf(
-"название"
+"заголовок"
 );
 
+
+
+
+
+
+const textIndex =
+
+headers.indexOf(
+"текст"
+);
 
 
 
@@ -4704,7 +4975,6 @@ const linkIndex =
 headers.indexOf(
 "ссылка"
 );
-
 
 
 
@@ -4723,8 +4993,9 @@ headers.indexOf(
 
 
 
+
 if(
-nameIndex === -1 ||
+titleIndex === -1 ||
 linkIndex === -1 ||
 activityIndex === -1
 ){
@@ -4732,7 +5003,9 @@ activityIndex === -1
 
 
 throw new Error(
+
 "В таблице заданий отсутствуют обязательные столбцы"
+
 );
 
 
@@ -4758,6 +5031,9 @@ rows
 .forEach(
 
 row=>{
+
+
+
 
 
 
@@ -4796,7 +5072,6 @@ return;
 
 
 
-
 tasks.push({
 
 
@@ -4815,13 +5090,28 @@ row[orderIndex]
 
 
 
-name:
 
-row[nameIndex]
+title:
+
+row[titleIndex]
 
 ||
 
 "",
+
+
+
+
+
+
+text:
+
+row[textIndex]
+
+||
+
+"",
+
 
 
 
@@ -4837,7 +5127,10 @@ row[linkIndex]
 
 
 
+
+
 });
+
 
 
 
@@ -4847,8 +5140,6 @@ row[linkIndex]
 }
 
 );
-
-
 
 
 
@@ -4870,18 +5161,11 @@ a.order-b.order
 
 
 
-renderMaterials(
-
-tasks
-
-);
-
-
+renderMaterials(tasks);
 
 
 
 }
-
 
 
 
@@ -4895,13 +5179,11 @@ tasks
 ================================================================ */
 
 
-
 function renderMaterials(tasks){
 
 
 
 materialsGrid.innerHTML = "";
-
 
 
 
@@ -4923,9 +5205,12 @@ materialsGrid.innerHTML =
 
 <div class="msg">
 
+
 Нет активных заданий
 
+
 </div>
+
 
 `;
 
@@ -4943,10 +5228,13 @@ return;
 
 
 
-
 tasks.forEach(
 
 (task,index)=>{
+
+
+
+
 
 
 
@@ -5026,9 +5314,13 @@ card.innerHTML =
 
 <div class="material-icon">
 
-📝
+
+📐
+
 
 </div>
+
+
 
 
 
@@ -5038,11 +5330,17 @@ card.innerHTML =
 
 
 
+
+
+
 <div class="material-name">
 
-${escapeHTML(task.name)}
+
+${escapeHTML(task.title)}
+
 
 </div>
+
 
 
 
@@ -5050,13 +5348,22 @@ ${escapeHTML(task.name)}
 
 <div class="material-badge">
 
-Задание ${index + 1}
+
+${escapeHTML(task.text)}
+
+
+</div>
+
+
+
+
+
+
 
 </div>
 
 
 
-</div>
 
 
 
@@ -5064,9 +5371,12 @@ ${escapeHTML(task.name)}
 
 <div class="material-arrow">
 
+
 →
 
+
 </div>
+
 
 `;
 
@@ -5077,9 +5387,14 @@ ${escapeHTML(task.name)}
 
 
 
-materialsGrid.appendChild(
+materialsGrid.appendChild(card);
 
-card
+
+
+
+
+
+}
 
 );
 
@@ -5087,16 +5402,17 @@ card
 
 }
 
-);
 
 
 
-}
+
+
+
+
 
 /* ================================================================
    ОБНОВЛЕНИЕ ПРОГРЕССА
 ================================================================ */
-
 
 
 function updateProgress(){
@@ -5127,6 +5443,7 @@ const percent =
 
 
 (
+
 (activeChapterIndex + 1)
 
 /
@@ -5145,6 +5462,7 @@ chapters.length
 
 
 
+
 if(progressFill){
 
 
@@ -5154,6 +5472,8 @@ progressFill.style.width =
 percent + "%";
 
 }
+
+
 
 
 
@@ -5178,28 +5498,76 @@ percent + "%";
 
 
 
-
 /* ================================================================
    КНОПКА ОБНОВЛЕНИЯ ЗАДАНИЙ
 ================================================================ */
-
 
 
 reloadBtn.addEventListener(
 
 "click",
 
-()=>{
-
+async ()=>{
 
 
 if(
-currentChapter
+!currentChapter ||
+reloadBtn.disabled
 ){
 
+return;
+
+}
 
 
-loadMaterials(
+
+reloadBtn.disabled = true;
+
+
+reloadBtn.textContent =
+"⏳ Обновление...";
+
+
+
+materialsGrid.innerHTML =
+
+
+`
+
+<div class="update-loading">
+
+
+<div class="update-loading-icon">
+
+◌
+
+</div>
+
+
+
+<div class="update-loading-title">
+
+Обновление материалов
+
+</div>
+
+
+
+<div class="update-loading-text">
+
+Синхронизация заданий
+
+</div>
+
+
+</div>
+
+`;
+
+
+
+
+await loadMaterials(
 
 currentChapter.table
 
@@ -5207,14 +5575,18 @@ currentChapter.table
 
 
 
-}
+reloadBtn.disabled = false;
+
+
+reloadBtn.textContent =
+
+"🔄 Обновить задания";
 
 
 
 }
 
 );
-
 
 
 
@@ -5226,7 +5598,6 @@ currentChapter.table
 /* ================================================================
    ЗАПУСК СТРАНИЦЫ
 ================================================================ */
-
 
 
 document.addEventListener(
@@ -5247,10 +5618,7 @@ loadChapters();
 
 
 
-
-
 </script>
-
 
 
 
