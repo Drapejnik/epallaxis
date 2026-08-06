@@ -2152,6 +2152,208 @@ color:
 
 
 /* ================================================================
+   PAGE LOADING
+================================================================ */
+
+
+.page-loading {
+
+
+min-height:
+
+260px;
+
+
+display:flex;
+
+
+flex-direction:column;
+
+
+align-items:center;
+
+
+justify-content:center;
+
+
+gap:
+
+14px;
+
+
+animation:
+
+fadeUpdate .4s ease;
+
+
+}
+
+
+
+
+.page-loading-icon {
+
+
+font-size:
+
+42px;
+
+
+color:
+
+var(--accent);
+
+
+opacity:
+
+0.75;
+
+
+}
+
+
+
+
+
+.page-loading-title {
+
+
+font-size:
+
+26px;
+
+
+font-weight:
+
+800;
+
+
+letter-spacing:
+
+0.5px;
+
+
+}
+
+
+
+
+
+.page-loading-text {
+
+
+font-size:
+
+15px;
+
+
+color:
+
+var(--muted);
+
+
+text-align:center;
+
+
+}
+
+
+
+
+
+.page-loading-line {
+
+
+width:
+
+180px;
+
+
+height:
+
+3px;
+
+
+background:
+
+rgba(
+34,
+255,
+136,
+0.15
+);
+
+
+border-radius:
+
+20px;
+
+
+overflow:hidden;
+
+
+}
+
+
+
+
+
+.page-loading-line::after {
+
+
+content:"";
+
+
+display:block;
+
+
+height:
+
+100%;
+
+
+width:
+
+40%;
+
+
+background:
+
+var(--accent);
+
+
+transform:
+
+translateX(-120%);
+
+
+animation:
+
+loadingLine 1.6s ease infinite;
+
+
+}
+
+
+
+
+@keyframes loadingLine {
+
+
+to {
+
+
+transform:
+
+translateX(350%);
+
+
+}
+
+
+}
+
+/* ================================================================
    UPDATE LOADING
 ================================================================ */
 
@@ -3090,9 +3292,40 @@ id="lineFill">
 
 
 
-<div
+<div id="roadmapItems">
 
-id="roadmapItems">
+
+<div class="page-loading">
+
+
+<div class="page-loading-icon">
+
+📐
+
+</div>
+
+
+
+<div class="page-loading-title">
+
+Загрузка курса
+
+</div>
+
+
+
+<div class="page-loading-text">
+
+Подготавливаем материалы
+
+</div>
+
+
+
+<div class="page-loading-line"></div>
+
+
+</div>
 
 
 </div>
