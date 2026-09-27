@@ -9,286 +9,190 @@
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
 <style>
-:root{
-  --bg:#060a10;--panel:rgba(15,23,32,.65);--panel2:rgba(17,28,38,.45);
-  --text:#eef3f7;--muted:#9aa4b2;--muted-2:#5c6675;
-  --accent:#22ff88;--accent-2:#15c46a;
-  --accent-dim:rgba(34,255,136,.14);--accent-glow:rgba(34,255,136,.22);
-  --border:rgba(34,255,136,.12);--border-soft:rgba(255,255,255,.06);
-  --border-hair:rgba(255,255,255,.03);--danger:#ff5c7a;
-  --header-h:76px;--radius-lg:22px;
-}
+:root{--bg:#060a10;--panel:rgba(15,23,32,.65);--panel2:rgba(17,28,38,.45);--text:#eef3f7;--muted:#9aa4b2;--muted-2:#5c6675;--accent:#22ff88;--accent-2:#15c46a;--accent-dim:rgba(34,255,136,.14);--accent-glow:rgba(34,255,136,.22);--border:rgba(34,255,136,.12);--border-soft:rgba(255,255,255,.06);--border-hair:rgba(255,255,255,.03);--danger:#ff5c7a;--header-h:76px;--radius-lg:22px}
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{width:100%;max-width:100vw;overflow-x:hidden}
-body{font-family:system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
-  background:radial-gradient(1200px 600px at 20% 0%,#0d1f18 0%,var(--bg) 60%);
-  color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased;
-  display:flex;flex-direction:column;}
+body{font-family:system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;background:radial-gradient(1200px 600px at 20% 0%,#0d1f18 0%,var(--bg) 60%);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased;display:flex;flex-direction:column}
 button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
 input,textarea{font-family:inherit}
 ::-webkit-scrollbar{width:8px;height:8px}
 ::-webkit-scrollbar-thumb{background:rgba(255,255,255,.08);border-radius:4px}
 ::-webkit-scrollbar-thumb:hover{background:var(--accent-dim)}
-header{position:sticky;top:0;left:0;right:0;width:100%;z-index:200;
-  background:rgba(6,10,16,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-  border-bottom:1px solid var(--border);padding:14px 20px;
-  display:flex;align-items:center;gap:16px;flex-shrink:0;}
+header{position:sticky;top:0;left:0;right:0;width:100%;z-index:200;background:rgba(6,10,16,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:14px 20px;display:flex;align-items:center;gap:16px;flex-shrink:0}
 .brand{display:flex;flex-direction:column;gap:2px;min-width:0;margin-right:auto}
 .brand a{text-decoration:none;color:var(--text);display:block}
 .brand h1{font-size:clamp(20px,4vw,28px);letter-spacing:2px;line-height:1.1;font-weight:700;margin:0}
 .brand h1 .accent-word{color:var(--accent)}
 .brand p{font-size:clamp(11px,1.5vw,14px);color:var(--muted);margin-top:2px}
 .header-actions{display:flex;align-items:center;gap:8px;flex-shrink:0}
-.mode-switch{display:flex;background:rgba(255,255,255,.04);
-  border:1px solid var(--border-soft);border-radius:12px;padding:3px;gap:2px}
-.mode-switch button{padding:8px 16px;border-radius:9px;font-size:13.5px;font-weight:600;
-  color:var(--muted);transition:.18s;display:flex;align-items:center;gap:6px;white-space:nowrap}
+.mode-switch{display:flex;background:rgba(255,255,255,.04);border:1px solid var(--border-soft);border-radius:12px;padding:3px;gap:2px}
+.mode-switch button{padding:8px 16px;border-radius:9px;font-size:13.5px;font-weight:600;color:var(--muted);transition:.18s;display:flex;align-items:center;gap:6px;white-space:nowrap}
 .mode-switch button:hover{color:var(--text)}
 .mode-switch button.active{background:var(--accent);color:#04140a;box-shadow:0 0 16px var(--accent-glow)}
-.icon-btn{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;
-  justify-content:center;color:var(--muted);transition:.18s;border:1px solid transparent;font-size:17px}
+.icon-btn{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--muted);transition:.18s;border:1px solid transparent;font-size:17px}
 .icon-btn:hover{background:rgba(255,255,255,.05);color:var(--accent);border-color:var(--border-soft)}
 .icon-btn.hamburger{display:none}
 @media(max-width:960px){.icon-btn.hamburger{display:flex}}
 .app{display:grid;grid-template-columns:320px 1fr;min-height:calc(100vh - var(--header-h));flex:1}
-.sidebar{background:var(--panel2);border-right:1px solid var(--border-hair);
-  display:flex;flex-direction:column;height:calc(100vh - var(--header-h));
-  position:sticky;top:var(--header-h)}
+.sidebar{background:var(--panel2);border-right:1px solid var(--border-hair);display:flex;flex-direction:column;height:calc(100vh - var(--header-h));position:sticky;top:var(--header-h)}
 .main{padding:24px 32px 60px;max-width:1200px;width:100%;min-width:0}
 .sb-top{padding:16px 16px 12px;border-bottom:1px solid var(--border-hair);flex-shrink:0}
 .search-wrap{position:relative;margin-bottom:12px}
-.search-wrap input{width:100%;padding:11px 36px 11px 38px;
-  background:rgba(255,255,255,.03);border:1px solid var(--border-soft);
-  border-radius:11px;color:var(--text);font-size:13.5px;outline:none;transition:.18s}
+.search-wrap input{width:100%;padding:11px 36px 11px 38px;background:rgba(255,255,255,.03);border:1px solid var(--border-soft);border-radius:11px;color:var(--text);font-size:13.5px;outline:none;transition:.18s}
 .search-wrap input:focus{border-color:var(--accent);background:rgba(34,255,136,.05);box-shadow:0 0 0 3px rgba(34,255,136,.08)}
 .search-wrap input::placeholder{color:var(--muted-2)}
-.search-wrap .s-icon{position:absolute;left:13px;top:50%;transform:translateY(-50%);
-  color:var(--muted-2);font-size:14px;pointer-events:none}
-.search-wrap .s-clear{position:absolute;right:8px;top:50%;transform:translateY(-50%);
-  width:24px;height:24px;border-radius:6px;color:var(--muted-2);
-  display:none;align-items:center;justify-content:center;font-size:15px}
+.search-wrap .s-icon{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--muted-2);font-size:14px;pointer-events:none}
+.search-wrap .s-clear{position:absolute;right:8px;top:50%;transform:translateY(-50%);width:24px;height:24px;border-radius:6px;color:var(--muted-2);display:none;align-items:center;justify-content:center;font-size:15px}
 .search-wrap.has-value .s-clear{display:flex}
 .s-clear:hover{background:rgba(255,255,255,.06);color:var(--danger)}
 .presets{display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px}
-.preset{padding:8px 4px;border-radius:9px;font-size:11.5px;font-weight:600;
-  color:var(--muted);background:rgba(255,255,255,.025);border:1px solid transparent;
-  text-align:center;transition:.15s;line-height:1.15}
+.preset{padding:8px 4px;border-radius:9px;font-size:11.5px;font-weight:600;color:var(--muted);background:rgba(255,255,255,.025);border:1px solid transparent;text-align:center;transition:.15s;line-height:1.15}
 .preset:hover{background:var(--accent-dim);color:var(--accent);border-color:var(--border)}
 .preset:active{transform:scale(.96)}
-.sb-actions{display:flex;gap:5px;margin-top:10px;padding-top:10px;border-top:1px dashed var(--border-hair)}
 .sb-actions{display:flex;gap:5px;margin-top:10px;padding-top:10px;border-top:1px dashed var(--border-hair);flex-wrap:wrap}
-.sb-actions button{flex:1;min-width:0;padding:7px 4px;border-radius:8px;font-size:11.5px;
-  font-weight:500;color:var(--muted);background:rgba(255,255,255,.02);transition:.15s}
+.sb-actions button{flex:1;min-width:0;padding:7px 4px;border-radius:8px;font-size:11.5px;font-weight:500;color:var(--muted);background:rgba(255,255,255,.02);transition:.15s}
 .sb-actions button:hover{color:var(--accent);background:var(--accent-dim)}
 .tree{flex:1;overflow-y:auto;overflow-x:hidden;padding:8px 8px 12px;min-height:0}
 .tree-group{margin-bottom:2px;user-select:none}
-.tree-head{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:9px;
-  cursor:pointer;transition:.15s;font-size:13px;font-weight:600;color:var(--text);border:1px solid transparent}
+.tree-head{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:9px;cursor:pointer;transition:.15s;font-size:13px;font-weight:600;color:var(--text);border:1px solid transparent}
 .tree-head:hover{background:rgba(255,255,255,.035);border-color:var(--border-hair)}
 .tree-head.open{background:rgba(34,255,136,.05);border-color:var(--border-soft)}
 .tree-arrow{width:14px;font-size:9px;color:var(--muted-2);flex-shrink:0;transition:transform .2s;display:inline-block}
 .tree-head.open .tree-arrow{transform:rotate(90deg)}
 .tree-label{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.tree-count{font-size:10.5px;font-weight:600;color:var(--muted-2);padding:2px 7px;
-  border-radius:20px;background:rgba(255,255,255,.04);transition:.15s}
+.tree-count{font-size:10.5px;font-weight:600;color:var(--muted-2);padding:2px 7px;border-radius:20px;background:rgba(255,255,255,.04);transition:.15s}
 .tree-count.partial{background:var(--accent-dim);color:var(--accent)}
 .tree-count.full{background:var(--accent);color:#04140a}
 .tree-body{display:none;padding:2px 0 6px 12px;border-left:1px solid var(--border-hair);margin-left:18px}
 .tree-head.open + .tree-body{display:block}
 .tree-actions{display:flex;gap:4px;padding:2px 0 4px}
-.tree-actions button{flex:1;font-size:10.5px;padding:5px 4px;border-radius:6px;
-  color:var(--muted);background:rgba(255,255,255,.02);transition:.15s;font-weight:500}
+.tree-actions button{flex:1;font-size:10.5px;padding:5px 4px;border-radius:6px;color:var(--muted);background:rgba(255,255,255,.02);transition:.15s;font-weight:500}
 .tree-actions button:hover{color:var(--accent);background:var(--accent-dim)}
-.tree-topic{display:flex;align-items:center;gap:9px;padding:7px 10px;border-radius:8px;
-  cursor:pointer;transition:.13s;font-size:12.5px;color:var(--text);border:1px solid transparent}
+.tree-topic{display:flex;align-items:center;gap:9px;padding:7px 10px;border-radius:8px;cursor:pointer;transition:.13s;font-size:12.5px;color:var(--text);border:1px solid transparent}
 .tree-topic:hover{background:rgba(255,255,255,.035);border-color:var(--border-hair)}
 .tree-topic.checked{background:rgba(34,255,136,.05)}
-.tree-check{width:15px;height:15px;flex-shrink:0;border:1.5px solid var(--muted-2);
-  border-radius:4px;position:relative;transition:.15s}
+.tree-check{width:15px;height:15px;flex-shrink:0;border:1.5px solid var(--muted-2);border-radius:4px;position:relative;transition:.15s}
 .tree-topic.checked .tree-check{border-color:var(--accent);background:var(--accent)}
-.tree-topic.checked .tree-check::after{content:"";position:absolute;top:2px;left:4px;
-  width:4px;height:8px;border:2px solid #04140a;border-top:none;border-left:none;transform:rotate(45deg)}
+.tree-topic.checked .tree-check::after{content:"";position:absolute;top:2px;left:4px;width:4px;height:8px;border:2px solid #04140a;border-top:none;border-left:none;transform:rotate(45deg)}
 .tree-topic-name{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .tree-topic-cnt{font-size:10px;color:var(--muted-2);flex-shrink:0;font-variant-numeric:tabular-nums}
-.sb-foot{padding:14px 16px;border-top:1px solid var(--border-hair);
-  background:linear-gradient(to top,var(--bg),transparent);flex-shrink:0}
+.sb-foot{padding:14px 16px;border-top:1px solid var(--border-hair);background:linear-gradient(to top,var(--bg),transparent);flex-shrink:0}
 .sb-stat{display:flex;justify-content:space-between;font-size:11.5px;color:var(--muted);margin-bottom:10px}
 .sb-stat b{color:var(--accent);font-weight:700;font-variant-numeric:tabular-nums}
-.start-btn{width:100%;padding:13px 16px;border-radius:12px;
-  background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#04140a;
-  font-size:14.5px;font-weight:700;transition:all .18s;
-  box-shadow:0 4px 18px var(--accent-glow);display:flex;align-items:center;justify-content:center;gap:8px}
+.start-btn{width:100%;padding:13px 16px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#04140a;font-size:14.5px;font-weight:700;transition:all .18s;box-shadow:0 4px 18px var(--accent-glow);display:flex;align-items:center;justify-content:center;gap:8px}
 .start-btn:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 6px 26px var(--accent-glow)}
 .start-btn:disabled{opacity:.3;cursor:not-allowed;box-shadow:none;background:var(--muted-2)}
-.crumbs{display:flex;align-items:center;gap:8px;flex-wrap:wrap;
-  font-size:12.5px;color:var(--muted);margin-bottom:16px}
+.crumbs{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:12.5px;color:var(--muted);margin-bottom:16px}
 .crumbs .c-sep{color:var(--muted-2);opacity:.5}
 .crumbs b{color:var(--text);font-weight:600}
 .crumbs .c-accent{color:var(--accent);font-weight:600}
-.chips-bar{display:flex;gap:6px;flex-wrap:wrap;align-items:center;padding:10px 12px;
-  margin-bottom:18px;background:rgba(255,255,255,.02);border:1px solid var(--border-hair);border-radius:12px}
-.chip{display:inline-flex;align-items:center;gap:6px;padding:5px 6px 5px 10px;
-  border-radius:20px;background:rgba(34,255,136,.08);border:1px solid var(--border);
-  font-size:11.5px;color:var(--accent);font-weight:500;transition:.15s;cursor:pointer;max-width:220px}
+.chips-bar{display:flex;gap:6px;flex-wrap:wrap;align-items:center;padding:10px 12px;margin-bottom:18px;background:rgba(255,255,255,.02);border:1px solid var(--border-hair);border-radius:12px}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:5px 6px 5px 10px;border-radius:20px;background:rgba(34,255,136,.08);border:1px solid var(--border);font-size:11.5px;color:var(--accent);font-weight:500;transition:.15s;cursor:pointer;max-width:220px}
 .chip:hover{background:rgba(34,255,136,.14)}
 .chip-txt{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.chip-x{width:16px;height:16px;border-radius:50%;display:flex;align-items:center;
-  justify-content:center;font-size:12px;opacity:.6;flex-shrink:0}
+.chip-x{width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;opacity:.6;flex-shrink:0}
 .chip-x:hover{background:var(--accent);color:#04140a;opacity:1}
-.chip-clear{padding:5px 12px;border-radius:20px;font-size:11.5px;color:var(--muted);
-  background:rgba(255,255,255,.03);transition:.15s;font-weight:500}
+.chip-clear{padding:5px 12px;border-radius:20px;font-size:11.5px;color:var(--muted);background:rgba(255,255,255,.03);transition:.15s;font-weight:500}
 .chip-clear:hover{color:var(--danger);background:rgba(255,92,122,.1)}
-.topic-block{margin-bottom:14px;background:var(--panel);border:1px solid var(--border-hair);
-  border-radius:var(--radius-lg);overflow:hidden}
+.topic-block{margin-bottom:14px;background:var(--panel);border:1px solid var(--border-hair);border-radius:var(--radius-lg);overflow:hidden}
 .topic-head{display:flex;align-items:center;gap:12px;padding:14px 18px;cursor:pointer;transition:.15s}
 .topic-head:hover{background:rgba(255,255,255,.02)}
 .topic-head.open{background:rgba(34,255,136,.04);border-bottom:1px solid var(--border-hair)}
 .topic-arrow{font-size:10px;color:var(--muted-2);flex-shrink:0;transition:transform .25s}
 .topic-head.open .topic-arrow{transform:rotate(90deg);color:var(--accent)}
-.topic-title{flex:1;min-width:0;font-size:15px;font-weight:600;color:var(--text);
-  display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.topic-title .tag{font-size:10.5px;font-weight:600;color:var(--accent);
-  padding:2px 8px;border-radius:12px;background:var(--accent-dim)}
+.topic-title{flex:1;min-width:0;font-size:15px;font-weight:600;color:var(--text);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.topic-title .tag{font-size:10.5px;font-weight:600;color:var(--accent);padding:2px 8px;border-radius:12px;background:var(--accent-dim)}
 .topic-meta{font-size:11.5px;color:var(--muted-2);flex-shrink:0;font-variant-numeric:tabular-nums}
 .topic-body{display:none;padding:4px 8px 10px}
 .topic-head.open + .topic-body{display:block}
-.formula-row{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:start;
-  padding:12px 14px;margin:4px;border-radius:11px;background:rgba(255,255,255,.015);
-  border-left:2px solid var(--border-hair);transition:.15s}
+.formula-row{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:start;padding:12px 14px;margin:4px;border-radius:11px;background:rgba(255,255,255,.015);border-left:2px solid var(--border-hair);transition:.15s}
 .formula-row:hover{background:rgba(34,255,136,.03);border-left-color:var(--accent)}
 .formula-q{font-size:clamp(13.5px,1.3vw,15.5px);line-height:1.55;color:var(--text)}
-.formula-a{font-size:clamp(14.5px,1.5vw,17px);line-height:1.5;color:var(--accent);
-  font-weight:500;margin-top:3px}
+.formula-a{font-size:clamp(14.5px,1.5vw,17px);line-height:1.5;color:var(--accent);font-weight:500;margin-top:3px}
 .formula-a .katex{color:var(--accent)}
 .row-actions{display:flex;gap:4px;flex-shrink:0}
-.copy-btn,.edit-btn{width:30px;height:30px;border-radius:8px;flex-shrink:0;display:flex;
-  align-items:center;justify-content:center;color:var(--muted-2);font-size:14px;
-  transition:.15s;opacity:0}
+.copy-btn,.edit-btn{width:30px;height:30px;border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:var(--muted-2);font-size:14px;transition:.15s;opacity:0}
 .formula-row:hover .copy-btn,.formula-row:hover .edit-btn{opacity:1}
 .copy-btn:hover,.edit-btn:hover{background:var(--accent-dim);color:var(--accent)}
-.edit-form{padding:14px 16px;margin:4px;border-radius:11px;
-  background:rgba(34,255,136,.04);border:1px solid var(--accent);
-  grid-column:1 / -1;animation:fadeIn .2s ease}
+.edit-form{padding:14px 16px;margin:4px;border-radius:11px;background:rgba(34,255,136,.04);border:1px solid var(--accent);grid-column:1 / -1;animation:fadeIn .2s ease}
 @keyframes fadeIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
-.edit-form label{display:block;font-size:10.5px;font-weight:700;letter-spacing:1px;
-  color:var(--accent);text-transform:uppercase;margin-bottom:5px;margin-top:10px}
+.edit-form label{display:block;font-size:10.5px;font-weight:700;letter-spacing:1px;color:var(--accent);text-transform:uppercase;margin-bottom:5px;margin-top:10px}
 .edit-form label:first-child{margin-top:0}
-.edit-form textarea{width:100%;padding:10px 12px;background:#070a0f;
-  border:1px solid var(--border-soft);border-radius:9px;color:var(--text);
-  font-family:'SF Mono',Consolas,Monaco,monospace;font-size:13px;line-height:1.5;
-  resize:vertical;outline:none;min-height:52px;transition:.15s}
+.edit-form textarea{width:100%;padding:10px 12px;background:#070a0f;border:1px solid var(--border-soft);border-radius:9px;color:var(--text);font-family:'SF Mono',Consolas,Monaco,monospace;font-size:13px;line-height:1.5;resize:vertical;outline:none;min-height:52px;transition:.15s}
 .edit-form textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(34,255,136,.08)}
 .edit-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
-.edit-actions button{padding:9px 16px;border-radius:9px;font-size:13px;font-weight:600;
-  transition:.15s;border:1px solid var(--border-soft);background:rgba(255,255,255,.03);color:var(--text)}
+.edit-actions button{padding:9px 16px;border-radius:9px;font-size:13px;font-weight:600;transition:.15s;border:1px solid var(--border-soft);background:rgba(255,255,255,.03);color:var(--text)}
 .edit-actions button:hover{border-color:var(--accent);color:var(--accent)}
 .edit-actions button.save{background:var(--accent);color:#04140a;border-color:transparent}
 .edit-actions button.save:hover{background:var(--accent-2);color:#04140a}
 .edit-actions button.delete{color:var(--danger)}
 .edit-actions button.delete:hover{border-color:var(--danger);background:rgba(255,92,122,.08)}
-.add-formula-btn{width:100%;padding:10px;margin:6px 4px 4px;border-radius:9px;
-  font-size:13px;font-weight:600;color:var(--muted);background:rgba(255,255,255,.02);
-  border:1px dashed var(--border-soft);transition:.15s;display:flex;align-items:center;
-  justify-content:center;gap:8px;cursor:pointer}
+.add-formula-btn{width:100%;padding:10px;margin:6px 4px 4px;border-radius:9px;font-size:13px;font-weight:600;color:var(--muted);background:rgba(255,255,255,.02);border:1px dashed var(--border-soft);transition:.15s;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer}
 .add-formula-btn:hover{color:var(--accent);border-color:var(--accent);background:var(--accent-dim)}
 .empty{padding:80px 30px;text-align:center;color:var(--muted);font-size:14.5px;line-height:1.7}
 .empty-icon{font-size:56px;margin-bottom:16px;opacity:.35}
 .empty h3{font-size:19px;color:var(--text);margin-bottom:8px;font-weight:600}
 .empty p{max-width:440px;margin:0 auto 18px}
-.empty-tips{display:inline-flex;flex-direction:column;gap:8px;text-align:left;
-  padding:14px 18px;background:rgba(255,255,255,.02);border-radius:12px;
-  border:1px solid var(--border-hair);font-size:13px}
+.empty-tips{display:inline-flex;flex-direction:column;gap:8px;text-align:left;padding:14px 18px;background:rgba(255,255,255,.02);border-radius:12px;border:1px solid var(--border-hair);font-size:13px}
 .empty-tips .tip{display:flex;gap:10px;align-items:flex-start;color:var(--muted)}
 .empty-tips .tip b{color:var(--accent);font-weight:600;flex-shrink:0}
-.fab-top{position:fixed;bottom:24px;right:24px;z-index:50;width:44px;height:44px;
-  border-radius:12px;background:var(--panel);border:1px solid var(--border);
-  color:var(--accent);font-size:18px;display:flex;align-items:center;
-  justify-content:center;opacity:0;transform:translateY(10px);
-  pointer-events:none;transition:.2s;box-shadow:0 4px 20px rgba(0,0,0,.35)}
+.fab-top{position:fixed;bottom:24px;right:24px;z-index:50;width:44px;height:44px;border-radius:12px;background:var(--panel);border:1px solid var(--border);color:var(--accent);font-size:18px;display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(10px);pointer-events:none;transition:.2s;box-shadow:0 4px 20px rgba(0,0,0,.35)}
 .fab-top.show{opacity:1;transform:translateY(0);pointer-events:auto}
 .fab-top:hover{background:var(--accent-dim);transform:translateY(-2px)}
-.backdrop{position:fixed;inset:0;background:rgba(0,0,0,.6);
-  backdrop-filter:blur(4px);z-index:150;display:none;opacity:0;transition:opacity .2s}
+.backdrop{position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);z-index:150;display:none;opacity:0;transition:opacity .2s}
 .backdrop.show{display:block;opacity:1}
 .test-overlay{position:fixed;inset:0;z-index:300;background:var(--bg);display:none;flex-direction:column}
 .test-overlay.active{display:flex}
-.test-top{padding:14px 24px;border-bottom:1px solid var(--border-hair);
-  display:flex;align-items:center;gap:16px;flex-shrink:0}
+.test-top{padding:14px 24px;border-bottom:1px solid var(--border-hair);display:flex;align-items:center;gap:16px;flex-shrink:0}
 .test-counter{display:flex;align-items:baseline;gap:5px;font-variant-numeric:tabular-nums}
 .test-counter .cur{font-size:20px;font-weight:700;color:var(--accent)}
 .test-counter .tot{font-size:13px;color:var(--muted-2)}
 .test-top-actions{margin-left:auto;display:flex;gap:6px}
-.test-top-actions button{padding:8px 14px;border-radius:9px;font-size:12.5px;font-weight:600;
-  color:var(--muted);background:rgba(255,255,255,.04);border:1px solid transparent;transition:.15s}
+.test-top-actions button{padding:8px 14px;border-radius:9px;font-size:12.5px;font-weight:600;color:var(--muted);background:rgba(255,255,255,.04);border:1px solid transparent;transition:.15s}
 .test-top-actions button:hover{color:var(--accent);border-color:var(--border)}
 .test-top-actions button.exit:hover{color:var(--danger)}
 .progress-bar-wrap{padding:0 24px;flex-shrink:0}
 .progress-bar{height:4px;background:rgba(255,255,255,.05);border-radius:4px;overflow:hidden;margin-top:12px}
-.progress-fill{height:100%;width:0;background:linear-gradient(90deg,var(--accent),#8affc8);
-  transition:width .3s ease;box-shadow:0 0 12px var(--accent-glow)}
-.dots{display:flex;flex-wrap:wrap;gap:3px;padding:10px 24px 14px;max-height:60px;
-  overflow-y:auto;flex-shrink:0}
-.dot{width:7px;height:7px;border-radius:2px;background:rgba(255,255,255,.08);
-  transition:.15s;cursor:pointer;flex-shrink:0}
+.progress-fill{height:100%;width:0;background:linear-gradient(90deg,var(--accent),#8affc8);transition:width .3s ease;box-shadow:0 0 12px var(--accent-glow)}
+.dots{display:flex;flex-wrap:wrap;gap:3px;padding:10px 24px 14px;max-height:60px;overflow-y:auto;flex-shrink:0}
+.dot{width:7px;height:7px;border-radius:2px;background:rgba(255,255,255,.08);transition:.15s;cursor:pointer;flex-shrink:0}
 .dot:hover{transform:scale(1.5);background:var(--accent-dim)}
 .dot.done{background:rgba(34,255,136,.35)}
 .dot.current{background:var(--accent);width:20px;box-shadow:0 0 10px var(--accent-glow)}
-.test-stage{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;
-  padding:24px 32px;gap:24px;min-height:0;overflow:auto;text-align:center}
+.test-stage{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:24px 32px;gap:24px;min-height:0;overflow:auto;text-align:center}
 .test-tag{font-size:12px;color:var(--muted-2);letter-spacing:1.5px;text-transform:uppercase;font-weight:600}
-.test-q{font-size:clamp(26px,5vw,58px);line-height:1.28;color:var(--text);
-  font-weight:500;max-width:1300px}
+.test-q{font-size:clamp(26px,5vw,58px);line-height:1.28;color:var(--text);font-weight:500;max-width:1300px}
 .test-q .katex{font-size:1em !important}
-.test-a{font-size:clamp(26px,5vw,58px);line-height:1.28;color:var(--accent);font-weight:700;
-  max-width:1300px;opacity:0;transform:translateY(8px);transition:.3s ease;
-  text-shadow:0 0 60px var(--accent-glow)}
+.test-a{font-size:clamp(26px,5vw,58px);line-height:1.28;color:var(--accent);font-weight:700;max-width:1300px;opacity:0;transform:translateY(8px);transition:.3s ease;text-shadow:0 0 60px var(--accent-glow)}
 .test-a.show{opacity:1;transform:translateY(0)}
 .test-a.no-anim{transition:none !important}
 .test-a .katex{font-size:1em !important;color:var(--accent)}
 .test-bottom{padding:16px 24px 20px;border-top:1px solid var(--border-hair);flex-shrink:0}
 .test-controls{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:10px}
-.tbtn{padding:13px 28px;border-radius:12px;font-size:14.5px;font-weight:700;
-  background:rgba(255,255,255,.04);color:var(--text);border:1px solid var(--border-hair);
-  transition:.15s;min-width:120px;justify-content:center}
+.tbtn{padding:13px 28px;border-radius:12px;font-size:14.5px;font-weight:700;background:rgba(255,255,255,.04);color:var(--text);border:1px solid var(--border-hair);transition:.15s;min-width:120px;justify-content:center}
 .tbtn:hover:not(:disabled){border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}
 .tbtn:disabled{opacity:.3;cursor:not-allowed}
-.tbtn.primary{background:linear-gradient(135deg,var(--accent),var(--accent-2));
-  color:#04140a;border-color:transparent;box-shadow:0 4px 18px var(--accent-glow)}
+.tbtn.primary{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#04140a;border-color:transparent;box-shadow:0 4px 18px var(--accent-glow)}
 .test-hint{text-align:center;font-size:11.5px;color:var(--muted-2);line-height:1.6}
-.test-hint kbd{display:inline-block;padding:1px 6px;border-radius:4px;
-  background:rgba(255,255,255,.05);color:var(--text);font-size:11px;
-  font-family:inherit;margin:0 2px;border:1px solid var(--border-hair)}
-.modal-bg{position:fixed;inset:0;z-index:400;background:rgba(0,0,0,.7);
-  backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:20px}
+.test-hint kbd{display:inline-block;padding:1px 6px;border-radius:4px;background:rgba(255,255,255,.05);color:var(--text);font-size:11px;font-family:inherit;margin:0 2px;border:1px solid var(--border-hair)}
+.modal-bg{position:fixed;inset:0;z-index:400;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:20px}
 .modal-bg.active{display:flex}
-.modal{background:var(--panel);border:1px solid var(--border);border-radius:20px;
-  padding:26px 28px;max-width:860px;width:100%;max-height:90vh;overflow-y:auto;
-  box-shadow:0 12px 40px rgba(0,0,0,.5);backdrop-filter:blur(14px)}
+.modal{background:var(--panel);border:1px solid var(--border);border-radius:20px;padding:26px 28px;max-width:860px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 12px 40px rgba(0,0,0,.5);backdrop-filter:blur(14px)}
 .modal h2{font-size:19px;margin-bottom:6px}
 .modal .sub{font-size:13px;color:var(--muted);margin-bottom:18px}
 .modal-section{margin-bottom:20px}
-.modal-section h4{font-size:11px;font-weight:700;letter-spacing:1.2px;
-  color:var(--accent);text-transform:uppercase;margin-bottom:10px}
+.modal-section h4{font-size:11px;font-weight:700;letter-spacing:1.2px;color:var(--accent);text-transform:uppercase;margin-bottom:10px}
 .modal-list{list-style:none;display:flex;flex-direction:column;gap:8px}
 .modal-list li{display:flex;gap:10px;font-size:13.5px;color:var(--muted);line-height:1.5}
-.modal-list kbd{display:inline-block;padding:1px 6px;border-radius:5px;
-  background:rgba(255,255,255,.06);color:var(--text);font-size:11.5px;margin:0 2px;
-  border:1px solid var(--border-hair)}
-.modal-close{margin-top:18px;width:100%;padding:11px;background:var(--accent);
-  color:#04140a;border-radius:11px;font-size:14px;font-weight:700;transition:.15s}
+.modal-list kbd{display:inline-block;padding:1px 6px;border-radius:5px;background:rgba(255,255,255,.06);color:var(--text);font-size:11.5px;margin:0 2px;border:1px solid var(--border-hair)}
+.modal-close{margin-top:18px;width:100%;padding:11px;background:var(--accent);color:#04140a;border-radius:11px;font-size:14px;font-weight:700;transition:.15s}
 .modal-close:hover{background:var(--accent-2)}
-.editor-hint{padding:10px 12px;background:rgba(34,255,136,.06);border-left:3px solid var(--accent);
-  border-radius:6px;font-size:12.5px;color:var(--muted);margin-bottom:12px;line-height:1.55}
-.editor-hint code{background:rgba(255,255,255,.06);padding:1px 6px;border-radius:4px;
-  font-size:11.5px;color:var(--accent)}
-.editor-textarea{width:100%;min-height:440px;padding:14px 16px;background:#070a0f;
-  border:1px solid var(--border-soft);border-radius:11px;color:var(--text);
-  font-family:'SF Mono',Consolas,Monaco,monospace;font-size:12.5px;line-height:1.65;
-  outline:none;resize:vertical}
+.editor-hint{padding:10px 12px;background:rgba(34,255,136,.06);border-left:3px solid var(--accent);border-radius:6px;font-size:12.5px;color:var(--muted);margin-bottom:12px;line-height:1.55}
+.editor-hint code{background:rgba(255,255,255,.06);padding:1px 6px;border-radius:4px;font-size:11.5px;color:var(--accent)}
+.editor-textarea{width:100%;min-height:440px;padding:14px 16px;background:#070a0f;border:1px solid var(--border-soft);border-radius:11px;color:var(--text);font-family:'SF Mono',Consolas,Monaco,monospace;font-size:12.5px;line-height:1.65;outline:none;resize:vertical}
 .editor-textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(34,255,136,.08)}
 .editor-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
-.editor-row button{padding:10px 16px;border-radius:10px;font-size:13px;font-weight:600;
-  transition:.15s;border:1px solid var(--border-soft);background:rgba(255,255,255,.03);color:var(--text)}
+.editor-row button{padding:10px 16px;border-radius:10px;font-size:13px;font-weight:600;transition:.15s;border:1px solid var(--border-soft);background:rgba(255,255,255,.03);color:var(--text)}
 .editor-row button:hover{border-color:var(--accent);color:var(--accent)}
 .editor-row button.primary{background:var(--accent);color:#04140a;border-color:transparent}
 .editor-row button.primary:hover{background:var(--accent-2);color:#04140a}
@@ -297,31 +201,8 @@ header{position:sticky;top:0;left:0;right:0;width:100%;z-index:200;
 .editor-status{font-size:12px;color:var(--muted);margin-top:8px;min-height:16px}
 .editor-status.ok{color:var(--accent)}
 .editor-status.err{color:var(--danger)}
-@media(max-width:960px){
-  .app{grid-template-columns:1fr}
-  .sidebar{position:fixed;left:0;top:var(--header-h);width:300px;
-    height:calc(100vh - var(--header-h));z-index:180;transform:translateX(-100%);
-    transition:transform .28s cubic-bezier(.4,0,.2,1);
-    box-shadow:0 12px 40px rgba(0,0,0,.5);border-right:1px solid var(--border)}
-  .sidebar.open{transform:translateX(0)}
-  .main{padding:20px 18px 60px}
-  .formula-row{grid-template-columns:1fr;position:relative}
-  .row-actions{position:absolute;right:8px;top:8px;opacity:1}
-  .copy-btn,.edit-btn{opacity:.6}
-}
-@media(max-width:600px){
-  header{padding:10px 12px;gap:8px}
-  .brand p{display:none}
-  .brand h1{font-size:19px;letter-spacing:1.5px}
-  .mode-switch button{padding:7px 12px;font-size:12.5px}
-  .mode-switch button .label{display:none}
-  .main{padding:16px 12px 60px}
-  .test-q,.test-a{font-size:clamp(20px,6.5vw,38px)}
-  .tbtn{padding:11px 16px;font-size:13px;min-width:0;flex:1 1 45%}
-  .dots{padding:8px 12px 12px}
-  .progress-bar-wrap{padding:0 12px}
-  .chip{font-size:11px;max-width:180px}
-}
+@media(max-width:960px){.app{grid-template-columns:1fr}.sidebar{position:fixed;left:0;top:var(--header-h);width:300px;height:calc(100vh - var(--header-h));z-index:180;transform:translateX(-100%);transition:transform .28s cubic-bezier(.4,0,.2,1);box-shadow:0 12px 40px rgba(0,0,0,.5);border-right:1px solid var(--border)}.sidebar.open{transform:translateX(0)}.main{padding:20px 18px 60px}.formula-row{grid-template-columns:1fr;position:relative}.row-actions{position:absolute;right:8px;top:8px;opacity:1}.copy-btn,.edit-btn{opacity:.6}}
+@media(max-width:600px){header{padding:10px 12px;gap:8px}.brand p{display:none}.brand h1{font-size:19px;letter-spacing:1.5px}.mode-switch button{padding:7px 12px;font-size:12.5px}.mode-switch button .label{display:none}.main{padding:16px 12px 60px}.test-q,.test-a{font-size:clamp(20px,6.5vw,38px)}.tbtn{padding:11px 16px;font-size:13px;min-width:0;flex:1 1 45%}.dots{padding:8px 12px 12px}.progress-bar-wrap{padding:0 12px}.chip{font-size:11px;max-width:180px}}
 </style>
 </head>
 <body>
@@ -803,7 +684,7 @@ header{position:sticky;top:0;left:0;right:0;width:100%;z-index:200;
       <div class="sb-actions">
         <button id="qInvert">Инвертировать</button>
         <button id="qNone">Снять всё</button>
-         <button id="qCollapse" title="Свернуть все раскрытые разделы">⯅ Свернуть</button>
+        <button id="qCollapse" title="Свернуть все раскрытые разделы">⯅ Свернуть</button>
       </div>
     </div>
     <div class="tree" id="tree"></div>
@@ -885,6 +766,15 @@ header{position:sticky;top:0;left:0;right:0;width:100%;z-index:200;
       </ul>
     </div>
     <div class="modal-section">
+      <h4>📤 Публикация для всех</h4>
+      <ul class="modal-list">
+        <li>Кнопка <b>⚙ GitHub</b> в редакторе — ввести токен один раз</li>
+        <li><b>💾 Сохранить локально</b> — черновик у тебя</li>
+        <li><b>📤 Опубликовать для всех</b> — улетает на GitHub</li>
+        <li>Через 1–2 минуты у всех свежая версия</li>
+      </ul>
+    </div>
+    <div class="modal-section">
       <h4>⌨️ Клавиши</h4>
       <ul class="modal-list">
         <li><kbd>/</kbd> — поиск</li>
@@ -911,9 +801,11 @@ header{position:sticky;top:0;left:0;right:0;width:100%;z-index:200;
     <textarea class="editor-textarea" id="editorText" spellcheck="false"></textarea>
     <div class="editor-status" id="editorStatus"></div>
     <div class="editor-row">
-      <button class="primary" id="editorSave">💾 Сохранить</button>
+      <button class="primary" id="editorSave">💾 Сохранить локально</button>
+      <button class="primary" id="editorPublish" style="background:#3cc490;">📤 Опубликовать для всех</button>
       <button id="editorExport">⬇️ Скачать .txt</button>
       <button id="editorImport">⬆️ Загрузить .txt</button>
+      <button id="editorGithub">⚙ GitHub</button>
       <button id="editorChangePwd">🔑 Сменить пароль</button>
       <button class="danger" id="editorReset">↺ Сбросить к встроенным</button>
       <button id="editorClose">Закрыть</button>
@@ -927,9 +819,7 @@ header{position:sticky;top:0;left:0;right:0;width:100%;z-index:200;
     <h2>🔒 Доступ к редактору</h2>
     <div class="sub" id="pwdSub">Введите пароль, чтобы редактировать формулы.</div>
     <div id="pwdLoginForm">
-      <input type="password" id="pwdLoginInput" class="editor-textarea"
-        style="min-height:auto;padding:12px 14px;font-size:15px;"
-        placeholder="Пароль" autocomplete="off">
+      <input type="password" id="pwdLoginInput" class="editor-textarea" style="min-height:auto;padding:12px 14px;font-size:15px;" placeholder="Пароль" autocomplete="off">
       <div class="editor-status" id="pwdLoginStatus"></div>
       <div class="editor-row">
         <button class="primary" id="pwdLoginBtn">Войти</button>
@@ -937,15 +827,9 @@ header{position:sticky;top:0;left:0;right:0;width:100%;z-index:200;
       </div>
     </div>
     <div id="pwdChangeForm" style="display:none;">
-      <input type="password" id="pwdOld" class="editor-textarea"
-        style="min-height:auto;padding:12px 14px;font-size:15px;margin-bottom:8px;"
-        placeholder="Старый пароль" autocomplete="off">
-      <input type="password" id="pwdNew" class="editor-textarea"
-        style="min-height:auto;padding:12px 14px;font-size:15px;margin-bottom:8px;"
-        placeholder="Новый пароль" autocomplete="off">
-      <input type="password" id="pwdNew2" class="editor-textarea"
-        style="min-height:auto;padding:12px 14px;font-size:15px;"
-        placeholder="Повторите новый пароль" autocomplete="off">
+      <input type="password" id="pwdOld" class="editor-textarea" style="min-height:auto;padding:12px 14px;font-size:15px;margin-bottom:8px;" placeholder="Старый пароль" autocomplete="off">
+      <input type="password" id="pwdNew" class="editor-textarea" style="min-height:auto;padding:12px 14px;font-size:15px;margin-bottom:8px;" placeholder="Новый пароль" autocomplete="off">
+      <input type="password" id="pwdNew2" class="editor-textarea" style="min-height:auto;padding:12px 14px;font-size:15px;" placeholder="Повторите новый пароль" autocomplete="off">
       <div class="editor-status" id="pwdChangeStatus"></div>
       <div class="editor-row">
         <button class="primary" id="pwdChangeBtn">Сменить пароль</button>
@@ -955,901 +839,191 @@ header{position:sticky;top:0;left:0;right:0;width:100%;z-index:200;
   </div>
 </div>
 
+<div class="modal-bg" id="githubModal">
+  <div class="modal" style="max-width:520px;">
+    <h2>⚙ Настройки GitHub</h2>
+    <div class="sub">Токен нужен, чтобы публиковать изменения. Хранится в браузере этого устройства.</div>
+    <label style="display:block;font-size:11px;font-weight:700;letter-spacing:1.2px;color:var(--accent);text-transform:uppercase;margin-bottom:6px;">GitHub token</label>
+    <input type="password" id="ghToken" class="editor-textarea" style="min-height:auto;padding:12px 14px;font-size:13px;" placeholder="github_pat_..." autocomplete="off">
+    <label style="display:block;font-size:11px;font-weight:700;letter-spacing:1.2px;color:var(--accent);text-transform:uppercase;margin:14px 0 6px;">Owner / Repo</label>
+    <input type="text" id="ghRepo" class="editor-textarea" style="min-height:auto;padding:12px 14px;font-size:13px;" value="Drapejnik/epallaxis" autocomplete="off">
+    <label style="display:block;font-size:11px;font-weight:700;letter-spacing:1.2px;color:var(--accent);text-transform:uppercase;margin:14px 0 6px;">Файл в репозитории</label>
+    <input type="text" id="ghPath" class="editor-textarea" style="min-height:auto;padding:12px 14px;font-size:13px;" value="formulas.html" autocomplete="off">
+    <label style="display:block;font-size:11px;font-weight:700;letter-spacing:1.2px;color:var(--accent);text-transform:uppercase;margin:14px 0 6px;">Ветка</label>
+    <input type="text" id="ghBranch" class="editor-textarea" style="min-height:auto;padding:12px 14px;font-size:13px;" value="main" autocomplete="off">
+    <div class="editor-status" id="ghStatus"></div>
+    <div class="editor-row">
+      <button class="primary" id="ghSave">💾 Сохранить настройки</button>
+      <button class="danger" id="ghClear">🗑 Забыть токен</button>
+      <button id="ghClose">Закрыть</button>
+    </div>
+  </div>
+</div>
+
 <script>
-/* ============================================================
-   КОНСТАНТЫ
-   ============================================================ */
-const DATA_ID = 'dataSource';
-const LS_DATA = 'epallaxis_data_v1';
-const LS_SEL = 'epallaxis_sel_v1';
-const LS_OPEN = 'epallaxis_open_v1';
-const LS_PWD = 'epallaxis_pwd_hash';
-const SUBJ_MAP = { 'алгебра':'algebra', 'геометрия':'geometry' };
-const SUBJ_LBL = { algebra:'Алгебра', geometry:'Геометрия' };
-const DEFAULT_PWD_HASH = 'c5974e64';
+const DATA_ID='dataSource';
+const LS_DATA='epallaxis_data_v1';
+const LS_SEL='epallaxis_sel_v1';
+const LS_OPEN='epallaxis_open_v1';
+const LS_PWD='epallaxis_pwd_hash';
+const SUBJ_MAP={'алгебра':'algebra','геометрия':'geometry'};
+const SUBJ_LBL={algebra:'Алгебра',geometry:'Геометрия'};
+const DEFAULT_PWD_HASH='c5974e64';
+const GH_KEY='epallaxis_github_cfg';
 
-const state = {
-  DB: {}, mode: 'view', search: '',
-  selected: new Set(), openGroups: new Set(),
-  testQueue: [], testIdx: 0, testRevealed: false,
-  editingTopic: null, editingIdx: -1, editingNew: false,
-  _pendingEdit: null
-};
+const state={DB:{},mode:'view',search:'',selected:new Set(),openGroups:new Set(),testQueue:[],testIdx:0,testRevealed:false,editingTopic:null,editingIdx:-1,editingNew:false,_pendingEdit:null};
 
-/* ============================================================
-   ХЭШ ПАРОЛЯ (DJB2)
-   ============================================================ */
-function hashPassword(str){
-  let h = 5381;
-  for(let i = 0; i < str.length; i++){
-    h = ((h << 5) + h + str.charCodeAt(i)) >>> 0;
-  }
-  return h.toString(16).padStart(8, '0');
-}
-function getStoredPwdHash(){
-  try { return localStorage.getItem(LS_PWD) || DEFAULT_PWD_HASH; }
-  catch(e){ return DEFAULT_PWD_HASH; }
-}
-function setStoredPwdHash(h){
-  try {
-    if(h === DEFAULT_PWD_HASH) localStorage.removeItem(LS_PWD);
-    else localStorage.setItem(LS_PWD, h);
-  } catch(e){}
-}
+/* GitHub module */
+function ghGetCfg(){try{return JSON.parse(localStorage.getItem(GH_KEY)||'{}')}catch(e){return{}}}
+function ghSetCfg(c){try{localStorage.setItem(GH_KEY,JSON.stringify(c))}catch(e){}}
+function ghClearCfg(){try{localStorage.removeItem(GH_KEY)}catch(e){}}
+function b64encodeUtf8(str){const bytes=new TextEncoder().encode(str);let bin='';const CH=8192;for(let i=0;i<bytes.length;i+=CH){bin+=String.fromCharCode.apply(null,bytes.subarray(i,i+CH))}return btoa(bin)}
+function b64decodeUtf8(b64){const clean=b64.replace(/\s/g,'');const bin=atob(clean);const bytes=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)bytes[i]=bin.charCodeAt(i);return new TextDecoder().decode(bytes)}
+function ghOpenSettings(){const c=ghGetCfg();document.getElementById('ghToken').value=c.token||'';document.getElementById('ghRepo').value=c.repo||'Drapejnik/epallaxis';document.getElementById('ghPath').value=c.path||'formulas.html';document.getElementById('ghBranch').value=c.branch||'main';document.getElementById('ghStatus').textContent='';document.getElementById('ghStatus').className='editor-status';document.getElementById('githubModal').classList.add('active')}
+function ghCloseSettings(){document.getElementById('githubModal').classList.remove('active')}
+function ghSaveSettings(){const token=document.getElementById('ghToken').value.trim();const repo=document.getElementById('ghRepo').value.trim();const path=document.getElementById('ghPath').value.trim();const branch=document.getElementById('ghBranch').value.trim()||'main';if(!token||!repo||!path){const s=document.getElementById('ghStatus');s.textContent='✗ Заполни все поля';s.className='editor-status err';return}ghSetCfg({token,repo,path,branch});const s=document.getElementById('ghStatus');s.textContent='✓ Настройки сохранены';s.className='editor-status ok';setTimeout(ghCloseSettings,700)}
+async function ghPublish(){const c=ghGetCfg();if(!c.token||!c.repo||!c.path){ghOpenSettings();return}const status=document.getElementById('editorStatus');status.textContent='⏳ Публикую...';status.className='editor-status';const apiUrl='https://api.github.com/repos/'+c.repo+'/contents/'+c.path;const headers={'Authorization':'Bearer '+c.token,'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'};try{const getResp=await fetch(apiUrl+'?ref='+encodeURIComponent(c.branch),{headers});if(!getResp.ok)throw new Error('Не удалось прочитать файл: '+getResp.status);const data=await getResp.json();const sha=data.sha;const fileContent=b64decodeUtf8(data.content);const newSource=getEffectiveSource().trim();const re=/(<script\s+type="text\/plain"\s+id="dataSource"\s*>)([\s\S]*?)(<\/script>)/;if(!re.test(fileContent))throw new Error('В файле не найден блок dataSource');const updated=fileContent.replace(re,(m,p1,p2,p3)=>p1+'\n'+newSource+'\n'+p3);const putBody={message:'Обновление формул через EPALLAXIS',content:b64encodeUtf8(updated),sha:sha,branch:c.branch};const putResp=await fetch(apiUrl,{method:'PUT',headers:Object.assign({'Content-Type':'application/json'},headers),body:JSON.stringify(putBody)});if(!putResp.ok){const err=await putResp.json().catch(()=>({}));throw new Error('Commit error: '+putResp.status+' '+(err.message||''))}status.textContent='✓ Опубликовано! GitHub Pages обновится через 1–2 мин.';status.className='editor-status ok'}catch(e){status.textContent='✗ '+e.message;status.className='editor-status err';console.error(e)}}
+async function ghPullLatest(){const c=ghGetCfg();if(!c.repo||!c.path)return;const branch=c.branch||'main';const raw='https://raw.githubusercontent.com/'+c.repo+'/'+branch+'/'+c.path+'?t='+Date.now();try{const r=await fetch(raw,{cache:'no-store'});if(!r.ok)return;const text=await r.text();const m=text.match(/<script\s+type="text\/plain"\s+id="dataSource"\s*>([\s\S]*?)<\/script>/);if(!m)return;const remote=m[1].trim();if(!remote)return;const localOverride=localStorage.getItem('epallaxis_data_v1');if(!localOverride){try{localStorage.setItem('epallaxis_data_v1',remote)}catch(e){}reloadDB();renderAll()}}catch(e){}}
 
-/* ============================================================
-   ЗАГРУЗКА ДАННЫХ
-   ============================================================ */
-function getInbuiltSource(){
-  const el = document.getElementById(DATA_ID);
-  return el ? (el.textContent || '') : '';
-}
-function getEffectiveSource(){
-  try { return localStorage.getItem(LS_DATA) || getInbuiltSource(); }
-  catch(e){ return getInbuiltSource(); }
-}
-function parseSource(raw){
-  const db = {};
-  let current = null;
-  const lines = raw.split(/\r?\n/);
-  for(let i = 0; i < lines.length; i++){
-    const t = lines[i].trim();
-    if(!t) continue;
-    if(t.startsWith('#')) continue;
-    if(t.startsWith('===')){
-      const rest = t.replace(/^=+\s*/, '').replace(/\s*=+\s*$/, '');
-      const parts = rest.split('|').map(s => s.trim());
-      if(parts.length < 3){ current = null; continue; }
-      const cls = parseInt(parts[0], 10);
-      const subjKey = SUBJ_MAP[parts[1].toLowerCase()];
-      const topic = parts[2];
-      if(!cls || !subjKey || !topic){ current = null; continue; }
-      if(!db[cls]) db[cls] = {};
-      if(!db[cls][subjKey]) db[cls][subjKey] = {};
-      if(!db[cls][subjKey][topic]) db[cls][subjKey][topic] = [];
-      current = db[cls][subjKey][topic];
-    } else if(current){
-      const idx = t.indexOf('|');
-      if(idx < 0) continue;
-      const q = t.slice(0, idx).trim();
-      const a = t.slice(idx + 1).trim();
-      if(q && a) current.push([q, a]);
-    }
-  }
-  return db;
-}
-function reloadDB(){ state.DB = parseSource(getEffectiveSource()); }
-function getClasses(){
-  return Object.keys(state.DB).map(Number).filter(n => !isNaN(n)).sort((a, b) => a - b);
-}
+/* Password */
+function hashPassword(str){let h=5381;for(let i=0;i<str.length;i++){h=((h<<5)+h+str.charCodeAt(i))>>>0}return h.toString(16).padStart(8,'0')}
+function getStoredPwdHash(){try{return localStorage.getItem(LS_PWD)||DEFAULT_PWD_HASH}catch(e){return DEFAULT_PWD_HASH}}
+function setStoredPwdHash(h){try{if(h===DEFAULT_PWD_HASH)localStorage.removeItem(LS_PWD);else localStorage.setItem(LS_PWD,h)}catch(e){}}
 
-/* ============================================================
-   СОХРАНЕНИЕ ВЫБОРА
-   ============================================================ */
-function loadSelection(){
-  try { state.selected = new Set(JSON.parse(localStorage.getItem(LS_SEL) || '[]')); } catch(e){ state.selected = new Set(); }
-  try { state.openGroups = new Set(JSON.parse(localStorage.getItem(LS_OPEN) || '[]')); } catch(e){ state.openGroups = new Set(); }
-}
-function saveSelection(){
-  try {
-    localStorage.setItem(LS_SEL, JSON.stringify([...state.selected]));
-    localStorage.setItem(LS_OPEN, JSON.stringify([...state.openGroups]));
-  } catch(e){}
-}
+/* Data */
+function getInbuiltSource(){const el=document.getElementById(DATA_ID);return el?(el.textContent||''):''}
+function getEffectiveSource(){try{return localStorage.getItem(LS_DATA)||getInbuiltSource()}catch(e){return getInbuiltSource()}}
+function parseSource(raw){const db={};let current=null;const lines=raw.split(/\r?\n/);for(let i=0;i<lines.length;i++){const t=lines[i].trim();if(!t)continue;if(t.startsWith('#'))continue;if(t.startsWith('===')){const rest=t.replace(/^=+\s*/,'').replace(/\s*=+\s*$/,'');const parts=rest.split('|').map(s=>s.trim());if(parts.length<3){current=null;continue}const cls=parseInt(parts[0],10);const subjKey=SUBJ_MAP[parts[1].toLowerCase()];const topic=parts[2];if(!cls||!subjKey||!topic){current=null;continue}if(!db[cls])db[cls]={};if(!db[cls][subjKey])db[cls][subjKey]={};if(!db[cls][subjKey][topic])db[cls][subjKey][topic]=[];current=db[cls][subjKey][topic]}else if(current){const idx=t.indexOf('|');if(idx<0)continue;const q=t.slice(0,idx).trim();const a=t.slice(idx+1).trim();if(q&&a)current.push([q,a])}}return db}
+function reloadDB(){state.DB=parseSource(getEffectiveSource())}
+function getClasses(){return Object.keys(state.DB).map(Number).filter(n=>!isNaN(n)).sort((a,b)=>a-b)}
 
-/* ============================================================
-   УТИЛИТЫ
-   ============================================================ */
-function keyOf(c, s, t){ return c + '|' + s + '|' + t; }
-function parseKey(k){
-  const i1 = k.indexOf('|');
-  const i2 = k.indexOf('|', i1 + 1);
-  return { c: Number(k.slice(0, i1)), s: k.slice(i1 + 1, i2), t: k.slice(i2 + 1) };
-}
-function getTopic(c, s, t){
-  return (state.DB[c] && state.DB[c][s] && state.DB[c][s][t]) || null;
-}
-function matchTopic(c, s, t){
-  const q = state.search.trim().toLowerCase();
-  if(!q) return true;
-  if(t.toLowerCase().includes(q)) return true;
-  const arr = getTopic(c, s, t) || [];
-  for(let i = 0; i < arr.length; i++){
-    if(arr[i][0].toLowerCase().includes(q)) return true;
-    if(arr[i][1].toLowerCase().includes(q)) return true;
-  }
-  return false;
-}
-function countSelected(){
-  let topics = 0, formulas = 0;
-  state.selected.forEach(k => {
-    const { c, s, t } = parseKey(k);
-    const arr = getTopic(c, s, t);
-    if(arr){ topics++; formulas += arr.length; }
-  });
-  return { topics, formulas };
-}
-function sortSelectedKeys(){
-  return [...state.selected].sort((a, b) => {
-    const A = parseKey(a), B = parseKey(b);
-    if(A.c !== B.c) return A.c - B.c;
-    if(A.s !== B.s) return A.s.localeCompare(B.s);
-    return A.t.localeCompare(B.t);
-  });
-}
-function escapeHtml(s){
-  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-}
+function loadSelection(){try{state.selected=new Set(JSON.parse(localStorage.getItem(LS_SEL)||'[]'))}catch(e){state.selected=new Set()}try{state.openGroups=new Set(JSON.parse(localStorage.getItem(LS_OPEN)||'[]'))}catch(e){state.openGroups=new Set()}}
+function saveSelection(){try{localStorage.setItem(LS_SEL,JSON.stringify([...state.selected]));localStorage.setItem(LS_OPEN,JSON.stringify([...state.openGroups]))}catch(e){}}
 
-/* ============================================================
-   РЕНДЕР ДЕРЕВА
-   ============================================================ */
-function renderTree(){
-  const root = document.getElementById('tree');
-  const classes = getClasses();
-  const groups = [];
-  classes.forEach(c => {
-    ['algebra','geometry'].forEach(s => {
-      if(!state.DB[c] || !state.DB[c][s]) return;
-      const all = Object.keys(state.DB[c][s]);
-      const filtered = all.filter(t => matchTopic(c, s, t));
-      if(filtered.length === 0) return;
-      groups.push({ c, s, topics: filtered, all });
-    });
-  });
-  if(groups.length === 0){
-    root.innerHTML = '<div style="padding:24px 12px;text-align:center;color:var(--muted);font-size:13px;">Ничего не найдено</div>';
-    return;
-  }
-  root.innerHTML = '';
-  groups.forEach(g => {
-    const gKey = g.c + '|' + g.s;
-    const isOpen = state.openGroups.has(gKey);
-    const selCount = g.all.filter(t => state.selected.has(keyOf(g.c, g.s, t))).length;
-    const totCount = g.all.length;
-    let cntClass = 'tree-count';
-    if(selCount === totCount && totCount > 0) cntClass += ' full';
-    else if(selCount > 0) cntClass += ' partial';
+function keyOf(c,s,t){return c+'|'+s+'|'+t}
+function parseKey(k){const i1=k.indexOf('|');const i2=k.indexOf('|',i1+1);return{c:Number(k.slice(0,i1)),s:k.slice(i1+1,i2),t:k.slice(i2+1)}}
+function getTopic(c,s,t){return(state.DB[c]&&state.DB[c][s]&&state.DB[c][s][t])||null}
+function matchTopic(c,s,t){const q=state.search.trim().toLowerCase();if(!q)return true;if(t.toLowerCase().includes(q))return true;const arr=getTopic(c,s,t)||[];for(let i=0;i<arr.length;i++){if(arr[i][0].toLowerCase().includes(q))return true;if(arr[i][1].toLowerCase().includes(q))return true}return false}
+function countSelected(){let topics=0,formulas=0;state.selected.forEach(k=>{const{c,s,t}=parseKey(k);const arr=getTopic(c,s,t);if(arr){topics++;formulas+=arr.length}});return{topics,formulas}}
+function sortSelectedKeys(){return[...state.selected].sort((a,b)=>{const A=parseKey(a),B=parseKey(b);if(A.c!==B.c)return A.c-B.c;if(A.s!==B.s)return A.s.localeCompare(B.s);return A.t.localeCompare(B.t)})}
+function escapeHtml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
 
-    const wrap = document.createElement('div');
-    wrap.className = 'tree-group';
-    const head = document.createElement('div');
-    head.className = 'tree-head' + (isOpen ? ' open' : '');
-    head.innerHTML = '<span class="tree-arrow">▶</span>' +
-      '<span class="tree-label">' + g.c + ' · ' + SUBJ_LBL[g.s] + '</span>' +
-      '<span class="' + cntClass + '">' + selCount + '/' + totCount + '</span>';
-    head.onclick = () => {
-      if(state.openGroups.has(gKey)) state.openGroups.delete(gKey);
-      else state.openGroups.add(gKey);
-      saveSelection();
-      renderTree();
-    };
-    wrap.appendChild(head);
+function renderTree(){const root=document.getElementById('tree');const classes=getClasses();const groups=[];classes.forEach(c=>{['algebra','geometry'].forEach(s=>{if(!state.DB[c]||!state.DB[c][s])return;const all=Object.keys(state.DB[c][s]);const filtered=all.filter(t=>matchTopic(c,s,t));if(filtered.length===0)return;groups.push({c,s,topics:filtered,all})})});if(groups.length===0){root.innerHTML='<div style="padding:24px 12px;text-align:center;color:var(--muted);font-size:13px;">Ничего не найдено</div>';return}root.innerHTML='';groups.forEach(g=>{const gKey=g.c+'|'+g.s;const isOpen=state.openGroups.has(gKey);const selCount=g.all.filter(t=>state.selected.has(keyOf(g.c,g.s,t))).length;const totCount=g.all.length;let cntClass='tree-count';if(selCount===totCount&&totCount>0)cntClass+=' full';else if(selCount>0)cntClass+=' partial';const wrap=document.createElement('div');wrap.className='tree-group';const head=document.createElement('div');head.className='tree-head'+(isOpen?' open':'');head.innerHTML='<span class="tree-arrow">▶</span><span class="tree-label">'+g.c+' · '+SUBJ_LBL[g.s]+'</span><span class="'+cntClass+'">'+selCount+'/'+totCount+'</span>';head.onclick=()=>{if(state.openGroups.has(gKey))state.openGroups.delete(gKey);else state.openGroups.add(gKey);saveSelection();renderTree()};wrap.appendChild(head);const body=document.createElement('div');body.className='tree-body';const allSel=g.topics.every(t=>state.selected.has(keyOf(g.c,g.s,t)));const actions=document.createElement('div');actions.className='tree-actions';const btn=document.createElement('button');btn.textContent=allSel?'✕ Снять группу':'✓ Выбрать группу';btn.onclick=e=>{e.stopPropagation();if(allSel)g.topics.forEach(t=>state.selected.delete(keyOf(g.c,g.s,t)));else g.topics.forEach(t=>state.selected.add(keyOf(g.c,g.s,t)));saveSelection();renderAll()};actions.appendChild(btn);body.appendChild(actions);g.topics.forEach(t=>{const k=keyOf(g.c,g.s,t);const checked=state.selected.has(k);const cnt=(getTopic(g.c,g.s,t)||[]).length;const item=document.createElement('div');item.className='tree-topic'+(checked?' checked':'');item.innerHTML='<span class="tree-check"></span><span class="tree-topic-name">'+escapeHtml(t)+'</span><span class="tree-topic-cnt">'+cnt+'</span>';item.onclick=()=>{if(state.selected.has(k))state.selected.delete(k);else state.selected.add(k);saveSelection();renderAll()};body.appendChild(item)});wrap.appendChild(body);root.appendChild(wrap)})}
 
-    const body = document.createElement('div');
-    body.className = 'tree-body';
-    const allSel = g.topics.every(t => state.selected.has(keyOf(g.c, g.s, t)));
-    const actions = document.createElement('div');
-    actions.className = 'tree-actions';
-    const btn = document.createElement('button');
-    btn.textContent = allSel ? '✕ Снять группу' : '✓ Выбрать группу';
-    btn.onclick = (e) => {
-      e.stopPropagation();
-      if(allSel) g.topics.forEach(t => state.selected.delete(keyOf(g.c, g.s, t)));
-      else g.topics.forEach(t => state.selected.add(keyOf(g.c, g.s, t)));
-      saveSelection();
-      renderAll();
-    };
-    actions.appendChild(btn);
-    body.appendChild(actions);
+function renderMain(){const main=document.getElementById('main');const{topics,formulas}=countSelected();if(state.selected.size===0){main.innerHTML='<div class="empty"><div class="empty-icon">📐</div><h3>Выбери темы слева</h3><p>Отметь галочками нужные темы — все формулы появятся здесь.</p><div class="empty-tips"><div class="tip"><b>1.</b> Раскрой группу (например «8 · Алгебра»)</div><div class="tip"><b>2.</b> Отметь нужные темы</div><div class="tip"><b>3.</b> Или нажми пресет сверху — 1 клик</div><div class="tip"><b>💡</b> Поиск ищет и по названию темы, и по формулам</div></div></div>';return}let html='';html+='<div class="crumbs"><span>Формулы</span><span class="c-sep">/</span><b>'+topics+' тем</b><span class="c-sep">·</span><span class="c-accent">'+formulas+' формул</span></div>';const keys=sortSelectedKeys();html+='<div class="chips-bar">';keys.forEach(k=>{const{c,s,t}=parseKey(k);html+='<div class="chip" data-key="'+k+'" title="'+escapeHtml(t)+'"><span class="chip-txt">'+c+' · '+(s==='algebra'?'Алг':'Геом')+' · '+escapeHtml(t)+'</span><span class="chip-x" data-remove="'+k+'">✕</span></div>'});html+='<button class="chip-clear" id="chipClear">Очистить всё</button></div>';keys.forEach((k,topicIdx)=>{const{c,s,t}=parseKey(k);const items=getTopic(c,s,t)||[];const isOpen=state.openGroups.has('T_'+k);html+='<div class="topic-block" id="block_'+topicIdx+'"><div class="topic-head'+(isOpen?' open':'')+'" data-topic-open="'+k+'"><span class="topic-arrow">▶</span><span class="topic-title">'+escapeHtml(t)+' <span class="tag">'+c+' · '+SUBJ_LBL[s]+'</span></span><span class="topic-meta">'+items.length+' формул</span></div><div class="topic-body">';items.forEach((pair,fi)=>{const q=pair[0],a=pair[1];const isEditing=(state.editingTopic===k&&state.editingIdx===fi&&!state.editingNew);if(isEditing){html+='<div class="edit-form" data-topic="'+k+'" data-idx="'+fi+'"><label>Вопрос</label><textarea class="edit-q">'+escapeHtml(q)+'</textarea><label>Ответ</label><textarea class="edit-a">'+escapeHtml(a)+'</textarea><div class="edit-actions"><button class="save" type="button">💾 Сохранить</button><button class="cancel" type="button">Отмена</button><button class="delete" type="button">🗑 Удалить формулу</button></div></div>'}else{const encoded=encodeURIComponent(a);html+='<div class="formula-row"><div><div class="formula-q">'+q+'</div><div class="formula-a">'+a+'</div></div><div class="row-actions"><button class="edit-btn" data-edit-topic="'+k+'" data-edit-idx="'+fi+'" title="Редактировать">✏️</button><button class="copy-btn" data-copy="'+encoded+'" title="Скопировать">📋</button></div></div>'}});const isAdding=(state.editingTopic===k&&state.editingNew);if(isAdding){html+='<div class="edit-form" data-topic="'+k+'" data-new="1"><label>Новая формула — вопрос</label><textarea class="edit-q" placeholder="Например: Теорема Пифагора"></textarea><label>Ответ</label><textarea class="edit-a" placeholder="\\(a^2 + b^2 = c^2\\)"></textarea><div class="edit-actions"><button class="save" type="button">💾 Сохранить</button><button class="cancel" type="button">Отмена</button></div></div>'}else{html+='<button class="add-formula-btn" data-add-topic="'+k+'" type="button">+ Добавить формулу</button>'}html+='</div></div>'});main.innerHTML=html;bindMainEvents(main);renderMathIn(main)}
 
-    g.topics.forEach(t => {
-      const k = keyOf(g.c, g.s, t);
-      const checked = state.selected.has(k);
-      const cnt = (getTopic(g.c, g.s, t) || []).length;
-      const item = document.createElement('div');
-      item.className = 'tree-topic' + (checked ? ' checked' : '');
-      item.innerHTML = '<span class="tree-check"></span>' +
-        '<span class="tree-topic-name">' + escapeHtml(t) + '</span>' +
-        '<span class="tree-topic-cnt">' + cnt + '</span>';
-      item.onclick = () => {
-        if(state.selected.has(k)) state.selected.delete(k);
-        else state.selected.add(k);
-        saveSelection();
-        renderAll();
-      };
-      body.appendChild(item);
-    });
-    wrap.appendChild(body);
-    root.appendChild(wrap);
-  });
-}
+function bindMainEvents(main){main.querySelectorAll('[data-topic-open]').forEach(el=>{el.onclick=()=>{const k=el.dataset.topicOpen;const tk='T_'+k;if(state.openGroups.has(tk))state.openGroups.delete(tk);else state.openGroups.add(tk);saveSelection();renderMain()}});main.querySelectorAll('[data-remove]').forEach(el=>{el.onclick=e=>{e.stopPropagation();state.selected.delete(el.dataset.remove);saveSelection();renderAll()}});main.querySelectorAll('.chip').forEach(el=>{el.onclick=e=>{if(e.target.closest('[data-remove]'))return;const k=el.dataset.key;const arr=sortSelectedKeys();const idx=arr.indexOf(k);if(idx<0)return;const tk='T_'+k;if(!state.openGroups.has(tk)){state.openGroups.add(tk);saveSelection();renderMain();setTimeout(()=>{const b2=document.getElementById('block_'+idx);if(b2){const y=b2.getBoundingClientRect().top+window.pageYOffset-90;window.scrollTo({top:y,behavior:'smooth'})}},50)}else{const block=document.getElementById('block_'+idx);if(block){const y=block.getBoundingClientRect().top+window.pageYOffset-90;window.scrollTo({top:y,behavior:'smooth'})}}}});const chipClear=document.getElementById('chipClear');if(chipClear)chipClear.onclick=()=>{state.selected.clear();saveSelection();renderAll()};main.querySelectorAll('.copy-btn').forEach(el=>{el.onclick=e=>{e.stopPropagation();const txt=decodeURIComponent(el.dataset.copy);if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(()=>{el.textContent='✓';setTimeout(()=>{el.textContent='📋'},900)}).catch(()=>{})}}});main.querySelectorAll('[data-edit-topic]').forEach(el=>{el.onclick=e=>{e.stopPropagation();if(sessionStorage.getItem('epallaxis_unlocked')!=='1'){state._pendingEdit={topic:el.dataset.editTopic,idx:Number(el.dataset.editIdx),isNew:false};openPasswordLogin();return}startEdit(el.dataset.editTopic,Number(el.dataset.editIdx),false)}});main.querySelectorAll('[data-add-topic]').forEach(el=>{el.onclick=e=>{e.stopPropagation();if(sessionStorage.getItem('epallaxis_unlocked')!=='1'){state._pendingEdit={topic:el.dataset.addTopic,idx:-1,isNew:true};openPasswordLogin();return}startEdit(el.dataset.addTopic,-1,true)}});main.querySelectorAll('.edit-form').forEach(form=>{const topic=form.dataset.topic;const isNew=form.dataset.new==='1';const idx=isNew?-1:Number(form.dataset.idx);form.querySelector('.save').onclick=()=>saveEdit(form,topic,idx,isNew);form.querySelector('.cancel').onclick=()=>cancelEdit();const delBtn=form.querySelector('.delete');if(delBtn)delBtn.onclick=()=>deleteFormula(topic,idx);const firstTa=form.querySelector('.edit-q');if(firstTa)setTimeout(()=>{firstTa.focus();firstTa.setSelectionRange(firstTa.value.length,firstTa.value.length)},30)})}
 
-/* ============================================================
-   РЕНДЕР ГЛАВНОЙ
-   ============================================================ */
-function renderMain(){
-  const main = document.getElementById('main');
-  const { topics, formulas } = countSelected();
-  if(state.selected.size === 0){
-    main.innerHTML =
-      '<div class="empty">' +
-        '<div class="empty-icon">📐</div>' +
-        '<h3>Выбери темы слева</h3>' +
-        '<p>Отметь галочками нужные темы — все формулы появятся здесь.</p>' +
-        '<div class="empty-tips">' +
-          '<div class="tip"><b>1.</b> Раскрой группу (например «8 · Алгебра»)</div>' +
-          '<div class="tip"><b>2.</b> Отметь нужные темы</div>' +
-          '<div class="tip"><b>3.</b> Или нажми пресет сверху — 1 клик</div>' +
-          '<div class="tip"><b>💡</b> Поиск ищет и по названию темы, и по формулам</div>' +
-        '</div>' +
-      '</div>';
-    return;
-  }
-  let html = '';
-  html += '<div class="crumbs"><span>Формулы</span><span class="c-sep">/</span>' +
-    '<b>' + topics + ' тем</b><span class="c-sep">·</span>' +
-    '<span class="c-accent">' + formulas + ' формул</span></div>';
-  const keys = sortSelectedKeys();
-  html += '<div class="chips-bar">';
-  keys.forEach(k => {
-    const { c, s, t } = parseKey(k);
-    html += '<div class="chip" data-key="' + k + '" title="' + escapeHtml(t) + '">' +
-      '<span class="chip-txt">' + c + ' · ' + (s === 'algebra' ? 'Алг' : 'Геом') + ' · ' + escapeHtml(t) + '</span>' +
-      '<span class="chip-x" data-remove="' + k + '">✕</span></div>';
-  });
-  html += '<button class="chip-clear" id="chipClear">Очистить всё</button></div>';
+function startEdit(topicKey,idx,isNew){state.editingTopic=topicKey;state.editingIdx=idx;state.editingNew=isNew;state.openGroups.add('T_'+topicKey);saveSelection();renderMain();setTimeout(()=>{const form=document.querySelector('.edit-form');if(form){const y=form.getBoundingClientRect().top+window.pageYOffset-100;window.scrollTo({top:y,behavior:'smooth'})}},80)}
+function saveEdit(form,topicKey,idx,isNew){const newQ=form.querySelector('.edit-q').value.trim();const newA=form.querySelector('.edit-a').value.trim();if(!newQ||!newA){alert('Заполни оба поля — вопрос и ответ.');return}const{c,s,t}=parseKey(topicKey);if(!state.DB[c]||!state.DB[c][s]||!state.DB[c][s][t]){alert('Тема не найдена');return}const arr=state.DB[c][s][t];if(isNew){arr.push([newQ,newA])}else{if(idx<0||idx>=arr.length){alert('Формула не найдена');return}arr[idx]=[newQ,newA]}persistDB();state.editingTopic=null;state.editingIdx=-1;state.editingNew=false;renderAll()}
+function cancelEdit(){state.editingTopic=null;state.editingIdx=-1;state.editingNew=false;renderMain()}
+function deleteFormula(topicKey,idx){if(!confirm('Удалить эту формулу?'))return;const{c,s,t}=parseKey(topicKey);if(!state.DB[c]||!state.DB[c][s]||!state.DB[c][s][t])return;state.DB[c][s][t].splice(idx,1);persistDB();state.editingTopic=null;state.editingIdx=-1;state.editingNew=false;renderAll()}
+function persistDB(){const lines=[];getClasses().forEach(c=>{['algebra','geometry'].forEach(s=>{if(!state.DB[c]||!state.DB[c][s])return;Object.keys(state.DB[c][s]).forEach(t=>{lines.push('=== '+c+' | '+SUBJ_LBL[s]+' | '+t);state.DB[c][s][t].forEach(pair=>lines.push(pair[0]+' | '+pair[1]));lines.push('')})})});try{localStorage.setItem(LS_DATA,lines.join('\n'))}catch(e){alert('Ошибка сохранения: '+e.message)}}
 
-  keys.forEach((k, topicIdx) => {
-    const { c, s, t } = parseKey(k);
-    const items = getTopic(c, s, t) || [];
-    const isOpen = state.openGroups.has('T_' + k);
-    html += '<div class="topic-block" id="block_' + topicIdx + '">' +
-      '<div class="topic-head' + (isOpen ? ' open' : '') + '" data-topic-open="' + k + '">' +
-        '<span class="topic-arrow">▶</span>' +
-        '<span class="topic-title">' + escapeHtml(t) + ' <span class="tag">' + c + ' · ' + SUBJ_LBL[s] + '</span></span>' +
-        '<span class="topic-meta">' + items.length + ' формул</span></div>' +
-      '<div class="topic-body">';
+function applyPreset(name){state.selected.clear();getClasses().forEach(c=>{['algebra','geometry'].forEach(s=>{if(!state.DB[c]||!state.DB[c][s])return;let ok=false;if(name==='base')ok=(c===7||c===8);else if(name==='exam')ok=(c===9);else if(name==='senior')ok=(c===10||c===11);else if(name==='alg')ok=(s==='algebra');else if(name==='geom')ok=(s==='geometry');else if(name==='all')ok=true;if(!ok)return;Object.keys(state.DB[c][s]).forEach(t=>state.selected.add(keyOf(c,s,t)))})});if(state.selected.size>0){state.openGroups.clear();state.selected.forEach(k=>{const{c,s}=parseKey(k);state.openGroups.add(c+'|'+s)})}saveSelection();renderAll()}
+function renderAll(){const{topics,formulas}=countSelected();document.getElementById('statTopics').textContent=topics;document.getElementById('statFormulas').textContent=formulas;document.getElementById('startBtn').disabled=state.selected.size===0;renderTree();renderMain()}
 
-    items.forEach((pair, fi) => {
-      const q = pair[0], a = pair[1];
-      const isEditing = (state.editingTopic === k && state.editingIdx === fi && !state.editingNew);
-      if(isEditing){
-        html += '<div class="edit-form" data-topic="' + k + '" data-idx="' + fi + '">' +
-          '<label>Вопрос</label>' +
-          '<textarea class="edit-q">' + escapeHtml(q) + '</textarea>' +
-          '<label>Ответ</label>' +
-          '<textarea class="edit-a">' + escapeHtml(a) + '</textarea>' +
-          '<div class="edit-actions">' +
-            '<button class="save" type="button">💾 Сохранить</button>' +
-            '<button class="cancel" type="button">Отмена</button>' +
-            '<button class="delete" type="button">🗑 Удалить формулу</button>' +
-          '</div>' +
-        '</div>';
-      } else {
-        const encoded = encodeURIComponent(a);
-        html += '<div class="formula-row"><div>' +
-          '<div class="formula-q">' + q + '</div>' +
-          '<div class="formula-a">' + a + '</div></div>' +
-          '<div class="row-actions">' +
-            '<button class="edit-btn" data-edit-topic="' + k + '" data-edit-idx="' + fi + '" title="Редактировать">✏️</button>' +
-            '<button class="copy-btn" data-copy="' + encoded + '" title="Скопировать">📋</button>' +
-          '</div></div>';
-      }
-    });
+function buildQueue(){const q=[];state.selected.forEach(k=>{const{c,s,t}=parseKey(k);const items=getTopic(c,s,t)||[];items.forEach(pair=>q.push({c,s,t,q:pair[0],a:pair[1]}))});return q}
+function shuffleArr(a){const b=a.slice();for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const tmp=b[i];b[i]=b[j];b[j]=tmp}return b}
+function startTest(){state.testQueue=shuffleArr(buildQueue());if(state.testQueue.length===0)return;state.testIdx=0;state.testRevealed=false;document.getElementById('testOverlay').classList.add('active');document.body.style.overflow='hidden';showCard()}
+function showCard(){const it=state.testQueue[state.testIdx];if(!it)return;document.getElementById('testTag').textContent=it.c+' класс · '+SUBJ_LBL[it.s]+' · '+it.t;const qEl=document.getElementById('testQ');const aEl=document.getElementById('testA');aEl.classList.add('no-anim');aEl.classList.remove('show');void aEl.offsetWidth;qEl.innerHTML=it.q;aEl.innerHTML=it.a;if(state.testRevealed){aEl.classList.add('show');void aEl.offsetWidth}aEl.classList.remove('no-anim');document.getElementById('testCur').textContent=state.testIdx+1;document.getElementById('testTotal').textContent=state.testQueue.length;document.getElementById('progressFill').style.width=((state.testIdx+1)/state.testQueue.length*100)+'%';document.getElementById('testPrev').disabled=state.testIdx===0;document.getElementById('testNext').disabled=state.testIdx===state.testQueue.length-1;const dots=document.getElementById('dots');let dhtml='';for(let i=0;i<state.testQueue.length;i++){let cls='dot';if(i<state.testIdx)cls+=' done';if(i===state.testIdx)cls+=' current';dhtml+='<div class="'+cls+'" data-i="'+i+'"></div>'}dots.innerHTML=dhtml;dots.querySelectorAll('.dot').forEach(d=>{d.onclick=()=>{state.testIdx=Number(d.dataset.i);state.testRevealed=false;showCard()}});const cur=dots.querySelector('.dot.current');if(cur)cur.scrollIntoView({block:'nearest',inline:'nearest'});renderMathIn(qEl);renderMathIn(aEl)}
+function goNext(){if(state.testIdx<state.testQueue.length-1){state.testIdx++;state.testRevealed=false;showCard()}}
+function goPrev(){if(state.testIdx>0){state.testIdx--;state.testRevealed=false;showCard()}}
+function toggleAnswer(){state.testRevealed=!state.testRevealed;document.getElementById('testA').classList.toggle('show',state.testRevealed)}
+function skipCurrent(){if(state.testQueue.length<2)return;const cur=state.testQueue.splice(state.testIdx,1)[0];state.testQueue.push(cur);state.testRevealed=false;showCard()}
+function exitTest(){document.getElementById('testOverlay').classList.remove('active');document.body.style.overflow=''}
 
-    const isAdding = (state.editingTopic === k && state.editingNew);
-    if(isAdding){
-      html += '<div class="edit-form" data-topic="' + k + '" data-new="1">' +
-        '<label>Новая формула — вопрос</label>' +
-        '<textarea class="edit-q" placeholder="Например: Теорема Пифагора"></textarea>' +
-        '<label>Ответ</label>' +
-        '<textarea class="edit-a" placeholder="\\(a^2 + b^2 = c^2\\)"></textarea>' +
-        '<div class="edit-actions">' +
-          '<button class="save" type="button">💾 Сохранить</button>' +
-          '<button class="cancel" type="button">Отмена</button>' +
-        '</div>' +
-      '</div>';
-    } else {
-      html += '<button class="add-formula-btn" data-add-topic="' + k + '" type="button">+ Добавить формулу</button>';
-    }
-    html += '</div></div>';
-  });
-  main.innerHTML = html;
-  bindMainEvents(main);
-  renderMathIn(main);
-}
+function renderMathIn(el){if(typeof renderMathInElement!=='function')return;try{renderMathInElement(el,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})}catch(e){console.warn('KaTeX error:',e)}}
 
-function bindMainEvents(main){
-  main.querySelectorAll('[data-topic-open]').forEach(el => {
-    el.onclick = () => {
-      const k = el.dataset.topicOpen;
-      const tk = 'T_' + k;
-      if(state.openGroups.has(tk)) state.openGroups.delete(tk);
-      else state.openGroups.add(tk);
-      saveSelection();
-      renderMain();
-    };
-  });
-  main.querySelectorAll('[data-remove]').forEach(el => {
-    el.onclick = (e) => {
-      e.stopPropagation();
-      state.selected.delete(el.dataset.remove);
-      saveSelection(); renderAll();
-    };
-  });
-  main.querySelectorAll('.chip').forEach(el => {
-    el.onclick = (e) => {
-      if(e.target.closest('[data-remove]')) return;
-      const k = el.dataset.key;
-      const arr = sortSelectedKeys();
-      const idx = arr.indexOf(k);
-      if(idx < 0) return;
-      const tk = 'T_' + k;
-      if(!state.openGroups.has(tk)){
-        state.openGroups.add(tk); saveSelection(); renderMain();
-        setTimeout(() => {
-          const b2 = document.getElementById('block_' + idx);
-          if(b2){ const y = b2.getBoundingClientRect().top + window.pageYOffset - 90;
-            window.scrollTo({ top: y, behavior: 'smooth' }); }
-        }, 50);
-      } else {
-        const block = document.getElementById('block_' + idx);
-        if(block){ const y = block.getBoundingClientRect().top + window.pageYOffset - 90;
-          window.scrollTo({ top: y, behavior: 'smooth' }); }
-      }
-    };
-  });
-  const chipClear = document.getElementById('chipClear');
-  if(chipClear) chipClear.onclick = () => { state.selected.clear(); saveSelection(); renderAll(); };
-  main.querySelectorAll('.copy-btn').forEach(el => {
-    el.onclick = (e) => {
-      e.stopPropagation();
-      const txt = decodeURIComponent(el.dataset.copy);
-      if(navigator.clipboard && navigator.clipboard.writeText){
-        navigator.clipboard.writeText(txt).then(() => {
-          el.textContent = '✓';
-          setTimeout(() => { el.textContent = '📋'; }, 900);
-        }).catch(() => {});
-      }
-    };
-  });
-  main.querySelectorAll('[data-edit-topic]').forEach(el => {
-    el.onclick = (e) => {
-      e.stopPropagation();
-      if(sessionStorage.getItem('epallaxis_unlocked') !== '1'){
-        state._pendingEdit = { topic: el.dataset.editTopic, idx: Number(el.dataset.editIdx), isNew: false };
-        openPasswordLogin();
-        return;
-      }
-      startEdit(el.dataset.editTopic, Number(el.dataset.editIdx), false);
-    };
-  });
-  main.querySelectorAll('[data-add-topic]').forEach(el => {
-    el.onclick = (e) => {
-      e.stopPropagation();
-      if(sessionStorage.getItem('epallaxis_unlocked') !== '1'){
-        state._pendingEdit = { topic: el.dataset.addTopic, idx: -1, isNew: true };
-        openPasswordLogin();
-        return;
-      }
-      startEdit(el.dataset.addTopic, -1, true);
-    };
-  });
-  main.querySelectorAll('.edit-form').forEach(form => {
-    const topic = form.dataset.topic;
-    const isNew = form.dataset.new === '1';
-    const idx = isNew ? -1 : Number(form.dataset.idx);
-    form.querySelector('.save').onclick = () => saveEdit(form, topic, idx, isNew);
-    form.querySelector('.cancel').onclick = () => cancelEdit();
-    const delBtn = form.querySelector('.delete');
-    if(delBtn) delBtn.onclick = () => deleteFormula(topic, idx);
-    const firstTa = form.querySelector('.edit-q');
-    if(firstTa) setTimeout(() => { firstTa.focus(); firstTa.setSelectionRange(firstTa.value.length, firstTa.value.length); }, 30);
-  });
-}
+function openPasswordLogin(){document.getElementById('pwdLoginForm').style.display='';document.getElementById('pwdChangeForm').style.display='none';document.getElementById('pwdLoginStatus').textContent='';document.getElementById('pwdLoginStatus').className='editor-status';document.getElementById('pwdLoginInput').value='';document.getElementById('pwdSub').textContent='Введите пароль, чтобы редактировать формулы.';document.getElementById('passwordModal').classList.add('active');setTimeout(()=>document.getElementById('pwdLoginInput').focus(),100)}
+function closePasswordModal(){state._pendingEdit=null;document.getElementById('passwordModal').classList.remove('active')}
+function tryLogin(){const v=document.getElementById('pwdLoginInput').value;if(hashPassword(v)===getStoredPwdHash()){sessionStorage.setItem('epallaxis_unlocked','1');const pending=state._pendingEdit;state._pendingEdit=null;document.getElementById('passwordModal').classList.remove('active');if(pending)startEdit(pending.topic,pending.idx,pending.isNew);else openEditor()}else{const s=document.getElementById('pwdLoginStatus');s.textContent='✗ Неверный пароль';s.className='editor-status err';document.getElementById('pwdLoginInput').value='';document.getElementById('pwdLoginInput').focus()}}
+function openPasswordChange(){document.getElementById('pwdLoginForm').style.display='none';document.getElementById('pwdChangeForm').style.display='';document.getElementById('pwdOld').value='';document.getElementById('pwdNew').value='';document.getElementById('pwdNew2').value='';document.getElementById('pwdChangeStatus').textContent='';document.getElementById('pwdChangeStatus').className='editor-status';document.getElementById('pwdSub').textContent='Введите старый и новый пароль.';document.getElementById('passwordModal').classList.add('active');setTimeout(()=>document.getElementById('pwdOld').focus(),100)}
+function tryChangePassword(){const s=document.getElementById('pwdChangeStatus');const oldV=document.getElementById('pwdOld').value;const newV=document.getElementById('pwdNew').value;const new2=document.getElementById('pwdNew2').value;if(hashPassword(oldV)!==getStoredPwdHash()){s.textContent='✗ Старый пароль неверный';s.className='editor-status err';return}if(newV.length<4){s.textContent='✗ Новый пароль — не короче 4 символов';s.className='editor-status err';return}if(newV!==new2){s.textContent='✗ Новый пароль и повтор не совпадают';s.className='editor-status err';return}setStoredPwdHash(hashPassword(newV));s.textContent='✓ Пароль изменён';s.className='editor-status ok';setTimeout(()=>{document.getElementById('passwordModal').classList.remove('active');sessionStorage.setItem('epallaxis_unlocked','1')},900)}
 
-/* ============================================================
-   ИНДИВИДУАЛЬНОЕ РЕДАКТИРОВАНИЕ ФОРМУЛ
-   ============================================================ */
-function startEdit(topicKey, idx, isNew){
-  state.editingTopic = topicKey;
-  state.editingIdx = idx;
-  state.editingNew = isNew;
-  state.openGroups.add('T_' + topicKey);
-  saveSelection();
-  renderMain();
-  setTimeout(() => {
-    const form = document.querySelector('.edit-form');
-    if(form){
-      const y = form.getBoundingClientRect().top + window.pageYOffset - 100;
-      window.scrollTo({ top: y, behavior: 'smooth' });
-    }
-  }, 80);
-}
-function saveEdit(form, topicKey, idx, isNew){
-  const newQ = form.querySelector('.edit-q').value.trim();
-  const newA = form.querySelector('.edit-a').value.trim();
-  if(!newQ || !newA){ alert('Заполни оба поля — вопрос и ответ.'); return; }
-  const { c, s, t } = parseKey(topicKey);
-  if(!state.DB[c] || !state.DB[c][s] || !state.DB[c][s][t]){ alert('Тема не найдена'); return; }
-  const arr = state.DB[c][s][t];
-  if(isNew){ arr.push([newQ, newA]); }
-  else {
-    if(idx < 0 || idx >= arr.length){ alert('Формула не найдена'); return; }
-    arr[idx] = [newQ, newA];
-  }
-  persistDB();
-  state.editingTopic = null; state.editingIdx = -1; state.editingNew = false;
-  renderAll();
-}
-function cancelEdit(){
-  state.editingTopic = null; state.editingIdx = -1; state.editingNew = false;
-  renderMain();
-}
-function deleteFormula(topicKey, idx){
-  if(!confirm('Удалить эту формулу?')) return;
-  const { c, s, t } = parseKey(topicKey);
-  if(!state.DB[c] || !state.DB[c][s] || !state.DB[c][s][t]) return;
-  state.DB[c][s][t].splice(idx, 1);
-  persistDB();
-  state.editingTopic = null; state.editingIdx = -1; state.editingNew = false;
-  renderAll();
-}
-function persistDB(){
-  const lines = [];
-  getClasses().forEach(c => {
-    ['algebra','geometry'].forEach(s => {
-      if(!state.DB[c] || !state.DB[c][s]) return;
-      Object.keys(state.DB[c][s]).forEach(t => {
-        lines.push('=== ' + c + ' | ' + SUBJ_LBL[s] + ' | ' + t);
-        state.DB[c][s][t].forEach(pair => lines.push(pair[0] + ' | ' + pair[1]));
-        lines.push('');
-      });
-    });
-  });
-  try { localStorage.setItem(LS_DATA, lines.join('\n')); }
-  catch(e){ alert('Ошибка сохранения: ' + e.message); }
-}
+function openEditor(){const ta=document.getElementById('editorText');ta.value=getEffectiveSource();document.getElementById('editorStatus').textContent='';document.getElementById('editorStatus').className='editor-status';document.getElementById('editorModal').classList.add('active')}
+function closeEditor(){document.getElementById('editorModal').classList.remove('active')}
+function setEditorStatus(msg,cls){const el=document.getElementById('editorStatus');el.textContent=msg;el.className='editor-status'+(cls?' '+cls:'')}
+function editorSave(){const text=document.getElementById('editorText').value;const test=parseSource(text);if(Object.keys(test).length===0){setEditorStatus('⚠ Не найдено ни одной темы. Проверь формат: "=== 8 | Алгебра | Тема"','err');return}try{localStorage.setItem(LS_DATA,text);reloadDB();renderAll();let tt=0,tf=0;Object.keys(test).forEach(c=>{Object.keys(test[c]).forEach(s=>{const topics=Object.keys(test[c][s]);tt+=topics.length;topics.forEach(t=>tf+=test[c][s][t].length)})});const classesFound=getClasses().join(', ');setEditorStatus('✓ Сохранено: '+tt+' тем, '+tf+' формул. Классы: '+classesFound,'ok')}catch(e){setEditorStatus('Ошибка: '+e.message,'err')}}
+function editorReset(){if(!confirm('Сбросить все изменения и вернуть встроенный список?'))return;try{localStorage.removeItem(LS_DATA)}catch(e){}document.getElementById('editorText').value=getInbuiltSource();reloadDB();renderAll();setEditorStatus('✓ Восстановлен встроенный список','ok')}
+function editorExport(){const text=document.getElementById('editorText').value;const blob=new Blob([text],{type:'text/plain;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='epallaxis-formulas.txt';document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(url);setEditorStatus('✓ Файл скачан','ok')}
+function editorImport(){document.getElementById('editorFile').click()}
+function onFileChosen(e){const file=e.target.files&&e.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=ev=>{document.getElementById('editorText').value=ev.target.result;setEditorStatus('✓ Файл загружен. Нажми «Сохранить»','ok')};reader.readAsText(file,'utf-8');e.target.value=''}
 
-/* ============================================================
-   ПРЕСЕТЫ И ОБЩИЙ РЕНДЕР
-   ============================================================ */
-function applyPreset(name){
-  state.selected.clear();
-  getClasses().forEach(c => {
-    ['algebra','geometry'].forEach(s => {
-      if(!state.DB[c] || !state.DB[c][s]) return;
-      let ok = false;
-      if(name === 'base') ok = (c === 7 || c === 8);
-      else if(name === 'exam') ok = (c === 9);
-      else if(name === 'senior') ok = (c === 10 || c === 11);
-      else if(name === 'alg') ok = (s === 'algebra');
-      else if(name === 'geom') ok = (s === 'geometry');
-      else if(name === 'all') ok = true;
-      if(!ok) return;
-      Object.keys(state.DB[c][s]).forEach(t => state.selected.add(keyOf(c, s, t)));
-    });
-  });
-  if(state.selected.size > 0){
-    state.openGroups.clear();
-    state.selected.forEach(k => {
-      const { c, s } = parseKey(k);
-      state.openGroups.add(c + '|' + s);
-    });
-  }
-  saveSelection(); renderAll();
-}
-function renderAll(){
-  const { topics, formulas } = countSelected();
-  document.getElementById('statTopics').textContent = topics;
-  document.getElementById('statFormulas').textContent = formulas;
-  document.getElementById('startBtn').disabled = state.selected.size === 0;
-  renderTree();
-  renderMain();
-}
-
-/* ============================================================
-   ТЕСТ
-   ============================================================ */
-function buildQueue(){
-  const q = [];
-  state.selected.forEach(k => {
-    const { c, s, t } = parseKey(k);
-    const items = getTopic(c, s, t) || [];
-    items.forEach(pair => q.push({ c, s, t, q: pair[0], a: pair[1] }));
-  });
-  return q;
-}
-function shuffleArr(a){
-  const b = a.slice();
-  for(let i = b.length - 1; i > 0; i--){
-    const j = Math.floor(Math.random() * (i + 1));
-    const tmp = b[i]; b[i] = b[j]; b[j] = tmp;
-  }
-  return b;
-}
-function startTest(){
-  state.testQueue = shuffleArr(buildQueue());
-  if(state.testQueue.length === 0) return;
-  state.testIdx = 0; state.testRevealed = false;
-  document.getElementById('testOverlay').classList.add('active');
-  document.body.style.overflow = 'hidden';
-  showCard();
-}
-function showCard(){
-  const it = state.testQueue[state.testIdx];
-  if(!it) return;
-  document.getElementById('testTag').textContent = it.c + ' класс · ' + SUBJ_LBL[it.s] + ' · ' + it.t;
-  const qEl = document.getElementById('testQ');
-  const aEl = document.getElementById('testA');
-  aEl.classList.add('no-anim');
-  aEl.classList.remove('show');
-  void aEl.offsetWidth;
-  qEl.innerHTML = it.q;
-  aEl.innerHTML = it.a;
-  if(state.testRevealed){
-    aEl.classList.add('show');
-    void aEl.offsetWidth;
-  }
-  aEl.classList.remove('no-anim');
-  document.getElementById('testCur').textContent = state.testIdx + 1;
-  document.getElementById('testTotal').textContent = state.testQueue.length;
-  document.getElementById('progressFill').style.width = ((state.testIdx + 1) / state.testQueue.length * 100) + '%';
-  document.getElementById('testPrev').disabled = state.testIdx === 0;
-  document.getElementById('testNext').disabled = state.testIdx === state.testQueue.length - 1;
-  const dots = document.getElementById('dots');
-  let dhtml = '';
-  for(let i = 0; i < state.testQueue.length; i++){
-    let cls = 'dot';
-    if(i < state.testIdx) cls += ' done';
-    if(i === state.testIdx) cls += ' current';
-    dhtml += '<div class="' + cls + '" data-i="' + i + '"></div>';
-  }
-  dots.innerHTML = dhtml;
-  dots.querySelectorAll('.dot').forEach(d => {
-    d.onclick = () => { state.testIdx = Number(d.dataset.i); state.testRevealed = false; showCard(); };
-  });
-  const cur = dots.querySelector('.dot.current');
-  if(cur) cur.scrollIntoView({ block: 'nearest', inline: 'nearest' });
-  renderMathIn(qEl); renderMathIn(aEl);
-}
-function goNext(){ if(state.testIdx < state.testQueue.length - 1){ state.testIdx++; state.testRevealed = false; showCard(); } }
-function goPrev(){ if(state.testIdx > 0){ state.testIdx--; state.testRevealed = false; showCard(); } }
-function toggleAnswer(){
-  state.testRevealed = !state.testRevealed;
-  document.getElementById('testA').classList.toggle('show', state.testRevealed);
-}
-function skipCurrent(){
-  if(state.testQueue.length < 2) return;
-  const cur = state.testQueue.splice(state.testIdx, 1)[0];
-  state.testQueue.push(cur); state.testRevealed = false; showCard();
-}
-function exitTest(){ document.getElementById('testOverlay').classList.remove('active'); document.body.style.overflow = ''; }
-
-/* ============================================================
-   KATEX
-   ============================================================ */
-function renderMathIn(el){
-  if(typeof renderMathInElement !== 'function') return;
-  try {
-    renderMathInElement(el, {
-      delimiters: [
-        { left: '$$', right: '$$', display: true },
-        { left: '$', right: '$', display: false },
-        { left: '\\(', right: '\\)', display: false },
-        { left: '\\[', right: '\\]', display: true }
-      ],
-      throwOnError: false
-    });
-  } catch(e){ console.warn('KaTeX error:', e); }
-}
-
-/* ============================================================
-   ПАРОЛЬ
-   ============================================================ */
-function openPasswordLogin(){
-  document.getElementById('pwdLoginForm').style.display = '';
-  document.getElementById('pwdChangeForm').style.display = 'none';
-  document.getElementById('pwdLoginStatus').textContent = '';
-  document.getElementById('pwdLoginStatus').className = 'editor-status';
-  document.getElementById('pwdLoginInput').value = '';
-  document.getElementById('pwdSub').textContent = 'Введите пароль, чтобы редактировать формулы.';
-  document.getElementById('passwordModal').classList.add('active');
-  setTimeout(() => document.getElementById('pwdLoginInput').focus(), 100);
-}
-function closePasswordModal(){
-  state._pendingEdit = null;
-  document.getElementById('passwordModal').classList.remove('active');
-}
-function tryLogin(){
-  const v = document.getElementById('pwdLoginInput').value;
-  if(hashPassword(v) === getStoredPwdHash()){
-    sessionStorage.setItem('epallaxis_unlocked', '1');
-    const pending = state._pendingEdit;
-    state._pendingEdit = null;
-    document.getElementById('passwordModal').classList.remove('active');
-    if(pending) startEdit(pending.topic, pending.idx, pending.isNew);
-    else openEditor();
-  } else {
-    const s = document.getElementById('pwdLoginStatus');
-    s.textContent = '✗ Неверный пароль';
-    s.className = 'editor-status err';
-    document.getElementById('pwdLoginInput').value = '';
-    document.getElementById('pwdLoginInput').focus();
-  }
-}
-function openPasswordChange(){
-  document.getElementById('pwdLoginForm').style.display = 'none';
-  document.getElementById('pwdChangeForm').style.display = '';
-  document.getElementById('pwdOld').value = '';
-  document.getElementById('pwdNew').value = '';
-  document.getElementById('pwdNew2').value = '';
-  document.getElementById('pwdChangeStatus').textContent = '';
-  document.getElementById('pwdChangeStatus').className = 'editor-status';
-  document.getElementById('pwdSub').textContent = 'Введите старый и новый пароль.';
-  document.getElementById('passwordModal').classList.add('active');
-  setTimeout(() => document.getElementById('pwdOld').focus(), 100);
-}
-function tryChangePassword(){
-  const s = document.getElementById('pwdChangeStatus');
-  const oldV = document.getElementById('pwdOld').value;
-  const newV = document.getElementById('pwdNew').value;
-  const new2 = document.getElementById('pwdNew2').value;
-  if(hashPassword(oldV) !== getStoredPwdHash()){
-    s.textContent = '✗ Старый пароль неверный'; s.className = 'editor-status err'; return;
-  }
-  if(newV.length < 4){
-    s.textContent = '✗ Новый пароль — не короче 4 символов'; s.className = 'editor-status err'; return;
-  }
-  if(newV !== new2){
-    s.textContent = '✗ Новый пароль и повтор не совпадают'; s.className = 'editor-status err'; return;
-  }
-  setStoredPwdHash(hashPassword(newV));
-  s.textContent = '✓ Пароль изменён'; s.className = 'editor-status ok';
-  setTimeout(() => { document.getElementById('passwordModal').classList.remove('active'); sessionStorage.setItem('epallaxis_unlocked', '1'); }, 900);
-}
-
-/* ============================================================
-   МАССОВЫЙ РЕДАКТОР
-   ============================================================ */
-function openEditor(){
-  const ta = document.getElementById('editorText');
-  ta.value = getEffectiveSource();
-  document.getElementById('editorStatus').textContent = '';
-  document.getElementById('editorStatus').className = 'editor-status';
-  document.getElementById('editorModal').classList.add('active');
-}
-function closeEditor(){ document.getElementById('editorModal').classList.remove('active'); }
-function setEditorStatus(msg, cls){
-  const el = document.getElementById('editorStatus');
-  el.textContent = msg; el.className = 'editor-status' + (cls ? ' ' + cls : '');
-}
-function editorSave(){
-  const text = document.getElementById('editorText').value;
-  const test = parseSource(text);
-  if(Object.keys(test).length === 0){
-    setEditorStatus('⚠ Не найдено ни одной темы. Проверь формат: "=== 8 | Алгебра | Тема"', 'err');
-    return;
-  }
-  try {
-    localStorage.setItem(LS_DATA, text);
-    reloadDB(); renderAll();
-    let tt = 0, tf = 0;
-    Object.keys(test).forEach(c => {
-      Object.keys(test[c]).forEach(s => {
-        const topics = Object.keys(test[c][s]);
-        tt += topics.length;
-        topics.forEach(t => tf += test[c][s][t].length);
-      });
-    });
-    const classesFound = getClasses().join(', ');
-    setEditorStatus('✓ Сохранено: ' + tt + ' тем, ' + tf + ' формул. Классы: ' + classesFound, 'ok');
-  } catch(e){ setEditorStatus('Ошибка: ' + e.message, 'err'); }
-}
-function editorReset(){
-  if(!confirm('Сбросить все изменения и вернуть встроенный список?')) return;
-  try { localStorage.removeItem(LS_DATA); } catch(e){}
-  document.getElementById('editorText').value = getInbuiltSource();
-  reloadDB(); renderAll();
-  setEditorStatus('✓ Восстановлен встроенный список', 'ok');
-}
-function editorExport(){
-  const text = document.getElementById('editorText').value;
-  const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url; a.download = 'epallaxis-formulas.txt';
-  document.body.appendChild(a); a.click(); document.body.removeChild(a);
-  URL.revokeObjectURL(url);
-  setEditorStatus('✓ Файл скачан', 'ok');
-}
-function editorImport(){ document.getElementById('editorFile').click(); }
-function onFileChosen(e){
-  const file = e.target.files && e.target.files[0];
-  if(!file) return;
-  const reader = new FileReader();
-  reader.onload = ev => {
-    document.getElementById('editorText').value = ev.target.result;
-    setEditorStatus('✓ Файл загружен. Нажми «Сохранить»', 'ok');
-  };
-  reader.readAsText(file, 'utf-8');
-  e.target.value = '';
-}
-
-/* ============================================================
-   HEADER / ОБРАБОТЧИКИ
-   ============================================================ */
-function syncHeaderHeight(){
-  const h = document.querySelector('header').offsetHeight;
-  document.documentElement.style.setProperty('--header-h', h + 'px');
-}
+function syncHeaderHeight(){const h=document.querySelector('header').offsetHeight;document.documentElement.style.setProperty('--header-h',h+'px')}
 
 function bindEvents(){
-  document.getElementById('modeSwitch').addEventListener('click', e => {
-    const b = e.target.closest('button');
-    if(!b) return;
-    state.mode = b.dataset.mode;
-    document.querySelectorAll('#modeSwitch button').forEach(x => x.classList.remove('active'));
-    b.classList.add('active');
-    if(state.mode === 'test' && state.selected.size > 0) startTest();
-  });
-  document.querySelectorAll('.preset').forEach(p => { p.onclick = () => applyPreset(p.dataset.preset); });
-  document.getElementById('qInvert').onclick = () => {
-    const all = [];
-    getClasses().forEach(c => {
-      ['algebra','geometry'].forEach(s => {
-        if(!state.DB[c] || !state.DB[c][s]) return;
-        Object.keys(state.DB[c][s]).forEach(t => all.push(keyOf(c, s, t)));
-      });
-    });
-    all.forEach(k => { if(state.selected.has(k)) state.selected.delete(k); else state.selected.add(k); });
-    saveSelection(); renderAll();
-  };
-  document.getElementById('qNone').onclick = () => { state.selected.clear(); saveSelection(); renderAll(); };
-  document.getElementById('qCollapse').onclick = () => {
-  state.openGroups.clear();
-  saveSelection();
-  renderAll();
-};
-
-  const searchInput = document.getElementById('searchInput');
-  const searchWrap = document.getElementById('searchWrap');
-  searchInput.addEventListener('input', e => {
-    state.search = e.target.value;
-    searchWrap.classList.toggle('has-value', !!state.search);
-    renderTree();
-  });
-  document.getElementById('searchClear').onclick = () => {
-    searchInput.value = ''; state.search = '';
-    searchWrap.classList.remove('has-value');
-    renderTree(); searchInput.focus();
-  };
-
-  document.getElementById('startBtn').onclick = startTest;
-  document.getElementById('testExit').onclick = exitTest;
-  document.getElementById('testNext').onclick = goNext;
-  document.getElementById('testPrev').onclick = goPrev;
-  document.getElementById('testReveal').onclick = toggleAnswer;
-  document.getElementById('testSkip').onclick = skipCurrent;
-  document.getElementById('testShuffle').onclick = () => {
-    state.testQueue = shuffleArr(state.testQueue);
-    state.testIdx = 0; state.testRevealed = false; showCard();
-  };
-
-  document.getElementById('editBtn').onclick = () => {
-    if(sessionStorage.getItem('epallaxis_unlocked') === '1') openEditor();
-    else openPasswordLogin();
-  };
-  document.getElementById('editorClose').onclick = closeEditor;
-  document.getElementById('editorSave').onclick = editorSave;
-  document.getElementById('editorChangePwd').onclick = openPasswordChange;
-  document.getElementById('editorReset').onclick = editorReset;
-  document.getElementById('editorExport').onclick = editorExport;
-  document.getElementById('editorImport').onclick = editorImport;
-  document.getElementById('editorFile').onchange = onFileChosen;
-  document.getElementById('editorModal').onclick = e => { if(e.target.id === 'editorModal') closeEditor(); };
-
-  document.getElementById('pwdLoginBtn').onclick = tryLogin;
-  document.getElementById('pwdLoginCancel').onclick = closePasswordModal;
-  document.getElementById('pwdLoginInput').addEventListener('keydown', e => { if(e.key === 'Enter') tryLogin(); });
-  document.getElementById('pwdChangeBtn').onclick = tryChangePassword;
-  document.getElementById('pwdChangeCancel').onclick = closePasswordModal;
-  document.getElementById('pwdNew2').addEventListener('keydown', e => { if(e.key === 'Enter') tryChangePassword(); });
-  document.getElementById('pwdOld').addEventListener('keydown', e => { if(e.key === 'Enter') document.getElementById('pwdNew').focus(); });
-  document.getElementById('passwordModal').onclick = e => { if(e.target.id === 'passwordModal') closePasswordModal(); };
-
-  document.getElementById('helpBtn').onclick = () => document.getElementById('helpModal').classList.add('active');
-  document.getElementById('helpClose').onclick = () => document.getElementById('helpModal').classList.remove('active');
-  document.getElementById('helpModal').onclick = e => { if(e.target.id === 'helpModal') document.getElementById('helpModal').classList.remove('active'); };
-
-  const sidebar = document.getElementById('sidebar');
-  const backdrop = document.getElementById('backdrop');
-  document.getElementById('hamburger').onclick = () => {
-    sidebar.classList.toggle('open');
-    backdrop.classList.toggle('show', sidebar.classList.contains('open'));
-  };
-  backdrop.onclick = () => { sidebar.classList.remove('open'); backdrop.classList.remove('show'); };
-
-  const fabTop = document.getElementById('fabTop');
-  window.addEventListener('scroll', () => { fabTop.classList.toggle('show', window.scrollY > 300); }, { passive: true });
-  fabTop.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
-
-  document.addEventListener('keydown', e => {
-    if(document.getElementById('passwordModal').classList.contains('active')){
-      if(e.key === 'Escape'){ closePasswordModal(); e.preventDefault(); }
-      return;
-    }
-    const testOpen = document.getElementById('testOverlay').classList.contains('active');
-    const helpOpen = document.getElementById('helpModal').classList.contains('active');
-    const editOpen = document.getElementById('editorModal').classList.contains('active');
-    if(editOpen){
-      if(e.key === 'Escape') closeEditor();
-      return;
-    }
-    if(helpOpen){
-      if(e.key === 'Escape' || e.key === 'Enter') document.getElementById('helpModal').classList.remove('active');
-      return;
-    }
-    if(e.key === '/' && !testOpen && document.activeElement !== searchInput){
-      e.preventDefault(); searchInput.focus(); return;
-    }
-    if(!testOpen) return;
-    if(e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === 'PageDown'){
-      e.preventDefault(); if(e.repeat) return; goNext();
-    }
-    else if(e.key === 'ArrowLeft' || e.key === 'ArrowUp' || e.key === 'PageUp'){
-      e.preventDefault(); if(e.repeat) return; goPrev();
-    }
-    else if(e.key === ' '){
-      e.preventDefault(); if(e.repeat) return; toggleAnswer();
-    }
-    else if(e.key === 'Enter'){
-      e.preventDefault(); if(e.repeat) return; toggleAnswer();
-    }
-    else if(e.key === 'Escape'){ exitTest(); }
-    else if(e.key === 'Home'){ e.preventDefault(); state.testIdx = 0; state.testRevealed = false; showCard(); }
-    else if(e.key === 'End'){ e.preventDefault(); state.testIdx = state.testQueue.length - 1; state.testRevealed = false; showCard(); }
-  });
-
-  window.addEventListener('resize', syncHeaderHeight);
-}
-
-/* ============================================================
-   ИНИЦИАЛИЗАЦИЯ
-   ============================================================ */
-function init(){
-  syncHeaderHeight();
-  reloadDB();
-  loadSelection();
-  bindEvents();
-  renderAll();
-}
-document.addEventListener('DOMContentLoaded', init);
-window.addEventListener('load', () => {
-  syncHeaderHeight();
-  renderAll();
+document.getElementById('modeSwitch').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;state.mode=b.dataset.mode;document.querySelectorAll('#modeSwitch button').forEach(x=>x.classList.remove('active'));b.classList.add('active');if(state.mode==='test'&&state.selected.size>0)startTest()});
+document.querySelectorAll('.preset').forEach(p=>{p.onclick=()=>applyPreset(p.dataset.preset)});
+document.getElementById('qInvert').onclick=()=>{const all=[];getClasses().forEach(c=>{['algebra','geometry'].forEach(s=>{if(!state.DB[c]||!state.DB[c][s])return;Object.keys(state.DB[c][s]).forEach(t=>all.push(keyOf(c,s,t)))})});all.forEach(k=>{if(state.selected.has(k))state.selected.delete(k);else state.selected.add(k)});saveSelection();renderAll()};
+document.getElementById('qNone').onclick=()=>{state.selected.clear();saveSelection();renderAll()};
+document.getElementById('qCollapse').onclick=()=>{state.openGroups.clear();saveSelection();renderAll()};
+const searchInput=document.getElementById('searchInput');const searchWrap=document.getElementById('searchWrap');
+searchInput.addEventListener('input',e=>{state.search=e.target.value;searchWrap.classList.toggle('has-value',!!state.search);renderTree()});
+document.getElementById('searchClear').onclick=()=>{searchInput.value='';state.search='';searchWrap.classList.remove('has-value');renderTree();searchInput.focus()};
+document.getElementById('startBtn').onclick=startTest;
+document.getElementById('testExit').onclick=exitTest;
+document.getElementById('testNext').onclick=goNext;
+document.getElementById('testPrev').onclick=goPrev;
+document.getElementById('testReveal').onclick=toggleAnswer;
+document.getElementById('testSkip').onclick=skipCurrent;
+document.getElementById('testShuffle').onclick=()=>{state.testQueue=shuffleArr(state.testQueue);state.testIdx=0;state.testRevealed=false;showCard()};
+document.getElementById('editBtn').onclick=()=>{if(sessionStorage.getItem('epallaxis_unlocked')==='1')openEditor();else openPasswordLogin()};
+document.getElementById('editorClose').onclick=closeEditor;
+document.getElementById('editorSave').onclick=editorSave;
+document.getElementById('editorPublish').onclick=ghPublish;
+document.getElementById('editorGithub').onclick=ghOpenSettings;
+document.getElementById('editorChangePwd').onclick=openPasswordChange;
+document.getElementById('editorReset').onclick=editorReset;
+document.getElementById('editorExport').onclick=editorExport;
+document.getElementById('editorImport').onclick=editorImport;
+document.getElementById('editorFile').onchange=onFileChosen;
+document.getElementById('editorModal').onclick=e=>{if(e.target.id==='editorModal')closeEditor()};
+document.getElementById('pwdLoginBtn').onclick=tryLogin;
+document.getElementById('pwdLoginCancel').onclick=closePasswordModal;
+document.getElementById('pwdLoginInput').addEventListener('keydown',e=>{if(e.key==='Enter')tryLogin()});
+document.getElementById('pwdChangeBtn').onclick=tryChangePassword;
+document.getElementById('pwdChangeCancel').onclick=closePasswordModal;
+document.getElementById('pwdNew2').addEventListener('keydown',e=>{if(e.key==='Enter')tryChangePassword()});
+document.getElementById('pwdOld').addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('pwdNew').focus()});
+document.getElementById('passwordModal').onclick=e=>{if(e.target.id==='passwordModal')closePasswordModal()};
+document.getElementById('ghSave').onclick=ghSaveSettings;
+document.getElementById('ghClose').onclick=ghCloseSettings;
+document.getElementById('ghClear').onclick=()=>{if(confirm('Забыть токен на этом устройстве?')){ghClearCfg();ghCloseSettings()}};
+document.getElementById('githubModal').onclick=e=>{if(e.target.id==='githubModal')ghCloseSettings()};
+document.getElementById('helpBtn').onclick=()=>document.getElementById('helpModal').classList.add('active');
+document.getElementById('helpClose').onclick=()=>document.getElementById('helpModal').classList.remove('active');
+document.getElementById('helpModal').onclick=e=>{if(e.target.id==='helpModal')document.getElementById('helpModal').classList.remove('active')};
+const sidebar=document.getElementById('sidebar');const backdrop=document.getElementById('backdrop');
+document.getElementById('hamburger').onclick=()=>{sidebar.classList.toggle('open');backdrop.classList.toggle('show',sidebar.classList.contains('open'))};
+backdrop.onclick=()=>{sidebar.classList.remove('open');backdrop.classList.remove('show')};
+const fabTop=document.getElementById('fabTop');
+window.addEventListener('scroll',()=>{fabTop.classList.toggle('show',window.scrollY>300)},{passive:true});
+fabTop.onclick=()=>window.scrollTo({top:0,behavior:'smooth'});
+document.addEventListener('keydown',e=>{
+if(document.getElementById('passwordModal').classList.contains('active')){if(e.key==='Escape'){closePasswordModal();e.preventDefault()}return}
+if(document.getElementById('githubModal').classList.contains('active')){if(e.key==='Escape'){ghCloseSettings();e.preventDefault()}return}
+const testOpen=document.getElementById('testOverlay').classList.contains('active');
+const helpOpen=document.getElementById('helpModal').classList.contains('active');
+const editOpen=document.getElementById('editorModal').classList.contains('active');
+if(editOpen){if(e.key==='Escape')closeEditor();return}
+if(helpOpen){if(e.key==='Escape'||e.key==='Enter')document.getElementById('helpModal').classList.remove('active');return}
+if(e.key==='/'&&!testOpen&&document.activeElement!==searchInput){e.preventDefault();searchInput.focus();return}
+if(!testOpen)return;
+if(e.key==='ArrowRight'||e.key==='ArrowDown'||e.key==='PageDown'){e.preventDefault();if(e.repeat)return;goNext()}
+else if(e.key==='ArrowLeft'||e.key==='ArrowUp'||e.key==='PageUp'){e.preventDefault();if(e.repeat)return;goPrev()}
+else if(e.key===' '){e.preventDefault();if(e.repeat)return;toggleAnswer()}
+else if(e.key==='Enter'){e.preventDefault();if(e.repeat)return;toggleAnswer()}
+else if(e.key==='Escape'){exitTest()}
+else if(e.key==='Home'){e.preventDefault();state.testIdx=0;state.testRevealed=false;showCard()}
+else if(e.key==='End'){e.preventDefault();state.testIdx=state.testQueue.length-1;state.testRevealed=false;showCard()}
 });
+window.addEventListener('resize',syncHeaderHeight);
+}
+
+function init(){syncHeaderHeight();reloadDB();loadSelection();bindEvents();renderAll();ghPullLatest()}
+document.addEventListener('DOMContentLoaded',init);
+window.addEventListener('load',()=>{syncHeaderHeight();renderAll()});
 </script>
 </body>
 </html>
