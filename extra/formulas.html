@@ -235,6 +235,7 @@ header{position:sticky;top:0;left:0;right:0;width:100%;z-index:200;background:rg
 Случай \(a=0,\; b \neq 0\) | Корней нет
 Случай \(a=0,\; b=0\) | Корень — любое число
 Линейная функция | \(y=kx+b\)
+График линейной функции | Прямая
 \(k\) в \(y=kx+b\) — это | Угловой коэффициент
 Параллельность \(y=k_1 x+b_1\) и \(y=k_2 x+b_2\) | \(k_1=k_2\)
 
@@ -250,6 +251,7 @@ header{position:sticky;top:0;left:0;right:0;width:100%;z-index:200;background:rg
 Аксиома измерения отрезков | \(AC+CB=AB\)
 Расстояние между двумя точками | Длина отрезка, их соединяющего
 Сумма углов n-угольника | \(180^\circ(n-2)\)
+Периметр многоугольника | Сумма длин всех его сторон
 
 === 7 | Геометрия | Смежные и вертикальные углы
 Свойство смежных углов | Их сумма равна \(180^\circ\)
@@ -285,7 +287,7 @@ header{position:sticky;top:0;left:0;right:0;width:100%;z-index:200;background:rg
 === 7 | Геометрия | Прямоугольные треугольники
 Катет против угла \(30^\circ\) | Равен половине гипотенузы
 Медиана к гипотенузе | Равна половине гипотенузы
-Признаки равенства прямоугольных треугольников | По двум катетам; катету и прилежащему углу; катету и противолежащему углу; гипотенузе и углу; катету и гипотенузе
+Признаки равенства прямоугольных треугольников (5) | По двум катетам; катету и прилежащему углу; катету и противолежащему углу; гипотенузе и углу; катету и гипотенузе
 Расстояние от точки до прямой | Длина перпендикуляра
 
 === 7 | Геометрия | Биссектриса и ГМТ
@@ -320,6 +322,7 @@ header{position:sticky;top:0;left:0;right:0;width:100%;z-index:200;background:rg
 Теорема Виета для \(x^2+px+q=0\) | \(x_1+x_2=-p,\; x_1 x_2 = q\)
 Теорема Виета для \(ax^2+bx+c=0\) | \(x_1+x_2=-\dfrac{b}{a},\; x_1 x_2 = \dfrac{c}{a}\)
 Разложение при \(D > 0\) | \(ax^2+bx+c = a(x-x_1)(x-x_2)\)
+Разложение при \(D = 0\) | \(ax^2+bx+c = a(x-x_1)^2\)
 Сумма квадратов корней | \(x_1^2+x_2^2 = (x_1+x_2)^2 - 2x_1 x_2\)
 
 === 8 | Алгебра | Квадратичная функция
@@ -438,16 +441,114 @@ header{position:sticky;top:0;left:0;right:0;width:100%;z-index:200;background:rg
 Сумма при \(q \neq 1\) | \(S_n = \dfrac{b_1(q^n-1)}{q-1}\)
 Сумма бесконечно убывающей | \(S = \dfrac{b_1}{1-q},\; |q| < 1\)
 
-=== 9 | Геометрия | Тригонометрия острого угла
-\(\sin\alpha\) | Отношение противолежащего катета к гипотенузе
-\(\cos\alpha\) | Отношение прилежащего катета к гипотенузе
-\(\operatorname{tg}\alpha =\) | \(\dfrac{\sin\alpha}{\cos\alpha}\)
-Основное тригонометрическое тождество | \(\sin^2\alpha + \cos^2\alpha = 1\)
-\(\sin 30^\circ,\; \sin 45^\circ,\; \sin 60^\circ\) | \(\dfrac{1}{2},\; \dfrac{\sqrt{2}}{2},\; \dfrac{\sqrt{3}}{2}\)
-\(\sin(90^\circ-\alpha) =\) | \(\cos\alpha\)
-\(\sin(180^\circ-\alpha) =\) | \(\sin\alpha\)
-\(\cos(180^\circ-\alpha) =\) | \(-\cos\alpha\)
-Площадь треугольника через стороны и угол | \(S = \dfrac{1}{2}ab \sin\gamma\)
+=== 9 | Геометрия | Синус, косинус, тангенс и котангенс острого угла
+Синус острого угла прямоугольного треугольника \(\sin\alpha =\)| отношение противолежащего катета к гипотенузе
+Косинус острого угла прямоугольного треугольника \(\cos\alpha =\) | отношение прилежащего катета к гипотенузе
+Тангенс острого угла прямоугольного треугольника \(\operatorname{tg}\alpha =\)| отношение противолежащего катета к прилежащему
+Котангенс острого угла прямоугольного треугольника \(\operatorname{ctg}\alpha =\)| отношение прилежащего катета к противолежащему
+
+=== 9 | Геометрия | Решение прямоугольного треугольника
+Решение прямоугольного треугольника | нахождение неизвестных сторон и углов прямоугольного треугольника
+
+=== 9 | Геометрия | Тригонометрические формулы
+\(\sin^2\alpha + \cos^2\alpha =\) | \(1\)
+Выражение синуса через косинус \(\sin\alpha =\) | \(\sqrt{1 - \cos^2\alpha}\)
+Выражение косинуса через синус \(\cos\alpha =\) | \(\sqrt{1 - \sin^2\alpha}\)
+Выражение тангенса через синус и косинус \(\operatorname{tg}\alpha =\) | \(\dfrac{\sin\alpha}{\cos\alpha}\)
+Выражение котангенса через синус и косинус \(\operatorname{ctg}\alpha =\) | \(\dfrac{\cos\alpha}{\sin\alpha}\)
+Выражение тангенса через котангенс \(\operatorname{tg}\alpha =\) | \(\dfrac{1}{\operatorname{ctg}\alpha}\)
+Выражение котангенса через тангенс \(\operatorname{ctg}\alpha =\) | \(\dfrac{1}{\operatorname{tg}\alpha}\)
+
+=== 9 | Геометрия | Синус, косинус, тангенс и котангенс тупого угла
+\(\sin(180^\circ - \alpha) =\) | \(\sin\alpha\)
+\(\cos(180^\circ - \alpha) =\) | \(-\cos\alpha\)
+\(\operatorname{tg}(180^\circ - \alpha) =\) | \(-\operatorname{tg}\alpha\)
+\(\operatorname{ctg}(180^\circ - \alpha) =\) | \(-\operatorname{ctg}\alpha\)
+
+=== 9 | Геометрия | Таблица значений тригонометрических функций (углы [0°; 90°])
+\(\sin 30^\circ =\) | \(\dfrac{1}{2}\)
+\(\cos 30^\circ =\) | \(\dfrac{\sqrt{3}}{2}\)
+\(\operatorname{tg} 30^\circ =\) | \(\dfrac{\sqrt{3}}{3}\)
+\(\operatorname{ctg} 30^\circ =\) | \(\sqrt{3}\)
+\(\sin 45^\circ =\) | \(\dfrac{\sqrt{2}}{2}\)
+\(\cos 45^\circ =\) | \(\dfrac{\sqrt{2}}{2}\)
+\(\operatorname{tg} 45^\circ =\) | \(1\)
+\(\operatorname{ctg} 45^\circ =\) | \(1\)
+\(\sin 60^\circ =\) | \(\dfrac{\sqrt{3}}{2}\)
+\(\cos 60^\circ =\) | \(\dfrac{1}{2}\)
+\(\operatorname{tg} 60^\circ =\) | \(\sqrt{3}\)
+\(\operatorname{ctg} 60^\circ =\) | \(\dfrac{\sqrt{3}}{3}\)
+\(\sin x = \dfrac{1}{2}\) | \(x = 30^\circ\)
+\(\sin x = \dfrac{\sqrt{2}}{2}\) | \(x = 45^\circ\)
+\(\sin x = \dfrac{\sqrt{3}}{2}\) | \(x = 60^\circ\)
+\(\cos x = \dfrac{\sqrt{3}}{2}\) | \(x = 30^\circ\)
+\(\cos x = \dfrac{\sqrt{2}}{2}\) | \(x = 45^\circ\)
+\(\cos x = \dfrac{1}{2}\) | \(x = 60^\circ\)
+\(\operatorname{tg} x = \dfrac{\sqrt{3}}{3}\) | \(x = 30^\circ\)
+\(\operatorname{tg} x = 1\) | \(x = 45^\circ\)
+\(\operatorname{tg} x = \sqrt{3}\) | \(x = 60^\circ\)
+\(\operatorname{ctg} x = \sqrt{3}\) | \(x = 30^\circ\)
+\(\operatorname{ctg} x = 1\) | \(x = 45^\circ\)
+\(\operatorname{ctg} x = \dfrac{\sqrt{3}}{3}\) | \(x = 60^\circ\)
+\(\sin 0^\circ =\) | \(0\)
+\(\cos 0^\circ =\) | \(1\)
+\(\operatorname{tg} 0^\circ =\) | \(0\)
+\(\operatorname{ctg} 0^\circ =\) | не определено
+\(\sin 90^\circ =\) | \(1\)
+\(\cos 90^\circ =\) | \(0\)
+\(\operatorname{ctg} 90^\circ =\) | \(0\)
+\(\operatorname{tg} 90^\circ =\) | не определено
+\(\sin 180^\circ =\) | \(0\)
+\(\cos 180^\circ =\) | \(-1\)
+\(\operatorname{tg} 180^\circ =\) | \(0\)
+\(\operatorname{ctg} 180^\circ =\) | не определено
+\(\sin x = 0\) | \(x = 0^\circ;\)
+\(\cos x = 0\) | \(x = 90^\circ\)
+\(\operatorname{tg} x = 0\) | \(x = 0^\circ;\)
+\(\operatorname{ctg} x = 0\) | \(x = 90^\circ\)
+\(\sin x = 1\) | \(x = 90^\circ\)
+\(\cos x = 1\) | \(x = 0^\circ\)
+\(\cos x = -1\) | \(x = 180^\circ\)
+\(\operatorname{tg} x\) не определено | \(x = 90^\circ\)
+\(\operatorname{ctg} x\) не определено | \(x = 0^\circ\)
+
+=== 9 | Геометрия | Таблица значений тригонометрических функций (углы [90°; 180°])
+\(\sin 90^\circ =\) | \(1\)
+\(\cos 90^\circ =\) | \(0\)
+\(\operatorname{tg} 90^\circ =\) | не определено
+\(\operatorname{ctg} 90^\circ =\) | \(0\)
+\(\sin 120^\circ =\) | \(\dfrac{\sqrt{3}}{2}\)
+\(\cos 120^\circ =\) | \(-\dfrac{1}{2}\)
+\(\operatorname{tg} 120^\circ =\) | \(-\sqrt{3}\)
+\(\operatorname{ctg} 120^\circ =\) | \(-\dfrac{\sqrt{3}}{3}\)
+\(\sin 135^\circ =\) | \(\dfrac{\sqrt{2}}{2}\)
+\(\cos 135^\circ =\) | \(-\dfrac{\sqrt{2}}{2}\)
+\(\operatorname{tg} 135^\circ =\) | \(-1\)
+\(\operatorname{ctg} 135^\circ =\) | \(-1\)
+\(\sin 150^\circ =\) | \(\dfrac{1}{2}\)
+\(\cos 150^\circ =\) | \(-\dfrac{\sqrt{3}}{2}\)
+\(\operatorname{tg} 150^\circ =\) | \(-\dfrac{\sqrt{3}}{3}\)
+\(\operatorname{ctg} 150^\circ =\) | \(-\sqrt{3}\)
+\(\sin 180^\circ =\) | \(0\)
+\(\cos 180^\circ =\) | \(-1\)
+\(\operatorname{tg} 180^\circ =\) | \(0\)
+\(\operatorname{ctg} 180^\circ =\) | не определено
+\(\sin x = \dfrac{\sqrt{3}}{2}\) | \(x = 120^\circ\)
+\(\sin x = \dfrac{\sqrt{2}}{2}\) | \(x = 135^\circ\)
+\(\sin x = \dfrac{1}{2}\) | \(x = 150^\circ\)
+\(\sin x = 0\) | \(x = 180^\circ\)
+\(\cos x = -\dfrac{1}{2}\) | \(x = 120^\circ\)
+\(\cos x = -\dfrac{\sqrt{2}}{2}\) | \(x = 135^\circ\)
+\(\cos x = -\dfrac{\sqrt{3}}{2}\) | \(x = 150^\circ\)
+\(\cos x = -1\) | \(x = 180^\circ\)
+\(\operatorname{tg} x = -\sqrt{3}\) | \(x = 120^\circ\)
+\(\operatorname{tg} x = -1\) | \(x = 135^\circ\)
+\(\operatorname{tg} x = -\dfrac{\sqrt{3}}{3}\) | \(x = 150^\circ\)
+\(\operatorname{tg} x = 0\) | \(x = 180^\circ\)
+\(\operatorname{ctg} x = -\dfrac{\sqrt{3}}{3}\) | \(x = 120^\circ\)
+\(\operatorname{ctg} x = -1\) | \(x = 135^\circ\)
+\(\operatorname{ctg} x = -\sqrt{3}\) | \(x = 150^\circ\)
+\(\operatorname{ctg} x\) не определён | \(x = 180^\circ\)
 
 === 9 | Геометрия | Вписанные и описанные окружности
 Площадь через \(r\) и полупериметр \(p\) | \(S = pr\)
@@ -532,7 +633,7 @@ header{position:sticky;top:0;left:0;right:0;width:100%;z-index:200;background:rg
 Нули \(\sin x\) | \(x = \pi n\)
 
 === 10 | Алгебра | Корень n-й степени
-\(\sqrt[n]{ab} =\) | \(\sqrt[n]{a} \cdot \sqrt[n]{b}\)
+\(\sqrt[n]{ab} =\) | \(\sqrt[n]{a} \cdot \sqrt[n]{b}\) (для чётного \(n\): \(a, b \geq 0\))
 \(\sqrt[n]{\dfrac{a}{b}} =\) | \(\dfrac{\sqrt[n]{a}}{\sqrt[n]{b}},\; a \geq 0,\; b > 0\)
 \(\sqrt[k]{\sqrt[n]{a}} =\) | \(\sqrt[nk]{a}\)
 \(\sqrt[n]{a^n} =\) (n чётное) | \(|a|\)
