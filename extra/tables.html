@@ -476,7 +476,7 @@ td.cell-match{
     <div class="task-card">
       <div class="task-card-header">
         <span class="task-type-number">P</span>
-        <span class="task-type-title">Простые числа до 10000</span>
+        <span class="task-type-title">Простые числа до 1000</span>
       </div>
 
       <div class="search-row">
@@ -488,13 +488,13 @@ td.cell-match{
       <div class="primes-grid" id="primesGrid"></div>
 
       <div class="primes-footer">
-        Всего простых чисел до 10000: <b id="primesCount">0</b>
+        Всего простых чисел до 1000: <b id="primesCount">0</b>
       </div>
 
       <div class="tips">
         <div class="tip"><b>Определение:</b> простое число делится только на 1 и на само себя.</div>
         <div class="tip"><b>Единица</b> не является ни простым, ни составным.</div>
-        <div class="tip">Простые числа <b>до 1000</b> — 168 штук. До 10000 — 1229 штук.</div>
+        <div class="tip">Простые числа <b>до 1000</b> — 168 штук</div>
       </div>
     </div>
   </div>
@@ -692,7 +692,7 @@ td.cell-match{
   })();
 
   /* ============================================================
-     3) ТАБЛИЦА ПРОСТЫХ ЧИСЕЛ ДО 10000 + ПРОВЕРКА
+     3) ТАБЛИЦА ПРОСТЫХ ЧИСЕЛ ДО 1000 + ПРОВЕРКА
      ============================================================ */
   (function(){
     const grid = document.getElementById('primesGrid');
@@ -700,7 +700,7 @@ td.cell-match{
     const result = document.getElementById('primeResult');
     const counter = document.getElementById('primesCount');
 
-    // Решето Эратосфена до 10000
+    // Решето Эратосфена до 1000
     const LIMIT = 1000;
     const sieve = new Uint8Array(LIMIT + 1);
     sieve.fill(1);
