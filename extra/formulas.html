@@ -20,29 +20,24 @@
 }
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{width:100%;max-width:100vw;overflow-x:hidden}
-body{
-  font-family:system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+body{font-family:system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
   background:radial-gradient(1200px 600px at 20% 0%,#0d1f18 0%,var(--bg) 60%);
   color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased;
-  display:flex;flex-direction:column;
-}
+  display:flex;flex-direction:column;}
 button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
 input,textarea{font-family:inherit}
 ::-webkit-scrollbar{width:8px;height:8px}
 ::-webkit-scrollbar-thumb{background:rgba(255,255,255,.08);border-radius:4px}
 ::-webkit-scrollbar-thumb:hover{background:var(--accent-dim)}
-
-header{
-  position:sticky;top:0;left:0;right:0;width:100%;z-index:200;
+header{position:sticky;top:0;left:0;right:0;width:100%;z-index:200;
   background:rgba(6,10,16,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
   border-bottom:1px solid var(--border);padding:14px 20px;
-  display:flex;align-items:center;gap:16px;flex-shrink:0;
-}
+  display:flex;align-items:center;gap:16px;flex-shrink:0;}
 .brand{display:flex;flex-direction:column;gap:2px;min-width:0;margin-right:auto}
 .brand a{text-decoration:none;color:var(--text);display:block}
 .brand h1{font-size:clamp(20px,4vw,28px);letter-spacing:2px;line-height:1.1;font-weight:700;margin:0}
 .brand h1 .accent-word{color:var(--accent)}
-.brand p{font-size:clamp(11px,1.5vw,14px);color:var(--muted);margin-top:2px;letter-spacing:.2px}
+.brand p{font-size:clamp(11px,1.5vw,14px);color:var(--muted);margin-top:2px}
 .header-actions{display:flex;align-items:center;gap:8px;flex-shrink:0}
 .mode-switch{display:flex;background:rgba(255,255,255,.04);
   border:1px solid var(--border-soft);border-radius:12px;padding:3px;gap:2px}
@@ -55,20 +50,17 @@ header{
 .icon-btn:hover{background:rgba(255,255,255,.05);color:var(--accent);border-color:var(--border-soft)}
 .icon-btn.hamburger{display:none}
 @media(max-width:960px){.icon-btn.hamburger{display:flex}}
-
 .app{display:grid;grid-template-columns:320px 1fr;min-height:calc(100vh - var(--header-h));flex:1}
 .sidebar{background:var(--panel2);border-right:1px solid var(--border-hair);
   display:flex;flex-direction:column;height:calc(100vh - var(--header-h));
   position:sticky;top:var(--header-h)}
 .main{padding:24px 32px 60px;max-width:1200px;width:100%;min-width:0}
-
 .sb-top{padding:16px 16px 12px;border-bottom:1px solid var(--border-hair);flex-shrink:0}
 .search-wrap{position:relative;margin-bottom:12px}
 .search-wrap input{width:100%;padding:11px 36px 11px 38px;
   background:rgba(255,255,255,.03);border:1px solid var(--border-soft);
   border-radius:11px;color:var(--text);font-size:13.5px;outline:none;transition:.18s}
-.search-wrap input:focus{border-color:var(--accent);background:rgba(34,255,136,.05);
-  box-shadow:0 0 0 3px rgba(34,255,136,.08)}
+.search-wrap input:focus{border-color:var(--accent);background:rgba(34,255,136,.05);box-shadow:0 0 0 3px rgba(34,255,136,.08)}
 .search-wrap input::placeholder{color:var(--muted-2)}
 .search-wrap .s-icon{position:absolute;left:13px;top:50%;transform:translateY(-50%);
   color:var(--muted-2);font-size:14px;pointer-events:none}
@@ -84,7 +76,8 @@ header{
 .preset:hover{background:var(--accent-dim);color:var(--accent);border-color:var(--border)}
 .preset:active{transform:scale(.96)}
 .sb-actions{display:flex;gap:5px;margin-top:10px;padding-top:10px;border-top:1px dashed var(--border-hair)}
-.sb-actions button{flex:1;padding:7px 4px;border-radius:8px;font-size:11.5px;
+.sb-actions{display:flex;gap:5px;margin-top:10px;padding-top:10px;border-top:1px dashed var(--border-hair);flex-wrap:wrap}
+.sb-actions button{flex:1;min-width:0;padding:7px 4px;border-radius:8px;font-size:11.5px;
   font-weight:500;color:var(--muted);background:rgba(255,255,255,.02);transition:.15s}
 .sb-actions button:hover{color:var(--accent);background:var(--accent-dim)}
 .tree{flex:1;overflow-y:auto;overflow-x:hidden;padding:8px 8px 12px;min-height:0}
@@ -127,7 +120,6 @@ header{
   box-shadow:0 4px 18px var(--accent-glow);display:flex;align-items:center;justify-content:center;gap:8px}
 .start-btn:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 6px 26px var(--accent-glow)}
 .start-btn:disabled{opacity:.3;cursor:not-allowed;box-shadow:none;background:var(--muted-2)}
-
 .crumbs{display:flex;align-items:center;gap:8px;flex-wrap:wrap;
   font-size:12.5px;color:var(--muted);margin-bottom:16px}
 .crumbs .c-sep{color:var(--muted-2);opacity:.5}
@@ -168,11 +160,37 @@ header{
 .formula-a{font-size:clamp(14.5px,1.5vw,17px);line-height:1.5;color:var(--accent);
   font-weight:500;margin-top:3px}
 .formula-a .katex{color:var(--accent)}
-.copy-btn{width:30px;height:30px;border-radius:8px;flex-shrink:0;display:flex;
+.row-actions{display:flex;gap:4px;flex-shrink:0}
+.copy-btn,.edit-btn{width:30px;height:30px;border-radius:8px;flex-shrink:0;display:flex;
   align-items:center;justify-content:center;color:var(--muted-2);font-size:14px;
   transition:.15s;opacity:0}
-.formula-row:hover .copy-btn{opacity:1}
-.copy-btn:hover{background:var(--accent-dim);color:var(--accent)}
+.formula-row:hover .copy-btn,.formula-row:hover .edit-btn{opacity:1}
+.copy-btn:hover,.edit-btn:hover{background:var(--accent-dim);color:var(--accent)}
+.edit-form{padding:14px 16px;margin:4px;border-radius:11px;
+  background:rgba(34,255,136,.04);border:1px solid var(--accent);
+  grid-column:1 / -1;animation:fadeIn .2s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+.edit-form label{display:block;font-size:10.5px;font-weight:700;letter-spacing:1px;
+  color:var(--accent);text-transform:uppercase;margin-bottom:5px;margin-top:10px}
+.edit-form label:first-child{margin-top:0}
+.edit-form textarea{width:100%;padding:10px 12px;background:#070a0f;
+  border:1px solid var(--border-soft);border-radius:9px;color:var(--text);
+  font-family:'SF Mono',Consolas,Monaco,monospace;font-size:13px;line-height:1.5;
+  resize:vertical;outline:none;min-height:52px;transition:.15s}
+.edit-form textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(34,255,136,.08)}
+.edit-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+.edit-actions button{padding:9px 16px;border-radius:9px;font-size:13px;font-weight:600;
+  transition:.15s;border:1px solid var(--border-soft);background:rgba(255,255,255,.03);color:var(--text)}
+.edit-actions button:hover{border-color:var(--accent);color:var(--accent)}
+.edit-actions button.save{background:var(--accent);color:#04140a;border-color:transparent}
+.edit-actions button.save:hover{background:var(--accent-2);color:#04140a}
+.edit-actions button.delete{color:var(--danger)}
+.edit-actions button.delete:hover{border-color:var(--danger);background:rgba(255,92,122,.08)}
+.add-formula-btn{width:100%;padding:10px;margin:6px 4px 4px;border-radius:9px;
+  font-size:13px;font-weight:600;color:var(--muted);background:rgba(255,255,255,.02);
+  border:1px dashed var(--border-soft);transition:.15s;display:flex;align-items:center;
+  justify-content:center;gap:8px;cursor:pointer}
+.add-formula-btn:hover{color:var(--accent);border-color:var(--accent);background:var(--accent-dim)}
 .empty{padding:80px 30px;text-align:center;color:var(--muted);font-size:14.5px;line-height:1.7}
 .empty-icon{font-size:56px;margin-bottom:16px;opacity:.35}
 .empty h3{font-size:19px;color:var(--text);margin-bottom:8px;font-weight:600}
@@ -192,7 +210,6 @@ header{
 .backdrop{position:fixed;inset:0;background:rgba(0,0,0,.6);
   backdrop-filter:blur(4px);z-index:150;display:none;opacity:0;transition:opacity .2s}
 .backdrop.show{display:block;opacity:1}
-
 .test-overlay{position:fixed;inset:0;z-index:300;background:var(--bg);display:none;flex-direction:column}
 .test-overlay.active{display:flex}
 .test-top{padding:14px 24px;border-bottom:1px solid var(--border-hair);
@@ -241,7 +258,6 @@ header{
 .test-hint kbd{display:inline-block;padding:1px 6px;border-radius:4px;
   background:rgba(255,255,255,.05);color:var(--text);font-size:11px;
   font-family:inherit;margin:0 2px;border:1px solid var(--border-hair)}
-
 .modal-bg{position:fixed;inset:0;z-index:400;background:rgba(0,0,0,.7);
   backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:20px}
 .modal-bg.active{display:flex}
@@ -281,7 +297,6 @@ header{
 .editor-status{font-size:12px;color:var(--muted);margin-top:8px;min-height:16px}
 .editor-status.ok{color:var(--accent)}
 .editor-status.err{color:var(--danger)}
-
 @media(max-width:960px){
   .app{grid-template-columns:1fr}
   .sidebar{position:fixed;left:0;top:var(--header-h);width:300px;
@@ -291,7 +306,8 @@ header{
   .sidebar.open{transform:translateX(0)}
   .main{padding:20px 18px 60px}
   .formula-row{grid-template-columns:1fr;position:relative}
-  .copy-btn{position:absolute;right:8px;top:8px;opacity:.5}
+  .row-actions{position:absolute;right:8px;top:8px;opacity:1}
+  .copy-btn,.edit-btn{opacity:.6}
 }
 @media(max-width:600px){
   header{padding:10px 12px;gap:8px}
@@ -309,7 +325,6 @@ header{
 </style>
 </head>
 <body>
-
 <script type="text/plain" id="dataSource">
 === 7 | Алгебра | Степень с натуральным показателем
 \(a^n \cdot a^m =\) | \(a^{n+m}\)
@@ -339,7 +354,6 @@ header{
 Случай \(a=0,\; b \neq 0\) | Корней нет
 Случай \(a=0,\; b=0\) | Корень — любое число
 Линейная функция | \(y=kx+b\)
-График линейной функции | Прямая
 \(k\) в \(y=kx+b\) — это | Угловой коэффициент
 Параллельность \(y=k_1 x+b_1\) и \(y=k_2 x+b_2\) | \(k_1=k_2\)
 
@@ -355,7 +369,6 @@ header{
 Аксиома измерения отрезков | \(AC+CB=AB\)
 Расстояние между двумя точками | Длина отрезка, их соединяющего
 Сумма углов n-угольника | \(180^\circ(n-2)\)
-Периметр многоугольника | Сумма длин всех его сторон
 
 === 7 | Геометрия | Смежные и вертикальные углы
 Свойство смежных углов | Их сумма равна \(180^\circ\)
@@ -391,7 +404,7 @@ header{
 === 7 | Геометрия | Прямоугольные треугольники
 Катет против угла \(30^\circ\) | Равен половине гипотенузы
 Медиана к гипотенузе | Равна половине гипотенузы
-Признаки равенства прямоугольных треугольников (5) | По двум катетам; катету и прилежащему углу; катету и противолежащему углу; гипотенузе и углу; катету и гипотенузе
+Признаки равенства прямоугольных треугольников | По двум катетам; катету и прилежащему углу; катету и противолежащему углу; гипотенузе и углу; катету и гипотенузе
 Расстояние от точки до прямой | Длина перпендикуляра
 
 === 7 | Геометрия | Биссектриса и ГМТ
@@ -426,7 +439,6 @@ header{
 Теорема Виета для \(x^2+px+q=0\) | \(x_1+x_2=-p,\; x_1 x_2 = q\)
 Теорема Виета для \(ax^2+bx+c=0\) | \(x_1+x_2=-\dfrac{b}{a},\; x_1 x_2 = \dfrac{c}{a}\)
 Разложение при \(D > 0\) | \(ax^2+bx+c = a(x-x_1)(x-x_2)\)
-Разложение при \(D = 0\) | \(ax^2+bx+c = a(x-x_1)^2\)
 Сумма квадратов корней | \(x_1^2+x_2^2 = (x_1+x_2)^2 - 2x_1 x_2\)
 
 === 8 | Алгебра | Квадратичная функция
@@ -639,7 +651,7 @@ header{
 Нули \(\sin x\) | \(x = \pi n\)
 
 === 10 | Алгебра | Корень n-й степени
-\(\sqrt[n]{ab} =\) | \(\sqrt[n]{a} \cdot \sqrt[n]{b}\) (для чётного \(n\): \(a, b \geq 0\))
+\(\sqrt[n]{ab} =\) | \(\sqrt[n]{a} \cdot \sqrt[n]{b}\)
 \(\sqrt[n]{\dfrac{a}{b}} =\) | \(\dfrac{\sqrt[n]{a}}{\sqrt[n]{b}},\; a \geq 0,\; b > 0\)
 \(\sqrt[k]{\sqrt[n]{a}} =\) | \(\sqrt[nk]{a}\)
 \(\sqrt[n]{a^n} =\) (n чётное) | \(|a|\)
@@ -791,6 +803,7 @@ header{
       <div class="sb-actions">
         <button id="qInvert">Инвертировать</button>
         <button id="qNone">Снять всё</button>
+         <button id="qCollapse" title="Свернуть все раскрытые разделы">⯅ Свернуть</button>
       </div>
     </div>
     <div class="tree" id="tree"></div>
@@ -859,18 +872,16 @@ header{
         <li><b>Space</b> — показать / скрыть ответ (только ответ!)</li>
         <li><b>← →</b> — переключение между вопросами</li>
         <li>Точки под прогрессом — клик = переход к любому вопросу</li>
-        <li>Пропустить — перенести сложный вопрос в конец</li>
         <li>Порядок вопросов всегда случайный</li>
       </ul>
     </div>
     <div class="modal-section">
-      <h4>✏️ Редактор формул (под паролем)</h4>
+      <h4>✏️ Редактирование</h4>
       <ul class="modal-list">
-        <li>Кнопка ✏️ в шапке — откроется запрос пароля</li>
-        <li>Формат: <kbd>=== класс | предмет | тема</kbd>, ниже — <kbd>вопрос | ответ</kbd></li>
-        <li>Внутри <kbd>\( ... \)</kbd> — работает LaTeX (KaTeX)</li>
-        <li><b>Добавить класс:</b> просто напиши строку <kbd>=== 6 | Алгебра | Тема</kbd> — класс появится сам</li>
-        <li>Кнопка «🔑 Сменить пароль» — внутри редактора</li>
+        <li>При наведении на формулу появляются ✏️ (изменить) и 📋 (скопировать)</li>
+        <li>Внизу каждой темы — «+ Добавить формулу»</li>
+        <li>Кнопка ✏️ в шапке — массовый редактор всех данных</li>
+        <li>Всё под паролем</li>
       </ul>
     </div>
     <div class="modal-section">
@@ -889,12 +900,12 @@ header{
 
 <div class="modal-bg" id="editorModal">
   <div class="modal">
-    <h2>✏️ Редактор формул</h2>
+    <h2>✏️ Массовый редактор формул</h2>
     <div class="sub">Меняй текст, сохраняй, смотри результат.</div>
     <div class="editor-hint">
       <b>Формат:</b> строка <code>=== 8 | Алгебра | Квадратные уравнения</code> начинает новую тему.
       Ниже — строки <code>вопрос | ответ</code>. LaTeX в <code>\( ... \)</code>.<br>
-      <b>Добавить новый класс:</b> просто напиши <code>=== 6 | Алгебра | Делимость</code> — класс 6 появится в дереве автоматически.<br>
+      <b>Добавить класс:</b> просто напиши <code>=== 6 | Алгебра | Делимость</code> — класс 6 появится автоматически.<br>
       <b>Важно:</b> «не равно» — это <code>\neq</code> (≠), а <b>не</b> <code>\in</code> (∈).
     </div>
     <textarea class="editor-textarea" id="editorText" spellcheck="false"></textarea>
@@ -955,14 +966,14 @@ const LS_OPEN = 'epallaxis_open_v1';
 const LS_PWD = 'epallaxis_pwd_hash';
 const SUBJ_MAP = { 'алгебра':'algebra', 'геометрия':'geometry' };
 const SUBJ_LBL = { algebra:'Алгебра', geometry:'Геометрия' };
-
-/* Встроенный хэш пароля "31415926" */
 const DEFAULT_PWD_HASH = 'c5974e64';
 
 const state = {
   DB: {}, mode: 'view', search: '',
   selected: new Set(), openGroups: new Set(),
-  testQueue: [], testIdx: 0, testRevealed: false
+  testQueue: [], testIdx: 0, testRevealed: false,
+  editingTopic: null, editingIdx: -1, editingNew: false,
+  _pendingEdit: null
 };
 
 /* ============================================================
@@ -987,7 +998,7 @@ function setStoredPwdHash(h){
 }
 
 /* ============================================================
-   ЗАГРУЗКА И ПАРСИНГ ДАННЫХ
+   ЗАГРУЗКА ДАННЫХ
    ============================================================ */
 function getInbuiltSource(){
   const el = document.getElementById(DATA_ID);
@@ -1028,12 +1039,13 @@ function parseSource(raw){
   return db;
 }
 function reloadDB(){ state.DB = parseSource(getEffectiveSource()); }
-
-/* Список классов берётся из данных динамически */
 function getClasses(){
   return Object.keys(state.DB).map(Number).filter(n => !isNaN(n)).sort((a, b) => a - b);
 }
 
+/* ============================================================
+   СОХРАНЕНИЕ ВЫБОРА
+   ============================================================ */
 function loadSelection(){
   try { state.selected = new Set(JSON.parse(localStorage.getItem(LS_SEL) || '[]')); } catch(e){ state.selected = new Set(); }
   try { state.openGroups = new Set(JSON.parse(localStorage.getItem(LS_OPEN) || '[]')); } catch(e){ state.openGroups = new Set(); }
@@ -1045,6 +1057,9 @@ function saveSelection(){
   } catch(e){}
 }
 
+/* ============================================================
+   УТИЛИТЫ
+   ============================================================ */
 function keyOf(c, s, t){ return c + '|' + s + '|' + t; }
 function parseKey(k){
   const i1 = k.indexOf('|');
@@ -1081,6 +1096,9 @@ function sortSelectedKeys(){
     if(A.s !== B.s) return A.s.localeCompare(B.s);
     return A.t.localeCompare(B.t);
   });
+}
+function escapeHtml(s){
+  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
 /* ============================================================
@@ -1152,7 +1170,7 @@ function renderTree(){
       const item = document.createElement('div');
       item.className = 'tree-topic' + (checked ? ' checked' : '');
       item.innerHTML = '<span class="tree-check"></span>' +
-        '<span class="tree-topic-name">' + t + '</span>' +
+        '<span class="tree-topic-name">' + escapeHtml(t) + '</span>' +
         '<span class="tree-topic-cnt">' + cnt + '</span>';
       item.onclick = () => {
         if(state.selected.has(k)) state.selected.delete(k);
@@ -1196,35 +1214,73 @@ function renderMain(){
   html += '<div class="chips-bar">';
   keys.forEach(k => {
     const { c, s, t } = parseKey(k);
-    const safeT = t.replace(/"/g, '&quot;');
-    html += '<div class="chip" data-key="' + k + '" title="' + safeT + '">' +
-      '<span class="chip-txt">' + c + ' · ' + (s === 'algebra' ? 'Алг' : 'Геом') + ' · ' + t + '</span>' +
+    html += '<div class="chip" data-key="' + k + '" title="' + escapeHtml(t) + '">' +
+      '<span class="chip-txt">' + c + ' · ' + (s === 'algebra' ? 'Алг' : 'Геом') + ' · ' + escapeHtml(t) + '</span>' +
       '<span class="chip-x" data-remove="' + k + '">✕</span></div>';
   });
   html += '<button class="chip-clear" id="chipClear">Очистить всё</button></div>';
 
-  keys.forEach((k, idx) => {
+  keys.forEach((k, topicIdx) => {
     const { c, s, t } = parseKey(k);
     const items = getTopic(c, s, t) || [];
     const isOpen = state.openGroups.has('T_' + k);
-    html += '<div class="topic-block" id="block_' + idx + '">' +
+    html += '<div class="topic-block" id="block_' + topicIdx + '">' +
       '<div class="topic-head' + (isOpen ? ' open' : '') + '" data-topic-open="' + k + '">' +
         '<span class="topic-arrow">▶</span>' +
-        '<span class="topic-title">' + t + ' <span class="tag">' + c + ' · ' + SUBJ_LBL[s] + '</span></span>' +
+        '<span class="topic-title">' + escapeHtml(t) + ' <span class="tag">' + c + ' · ' + SUBJ_LBL[s] + '</span></span>' +
         '<span class="topic-meta">' + items.length + ' формул</span></div>' +
       '<div class="topic-body">';
-    items.forEach(pair => {
+
+    items.forEach((pair, fi) => {
       const q = pair[0], a = pair[1];
-      const encoded = encodeURIComponent(a);
-      html += '<div class="formula-row"><div>' +
-        '<div class="formula-q">' + q + '</div>' +
-        '<div class="formula-a">' + a + '</div></div>' +
-        '<button class="copy-btn" data-copy="' + encoded + '" title="Скопировать">📋</button></div>';
+      const isEditing = (state.editingTopic === k && state.editingIdx === fi && !state.editingNew);
+      if(isEditing){
+        html += '<div class="edit-form" data-topic="' + k + '" data-idx="' + fi + '">' +
+          '<label>Вопрос</label>' +
+          '<textarea class="edit-q">' + escapeHtml(q) + '</textarea>' +
+          '<label>Ответ</label>' +
+          '<textarea class="edit-a">' + escapeHtml(a) + '</textarea>' +
+          '<div class="edit-actions">' +
+            '<button class="save" type="button">💾 Сохранить</button>' +
+            '<button class="cancel" type="button">Отмена</button>' +
+            '<button class="delete" type="button">🗑 Удалить формулу</button>' +
+          '</div>' +
+        '</div>';
+      } else {
+        const encoded = encodeURIComponent(a);
+        html += '<div class="formula-row"><div>' +
+          '<div class="formula-q">' + q + '</div>' +
+          '<div class="formula-a">' + a + '</div></div>' +
+          '<div class="row-actions">' +
+            '<button class="edit-btn" data-edit-topic="' + k + '" data-edit-idx="' + fi + '" title="Редактировать">✏️</button>' +
+            '<button class="copy-btn" data-copy="' + encoded + '" title="Скопировать">📋</button>' +
+          '</div></div>';
+      }
     });
+
+    const isAdding = (state.editingTopic === k && state.editingNew);
+    if(isAdding){
+      html += '<div class="edit-form" data-topic="' + k + '" data-new="1">' +
+        '<label>Новая формула — вопрос</label>' +
+        '<textarea class="edit-q" placeholder="Например: Теорема Пифагора"></textarea>' +
+        '<label>Ответ</label>' +
+        '<textarea class="edit-a" placeholder="\\(a^2 + b^2 = c^2\\)"></textarea>' +
+        '<div class="edit-actions">' +
+          '<button class="save" type="button">💾 Сохранить</button>' +
+          '<button class="cancel" type="button">Отмена</button>' +
+        '</div>' +
+      '</div>';
+    } else {
+      html += '<button class="add-formula-btn" data-add-topic="' + k + '" type="button">+ Добавить формулу</button>';
+    }
     html += '</div></div>';
   });
   main.innerHTML = html;
+  bindMainEvents(main);
+  renderMathIn(main);
+}
 
+function bindMainEvents(main){
   main.querySelectorAll('[data-topic-open]').forEach(el => {
     el.onclick = () => {
       const k = el.dataset.topicOpen;
@@ -1254,17 +1310,13 @@ function renderMain(){
         state.openGroups.add(tk); saveSelection(); renderMain();
         setTimeout(() => {
           const b2 = document.getElementById('block_' + idx);
-          if(b2){
-            const y = b2.getBoundingClientRect().top + window.pageYOffset - 90;
-            window.scrollTo({ top: y, behavior: 'smooth' });
-          }
+          if(b2){ const y = b2.getBoundingClientRect().top + window.pageYOffset - 90;
+            window.scrollTo({ top: y, behavior: 'smooth' }); }
         }, 50);
       } else {
         const block = document.getElementById('block_' + idx);
-        if(block){
-          const y = block.getBoundingClientRect().top + window.pageYOffset - 90;
-          window.scrollTo({ top: y, behavior: 'smooth' });
-        }
+        if(block){ const y = block.getBoundingClientRect().top + window.pageYOffset - 90;
+          window.scrollTo({ top: y, behavior: 'smooth' }); }
       }
     };
   });
@@ -1282,13 +1334,110 @@ function renderMain(){
       }
     };
   });
-  renderMathIn(main);
+  main.querySelectorAll('[data-edit-topic]').forEach(el => {
+    el.onclick = (e) => {
+      e.stopPropagation();
+      if(sessionStorage.getItem('epallaxis_unlocked') !== '1'){
+        state._pendingEdit = { topic: el.dataset.editTopic, idx: Number(el.dataset.editIdx), isNew: false };
+        openPasswordLogin();
+        return;
+      }
+      startEdit(el.dataset.editTopic, Number(el.dataset.editIdx), false);
+    };
+  });
+  main.querySelectorAll('[data-add-topic]').forEach(el => {
+    el.onclick = (e) => {
+      e.stopPropagation();
+      if(sessionStorage.getItem('epallaxis_unlocked') !== '1'){
+        state._pendingEdit = { topic: el.dataset.addTopic, idx: -1, isNew: true };
+        openPasswordLogin();
+        return;
+      }
+      startEdit(el.dataset.addTopic, -1, true);
+    };
+  });
+  main.querySelectorAll('.edit-form').forEach(form => {
+    const topic = form.dataset.topic;
+    const isNew = form.dataset.new === '1';
+    const idx = isNew ? -1 : Number(form.dataset.idx);
+    form.querySelector('.save').onclick = () => saveEdit(form, topic, idx, isNew);
+    form.querySelector('.cancel').onclick = () => cancelEdit();
+    const delBtn = form.querySelector('.delete');
+    if(delBtn) delBtn.onclick = () => deleteFormula(topic, idx);
+    const firstTa = form.querySelector('.edit-q');
+    if(firstTa) setTimeout(() => { firstTa.focus(); firstTa.setSelectionRange(firstTa.value.length, firstTa.value.length); }, 30);
+  });
 }
 
+/* ============================================================
+   ИНДИВИДУАЛЬНОЕ РЕДАКТИРОВАНИЕ ФОРМУЛ
+   ============================================================ */
+function startEdit(topicKey, idx, isNew){
+  state.editingTopic = topicKey;
+  state.editingIdx = idx;
+  state.editingNew = isNew;
+  state.openGroups.add('T_' + topicKey);
+  saveSelection();
+  renderMain();
+  setTimeout(() => {
+    const form = document.querySelector('.edit-form');
+    if(form){
+      const y = form.getBoundingClientRect().top + window.pageYOffset - 100;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  }, 80);
+}
+function saveEdit(form, topicKey, idx, isNew){
+  const newQ = form.querySelector('.edit-q').value.trim();
+  const newA = form.querySelector('.edit-a').value.trim();
+  if(!newQ || !newA){ alert('Заполни оба поля — вопрос и ответ.'); return; }
+  const { c, s, t } = parseKey(topicKey);
+  if(!state.DB[c] || !state.DB[c][s] || !state.DB[c][s][t]){ alert('Тема не найдена'); return; }
+  const arr = state.DB[c][s][t];
+  if(isNew){ arr.push([newQ, newA]); }
+  else {
+    if(idx < 0 || idx >= arr.length){ alert('Формула не найдена'); return; }
+    arr[idx] = [newQ, newA];
+  }
+  persistDB();
+  state.editingTopic = null; state.editingIdx = -1; state.editingNew = false;
+  renderAll();
+}
+function cancelEdit(){
+  state.editingTopic = null; state.editingIdx = -1; state.editingNew = false;
+  renderMain();
+}
+function deleteFormula(topicKey, idx){
+  if(!confirm('Удалить эту формулу?')) return;
+  const { c, s, t } = parseKey(topicKey);
+  if(!state.DB[c] || !state.DB[c][s] || !state.DB[c][s][t]) return;
+  state.DB[c][s][t].splice(idx, 1);
+  persistDB();
+  state.editingTopic = null; state.editingIdx = -1; state.editingNew = false;
+  renderAll();
+}
+function persistDB(){
+  const lines = [];
+  getClasses().forEach(c => {
+    ['algebra','geometry'].forEach(s => {
+      if(!state.DB[c] || !state.DB[c][s]) return;
+      Object.keys(state.DB[c][s]).forEach(t => {
+        lines.push('=== ' + c + ' | ' + SUBJ_LBL[s] + ' | ' + t);
+        state.DB[c][s][t].forEach(pair => lines.push(pair[0] + ' | ' + pair[1]));
+        lines.push('');
+      });
+    });
+  });
+  try { localStorage.setItem(LS_DATA, lines.join('\n')); }
+  catch(e){ alert('Ошибка сохранения: ' + e.message); }
+}
+
+/* ============================================================
+   ПРЕСЕТЫ И ОБЩИЙ РЕНДЕР
+   ============================================================ */
 function applyPreset(name){
   state.selected.clear();
-  const classes = getClasses();
-  classes.forEach(c => {
+  getClasses().forEach(c => {
     ['algebra','geometry'].forEach(s => {
       if(!state.DB[c] || !state.DB[c][s]) return;
       let ok = false;
@@ -1309,10 +1458,8 @@ function applyPreset(name){
       state.openGroups.add(c + '|' + s);
     });
   }
-  saveSelection();
-  renderAll();
+  saveSelection(); renderAll();
 }
-
 function renderAll(){
   const { topics, formulas } = countSelected();
   document.getElementById('statTopics').textContent = topics;
@@ -1356,31 +1503,21 @@ function showCard(){
   document.getElementById('testTag').textContent = it.c + ' класс · ' + SUBJ_LBL[it.s] + ' · ' + it.t;
   const qEl = document.getElementById('testQ');
   const aEl = document.getElementById('testA');
-
-  // 1) Мгновенно скрываем ответ, отключив анимацию — чтобы не мигал
   aEl.classList.add('no-anim');
   aEl.classList.remove('show');
-  void aEl.offsetWidth; // принудительный reflow
-
-  // 2) Меняем текст, пока ответ невидим (opacity 0, transition off)
+  void aEl.offsetWidth;
   qEl.innerHTML = it.q;
   aEl.innerHTML = it.a;
-
-  // 3) Если ответ нужно показать сразу — показываем без анимации
   if(state.testRevealed){
     aEl.classList.add('show');
     void aEl.offsetWidth;
   }
-
-  // 4) Возвращаем transition для дальнейших анимаций
   aEl.classList.remove('no-anim');
-
   document.getElementById('testCur').textContent = state.testIdx + 1;
   document.getElementById('testTotal').textContent = state.testQueue.length;
   document.getElementById('progressFill').style.width = ((state.testIdx + 1) / state.testQueue.length * 100) + '%';
   document.getElementById('testPrev').disabled = state.testIdx === 0;
   document.getElementById('testNext').disabled = state.testIdx === state.testQueue.length - 1;
-
   const dots = document.getElementById('dots');
   let dhtml = '';
   for(let i = 0; i < state.testQueue.length; i++){
@@ -1441,13 +1578,19 @@ function openPasswordLogin(){
   document.getElementById('passwordModal').classList.add('active');
   setTimeout(() => document.getElementById('pwdLoginInput').focus(), 100);
 }
-function closePasswordModal(){ document.getElementById('passwordModal').classList.remove('active'); }
+function closePasswordModal(){
+  state._pendingEdit = null;
+  document.getElementById('passwordModal').classList.remove('active');
+}
 function tryLogin(){
   const v = document.getElementById('pwdLoginInput').value;
   if(hashPassword(v) === getStoredPwdHash()){
     sessionStorage.setItem('epallaxis_unlocked', '1');
-    closePasswordModal();
-    openEditor();
+    const pending = state._pendingEdit;
+    state._pendingEdit = null;
+    document.getElementById('passwordModal').classList.remove('active');
+    if(pending) startEdit(pending.topic, pending.idx, pending.isNew);
+    else openEditor();
   } else {
     const s = document.getElementById('pwdLoginStatus');
     s.textContent = '✗ Неверный пароль';
@@ -1484,11 +1627,11 @@ function tryChangePassword(){
   }
   setStoredPwdHash(hashPassword(newV));
   s.textContent = '✓ Пароль изменён'; s.className = 'editor-status ok';
-  setTimeout(() => { closePasswordModal(); sessionStorage.setItem('epallaxis_unlocked', '1'); }, 900);
+  setTimeout(() => { document.getElementById('passwordModal').classList.remove('active'); sessionStorage.setItem('epallaxis_unlocked', '1'); }, 900);
 }
 
 /* ============================================================
-   РЕДАКТОР
+   МАССОВЫЙ РЕДАКТОР
    ============================================================ */
 function openEditor(){
   const ta = document.getElementById('editorText');
@@ -1554,14 +1697,14 @@ function onFileChosen(e){
   e.target.value = '';
 }
 
+/* ============================================================
+   HEADER / ОБРАБОТЧИКИ
+   ============================================================ */
 function syncHeaderHeight(){
   const h = document.querySelector('header').offsetHeight;
   document.documentElement.style.setProperty('--header-h', h + 'px');
 }
 
-/* ============================================================
-   СОБЫТИЯ
-   ============================================================ */
 function bindEvents(){
   document.getElementById('modeSwitch').addEventListener('click', e => {
     const b = e.target.closest('button');
@@ -1584,6 +1727,11 @@ function bindEvents(){
     saveSelection(); renderAll();
   };
   document.getElementById('qNone').onclick = () => { state.selected.clear(); saveSelection(); renderAll(); };
+  document.getElementById('qCollapse').onclick = () => {
+  state.openGroups.clear();
+  saveSelection();
+  renderAll();
+};
 
   const searchInput = document.getElementById('searchInput');
   const searchWrap = document.getElementById('searchWrap');
@@ -1704,4 +1852,4 @@ window.addEventListener('load', () => {
 });
 </script>
 </body>
-</html> 
+</html>
