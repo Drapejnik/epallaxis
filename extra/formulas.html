@@ -99,9 +99,13 @@ header{position:sticky;top:0;left:0;right:0;width:100%;z-index:200;background:rg
 .sb-foot{padding:14px 16px;border-top:1px solid var(--border-hair);background:linear-gradient(to top,var(--bg),transparent);flex-shrink:0}
 .sb-stat{display:flex;justify-content:space-between;font-size:11.5px;color:var(--muted);margin-bottom:10px}
 .sb-stat b{color:var(--accent);font-weight:700;font-variant-numeric:tabular-nums}
-.start-btn{width:100%;padding:13px 16px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#04140a;font-size:14.5px;font-weight:700;transition:all .18s;box-shadow:0 4px 18px var(--accent-glow);display:flex;align-items:center;justify-content:center;gap:8px}
-.start-btn:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 6px 26px var(--accent-glow)}
-.start-btn:disabled{opacity:.3;cursor:not-allowed;box-shadow:none;background:var(--muted-2)}
+.start-buttons-container{display:flex;gap:8px;width:100%}
+.start-btn{flex:1;padding:11px 10px;border-radius:12px;font-size:13px;font-weight:700;transition:all .18s;display:flex;align-items:center;justify-content:center;gap:6px;white-space:nowrap}
+.start-btn.btn-random{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#04140a;box-shadow:0 4px 18px var(--accent-glow)}
+.start-btn.btn-random:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 6px 26px var(--accent-glow)}
+.start-btn.btn-order{background:transparent;color:var(--accent);border:1px solid var(--accent);box-shadow:none}
+.start-btn.btn-order:hover:not(:disabled){background:var(--accent-dim);transform:translateY(-1px)}
+.start-btn:disabled{opacity:.3;cursor:not-allowed;transform:none!important;box-shadow:none!important}
 .crumbs{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:12.5px;color:var(--muted);margin-bottom:16px}
 .crumbs .c-sep{color:var(--muted-2);opacity:.5}
 .crumbs b{color:var(--text);font-weight:600}
@@ -197,13 +201,13 @@ header{position:sticky;top:0;left:0;right:0;width:100%;z-index:200;background:rg
 .modal-close{margin-top:18px;width:100%;padding:11px;background:var(--accent);color:#04140a;border-radius:11px;font-size:14px;font-weight:700;transition:.15s}
 .modal-close:hover{background:var(--accent-2)}
 @media(max-width:960px){.app{grid-template-columns:1fr}.sidebar{position:fixed;left:0;top:var(--header-h);width:300px;height:calc(100vh - var(--header-h));z-index:180;transform:translateX(-100%);transition:transform .28s cubic-bezier(.4,0,.2,1);box-shadow:0 12px 40px rgba(0,0,0,.5);border-right:1px solid var(--border)}.sidebar.open{transform:translateX(0)}.main{padding:20px 18px 60px}.formula-row{grid-template-columns:1fr;position:relative}.row-actions{position:absolute;right:8px;top:8px;opacity:1}.copy-btn{opacity:.6}}
-@media(max-width:600px){header{padding:10px 12px;gap:8px}.brand p{display:none}.brand h1{font-size:19px;letter-spacing:1.5px}.main{padding:16px 12px 60px}.test-q,.test-a{font-size:clamp(20px,6.5vw,38px)}.tbtn{padding:11px 16px;font-size:13px;min-width:0;flex:1 1 45%}.dots{padding:8px 12px 12px}.progress-bar-wrap{padding:0 12px}.chip{font-size:11px;max-width:180px}}
+@media(max-width:600px){header{padding:10px 12px;gap:8px}.brand p{display:none}.brand h1{font-size:19px;letter-spacing:1.5px}.main{padding:16px 12px 60px}.test-q,.test-a{font-size:clamp(20px,6.5vw,38px)}.tbtn{padding:11px 16px;font-size:13px;min-width:0;flex:1 1 45%}.dots{padding:8px 12px 12px}.progress-bar-wrap{padding:0 12px}.chip{font-size:11px;max-width:180px}.start-buttons-container{flex-direction:column}}
 </style>
 </head>
 <body>
 <script type="text/plain" id="dataSource">
 
-=== 8 | Алгебра | Квадратные корни (определение)
+=== 8 | Алгебра | Квадратные корни
 Квадратный корень из числа \(a\) | Число, квадрат которого равен \(a\) (например, квадратные корни из \(36\) — это \(6\) и \(-6\))
 Арифметический квадратный корень из числа \(a\) | Неотрицательное число, квадрат которого равен \(a\) (\(\sqrt{a} = b\), если \(b \ge 0\) и \(b^2 = a\))
 
@@ -220,13 +224,71 @@ header{position:sticky;top:0;left:0;right:0;width:100%;z-index:200;background:rg
 Вид \(ax^2 = 0\) | Неполное квадратное уравнение, у которого \(b = 0, c = 0\)
 
 === 8 | Алгебра | Формулы корней квадратного уравнения
-Дискриминант | \(D = b^2 - 4ac\)
-Корни при \(D > 0\) | \(x_{1,2} = \dfrac{-b \pm \sqrt{D}}{2a}\) (уравнение имеет два различных корня)
-Корень при \(D = 0\) | \(x = -\dfrac{b}{2a}\) (уравнение имеет один корень, или два совпадающих)
-Количество корней при \(D < 0\) | Корней нет (во множестве действительных чисел)
+Формула дискриминанта квадратного уравнения | \(D = b^2 - 4ac\)
+Формулы корней квадратного уравнения при \(D > 0\) | \(x_{1,2} = \dfrac{-b \pm \sqrt{D}}{2a}\)
+Формула корня квадратного уравнения при \(D = 0\) | \(x = -\dfrac{b}{2a}\)
+Сколько корней имеет квадратное уравнение, если \(D > 0\)? | Два различных действительных корня
+Сколько корней имеет квадратное уравнение, если \(D = 0\)? | Один корень (или два совпадающих)
+Сколько корней имеет квадратное уравнение, если \(D < 0\)? | Нет действительных корней
 
 === 8 | Алгебра | Квадратный трехчлен
 Разложение квадратного трехчлена на множители | \(ax^2 + bx + c = a(x - x_1)(x - x_2)\), где \(x_1\) и \(x_2\) — корни квадратного уравнения \(ax^2 + bx + c = 0\)
+
+=== 9 | Геометрия | Синус, косинус, тангенс и котангенс острого угла
+Синус острого угла прямоугольного треугольника | \(\sin \alpha = \dfrac{a}{c}\) (отношение противолежащего катета к гипотенузе)
+Косинус острого угла прямоугольного треугольника | \(\cos \alpha = \dfrac{b}{c}\) (отношение прилежащего катета к гипотенузе)
+Тангенс острого угла прямоугольного треугольника | \(\operatorname{tg} \alpha = \dfrac{a}{b}\) (отношение противолежащего катета к прилежащему)
+Котангенс острого угла прямоугольного треугольника | \(\operatorname{ctg} \alpha = \dfrac{b}{a}\) (отношение прилежащего катета к противолежащему)
+
+=== 9 | Геометрия | Табличные значения тригонометрических функций (прямые и обратные вопросы)
+Значение \(\sin 30^\circ\) | \(\dfrac{1}{2}\)
+Значение \(\cos 30^\circ\) | \(\dfrac{\sqrt{3}}{2}\)
+Значение \(\operatorname{tg} 30^\circ\) | \(\dfrac{\sqrt{3}}{3}\)
+Значение \(\operatorname{ctg} 30^\circ\) | \(\sqrt{3}\)
+Значение \(\sin 45^\circ\) | \(\dfrac{\sqrt{2}}{2}\)
+Значение \(\cos 45^\circ\) | \(\dfrac{\sqrt{2}}{2}\)
+Значение \(\operatorname{tg} 45^\circ\) | \(1\)
+Значение \(\operatorname{ctg} 45^\circ\) | \(1\)
+Значение \(\sin 60^\circ\) | \(\dfrac{\sqrt{3}}{2}\)
+Значение \(\cos 60^\circ\) | \(\dfrac{1}{2}\)
+Значение \(\operatorname{tg} 60^\circ\) | \(\sqrt{3}\)
+Значение \(\operatorname{ctg} 60^\circ\) | \(\dfrac{\sqrt{3}}{3}\)
+\(\dfrac{1}{2}\) — значение какой тригонометрической функции и какого угла? | \(\sin 30^\circ\) или \(\cos 60^\circ\)
+\(\dfrac{\sqrt{3}}{2}\) — значение какой тригонометрической функции и какого угла? | \(\sin 60^\circ\) или \(\cos 30^\circ\)
+\(\dfrac{\sqrt{2}}{2}\) — значение какой тригонометрической функции и какого угла? | \(\sin 45^\circ\) или \(\cos 45^\circ\)
+\(\dfrac{\sqrt{3}}{3}\) — значение какой тригонометрической функции и какого угла? | \(\operatorname{tg} 30^\circ\) или \(\operatorname{ctg} 60^\circ\)
+\(\sqrt{3}\) — значение какой тригонометрической функции и какого угла? | \(\operatorname{tg} 60^\circ\) или \(\operatorname{ctg} 30^\circ\)
+\(1\) — значение какой тригонометрической функции и какого угла? | \(\operatorname{tg} 45^\circ\) или \(\operatorname{ctg} 45^\circ\)
+
+=== 9 | Геометрия | Решение прямоугольного треугольника
+Катет через гипотенузу и противолежащий угол | \(a = c \sin \alpha\)
+Катет через гипотенузу и прилежащий угол | \(b = c \cos \alpha\)
+Гипотенуза через катет и противолежащий угол | \(c = \dfrac{a}{\sin \alpha}\)
+Гипотенуза через катет и прилежащий угол | \(c = \dfrac{b}{\cos \alpha}\)
+Катет через другой катет и противолежащий угол | \(a = b \operatorname{tg} \alpha = \dfrac{b}{\operatorname{ctg} \alpha}\) (если \(a\) — противолежащий, \(b\) — прилежащий)
+Катет через другой катет и прилежащий угол | \(b = a \operatorname{ctg} \alpha = \dfrac{a}{\operatorname{tg} \alpha}\) (если \(b\) — прилежащий, \(a\) — противолежащий)
+
+=== 9 | Геометрия | Тригонометрические формулы
+Основное тригонометрическое тождество | \(\sin^2 \alpha + \cos^2 \alpha = 1\)
+Выражение синуса через косинус (для острого угла) | \(\sin \alpha = \sqrt{1 - \cos^2 \alpha}\)
+Выражение косинуса через синус (для острого угла) | \(\cos \alpha = \sqrt{1 - \sin^2 \alpha}\)
+Тангенс через синус и косинус | \(\operatorname{tg} \alpha = \dfrac{\sin \alpha}{\cos \alpha}\)
+Котангенс через синус и косинус | \(\operatorname{ctg} \alpha = \dfrac{\cos \alpha}{\sin \alpha}\)
+Связь тангенса и котангенса | \(\operatorname{tg} \alpha = \dfrac{1}{\operatorname{ctg} \alpha};\; \operatorname{ctg} \alpha = \dfrac{1}{\operatorname{tg} \alpha}\)
+
+=== 9 | Геометрия | Синус, косинус, тангенс и котангенс тупого угла
+\(\sin(180^\circ - \alpha) =\) | \(\sin \alpha\)
+\(\cos(180^\circ - \alpha) =\) | \(-\cos \alpha\)
+\(\operatorname{tg}(180^\circ - \alpha) =\) | \(-\operatorname{tg} \alpha\)
+\(\operatorname{ctg}(180^\circ - \alpha) =\) | \(-\operatorname{ctg} \alpha\)
+\(\sin \alpha =\) | \(\sin(180^\circ - \alpha)\)
+\(\cos \alpha =\) | \(-\cos(180^\circ - \alpha)\)
+\(\operatorname{tg} \alpha =\) | \(-\operatorname{tg}(180^\circ - \alpha)\)
+\(\operatorname{ctg} \alpha =\) | \(-\operatorname{ctg}(180^\circ - \alpha)\)
+
+=== 9 | Геометрия | Площадь треугольника и параллелограмма
+Формула площади треугольника через две стороны и угол между ними | \(S = \dfrac{1}{2}ab\sin\gamma\), где \(\gamma\) — угол между сторонами \(a\) и \(b\)
+Формула площади параллелограмма через две стороны и угол между ними | \(S = ab\sin\alpha\), где \(\alpha\) — угол между сторонами \(a\) и \(b\)
 
 === 9 | Геометрия | Вписанная и описанная окружности (произвольного треугольника)
 Что такое описанная около треугольника окружность? | Окружность, на которой лежат все вершины треугольника
@@ -315,7 +377,10 @@ header{position:sticky;top:0;left:0;right:0;width:100%;z-index:200;background:rg
         <span>Выбрано: <b id="statTopics">0</b> тем</span>
         <span><b id="statFormulas">0</b> формул</span>
       </div>
-      <button class="start-btn" id="startBtn" disabled>▶ Начать проверку</button>
+      <div class="start-buttons-container">
+        <button class="start-btn btn-random" id="startRandomBtn" disabled>🎲 Рандом</button>
+        <button class="start-btn btn-order" id="startOrderBtn" disabled>📋 По порядку</button>
+      </div>
     </div>
   </aside>
   <main class="main" id="main"></main>
@@ -332,7 +397,6 @@ header{position:sticky;top:0;left:0;right:0;width:100%;z-index:200;background:rg
     </div>
     <div class="test-top-actions">
       <button id="testSkip" title="Отложить вопрос">⏭ Пропустить</button>
-      <button id="testShuffle" title="Перемешать">🔀</button>
       <button class="exit" id="testExit" title="Выйти (Esc)">✕</button>
     </div>
   </div>
@@ -372,10 +436,10 @@ header{position:sticky;top:0;left:0;right:0;width:100%;z-index:200;background:rg
     <div class="modal-section">
       <h4>🎯 Проверка</h4>
       <ul class="modal-list">
+        <li>Внизу слева можно выбрать режим: <b>🎲 Рандом</b> или <b>📋 По порядку</b></li>
         <li><b>Space</b> — показать / скрыть ответ (только ответ!)</li>
         <li><b>← →</b> — переключение между вопросами</li>
         <li>Точки под прогрессом — клик = переход к любому вопросу</li>
-        <li>Порядок вопросов всегда случайный</li>
       </ul>
     </div>
     <div class="modal-section">
@@ -404,28 +468,19 @@ const SVG_CHECK = '<svg viewBox="0 0 24 24" style="stroke:var(--accent)"><polyli
 // Иконка Билла Шифра
 const SVG_EMPTY = `
 <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-  <!-- Треугольное тело с закругленными углами -->
   <path d="M50 15 L88 85 L12 85 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
-  <!-- Цилиндр (шляпа) -->
   <path d="M38 15 L41 3 L59 3 L62 15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
   <path d="M30 15 Q50 10 70 15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-  <!-- Глаз -->
   <ellipse cx="50" cy="50" rx="8" ry="13" fill="none" stroke="currentColor" stroke-width="2.5"/>
-  <!-- Зрачок (неоновый акцент) -->
   <line x1="50" y1="39" x2="50" y2="61" stroke="var(--accent)" stroke-width="3.5" stroke-linecap="round" style="filter: drop-shadow(0 0 5px var(--accent))"/>
-  <!-- Бабочка -->
   <path d="M50 80 L32 72 L32 84 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
   <path d="M50 80 L68 72 L68 84 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
   <circle cx="50" cy="80" r="2.5" fill="currentColor"/>
-  <!-- Левая рука (в бок) -->
   <path d="M 26 50 L 12 62 L 24 72" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-  <!-- Правая рука и трость -->
   <path d="M 74 50 L 88 62 L 78 72" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
   <path d="M 84 92 L 84 62 C 84 50 72 50 72 58" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-  <!-- Ноги -->
   <path d="M 38 85 L 32 96 L 24 96" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
   <path d="M 62 85 L 68 96 L 76 96" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-  <!-- Кирпичный узор -->
   <line x1="28" y1="75" x2="72" y2="75" stroke="currentColor" stroke-width="1.5" opacity="0.3" stroke-dasharray="4 3"/>
   <line x1="22" y1="80" x2="78" y2="80" stroke="currentColor" stroke-width="1.5" opacity="0.3" stroke-dasharray="4 3"/>
 </svg>`;
@@ -787,14 +842,36 @@ function renderAll(){
   const{topics,formulas}=countSelected();
   document.getElementById('statTopics').textContent=topics;
   document.getElementById('statFormulas').textContent=formulas;
-  document.getElementById('startBtn').disabled=state.selected.size===0;
+  const isEmpty = state.selected.size===0;
+  document.getElementById('startRandomBtn').disabled = isEmpty;
+  document.getElementById('startOrderBtn').disabled = isEmpty;
   renderTree();
   renderMain();
 }
 
-function buildQueue(){const q=[];state.selected.forEach(k=>{const{c,s,t}=parseKey(k);const items=getTopic(c,s,t)||[];items.forEach(pair=>q.push({c,s,t,q:pair[0],a:pair[1]}))});return q}
+function buildQueue(){
+  const q=[];
+  state.selected.forEach(k=>{
+    const{c,s,t}=parseKey(k);
+    const items=getTopic(c,s,t)||[];
+    items.forEach(pair=>q.push({c,s,t,q:pair[0],a:pair[1]}));
+  });
+  return q;
+}
+
 function shuffleArr(a){const b=a.slice();for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const tmp=b[i];b[i]=b[j];b[j]=tmp}return b}
-function startTest(){state.testQueue=shuffleArr(buildQueue());if(state.testQueue.length===0)return;state.testIdx=0;state.testRevealed=false;document.getElementById('testOverlay').classList.add('active');document.body.style.overflow='hidden';showCard()}
+
+function startTest(isRandom){
+  const rawQueue = buildQueue();
+  state.testQueue = isRandom ? shuffleArr(rawQueue) : rawQueue;
+  if(state.testQueue.length===0)return;
+  state.testIdx=0;
+  state.testRevealed=false;
+  document.getElementById('testOverlay').classList.add('active');
+  document.body.style.overflow='hidden';
+  showCard();
+}
+
 function showCard(){
   const it=state.testQueue[state.testIdx];
   if(!it)return;
@@ -850,13 +927,14 @@ function bindEvents(){
     searchFormulaInput.focus();
   };
 
-  document.getElementById('startBtn').onclick=startTest;
+  document.getElementById('startRandomBtn').onclick=()=>startTest(true);
+  document.getElementById('startOrderBtn').onclick=()=>startTest(false);
+
   document.getElementById('testExit').onclick=exitTest;
   document.getElementById('testNext').onclick=goNext;
   document.getElementById('testPrev').onclick=goPrev;
   document.getElementById('testReveal').onclick=toggleAnswer;
   document.getElementById('testSkip').onclick=skipCurrent;
-  document.getElementById('testShuffle').onclick=()=>{state.testQueue=shuffleArr(state.testQueue);state.testIdx=0;state.testRevealed=false;showCard()};
 
   document.getElementById('helpBtn').onclick=()=>document.getElementById('helpModal').classList.add('active');
   document.getElementById('helpClose').onclick=()=>document.getElementById('helpModal').classList.remove('active');
