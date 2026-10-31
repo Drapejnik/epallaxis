@@ -12,7 +12,32 @@
 :root{--bg:#060a10;--panel:rgba(15,23,32,.65);--panel2:rgba(17,28,38,.45);--text:#eef3f7;--muted:#9aa4b2;--muted-2:#5c6675;--accent:#22ff88;--accent-2:#15c46a;--accent-dim:rgba(34,255,136,.14);--accent-glow:rgba(34,255,136,.22);--border:rgba(34,255,136,.12);--border-soft:rgba(255,255,255,.06);--border-hair:rgba(255,255,255,.03);--danger:#ff5c7a;--header-h:76px;--radius-lg:22px}
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{width:100%;max-width:100vw;overflow-x:hidden}
-body{font-family:system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;background:radial-gradient(1200px 600px at 20% 0%,#0d1f18 0%,var(--bg) 60%);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased;display:flex;flex-direction:column}
+body{
+  font-family:system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+  background-color:var(--bg);
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-position: center top;
+  color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased;display:flex;flex-direction:column;
+  position:relative;
+}
+body::before {
+  content: "";
+  position: fixed;
+  top: -20%; left: -10%;
+  width: 60vw; height: 60vw;
+  background: radial-gradient(circle, rgba(34,255,136,0.06) 0%, transparent 60%);
+  filter: blur(100px);
+  z-index: -1;
+  animation: floatAurora 25s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+@keyframes floatAurora {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(15vw, 15vh) scale(1.1); }
+}
 button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
 input,textarea{font-family:inherit}
 ::-webkit-scrollbar{width:8px;height:8px}
@@ -25,27 +50,25 @@ header{position:sticky;top:0;left:0;right:0;width:100%;z-index:200;background:rg
 .brand h1 .accent-word{color:var(--accent)}
 .brand p{font-size:clamp(11px,1.5vw,14px);color:var(--muted);margin-top:2px}
 .header-actions{display:flex;align-items:center;gap:8px;flex-shrink:0}
-.mode-switch{display:flex;background:rgba(255,255,255,.04);border:1px solid var(--border-soft);border-radius:12px;padding:3px;gap:2px}
-.mode-switch button{padding:8px 16px;border-radius:9px;font-size:13.5px;font-weight:600;color:var(--muted);transition:.18s;display:flex;align-items:center;gap:6px;white-space:nowrap}
-.mode-switch button:hover{color:var(--text)}
-.mode-switch button.active{background:var(--accent);color:#04140a;box-shadow:0 0 16px var(--accent-glow)}
-.icon-btn{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--muted);transition:.18s;border:1px solid transparent;font-size:17px}
+.icon-btn{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--muted);transition:.18s;border:1px solid transparent}
 .icon-btn:hover{background:rgba(255,255,255,.05);color:var(--accent);border-color:var(--border-soft)}
+.icon-btn svg{width:20px;height:20px;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
 .icon-btn.hamburger{display:none}
 @media(max-width:960px){.icon-btn.hamburger{display:flex}}
 .app{display:grid;grid-template-columns:320px 1fr;min-height:calc(100vh - var(--header-h));flex:1}
 .sidebar{background:var(--panel2);border-right:1px solid var(--border-hair);display:flex;flex-direction:column;height:calc(100vh - var(--header-h));position:sticky;top:var(--header-h)}
 .main{padding:24px 32px 60px;max-width:1200px;width:100%;min-width:0}
 .sb-top{padding:16px 16px 12px;border-bottom:1px solid var(--border-hair);flex-shrink:0}
-.search-wrap{position:relative;margin-bottom:12px}
+.search-wrap{position:relative;margin-bottom:8px}
 .search-wrap input{width:100%;padding:11px 36px 11px 38px;background:rgba(255,255,255,.03);border:1px solid var(--border-soft);border-radius:11px;color:var(--text);font-size:13.5px;outline:none;transition:.18s}
 .search-wrap input:focus{border-color:var(--accent);background:rgba(34,255,136,.05);box-shadow:0 0 0 3px rgba(34,255,136,.08)}
 .search-wrap input::placeholder{color:var(--muted-2)}
-.search-wrap .s-icon{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--muted-2);font-size:14px;pointer-events:none}
+.search-wrap .s-icon{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--muted-2);width:16px;height:16px;pointer-events:none;display:flex;align-items:center;justify-content:center}
+.search-wrap .s-icon svg{width:100%;height:100%;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
 .search-wrap .s-clear{position:absolute;right:8px;top:50%;transform:translateY(-50%);width:24px;height:24px;border-radius:6px;color:var(--muted-2);display:none;align-items:center;justify-content:center;font-size:15px}
 .search-wrap.has-value .s-clear{display:flex}
 .s-clear:hover{background:rgba(255,255,255,.06);color:var(--danger)}
-.presets{display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px}
+.presets{display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px;margin-top:12px}
 .preset{padding:8px 4px;border-radius:9px;font-size:11.5px;font-weight:600;color:var(--muted);background:rgba(255,255,255,.025);border:1px solid transparent;text-align:center;transition:.15s;line-height:1.15}
 .preset:hover{background:var(--accent-dim);color:var(--accent);border-color:var(--border)}
 .preset:active{transform:scale(.96)}
@@ -65,15 +88,12 @@ header{position:sticky;top:0;left:0;right:0;width:100%;z-index:200;background:rg
 .tree-count.full{background:var(--accent);color:#04140a}
 .tree-body{display:none;padding:2px 0 6px 12px;border-left:1px solid var(--border-hair);margin-left:18px}
 .tree-head.open + .tree-body{display:block}
-.tree-actions{display:flex;gap:4px;padding:2px 0 4px}
-.tree-actions button{flex:1;font-size:10.5px;padding:5px 4px;border-radius:6px;color:var(--muted);background:rgba(255,255,255,.02);transition:.15s;font-weight:500}
-.tree-actions button:hover{color:var(--accent);background:var(--accent-dim)}
 .tree-topic{display:flex;align-items:center;gap:9px;padding:7px 10px;border-radius:8px;cursor:pointer;transition:.13s;font-size:12.5px;color:var(--text);border:1px solid transparent}
 .tree-topic:hover{background:rgba(255,255,255,.035);border-color:var(--border-hair)}
 .tree-topic.checked{background:rgba(34,255,136,.05)}
 .tree-check{width:15px;height:15px;flex-shrink:0;border:1.5px solid var(--muted-2);border-radius:4px;position:relative;transition:.15s}
-.tree-topic.checked .tree-check{border-color:var(--accent);background:var(--accent)}
-.tree-topic.checked .tree-check::after{content:"";position:absolute;top:2px;left:4px;width:4px;height:8px;border:2px solid #04140a;border-top:none;border-left:none;transform:rotate(45deg)}
+.tree-topic.checked .tree-check, .tree-head .tree-check.checked{border-color:var(--accent);background:var(--accent)}
+.tree-topic.checked .tree-check::after, .tree-head .tree-check.checked::after{content:"";position:absolute;top:2px;left:4px;width:4px;height:8px;border:2px solid #04140a;border-top:none;border-left:none;transform:rotate(45deg)}
 .tree-topic-name{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .tree-topic-cnt{font-size:10px;color:var(--muted-2);flex-shrink:0;font-variant-numeric:tabular-nums}
 .sb-foot{padding:14px 16px;border-top:1px solid var(--border-hair);background:linear-gradient(to top,var(--bg),transparent);flex-shrink:0}
@@ -86,6 +106,8 @@ header{position:sticky;top:0;left:0;right:0;width:100%;z-index:200;background:rg
 .crumbs .c-sep{color:var(--muted-2);opacity:.5}
 .crumbs b{color:var(--text);font-weight:600}
 .crumbs .c-accent{color:var(--accent);font-weight:600}
+.pulse-dot{display:inline-block;width:8px;height:8px;background-color:var(--accent);border-radius:50%;margin-right:8px;animation:pulse 1.5s infinite;box-shadow:0 0 8px var(--accent-glow)}
+@keyframes pulse{0%{transform:scale(0.95);opacity:1}50%{transform:scale(1.1);opacity:0.5}100%{transform:scale(0.95);opacity:1}}
 .chips-bar{display:flex;gap:6px;flex-wrap:wrap;align-items:center;padding:10px 12px;margin-bottom:18px;background:rgba(255,255,255,.02);border:1px solid var(--border-hair);border-radius:12px}
 .chip{display:inline-flex;align-items:center;gap:6px;padding:5px 6px 5px 10px;border-radius:20px;background:rgba(34,255,136,.08);border:1px solid var(--border);font-size:11.5px;color:var(--accent);font-weight:500;transition:.15s;cursor:pointer;max-width:220px}
 .chip:hover{background:rgba(34,255,136,.14)}
@@ -105,32 +127,19 @@ header{position:sticky;top:0;left:0;right:0;width:100%;z-index:200;background:rg
 .topic-meta{font-size:11.5px;color:var(--muted-2);flex-shrink:0;font-variant-numeric:tabular-nums}
 .topic-body{display:none;padding:4px 8px 10px}
 .topic-head.open + .topic-body{display:block}
-.formula-row{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:start;padding:12px 14px;margin:4px;border-radius:11px;background:rgba(255,255,255,.015);border-left:2px solid var(--border-hair);transition:.15s}
-.formula-row:hover{background:rgba(34,255,136,.03);border-left-color:var(--accent)}
+.formula-row{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:start;padding:12px 14px;margin:4px;border-radius:11px;background:rgba(255,255,255,.015);border-left:2px solid var(--border-hair);transition:all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1)}
+.formula-row:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.4), 0 0 1px rgba(34,255,136,0.3);background:rgba(34,255,136,.03);border-left-color:var(--accent)}
 .formula-q{font-size:clamp(13.5px,1.3vw,15.5px);line-height:1.55;color:var(--text)}
 .formula-a{font-size:clamp(14.5px,1.5vw,17px);line-height:1.5;color:var(--accent);font-weight:500;margin-top:3px}
 .formula-a .katex{color:var(--accent)}
 .row-actions{display:flex;gap:4px;flex-shrink:0}
-.copy-btn,.edit-btn{width:30px;height:30px;border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:var(--muted-2);font-size:14px;transition:.15s;opacity:0}
-.formula-row:hover .copy-btn,.formula-row:hover .edit-btn{opacity:1}
-.copy-btn:hover,.edit-btn:hover{background:var(--accent-dim);color:var(--accent)}
-.edit-form{padding:14px 16px;margin:4px;border-radius:11px;background:rgba(34,255,136,.04);border:1px solid var(--accent);grid-column:1 / -1;animation:fadeIn .2s ease}
-@keyframes fadeIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
-.edit-form label{display:block;font-size:10.5px;font-weight:700;letter-spacing:1px;color:var(--accent);text-transform:uppercase;margin-bottom:5px;margin-top:10px}
-.edit-form label:first-child{margin-top:0}
-.edit-form textarea{width:100%;padding:10px 12px;background:#070a0f;border:1px solid var(--border-soft);border-radius:9px;color:var(--text);font-family:'SF Mono',Consolas,Monaco,monospace;font-size:13px;line-height:1.5;resize:vertical;outline:none;min-height:52px;transition:.15s}
-.edit-form textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(34,255,136,.08)}
-.edit-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
-.edit-actions button{padding:9px 16px;border-radius:9px;font-size:13px;font-weight:600;transition:.15s;border:1px solid var(--border-soft);background:rgba(255,255,255,.03);color:var(--text)}
-.edit-actions button:hover{border-color:var(--accent);color:var(--accent)}
-.edit-actions button.save{background:var(--accent);color:#04140a;border-color:transparent}
-.edit-actions button.save:hover{background:var(--accent-2);color:#04140a}
-.edit-actions button.delete{color:var(--danger)}
-.edit-actions button.delete:hover{border-color:var(--danger);background:rgba(255,92,122,.08)}
-.add-formula-btn{width:100%;padding:10px;margin:6px 4px 4px;border-radius:9px;font-size:13px;font-weight:600;color:var(--muted);background:rgba(255,255,255,.02);border:1px dashed var(--border-soft);transition:.15s;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer}
-.add-formula-btn:hover{color:var(--accent);border-color:var(--accent);background:var(--accent-dim)}
+.copy-btn{width:30px;height:30px;border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:var(--muted-2);transition:.15s;opacity:0}
+.copy-btn svg{width:16px;height:16px;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.formula-row:hover .copy-btn{opacity:1}
+.copy-btn:hover{background:var(--accent-dim);color:var(--accent)}
 .empty{padding:80px 30px;text-align:center;color:var(--muted);font-size:14.5px;line-height:1.7}
-.empty-icon{font-size:56px;margin-bottom:16px;opacity:.35}
+.empty-icon{margin-bottom:24px;opacity:.8;display:flex;justify-content:center;filter:drop-shadow(0 0 20px rgba(34,255,136,0.15))}
+.empty-icon svg{width:120px;height:120px;stroke:var(--muted-2);stroke-width:2.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
 .empty h3{font-size:19px;color:var(--text);margin-bottom:8px;font-weight:600}
 .empty p{max-width:440px;margin:0 auto 18px}
 .empty-tips{display:inline-flex;flex-direction:column;gap:8px;text-align:left;padding:14px 18px;background:rgba(255,255,255,.02);border-radius:12px;border:1px solid var(--border-hair);font-size:13px}
@@ -187,573 +196,57 @@ header{position:sticky;top:0;left:0;right:0;width:100%;z-index:200;background:rg
 .modal-list kbd{display:inline-block;padding:1px 6px;border-radius:5px;background:rgba(255,255,255,.06);color:var(--text);font-size:11.5px;margin:0 2px;border:1px solid var(--border-hair)}
 .modal-close{margin-top:18px;width:100%;padding:11px;background:var(--accent);color:#04140a;border-radius:11px;font-size:14px;font-weight:700;transition:.15s}
 .modal-close:hover{background:var(--accent-2)}
-.editor-hint{padding:10px 12px;background:rgba(34,255,136,.06);border-left:3px solid var(--accent);border-radius:6px;font-size:12.5px;color:var(--muted);margin-bottom:12px;line-height:1.55}
-.editor-hint code{background:rgba(255,255,255,.06);padding:1px 6px;border-radius:4px;font-size:11.5px;color:var(--accent)}
-.editor-textarea{width:100%;min-height:440px;padding:14px 16px;background:#070a0f;border:1px solid var(--border-soft);border-radius:11px;color:var(--text);font-family:'SF Mono',Consolas,Monaco,monospace;font-size:12.5px;line-height:1.65;outline:none;resize:vertical}
-.editor-textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(34,255,136,.08)}
-.editor-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
-.editor-row button{padding:10px 16px;border-radius:10px;font-size:13px;font-weight:600;transition:.15s;border:1px solid var(--border-soft);background:rgba(255,255,255,.03);color:var(--text)}
-.editor-row button:hover{border-color:var(--accent);color:var(--accent)}
-.editor-row button.primary{background:var(--accent);color:#04140a;border-color:transparent}
-.editor-row button.primary:hover{background:var(--accent-2);color:#04140a}
-.editor-row button.danger{color:var(--danger)}
-.editor-row button.danger:hover{border-color:var(--danger);background:rgba(255,92,122,.08)}
-.editor-status{font-size:12px;color:var(--muted);margin-top:8px;min-height:16px}
-.editor-status.ok{color:var(--accent)}
-.editor-status.err{color:var(--danger)}
-@media(max-width:960px){.app{grid-template-columns:1fr}.sidebar{position:fixed;left:0;top:var(--header-h);width:300px;height:calc(100vh - var(--header-h));z-index:180;transform:translateX(-100%);transition:transform .28s cubic-bezier(.4,0,.2,1);box-shadow:0 12px 40px rgba(0,0,0,.5);border-right:1px solid var(--border)}.sidebar.open{transform:translateX(0)}.main{padding:20px 18px 60px}.formula-row{grid-template-columns:1fr;position:relative}.row-actions{position:absolute;right:8px;top:8px;opacity:1}.copy-btn,.edit-btn{opacity:.6}}
-@media(max-width:600px){header{padding:10px 12px;gap:8px}.brand p{display:none}.brand h1{font-size:19px;letter-spacing:1.5px}.mode-switch button{padding:7px 12px;font-size:12.5px}.mode-switch button .label{display:none}.main{padding:16px 12px 60px}.test-q,.test-a{font-size:clamp(20px,6.5vw,38px)}.tbtn{padding:11px 16px;font-size:13px;min-width:0;flex:1 1 45%}.dots{padding:8px 12px 12px}.progress-bar-wrap{padding:0 12px}.chip{font-size:11px;max-width:180px}}
+@media(max-width:960px){.app{grid-template-columns:1fr}.sidebar{position:fixed;left:0;top:var(--header-h);width:300px;height:calc(100vh - var(--header-h));z-index:180;transform:translateX(-100%);transition:transform .28s cubic-bezier(.4,0,.2,1);box-shadow:0 12px 40px rgba(0,0,0,.5);border-right:1px solid var(--border)}.sidebar.open{transform:translateX(0)}.main{padding:20px 18px 60px}.formula-row{grid-template-columns:1fr;position:relative}.row-actions{position:absolute;right:8px;top:8px;opacity:1}.copy-btn{opacity:.6}}
+@media(max-width:600px){header{padding:10px 12px;gap:8px}.brand p{display:none}.brand h1{font-size:19px;letter-spacing:1.5px}.main{padding:16px 12px 60px}.test-q,.test-a{font-size:clamp(20px,6.5vw,38px)}.tbtn{padding:11px 16px;font-size:13px;min-width:0;flex:1 1 45%}.dots{padding:8px 12px 12px}.progress-bar-wrap{padding:0 12px}.chip{font-size:11px;max-width:180px}}
 </style>
 </head>
 <body>
 <script type="text/plain" id="dataSource">
-=== 5 | Математика | Натуральные числа
 
-=== 6 | Математика | Натуральные числа
+=== 9 | Геометрия | Вписанная и описанная окружности (произвольного треугольника)
+Что такое описанная около треугольника окружность? | Окружность, на которой лежат все вершины треугольника
+Что такое вписанная в треугольник окружность? | Окружность, которая касается всех сторон треугольника
+Центр окружности, вписанной в произвольный треугольник | Точка пересечения биссектрис треугольника
+Центр окружности, описанной около произвольного треугольника | Точка пересечения серединных перпендикуляров к сторонам треугольника
+Формула площади треугольника через радиус вписанной окружности | \(S = pr\), где \(p\) — полупериметр, \(r\) — радиус вписанной окружности
+Формула радиуса окружности, вписанной в произвольный треугольник | \(r = \dfrac{S}{p}\)
+Формула площади треугольника через радиус описанной окружности | \(S = \dfrac{abc}{4R}\), где \(a, b, c\) — стороны треугольника, \(R\) — радиус описанной окружности
+Формула радиуса окружности, описанной около произвольного треугольника (через стороны и площадь) | \(R = \dfrac{abc}{4S}\)
 
-=== 7 | Алгебра | Степень с натуральным показателем
-\(a^n \cdot a^m =\) | \(a^{n+m}\)
-\(a^n : a^m =\) | \(a^{n-m},\; a \neq 0\)
-\((a^n)^m =\) | \(a^{nm}\)
-\((ab)^n =\) | \(a^n \cdot b^n\)
-\(\left(\dfrac{a}{b}\right)^n =\) | \(\dfrac{a^n}{b^n},\; b \neq 0\)
+=== 9 | Геометрия | Вписанная и описанная окружности (прямоугольного треугольника)
+Центр окружности, описанной около прямоугольного треугольника | Лежит на середине гипотенузы
+Формула радиуса окружности, описанной около прямоугольного треугольника | \(R = \dfrac{c}{2}\), где \(c\) — гипотенуза
+Формула радиуса окружности, вписанной в прямоугольный треугольник | \(r = \dfrac{a+b-c}{2}\), где \(a, b\) — катеты, \(c\) — гипотенуза
+Следствие из формулы радиуса окружности, вписанной в прямоугольный треугольник | \(r = p - c\), где \(p\) — полупериметр
 
-=== 7 | Алгебра | Степень с целым показателем
-\(a^0 =\) | \(1,\; a \neq 0\)
-\(a^{-n} =\) | \(\dfrac{1}{a^n},\; a \neq 0\)
-\(\left(\dfrac{a}{b}\right)^{-n} =\) | \(\left(\dfrac{b}{a}\right)^n\)
-Стандартный вид числа | \(a \cdot 10^n,\; 1 \leq a < 10\)
+=== 9 | Геометрия | Вписанные и описанные четырехугольники
+Свойство вписанного четырехугольника | Сумма противоположных углов четырехугольника, вписанного в окружность, равна \(180^\circ\) (т.е. \(\angle A + \angle C = 180^\circ\), \(\angle B + \angle D = 180^\circ\))
+Признак вписанного четырехугольника | Если сумма противоположных углов четырехугольника равна \(180^\circ\), то около него можно описать окружность
+Свойство описанного четырехугольника | Суммы противоположных сторон описанного четырехугольника равны между собой (т.е. \(a + c = b + d\))
+Признак описанного четырехугольника | Если суммы противоположных сторон выпуклого четырехугольника равны, то в него можно вписать окружность
+Формула площади описанного четырехугольника | \(S = pr\), где \(p\) — полупериметр, \(r\) — радиус вписанной окружности
 
-=== 7 | Алгебра | Формулы сокращённого умножения
-\((a+b)^2 =\) | \(a^2+2ab+b^2\)
-\((a-b)^2 =\) | \(a^2-2ab+b^2\)
-\(a^2-b^2 =\) | \((a-b)(a+b)\)
-\((a+b)^3 =\) | \(a^3+3a^2b+3ab^2+b^3\)
-\((a-b)^3 =\) | \(a^3-3a^2b+3ab^2-b^3\)
-\(a^3+b^3 =\) | \((a+b)(a^2-ab+b^2)\)
-\(a^3-b^3 =\) | \((a-b)(a^2+ab+b^2)\)
+=== Треугольник | Геометрия | Площадь
+Формула площади треугольника через сторону и высоту | \(S = \dfrac{1}{2}ah\), где \(a\) — сторона, \(h\) — высота, проведенная к этой стороне
+Формула площади треугольника через две стороны и угол между ними | \(S = \dfrac{1}{2}ab\sin\gamma\), где \(a, b\) — стороны, \(\gamma\) — угол между ними
+Формула площади треугольника через три стороны (формула Герона) | \(S = \sqrt{p(p-a)(p-b)(p-c)}\), где \(a, b, c\) — стороны, \(p\) — полупериметр
+Формула площади треугольника через радиус вписанной окружности | \(S = pr\), где \(p\) — полупериметр, \(r\) — радиус вписанной окружности
+Формула площади треугольника через радиус описанной окружности | \(S = \dfrac{abc}{4R}\), где \(a, b, c\) — стороны, \(R\) — радиус описанной окружности
 
-=== 7 | Алгебра | Линейные уравнения и функция
-Линейное уравнение | \(ax=b\)
-Корень при \(a \neq 0\) | \(x=\dfrac{b}{a}\)
-Случай \(a=0,\; b \neq 0\) | Корней нет
-Случай \(a=0,\; b=0\) | Корень — любое число
-Линейная функция | \(y=kx+b\)
-График линейной функции | Прямая
-\(k\) в \(y=kx+b\) — это | Угловой коэффициент
-Параллельность \(y=k_1 x+b_1\) и \(y=k_2 x+b_2\) | \(k_1=k_2\)
+=== Треугольник | Геометрия | Правильный треугольник
+Формула высоты правильного треугольника | \(h = \dfrac{a\sqrt{3}}{2}\), где a - сторона треугольника
+Формула площади правильного треугольника | \(S = \dfrac{a^2\sqrt{3}}{4}\), где a - сторона треугольника
+Формула радиуса окружности, описанной около правильного треугольника | \(R = \dfrac{a}{\sqrt{3}} = \dfrac{a\sqrt{3}}{3}\), где a - сторона треугольника
+Формула радиуса окружности, вписанной в правильный треугольник | \(r = \dfrac{a}{2\sqrt{3}} = \dfrac{a\sqrt{3}}{6}\), где a - сторона треугольника
 
-=== 7 | Алгебра | Системы линейных уравнений
-Решение системы двух линейных уравнений | Пара чисел, удовлетворяющая обоим уравнениям
-Способы решения системы | Подстановки, сложения, графический
-Если прямые пересекаются, система | Имеет одно решение
-Если прямые параллельны, система | Не имеет решений
-Если прямые совпадают, система | Имеет бесконечно много решений
-
-=== 7 | Геометрия | Начальные понятия. Аксиомы
-Аксиома прямой | Через две точки можно провести прямую, и только одну
-Аксиома измерения отрезков | \(AC+CB=AB\)
-Расстояние между двумя точками | Длина отрезка, их соединяющего
-Сумма углов n-угольника | \(180^\circ(n-2)\)
-Периметр многоугольника | Сумма длин всех его сторон
-
-=== 7 | Геометрия | Смежные и вертикальные углы
-Свойство смежных углов | Их сумма равна \(180^\circ\)
-Свойство вертикальных углов | Вертикальные углы равны
-Биссектрисы смежных углов образуют | Прямой угол
-Угол между параллельными прямыми | \(0^\circ\)
-
-=== 7 | Геометрия | Признаки равенства треугольников
-Первый признак | По двум сторонам и углу между ними
-Второй признак | По стороне и двум прилежащим углам
-Третий признак | По трём сторонам
-Свойство равных треугольников | Против равных сторон лежат равные углы, и наоборот
-
-=== 7 | Геометрия | Равнобедренный треугольник
-Свойство углов равнобедренного треугольника | Углы при основании равны
-Свойство биссектрисы, проведённой к основанию | Она является медианой и высотой
-Признак равнобедренного треугольника | Если два угла равны, треугольник равнобедренный
-Если высота является медианой | Треугольник равнобедренный
-
-=== 7 | Геометрия | Параллельные прямые
-Признак параллельности (накрест лежащие) | Если накрест лежащие углы равны, прямые параллельны
-Признак параллельности (соответственные) | Если соответственные углы равны, прямые параллельны
-Признак параллельности (односторонние) | Если сумма внутренних односторонних углов \(180^\circ\), прямые параллельны
-Аксиома параллельных | Через точку вне прямой проходит только одна прямая, параллельная данной
-
-=== 7 | Геометрия | Сумма углов треугольника
-Сумма углов треугольника | \(180^\circ\)
-Внешний угол треугольника | Равен сумме двух внутренних, не смежных с ним
-Неравенство треугольника | Каждая сторона меньше суммы двух других
-Против большей стороны лежит | Больший угол
-Сумма острых углов прямоугольного треугольника | \(90^\circ\)
-
-=== 7 | Геометрия | Прямоугольные треугольники
-Катет против угла \(30^\circ\) | Равен половине гипотенузы
-Медиана к гипотенузе | Равна половине гипотенузы
-Признаки равенства прямоугольных треугольников (5) | По двум катетам; катету и прилежащему углу; катету и противолежащему углу; гипотенузе и углу; катету и гипотенузе
-Расстояние от точки до прямой | Длина перпендикуляра
-
-=== 7 | Геометрия | Биссектриса и ГМТ
-Свойство точек биссектрисы угла | Точка биссектрисы равноудалена от сторон угла
-Признак биссектрисы | Если точка внутри угла равноудалена от сторон, она на биссектрисе
-Биссектрисы треугольника пересекаются | В одной точке — центре вписанной окружности
-Серединный перпендикуляр к отрезку | Прямая, перпендикулярная отрезку через его середину
-Свойство серединного перпендикуляра | Любая его точка равноудалена от концов отрезка
-
-=== 8 | Алгебра | Степени и ФСУ
-\(a^m \cdot a^n =\) | \(a^{m+n}\)
-\(a^m : a^n =\) | \(a^{m-n},\; a \neq 0\)
-\((a^m)^n =\) | \(a^{mn}\)
-\((ab)^n =\) | \(a^n b^n\)
-\((a+b)^2 =\) | \(a^2+2ab+b^2\)
-\((a-b)^2 =\) | \(a^2-2ab+b^2\)
-\(a^2-b^2 =\) | \((a-b)(a+b)\)
-
-=== 8 | Алгебра | Квадратные корни
-\(\sqrt{ab} =\) | \(\sqrt{a} \cdot \sqrt{b},\; a \geq 0,\; b \geq 0\)
-\(\sqrt{\dfrac{a}{b}} =\) | \(\dfrac{\sqrt{a}}{\sqrt{b}},\; a \geq 0,\; b > 0\)
-\(\sqrt{a^2} =\) | \(|a|\)
-\((\sqrt{a})^2 =\) | \(a,\; a \geq 0\)
-Арифметический квадратный корень из \(a\) | Неотрицательное число, квадрат которого равен \(a\)
-\(\mathbb{N} \subset \mathbb{Z} \subset \mathbb{Q} \subset\) | \(\mathbb{R}\)
-
-=== 8 | Алгебра | Квадратные уравнения
-Дискриминант \(ax^2+bx+c=0\) | \(D = b^2 - 4ac\)
-Корни при \(D > 0\) | \(x_{1,2} = \dfrac{-b \pm \sqrt{D}}{2a}\)
-Корень при \(D = 0\) | \(x = -\dfrac{b}{2a}\)
-Случай \(D < 0\) | Корней нет
-Теорема Виета для \(x^2+px+q=0\) | \(x_1+x_2=-p,\; x_1 x_2 = q\)
-Теорема Виета для \(ax^2+bx+c=0\) | \(x_1+x_2=-\dfrac{b}{a},\; x_1 x_2 = \dfrac{c}{a}\)
-Разложение при \(D > 0\) | \(ax^2+bx+c = a(x-x_1)(x-x_2)\)
-Разложение при \(D = 0\) | \(ax^2+bx+c = a(x-x_1)^2\)
-Сумма квадратов корней | \(x_1^2+x_2^2 = (x_1+x_2)^2 - 2x_1 x_2\)
-
-=== 8 | Алгебра | Квадратичная функция
-Вершина параболы \(y=ax^2+bx+c\) | \(x_в=-\dfrac{b}{2a},\; y_в=-\dfrac{D}{4a}\)
-Область значений при \(a > 0\) | \([y_в; +\infty)\)
-Область значений при \(a < 0\) | \((-\infty; y_в]\)
-Метод решения квадратного неравенства | Метод параболы
-
-=== 8 | Алгебра | Функции k/x, x³, |x|, √x
-Область определения \(y=\dfrac{k}{x}\) | \((-\infty;0) \cup (0;+\infty)\)
-График \(y=\dfrac{k}{x}\) называется | Гипербола
-График \(y=x^3\) называется | Кубическая парабола
-Область значений \(y=|x|\) | \([0;+\infty)\)
-Область определения \(y=\sqrt{x}\) | \([0;+\infty)\)
-Модуль числа \(|a| =\) | \(a\) при \(a \geq 0\), \(-a\) при \(a < 0\)
-
-=== 8 | Геометрия | Четырёхугольники и параллелограмм
-Сумма углов четырёхугольника | \(360^\circ\)
-Свойство противоположных сторон параллелограмма | Они равны
-Свойство диагоналей параллелограмма | Точкой пересечения делятся пополам
-Сумма соседних углов параллелограмма | \(180^\circ\)
-Признак параллелограмма (диагонали) | Если диагонали точкой пересечения делятся пополам
-Свойство биссектрисы угла параллелограмма | Отсекает равнобедренный треугольник
-
-=== 8 | Геометрия | Прямоугольник, ромб, квадрат
-Свойство диагоналей прямоугольника | Диагонали равны
-Свойство диагоналей ромба | Взаимно перпендикулярны и делят углы пополам
-Диагональ квадрата со стороной \(a\) | \(d = a\sqrt{2}\)
-Признак прямоугольника | Если у параллелограмма диагонали равны
-Признак ромба (диагонали) | Если диагонали параллелограмма перпендикулярны
-
-=== 8 | Геометрия | Трапеция
-Средняя линия трапеции с основаниями \(a, b\) | \(m = \dfrac{a+b}{2}\)
-Сумма углов при боковой стороне | \(180^\circ\)
-Свойство равнобедренной трапеции | Углы при основании равны; диагонали равны
-Высота прямоугольной трапеции | Равна меньшей боковой стороне
-
-=== 8 | Геометрия | Площади многоугольников
-Площадь квадрата | \(S = a^2\)
-Площадь прямоугольника | \(S = ab\)
-Площадь параллелограмма | \(S = ah\)
-Площадь треугольника | \(S = \dfrac{1}{2}ah\)
-Площадь прямоугольного треугольника | \(S = \dfrac{1}{2}ab\)
-Площадь ромба | \(S = \dfrac{d_1 d_2}{2}\)
-Площадь трапеции | \(S = \dfrac{a+b}{2} \cdot h\)
-Площадь равностороннего треугольника | \(S = \dfrac{a^2\sqrt{3}}{4}\)
-Высота равностороннего треугольника | \(h = \dfrac{a\sqrt{3}}{2}\)
-Площадь 4-угольника с диагоналями \(d_1, d_2\) и углом \(\varphi\) | \(S = \dfrac{1}{2} d_1 d_2 \sin\varphi\)
-
-=== 8 | Геометрия | Теорема Пифагора
-Теорема Пифагора | \(a^2+b^2=c^2\)
-Обратная теорема Пифагора | Если \(a^2+b^2=c^2\), треугольник прямоугольный
-Высота к гипотенузе через проекции | \(h_c = \sqrt{a_c \cdot b_c}\)
-Катет через гипотенузу и проекцию | \(a = \sqrt{c \cdot a_c}\)
-Пифагоровы тройки | \((3;4;5)\), \((5;12;13)\), \((7;24;25)\), \((8;15;17)\)
-
-=== 8 | Геометрия | Подобие треугольников
-Первый признак подобия | По двум углам
-Второй признак подобия | По двум сторонам и углу между ними
-Третий признак подобия | По трём сторонам
-Отношение периметров подобных треугольников | Равно \(k\)
-Отношение площадей подобных треугольников | Равно \(k^2\)
-Свойство биссектрисы треугольника | \(\dfrac{BK}{KA} = \dfrac{BC}{AC}\)
-Обобщённая теорема Фалеса | Параллельные прямые отсекают пропорциональные отрезки
-Средняя линия треугольника | Параллельна основанию, равна его половине
-
-=== 8 | Геометрия | Окружность
-Касательная к окружности | Перпендикулярна радиусу в точке касания
-Признак касательной | Прямая через точку окружности, перпендикулярная радиусу — касательная
-Отрезки касательных из одной точки | Равны
-Теорема о пересекающихся хордах | \(AK \cdot KB = CK \cdot KD\)
-Теорема о касательной и секущей | \(AB^2 = AC \cdot AD\)
-Вписанный угол | Равен половине центрального, опирающегося на ту же дугу
-Вписанный угол, опирающийся на диаметр | \(90^\circ\)
-Угол между пересекающимися хордами | \(\alpha = \dfrac{1}{2}(\beta+\gamma)\)
-Внешнее касание окружностей | \(d = R + r\)
-Внутреннее касание окружностей | \(d = R - r\)
-
-=== 8 | Геометрия | Симметрия
-Центральная симметрия относительно точки \(O\) | \(O\) — середина \(AA_1\)
-Осевая симметрия относительно прямой \(l\) | \(l\) — серединный перпендикуляр к \(AA_1\)
-Центр симметрии параллелограмма | Точка пересечения диагоналей
-Оси симметрии квадрата | Четыре
-
-=== 9 | Алгебра | Рациональные дроби
-Основное свойство дроби | \(\dfrac{A}{B} = \dfrac{A \cdot C}{B \cdot C},\; C \neq 0\)
-\(\dfrac{A}{C} + \dfrac{B}{C} =\) | \(\dfrac{A+B}{C}\)
-\(\dfrac{A}{B} \cdot \dfrac{C}{D} =\) | \(\dfrac{AC}{BD}\)
-\(\dfrac{A}{B} : \dfrac{C}{D} =\) | \(\dfrac{AD}{BC}\)
-Условие равенства дроби нулю | \(\dfrac{A}{B} = 0 \Leftrightarrow A=0,\; B \neq 0\)
-
-=== 9 | Алгебра | Метод интервалов
-Метод интервалов | Найти нули числителя и знаменателя; отметить на оси; расставить знаки; записать промежутки
-Нули знаменателя | Всегда выколоты
-Правило чётности множителя | При чётной кратности знак не меняется, при нечётной — меняется
-Формула длины отрезка | \(d = \sqrt{(x_2-x_1)^2 + (y_2-y_1)^2}\)
-Уравнение окружности с центром \((x_0; y_0)\) | \((x-x_0)^2 + (y-y_0)^2 = R^2\)
-
-=== 9 | Алгебра | Чётность и преобразования графиков
-Функция чётная | \(f(-x) = f(x)\); график симметричен относительно Oy
-Функция нечётная | \(f(-x) = -f(x)\); график симметричен относительно начала координат
-График \(y = f(x) + b\) | Сдвиг \(y=f(x)\) вверх на \(b\)
-График \(y = f(x-a)\) | Сдвиг вправо на \(a\)
-
-=== 9 | Алгебра | Арифметическая прогрессия
-Формула n-го члена | \(a_n = a_1 + (n-1)d\)
-Разность прогрессии | \(d = a_{n+1} - a_n\)
-Характеристическое свойство | \(a_n = \dfrac{a_{n-1}+a_{n+1}}{2}\)
-Сумма n первых членов | \(S_n = \dfrac{n(a_1+a_n)}{2}\)
-Сумма через \(a_1\) и \(d\) | \(S_n = \dfrac{n(2a_1+(n-1)d)}{2}\)
-
-=== 9 | Алгебра | Геометрическая прогрессия
-Формула n-го члена | \(b_n = b_1 \cdot q^{n-1}\)
-Знаменатель прогрессии | \(q = \dfrac{b_{n+1}}{b_n}\)
-Характеристическое свойство | \(b_n^2 = b_{n-1} \cdot b_{n+1}\)
-Сумма при \(q \neq 1\) | \(S_n = \dfrac{b_1(q^n-1)}{q-1}\)
-Сумма бесконечно убывающей | \(S = \dfrac{b_1}{1-q},\; |q| < 1\)
-
-=== 9 | Геометрия | Синус, косинус, тангенс и котангенс острого угла
-Синус острого угла прямоугольного треугольника \(\sin\alpha =\)| отношение противолежащего катета к гипотенузе
-Косинус острого угла прямоугольного треугольника \(\cos\alpha =\) | отношение прилежащего катета к гипотенузе
-Тангенс острого угла прямоугольного треугольника \(\operatorname{tg}\alpha =\)| отношение противолежащего катета к прилежащему
-Котангенс острого угла прямоугольного треугольника \(\operatorname{ctg}\alpha =\)| отношение прилежащего катета к противолежащему
-
-=== 9 | Геометрия | Решение прямоугольного треугольника
-Решение прямоугольного треугольника | нахождение неизвестных сторон и углов прямоугольного треугольника
-
-=== 9 | Геометрия | Тригонометрические формулы
-\(\sin^2\alpha + \cos^2\alpha =\) | \(1\)
-Выражение синуса через косинус \(\sin\alpha =\) | \(\sqrt{1 - \cos^2\alpha}\)
-Выражение косинуса через синус \(\cos\alpha =\) | \(\sqrt{1 - \sin^2\alpha}\)
-Выражение тангенса через синус и косинус \(\operatorname{tg}\alpha =\) | \(\dfrac{\sin\alpha}{\cos\alpha}\)
-Выражение котангенса через синус и косинус \(\operatorname{ctg}\alpha =\) | \(\dfrac{\cos\alpha}{\sin\alpha}\)
-Выражение тангенса через котангенс \(\operatorname{tg}\alpha =\) | \(\dfrac{1}{\operatorname{ctg}\alpha}\)
-Выражение котангенса через тангенс \(\operatorname{ctg}\alpha =\) | \(\dfrac{1}{\operatorname{tg}\alpha}\)
-
-=== 9 | Геометрия | Синус, косинус, тангенс и котангенс тупого угла
-\(\sin(180^\circ - \alpha) =\) | \(\sin\alpha\)
-\(\cos(180^\circ - \alpha) =\) | \(-\cos\alpha\)
-\(\operatorname{tg}(180^\circ - \alpha) =\) | \(-\operatorname{tg}\alpha\)
-\(\operatorname{ctg}(180^\circ - \alpha) =\) | \(-\operatorname{ctg}\alpha\)
-
-=== 9 | Геометрия | Таблица значений тригонометрических функций (углы [0°; 90°])
-\(\sin 30^\circ =\) | \(\dfrac{1}{2}\)
-\(\cos 30^\circ =\) | \(\dfrac{\sqrt{3}}{2}\)
-\(\operatorname{tg} 30^\circ =\) | \(\dfrac{\sqrt{3}}{3}\)
-\(\operatorname{ctg} 30^\circ =\) | \(\sqrt{3}\)
-\(\sin 45^\circ =\) | \(\dfrac{\sqrt{2}}{2}\)
-\(\cos 45^\circ =\) | \(\dfrac{\sqrt{2}}{2}\)
-\(\operatorname{tg} 45^\circ =\) | \(1\)
-\(\operatorname{ctg} 45^\circ =\) | \(1\)
-\(\sin 60^\circ =\) | \(\dfrac{\sqrt{3}}{2}\)
-\(\cos 60^\circ =\) | \(\dfrac{1}{2}\)
-\(\operatorname{tg} 60^\circ =\) | \(\sqrt{3}\)
-\(\operatorname{ctg} 60^\circ =\) | \(\dfrac{\sqrt{3}}{3}\)
-\(\sin x = \dfrac{1}{2}\) | \(x = 30^\circ\)
-\(\sin x = \dfrac{\sqrt{2}}{2}\) | \(x = 45^\circ\)
-\(\sin x = \dfrac{\sqrt{3}}{2}\) | \(x = 60^\circ\)
-\(\cos x = \dfrac{\sqrt{3}}{2}\) | \(x = 30^\circ\)
-\(\cos x = \dfrac{\sqrt{2}}{2}\) | \(x = 45^\circ\)
-\(\cos x = \dfrac{1}{2}\) | \(x = 60^\circ\)
-\(\operatorname{tg} x = \dfrac{\sqrt{3}}{3}\) | \(x = 30^\circ\)
-\(\operatorname{tg} x = 1\) | \(x = 45^\circ\)
-\(\operatorname{tg} x = \sqrt{3}\) | \(x = 60^\circ\)
-\(\operatorname{ctg} x = \sqrt{3}\) | \(x = 30^\circ\)
-\(\operatorname{ctg} x = 1\) | \(x = 45^\circ\)
-\(\operatorname{ctg} x = \dfrac{\sqrt{3}}{3}\) | \(x = 60^\circ\)
-\(\sin 0^\circ =\) | \(0\)
-\(\cos 0^\circ =\) | \(1\)
-\(\operatorname{tg} 0^\circ =\) | \(0\)
-\(\operatorname{ctg} 0^\circ =\) | не определено
-\(\sin 90^\circ =\) | \(1\)
-\(\cos 90^\circ =\) | \(0\)
-\(\operatorname{ctg} 90^\circ =\) | \(0\)
-\(\operatorname{tg} 90^\circ =\) | не определено
-\(\sin 180^\circ =\) | \(0\)
-\(\cos 180^\circ =\) | \(-1\)
-\(\operatorname{tg} 180^\circ =\) | \(0\)
-\(\operatorname{ctg} 180^\circ =\) | не определено
-\(\sin x = 0\) | \(x = 0^\circ;\)
-\(\cos x = 0\) | \(x = 90^\circ\)
-\(\operatorname{tg} x = 0\) | \(x = 0^\circ;\)
-\(\operatorname{ctg} x = 0\) | \(x = 90^\circ\)
-\(\sin x = 1\) | \(x = 90^\circ\)
-\(\cos x = 1\) | \(x = 0^\circ\)
-\(\cos x = -1\) | \(x = 180^\circ\)
-\(\operatorname{tg} x\) не определено | \(x = 90^\circ\)
-\(\operatorname{ctg} x\) не определено | \(x = 0^\circ\)
-
-=== 9 | Геометрия | Таблица значений тригонометрических функций (углы [90°; 180°])
-\(\sin 90^\circ =\) | \(1\)
-\(\cos 90^\circ =\) | \(0\)
-\(\operatorname{tg} 90^\circ =\) | не определено
-\(\operatorname{ctg} 90^\circ =\) | \(0\)
-\(\sin 120^\circ =\) | \(\dfrac{\sqrt{3}}{2}\)
-\(\cos 120^\circ =\) | \(-\dfrac{1}{2}\)
-\(\operatorname{tg} 120^\circ =\) | \(-\sqrt{3}\)
-\(\operatorname{ctg} 120^\circ =\) | \(-\dfrac{\sqrt{3}}{3}\)
-\(\sin 135^\circ =\) | \(\dfrac{\sqrt{2}}{2}\)
-\(\cos 135^\circ =\) | \(-\dfrac{\sqrt{2}}{2}\)
-\(\operatorname{tg} 135^\circ =\) | \(-1\)
-\(\operatorname{ctg} 135^\circ =\) | \(-1\)
-\(\sin 150^\circ =\) | \(\dfrac{1}{2}\)
-\(\cos 150^\circ =\) | \(-\dfrac{\sqrt{3}}{2}\)
-\(\operatorname{tg} 150^\circ =\) | \(-\dfrac{\sqrt{3}}{3}\)
-\(\operatorname{ctg} 150^\circ =\) | \(-\sqrt{3}\)
-\(\sin 180^\circ =\) | \(0\)
-\(\cos 180^\circ =\) | \(-1\)
-\(\operatorname{tg} 180^\circ =\) | \(0\)
-\(\operatorname{ctg} 180^\circ =\) | не определено
-\(\sin x = \dfrac{\sqrt{3}}{2}\) | \(x = 120^\circ\)
-\(\sin x = \dfrac{\sqrt{2}}{2}\) | \(x = 135^\circ\)
-\(\sin x = \dfrac{1}{2}\) | \(x = 150^\circ\)
-\(\sin x = 0\) | \(x = 180^\circ\)
-\(\cos x = -\dfrac{1}{2}\) | \(x = 120^\circ\)
-\(\cos x = -\dfrac{\sqrt{2}}{2}\) | \(x = 135^\circ\)
-\(\cos x = -\dfrac{\sqrt{3}}{2}\) | \(x = 150^\circ\)
-\(\cos x = -1\) | \(x = 180^\circ\)
-\(\operatorname{tg} x = -\sqrt{3}\) | \(x = 120^\circ\)
-\(\operatorname{tg} x = -1\) | \(x = 135^\circ\)
-\(\operatorname{tg} x = -\dfrac{\sqrt{3}}{3}\) | \(x = 150^\circ\)
-\(\operatorname{tg} x = 0\) | \(x = 180^\circ\)
-\(\operatorname{ctg} x = -\dfrac{\sqrt{3}}{3}\) | \(x = 120^\circ\)
-\(\operatorname{ctg} x = -1\) | \(x = 135^\circ\)
-\(\operatorname{ctg} x = -\sqrt{3}\) | \(x = 150^\circ\)
-\(\operatorname{ctg} x\) не определён | \(x = 180^\circ\)
-
-=== 9 | Геометрия | Вписанные и описанные окружности
-Площадь через \(r\) и полупериметр \(p\) | \(S = pr\)
-Радиус вписанной в прямоугольный треугольник | \(r = \dfrac{a+b-c}{2}\)
-Радиус описанной вокруг прямоугольного | \(R = \dfrac{c}{2}\)
-Центр вписанной окружности — пересечение | Биссектрис
-Центр описанной окружности — пересечение | Серединных перпендикуляров
-Свойство вписанного четырёхугольника | Сумма противоположных углов \(180^\circ\)
-Свойство описанного четырёхугольника | \(AB+CD=BC+AD\)
-Формула Эйлера | \(d^2 = R^2 - 2Rr\)
-
-=== 9 | Геометрия | Теорема синусов и косинусов
-Теорема синусов | \(\dfrac{a}{\sin\alpha} = \dfrac{b}{\sin\beta} = \dfrac{c}{\sin\gamma} = 2R\)
-Теорема косинусов | \(a^2 = b^2+c^2-2bc\cos\alpha\)
-Следствие из теоремы синусов | \(S = \dfrac{abc}{4R}\)
-Выражение косинуса | \(\cos\alpha = \dfrac{b^2+c^2-a^2}{2bc}\)
-Вид при \(a^2 < b^2+c^2\) | Остроугольный
-Вид при \(a^2 = b^2+c^2\) | Прямоугольный
-Вид при \(a^2 > b^2+c^2\) | Тупоугольный
-Формула медианы к стороне \(a\) | \(m_a = \dfrac{1}{2}\sqrt{2b^2+2c^2-a^2}\)
-Формула Герона | \(S = \sqrt{p(p-a)(p-b)(p-c)}\)
-Теорема Птолемея | \(d_1 d_2 = ac+bd\)
-
-=== 9 | Геометрия | Правильные многоугольники
-Внутренний угол правильного n-угольника | \(\alpha = \dfrac{180^\circ(n-2)}{n}\)
-Сторона через радиус описанной | \(a = 2R \sin\dfrac{180^\circ}{n}\)
-Площадь правильного n-угольника | \(S = \dfrac{n}{2} R^2 \sin\dfrac{360^\circ}{n}\)
-Правильный треугольник: \(h, S, R, r\) | \(h = \dfrac{a\sqrt{3}}{2},\; S = \dfrac{a^2\sqrt{3}}{4},\; R = \dfrac{a}{\sqrt{3}},\; r = \dfrac{a}{2\sqrt{3}}\)
-
-=== 9 | Геометрия | Длина окружности и площадь круга
-Длина окружности | \(C = 2\pi R\)
-Площадь круга | \(S = \pi R^2\)
-Длина дуги в \(n^\circ\) | \(l = \dfrac{\pi R}{180^\circ} \cdot n^\circ\)
-Площадь сектора | \(S = \dfrac{\pi R^2}{360^\circ} \cdot n^\circ = \dfrac{1}{2} l R\)
-
-=== 10 | Алгебра | Тригонометрические тождества
-\(\sin^2\alpha + \cos^2\alpha =\) | \(1\)
-\(1 + \operatorname{tg}^2\alpha =\) | \(\dfrac{1}{\cos^2\alpha}\)
-\(1 + \operatorname{ctg}^2\alpha =\) | \(\dfrac{1}{\sin^2\alpha}\)
-\(\operatorname{tg}\alpha \cdot \operatorname{ctg}\alpha =\) | \(1\)
-\(\cos(-\alpha) =\) | \(\cos\alpha\)
-\(\sin(-\alpha) =\) | \(-\sin\alpha\)
-
-=== 10 | Алгебра | Формулы приведения
-\(\sin(\pi-\alpha) =\) | \(\sin\alpha\)
-\(\cos(\pi-\alpha) =\) | \(-\cos\alpha\)
-\(\sin(\pi+\alpha) =\) | \(-\sin\alpha\)
-\(\cos(\pi+\alpha) =\) | \(-\cos\alpha\)
-\(\sin\left(\dfrac{\pi}{2}-\alpha\right) =\) | \(\cos\alpha\)
-\(\cos\left(\dfrac{\pi}{2}-\alpha\right) =\) | \(\sin\alpha\)
-\(\sin\left(\dfrac{\pi}{2}+\alpha\right) =\) | \(\cos\alpha\)
-\(\cos\left(\dfrac{\pi}{2}+\alpha\right) =\) | \(-\sin\alpha\)
-
-=== 10 | Алгебра | Формулы сложения и двойного угла
-\(\sin(\alpha+\beta) =\) | \(\sin\alpha \cos\beta + \cos\alpha \sin\beta\)
-\(\sin(\alpha-\beta) =\) | \(\sin\alpha \cos\beta - \cos\alpha \sin\beta\)
-\(\cos(\alpha+\beta) =\) | \(\cos\alpha \cos\beta - \sin\alpha \sin\beta\)
-\(\cos(\alpha-\beta) =\) | \(\cos\alpha \cos\beta + \sin\alpha \sin\beta\)
-\(\operatorname{tg}(\alpha+\beta) =\) | \(\dfrac{\operatorname{tg}\alpha + \operatorname{tg}\beta}{1 - \operatorname{tg}\alpha \operatorname{tg}\beta}\)
-\(\sin 2\alpha =\) | \(2\sin\alpha \cos\alpha\)
-\(\cos 2\alpha =\) | \(\cos^2\alpha - \sin^2\alpha = 1 - 2\sin^2\alpha = 2\cos^2\alpha - 1\)
-
-=== 10 | Алгебра | Сумма в произведение
-\(\sin x + \sin y =\) | \(2 \sin\dfrac{x+y}{2} \cos\dfrac{x-y}{2}\)
-\(\sin x - \sin y =\) | \(2 \sin\dfrac{x-y}{2} \cos\dfrac{x+y}{2}\)
-\(\cos x + \cos y =\) | \(2 \cos\dfrac{x+y}{2} \cos\dfrac{x-y}{2}\)
-\(\cos x - \cos y =\) | \(-2 \sin\dfrac{x-y}{2} \sin\dfrac{x+y}{2}\)
-
-=== 10 | Алгебра | Тригонометрические уравнения
-\(\sin x = a,\; |a|<1\) | \(x = (-1)^n \arcsin a + \pi n\)
-\(\cos x = a,\; |a|<1\) | \(x = \pm\arccos a + 2\pi n\)
-\(\operatorname{tg} x = a\) | \(x = \operatorname{arctg} a + \pi n\)
-\(\operatorname{ctg} x = a\) | \(x = \operatorname{arcctg} a + \pi n\)
-\(\arcsin a \in\) | \(\left[-\dfrac{\pi}{2};\dfrac{\pi}{2}\right]\)
-\(\arccos a \in\) | \([0;\pi]\)
-
-=== 10 | Алгебра | Свойства тригонометрических функций
-Область значений \(y=\sin x\) | \([-1;1]\)
-Область значений \(y=\cos x\) | \([-1;1]\)
-Период \(y=\sin x\) и \(y=\cos x\) | \(2\pi\)
-Период \(y=\operatorname{tg} x\) и \(y=\operatorname{ctg} x\) | \(\pi\)
-Нули \(\sin x\) | \(x = \pi n\)
-
-=== 10 | Алгебра | Корень n-й степени
-\(\sqrt[n]{ab} =\) | \(\sqrt[n]{a} \cdot \sqrt[n]{b}\) (для чётного \(n\): \(a, b \geq 0\))
-\(\sqrt[n]{\dfrac{a}{b}} =\) | \(\dfrac{\sqrt[n]{a}}{\sqrt[n]{b}},\; a \geq 0,\; b > 0\)
-\(\sqrt[k]{\sqrt[n]{a}} =\) | \(\sqrt[nk]{a}\)
-\(\sqrt[n]{a^n} =\) (n чётное) | \(|a|\)
-\(\sqrt[n]{a^n} =\) (n нечётное) | \(a\)
-
-=== 10 | Алгебра | Производная
-\((C)' =\) | \(0\)
-\((x^n)' =\) | \(n x^{n-1}\)
-\((kx+b)' =\) | \(k\)
-\(\left(\dfrac{1}{x}\right)' =\) | \(-\dfrac{1}{x^2}\)
-\((U \pm V)' =\) | \(U' \pm V'\)
-\((UV)' =\) | \(U'V + UV'\)
-\(\left(\dfrac{U}{V}\right)' =\) | \(\dfrac{U'V - UV'}{V^2}\)
-Уравнение касательной в точке \(x_0\) | \(y = f(x_0) + f'(x_0)(x - x_0)\)
-
-=== 10 | Геометрия | Параллельность в пространстве
-Признак параллельности прямой и плоскости | Прямая вне плоскости параллельна прямой в этой плоскости
-Признак параллельности плоскостей | Две пересекающиеся прямые одной плоскости параллельны двум прямым другой
-Линии пересечения параллельных плоскостей третьей | Параллельны
-
-=== 10 | Геометрия | Перпендикулярность в пространстве
-Признак перпендикулярности прямой и плоскости | Прямая перпендикулярна двум пересекающимся прямым плоскости
-Теорема о трёх перпендикулярах | Прямая в плоскости ⟂ проекции наклонной ⇒ ⟂ самой наклонной
-Теорема о трёх косинусах | \(\cos\alpha \cdot \cos\beta = \cos\gamma\)
-Квадрат диагонали прямоугольного параллелепипеда | \(d^2 = a^2+b^2+c^2\)
-Признак перпендикулярности плоскостей | Плоскость содержит прямую ⟂ другой плоскости
-
-=== 10 | Геометрия | Координаты и векторы
-Расстояние между точками \(A\) и \(B\) | \(AB = \sqrt{(x_B-x_A)^2+(y_B-y_A)^2+(z_B-z_A)^2}\)
-Координаты середины отрезка | \(x = \dfrac{x_A+x_B}{2}\) (и аналогично для \(y, z\))
-Скалярное произведение в координатах | \(\vec a \cdot \vec b = x_a x_b + y_a y_b + z_a z_b\)
-Косинус угла между векторами | \(\cos\alpha = \dfrac{\vec a \cdot \vec b}{|\vec a| \cdot |\vec b|}\)
-Условие перпендикулярности векторов | \(\vec a \cdot \vec b = 0\)
-Уравнение плоскости | \(ax+by+cz+d=0\)
-Вектор нормали к плоскости | \(\vec N(a; b; c)\)
-Расстояние от точки до плоскости | \(\dfrac{|ax_0+by_0+cz_0+d|}{\sqrt{a^2+b^2+c^2}}\)
-
-=== 11 | Алгебра | Степень с рациональным показателем
-\(a^{m/n} =\) | \(\sqrt[n]{a^m},\; a > 0\)
-\(a^m \cdot a^n =\) | \(a^{m+n}\)
-\(a^m : a^n =\) | \(a^{m-n}\)
-\((a^m)^n =\) | \(a^{mn}\)
-
-=== 11 | Алгебра | Логарифмы
-Определение логарифма | \(\log_a b = x \Leftrightarrow a^x = b\), где \(a>0,\; a \neq 1,\; b>0\)
-Основное логарифмическое тождество | \(a^{\log_a b} = b\)
-Логарифм произведения | \(\log_a(bc) = \log_a b + \log_a c\)
-Логарифм частного | \(\log_a\dfrac{b}{c} = \log_a b - \log_a c\)
-Логарифм степени | \(\log_a b^n = n \log_a b\)
-Переход к другому основанию | \(\log_a b = \dfrac{\log_c b}{\log_c a}\)
-\(\log_a 1 =\), \(\log_a a =\) | \(0,\; 1\)
-Десятичный логарифм | \(\lg b = \log_{10} b\)
-
-=== 11 | Алгебра | Показательная и логарифмическая функции
-Область значений \(y=a^x\) | \((0;+\infty)\)
-При \(a>1\) функция \(y=a^x\) | Возрастает
-При \(0<a<1\) функция \(y=a^x\) | Убывает
-Область определения \(y=\log_a x\) | \((0;+\infty)\)
-Нуль логарифмической функции | \(x=1\)
-Решение \(a^{f(x)} = a^{g(x)}\) | \(f(x) = g(x)\)
-Решение \(\log_a f = \log_a g\) | \(f = g\) и \(f > 0\)
-Показательное неравенство при \(a>1\) | \(a^f > a^g \Leftrightarrow f > g\) (знак сохраняется)
-Показательное неравенство при \(0<a<1\) | \(a^f > a^g \Leftrightarrow f < g\) (знак меняется)
-
-=== 11 | Алгебра | Производные (дополнительно)
-\((a^x)' =\) | \(a^x \ln a\)
-\((e^x)' =\) | \(e^x\)
-\((\ln x)' =\) | \(\dfrac{1}{x}\)
-\((\sin x)' =\) | \(\cos x\)
-\((\cos x)' =\) | \(-\sin x\)
-
-=== 11 | Геометрия | Призма
-Боковая поверхность прямой призмы | \(S_{бок} = P_{осн} \cdot h\)
-Боковая поверхность произвольной призмы | \(S_{бок} = P_{перп} \cdot l\)
-Объём призмы | \(V = S_{осн} \cdot h\)
-Объём прямоугольного параллелепипеда | \(V = abc\)
-Объём куба с ребром \(a\) | \(V = a^3\)
-
-=== 11 | Геометрия | Цилиндр
-Боковая поверхность | \(S_{бок} = 2\pi r h\)
-Полная поверхность | \(S_{полн} = 2\pi r(h+r)\)
-Объём | \(V = \pi r^2 h\)
-
-=== 11 | Геометрия | Пирамида
-Боковая поверхность правильной пирамиды | \(S_{бок} = \dfrac{1}{2} P_{осн} \cdot l\)
-Объём пирамиды | \(V = \dfrac{1}{3} S_{осн} \cdot H\)
-Объём усечённой пирамиды | \(V = \dfrac{1}{3} H (S_1+S_2+\sqrt{S_1 S_2})\)
-Отношение объёмов при параллельном сечении | \(\dfrac{V_{верх}}{V_{полн}} = \left(\dfrac{h_{верх}}{H}\right)^3\)
-
-=== 11 | Геометрия | Конус
-Боковая поверхность | \(S_{бок} = \pi r l\)
-Полная поверхность | \(S_{полн} = \pi r(r+l)\)
-Объём | \(V = \dfrac{1}{3}\pi r^2 h\)
-Объём усечённого конуса | \(V = \dfrac{1}{3} \pi h (r_1^2+r_2^2+r_1 r_2)\)
-Развёртка: центральный угол | \(\varphi = 360^\circ \cdot \dfrac{r}{l}\)
-
-=== 11 | Геометрия | Сфера и шар
-Площадь сферы | \(S = 4\pi R^2\)
-Объём шара | \(V = \dfrac{4}{3}\pi R^3\)
-Радиус сечения сферы | \(r = \sqrt{R^2-d^2}\)
-Площадь сферического пояса высоты \(h\) | \(S = 2\pi R h\)
-Объём шарового сегмента высоты \(h\) | \(V = \dfrac{1}{3}\pi h^2 (3R-h)\)
-Объём шарового слоя высоты \(h\) | \(V = \dfrac{1}{6}\pi h (3r_1^2+3r_2^2+h^2)\)
-
-=== 11 | Геометрия | Правильные многогранники
-Теорема Эйлера | \(Г + В - Р = 2\)
-Пять правильных многогранников | Тетраэдр, куб, октаэдр, додекаэдр, икосаэдр
-Куб: граней/рёбер/вершин | \(6 / 12 / 8\)
-Радиус описанной сферы около куба | \(R = \dfrac{a\sqrt{3}}{2}\)
-Радиус вписанной сферы в куб | \(r = \dfrac{a}{2}\)
-Радиус описанной сферы около тетраэдра | \(R = \dfrac{a\sqrt{6}}{4}\)
-Радиус вписанной сферы в тетраэдр | \(r = \dfrac{a\sqrt{6}}{12}\)
+=== Четырехугольник | Геометрия | Площадь
+Формула площади четырехугольника через диагонали | \(S = \dfrac{1}{2}d1d2\sin\gamma\), где \(d1, d2\) — диагонали, \(\gamma\) — угол между ними
 </script>
 
 <header>
-  <button class="icon-btn hamburger" id="hamburger" aria-label="Меню">☰</button>
+  <button class="icon-btn hamburger" id="hamburger" aria-label="Меню">
+    <svg viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+  </button>
   <div class="brand">
     <a href="https://drapejnik.github.io/epallaxis/index.html">
       <h1>EPALLAXIS <span class="accent-word">formulas</span></h1>
@@ -761,27 +254,26 @@ header{position:sticky;top:0;left:0;right:0;width:100%;z-index:200;background:rg
     <p>Ἐπαλλάσσω — приводить систему в порядок</p>
   </div>
   <div class="header-actions">
-    <div class="mode-switch" id="modeSwitch">
-      <button data-mode="view" class="active">📖 <span class="label">Просмотр</span></button>
-      <button data-mode="test">🎯 <span class="label">Проверка</span></button>
-    </div>
-    <button class="icon-btn" id="editBtn" title="Редактор формул">✏️</button>
-    <button class="icon-btn" id="helpBtn" title="Справка">?</button>
+    <button class="icon-btn" id="helpBtn" title="Справка">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+    </button>
   </div>
 </header>
 
 <div class="app">
   <aside class="sidebar" id="sidebar">
     <div class="sb-top">
-      <div class="search-wrap" id="searchWrap">
-        <span class="s-icon">🔍</span>
-        <input type="text" id="searchInput" placeholder="Поиск темы или формулы..." autocomplete="off">
-        <button class="s-clear" id="searchClear" aria-label="Очистить">✕</button>
+      <div class="search-wrap" id="topicSearchWrap">
+        <span class="s-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+        <input type="text" id="searchTopic" placeholder="Поиск темы..." autocomplete="off">
+        <button class="s-clear" id="searchTopicClear" aria-label="Очистить">✕</button>
+      </div>
+      <div class="search-wrap" id="formulaSearchWrap">
+        <span class="s-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+        <input type="text" id="searchFormula" placeholder="Поиск формулы..." autocomplete="off">
+        <button class="s-clear" id="searchFormulaClear" aria-label="Очистить">✕</button>
       </div>
       <div class="presets">
-        <button class="preset" data-preset="base">7–8<br>класс</button>
-        <button class="preset" data-preset="exam">9<br>класс</button>
-        <button class="preset" data-preset="senior">10–11<br>класс</button>
         <button class="preset" data-preset="alg">Только<br>алгебра</button>
         <button class="preset" data-preset="geom">Только<br>геометрия</button>
         <button class="preset" data-preset="all">Всё<br>сразу</button>
@@ -847,9 +339,10 @@ header{position:sticky;top:0;left:0;right:0;width:100%;z-index:200;background:rg
     <div class="modal-section">
       <h4>📖 Просмотр</h4>
       <ul class="modal-list">
-        <li>Пресеты сверху — быстрые наборы (7–8 класс, 9, 10–11 и т.д.)</li>
-        <li>Дерево слева — раскрой группу и отметь темы</li>
+        <li>Пресеты сверху — быстрые наборы</li>
+        <li>Дерево слева — раскрой группу и отметь темы (или кликни чекбокс группы)</li>
         <li>Чипы над списком — показывают выбранное; клик = переход, ✕ = удалить</li>
+        <li>Поиск умный — ищет по корням слов (площадь = площади) и учитывает категории</li>
       </ul>
     </div>
     <div class="modal-section">
@@ -859,24 +352,6 @@ header{position:sticky;top:0;left:0;right:0;width:100%;z-index:200;background:rg
         <li><b>← →</b> — переключение между вопросами</li>
         <li>Точки под прогрессом — клик = переход к любому вопросу</li>
         <li>Порядок вопросов всегда случайный</li>
-      </ul>
-    </div>
-    <div class="modal-section">
-      <h4>✏️ Редактирование</h4>
-      <ul class="modal-list">
-        <li>При наведении на формулу появляются ✏️ (изменить) и 📋 (скопировать)</li>
-        <li>Внизу каждой темы — «+ Добавить формулу»</li>
-        <li>Кнопка ✏️ в шапке — массовый редактор всех данных</li>
-        <li>Всё под паролем</li>
-      </ul>
-    </div>
-    <div class="modal-section">
-      <h4>📤 Публикация для всех</h4>
-      <ul class="modal-list">
-        <li>Кнопка <b>⚙ GitHub</b> в редакторе — ввести токен один раз</li>
-        <li><b>💾 Сохранить локально</b> — черновик у тебя</li>
-        <li><b>📤 Опубликовать для всех</b> — улетает на GitHub</li>
-        <li>Через 1–2 минуты у всех свежая версия</li>
       </ul>
     </div>
     <div class="modal-section">
@@ -893,145 +368,416 @@ header{position:sticky;top:0;left:0;right:0;width:100%;z-index:200;background:rg
   </div>
 </div>
 
-<div class="modal-bg" id="editorModal">
-  <div class="modal">
-    <h2>✏️ Массовый редактор формул</h2>
-    <div class="sub">Меняй текст, сохраняй, смотри результат.</div>
-    <div class="editor-hint">
-      <b>Формат:</b> строка <code>=== 8 | Алгебра | Квадратные уравнения</code> начинает новую тему.
-      Ниже — строки <code>вопрос | ответ</code>. LaTeX в <code>\( ... \)</code>.<br>
-      <b>Добавить класс:</b> просто напиши <code>=== 6 | Алгебра | Делимость</code> — класс 6 появится автоматически.<br>
-      <b>Важно:</b> «не равно» — это <code>\neq</code> (≠), а <b>не</b> <code>\in</code> (∈).
-    </div>
-    <textarea class="editor-textarea" id="editorText" spellcheck="false"></textarea>
-    <div class="editor-status" id="editorStatus"></div>
-    <div class="editor-row">
-      <button class="primary" id="editorSave">💾 Сохранить локально</button>
-      <button class="primary" id="editorPublish" style="background:#3cc490;">📤 Опубликовать для всех</button>
-      <button id="editorExport">⬇️ Скачать .txt</button>
-      <button id="editorImport">⬆️ Загрузить .txt</button>
-      <button id="editorGithub">⚙ GitHub</button>
-      <button id="editorChangePwd">🔑 Сменить пароль</button>
-      <button class="danger" id="editorReset">↺ Сбросить к встроенным</button>
-      <button id="editorClose">Закрыть</button>
-    </div>
-    <input type="file" id="editorFile" accept=".txt,text/plain" style="display:none">
-  </div>
-</div>
-
-<div class="modal-bg" id="passwordModal">
-  <div class="modal" style="max-width:440px;">
-    <h2>🔒 Доступ к редактору</h2>
-    <div class="sub" id="pwdSub">Введите пароль, чтобы редактировать формулы.</div>
-    <div id="pwdLoginForm">
-      <input type="password" id="pwdLoginInput" class="editor-textarea" style="min-height:auto;padding:12px 14px;font-size:15px;" placeholder="Пароль" autocomplete="off">
-      <div class="editor-status" id="pwdLoginStatus"></div>
-      <div class="editor-row">
-        <button class="primary" id="pwdLoginBtn">Войти</button>
-        <button id="pwdLoginCancel">Отмена</button>
-      </div>
-    </div>
-    <div id="pwdChangeForm" style="display:none;">
-      <input type="password" id="pwdOld" class="editor-textarea" style="min-height:auto;padding:12px 14px;font-size:15px;margin-bottom:8px;" placeholder="Старый пароль" autocomplete="off">
-      <input type="password" id="pwdNew" class="editor-textarea" style="min-height:auto;padding:12px 14px;font-size:15px;margin-bottom:8px;" placeholder="Новый пароль" autocomplete="off">
-      <input type="password" id="pwdNew2" class="editor-textarea" style="min-height:auto;padding:12px 14px;font-size:15px;" placeholder="Повторите новый пароль" autocomplete="off">
-      <div class="editor-status" id="pwdChangeStatus"></div>
-      <div class="editor-row">
-        <button class="primary" id="pwdChangeBtn">Сменить пароль</button>
-        <button id="pwdChangeCancel">Отмена</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal-bg" id="githubModal">
-  <div class="modal" style="max-width:520px;">
-    <h2>⚙ Настройки GitHub</h2>
-    <div class="sub">Токен нужен, чтобы публиковать изменения. Хранится в браузере этого устройства.</div>
-    <label style="display:block;font-size:11px;font-weight:700;letter-spacing:1.2px;color:var(--accent);text-transform:uppercase;margin-bottom:6px;">GitHub token</label>
-    <input type="password" id="ghToken" class="editor-textarea" style="min-height:auto;padding:12px 14px;font-size:13px;" placeholder="github_pat_..." autocomplete="off">
-    <label style="display:block;font-size:11px;font-weight:700;letter-spacing:1.2px;color:var(--accent);text-transform:uppercase;margin:14px 0 6px;">Owner / Repo</label>
-    <input type="text" id="ghRepo" class="editor-textarea" style="min-height:auto;padding:12px 14px;font-size:13px;" value="Drapejnik/epallaxis" autocomplete="off">
-    <label style="display:block;font-size:11px;font-weight:700;letter-spacing:1.2px;color:var(--accent);text-transform:uppercase;margin:14px 0 6px;">Файл в репозитории</label>
-    <input type="text" id="ghPath" class="editor-textarea" style="min-height:auto;padding:12px 14px;font-size:13px;" value="formulas.html" autocomplete="off">
-    <label style="display:block;font-size:11px;font-weight:700;letter-spacing:1.2px;color:var(--accent);text-transform:uppercase;margin:14px 0 6px;">Ветка</label>
-    <input type="text" id="ghBranch" class="editor-textarea" style="min-height:auto;padding:12px 14px;font-size:13px;" value="main" autocomplete="off">
-    <div class="editor-status" id="ghStatus"></div>
-    <div class="editor-row">
-      <button class="primary" id="ghSave">💾 Сохранить настройки</button>
-      <button class="danger" id="ghClear">🗑 Забыть токен</button>
-      <button id="ghClose">Закрыть</button>
-    </div>
-  </div>
-</div>
-
 <script>
 const DATA_ID='dataSource';
-const LS_DATA='epallaxis_data_v1';
-const LS_SEL='epallaxis_sel_v1';
-const LS_OPEN='epallaxis_open_v1';
-const LS_PWD='epallaxis_pwd_hash';
 const SUBJ_MAP={'алгебра':'algebra','геометрия':'geometry'};
 const SUBJ_LBL={algebra:'Алгебра',geometry:'Геометрия'};
-const DEFAULT_PWD_HASH='c5974e64';
-const GH_KEY='epallaxis_github_cfg';
 
-const state={DB:{},mode:'view',search:'',selected:new Set(),openGroups:new Set(),testQueue:[],testIdx:0,testRevealed:false,editingTopic:null,editingIdx:-1,editingNew:false,_pendingEdit:null};
+// SVG Icons
+const SVG_COPY = '<svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>';
+const SVG_CHECK = '<svg viewBox="0 0 24 24" style="stroke:var(--accent)"><polyline points="20 6 9 17 4 12"></polyline></svg>';
 
-/* GitHub module */
-function ghGetCfg(){try{return JSON.parse(localStorage.getItem(GH_KEY)||'{}')}catch(e){return{}}}
-function ghSetCfg(c){try{localStorage.setItem(GH_KEY,JSON.stringify(c))}catch(e){}}
-function ghClearCfg(){try{localStorage.removeItem(GH_KEY)}catch(e){}}
-function b64encodeUtf8(str){const bytes=new TextEncoder().encode(str);let bin='';const CH=8192;for(let i=0;i<bytes.length;i+=CH){bin+=String.fromCharCode.apply(null,bytes.subarray(i,i+CH))}return btoa(bin)}
-function b64decodeUtf8(b64){const clean=b64.replace(/\s/g,'');const bin=atob(clean);const bytes=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)bytes[i]=bin.charCodeAt(i);return new TextDecoder().decode(bytes)}
-function ghOpenSettings(){const c=ghGetCfg();document.getElementById('ghToken').value=c.token||'';document.getElementById('ghRepo').value=c.repo||'Drapejnik/epallaxis';document.getElementById('ghPath').value=c.path||'formulas.html';document.getElementById('ghBranch').value=c.branch||'main';document.getElementById('ghStatus').textContent='';document.getElementById('ghStatus').className='editor-status';document.getElementById('githubModal').classList.add('active')}
-function ghCloseSettings(){document.getElementById('githubModal').classList.remove('active')}
-function ghSaveSettings(){const token=document.getElementById('ghToken').value.trim();const repo=document.getElementById('ghRepo').value.trim();const path=document.getElementById('ghPath').value.trim();const branch=document.getElementById('ghBranch').value.trim()||'main';if(!token||!repo||!path){const s=document.getElementById('ghStatus');s.textContent='✗ Заполни все поля';s.className='editor-status err';return}ghSetCfg({token,repo,path,branch});const s=document.getElementById('ghStatus');s.textContent='✓ Настройки сохранены';s.className='editor-status ok';setTimeout(ghCloseSettings,700)}
-async function ghPublish(){const c=ghGetCfg();if(!c.token||!c.repo||!c.path){ghOpenSettings();return}const status=document.getElementById('editorStatus');status.textContent='⏳ Публикую...';status.className='editor-status';const apiUrl='https://api.github.com/repos/'+c.repo+'/contents/'+c.path;const headers={'Authorization':'Bearer '+c.token,'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'};try{const getResp=await fetch(apiUrl+'?ref='+encodeURIComponent(c.branch),{headers});if(!getResp.ok)throw new Error('Не удалось прочитать файл: '+getResp.status);const data=await getResp.json();const sha=data.sha;const fileContent=b64decodeUtf8(data.content);const newSource=getEffectiveSource().trim();const re=/(<script\s+type="text\/plain"\s+id="dataSource"\s*>)([\s\S]*?)(<\/script>)/;if(!re.test(fileContent))throw new Error('В файле не найден блок dataSource');const updated=fileContent.replace(re,(m,p1,p2,p3)=>p1+'\n'+newSource+'\n'+p3);const putBody={message:'Обновление формул через EPALLAXIS',content:b64encodeUtf8(updated),sha:sha,branch:c.branch};const putResp=await fetch(apiUrl,{method:'PUT',headers:Object.assign({'Content-Type':'application/json'},headers),body:JSON.stringify(putBody)});if(!putResp.ok){const err=await putResp.json().catch(()=>({}));throw new Error('Commit error: '+putResp.status+' '+(err.message||''))}status.textContent='✓ Опубликовано! GitHub Pages обновится через 1–2 мин.';status.className='editor-status ok'}catch(e){status.textContent='✗ '+e.message;status.className='editor-status err';console.error(e)}}
-async function ghPullLatest(){const c=ghGetCfg();if(!c.repo||!c.path)return;const branch=c.branch||'main';const raw='https://raw.githubusercontent.com/'+c.repo+'/'+branch+'/'+c.path+'?t='+Date.now();try{const r=await fetch(raw,{cache:'no-store'});if(!r.ok)return;const text=await r.text();const m=text.match(/<script\s+type="text\/plain"\s+id="dataSource"\s*>([\s\S]*?)<\/script>/);if(!m)return;const remote=m[1].trim();if(!remote)return;const localOverride=localStorage.getItem('epallaxis_data_v1');if(!localOverride){try{localStorage.setItem('epallaxis_data_v1',remote)}catch(e){}reloadDB();renderAll()}}catch(e){}}
+// Иконка Билла Шифра
+const SVG_EMPTY = `
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <!-- Треугольное тело с закругленными углами -->
+  <path d="M50 15 L88 85 L12 85 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+  <!-- Цилиндр (шляпа) -->
+  <path d="M38 15 L41 3 L59 3 L62 15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M30 15 Q50 10 70 15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Глаз -->
+  <ellipse cx="50" cy="50" rx="8" ry="13" fill="none" stroke="currentColor" stroke-width="2.5"/>
+  <!-- Зрачок (неоновый акцент) -->
+  <line x1="50" y1="39" x2="50" y2="61" stroke="var(--accent)" stroke-width="3.5" stroke-linecap="round" style="filter: drop-shadow(0 0 5px var(--accent))"/>
+  <!-- Бабочка -->
+  <path d="M50 80 L32 72 L32 84 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M50 80 L68 72 L68 84 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+  <circle cx="50" cy="80" r="2.5" fill="currentColor"/>
+  <!-- Левая рука (в бок) -->
+  <path d="M 26 50 L 12 62 L 24 72" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Правая рука и трость -->
+  <path d="M 74 50 L 88 62 L 78 72" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 84 92 L 84 62 C 84 50 72 50 72 58" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Ноги -->
+  <path d="M 38 85 L 32 96 L 24 96" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 62 85 L 68 96 L 76 96" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Кирпичный узор -->
+  <line x1="28" y1="75" x2="72" y2="75" stroke="currentColor" stroke-width="1.5" opacity="0.3" stroke-dasharray="4 3"/>
+  <line x1="22" y1="80" x2="78" y2="80" stroke="currentColor" stroke-width="1.5" opacity="0.3" stroke-dasharray="4 3"/>
+</svg>`;
 
-/* Password */
-function hashPassword(str){let h=5381;for(let i=0;i<str.length;i++){h=((h<<5)+h+str.charCodeAt(i))>>>0}return h.toString(16).padStart(8,'0')}
-function getStoredPwdHash(){try{return localStorage.getItem(LS_PWD)||DEFAULT_PWD_HASH}catch(e){return DEFAULT_PWD_HASH}}
-function setStoredPwdHash(h){try{if(h===DEFAULT_PWD_HASH)localStorage.removeItem(LS_PWD);else localStorage.setItem(LS_PWD,h)}catch(e){}}
+const state={DB:{},searchTopic:'',searchFormula:'',selected:new Set(),openGroups:new Set(),testQueue:[],testIdx:0,testRevealed:false};
 
 /* Data */
 function getInbuiltSource(){const el=document.getElementById(DATA_ID);return el?(el.textContent||''):''}
-function getEffectiveSource(){try{return localStorage.getItem(LS_DATA)||getInbuiltSource()}catch(e){return getInbuiltSource()}}
-function parseSource(raw){const db={};let current=null;const lines=raw.split(/\r?\n/);for(let i=0;i<lines.length;i++){const t=lines[i].trim();if(!t)continue;if(t.startsWith('#'))continue;if(t.startsWith('===')){const rest=t.replace(/^=+\s*/,'').replace(/\s*=+\s*$/,'');const parts=rest.split('|').map(s=>s.trim());if(parts.length<3){current=null;continue}const cls=parseInt(parts[0],10);const subjKey=SUBJ_MAP[parts[1].toLowerCase()];const topic=parts[2];if(!cls||!subjKey||!topic){current=null;continue}if(!db[cls])db[cls]={};if(!db[cls][subjKey])db[cls][subjKey]={};if(!db[cls][subjKey][topic])db[cls][subjKey][topic]=[];current=db[cls][subjKey][topic]}else if(current){const idx=t.indexOf('|');if(idx<0)continue;const q=t.slice(0,idx).trim();const a=t.slice(idx+1).trim();if(q&&a)current.push([q,a])}}return db}
-function reloadDB(){state.DB=parseSource(getEffectiveSource())}
-function getClasses(){return Object.keys(state.DB).map(Number).filter(n=>!isNaN(n)).sort((a,b)=>a-b)}
-
-function loadSelection(){try{state.selected=new Set(JSON.parse(localStorage.getItem(LS_SEL)||'[]'))}catch(e){state.selected=new Set()}try{state.openGroups=new Set(JSON.parse(localStorage.getItem(LS_OPEN)||'[]'))}catch(e){state.openGroups=new Set()}}
-function saveSelection(){try{localStorage.setItem(LS_SEL,JSON.stringify([...state.selected]));localStorage.setItem(LS_OPEN,JSON.stringify([...state.openGroups]))}catch(e){}}
+function parseSource(raw){
+  const db={};let current=null;const lines=raw.split(/\r?\n/);
+  for(let i=0;i<lines.length;i++){
+    const t=lines[i].trim();
+    if(!t)continue;
+    if(t.startsWith('#'))continue;
+    if(t.startsWith('===')){
+      const rest=t.replace(/^=+\s*/,'').replace(/\s*=+\s*$/,'');
+      const parts=rest.split('|').map(s=>s.trim());
+      if(parts.length<3){current=null;continue}
+      const cls=parts[0]; 
+      const subjKey=SUBJ_MAP[parts[1].toLowerCase()];
+      const topic=parts[2];
+      if(!cls||!subjKey||!topic){current=null;continue}
+      if(!db[cls])db[cls]={};
+      if(!db[cls][subjKey])db[cls][subjKey]={};
+      if(!db[cls][subjKey][topic])db[cls][subjKey][topic]=[];
+      current=db[cls][subjKey][topic]
+    } else if(current){
+      const idx=t.indexOf('|');
+      if(idx<0)continue;
+      const q=t.slice(0,idx).trim();
+      const a=t.slice(idx+1).trim();
+      if(q&&a)current.push([q,a])
+    }
+  }
+  return db
+}
+function reloadDB(){state.DB=parseSource(getInbuiltSource())}
+function getClasses(){
+  return Object.keys(state.DB).sort((a,b) => {
+    const numA = Number(a);
+    const numB = Number(b);
+    if (!isNaN(numA) && !isNaN(numB)) return numA - numB;
+    if (!isNaN(numA)) return -1;
+    if (!isNaN(numB)) return 1;
+    return a.localeCompare(b);
+  });
+}
 
 function keyOf(c,s,t){return c+'|'+s+'|'+t}
-function parseKey(k){const i1=k.indexOf('|');const i2=k.indexOf('|',i1+1);return{c:Number(k.slice(0,i1)),s:k.slice(i1+1,i2),t:k.slice(i2+1)}}
+function parseKey(k){const i1=k.indexOf('|');const i2=k.indexOf('|',i1+1);return{c:k.slice(0,i1),s:k.slice(i1+1,i2),t:k.slice(i2+1)}}
 function getTopic(c,s,t){return(state.DB[c]&&state.DB[c][s]&&state.DB[c][s][t])||null}
-function matchTopic(c,s,t){const q=state.search.trim().toLowerCase();if(!q)return true;if(t.toLowerCase().includes(q))return true;const arr=getTopic(c,s,t)||[];for(let i=0;i<arr.length;i++){if(arr[i][0].toLowerCase().includes(q))return true;if(arr[i][1].toLowerCase().includes(q))return true}return false}
 function countSelected(){let topics=0,formulas=0;state.selected.forEach(k=>{const{c,s,t}=parseKey(k);const arr=getTopic(c,s,t);if(arr){topics++;formulas+=arr.length}});return{topics,formulas}}
-function sortSelectedKeys(){return[...state.selected].sort((a,b)=>{const A=parseKey(a),B=parseKey(b);if(A.c!==B.c)return A.c-B.c;if(A.s!==B.s)return A.s.localeCompare(B.s);return A.t.localeCompare(B.t)})}
+function sortSelectedKeys(){
+  return [...state.selected].sort((a,b)=>{
+    const A=parseKey(a),B=parseKey(b);
+    const numA = Number(A.c), numB = Number(B.c);
+    if (!isNaN(numA) && !isNaN(numB)) {
+      if (numA !== numB) return numA - numB;
+    } else if (!isNaN(numA)) {
+      return -1;
+    } else if (!isNaN(numB)) {
+      return 1;
+    } else {
+      if (A.c !== B.c) return A.c.localeCompare(B.c);
+    }
+    if(A.s!==B.s)return A.s.localeCompare(B.s);
+    return A.t.localeCompare(B.t);
+  });
+}
 function escapeHtml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
 
-function renderTree(){const root=document.getElementById('tree');const classes=getClasses();const groups=[];classes.forEach(c=>{['algebra','geometry'].forEach(s=>{if(!state.DB[c]||!state.DB[c][s])return;const all=Object.keys(state.DB[c][s]);const filtered=all.filter(t=>matchTopic(c,s,t));if(filtered.length===0)return;groups.push({c,s,topics:filtered,all})})});if(groups.length===0){root.innerHTML='<div style="padding:24px 12px;text-align:center;color:var(--muted);font-size:13px;">Ничего не найдено</div>';return}root.innerHTML='';groups.forEach(g=>{const gKey=g.c+'|'+g.s;const isOpen=state.openGroups.has(gKey);const selCount=g.all.filter(t=>state.selected.has(keyOf(g.c,g.s,t))).length;const totCount=g.all.length;let cntClass='tree-count';if(selCount===totCount&&totCount>0)cntClass+=' full';else if(selCount>0)cntClass+=' partial';const wrap=document.createElement('div');wrap.className='tree-group';const head=document.createElement('div');head.className='tree-head'+(isOpen?' open':'');head.innerHTML='<span class="tree-arrow">▶</span><span class="tree-label">'+g.c+' · '+SUBJ_LBL[g.s]+'</span><span class="'+cntClass+'">'+selCount+'/'+totCount+'</span>';head.onclick=()=>{if(state.openGroups.has(gKey))state.openGroups.delete(gKey);else state.openGroups.add(gKey);saveSelection();renderTree()};wrap.appendChild(head);const body=document.createElement('div');body.className='tree-body';const allSel=g.topics.every(t=>state.selected.has(keyOf(g.c,g.s,t)));const actions=document.createElement('div');actions.className='tree-actions';const btn=document.createElement('button');btn.textContent=allSel?'✕ Снять группу':'✓ Выбрать группу';btn.onclick=e=>{e.stopPropagation();if(allSel)g.topics.forEach(t=>state.selected.delete(keyOf(g.c,g.s,t)));else g.topics.forEach(t=>state.selected.add(keyOf(g.c,g.s,t)));saveSelection();renderAll()};actions.appendChild(btn);body.appendChild(actions);g.topics.forEach(t=>{const k=keyOf(g.c,g.s,t);const checked=state.selected.has(k);const cnt=(getTopic(g.c,g.s,t)||[]).length;const item=document.createElement('div');item.className='tree-topic'+(checked?' checked':'');item.innerHTML='<span class="tree-check"></span><span class="tree-topic-name">'+escapeHtml(t)+'</span><span class="tree-topic-cnt">'+cnt+'</span>';item.onclick=()=>{if(state.selected.has(k))state.selected.delete(k);else state.selected.add(k);saveSelection();renderAll()};body.appendChild(item)});wrap.appendChild(body);root.appendChild(wrap)})}
+// --- УМНЫЙ ПОИСК (СТЕММИНГ) ---
+function smartSearch(text, query) {
+  if (!query || !query.trim()) return true;
+  const textLower = text.toLowerCase();
+  const queryWords = query.toLowerCase().split(/\s+/).filter(Boolean);
+  
+  return queryWords.every(qw => {
+    if (qw.length <= 3) return textLower.includes(qw);
+    const stem = qw.slice(0, 4);
+    return textLower.includes(stem);
+  });
+}
 
-function renderMain(){const main=document.getElementById('main');const{topics,formulas}=countSelected();if(state.selected.size===0){main.innerHTML='<div class="empty"><div class="empty-icon">📐</div><h3>Выбери темы слева</h3><p>Отметь галочками нужные темы — все формулы появятся здесь.</p><div class="empty-tips"><div class="tip"><b>1.</b> Раскрой группу (например «8 · Алгебра»)</div><div class="tip"><b>2.</b> Отметь нужные темы</div><div class="tip"><b>3.</b> Или нажми пресет сверху — 1 клик</div><div class="tip"><b>💡</b> Поиск ищет и по названию темы, и по формулам</div></div></div>';return}let html='';html+='<div class="crumbs"><span>Формулы</span><span class="c-sep">/</span><b>'+topics+' тем</b><span class="c-sep">·</span><span class="c-accent">'+formulas+' формул</span></div>';const keys=sortSelectedKeys();html+='<div class="chips-bar">';keys.forEach(k=>{const{c,s,t}=parseKey(k);html+='<div class="chip" data-key="'+k+'" title="'+escapeHtml(t)+'"><span class="chip-txt">'+c+' · '+(s==='algebra'?'Алг':'Геом')+' · '+escapeHtml(t)+'</span><span class="chip-x" data-remove="'+k+'">✕</span></div>'});html+='<button class="chip-clear" id="chipClear">Очистить всё</button></div>';keys.forEach((k,topicIdx)=>{const{c,s,t}=parseKey(k);const items=getTopic(c,s,t)||[];const isOpen=state.openGroups.has('T_'+k);html+='<div class="topic-block" id="block_'+topicIdx+'"><div class="topic-head'+(isOpen?' open':'')+'" data-topic-open="'+k+'"><span class="topic-arrow">▶</span><span class="topic-title">'+escapeHtml(t)+' <span class="tag">'+c+' · '+SUBJ_LBL[s]+'</span></span><span class="topic-meta">'+items.length+' формул</span></div><div class="topic-body">';items.forEach((pair,fi)=>{const q=pair[0],a=pair[1];const isEditing=(state.editingTopic===k&&state.editingIdx===fi&&!state.editingNew);if(isEditing){html+='<div class="edit-form" data-topic="'+k+'" data-idx="'+fi+'"><label>Вопрос</label><textarea class="edit-q">'+escapeHtml(q)+'</textarea><label>Ответ</label><textarea class="edit-a">'+escapeHtml(a)+'</textarea><div class="edit-actions"><button class="save" type="button">💾 Сохранить</button><button class="cancel" type="button">Отмена</button><button class="delete" type="button">🗑 Удалить формулу</button></div></div>'}else{const encoded=encodeURIComponent(a);html+='<div class="formula-row"><div><div class="formula-q">'+q+'</div><div class="formula-a">'+a+'</div></div><div class="row-actions"><button class="edit-btn" data-edit-topic="'+k+'" data-edit-idx="'+fi+'" title="Редактировать">✏️</button><button class="copy-btn" data-copy="'+encoded+'" title="Скопировать">📋</button></div></div>'}});const isAdding=(state.editingTopic===k&&state.editingNew);if(isAdding){html+='<div class="edit-form" data-topic="'+k+'" data-new="1"><label>Новая формула — вопрос</label><textarea class="edit-q" placeholder="Например: Теорема Пифагора"></textarea><label>Ответ</label><textarea class="edit-a" placeholder="\\(a^2 + b^2 = c^2\\)"></textarea><div class="edit-actions"><button class="save" type="button">💾 Сохранить</button><button class="cancel" type="button">Отмена</button></div></div>'}else{html+='<button class="add-formula-btn" data-add-topic="'+k+'" type="button">+ Добавить формулу</button>'}html+='</div></div>'});main.innerHTML=html;bindMainEvents(main);renderMathIn(main)}
+function matchTopic(c,s,t){
+  const q=state.searchTopic.trim();
+  if(!q)return true;
+  if(smartSearch(t, q) || smartSearch(c, q)) return true;
+  const arr=getTopic(c,s,t)||[];
+  return arr.some(pair => smartSearch(pair[0], q) || smartSearch(pair[1], q));
+}
 
-function bindMainEvents(main){main.querySelectorAll('[data-topic-open]').forEach(el=>{el.onclick=()=>{const k=el.dataset.topicOpen;const tk='T_'+k;if(state.openGroups.has(tk))state.openGroups.delete(tk);else state.openGroups.add(tk);saveSelection();renderMain()}});main.querySelectorAll('[data-remove]').forEach(el=>{el.onclick=e=>{e.stopPropagation();state.selected.delete(el.dataset.remove);saveSelection();renderAll()}});main.querySelectorAll('.chip').forEach(el=>{el.onclick=e=>{if(e.target.closest('[data-remove]'))return;const k=el.dataset.key;const arr=sortSelectedKeys();const idx=arr.indexOf(k);if(idx<0)return;const tk='T_'+k;if(!state.openGroups.has(tk)){state.openGroups.add(tk);saveSelection();renderMain();setTimeout(()=>{const b2=document.getElementById('block_'+idx);if(b2){const y=b2.getBoundingClientRect().top+window.pageYOffset-90;window.scrollTo({top:y,behavior:'smooth'})}},50)}else{const block=document.getElementById('block_'+idx);if(block){const y=block.getBoundingClientRect().top+window.pageYOffset-90;window.scrollTo({top:y,behavior:'smooth'})}}}});const chipClear=document.getElementById('chipClear');if(chipClear)chipClear.onclick=()=>{state.selected.clear();saveSelection();renderAll()};main.querySelectorAll('.copy-btn').forEach(el=>{el.onclick=e=>{e.stopPropagation();const txt=decodeURIComponent(el.dataset.copy);if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(()=>{el.textContent='✓';setTimeout(()=>{el.textContent='📋'},900)}).catch(()=>{})}}});main.querySelectorAll('[data-edit-topic]').forEach(el=>{el.onclick=e=>{e.stopPropagation();if(sessionStorage.getItem('epallaxis_unlocked')!=='1'){state._pendingEdit={topic:el.dataset.editTopic,idx:Number(el.dataset.editIdx),isNew:false};openPasswordLogin();return}startEdit(el.dataset.editTopic,Number(el.dataset.editIdx),false)}});main.querySelectorAll('[data-add-topic]').forEach(el=>{el.onclick=e=>{e.stopPropagation();if(sessionStorage.getItem('epallaxis_unlocked')!=='1'){state._pendingEdit={topic:el.dataset.addTopic,idx:-1,isNew:true};openPasswordLogin();return}startEdit(el.dataset.addTopic,-1,true)}});main.querySelectorAll('.edit-form').forEach(form=>{const topic=form.dataset.topic;const isNew=form.dataset.new==='1';const idx=isNew?-1:Number(form.dataset.idx);form.querySelector('.save').onclick=()=>saveEdit(form,topic,idx,isNew);form.querySelector('.cancel').onclick=()=>cancelEdit();const delBtn=form.querySelector('.delete');if(delBtn)delBtn.onclick=()=>deleteFormula(topic,idx);const firstTa=form.querySelector('.edit-q');if(firstTa)setTimeout(()=>{firstTa.focus();firstTa.setSelectionRange(firstTa.value.length,firstTa.value.length)},30)})}
+function toggleGroup(c, s) {
+  const allTopics = Object.keys(state.DB[c][s]);
+  const allSel = allTopics.every(t => state.selected.has(keyOf(c, s, t)));
+  if (allSel) {
+    allTopics.forEach(t => state.selected.delete(keyOf(c, s, t)));
+  } else {
+    allTopics.forEach(t => state.selected.add(keyOf(c, s, t)));
+  }
+  renderAll();
+}
 
-function startEdit(topicKey,idx,isNew){state.editingTopic=topicKey;state.editingIdx=idx;state.editingNew=isNew;state.openGroups.add('T_'+topicKey);saveSelection();renderMain();setTimeout(()=>{const form=document.querySelector('.edit-form');if(form){const y=form.getBoundingClientRect().top+window.pageYOffset-100;window.scrollTo({top:y,behavior:'smooth'})}},80)}
-function saveEdit(form,topicKey,idx,isNew){const newQ=form.querySelector('.edit-q').value.trim();const newA=form.querySelector('.edit-a').value.trim();if(!newQ||!newA){alert('Заполни оба поля — вопрос и ответ.');return}const{c,s,t}=parseKey(topicKey);if(!state.DB[c]||!state.DB[c][s]||!state.DB[c][s][t]){alert('Тема не найдена');return}const arr=state.DB[c][s][t];if(isNew){arr.push([newQ,newA])}else{if(idx<0||idx>=arr.length){alert('Формула не найдена');return}arr[idx]=[newQ,newA]}persistDB();state.editingTopic=null;state.editingIdx=-1;state.editingNew=false;renderAll()}
-function cancelEdit(){state.editingTopic=null;state.editingIdx=-1;state.editingNew=false;renderMain()}
-function deleteFormula(topicKey,idx){if(!confirm('Удалить эту формулу?'))return;const{c,s,t}=parseKey(topicKey);if(!state.DB[c]||!state.DB[c][s]||!state.DB[c][s][t])return;state.DB[c][s][t].splice(idx,1);persistDB();state.editingTopic=null;state.editingIdx=-1;state.editingNew=false;renderAll()}
-function persistDB(){const lines=[];getClasses().forEach(c=>{['algebra','geometry'].forEach(s=>{if(!state.DB[c]||!state.DB[c][s])return;Object.keys(state.DB[c][s]).forEach(t=>{lines.push('=== '+c+' | '+SUBJ_LBL[s]+' | '+t);state.DB[c][s][t].forEach(pair=>lines.push(pair[0]+' | '+pair[1]));lines.push('')})})});try{localStorage.setItem(LS_DATA,lines.join('\n'))}catch(e){alert('Ошибка сохранения: '+e.message)}}
+function renderTree(){
+  const root=document.getElementById('tree');
+  const classes=getClasses();
+  const groups=[];
+  classes.forEach(c=>{
+    ['algebra','geometry'].forEach(s=>{
+      if(!state.DB[c]||!state.DB[c][s])return;
+      const all=Object.keys(state.DB[c][s]);
+      const filtered=all.filter(t=>matchTopic(c,s,t));
+      if(filtered.length===0)return;
+      groups.push({c,s,topics:filtered,all})
+    })
+  });
+  if(groups.length===0){
+    root.innerHTML='<div style="padding:24px 12px;text-align:center;color:var(--muted);font-size:13px;">Ничего не найдено</div>';
+    return;
+  }
+  root.innerHTML='';
+  groups.forEach(g=>{
+    const gKey=g.c+'|'+g.s;
+    const isOpen=state.openGroups.has(gKey);
+    const selCount=g.all.filter(t=>state.selected.has(keyOf(g.c,g.s,t))).length;
+    const totCount=g.all.length;
+    let cntClass='tree-count';
+    if(selCount===totCount&&totCount>0)cntClass+=' full';
+    else if(selCount>0)cntClass+=' partial';
+    
+    const wrap=document.createElement('div');wrap.className='tree-group';
+    const head=document.createElement('div');head.className='tree-head'+(isOpen?' open':'');
+    
+    const arrow=document.createElement('span');arrow.className='tree-arrow';arrow.textContent='▶';
+    
+    const check=document.createElement('span');check.className='tree-check';
+    const allSel=g.topics.every(t=>state.selected.has(keyOf(g.c,g.s,t)));
+    if(allSel)check.classList.add('checked');
+    check.onclick=(e)=>{e.stopPropagation();toggleGroup(g.c,g.s);};
+    
+    const label=document.createElement('span');label.className='tree-label';label.textContent=`${g.c} · ${SUBJ_LBL[g.s]}`;
+    
+    const count=document.createElement('span');count.className=cntClass;count.textContent=`${selCount}/${totCount}`;
+    
+    head.appendChild(arrow);
+    head.appendChild(check);
+    head.appendChild(label);
+    head.appendChild(count);
+    
+    head.onclick=()=>{
+      if(state.openGroups.has(gKey))state.openGroups.delete(gKey);
+      else state.openGroups.add(gKey);
+      renderTree();
+    };
+    wrap.appendChild(head);
+    
+    const body=document.createElement('div');body.className='tree-body';
+    g.topics.forEach(t=>{
+      const k=keyOf(g.c,g.s,t);
+      const checked=state.selected.has(k);
+      const cnt=(getTopic(g.c,g.s,t)||[]).length;
+      const item=document.createElement('div');
+      item.className='tree-topic'+(checked?' checked':'');
+      item.innerHTML='<span class="tree-check"></span><span class="tree-topic-name">'+escapeHtml(t)+'</span><span class="tree-topic-cnt">'+cnt+'</span>';
+      item.onclick=()=>{
+        if(state.selected.has(k)){
+          state.selected.delete(k);
+        }else{
+          state.selected.add(k);
+          state.openGroups.delete('T_'+k);
+        }
+        renderAll();
+      };
+      body.appendChild(item);
+    });
+    wrap.appendChild(body);
+    root.appendChild(wrap);
+  });
+}
 
-function applyPreset(name){state.selected.clear();getClasses().forEach(c=>{['algebra','geometry'].forEach(s=>{if(!state.DB[c]||!state.DB[c][s])return;let ok=false;if(name==='base')ok=(c===7||c===8);else if(name==='exam')ok=(c===9);else if(name==='senior')ok=(c===10||c===11);else if(name==='alg')ok=(s==='algebra');else if(name==='geom')ok=(s==='geometry');else if(name==='all')ok=true;if(!ok)return;Object.keys(state.DB[c][s]).forEach(t=>state.selected.add(keyOf(c,s,t)))})});if(state.selected.size>0){state.openGroups.clear();state.selected.forEach(k=>{const{c,s}=parseKey(k);state.openGroups.add(c+'|'+s)})}saveSelection();renderAll()}
-function renderAll(){const{topics,formulas}=countSelected();document.getElementById('statTopics').textContent=topics;document.getElementById('statFormulas').textContent=formulas;document.getElementById('startBtn').disabled=state.selected.size===0;renderTree();renderMain()}
+function renderMain(){
+  const main=document.getElementById('main');
+  const topicQ = state.searchTopic.trim();
+  const formulaQ = state.searchFormula.trim();
+  const isSearching = topicQ !== '' || formulaQ !== '';
+
+  if (isSearching) {
+    let html = `<div class="crumbs"><span class="pulse-dot"></span><span>Результаты поиска</span>`;
+    if (topicQ) html += `<span class="c-sep">/</span><b>тема: «${escapeHtml(state.searchTopic)}»</b>`;
+    if (formulaQ) html += `<span class="c-sep">/</span><b>формула: «${escapeHtml(state.searchFormula)}»</b>`;
+    html += `</div>`;
+
+    let foundAny = false;
+    
+    getClasses().forEach(c => {
+      ['algebra', 'geometry'].forEach(s => {
+        if (!state.DB[c] || !state.DB[c][s]) return;
+        Object.keys(state.DB[c][s]).forEach(t => {
+          if (topicQ) {
+            const topicMatch = smartSearch(t, topicQ) || smartSearch(c, topicQ);
+            if (!topicMatch) return;
+          }
+
+          const allItems = getTopic(c, s, t) || [];
+          let matching = allItems;
+          if (formulaQ) {
+            matching = allItems.filter(pair => 
+              smartSearch(pair[0], formulaQ) || 
+              smartSearch(pair[1], formulaQ)
+            );
+          }
+
+          if (matching.length > 0) {
+            foundAny = true;
+            html += `<div class="topic-block">
+                <div class="topic-head open" style="cursor:default;">
+                    <span class="topic-arrow" style="transform:rotate(90deg);color:var(--accent)">▶</span>
+                    <span class="topic-title">${escapeHtml(t)} <span class="tag">${c} · ${SUBJ_LBL[s]}</span></span>
+                    <span class="topic-meta">${matching.length} формул</span>
+                </div>
+                <div class="topic-body" style="display:block;">`;
+            matching.forEach(pair => {
+                const q = pair[0], a = pair[1];
+                const encoded = encodeURIComponent(a);
+                html += `<div class="formula-row">
+                    <div>
+                        <div class="formula-q">${q}</div>
+                        <div class="formula-a">${a}</div>
+                    </div>
+                    <div class="row-actions">
+                        <button class="copy-btn" data-copy="${encoded}" title="Скопировать">${SVG_COPY}</button>
+                    </div>
+                </div>`;
+            });
+            html += `</div></div>`;
+          }
+        });
+      });
+    });
+    
+    if (!foundAny) {
+      html += `<div class="empty"><div class="empty-icon">${SVG_EMPTY}</div><h3>Ничего не найдено</h3><p>Попробуйте изменить критерии поиска.</p></div>`;
+    }
+    
+    main.innerHTML = html;
+    bindMainEvents(main);
+    renderMathIn(main);
+    return;
+  }
+
+  const {topics,formulas}=countSelected();
+  if(state.selected.size===0){
+    main.innerHTML=`<div class="empty"><div class="empty-icon">${SVG_EMPTY}</div><h3>Выбери темы слева</h3><p>Отметь галочками нужные темы — все формулы появятся здесь.</p><div class="empty-tips"><div class="tip"><b>1.</b> Раскрой группу или нажми на чекбокс группы</div><div class="tip"><b>2.</b> Отметь нужные темы</div><div class="tip"><b>3.</b> Или нажми пресет сверху — 1 клик</div><div class="tip"><b>💡</b> Поиск умный — учитывает падежи (площадь = площади)</div></div></div>`;
+    return;
+  }
+  
+  let html='';
+  html+='<div class="crumbs"><span>Формулы</span><span class="c-sep">/</span><b>'+topics+' тем</b><span class="c-sep">·</span><span class="c-accent">'+formulas+' формул</span></div>';
+  const keys=sortSelectedKeys();
+  html+='<div class="chips-bar">';
+  keys.forEach(k=>{
+    const{c,s,t}=parseKey(k);
+    html+='<div class="chip" data-key="'+k+'" title="'+escapeHtml(t)+'"><span class="chip-txt">'+c+' · '+(s==='algebra'?'Алг':'Геом')+' · '+escapeHtml(t)+'</span><span class="chip-x" data-remove="'+k+'">✕</span></div>'
+  });
+  html+='<button class="chip-clear" id="chipClear">Очистить всё</button></div>';
+  
+  keys.forEach((k,topicIdx)=>{
+    const{c,s,t}=parseKey(k);
+    const items=getTopic(c,s,t)||[];
+    const isOpen=state.openGroups.has('T_'+k);
+    html+='<div class="topic-block" id="block_'+topicIdx+'"><div class="topic-head'+(isOpen?' open':'')+'" data-topic-open="'+k+'"><span class="topic-arrow">▶</span><span class="topic-title">'+escapeHtml(t)+' <span class="tag">'+c+' · '+SUBJ_LBL[s]+'</span></span><span class="topic-meta">'+items.length+' формул</span></div><div class="topic-body">';
+    items.forEach(pair=>{
+      const q=pair[0],a=pair[1];
+      const encoded=encodeURIComponent(a);
+      html+='<div class="formula-row"><div><div class="formula-q">'+q+'</div><div class="formula-a">'+a+'</div></div><div class="row-actions"><button class="copy-btn" data-copy="'+encoded+'" title="Скопировать">'+SVG_COPY+'</button></div></div>'
+    });
+    html+='</div></div>'
+  });
+  main.innerHTML=html;
+  bindMainEvents(main);
+  renderMathIn(main);
+}
+
+function bindMainEvents(main){
+  main.querySelectorAll('[data-topic-open]').forEach(el=>{
+    el.onclick=()=>{
+      const k=el.dataset.topicOpen;
+      const tk='T_'+k;
+      if(state.openGroups.has(tk))state.openGroups.delete(tk);
+      else state.openGroups.add(tk);
+      renderMain();
+    }
+  });
+  
+  main.querySelectorAll('[data-remove]').forEach(el=>{
+    el.onclick=e=>{
+      e.stopPropagation();
+      state.selected.delete(el.dataset.remove);
+      renderAll();
+    }
+  });
+  
+  main.querySelectorAll('.chip').forEach(el=>{
+    el.onclick=e=>{
+      if(e.target.closest('[data-remove]'))return;
+      const k=el.dataset.key;
+      const arr=sortSelectedKeys();
+      const idx=arr.indexOf(k);
+      if(idx<0)return;
+      const block=document.getElementById('block_'+idx);
+      if(block){
+        const y=block.getBoundingClientRect().top+window.pageYOffset-90;
+        window.scrollTo({top:y,behavior:'smooth'});
+      }
+    }
+  });
+  
+  const chipClear=document.getElementById('chipClear');
+  if(chipClear)chipClear.onclick=()=>{state.selected.clear();renderAll()};
+  
+  main.querySelectorAll('.copy-btn').forEach(el=>{
+    el.onclick=e=>{
+      e.stopPropagation();
+      const txt=decodeURIComponent(el.dataset.copy);
+      if(navigator.clipboard&&navigator.clipboard.writeText){
+        navigator.clipboard.writeText(txt).then(()=>{
+          el.innerHTML=SVG_CHECK;
+          setTimeout(()=>{el.innerHTML=SVG_COPY},900);
+        }).catch(()=>{});
+      }
+    }
+  });
+}
+
+function applyPreset(name){
+  state.selected.clear();
+  getClasses().forEach(c=>{
+    ['algebra','geometry'].forEach(s=>{
+      if(!state.DB[c]||!state.DB[c][s])return;
+      let ok=false;
+      if(name==='alg')ok=(s==='algebra');
+      else if(name==='geom')ok=(s==='geometry');
+      else if(name==='all')ok=true;
+      if(!ok)return;
+      Object.keys(state.DB[c][s]).forEach(t=>state.selected.add(keyOf(c,s,t)))
+    })
+  });
+  if(state.selected.size>0){
+    state.openGroups.clear();
+    state.selected.forEach(k=>{
+      const{c,s}=parseKey(k);
+      state.openGroups.add(c+'|'+s);
+    })
+  }
+  renderAll();
+}
+
+function renderAll(){
+  const{topics,formulas}=countSelected();
+  document.getElementById('statTopics').textContent=topics;
+  document.getElementById('statFormulas').textContent=formulas;
+  document.getElementById('startBtn').disabled=state.selected.size===0;
+  renderTree();
+  renderMain();
+}
 
 function buildQueue(){const q=[];state.selected.forEach(k=>{const{c,s,t}=parseKey(k);const items=getTopic(c,s,t)||[];items.forEach(pair=>q.push({c,s,t,q:pair[0],a:pair[1]}))});return q}
 function shuffleArr(a){const b=a.slice();for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const tmp=b[i];b[i]=b[j];b[j]=tmp}return b}
 function startTest(){state.testQueue=shuffleArr(buildQueue());if(state.testQueue.length===0)return;state.testIdx=0;state.testRevealed=false;document.getElementById('testOverlay').classList.add('active');document.body.style.overflow='hidden';showCard()}
-function showCard(){const it=state.testQueue[state.testIdx];if(!it)return;document.getElementById('testTag').textContent=it.c+' класс · '+SUBJ_LBL[it.s]+' · '+it.t;const qEl=document.getElementById('testQ');const aEl=document.getElementById('testA');aEl.classList.add('no-anim');aEl.classList.remove('show');void aEl.offsetWidth;qEl.innerHTML=it.q;aEl.innerHTML=it.a;if(state.testRevealed){aEl.classList.add('show');void aEl.offsetWidth}aEl.classList.remove('no-anim');document.getElementById('testCur').textContent=state.testIdx+1;document.getElementById('testTotal').textContent=state.testQueue.length;document.getElementById('progressFill').style.width=((state.testIdx+1)/state.testQueue.length*100)+'%';document.getElementById('testPrev').disabled=state.testIdx===0;document.getElementById('testNext').disabled=state.testIdx===state.testQueue.length-1;const dots=document.getElementById('dots');let dhtml='';for(let i=0;i<state.testQueue.length;i++){let cls='dot';if(i<state.testIdx)cls+=' done';if(i===state.testIdx)cls+=' current';dhtml+='<div class="'+cls+'" data-i="'+i+'"></div>'}dots.innerHTML=dhtml;dots.querySelectorAll('.dot').forEach(d=>{d.onclick=()=>{state.testIdx=Number(d.dataset.i);state.testRevealed=false;showCard()}});const cur=dots.querySelector('.dot.current');if(cur)cur.scrollIntoView({block:'nearest',inline:'nearest'});renderMathIn(qEl);renderMathIn(aEl)}
+function showCard(){
+  const it=state.testQueue[state.testIdx];
+  if(!it)return;
+  const classLabel = isNaN(Number(it.c)) ? it.c : it.c + ' класс';
+  document.getElementById('testTag').textContent=classLabel+' · '+SUBJ_LBL[it.s]+' · '+it.t;
+  const qEl=document.getElementById('testQ');const aEl=document.getElementById('testA');aEl.classList.add('no-anim');aEl.classList.remove('show');void aEl.offsetWidth;qEl.innerHTML=it.q;aEl.innerHTML=it.a;if(state.testRevealed){aEl.classList.add('show');void aEl.offsetWidth}aEl.classList.remove('no-anim');document.getElementById('testCur').textContent=state.testIdx+1;document.getElementById('testTotal').textContent=state.testQueue.length;document.getElementById('progressFill').style.width=((state.testIdx+1)/state.testQueue.length*100)+'%';document.getElementById('testPrev').disabled=state.testIdx===0;document.getElementById('testNext').disabled=state.testIdx===state.testQueue.length-1;const dots=document.getElementById('dots');let dhtml='';for(let i=0;i<state.testQueue.length;i++){let cls='dot';if(i<state.testIdx)cls+=' done';if(i===state.testIdx)cls+=' current';dhtml+='<div class="'+cls+'" data-i="'+i+'"></div>'}dots.innerHTML=dhtml;dots.querySelectorAll('.dot').forEach(d=>{d.onclick=()=>{state.testIdx=Number(d.dataset.i);state.testRevealed=false;showCard()}});const cur=dots.querySelector('.dot.current');if(cur)cur.scrollIntoView({block:'nearest',inline:'nearest'});renderMathIn(qEl);renderMathIn(aEl)
+}
 function goNext(){if(state.testIdx<state.testQueue.length-1){state.testIdx++;state.testRevealed=false;showCard()}}
 function goPrev(){if(state.testIdx>0){state.testIdx--;state.testRevealed=false;showCard()}}
 function toggleAnswer(){state.testRevealed=!state.testRevealed;document.getElementById('testA').classList.toggle('show',state.testRevealed)}
@@ -1040,93 +786,97 @@ function exitTest(){document.getElementById('testOverlay').classList.remove('act
 
 function renderMathIn(el){if(typeof renderMathInElement!=='function')return;try{renderMathInElement(el,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})}catch(e){console.warn('KaTeX error:',e)}}
 
-function openPasswordLogin(){document.getElementById('pwdLoginForm').style.display='';document.getElementById('pwdChangeForm').style.display='none';document.getElementById('pwdLoginStatus').textContent='';document.getElementById('pwdLoginStatus').className='editor-status';document.getElementById('pwdLoginInput').value='';document.getElementById('pwdSub').textContent='Введите пароль, чтобы редактировать формулы.';document.getElementById('passwordModal').classList.add('active');setTimeout(()=>document.getElementById('pwdLoginInput').focus(),100)}
-function closePasswordModal(){state._pendingEdit=null;document.getElementById('passwordModal').classList.remove('active')}
-function tryLogin(){const v=document.getElementById('pwdLoginInput').value;if(hashPassword(v)===getStoredPwdHash()){sessionStorage.setItem('epallaxis_unlocked','1');const pending=state._pendingEdit;state._pendingEdit=null;document.getElementById('passwordModal').classList.remove('active');if(pending)startEdit(pending.topic,pending.idx,pending.isNew);else openEditor()}else{const s=document.getElementById('pwdLoginStatus');s.textContent='✗ Неверный пароль';s.className='editor-status err';document.getElementById('pwdLoginInput').value='';document.getElementById('pwdLoginInput').focus()}}
-function openPasswordChange(){document.getElementById('pwdLoginForm').style.display='none';document.getElementById('pwdChangeForm').style.display='';document.getElementById('pwdOld').value='';document.getElementById('pwdNew').value='';document.getElementById('pwdNew2').value='';document.getElementById('pwdChangeStatus').textContent='';document.getElementById('pwdChangeStatus').className='editor-status';document.getElementById('pwdSub').textContent='Введите старый и новый пароль.';document.getElementById('passwordModal').classList.add('active');setTimeout(()=>document.getElementById('pwdOld').focus(),100)}
-function tryChangePassword(){const s=document.getElementById('pwdChangeStatus');const oldV=document.getElementById('pwdOld').value;const newV=document.getElementById('pwdNew').value;const new2=document.getElementById('pwdNew2').value;if(hashPassword(oldV)!==getStoredPwdHash()){s.textContent='✗ Старый пароль неверный';s.className='editor-status err';return}if(newV.length<4){s.textContent='✗ Новый пароль — не короче 4 символов';s.className='editor-status err';return}if(newV!==new2){s.textContent='✗ Новый пароль и повтор не совпадают';s.className='editor-status err';return}setStoredPwdHash(hashPassword(newV));s.textContent='✓ Пароль изменён';s.className='editor-status ok';setTimeout(()=>{document.getElementById('passwordModal').classList.remove('active');sessionStorage.setItem('epallaxis_unlocked','1')},900)}
-
-function openEditor(){const ta=document.getElementById('editorText');ta.value=getEffectiveSource();document.getElementById('editorStatus').textContent='';document.getElementById('editorStatus').className='editor-status';document.getElementById('editorModal').classList.add('active')}
-function closeEditor(){document.getElementById('editorModal').classList.remove('active')}
-function setEditorStatus(msg,cls){const el=document.getElementById('editorStatus');el.textContent=msg;el.className='editor-status'+(cls?' '+cls:'')}
-function editorSave(){const text=document.getElementById('editorText').value;const test=parseSource(text);if(Object.keys(test).length===0){setEditorStatus('⚠ Не найдено ни одной темы. Проверь формат: "=== 8 | Алгебра | Тема"','err');return}try{localStorage.setItem(LS_DATA,text);reloadDB();renderAll();let tt=0,tf=0;Object.keys(test).forEach(c=>{Object.keys(test[c]).forEach(s=>{const topics=Object.keys(test[c][s]);tt+=topics.length;topics.forEach(t=>tf+=test[c][s][t].length)})});const classesFound=getClasses().join(', ');setEditorStatus('✓ Сохранено: '+tt+' тем, '+tf+' формул. Классы: '+classesFound,'ok')}catch(e){setEditorStatus('Ошибка: '+e.message,'err')}}
-function editorReset(){if(!confirm('Сбросить все изменения и вернуть встроенный список?'))return;try{localStorage.removeItem(LS_DATA)}catch(e){}document.getElementById('editorText').value=getInbuiltSource();reloadDB();renderAll();setEditorStatus('✓ Восстановлен встроенный список','ok')}
-function editorExport(){const text=document.getElementById('editorText').value;const blob=new Blob([text],{type:'text/plain;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='epallaxis-formulas.txt';document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(url);setEditorStatus('✓ Файл скачан','ok')}
-function editorImport(){document.getElementById('editorFile').click()}
-function onFileChosen(e){const file=e.target.files&&e.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=ev=>{document.getElementById('editorText').value=ev.target.result;setEditorStatus('✓ Файл загружен. Нажми «Сохранить»','ok')};reader.readAsText(file,'utf-8');e.target.value=''}
-
 function syncHeaderHeight(){const h=document.querySelector('header').offsetHeight;document.documentElement.style.setProperty('--header-h',h+'px')}
 
 function bindEvents(){
-document.getElementById('modeSwitch').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;state.mode=b.dataset.mode;document.querySelectorAll('#modeSwitch button').forEach(x=>x.classList.remove('active'));b.classList.add('active');if(state.mode==='test'&&state.selected.size>0)startTest()});
-document.querySelectorAll('.preset').forEach(p=>{p.onclick=()=>applyPreset(p.dataset.preset)});
-document.getElementById('qInvert').onclick=()=>{const all=[];getClasses().forEach(c=>{['algebra','geometry'].forEach(s=>{if(!state.DB[c]||!state.DB[c][s])return;Object.keys(state.DB[c][s]).forEach(t=>all.push(keyOf(c,s,t)))})});all.forEach(k=>{if(state.selected.has(k))state.selected.delete(k);else state.selected.add(k)});saveSelection();renderAll()};
-document.getElementById('qNone').onclick=()=>{state.selected.clear();saveSelection();renderAll()};
-document.getElementById('qCollapse').onclick=()=>{state.openGroups.clear();saveSelection();renderAll()};
-const searchInput=document.getElementById('searchInput');const searchWrap=document.getElementById('searchWrap');
-searchInput.addEventListener('input',e=>{state.search=e.target.value;searchWrap.classList.toggle('has-value',!!state.search);renderTree()});
-document.getElementById('searchClear').onclick=()=>{searchInput.value='';state.search='';searchWrap.classList.remove('has-value');renderTree();searchInput.focus()};
-document.getElementById('startBtn').onclick=startTest;
-document.getElementById('testExit').onclick=exitTest;
-document.getElementById('testNext').onclick=goNext;
-document.getElementById('testPrev').onclick=goPrev;
-document.getElementById('testReveal').onclick=toggleAnswer;
-document.getElementById('testSkip').onclick=skipCurrent;
-document.getElementById('testShuffle').onclick=()=>{state.testQueue=shuffleArr(state.testQueue);state.testIdx=0;state.testRevealed=false;showCard()};
-document.getElementById('editBtn').onclick=()=>{if(sessionStorage.getItem('epallaxis_unlocked')==='1')openEditor();else openPasswordLogin()};
-document.getElementById('editorClose').onclick=closeEditor;
-document.getElementById('editorSave').onclick=editorSave;
-document.getElementById('editorPublish').onclick=ghPublish;
-document.getElementById('editorGithub').onclick=ghOpenSettings;
-document.getElementById('editorChangePwd').onclick=openPasswordChange;
-document.getElementById('editorReset').onclick=editorReset;
-document.getElementById('editorExport').onclick=editorExport;
-document.getElementById('editorImport').onclick=editorImport;
-document.getElementById('editorFile').onchange=onFileChosen;
-document.getElementById('editorModal').onclick=e=>{if(e.target.id==='editorModal')closeEditor()};
-document.getElementById('pwdLoginBtn').onclick=tryLogin;
-document.getElementById('pwdLoginCancel').onclick=closePasswordModal;
-document.getElementById('pwdLoginInput').addEventListener('keydown',e=>{if(e.key==='Enter')tryLogin()});
-document.getElementById('pwdChangeBtn').onclick=tryChangePassword;
-document.getElementById('pwdChangeCancel').onclick=closePasswordModal;
-document.getElementById('pwdNew2').addEventListener('keydown',e=>{if(e.key==='Enter')tryChangePassword()});
-document.getElementById('pwdOld').addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('pwdNew').focus()});
-document.getElementById('passwordModal').onclick=e=>{if(e.target.id==='passwordModal')closePasswordModal()};
-document.getElementById('ghSave').onclick=ghSaveSettings;
-document.getElementById('ghClose').onclick=ghCloseSettings;
-document.getElementById('ghClear').onclick=()=>{if(confirm('Забыть токен на этом устройстве?')){ghClearCfg();ghCloseSettings()}};
-document.getElementById('githubModal').onclick=e=>{if(e.target.id==='githubModal')ghCloseSettings()};
-document.getElementById('helpBtn').onclick=()=>document.getElementById('helpModal').classList.add('active');
-document.getElementById('helpClose').onclick=()=>document.getElementById('helpModal').classList.remove('active');
-document.getElementById('helpModal').onclick=e=>{if(e.target.id==='helpModal')document.getElementById('helpModal').classList.remove('active')};
-const sidebar=document.getElementById('sidebar');const backdrop=document.getElementById('backdrop');
-document.getElementById('hamburger').onclick=()=>{sidebar.classList.toggle('open');backdrop.classList.toggle('show',sidebar.classList.contains('open'))};
-backdrop.onclick=()=>{sidebar.classList.remove('open');backdrop.classList.remove('show')};
-const fabTop=document.getElementById('fabTop');
-window.addEventListener('scroll',()=>{fabTop.classList.toggle('show',window.scrollY>300)},{passive:true});
-fabTop.onclick=()=>window.scrollTo({top:0,behavior:'smooth'});
-document.addEventListener('keydown',e=>{
-if(document.getElementById('passwordModal').classList.contains('active')){if(e.key==='Escape'){closePasswordModal();e.preventDefault()}return}
-if(document.getElementById('githubModal').classList.contains('active')){if(e.key==='Escape'){ghCloseSettings();e.preventDefault()}return}
-const testOpen=document.getElementById('testOverlay').classList.contains('active');
-const helpOpen=document.getElementById('helpModal').classList.contains('active');
-const editOpen=document.getElementById('editorModal').classList.contains('active');
-if(editOpen){if(e.key==='Escape')closeEditor();return}
-if(helpOpen){if(e.key==='Escape'||e.key==='Enter')document.getElementById('helpModal').classList.remove('active');return}
-if(e.key==='/'&&!testOpen&&document.activeElement!==searchInput){e.preventDefault();searchInput.focus();return}
-if(!testOpen)return;
-if(e.key==='ArrowRight'||e.key==='ArrowDown'||e.key==='PageDown'){e.preventDefault();if(e.repeat)return;goNext()}
-else if(e.key==='ArrowLeft'||e.key==='ArrowUp'||e.key==='PageUp'){e.preventDefault();if(e.repeat)return;goPrev()}
-else if(e.key===' '){e.preventDefault();if(e.repeat)return;toggleAnswer()}
-else if(e.key==='Enter'){e.preventDefault();if(e.repeat)return;toggleAnswer()}
-else if(e.key==='Escape'){exitTest()}
-else if(e.key==='Home'){e.preventDefault();state.testIdx=0;state.testRevealed=false;showCard()}
-else if(e.key==='End'){e.preventDefault();state.testIdx=state.testQueue.length-1;state.testRevealed=false;showCard()}
-});
-window.addEventListener('resize',syncHeaderHeight);
+  document.querySelectorAll('.preset').forEach(p=>{p.onclick=()=>applyPreset(p.dataset.preset)});
+  document.getElementById('qInvert').onclick=()=>{const all=[];getClasses().forEach(c=>{['algebra','geometry'].forEach(s=>{if(!state.DB[c]||!state.DB[c][s])return;Object.keys(state.DB[c][s]).forEach(t=>all.push(keyOf(c,s,t)))})});all.forEach(k=>{if(state.selected.has(k))state.selected.delete(k);else state.selected.add(k)});renderAll()};
+  document.getElementById('qNone').onclick=()=>{state.selected.clear();renderAll()};
+  document.getElementById('qCollapse').onclick=()=>{state.openGroups.clear();renderAll()};
+
+  const searchTopicInput=document.getElementById('searchTopic');
+  const searchTopicWrap=document.getElementById('topicSearchWrap');
+  searchTopicInput.addEventListener('input',e=>{
+    state.searchTopic=e.target.value;
+    searchTopicWrap.classList.toggle('has-value',!!state.searchTopic);
+    renderTree();
+    renderMain();
+  });
+  document.getElementById('searchTopicClear').onclick=()=>{
+    searchTopicInput.value='';
+    state.searchTopic='';
+    searchTopicWrap.classList.remove('has-value');
+    renderTree();
+    renderMain();
+    searchTopicInput.focus();
+  };
+
+  const searchFormulaInput=document.getElementById('searchFormula');
+  const searchFormulaWrap=document.getElementById('formulaSearchWrap');
+  searchFormulaInput.addEventListener('input',e=>{
+    state.searchFormula=e.target.value;
+    searchFormulaWrap.classList.toggle('has-value',!!state.searchFormula);
+    renderMain();
+  });
+  document.getElementById('searchFormulaClear').onclick=()=>{
+    searchFormulaInput.value='';
+    state.searchFormula='';
+    searchFormulaWrap.classList.remove('has-value');
+    renderMain();
+    searchFormulaInput.focus();
+  };
+
+  document.getElementById('startBtn').onclick=startTest;
+  document.getElementById('testExit').onclick=exitTest;
+  document.getElementById('testNext').onclick=goNext;
+  document.getElementById('testPrev').onclick=goPrev;
+  document.getElementById('testReveal').onclick=toggleAnswer;
+  document.getElementById('testSkip').onclick=skipCurrent;
+  document.getElementById('testShuffle').onclick=()=>{state.testQueue=shuffleArr(state.testQueue);state.testIdx=0;state.testRevealed=false;showCard()};
+
+  document.getElementById('helpBtn').onclick=()=>document.getElementById('helpModal').classList.add('active');
+  document.getElementById('helpClose').onclick=()=>document.getElementById('helpModal').classList.remove('active');
+  document.getElementById('helpModal').onclick=e=>{if(e.target.id==='helpModal')document.getElementById('helpModal').classList.remove('active')};
+  
+  const sidebar=document.getElementById('sidebar');const backdrop=document.getElementById('backdrop');
+  document.getElementById('hamburger').onclick=()=>{sidebar.classList.toggle('open');backdrop.classList.toggle('show',sidebar.classList.contains('open'))};
+  backdrop.onclick=()=>{sidebar.classList.remove('open');backdrop.classList.remove('show')};
+  
+  const fabTop=document.getElementById('fabTop');
+  window.addEventListener('scroll',()=>{fabTop.classList.toggle('show',window.scrollY>300)},{passive:true});
+  fabTop.onclick=()=>window.scrollTo({top:0,behavior:'smooth'});
+  
+  document.addEventListener('keydown',e=>{
+    const testOpen=document.getElementById('testOverlay').classList.contains('active');
+    const helpOpen=document.getElementById('helpModal').classList.contains('active');
+    
+    if(helpOpen){if(e.key==='Escape'||e.key==='Enter')document.getElementById('helpModal').classList.remove('active');return}
+    
+    if(e.key==='/'&&!testOpen&&document.activeElement!==searchTopicInput&&document.activeElement!==searchFormulaInput){
+      e.preventDefault();
+      searchTopicInput.focus();
+      return;
+    }
+    
+    if(!testOpen)return;
+    
+    if(e.key==='ArrowRight'||e.key==='ArrowDown'||e.key==='PageDown'){e.preventDefault();if(e.repeat)return;goNext()}
+    else if(e.key==='ArrowLeft'||e.key==='ArrowUp'||e.key==='PageUp'){e.preventDefault();if(e.repeat)return;goPrev()}
+    else if(e.key===' '){e.preventDefault();if(e.repeat)return;toggleAnswer()}
+    else if(e.key==='Enter'){e.preventDefault();if(e.repeat)return;toggleAnswer()}
+    else if(e.key==='Escape'){exitTest()}
+    else if(e.key==='Home'){e.preventDefault();state.testIdx=0;state.testRevealed=false;showCard()}
+    else if(e.key==='End'){e.preventDefault();state.testIdx=state.testQueue.length-1;state.testRevealed=false;showCard()}
+  });
+  window.addEventListener('resize',syncHeaderHeight);
 }
 
-function init(){syncHeaderHeight();reloadDB();loadSelection();bindEvents();renderAll();ghPullLatest()}
+function init(){
+  syncHeaderHeight();
+  reloadDB();
+  bindEvents();
+  renderAll();
+}
 document.addEventListener('DOMContentLoaded',init);
 window.addEventListener('load',()=>{syncHeaderHeight();renderAll()});
 </script>
