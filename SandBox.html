@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Еще — EPALLAXIS</title>
+<title>Объявления — EPALLAXIS extra</title>
 <link rel="icon" type="image/png" href="../../icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -130,10 +130,15 @@ header {
     text-transform: uppercase;
 }
 
-.title-text h1 span {
+/* Стили для "Дополнительно" (акцентный) и "Объявления" (белый) */
+.title-text h1 .accent-text {
     color: var(--accent);
     transition: color 0.3s ease;
     text-shadow: 0 0 30px var(--accent-glow);
+}
+
+.title-text h1 .white-text {
+    color: #FFFFFF;
 }
 
 .title-text p {
@@ -182,7 +187,7 @@ header {
     margin: 0 auto;
     padding: 0 24px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 24px;
 }
 
@@ -201,7 +206,6 @@ header {
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8);
     
-    /* Переменные задаются через JS */
     --card-color: var(--accent);
     --card-glow: var(--accent-glow);
 }
@@ -313,6 +317,53 @@ header {
     color: var(--text-muted);
     overflow-wrap: anywhere;
     flex-grow: 1;
+    margin-bottom: 16px;
+}
+
+/* --- БЛОК ССЫЛОК (СЕКЦИЙ) ВНУТРИ КАРТОЧКИ --- */
+.card-sections {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: auto;
+    border-top: 1px solid var(--border);
+    padding-top: 16px;
+}
+
+.section-btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    text-decoration: none;
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.section-btn:hover {
+    background: var(--card-color);
+    color: #000;
+    border-color: var(--card-color);
+    padding-left: 18px;
+    box-shadow: 0 0 10px var(--card-glow);
+}
+
+.section-btn span {
+    color: var(--card-color);
+    font-family: var(--font-sans);
+    transition: color 0.2s;
+}
+
+.section-btn:hover span {
+    color: #000;
 }
 
 /* --- СЛУЖЕБНЫЕ СООБЩЕНИЯ --- */
@@ -362,28 +413,11 @@ header {
     .page-title { margin: 32px auto 24px; padding: 0 16px; flex-direction: column; align-items: flex-start; }
     .cards { padding: 0 16px; grid-template-columns: 1fr; gap: 16px; }
     
-    .extra-card { 
-        padding: 20px; 
-    }
-    
-    .card-icon {
-        width: 48px;
-        height: 48px;
-        font-size: 24px;
-    }
-    
-    .card-name {
-        font-size: 1.15rem;
-    }
-    
-    .card-description {
-        font-size: 0.85rem;
-    }
-    
-    .reload-btn {
-        width: 100%;
-        justify-content: center;
-    }
+    .extra-card { padding: 20px; }
+    .card-icon { width: 48px; height: 48px; font-size: 24px; }
+    .card-name { font-size: 1.15rem; }
+    .card-description { font-size: 0.85rem; }
+    .reload-btn { width: 100%; justify-content: center; }
 }
 </style>
 </head>
@@ -403,8 +437,8 @@ header {
 <!-- ЗАГОЛОВОК -->
 <section class="page-title">
     <div class="title-text">
-        <h1>Дополнительные <span>материалы</span></h1>
-        <p>Полезные разделы, инструменты и дополнительные возможности</p>
+        <h1><span class="accent-text">Дополнительно</span> <span class="white-text">Объявления</span></h1>
+        <p>Актуальные объявления и новости</p>
     </div>
     <button class="reload-btn" id="reloadBtn">
         🔄 Обновить
@@ -440,13 +474,12 @@ applyThemeFromMain();
 /* ===================================================== */
 
 /* =====================================================
-   GOOGLE SHEETS & LOGIC
+   GOOGLE SHEETS & LOGIC (GID=0 ДЛЯ ОБЪЯВЛЕНИЙ)
 ===================================================== */
-const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT-ffMQhoWFYjEYo_1zj42dMreh4l1HQKXEV9J_ZnI4NLkMvYVyL7KWmmdwRCX3qoHjSq8czHR-bvWX/pub?output=csv";
+const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTCrYk2HhIsUkgP3K1Be2fbVpZqefQ79KR-9hUUF_uZNNrAfhSHaZgwtb2z3DbZZ2ZtPjAEYojKoSnX/pub?gid=0&single=true&output=csv";
 
 const icons = ["🚀", "📚", "🧠", "🎯", "🛠️", "💡", "📌", "⭐", "🔥", "🎓", "⚡", "🌌"];
 
-// Палитра ярких неоновых цветов для карточек
 const colors = [
     "#FF8A00", // Оранжевый
     "#3B82F6", // Синий
@@ -462,7 +495,6 @@ function randomItem(array) {
     return array[Math.floor(Math.random() * array.length)];
 }
 
-// Конвертер HEX в RGBA для свечения
 function hexToRgba(hex, alpha) {
     const r = parseInt(hex.slice(1, 3), 16);
     const g = parseInt(hex.slice(3, 5), 16);
@@ -508,28 +540,50 @@ async function loadCards() {
         if (rows.length < 2) throw new Error("Таблица пустая");
 
         const headers = rows[0].map(x => x.trim().toLowerCase());
+        
         const orderIndex = headers.indexOf("порядок");
-        const nameIndex = headers.indexOf("название");
-        const descIndex = headers.indexOf("описание");
-        const linkIndex = headers.indexOf("ссылка");
+        const titleIndex = headers.indexOf("заголовок");
+        const textIndex = headers.indexOf("текст");
         const activeIndex = headers.indexOf("активность");
 
-        if (orderIndex === -1 || nameIndex === -1 || linkIndex === -1 || activeIndex === -1) {
-            throw new Error("Не найдены нужные столбцы");
+        if (orderIndex === -1 || titleIndex === -1 || textIndex === -1 || activeIndex === -1) {
+            throw new Error("Не найдены основные столбцы (порядок, заголовок, текст, активность)");
+        }
+
+        const sectionPairs = [];
+        for (let i = 1; i <= 5; i++) {
+            const nameIdx = headers.indexOf(`секция${i}`);
+            const linkIdx = headers.indexOf(`ссылка${i}`);
+            if (nameIdx !== -1 && linkIdx !== -1) {
+                sectionPairs.push({ nameIdx, linkIdx });
+            }
         }
 
         const cards = [];
+
         for (let i = 1; i < rows.length; i++) {
             const row = rows[i];
             if (!row.length) continue;
-            let active = row[activeIndex].trim().toLowerCase();
+
+            const active = row[activeIndex]?.trim().toLowerCase();
             if (active !== "true" && active !== "да" && active !== "1") continue;
 
+            const sections = [];
+            sectionPairs.forEach(pair => {
+                const name = row[pair.nameIdx]?.trim();
+                const link = row[pair.linkIdx]?.trim();
+                if (link) {
+                    sections.push({ name: name || 'Перейти', link });
+                }
+            });
+
+            if (sections.length === 0) continue;
+
             cards.push({
-                order: Number(row[orderIndex]),
-                name: row[nameIndex].trim(),
-                description: descIndex !== -1 ? row[descIndex].trim() : "",
-                link: row[linkIndex].trim()
+                order: Number(row[orderIndex]) || 0,
+                title: row[titleIndex]?.trim() || '',
+                text: row[textIndex]?.trim() || '',
+                sections: sections
             });
         }
 
@@ -557,32 +611,44 @@ function renderCards(items) {
     container.innerHTML = "";
 
     items.forEach((item, index) => {
-        const card = document.createElement("a");
+        const isSingleLink = item.sections.length === 1;
+        const card = document.createElement(isSingleLink ? "a" : "div");
+        
         card.className = "extra-card";
-        card.href = item.link;
-        card.target = "_blank";
+        if (isSingleLink) {
+            card.href = item.sections[0].link;
+            card.target = "_blank";
+        }
 
         const color = randomItem(colors);
         const icon = randomItem(icons);
-        
-        // Вычисляем цвет свечения на основе цвета карточки (30% прозрачности)
         const glow = hexToRgba(color, 0.3);
 
         card.style.setProperty("--card-color", color);
         card.style.setProperty("--card-glow", glow);
-        
-        // Каскадная задержка анимации
         card.style.animationDelay = (index * 0.08) + "s";
+
+        let sectionsHTML = "";
+        if (!isSingleLink) {
+            sectionsHTML = `<div class="card-sections">` + 
+                item.sections.map(sec => `
+                    <a href="${escapeHTML(sec.link)}" class="section-btn" target="_blank">
+                        <span>${escapeHTML(sec.name)}</span>
+                        <span>→</span>
+                    </a>
+                `).join('') + `</div>`;
+        }
 
         card.innerHTML = `
             <div class="card-top">
                 <div class="card-icon">${icon}</div>
-                <div class="card-arrow">↗</div>
+                ${isSingleLink ? '<div class="card-arrow">↗</div>' : ''}
             </div>
             <div class="card-info">
-                <div class="card-name">${escapeHTML(item.name)}</div>
-                <div class="card-description">${escapeHTML(item.description)}</div>
+                <div class="card-name">${escapeHTML(item.title)}</div>
+                <div class="card-description">${escapeHTML(item.text)}</div>
             </div>
+            ${sectionsHTML}
         `;
 
         container.appendChild(card);
@@ -590,6 +656,7 @@ function renderCards(items) {
 }
 
 function escapeHTML(text) {
+    if (!text) return '';
     return text.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#039;");
 }
 
