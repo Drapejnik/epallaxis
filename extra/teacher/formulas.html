@@ -961,7 +961,7 @@ function renderMain(){
 
   const {topics,formulas}=countSelected();
   if(state.selected.size===0){
-    main.innerHTML=`<div class="empty"><div class="empty-icon">${SVG_EMPTY}</div><h3>Выбери темы слева</h3><p>Отметь галочками нужные темы — все формулы появятся здесь.</p><div class="empty-tips"><div class="tip"><b>1.</b> Раскрой группу или нажми на чекбокс группы</div><div class="tip"><b>2.</b> Отметь нужные темы</div><div class="tip"><b>3.</b> Или нажми пресет сверху — 1 клик</div><div class="tip"><b></b> </div></div></div>`;
+    main.innerHTML=`<div class="empty"><div class="empty-icon">${SVG_EMPTY}</div><h3>Выберите темы слева</h3><p>Отметь галочками нужные темы — все формулы появятся здесь.</p><div class="empty-tips"><div class="tip"><b>1.</b> Раскрой группу или нажми на чекбокс группы</div><div class="tip"><b>2.</b> Отметь нужные темы</div><div class="tip"><b>3.</b> Или нажми пресет сверху — 1 клик</div><div class="tip"><b></b> </div></div></div>`;
     return;
   }
   

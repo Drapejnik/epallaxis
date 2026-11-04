@@ -461,7 +461,6 @@
             flex-shrink: 0;
         }
 
-        /* Ограничиваем заголовок, чтобы не сломал сетку */
         .expanded-title {
             font-family: var(--font-display);
             font-size: 1.1rem;
@@ -499,21 +498,18 @@
             transform: rotate(90deg);
         }
 
-        /* НОВАЯ СЕТКА РАЗДЕЛОВ БЕЗ СКРОЛЛА */
         .expanded-sections {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 8px;
             flex-grow: 1;
-            align-content: center; /* Центрируем по вертикали, если их мало */
+            align-content: center;
         }
 
-        /* Если 1 раздел - на всю ширину */
         .card-expanded[data-count="1"] .expanded-sections {
             grid-template-columns: 1fr;
         }
 
-        /* Если 3 или 5 - первый на всю ширину, остальные 2х2 */
         .card-expanded[data-count="3"] .expanded-sections > :first-child,
         .card-expanded[data-count="5"] .expanded-sections > :first-child {
             grid-column: span 2;
@@ -532,7 +528,7 @@
             font-size: 0.85rem;
             font-weight: 700;
             transition: all 0.2s;
-            min-width: 0; /* Важно для обрезки текста */
+            min-width: 0;
         }
 
         .inner-section-btn:hover {
@@ -568,7 +564,6 @@
 
         .inner-section-btn:hover .arrow { color: #000; }
 
-        /* Общие стили контента (по умолчанию) */
         .card-header {
             display: flex;
             justify-content: flex-end;
@@ -640,9 +635,6 @@
             color: var(--text-muted); font-family: var(--font-mono); text-transform: uppercase;
         }
 
-        /* =========================================
-           МОБИЛЬНАЯ АДАПТАЦИЯ
-           ========================================= */
         @media (max-width: 900px) {
             .header-right { flex-direction: column; align-items: flex-end; gap: 8px; }
             .header-meta { display: none; }
@@ -693,7 +685,7 @@
 
                 <div class="header-meta">
                     SYS.STATUS: ONLINE<br>
-                    2024 — 2025
+                    2026 - x
                 </div>
             </div>
         </header>
@@ -804,10 +796,12 @@
                 update() {
                     if (this.opacity < 1) this.opacity += 0.015;
 
+                    // 1. Плавное блуждание (Wander)
                     this.wanderAngle += (Math.random() - 0.5) * 0.2;
                     let steerX = Math.cos(this.wanderAngle) * this.maxSpeed;
                     let steerY = Math.sin(this.wanderAngle) * this.maxSpeed;
 
+                    // 2. Избегание стен (Boundary Avoidance)
                     const margin = 100;
                     const turnForce = 0.15;
                     if (this.x < margin) steerX += (margin - this.x) * turnForce;
@@ -815,16 +809,17 @@
                     if (this.y < margin) steerY += (margin - this.y) * turnForce;
                     if (this.y > canvas.height - margin) steerY -= (this.y - (canvas.height - margin)) * turnForce;
 
+                    // 3. Побег от курсора (Flee) с плавным затуханием
                     const dx = this.x - mouse.x;
                     const dy = this.y - mouse.y;
                     const dist = Math.sqrt(dx * dx + dy * dy);
-                    let isFleeing = false;
-
+                    
+                    // Вычисляем интенсивность испуга (от 0 до 1)
+                    let fleeIntensity = 0;
                     if (dist < 150) {
-                        isFleeing = true;
-                        const force = (150 - dist) / 150;
-                        steerX += (dx / dist) * force * 4;
-                        steerY += (dy / dist) * force * 4;
+                        fleeIntensity = (150 - dist) / 150;
+                        steerX += (dx / dist) * fleeIntensity * 4;
+                        steerY += (dy / dist) * fleeIntensity * 4;
                         
                         this.rippleTimer--;
                         if (this.rippleTimer <= 0) {
@@ -842,7 +837,9 @@
                     let desiredX = this.vx + steerX;
                     let desiredY = this.vy + steerY;
                     let desiredMag = Math.sqrt(desiredX * desiredX + desiredY * desiredY);
-                    let targetSpeed = isFleeing ? this.maxSpeed * 2.5 : this.maxSpeed;
+                    
+                    // Плавная целевая скорость
+                    let targetSpeed = this.maxSpeed * (1 + fleeIntensity * 1.5);
                     
                     if (desiredMag > 0) {
                         desiredX = (desiredX / desiredMag) * targetSpeed;
@@ -855,13 +852,15 @@
                     while (angleDiff > Math.PI) angleDiff -= Math.PI * 2;
                     while (angleDiff < -Math.PI) angleDiff += Math.PI * 2;
 
-                    let turnRate = isFleeing ? 0.15 : 0.05;
+                    // Плавная скорость поворота
+                    let turnRate = 0.05 + fleeIntensity * 0.1;
                     this.angle += angleDiff * turnRate;
 
                     let currentSpeed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
-                    if (currentSpeed < targetSpeed) currentSpeed += 0.05;
-                    else currentSpeed -= 0.02;
-                    if (currentSpeed > targetSpeed) currentSpeed = targetSpeed;
+                    
+                    // ПЛАВНОЕ ЗАТУХАНИЕ СКОРОСТИ (Интерполяция)
+                    currentSpeed += (targetSpeed - currentSpeed) * 0.04; 
+                    
                     if (currentSpeed < 0.5) currentSpeed = 0.5;
 
                     this.vx = Math.cos(this.angle) * currentSpeed;

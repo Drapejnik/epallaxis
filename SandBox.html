@@ -1,591 +1,854 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Объявления — EPALLAXIS extra</title>
-<link rel="icon" type="image/png" href="../../icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Manrope:wght@500;700;800&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
-<style>
-/* --- СЕЗОННЫЕ ПЕРЕМЕННЫЕ --- */
-:root {
-    --bg: #0A0705; 
-    --surface: linear-gradient(145deg, #1C1510 0%, #110B07 100%);
-    --surface-solid: #1C140F;
-    --surface-hover: linear-gradient(145deg, #291E17 0%, #140E0A 100%);
-    --text: #FFFFFF;
-    --text-muted: #C0B8B0; 
-    --accent: #FF8A00; 
-    --accent-glow: rgba(255, 138, 0, 0.3);
-    --border: rgba(255, 255, 255, 0.08);
-    --danger: #FF3B30;
-    --danger-glow: rgba(255, 59, 48, 0.3);
-    
-    --font-sans: 'Inter', sans-serif;
-    --font-display: 'Manrope', sans-serif;
-    --font-mono: 'JetBrains Mono', monospace;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Алгебра 9 класс — EPALLAXIS</title>
+    <link rel="icon" type="image/png" href="../../icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Manrope:wght@500;700;800&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+    <style>
+        /* --- СЕЗОННЫЕ ПЕРЕМЕННЫЕ --- */
+        :root {
+            --bg: #0A0705; 
+            --surface: linear-gradient(145deg, #1C1510 0%, #110B07 100%);
+            --surface-solid: #1C140F;
+            --surface-hover: linear-gradient(145deg, #291E17 0%, #140E0A 100%);
+            --text: #FFFFFF;
+            --text-muted: #C0B8B0; 
+            --accent: #FF8A00; 
+            --accent-glow: rgba(255, 138, 0, 0.3);
+            --border: rgba(255, 255, 255, 0.08);
+            
+            --font-sans: 'Inter', sans-serif;
+            --font-display: 'Manrope', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
 
-body.season-winter {
-    --bg: #080C14;
-    --surface: linear-gradient(145deg, #101724 0%, #070B12 100%);
-    --surface-solid: #0A101D;
-    --surface-hover: linear-gradient(145deg, #131C2E 0%, #0A101D 100%);
-    --text-muted: #9CA3AF;
-    --accent: #3B82F6; 
-    --accent-glow: rgba(59, 130, 246, 0.3);
-}
+        body.season-winter {
+            --bg: #080C14;
+            --surface: linear-gradient(145deg, #101724 0%, #070B12 100%);
+            --surface-solid: #0A101D;
+            --surface-hover: linear-gradient(145deg, #131C2E 0%, #0A101D 100%);
+            --text-muted: #9CA3AF;
+            --accent: #3B82F6; 
+            --accent-glow: rgba(59, 130, 246, 0.3);
+        }
 
-body.season-spring {
-    --bg: #0C0A0B; 
-    --surface: linear-gradient(145deg, #1C1316 0%, #0F0A0C 100%);
-    --surface-solid: #140E10;
-    --surface-hover: linear-gradient(145deg, #241A1D 0%, #140E10 100%);
-    --text-muted: #D1C4C7; 
-    --accent: #FFB7C5; 
-    --accent-glow: rgba(255, 183, 197, 0.3);
-}
+        body.season-spring {
+            --bg: #0C0A0B; 
+            --surface: linear-gradient(145deg, #1C1316 0%, #0F0A0C 100%);
+            --surface-solid: #140E10;
+            --surface-hover: linear-gradient(145deg, #241A1D 0%, #140E10 100%);
+            --text-muted: #D1C4C7; 
+            --accent: #FFB7C5; 
+            --accent-glow: rgba(255, 183, 197, 0.3);
+        }
 
-body.season-summer {
-    --bg: #060A08;
-    --surface: linear-gradient(145deg, #0D1812 0%, #060B08 100%);
-    --surface-solid: #0B140F;
-    --surface-hover: linear-gradient(145deg, #13221A 0%, #0B140F 100%);
-    --text-muted: #9CA3AF;
-    --accent: #10B981; 
-    --accent-glow: rgba(16, 185, 129, 0.3);
-}
+        body.season-summer {
+            --bg: #060A08;
+            --surface: linear-gradient(145deg, #0D1812 0%, #060B08 100%);
+            --surface-solid: #0B140F;
+            --surface-hover: linear-gradient(145deg, #13221A 0%, #0B140F 100%);
+            --text-muted: #9CA3AF;
+            --accent: #10B981; 
+            --accent-glow: rgba(16, 185, 129, 0.3);
+        }
 
-* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-html, body { width: 100%; max-width: 100vw; overflow-x: clip; }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        html { scroll-behavior: smooth; }
+        
+        html, body { 
+            background-color: var(--bg); 
+            color: var(--text);
+            font-family: var(--font-sans);
+            min-height: 100vh;
+            width: 100%;
+            max-width: 100vw;
+            /* Защита от горизонтального скролла */
+            overflow-x: clip; 
+            transition: background-color 0.3s ease;
+        }
 
-body {
-    font-family: var(--font-sans);
-    background-color: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    -webkit-font-smoothing: antialiased;
-    transition: background-color 0.3s ease;
-    padding-bottom: 60px;
-}
+        /* Фоновые свечения */
+        body::before, body::after {
+            content: '';
+            position: fixed;
+            width: 100vmax;
+            height: 100vmax;
+            border-radius: 50%;
+            filter: blur(150px);
+            z-index: -1;
+            opacity: 0.15;
+            pointer-events: none;
+            transition: background 0.3s ease;
+        }
+        body::before { top: -50vmax; left: -50vmax; background: var(--accent); }
+        body::after { bottom: -50vmax; right: -50vmax; background: var(--text); opacity: 0.03; }
 
-body::before, body::after {
-    content: '';
-    position: fixed;
-    width: 100vmax;
-    height: 100vmax;
-    border-radius: 50%;
-    filter: blur(150px);
-    z-index: -1;
-    opacity: 0.15;
-    pointer-events: none;
-    transition: background 0.3s ease;
-}
-body::before { top: -50vmax; left: -50vmax; background: var(--accent); }
-body::after { bottom: -50vmax; right: -50vmax; background: var(--text); opacity: 0.03; }
+        a { color: inherit; text-decoration: none; }
 
-button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+        /* --- ШАПКА --- */
+        header {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(10, 7, 5, 0.6);
+            backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--border);
+            padding: 20px 24px;
+            transition: border-color 0.3s ease;
+        }
 
-/* --- ШАПКА --- */
-header {
-    position: sticky; top: 0; left: 0; right: 0; width: 100%; z-index: 200;
-    background: rgba(10, 7, 5, 0.6);
-    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-    border-bottom: 1px solid var(--border);
-    padding: 20px 24px; display: flex; align-items: center; gap: 16px; flex-shrink: 0;
-    transition: border-color 0.3s ease;
-}
-.brand { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
-.brand a { text-decoration: none; color: var(--text); display: inline-block; transition: transform 0.2s; }
-.brand a:hover { transform: translateY(-1px); }
-.brand h1 { 
-    font-family: var(--font-display); font-size: clamp(20px, 4vw, 24px); 
-    letter-spacing: 0.05em; line-height: 1.1; font-weight: 800; text-transform: uppercase; 
-}
-.brand h1 .accent-word { 
-    color: var(--accent); font-weight: 500; 
-    text-shadow: 0 0 20px var(--accent-glow); 
-    transition: color 0.3s ease, text-shadow 0.3s ease;
-}
-.brand p { font-family: var(--font-mono); font-size: clamp(10px, 1.5vw, 12px); color: var(--text-muted); margin-top: 4px; text-transform: uppercase; }
+        .header-row {
+            max-width: 1400px; /* Расширено */
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
 
-/* --- ЗАГОЛОВОК СТРАНИЦЫ --- */
-.page-title {
-    max-width: 1400px; margin: 50px auto 32px; padding: 0 24px;
-    display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 20px;
-}
+        .brand h1 {
+            font-family: var(--font-display);
+            font-size: clamp(20px, 4vw, 24px);
+            font-weight: 800;
+            letter-spacing: 0.05em;
+            line-height: 1.1;
+            text-transform: uppercase;
+        }
+        .brand h1 span {
+            color: var(--accent);
+            font-weight: 500;
+            text-shadow: 0 0 20px var(--accent-glow);
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+        .brand p {
+            font-family: var(--font-mono);
+            font-size: clamp(10px, 1.5vw, 12px);
+            color: var(--text-muted);
+            margin-top: 4px;
+            text-transform: uppercase;
+        }
 
-.title-text h1 {
-    font-family: var(--font-display); font-size: clamp(32px, 5vw, 48px);
-    font-weight: 800; line-height: 1.1; letter-spacing: -0.03em; text-transform: uppercase;
-}
+        .progress-bar {
+            max-width: 1400px; /* Расширено */
+            margin: 16px auto 0;
+            height: 4px;
+            background: var(--surface-solid);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+        .progress-bar .fill {
+            height: 100%;
+            width: 0%;
+            background: var(--accent);
+            box-shadow: 0 0 18px var(--accent-glow);
+            transition: width 0.35s ease;
+        }
 
-.title-text h1 .accent-text {
-    color: var(--accent); transition: color 0.3s ease; text-shadow: 0 0 30px var(--accent-glow);
-}
+        /* --- ЗАГОЛОВОК --- */
+        .page-title {
+            max-width: 1400px; /* Расширено */
+            margin: 40px auto 30px;
+            padding: 0 24px;
+        }
+        .page-title h1 {
+            font-family: var(--font-display);
+            font-size: clamp(32px, 5vw, 46px);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            text-transform: uppercase;
+        }
+        .page-title h1 span {
+            color: var(--accent);
+            transition: color 0.3s ease;
+        }
+        .page-title p {
+            margin-top: 10px;
+            font-size: 15px;
+            line-height: 1.5;
+            color: var(--text-muted);
+            max-width: 600px;
+        }
 
-.title-text h1 .white-text { color: #FFFFFF; }
+        /* --- ROADMAP --- */
+        .roadmap {
+            max-width: 1400px; /* Расширено */
+            margin: 0 auto 50px;
+            padding: 0 24px;
+            position: relative;
+        }
 
-.title-text p { margin-top: 12px; color: var(--text-muted); font-size: 15px; max-width: 500px; }
+        .roadmap-line {
+            position: absolute;
+            left: 42px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--surface-solid);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .roadmap-line .fill {
+            position: absolute;
+            left: 0; top: 0; width: 100%; height: 0%;
+            background: var(--accent);
+            box-shadow: 0 0 18px var(--accent-glow);
+            transition: height 0.5s ease;
+        }
 
-/* Кнопка обновления */
-.reload-btn {
-    padding: 12px 24px; border-radius: 8px; border: 1px solid var(--accent); background: rgba(0, 0, 0, 0.2);
-    color: var(--accent); font-family: var(--font-display); font-size: 13px; font-weight: 700;
-    cursor: pointer; transition: all 0.2s; text-transform: uppercase; letter-spacing: 0.05em;
-    display: flex; align-items: center; gap: 8px;
-}
-.reload-btn:hover:not(:disabled) { background: var(--accent-glow); transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
-.reload-btn:disabled { opacity: 0.4; cursor: not-allowed; border-color: var(--border); color: var(--text-muted); }
+        .roadmap-item {
+            position: relative;
+            padding-left: 80px;
+            padding-bottom: 32px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .roadmap-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-/* =========================================
-   СПИСОК КАРТОЧЕК (СТРОКИ)
-   ========================================= */
-.cards {
-    width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 24px;
-    display: flex; flex-direction: column; gap: 16px;
-}
+        .roadmap-marker {
+            position: absolute;
+            left: 42px;
+            top: 36px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--bg);
+            border: 3px solid var(--border);
+            transform: translateX(-50%);
+            transition: all 0.35s ease;
+            z-index: 2;
+        }
+        .roadmap-item.active .roadmap-marker {
+            background: var(--accent);
+            border-color: var(--accent);
+            box-shadow: 0 0 25px var(--accent-glow);
+        }
 
-/* --- СТРОЧНАЯ КАРТОЧКА --- */
-.extra-card {
-    display: flex; align-items: stretch;
-    background: var(--surface); border-radius: 12px; border: 1px solid var(--border);
-    text-decoration: none; color: var(--text); position: relative; overflow: hidden;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.6);
-    
-    --card-color: var(--accent);
-    --card-glow: var(--accent-glow);
-}
+        .roadmap-card {
+            position: relative;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px 28px;
+            cursor: pointer;
+            transition: all 0.35s ease;
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.8);
+            overflow: hidden;
+        }
+        .roadmap-card::before {
+            content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
+            background: var(--accent); opacity: 0.3; transition: opacity 0.3s;
+        }
+        .roadmap-card:hover {
+            background: var(--surface-hover);
+            border-color: var(--accent);
+            transform: translateX(6px);
+            box-shadow: 0 15px 40px -10px rgba(0,0,0,0.9), 0 0 25px var(--accent-glow);
+        }
+        .roadmap-card:hover::before { opacity: 1; }
+        .roadmap-card.active {
+            border-color: var(--accent);
+            background: var(--surface-hover);
+            box-shadow: 0 0 25px var(--accent-glow);
+        }
+        .roadmap-card.active::before { opacity: 1; }
 
-/* Состояние "Важно" */
-.extra-card.is-important {
-    --card-color: var(--danger);
-    --card-glow: var(--danger-glow);
-    background: linear-gradient(145deg, #1C1010 0%, #110707 100%);
-}
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            position: relative;
+            z-index: 2;
+        }
+        .card-number {
+            font-family: var(--font-mono);
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--accent);
+            min-width: 90px;
+            white-space: nowrap;
+        }
+        .card-title {
+            flex: 1;
+            min-width: 0; /* Защита от переполнения */
+            font-family: var(--font-display);
+            font-size: clamp(18px, 3vw, 22px);
+            font-weight: 800;
+            line-height: 1.25;
+            color: var(--text);
+            word-break: break-word; /* Перенос длинных слов */
+        }
+        .card-icon {
+            font-size: 28px;
+            opacity: 0.4;
+            transition: all 0.35s ease;
+        }
+        .roadmap-card:hover .card-icon {
+            opacity: 1; transform: scale(1.15);
+        }
+        .card-arrow {
+            font-size: 24px;
+            color: var(--accent);
+            opacity: 0.3;
+            transition: all 0.3s ease;
+        }
+        .roadmap-card:hover .card-arrow {
+            opacity: 1; transform: translateX(6px);
+        }
 
-/* Неоновая полоса слева */
-.extra-card::before {
-    content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
-    background: var(--card-color); opacity: 0.6; transition: opacity 0.3s;
-}
+        .card-text {
+            margin-top: 12px;
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--text-muted);
+            position: relative;
+            z-index: 2;
+            word-break: break-word;
+        }
+        .card-count {
+            margin-top: 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            color: var(--accent);
+            font-family: var(--font-mono);
+            font-size: 12px;
+            font-weight: 500;
+        }
 
-/* Свечение при наведении */
-.extra-card::after {
-    content: ''; position: absolute; inset: 0;
-    background: radial-gradient(800px circle at 0% 50%, var(--card-glow), transparent 50%);
-    opacity: 0; transition: opacity 0.4s ease; pointer-events: none; z-index: 0;
-}
+        /* --- МАТЕРИАЛЫ --- */
+        .materials-section {
+            max-width: 1400px; /* Расширено */
+            margin: 0 auto 60px;
+            padding: 0 24px;
+            display: none;
+        }
+        .materials-title {
+            font-family: var(--font-display);
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+        }
+        .materials-title span { color: var(--accent); }
 
-.extra-card:hover {
-    background: var(--surface-hover); border-color: var(--card-color);
-    transform: translateX(6px);
-    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8), 0 0 20px var(--card-glow);
-    z-index: 2;
-}
+        .materials-grid {
+            display: grid;
+            /* Карточки будут растягиваться, заполняя всю ширину */
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 16px;
+        }
 
-.extra-card.is-important:hover { background: #241414; }
-.extra-card:hover::before { opacity: 1; }
-.extra-card:hover::after { opacity: 1; }
+        .material-card {
+            position: relative;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        .material-card::before {
+            content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
+            background: var(--accent); opacity: 0.3; transition: opacity 0.3s;
+        }
+        .material-card:hover {
+            background: var(--surface-hover);
+            border-color: var(--accent);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.8), 0 0 20px var(--accent-glow);
+        }
+        .material-card:hover::before { opacity: 1; }
 
-/* Левая часть (Иконка) */
-.card-top {
-    position: relative; z-index: 1; display: flex; align-items: center; justify-content: center;
-    padding: 20px 24px; border-right: 1px solid var(--border);
-    background: rgba(0,0,0,0.1); transition: background-color 0.3s;
-}
-.extra-card:hover .card-top { background: rgba(0,0,0,0.2); }
+        .material-icon {
+            font-size: 24px;
+            flex-shrink: 0;
+            opacity: 0.8;
+        }
+        .material-info { 
+            flex: 1; 
+            min-width: 0; /* Защита от переполнения */
+        }
+        .material-name {
+            font-family: var(--font-display);
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 1.35;
+            margin-bottom: 4px;
+            word-break: break-word;
+        }
+        .material-badge {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            word-break: break-word;
+        }
+        .material-arrow {
+            font-size: 20px;
+            color: var(--accent);
+            opacity: 0.3;
+            transition: all 0.3s ease;
+        }
+        .material-card:hover .material-arrow {
+            opacity: 1; transform: translateX(4px);
+        }
 
-.card-icon {
-    width: 50px; height: 50px; display: flex; align-items: center; justify-content: center;
-    font-size: 24px; border-radius: 10px; background: rgba(255, 255, 255, 0.03);
-    border: 1px solid var(--border); transition: all 0.3s ease;
-}
-.extra-card:hover .card-icon {
-    transform: scale(1.1) rotate(5deg); border-color: var(--card-color); box-shadow: 0 0 15px var(--card-glow);
-}
+        /* --- ЗАГРУЗКА И СООБЩЕНИЯ --- */
+        .msg {
+            grid-column: 1 / -1;
+            padding: 40px 20px;
+            text-align: center;
+            font-family: var(--font-mono);
+            font-size: 14px;
+            color: var(--text-muted);
+            border: 1px dashed var(--border);
+            border-radius: 12px;
+            background: rgba(0,0,0,0.2);
+        }
+        .msg.error { color: #FF5C7A; border-color: #FF5C7A; background: rgba(255, 92, 122, 0.05); }
 
-/* Центральная часть (Текст) */
-.card-info {
-    position: relative; z-index: 1; flex: 1; padding: 16px 24px;
-    display: flex; flex-direction: column; justify-content: center;
-}
+        .page-loading { padding: 60px 0; text-align: center; }
+        .page-loading-icon { font-size: 40px; margin-bottom: 16px; opacity: 0.8; animation: pulse 1.5s infinite; }
+        .page-loading-title { font-family: var(--font-display); font-size: 20px; font-weight: 800; margin-bottom: 8px; }
+        .page-loading-text { font-family: var(--font-mono); font-size: 13px; color: var(--text-muted); }
 
-/* Мета-данные (Дата и Важность) */
-.card-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 6px; }
-.badge-date { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
-.badge-important {
-    font-family: var(--font-mono); font-size: 0.65rem; font-weight: 700;
-    color: #FFF; background: var(--danger); padding: 2px 8px; border-radius: 4px;
-    text-transform: uppercase; letter-spacing: 0.05em; box-shadow: 0 0 10px var(--danger-glow);
-    animation: pulse-red 2s infinite;
-}
-@keyframes pulse-red {
-    0% { box-shadow: 0 0 5px var(--danger-glow); }
-    50% { box-shadow: 0 0 15px var(--danger); }
-    100% { box-shadow: 0 0 5px var(--danger-glow); }
-}
+        @keyframes pulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
 
-.card-name { font-family: var(--font-display); font-size: 1.15rem; font-weight: 800; color: var(--text); margin-bottom: 4px; line-height: 1.3; transition: color 0.3s ease; }
-.extra-card:hover .card-name { color: var(--card-color); }
-.card-description { font-size: 0.9rem; line-height: 1.5; color: var(--text-muted); overflow-wrap: anywhere; }
+        .reload-btn {
+            margin-top: 24px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            border: 1px solid var(--accent);
+            background: transparent;
+            color: var(--accent);
+            font-family: var(--font-display);
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .reload-btn:hover:not(:disabled) { background: var(--accent-glow); transform: translateY(-2px); box-shadow: 0 0 15px var(--accent-glow); }
+        .reload-btn:disabled { opacity: 0.4; cursor: not-allowed; border-color: var(--border); color: var(--text-muted); }
 
-/* Правая часть (Кнопки переходов) */
-.card-sections {
-    position: relative; z-index: 1; display: flex; flex-direction: column; justify-content: center;
-    align-items: stretch; gap: 6px; padding: 16px 24px; border-left: 1px solid var(--border);
-    background: rgba(0,0,0,0.1); min-width: 220px;
-}
+        /* --- КНОПКА НАЗАД --- */
+        .back-link {
+            position: fixed; left: 24px; bottom: 24px; z-index: 1000;
+            padding: 10px 22px; border-radius: 40px;
+            background: rgba(10, 7, 5, 0.8); backdrop-filter: blur(12px);
+            border: 1px solid var(--border); color: var(--text-muted);
+            text-decoration: none; font-family: var(--font-display);
+            font-size: 14px; font-weight: 600; transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+        .back-link:hover {
+            color: var(--accent); border-color: var(--accent);
+            background: var(--accent-glow); transform: translateY(-2px);
+            box-shadow: 0 6px 25px var(--accent-glow);
+        }
 
-/* Ссылка (стрелка), если секция одна */
-.card-arrow-wrap {
-    position: relative; z-index: 1; display: flex; align-items: center; justify-content: center;
-    padding: 20px 30px; border-left: 1px solid var(--border); background: rgba(0,0,0,0.1);
-}
-.card-arrow {
-    width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
-    border-radius: 50%; background: rgba(255, 255, 255, 0.03); color: var(--text-muted);
-    font-size: 18px; transition: all 0.3s ease;
-}
-.extra-card:hover .card-arrow { color: #000; background: var(--card-color); transform: scale(1.1); box-shadow: 0 0 15px var(--card-glow); }
-
-/* Кнопки разделов */
-.section-btn {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 8px 14px; background: rgba(0, 0, 0, 0.2); border: 1px solid var(--border);
-    border-radius: 6px; color: var(--text); text-decoration: none;
-    font-family: var(--font-display); font-size: 0.85rem; font-weight: 600;
-    transition: all 0.2s; white-space: nowrap;
-}
-.section-btn:hover { background: var(--card-color); color: #000; border-color: var(--card-color); padding-left: 18px; box-shadow: 0 0 10px var(--card-glow); }
-.section-btn span:last-child { color: var(--card-color); font-family: var(--font-sans); transition: color 0.2s; }
-.section-btn:hover span:last-child { color: #000; }
-
-/* --- СЛУЖЕБНЫЕ СООБЩЕНИЯ --- */
-.message {
-    text-align: center; padding: 80px 24px; color: var(--text-muted);
-    font-family: var(--font-mono); font-size: 14px; text-transform: uppercase;
-    letter-spacing: 0.05em; border: 1px dashed var(--border); border-radius: 12px;
-    background: rgba(0,0,0,0.2);
-}
-.message.error { color: var(--danger); border-color: var(--danger); background: rgba(255, 59, 48, 0.05); }
-
-/* --- АНИМАЦИИ --- */
-.extra-card { opacity: 0; transform: translateY(20px); animation: cardAppear 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-@keyframes cardAppear { to { opacity: 1; transform: translateY(0); } }
-.loading { animation: pulse 1.5s infinite; }
-@keyframes pulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
-
-/* --- АДАПТАЦИЯ --- */
-@media(max-width: 768px) {
-    header { padding: 16px; }
-    .page-title { margin: 32px auto 24px; padding: 0 16px; flex-direction: column; align-items: flex-start; }
-    .cards { padding: 0 16px; gap: 12px; }
-    .extra-card { flex-direction: column; }
-    .extra-card:hover { transform: translateY(-2px); }
-    .card-top { border-right: none; border-bottom: 1px solid var(--border); padding: 12px 16px; justify-content: flex-start; }
-    .card-info { padding: 16px; }
-    .card-sections { border-left: none; border-top: 1px solid var(--border); padding: 16px; min-width: 0; flex-direction: row; flex-wrap: wrap; }
-    .section-btn { flex: 1; min-width: 120px; }
-    .card-arrow-wrap { border-left: none; border-top: 1px solid var(--border); padding: 12px; justify-content: flex-end; }
-    .reload-btn { width: 100%; justify-content: center; }
-}
-</style>
+        /* --- АДАПТАЦИЯ --- */
+        @media(max-width: 768px) {
+            header { padding: 16px; }
+            .page-title { margin-top: 28px; padding: 0 16px; }
+            .roadmap { padding: 0 16px; }
+            .materials-section { padding: 0 16px; }
+            
+            .roadmap-line { left: 20px; }
+            .roadmap-item { padding-left: 50px; padding-bottom: 24px; }
+            .roadmap-marker { left: 20px; top: 28px; width: 14px; height: 14px; }
+            
+            .roadmap-card { padding: 20px; }
+            .card-header { gap: 12px; flex-wrap: wrap; }
+            .card-number { width: 100%; min-width: 0; margin-bottom: 4px; font-size: 12px; }
+            .card-title { font-size: 18px; }
+            .card-arrow { display: none; }
+            
+            .materials-grid { grid-template-columns: 1fr; }
+            .back-link { left: 16px; bottom: 16px; font-size: 13px; }
+        }
+    </style>
 </head>
-
 <body>
 
-<header>
-    <div class="brand">
-        <a href="https://drapejnik.github.io/epallaxis/index.html">
-            <h1>EPALLAXIS <span class="accent-word">extra</span></h1>
-        </a>
-        <p>Дополнительные материалы и возможности</p>
-    </div>
-</header>
+    <header>
+        <div class="header-row">
+            <div class="brand">
+                <a href="../../index.html">
+                    <h1>EPALLAXIS <span>algebra</span></h1>
+                </a>
+                <p>Ἐπαλλάσσω — приводить систему в порядок</p>
+            </div>
+        </div>
+        <div class="progress-bar">
+            <div class="fill" id="progressFill"></div>
+        </div>
+    </header>
 
-<section class="page-title">
-    <div class="title-text">
-        <h1><span class="accent-text">Дополнительно</span> <span class="white-text">Объявления</span></h1>
-        <p>Актуальные объявления и новости</p>
-    </div>
-    <button class="reload-btn" id="reloadBtn">
-        🔄 Обновить
-    </button>
-</section>
+    <section class="page-title">
+        <h1>Алгебра <span>9 класс</span></h1>
+        <p>Изучайте главы последовательно или выбирайте любую</p>
+    </section>
 
-<main class="cards" id="cardsContainer">
-    <div class="message loading">
-        ⏳ Загрузка карточек...
-    </div>
-</main>
+    <section class="roadmap">
+        <div class="roadmap-line">
+            <div class="fill" id="lineFill"></div>
+        </div>
+        <div id="roadmapItems">
+            <div class="page-loading">
+                <div class="page-loading-icon">📘</div>
+                <div class="page-loading-title">Загрузка курса</div>
+                <div class="page-loading-text">Подготавливаем материалы</div>
+            </div>
+        </div>
+    </section>
 
-<script>
-/* =====================================================
-   1. СИНХРОНИЗАЦИЯ ТЕМЫ (ИЗ ГЛАВНОЙ)
-===================================================== */
-function getCurrentSeason() {
-    const month = new Date().getMonth();
-    if (month === 11 || month <= 1) return 'winter';
-    if (month >= 2 && month <= 4) return 'spring';
-    if (month >= 5 && month <= 7) return 'summer';
-    return 'autumn';
-}
+    <section class="materials-section" id="materialsSection">
+        <h2 class="materials-title">Материалы к <span id="chapterName">главе</span></h2>
+        <div class="materials-grid" id="materialsGrid">
+            <div class="msg">⏳ Загрузка заданий...</div>
+        </div>
+        <button class="reload-btn" id="reloadBtn">🔄 Обновить задания</button>
+    </section>
 
-function applyThemeFromMain() {
-    const savedTheme = localStorage.getItem('epallaxis_theme') || 'auto';
-    let activeSeason = savedTheme === 'auto' ? getCurrentSeason() : savedTheme;
-    document.body.className = 'season-' + activeSeason;
-}
+    <a href="../../index.html" class="back-link">← На главную</a>
 
-applyThemeFromMain();
-/* ===================================================== */
-
-/* =====================================================
-   GOOGLE SHEETS & LOGIC
-===================================================== */
-const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTCrYk2HhIsUkgP3K1Be2fbVpZqefQ79KR-9hUUF_uZNNrAfhSHaZgwtb2z3DbZZ2ZtPjAEYojKoSnX/pub?gid=0&single=true&output=csv";
-
-const icons = ["🚀", "📚", "🧠", "🎯", "🛠️", "💡", "📌", "⭐", "🔥", "🎓", "⚡", "🌌"];
-
-const colors = [
-    "#FF8A00", // Оранжевый
-    "#3B82F6", // Синий
-    "#FFB7C5", // Розовый
-    "#10B981", // Зеленый
-    "#8B5CF6", // Фиолетовый
-    "#FCD34D", // Золотой
-    "#F43F5E", // Малиновый
-    "#38BDF8"  // Голубой
-];
-
-function randomItem(array) {
-    return array[Math.floor(Math.random() * array.length)];
-}
-
-function hexToRgba(hex, alpha) {
-    const r = parseInt(hex.slice(1, 3), 16);
-    const g = parseInt(hex.slice(3, 5), 16);
-    const b = parseInt(hex.slice(5, 7), 16);
-    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
-}
-
-function parseCSV(text) {
-    const rows = []; let row = []; let value = ""; let quotes = false;
-    for (let i = 0; i < text.length; i++) {
-        const char = text[i];
-        if (char === '"') {
-            if (quotes && text[i + 1] === '"') { value += '"'; i++; }
-            else { quotes = !quotes; }
-        }
-        else if (char === ',' && !quotes) { row.push(value); value = ""; }
-        else if (char === '\n' && !quotes) { row.push(value); rows.push(row); row = []; value = ""; }
-        else { value += char; }
-    }
-    if (value || row.length) { row.push(value); rows.push(row); }
-    return rows;
-}
-
-let loading = false;
-
-async function loadCards() {
-    if (loading) return;
-    loading = true;
-    const button = document.getElementById("reloadBtn");
-    button.classList.add("loading");
-    button.textContent = "⏳ Загрузка...";
-
-    const container = document.getElementById("cardsContainer");
-    container.innerHTML = `<div class="message loading">⏳ Загрузка карточек...</div>`;
-
-    try {
-        const response = await fetch(sheetURL + "&t=" + Date.now());
-        if (!response.ok) throw new Error("Ошибка загрузки таблицы");
-
-        const csv = await response.text();
-        const rows = parseCSV(csv);
-
-        if (rows.length < 2) throw new Error("Таблица пустая");
-
-        // УЛЬТРА-НАДЕЖНЫЙ ПАРСИНГ ЗАГОЛОВКОВ (убираем пробелы, регистр и невидимые символы)
-        const headers = rows[0].map(x => x.trim().toLowerCase().replace(/[^a-zа-яё0-9]/gi, ''));
-        
-        const orderIndex = headers.indexOf("порядок");
-        const dateIndex = headers.indexOf("дата");
-        const importantIndex = headers.indexOf("важность");
-        const titleIndex = headers.indexOf("заголовок");
-        const textIndex = headers.indexOf("текст");
-        const activeIndex = headers.indexOf("активность");
-
-        if (orderIndex === -1 || titleIndex === -1 || activeIndex === -1) {
-            throw new Error("Не найдены основные столбцы. Проверьте названия в таблице.");
+    <script>
+        // ==========================================
+        // 1. СИНХРОНИЗАЦИЯ ТЕМЫ (ИЗ ГЛАВНОЙ)
+        // ==========================================
+        function getCurrentSeason() {
+            const month = new Date().getMonth();
+            if (month === 11 || month <= 1) return 'winter';
+            if (month >= 2 && month <= 4) return 'spring';
+            if (month >= 5 && month <= 7) return 'summer';
+            return 'autumn';
         }
 
-        const sectionPairs = [];
-        for (let i = 1; i <= 5; i++) {
-            const nameIdx = headers.indexOf(`секция${i}`);
-            const linkIdx = headers.indexOf(`ссылка${i}`);
-            if (nameIdx !== -1 && linkIdx !== -1) {
-                sectionPairs.push({ nameIdx, linkIdx });
-            }
+        function applyThemeFromMain() {
+            const savedTheme = localStorage.getItem('epallaxis_theme') || 'auto';
+            let activeSeason = savedTheme === 'auto' ? getCurrentSeason() : savedTheme;
+            document.body.className = 'season-' + activeSeason;
         }
 
-        const cards = [];
+        applyThemeFromMain();
+        // ==========================================
 
-        for (let i = 1; i < rows.length; i++) {
-            const row = rows[i];
-            if (!row.length) continue;
+        // ==========================================
+        // 2. ЛОГИКА ЗАГРУЗКИ ДАННЫХ
+        // ==========================================
+        const chaptersSheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQvHTb3SOfhmvWJAmeFnHtiCj9JSMel_M1yHofabPwinYq4fSoCpy3GrP3r73ks3krE0p-snzXlK3cJ/pubhtml?gid=0&single=true";
 
-            // Проверка активности (TRUE, 1, ДА)
-            const active = row[activeIndex]?.trim().toLowerCase();
-            if (active !== "true" && active !== "да" && active !== "1" && active !== "истина") continue;
+        const roadmapItems = document.getElementById("roadmapItems");
+        const lineFill = document.getElementById("lineFill");
+        const progressFill = document.getElementById("progressFill");
+        const materialsSection = document.getElementById("materialsSection");
+        const materialsGrid = document.getElementById("materialsGrid");
+        const chapterName = document.getElementById("chapterName");
+        const reloadBtn = document.getElementById("reloadBtn");
 
-            // Проверка важности (галочка выдает TRUE)
-            let isImportant = false;
-            if (importantIndex !== -1) {
-                const val = row[importantIndex]?.trim().toLowerCase();
-                isImportant = (val === "true" || val === "да" || val === "1" || val === "истина");
-            }
+        let chapters = [];
+        let activeChapterIndex = -1;
+        let currentChapter = null;
 
-            let dateStr = "";
-            if (dateIndex !== -1 && row[dateIndex]) {
-                dateStr = row[dateIndex].trim();
-            }
-
-            // Сбор ссылок
-            const sections = [];
-            sectionPairs.forEach(pair => {
-                const name = row[pair.nameIdx]?.trim();
-                const link = row[pair.linkIdx]?.trim();
-                if (link) {
-                    sections.push({ name: name || 'Перейти', link });
+        function parseCSV(text) {
+            const rows = []; let row = []; let value = ""; let quotes = false;
+            for (let i = 0; i < text.length; i++) {
+                const char = text[i];
+                if (char === '"') {
+                    if (quotes && text[i + 1] === '"') { value += '"'; i++; }
+                    else { quotes = !quotes; }
                 }
-            });
-
-            // Если ссылок нет вообще, мы все равно добавляем карточку (чтобы показать текст)
-            cards.push({
-                order: Number(row[orderIndex]) || 9999,
-                date: dateStr,
-                important: isImportant,
-                title: row[titleIndex]?.trim() || '',
-                text: textIndex !== -1 ? row[textIndex]?.trim() || '' : '',
-                sections: sections
-            });
+                else if (char === ',' && !quotes) { row.push(value); value = ""; }
+                else if ((char === '\n' || char === '\r') && !quotes) {
+                    if (value !== "" || row.length > 0) { row.push(value); rows.push(row); }
+                    row = []; value = "";
+                    if (char === '\r' && text[i+1] === '\n') i++;
+                }
+                else { value += char; }
+            }
+            if (value !== "" || row.length > 0) { row.push(value); rows.push(row); }
+            return rows;
         }
 
-        // Сортировка по порядку (если порядок не указан, карточка уходит в конец)
-        cards.sort((a, b) => a.order - b.order);
-        renderCards(cards);
-
-    } catch (error) {
-        console.error(error);
-        container.innerHTML = `<div class="message error">⚠️ ${error.message}</div>`;
-    } finally {
-        loading = false;
-        button.classList.remove("loading");
-        button.textContent = "🔄 Обновить";
-    }
-}
-
-function renderCards(items) {
-    const container = document.getElementById("cardsContainer");
-
-    if (!items.length) {
-        container.innerHTML = `<div class="message">📭 Активных карточек пока нет</div>`;
-        return;
-    }
-
-    container.innerHTML = "";
-
-    items.forEach((item, index) => {
-        // Определяем, есть ли ссылки
-        const hasLinks = item.sections.length > 0;
-        const isSingleLink = item.sections.length === 1;
-        
-        // Если одна ссылка - вся карточка это ссылка. Иначе - div.
-        const card = document.createElement(isSingleLink ? "a" : "div");
-        
-        card.className = "extra-card";
-        if (item.important) {
-            card.classList.add("is-important");
-        }
-        
-        if (isSingleLink) {
-            card.href = item.sections[0].link;
-            card.target = "_blank";
+        function escapeHTML(text) {
+            if (!text) return '';
+            return String(text)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;")
+                .replace(/\r?\n/g, "<br>");
         }
 
-        let color, glow;
-        if (item.important) {
-            color = "var(--danger)";
-            glow = "var(--danger-glow)";
-        } else {
-            color = randomItem(colors);
-            glow = hexToRgba(color, 0.3);
+        function convertToCSV(url) {
+            if (!url) return "";
+            return url
+                .replace("/pubhtml", "/pub")
+                .replace(/\?gid=/, "?output=csv&gid=")
+                .replace("&single=true", "");
         }
 
-        const icon = randomItem(icons);
+        async function loadChapters() {
+            try {
+                const csvURL = convertToCSV(chaptersSheetURL);
+                const response = await fetch(csvURL + "&t=" + Date.now());
+                if (!response.ok) throw new Error("Не удалось загрузить таблицу глав");
 
-        card.style.setProperty("--card-color", color);
-        card.style.setProperty("--card-glow", glow);
-        card.style.animationDelay = (index * 0.08) + "s";
+                const csv = await response.text();
+                const rows = parseCSV(csv);
+                if (rows.length < 2) throw new Error("Таблица глав пустая");
 
-        // Формируем мета-данные (дата + бейдж важности)
-        let metaHTML = "";
-        if (item.date || item.important) {
-            metaHTML = `<div class="card-meta">`;
-            if (item.date) metaHTML += `<span class="badge-date">${escapeHTML(item.date)}</span>`;
-            if (item.important) metaHTML += `<span class="badge-important">Важно</span>`;
-            metaHTML += `</div>`;
-        }
+                const headers = rows[0].map(item => item.trim().toLowerCase());
+                const orderIndex = headers.indexOf("порядок");
+                const chapterIndex = headers.indexOf("глава");
+                const titleIndex = headers.indexOf("заголовок");
+                const textIndex = headers.indexOf("текст");
+                const tableIndex = headers.indexOf("таблица");
+                const activityIndex = headers.indexOf("активность");
 
-        // Формируем правую часть
-        let rightSideHTML = "";
-        if (hasLinks) {
-            if (isSingleLink) {
-                rightSideHTML = `<div class="card-arrow-wrap"><div class="card-arrow">↗</div></div>`;
-            } else {
-                rightSideHTML = `<div class="card-sections">
-                    ${item.sections.map(sec => `
-                        <a href="${escapeHTML(sec.link)}" class="section-btn" target="_blank">
-                            <span>${escapeHTML(sec.name)}</span>
-                            <span>→</span>
-                        </a>
-                    `).join('')}
-                </div>`;
+                if (chapterIndex === -1 || titleIndex === -1 || tableIndex === -1 || activityIndex === -1) {
+                    throw new Error("В таблице глав отсутствуют обязательные столбцы");
+                }
+
+                chapters = [];
+                rows.slice(1).forEach(row => {
+                    const active = String(row[activityIndex]).trim().toLowerCase();
+                    if (active !== "true" && active !== "1" && active !== "да") return;
+
+                    chapters.push({
+                        order: Number(row[orderIndex]) || 999,
+                        chapter: row[chapterIndex] || "",
+                        title: row[titleIndex] || "",
+                        text: row[textIndex] || "",
+                        table: row[tableIndex] || ""
+                    });
+                });
+
+                chapters.sort((a, b) => a.order - b.order);
+                buildRoadmap();
+
+            } catch (error) {
+                console.error(error);
+                roadmapItems.innerHTML = `<div class="msg error">❌ ${escapeHTML(error.message)}</div>`;
             }
         }
 
-        card.innerHTML = `
-            <div class="card-top">
-                <div class="card-icon">${icon}</div>
-            </div>
-            <div class="card-info">
-                ${metaHTML}
-                <div class="card-name">${escapeHTML(item.title)}</div>
-                <div class="card-description">${escapeHTML(item.text)}</div>
-            </div>
-            ${rightSideHTML}
-        `;
+        async function getTaskCount(tableURL) {
+            try {
+                if (!tableURL) return 0;
+                const csvURL = convertToCSV(tableURL);
+                const response = await fetch(csvURL);
+                if (!response.ok) return 0;
 
-        container.appendChild(card);
-    });
-}
+                const csv = await response.text();
+                const rows = parseCSV(csv);
+                if (rows.length < 2) return 0;
 
-function escapeHTML(text) {
-    if (!text) return '';
-    return text.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#039;");
-}
+                const headers = rows[0].map(item => item.trim().toLowerCase());
+                const activityIndex = headers.indexOf("активность");
+                if (activityIndex === -1) return 0;
 
-document.getElementById("reloadBtn").addEventListener("click", loadCards);
+                let count = 0;
+                rows.slice(1).forEach(row => {
+                    const active = String(row[activityIndex]).trim().toLowerCase();
+                    if (active === "true" || active === "1" || active === "да") count++;
+                });
+                return count;
+            } catch (error) {
+                console.error(error);
+                return 0;
+            }
+        }
 
-loadCards();
-</script>
+        async function buildRoadmap() {
+            roadmapItems.innerHTML = "";
+
+            for (let index = 0; index < chapters.length; index++) {
+                const chapter = chapters[index];
+                const item = document.createElement("div");
+                item.className = "roadmap-item";
+                item.dataset.index = index;
+                item.style.transitionDelay = `${index * 0.08}s`;
+
+                const cardNumber = chapter.chapter || `Глава ${index + 1}`;
+                const taskCount = await getTaskCount(chapter.table);
+
+                item.innerHTML = `
+                    <div class="roadmap-marker"></div>
+                    <div class="roadmap-card">
+                        <div class="card-header">
+                            <div class="card-number">${escapeHTML(cardNumber)}</div>
+                            <div class="card-title">${escapeHTML(chapter.title)}</div>
+                            <div class="card-icon">📘</div>
+                            <div class="card-arrow">→</div>
+                        </div>
+                        ${chapter.text ? `<div class="card-text">${escapeHTML(chapter.text)}</div>` : ""}
+                        <div class="card-count">📝 ${taskCount} шт.</div>
+                    </div>
+                `;
+
+                roadmapItems.appendChild(item);
+
+                const card = item.querySelector(".roadmap-card");
+                card.addEventListener("click", () => openChapter(chapter, index));
+            }
+
+            observeRoadmap();
+        }
+
+        function observeRoadmap() {
+            const items = document.querySelectorAll(".roadmap-item");
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) entry.target.classList.add("visible");
+                });
+            }, { threshold: 0.15 });
+
+            items.forEach(item => observer.observe(item));
+        }
+
+        function openChapter(chapter, index) {
+            currentChapter = chapter;
+            activeChapterIndex = index;
+
+            document.querySelectorAll(".roadmap-item").forEach(item => item.classList.remove("active"));
+            const currentItem = document.querySelector(`.roadmap-item[data-index="${index}"]`);
+            if (currentItem) currentItem.classList.add("active");
+
+            chapterName.textContent = chapter.title || chapter.chapter || "глава";
+            materialsSection.style.display = "block";
+
+            setTimeout(() => {
+                materialsSection.scrollIntoView({ behavior: "smooth", block: "start" });
+            }, 200);
+
+            materialsGrid.innerHTML = `<div class="msg">⏳ Загрузка заданий...</div>`;
+            loadMaterials(chapter.table);
+            updateProgress();
+        }
+
+        async function loadMaterials(tableURL) {
+            try {
+                if (!tableURL || tableURL.trim() === "") throw new Error("Для этой главы не указана таблица заданий");
+
+                const csvURL = convertToCSV(tableURL);
+                const response = await fetch(csvURL + "&t=" + Date.now());
+                if (!response.ok) throw new Error("Не удалось загрузить таблицу заданий");
+
+                const csv = await response.text();
+                const rows = parseCSV(csv);
+                if (rows.length < 2) throw new Error("Таблица заданий пустая");
+
+                buildMaterials(rows);
+            } catch (error) {
+                console.error(error);
+                materialsGrid.innerHTML = `<div class="msg error">❌ ${escapeHTML(error.message)}</div>`;
+            }
+        }
+
+        function buildMaterials(rows) {
+            const headers = rows[0].map(item => item.trim().toLowerCase());
+            const orderIndex = headers.indexOf("порядок");
+            const titleIndex = headers.indexOf("заголовок");
+            const textIndex = headers.indexOf("текст");
+            const linkIndex = headers.indexOf("ссылка");
+            const activityIndex = headers.indexOf("активность");
+
+            if (titleIndex === -1 || linkIndex === -1 || activityIndex === -1) {
+                throw new Error("В таблице заданий отсутствуют обязательные столбцы");
+            }
+
+            const tasks = [];
+            rows.slice(1).forEach(row => {
+                const active = String(row[activityIndex]).trim().toLowerCase();
+                if (active !== "true" && active !== "1" && active !== "да") return;
+
+                tasks.push({
+                    order: Number(row[orderIndex]) || 999,
+                    title: row[titleIndex] || "",
+                    text: row[textIndex] || "",
+                    link: row[linkIndex] || ""
+                });
+            });
+
+            tasks.sort((a, b) => a.order - b.order);
+            renderMaterials(tasks);
+        }
+
+        function renderMaterials(tasks) {
+            materialsGrid.innerHTML = "";
+
+            if (tasks.length === 0) {
+                materialsGrid.innerHTML = `<div class="msg">Нет активных заданий</div>`;
+                return;
+            }
+
+            tasks.forEach((task, index) => {
+                const card = document.createElement("a");
+                card.className = "material-card";
+                card.href = task.link;
+                card.target = "_blank";
+                card.rel = "noopener noreferrer";
+                card.style.animationDelay = `${index * 0.06}s`;
+
+                card.innerHTML = `
+                    <div class="material-icon">📝</div>
+                    <div class="material-info">
+                        <div class="material-name">${escapeHTML(task.title)}</div>
+                        <div class="material-badge">${escapeHTML(task.text)}</div>
+                    </div>
+                    <div class="material-arrow">→</div>
+                `;
+
+                materialsGrid.appendChild(card);
+            });
+        }
+
+        function updateProgress() {
+            if (chapters.length === 0) return;
+            const percent = ((activeChapterIndex + 1) / chapters.length) * 100;
+            if (progressFill) progressFill.style.width = percent + "%";
+            if (lineFill) lineFill.style.height = percent + "%";
+        }
+
+        reloadBtn.addEventListener("click", async () => {
+            if (!currentChapter || reloadBtn.disabled) return;
+
+            reloadBtn.disabled = true;
+            reloadBtn.textContent = "⏳ Обновление...";
+            materialsGrid.innerHTML = `<div class="msg">⏳ Обновление материалов...</div>`;
+
+            await loadMaterials(currentChapter.table);
+
+            reloadBtn.disabled = false;
+            reloadBtn.textContent = "🔄 Обновить задания";
+        });
+
+        document.addEventListener("DOMContentLoaded", () => {
+            loadChapters();
+        });
+    </script>
 </body>
 </html>
