@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>EPALLAXIS — Математика</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,6 +12,7 @@
         :root {
             --bg: #0A0705; 
             --surface: linear-gradient(145deg, #291E17 0%, #140E0A 100%);
+            --surface-solid: #1C140F;
             --surface-hover: linear-gradient(145deg, #382920 0%, #1C140F 100%);
             --text: #FFFFFF;
             --text-muted: #C0B8B0; 
@@ -29,6 +30,7 @@
         body.season-winter {
             --bg: #080C14;
             --surface: linear-gradient(145deg, #131C2E 0%, #0A101D 100%);
+            --surface-solid: #0A101D;
             --surface-hover: linear-gradient(145deg, #1C283D 0%, #111827 100%);
             --text-muted: #9CA3AF;
             --accent: #3B82F6; 
@@ -40,6 +42,7 @@
         body.season-spring {
             --bg: #0C0A0B; 
             --surface: linear-gradient(145deg, #241A1D 0%, #140E10 100%);
+            --surface-solid: #140E10;
             --surface-hover: linear-gradient(145deg, #332529 0%, #1A1214 100%);
             --text-muted: #D1C4C7; 
             --accent: #FFB7C5; 
@@ -51,6 +54,7 @@
         body.season-summer {
             --bg: #060A08;
             --surface: linear-gradient(145deg, #13221A 0%, #0B140F 100%);
+            --surface-solid: #0B140F;
             --surface-hover: linear-gradient(145deg, #1A2E23 0%, #0F1C15 100%);
             --text-muted: #9CA3AF;
             --accent: #10B981; 
@@ -61,14 +65,18 @@
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
         
-        html { 
+        html, body { 
             background-color: var(--bg); 
             scroll-behavior: smooth; 
-            transition: background-color 0.8s ease; 
+            transition: background-color 0.3s ease; 
+            width: 100%;
+            max-width: 100%;
+            overflow-x: clip; 
+            margin: 0;
+            padding: 0;
         }
 
         body {
-            background-color: var(--bg);
             color: var(--text);
             font-family: var(--font-sans);
             line-height: 1.5;
@@ -77,27 +85,22 @@
             display: flex;
             flex-direction: column;
             position: relative;
-            overflow-x: hidden;
-            transition: background-color 0.8s ease;
-            width: 100%;
         }
 
         body::before, body::after {
             content: '';
-            position: absolute;
-            width: 100vw;
-            height: 100vw;
-            max-width: 700px;
-            max-height: 700px;
+            position: fixed;
+            width: 100vmax;
+            height: 100vmax;
             border-radius: 50%;
             filter: blur(150px);
             z-index: -1;
             opacity: 0.15;
             pointer-events: none;
-            transition: background 0.8s ease;
+            transition: background 0.3s ease;
         }
-        body::before { top: -20vw; left: -20vw; background: var(--accent); }
-        body::after { bottom: -20vw; right: -20vw; background: var(--accent-light); opacity: 0.05; }
+        body::before { top: -50vmax; left: -50vmax; background: var(--accent); }
+        body::after { bottom: -50vmax; right: -50vmax; background: var(--accent-light); opacity: 0.05; }
 
         a { color: inherit; text-decoration: none; }
 
@@ -131,7 +134,7 @@
             color: var(--accent); 
             font-weight: 500;
             text-shadow: 0 0 20px var(--accent-glow);
-            transition: color 0.8s ease, text-shadow 0.8s ease;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
         }
 
         .header-right {
@@ -148,7 +151,7 @@
             padding: 4px;
             gap: 2px;
             flex-wrap: wrap;
-            transition: border-color 0.8s ease;
+            transition: border-color 0.3s ease;
         }
 
         .theme-btn {
@@ -161,7 +164,7 @@
             padding: 6px 12px;
             border-radius: 16px;
             cursor: pointer;
-            transition: background-color 0.8s ease, color 0.8s ease, box-shadow 0.8s ease;
+            transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
         }
 
         .theme-btn:hover { color: var(--text); }
@@ -190,7 +193,7 @@
             grid-template-columns: 1fr;
             gap: 24px;
             overflow: hidden; 
-            transition: border-color 0.8s ease;
+            transition: border-color 0.3s ease;
         }
 
         .season-particles {
@@ -198,7 +201,7 @@
             inset: 0;
             pointer-events: none;
             z-index: 0;
-            transition: opacity 0.4s ease;
+            transition: opacity 0.2s ease;
         }
 
         #spring-canvas {
@@ -208,7 +211,7 @@
             height: 100%;
             z-index: 0;
             pointer-events: none;
-            transition: opacity 0.4s ease;
+            transition: opacity 0.2s ease;
         }
 
         .hero-top {
@@ -235,7 +238,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-shadow: 0 0 40px var(--accent-glow);
-            transition: background 0.8s ease;
+            transition: background 0.3s ease;
         }
 
         .hero-side-text {
@@ -266,7 +269,7 @@
             padding-left: 16px;
             border-left: 2px solid var(--accent);
             text-shadow: 0 0 15px var(--accent-glow);
-            transition: color 0.8s ease, border-color 0.8s ease, text-shadow 0.8s ease;
+            transition: color 0.3s ease, border-color 0.3s ease, text-shadow 0.3s ease;
         }
 
         .hero-desc {
@@ -345,12 +348,40 @@
             100% { transform: translate(-20px, -100px) scale(0.8); opacity: 0; }
         }
 
-        /* --- КАРТОЧКИ --- */
+        /* =========================================
+           КАРТОЧКИ (АДАПТИВНАЯ СЕТКА ВНУТРИ)
+           ========================================= */
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
             gap: 24px; 
             margin: 48px 0 80px;
+            align-items: start; 
+        }
+
+        .skeleton-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            height: 240px; 
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skeleton-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+            transform: translateX(-100%);
+            animation: shimmer 1.5s infinite;
+        }
+
+        @keyframes shimmer { 100% { transform: translateX(100%); } }
+
+        @keyframes cardAppear {
+            0% { opacity: 0; transform: translateY(20px) scale(0.95); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
         }
 
         .card {
@@ -359,21 +390,19 @@
             border: 1px solid var(--border);
             border-top: 2px solid rgba(255, 255, 255, 0.1);
             border-radius: 12px;
-            padding: 24px;
-            display: flex;
-            flex-direction: column;
-            min-height: 190px;
             position: relative;
-            text-align: left;
-            font-family: inherit;
-            color: inherit;
             width: 100%;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            height: 240px; 
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            overflow: hidden;
+            
+            opacity: 0;
+            animation: cardAppear 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
         .card.is-clickable { cursor: pointer; }
-
-        .card.is-clickable:hover {
+        
+        .card.is-clickable:hover:not(.is-expanded) {
             background: var(--surface-hover);
             border-color: var(--border-hover);
             border-top-color: var(--accent);
@@ -382,6 +411,164 @@
             z-index: 2;
         }
 
+        .card.is-expanded {
+            z-index: 10;
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.9), 0 0 40px var(--accent-glow);
+            background: var(--surface-solid); 
+        }
+
+        .card-default {
+            position: absolute;
+            inset: 0;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            backface-visibility: hidden;
+        }
+
+        .card.is-expanded .card-default {
+            opacity: 0;
+            transform: scale(0.95) translateY(-10px);
+            pointer-events: none;
+        }
+
+        .card-expanded {
+            position: absolute;
+            inset: 0;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            transform: scale(1.05) translateY(10px);
+            pointer-events: none;
+            transition: opacity 0.3s ease 0.1s, transform 0.3s ease 0.1s;
+            z-index: 2;
+        }
+
+        .card.is-expanded .card-expanded {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+            pointer-events: auto;
+        }
+
+        .expanded-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            flex-shrink: 0;
+        }
+
+        /* Ограничиваем заголовок, чтобы не сломал сетку */
+        .expanded-title {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--text);
+            line-height: 1.1;
+            padding-right: 8px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .btn-close-circle {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            cursor: pointer;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+
+        .btn-close-circle:hover {
+            background: var(--accent);
+            color: #000;
+            border-color: var(--accent);
+            transform: rotate(90deg);
+        }
+
+        /* НОВАЯ СЕТКА РАЗДЕЛОВ БЕЗ СКРОЛЛА */
+        .expanded-sections {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            flex-grow: 1;
+            align-content: center; /* Центрируем по вертикали, если их мало */
+        }
+
+        /* Если 1 раздел - на всю ширину */
+        .card-expanded[data-count="1"] .expanded-sections {
+            grid-template-columns: 1fr;
+        }
+
+        /* Если 3 или 5 - первый на всю ширину, остальные 2х2 */
+        .card-expanded[data-count="3"] .expanded-sections > :first-child,
+        .card-expanded[data-count="5"] .expanded-sections > :first-child {
+            grid-column: span 2;
+        }
+
+        .inner-section-btn {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 14px;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--text);
+            font-family: var(--font-display);
+            font-size: 0.85rem;
+            font-weight: 700;
+            transition: all 0.2s;
+            min-width: 0; /* Важно для обрезки текста */
+        }
+
+        .inner-section-btn:hover {
+            background: var(--accent);
+            color: #000;
+            border-color: var(--accent);
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        .inner-section-btn .sec-name {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        
+        .inner-section-btn .sec-index {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            opacity: 0.6;
+        }
+
+        .inner-section-btn:hover .sec-index { opacity: 1; }
+
+        .inner-section-btn .arrow {
+            font-family: var(--font-sans);
+            color: var(--accent);
+            transition: color 0.2s;
+            margin-left: 8px;
+        }
+
+        .inner-section-btn:hover .arrow { color: #000; }
+
+        /* Общие стили контента (по умолчанию) */
         .card-header {
             display: flex;
             justify-content: flex-end;
@@ -399,7 +586,7 @@
             line-height: 1;
         }
 
-        .card.is-clickable:hover .card-math-icon {
+        .card.is-clickable:hover:not(.is-expanded) .card-math-icon {
             color: var(--accent);
             opacity: 1;
             transform: scale(1.1) rotate(-5deg);
@@ -423,6 +610,10 @@
             line-height: 1.5;
             margin-bottom: 24px;
             flex-grow: 1;
+            display: -webkit-box;
+            -webkit-line-clamp: 4; 
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
         .card-tags {
@@ -441,89 +632,8 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             padding: 4px 10px;
             border-radius: 20px;
-            transition: all 0.8s ease;
+            transition: all 0.3s ease;
         }
-
-        .card.is-clickable:hover .card-tag {
-            background: var(--accent);
-            color: #000;
-            border-color: var(--accent);
-            box-shadow: 0 0 10px var(--accent-glow);
-        }
-
-        /* =========================================
-           МОДАЛКА
-           ========================================= */
-        dialog {
-            margin: auto;
-            background: var(--bg);
-            backdrop-filter: blur(20px);
-            color: var(--text);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 0;
-            max-width: 500px;
-            width: 90%;
-            max-height: 85vh;
-            box-shadow: 0 32px 80px rgba(0,0,0,0.9), 0 0 0 1px var(--accent-glow) inset;
-        }
-
-        dialog[open] { 
-            display: flex; 
-            flex-direction: column;
-            animation: modal-in 0.4s cubic-bezier(0.16, 1, 0.3, 1); 
-        }
-        
-        @keyframes modal-in { from { opacity: 0; transform: scale(0.9) translateY(20px); } to { opacity: 1; transform: scale(1) translateY(0); } }
-        dialog::backdrop { background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); }
-
-        .dialog-header {
-            padding: 24px 28px;
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            background: linear-gradient(180deg, var(--accent-glow) 0%, transparent 100%);
-            flex-shrink: 0;
-        }
-
-        .dialog-title { font-family: var(--font-display); font-size: 1.6rem; font-weight: 800; }
-        .dialog-sub { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent); text-transform: uppercase; margin-top: 6px; }
-        
-        .dialog-close {
-            background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border); color: var(--text-muted);
-            cursor: pointer; width: 32px; height: 32px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-family: var(--font-mono); font-size: 1.1rem; transition: all 0.2s;
-        }
-        .dialog-close:hover { color: #000; background: var(--accent); border-color: var(--accent); box-shadow: 0 0 15px var(--accent-glow); transform: rotate(90deg); }
-
-        .dialog-mosaic { 
-            padding: 20px; 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
-            gap: 12px; 
-            overflow-y: auto;
-        }
-
-        .section-btn {
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 20px; background: var(--surface); border: 1px solid var(--border);
-            border-radius: 12px; color: var(--text); font-family: var(--font-display);
-            font-size: 1.1rem; font-weight: 700; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-        }
-        
-        .section-btn:hover { background: var(--surface-hover); border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 10px 20px -5px rgba(0,0,0,0.8), 0 0 25px var(--accent-glow); }
-        
-        .section-btn .arrow {
-            display: flex; align-items: center; justify-content: center;
-            width: 32px; height: 32px; background: rgba(255, 255, 255, 0.05);
-            border-radius: 50%; color: var(--accent); font-family: var(--font-sans); transition: all 0.3s;
-        }
-
-        .section-btn:hover .arrow { background: var(--accent); color: #000; transform: translateX(4px); box-shadow: 0 0 10px var(--accent-glow); }
-
-        body.modal-open { overflow: hidden; }
 
         .status-message {
             grid-column: 1 / -1; text-align: center; padding: 60px 20px;
@@ -539,7 +649,7 @@
         }
 
         @media (max-width: 768px) {
-            .frame { padding: 0 16px; }
+            .frame { padding: 0 12px; }
             
             header { flex-direction: column; align-items: flex-start; gap: 16px; padding: 20px 0; }
             .header-right { flex-direction: row; align-items: center; width: 100%; justify-content: space-between; }
@@ -547,17 +657,23 @@
             .hero-top { flex-direction: column; gap: 16px; align-items: flex-start; }
             .hero-bottom { grid-template-columns: 1fr; gap: 20px; }
             
-            .cards-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 24px; }
-            .card { padding: 16px 12px; min-height: 140px; border-radius: 10px; }
-            .card-title { font-size: 1.1rem; margin-bottom: 4px; }
-            .card-text { font-size: 0.75rem; margin-bottom: 12px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-            .card-tag { font-size: 0.55rem; padding: 2px 6px; }
-            .card-math-icon { font-size: 1.5rem; }
+            .cards-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; margin-top: 24px; }
             
-            .dialog-mosaic { grid-template-columns: 1fr; }
-            .dialog-header { padding: 16px 20px; }
-            .dialog-title { font-size: 1.3rem; }
-            .section-btn { padding: 14px 16px; font-size: 0.95rem; }
+            .card, .skeleton-card { height: 180px; border-radius: 10px; }
+            .card-default { padding: 12px 10px; }
+            .card-title { font-size: 1rem; margin-bottom: 4px; }
+            .card-text { font-size: 0.7rem; -webkit-line-clamp: 2; margin-bottom: 8px; }
+            .card-tag { font-size: 0.5rem; padding: 2px 4px; }
+            .card-math-icon { font-size: 1.4rem; }
+            
+            .card-expanded { padding: 12px 10px; }
+            .expanded-header { margin-bottom: 8px; }
+            .expanded-title { font-size: 0.9rem; }
+            .btn-close-circle { width: 24px; height: 24px; font-size: 0.8rem; }
+            
+            .expanded-sections { gap: 4px; }
+            .inner-section-btn { padding: 6px 8px; font-size: 0.75rem; }
+            .inner-section-btn .sec-index { display: none; }
         }
     </style>
 </head>
@@ -607,28 +723,20 @@
 
         <main>
             <section id="cards-grid" class="cards-grid" aria-label="Список классов">
-                <!-- Карточки генерируются здесь -->
+                <div class="skeleton-card"></div>
+                <div class="skeleton-card"></div>
+                <div class="skeleton-card"></div>
+                <div class="skeleton-card"></div>
             </section>
         </main>
     </div>
-
-    <dialog id="section-dialog">
-        <div class="dialog-header">
-            <div>
-                <div class="dialog-title" id="dialog-title">КЛАСС</div>
-                <div class="dialog-sub">Выберите раздел</div>
-            </div>
-            <button class="dialog-close" id="dialog-close" aria-label="Закрыть">✕</button>
-        </div>
-        <div class="dialog-mosaic" id="dialog-sections"></div>
-    </dialog>
 
     <script>
         (function () {
             'use strict';
 
             // ==========================================
-            // 1. УНИКАЛЬНЫЕ ГРЕЧЕСКИЕ БУКВЫ
+            // 1. ГРЕЧЕСКИЕ БУКВЫ
             // ==========================================
             const GREEK_LETTERS = [
                 'α', 'β', 'γ', 'δ', 'ε', 'ζ', 'η', 'θ', 'ι', 'κ', 'λ', 'μ', 
@@ -654,7 +762,7 @@
             }
 
             // ==========================================
-            // 2. РЕАЛИСТИЧНЫЕ РЫБКИ (STEERING BEHAVIORS)
+            // 2. РЕАЛИСТИЧНЫЕ РЫБКИ
             // ==========================================
             const canvas = document.getElementById('spring-canvas');
             const ctx = canvas.getContext('2d');
@@ -671,26 +779,17 @@
             }
 
             class Fish {
-                constructor(isSpawning = false) {
-                    // Спавн за пределами экрана (с краев)
-                    if (isSpawning) {
-                        if (Math.random() < 0.5) {
-                            this.x = Math.random() < 0.5 ? -50 : canvas.width + 50;
-                            this.y = Math.random() * canvas.height;
-                        } else {
-                            this.x = Math.random() * canvas.width;
-                            this.y = Math.random() < 0.5 ? -50 : canvas.height + 50;
-                        }
-                    } else {
-                        this.x = Math.random() * canvas.width;
-                        this.y = Math.random() * canvas.height;
-                    }
-                    
-                    // Начальный угол - примерно к центру
+                constructor() {
+                    const side = Math.floor(Math.random() * 4);
+                    if (side === 0) { this.x = -50; this.y = Math.random() * canvas.height; }
+                    else if (side === 1) { this.x = canvas.width + 50; this.y = Math.random() * canvas.height; }
+                    else if (side === 2) { this.x = Math.random() * canvas.width; this.y = -50; }
+                    else { this.x = Math.random() * canvas.width; this.y = canvas.height + 50; }
+
                     this.angle = Math.atan2(canvas.height/2 - this.y, canvas.width/2 - this.x);
                     this.wanderAngle = this.angle;
                     
-                    this.maxSpeed = Math.random() * 0.5 + 1.2; // Базовая скорость
+                    this.maxSpeed = Math.random() * 0.5 + 1.2; 
                     this.vx = Math.cos(this.angle) * this.maxSpeed;
                     this.vy = Math.sin(this.angle) * this.maxSpeed;
                     
@@ -699,20 +798,16 @@
                     this.tailPhase = Math.random() * Math.PI * 2;
                     this.rippleTimer = 0;
                     
-                    // Прозрачность для плавного появления
-                    this.opacity = isSpawning ? 0 : 1;
+                    this.opacity = 0;
                 }
 
                 update() {
-                    // Плавное появление
-                    if (this.opacity < 1) this.opacity += 0.02;
+                    if (this.opacity < 1) this.opacity += 0.015;
 
-                    // 1. Блуждание (Wander)
                     this.wanderAngle += (Math.random() - 0.5) * 0.2;
                     let steerX = Math.cos(this.wanderAngle) * this.maxSpeed;
                     let steerY = Math.sin(this.wanderAngle) * this.maxSpeed;
 
-                    // 2. Избегание стен (Boundary Avoidance)
                     const margin = 100;
                     const turnForce = 0.15;
                     if (this.x < margin) steerX += (margin - this.x) * turnForce;
@@ -720,7 +815,6 @@
                     if (this.y < margin) steerY += (margin - this.y) * turnForce;
                     if (this.y > canvas.height - margin) steerY -= (this.y - (canvas.height - margin)) * turnForce;
 
-                    // 3. Побег от курсора (Flee)
                     const dx = this.x - mouse.x;
                     const dy = this.y - mouse.y;
                     const dist = Math.sqrt(dx * dx + dy * dy);
@@ -745,11 +839,9 @@
                         }
                     }
 
-                    // 4. Расчет целевого вектора
                     let desiredX = this.vx + steerX;
                     let desiredY = this.vy + steerY;
                     let desiredMag = Math.sqrt(desiredX * desiredX + desiredY * desiredY);
-                    
                     let targetSpeed = isFleeing ? this.maxSpeed * 2.5 : this.maxSpeed;
                     
                     if (desiredMag > 0) {
@@ -757,35 +849,26 @@
                         desiredY = (desiredY / desiredMag) * targetSpeed;
                     }
 
-                    // 5. Плавный поворот (Ограничение угловой скорости)
                     let desiredAngle = Math.atan2(desiredY, desiredX);
                     let angleDiff = desiredAngle - this.angle;
                     
-                    // Нормализация угла от -PI до PI
                     while (angleDiff > Math.PI) angleDiff -= Math.PI * 2;
                     while (angleDiff < -Math.PI) angleDiff += Math.PI * 2;
 
-                    // Реалистичная скорость поворота (рыбы не могут развернуться мгновенно)
                     let turnRate = isFleeing ? 0.15 : 0.05;
                     this.angle += angleDiff * turnRate;
 
-                    // 6. Обновление скорости с инерцией
                     let currentSpeed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
-                    if (currentSpeed < targetSpeed) {
-                        currentSpeed += 0.05; // Ускорение
-                    } else {
-                        currentSpeed -= 0.02; // Замедление
-                    }
+                    if (currentSpeed < targetSpeed) currentSpeed += 0.05;
+                    else currentSpeed -= 0.02;
                     if (currentSpeed > targetSpeed) currentSpeed = targetSpeed;
-                    if (currentSpeed < 0.5) currentSpeed = 0.5; // Минимальная скорость, чтобы не замирали
+                    if (currentSpeed < 0.5) currentSpeed = 0.5;
 
                     this.vx = Math.cos(this.angle) * currentSpeed;
                     this.vy = Math.sin(this.angle) * currentSpeed;
 
                     this.x += this.vx;
                     this.y += this.vy;
-
-                    // Виляние хвостом зависит от скорости
                     this.tailPhase += 0.15 + currentSpeed * 0.3;
                 }
 
@@ -799,7 +882,6 @@
                     const H = this.size * 0.32;
                     const tailWag = Math.sin(this.tailPhase) * 0.6;
 
-                    // Хвост
                     ctx.save();
                     ctx.translate(-L * 0.65, 0);
                     ctx.rotate(tailWag);
@@ -811,7 +893,6 @@
                     ctx.quadraticCurveTo(-L * 0.25, H * 0.4, -L * 0.55, H * 2.2);
                     ctx.closePath();
                     ctx.fill();
-                    
                     ctx.strokeStyle = `hsla(${this.hue}, 70%, 55%, 0.3)`;
                     ctx.lineWidth = 0.6;
                     ctx.beginPath();
@@ -820,7 +901,6 @@
                     ctx.stroke();
                     ctx.restore();
 
-                    // Плавники
                     ctx.fillStyle = `hsla(${this.hue}, 80%, 80%, 0.5)`;
                     ctx.beginPath();
                     ctx.moveTo(-L * 0.05, -H * 0.95);
@@ -828,7 +908,6 @@
                     ctx.quadraticCurveTo(-L * 0.3, -H * 0.75, -L * 0.05, -H * 0.95);
                     ctx.closePath();
                     ctx.fill();
-
                     ctx.beginPath();
                     ctx.moveTo(-L * 0.15, H * 0.85);
                     ctx.quadraticCurveTo(-L * 0.25, H * 1.7, -L * 0.45, H * 0.5);
@@ -836,13 +915,11 @@
                     ctx.closePath();
                     ctx.fill();
 
-                    // Тело
                     const bodyGradient = ctx.createLinearGradient(0, -H, 0, H);
                     bodyGradient.addColorStop(0, `hsla(${this.hue}, 80%, 88%, 0.75)`);
                     bodyGradient.addColorStop(0.5, `hsla(${this.hue}, 85%, 75%, 0.7)`);
                     bodyGradient.addColorStop(1, `hsla(${this.hue}, 80%, 60%, 0.6)`);
                     ctx.fillStyle = bodyGradient;
-
                     ctx.beginPath();
                     ctx.moveTo(L * 0.78, 0);
                     ctx.bezierCurveTo(L * 0.55, -H * 1.0, -L * 0.1, -H * 1.05, -L * 0.65, -H * 0.18);
@@ -851,7 +928,6 @@
                     ctx.closePath();
                     ctx.fill();
 
-                    // Боковой плавник
                     ctx.save();
                     ctx.translate(L * 0.15, H * 0.35);
                     ctx.rotate(0.4 + Math.sin(this.tailPhase * 0.7) * 0.15);
@@ -861,7 +937,6 @@
                     ctx.fill();
                     ctx.restore();
 
-                    // Жабры
                     ctx.strokeStyle = `hsla(${this.hue}, 50%, 45%, 0.35)`;
                     ctx.lineWidth = 0.8;
                     ctx.beginPath();
@@ -869,13 +944,11 @@
                     ctx.quadraticCurveTo(L * 0.22, 0, L * 0.3, H * 0.55);
                     ctx.stroke();
 
-                    // Рот
                     ctx.beginPath();
                     ctx.moveTo(L * 0.78, -H * 0.05);
                     ctx.lineTo(L * 0.68, H * 0.08);
                     ctx.stroke();
 
-                    // Глаз
                     ctx.fillStyle = 'rgba(255, 240, 245, 0.95)';
                     ctx.beginPath(); ctx.arc(L * 0.5, -H * 0.28, H * 0.24, 0, Math.PI * 2); ctx.fill();
                     ctx.fillStyle = 'rgba(30, 10, 20, 0.95)';
@@ -911,9 +984,8 @@
                 resizeCanvas();
                 fishArray = [];
                 ripples = [];
-                // Создаем рыбок со спавном с краев
                 for (let i = 0; i < 9; i++) {
-                    fishArray.push(new Fish(true));
+                    fishArray.push(new Fish());
                 }
                 canvasActive = true;
                 animateSpring();
@@ -957,7 +1029,7 @@
             }
 
             // ==========================================
-            // 3. СЕЗОНЫ (ПЛАВНЫЙ ПЕРЕХОД)
+            // 3. СЕЗОНЫ
             // ==========================================
             function getCurrentSeason() {
                 const month = new Date().getMonth();
@@ -971,61 +1043,54 @@
                 const container = document.getElementById('particles-container');
                 const body = document.body;
 
-                // Плавное затухание
-                container.style.opacity = 0;
+                container.innerHTML = '';
                 stopSpringCanvas();
                 canvas.style.opacity = 0;
                 
-                setTimeout(() => {
-                    container.innerHTML = '';
-                    body.className = ''; 
-                    if (body.classList.contains('modal-open')) body.classList.add('modal-open');
+                body.className = ''; 
+                if (body.classList.contains('modal-open')) body.classList.add('modal-open');
 
-                    let activeSeason = themeName === 'auto' ? getCurrentSeason() : themeName;
-                    body.classList.add('season-' + activeSeason);
+                let activeSeason = themeName === 'auto' ? getCurrentSeason() : themeName;
+                body.classList.add('season-' + activeSeason);
 
-                    document.querySelectorAll('.theme-btn').forEach(btn => {
-                        btn.classList.toggle('active', btn.dataset.theme === themeName);
-                    });
+                document.querySelectorAll('.theme-btn').forEach(btn => {
+                    btn.classList.toggle('active', btn.dataset.theme === themeName);
+                });
 
-                    if (activeSeason === 'spring') {
-                        canvas.style.display = 'block';
-                        canvas.style.opacity = 1;
-                        initSpringCanvas();
-                    } else {
-                        canvas.style.display = 'none';
-                        let particleCount = 25; 
-                        for (let i = 0; i < particleCount; i++) {
-                            const p = document.createElement('div');
-                            p.className = 'particle p-' + activeSeason;
-                            
-                            if (activeSeason === 'summer') {
-                                p.style.left = (Math.random() * 90) + '%';
-                                p.style.top = (Math.random() * 90) + '%';
-                            } else {
-                                p.style.left = Math.random() * 100 + '%';
-                                p.style.top = '-20px';
-                            }
-                            
-                            let duration;
-                            if (activeSeason === 'autumn') duration = (Math.random() * 5 + 6) + 's'; 
-                            if (activeSeason === 'winter') duration = (Math.random() * 5 + 6) + 's'; 
-                            if (activeSeason === 'summer') duration = (Math.random() * 5 + 5) + 's'; 
-                            
-                            p.style.animationDuration = duration;
-                            p.style.animationDelay = (Math.random() * 5) + 's';
-                            
-                            if (activeSeason !== 'autumn') {
-                                p.style.transform = `scale(${Math.random() * 0.5 + 0.8})`;
-                            }
-                            
-                            container.appendChild(p);
+                if (activeSeason === 'spring') {
+                    canvas.style.display = 'block';
+                    canvas.style.opacity = 1;
+                    initSpringCanvas();
+                } else {
+                    canvas.style.display = 'none';
+                    let particleCount = 25; 
+                    for (let i = 0; i < particleCount; i++) {
+                        const p = document.createElement('div');
+                        p.className = 'particle p-' + activeSeason;
+                        
+                        if (activeSeason === 'summer') {
+                            p.style.left = (Math.random() * 90) + '%';
+                            p.style.top = (Math.random() * 90) + '%';
+                        } else {
+                            p.style.left = Math.random() * 100 + '%';
+                            p.style.top = '-20px';
                         }
+                        
+                        let duration;
+                        if (activeSeason === 'autumn') duration = (Math.random() * 5 + 6) + 's'; 
+                        if (activeSeason === 'winter') duration = (Math.random() * 5 + 6) + 's'; 
+                        if (activeSeason === 'summer') duration = (Math.random() * 5 + 5) + 's'; 
+                        
+                        p.style.animationDuration = duration;
+                        p.style.animationDelay = (Math.random() * 5) + 's';
+                        
+                        if (activeSeason !== 'autumn') {
+                            p.style.transform = `scale(${Math.random() * 0.5 + 0.8})`;
+                        }
+                        
+                        container.appendChild(p);
                     }
-                    
-                    // Плавное появление
-                    container.style.opacity = 1;
-                }, 400); 
+                }
             }
 
             function initThemeSwitcher() {
@@ -1045,30 +1110,6 @@
             // 4. КАРТОЧКИ
             // ==========================================
             const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTUP42gakKnz4G1oQfH3ddgNUshPTs8zyvRmc-Pxfio0INuAh3OAzDM2bgXoIcW5ezzSRdQsCz0zMzW/pub?gid=0&single=true&output=csv';
-            const dialog = document.getElementById('section-dialog');
-            const dialogTitle = document.getElementById('dialog-title');
-            const dialogSections = document.getElementById('dialog-sections');
-            const dialogClose = document.getElementById('dialog-close');
-
-            function openModal() {
-                document.body.classList.add('modal-open');
-                dialog.showModal();
-            }
-
-            function closeModal() {
-                document.body.classList.remove('modal-open');
-                dialog.close();
-            }
-
-            dialogClose.addEventListener('click', closeModal);
-            dialog.addEventListener('click', (e) => {
-                const rect = dialog.getBoundingClientRect();
-                if (e.clientY < rect.top || e.clientY > rect.top + rect.height ||
-                    e.clientX < rect.left || e.clientX > rect.left + rect.width) {
-                    closeModal();
-                }
-            });
-            dialog.addEventListener('cancel', (e) => { e.preventDefault(); closeModal(); });
 
             function parseCSV(text) {
                 const rows = []; let row = []; let cell = ''; let inQuotes = false;
@@ -1090,24 +1131,11 @@
                 return String(value).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
             }
 
-            function openSectionDialog(title, sections) {
-                dialogTitle.textContent = title;
-                dialogSections.innerHTML = '';
-                
-                sections.forEach(sec => {
-                    const a = document.createElement('a');
-                    a.className = 'section-btn';
-                    a.href = sec.link;
-                    a.innerHTML = `<span>${escapeHTML(sec.name)}</span><span class="arrow">→</span>`;
-                    dialogSections.appendChild(a);
-                });
-                openModal();
-            }
-
-            function createCardElement(item) {
+            function createCardElement(item, index) {
                 const card = document.createElement(item.sections.length > 0 ? 'button' : 'div');
                 card.className = 'card';
-                
+                card.style.animationDelay = (index * 0.08) + 's';
+
                 if (item.sections.length > 0) card.classList.add('is-clickable');
 
                 const uniqueLetter = getUniqueSymbol();
@@ -1119,19 +1147,51 @@
                     </div>`;
                 }
 
+                let sectionsHTML = item.sections.map((sec, idx) => `
+                    <a href="${escapeHTML(sec.link)}" class="inner-section-btn">
+                        <div class="sec-name">
+                            <span class="sec-index">0${idx + 1}</span>
+                            <span>${escapeHTML(sec.name)}</span>
+                        </div>
+                        <span class="arrow">→</span>
+                    </a>
+                `).join('');
+
                 card.innerHTML = `
-                    <div class="card-header">
-                        <span class="card-math-icon">${uniqueLetter}</span>
+                    <div class="card-default">
+                        <div class="card-header">
+                            <span class="card-math-icon">${uniqueLetter}</span>
+                        </div>
+                        <h2 class="card-title">${escapeHTML(item.title)}</h2>
+                        <p class="card-text">${escapeHTML(item.text)}</p>
+                        ${tagsHTML}
                     </div>
-                    <h2 class="card-title">${escapeHTML(item.title)}</h2>
-                    <p class="card-text">${escapeHTML(item.text)}</p>
-                    ${tagsHTML}
+                    <div class="card-expanded" data-count="${item.sections.length}">
+                        <div class="expanded-header">
+                            <div class="expanded-title">${escapeHTML(item.title)}</div>
+                            <button class="btn-close-circle" aria-label="Закрыть">✕</button>
+                        </div>
+                        <div class="expanded-sections">
+                            ${sectionsHTML}
+                        </div>
+                    </div>
                 `;
 
-                if (item.sections.length === 1) {
-                    card.addEventListener('click', () => window.location.href = item.sections[0].link);
-                } else if (item.sections.length > 1) {
-                    card.addEventListener('click', () => openSectionDialog(item.title, item.sections));
+                if (item.sections.length > 0) {
+                    card.addEventListener('click', (e) => {
+                        if (e.target.closest('a') || e.target.closest('.btn-close-circle')) return;
+                        
+                        document.querySelectorAll('.card.is-expanded').forEach(c => {
+                            if (c !== card) c.classList.remove('is-expanded');
+                        });
+                        
+                        card.classList.toggle('is-expanded');
+                    });
+
+                    card.querySelector('.btn-close-circle').addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        card.classList.remove('is-expanded');
+                    });
                 }
 
                 return card;
@@ -1171,9 +1231,10 @@
                     }
 
                     resetSymbols();
-
                     container.innerHTML = '';
-                    items.forEach(item => container.appendChild(createCardElement(item)));
+                    items.forEach((item, index) => {
+                        container.appendChild(createCardElement(item, index));
+                    });
 
                 } catch (error) {
                     console.error(error);
