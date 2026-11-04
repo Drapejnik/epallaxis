@@ -1,1254 +1,1265 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>EPALLAXIS — Математика</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Manrope:wght@500;700;800&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
-    <style>
-        /* --- СЕЗОННЫЕ ПЕРЕМЕННЫЕ --- */
-        :root {
-            --bg: #0A0705; 
-            --surface: linear-gradient(145deg, #291E17 0%, #140E0A 100%);
-            --surface-solid: #1C140F;
-            --surface-hover: linear-gradient(145deg, #382920 0%, #1C140F 100%);
-            --text: #FFFFFF;
-            --text-muted: #C0B8B0; 
-            --accent: #FF8A00; 
-            --accent-glow: rgba(255, 138, 0, 0.3);
-            --accent-light: #FFD166;
-            --border: rgba(255, 255, 255, 0.08);
-            --border-hover: rgba(255, 138, 0, 0.7);
-            
-            --font-sans: 'Inter', sans-serif;
-            --font-display: 'Manrope', sans-serif;
-            --font-mono: 'JetBrains Mono', monospace;
-        }
-
-        body.season-winter {
-            --bg: #080C14;
-            --surface: linear-gradient(145deg, #131C2E 0%, #0A101D 100%);
-            --surface-solid: #0A101D;
-            --surface-hover: linear-gradient(145deg, #1C283D 0%, #111827 100%);
-            --text-muted: #9CA3AF;
-            --accent: #3B82F6; 
-            --accent-glow: rgba(59, 130, 246, 0.3);
-            --accent-light: #93C5FD;
-            --border-hover: rgba(59, 130, 246, 0.7);
-        }
-
-        body.season-spring {
-            --bg: #0C0A0B; 
-            --surface: linear-gradient(145deg, #241A1D 0%, #140E10 100%);
-            --surface-solid: #140E10;
-            --surface-hover: linear-gradient(145deg, #332529 0%, #1A1214 100%);
-            --text-muted: #D1C4C7; 
-            --accent: #FFB7C5; 
-            --accent-glow: rgba(255, 183, 197, 0.3);
-            --accent-light: #FFE4E1; 
-            --border-hover: rgba(255, 183, 197, 0.7);
-        }
-
-        body.season-summer {
-            --bg: #060A08;
-            --surface: linear-gradient(145deg, #13221A 0%, #0B140F 100%);
-            --surface-solid: #0B140F;
-            --surface-hover: linear-gradient(145deg, #1A2E23 0%, #0F1C15 100%);
-            --text-muted: #9CA3AF;
-            --accent: #10B981; 
-            --accent-glow: rgba(16, 185, 129, 0.3);
-            --accent-light: #6EE7B7;
-            --border-hover: rgba(16, 185, 129, 0.7);
-        }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        
-        html, body { 
-            background-color: var(--bg); 
-            scroll-behavior: smooth; 
-            transition: background-color 0.3s ease; 
-            width: 100%;
-            max-width: 100%;
-            overflow-x: clip; 
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            color: var(--text);
-            font-family: var(--font-sans);
-            line-height: 1.5;
-            -webkit-font-smoothing: antialiased;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-        }
-
-        body::before, body::after {
-            content: '';
-            position: fixed;
-            width: 100vmax;
-            height: 100vmax;
-            border-radius: 50%;
-            filter: blur(150px);
-            z-index: -1;
-            opacity: 0.15;
-            pointer-events: none;
-            transition: background 0.3s ease;
-        }
-        body::before { top: -50vmax; left: -50vmax; background: var(--accent); }
-        body::after { bottom: -50vmax; right: -50vmax; background: var(--accent-light); opacity: 0.05; }
-
-        a { color: inherit; text-decoration: none; }
-
-        .frame {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 24px;
-            width: 100%;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        header {
-            padding: 24px 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .brand { 
-            font-family: var(--font-display); 
-            font-size: 1.2rem; 
-            font-weight: 800; 
-            letter-spacing: 0.05em; 
-            text-transform: uppercase;
-        }
-        
-        .brand span { 
-            color: var(--accent); 
-            font-weight: 500;
-            text-shadow: 0 0 20px var(--accent-glow);
-            transition: color 0.3s ease, text-shadow 0.3s ease;
-        }
-
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 24px;
-        }
-
-        .theme-switcher {
-            display: flex;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 4px;
-            gap: 2px;
-            flex-wrap: wrap;
-            transition: border-color 0.3s ease;
-        }
-
-        .theme-btn {
-            background: transparent;
-            border: none;
-            color: var(--text-muted);
-            font-family: var(--font-mono);
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            padding: 6px 12px;
-            border-radius: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .theme-btn:hover { color: var(--text); }
-
-        .theme-btn.active {
-            background: var(--accent);
-            color: #000;
-            font-weight: 500;
-            box-shadow: 0 0 10px var(--accent-glow);
-        }
-
-        .header-meta {
-            font-family: var(--font-mono);
-            font-size: 0.75rem;
-            text-align: right;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            letter-spacing: 0.1em;
-        }
-
-        .hero-editorial {
-            position: relative;
-            padding: 60px 0 40px;
-            border-bottom: 1px solid var(--border);
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 24px;
-            overflow: hidden; 
-            transition: border-color 0.3s ease;
-        }
-
-        .season-particles {
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-            z-index: 0;
-            transition: opacity 0.2s ease;
-        }
-
-        #spring-canvas {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            pointer-events: none;
-            transition: opacity 0.2s ease;
-        }
-
-        .hero-top {
-            position: relative;
-            z-index: 1;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            padding-bottom: 20px;
-        }
-
-        .hero-title {
-            font-family: var(--font-display);
-            font-size: clamp(2rem, 6vw, 4.5rem);
-            font-weight: 800;
-            line-height: 1.1;
-            letter-spacing: -0.03em;
-            text-transform: uppercase;
-        }
-
-        .hero-title span {
-            display: block;
-            background: linear-gradient(90deg, var(--accent-light), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 40px var(--accent-glow);
-            transition: background 0.3s ease;
-        }
-
-        .hero-side-text {
-            position: relative;
-            z-index: 1;
-            font-family: var(--font-mono);
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            max-width: 220px;
-            text-align: right;
-            line-height: 1.6;
-            text-transform: uppercase;
-        }
-
-        .hero-bottom {
-            position: relative;
-            z-index: 1;
-            display: grid;
-            grid-template-columns: 300px 1fr;
-            gap: 40px;
-            align-items: center;
-        }
-
-        .greek-quote {
-            font-size: 1rem;
-            font-style: italic;
-            color: var(--accent);
-            padding-left: 16px;
-            border-left: 2px solid var(--accent);
-            text-shadow: 0 0 15px var(--accent-glow);
-            transition: color 0.3s ease, border-color 0.3s ease, text-shadow 0.3s ease;
-        }
-
-        .hero-desc {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            max-width: 600px;
-            line-height: 1.6;
-        }
-
-        /* =========================================
-           АНИМАЦИИ ЧАСТИЦ
-           ========================================= */
-        .particle {
-            position: absolute;
-            z-index: 0;
-            pointer-events: none;
-            opacity: 0;
-            animation-fill-mode: both;
-        }
-
-        /* --- ОСЕНЬ --- */
-        .p-autumn { 
-            width: 24px; height: 24px; 
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-            top: -30px;
-            animation: fall-and-spin linear infinite;
-        }
-        .p-autumn:nth-child(3n+1) { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50,5 L65,35 L95,35 L75,60 L85,90 L50,75 L15,90 L25,60 L5,35 L35,35 Z" fill="%23DC2626"/><path d="M50,5 L50,75 M65,35 L35,60 M35,35 L65,60" stroke="%237f1d1d" stroke-width="2" fill="none"/></svg>'); }
-        .p-autumn:nth-child(3n+2) { width: 28px; height: 28px; background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50,5 C60,20 75,20 75,35 C85,40 85,60 75,70 C85,85 60,95 50,95 C40,95 15,85 25,70 C15,60 15,40 25,35 C25,20 40,20 50,5 Z" fill="%23D97706"/><path d="M50,5 L50,95 M50,35 L70,25 M50,55 L75,45 M50,55 L25,45 M50,75 L65,65 M50,75 L35,65" stroke="%2392400e" stroke-width="2" fill="none"/></svg>'); }
-        .p-autumn:nth-child(3n+3) { width: 20px; height: 20px; background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50,5 C85,25 95,60 50,95 C5,60 15,25 50,5 Z" fill="%23FBBF24"/><path d="M50,10 L50,90 M50,30 L75,45 M50,30 L25,45 M50,55 L70,70 M50,55 L30,70" stroke="%23D97706" stroke-width="2" fill="none"/></svg>'); }
-
-        @keyframes fall-and-spin {
-            0% { transform: translateY(-10px) translateX(0) rotate(0deg) rotateX(0deg); opacity: 0; }
-            10% { opacity: 0.9; }
-            50% { transform: translateY(200px) translateX(40px) rotate(180deg) rotateX(60deg); }
-            90% { opacity: 0.9; }
-            100% { transform: translateY(450px) translateX(-20px) rotate(360deg) rotateX(0deg); opacity: 0; }
-        }
-
-        /* --- ЗИМА --- */
-        .p-winter { 
-            width: 4px; height: 4px; 
-            border-radius: 50%; 
-            background-color: #FFF; 
-            box-shadow: 0 0 6px #FFF; 
-            top: -20px;
-            animation: fall linear infinite;
-        }
-        .p-winter:nth-child(even) { width: 6px; height: 6px; opacity: 0.6; }
-
-        @keyframes fall {
-            0% { transform: translateY(-10px) translateX(0); opacity: 0; }
-            10% { opacity: 0.8; }
-            100% { transform: translateY(400px) translateX(30px); opacity: 0; }
-        }
-
-        /* --- ЛЕТО --- */
-        .p-summer {
-            width: 4px; height: 4px;
-            border-radius: 50%;
-            background: #FDE047;
-            box-shadow: 0 0 12px 2px #EAB308, 0 0 20px 4px rgba(234, 179, 8, 0.4);
-            animation: float-firefly linear infinite;
-        }
-        
-        .p-summer:nth-child(even) { width: 3px; height: 3px; }
-        .p-summer:nth-child(3n) { width: 5px; height: 5px; background: #FEF08A; }
-
-        @keyframes float-firefly {
-            0% { transform: translate(0, 0) scale(0.8); opacity: 0; }
-            20% { opacity: 1; }
-            50% { transform: translate(30px, -40px) scale(1.2); opacity: 0.6; }
-            80% { opacity: 0.8; }
-            100% { transform: translate(-20px, -100px) scale(0.8); opacity: 0; }
-        }
-
-        /* =========================================
-           КАРТОЧКИ (АДАПТИВНАЯ СЕТКА ВНУТРИ)
-           ========================================= */
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 24px; 
-            margin: 48px 0 80px;
-            align-items: start; 
-        }
-
-        .skeleton-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            height: 240px; 
-            position: relative;
-            overflow: hidden;
-        }
-
-        .skeleton-card::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
-            transform: translateX(-100%);
-            animation: shimmer 1.5s infinite;
-        }
-
-        @keyframes shimmer { 100% { transform: translateX(100%); } }
-
-        @keyframes cardAppear {
-            0% { opacity: 0; transform: translateY(20px) scale(0.95); }
-            100% { opacity: 1; transform: translateY(0) scale(1); }
-        }
-
-        .card {
-            background: var(--surface);
-            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border);
-            border-top: 2px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            position: relative;
-            width: 100%;
-            height: 240px; 
-            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-            overflow: hidden;
-            
-            opacity: 0;
-            animation: cardAppear 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-
-        .card.is-clickable { cursor: pointer; }
-        
-        .card.is-clickable:hover:not(.is-expanded) {
-            background: var(--surface-hover);
-            border-color: var(--border-hover);
-            border-top-color: var(--accent);
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.9), 0 0 30px var(--accent-glow), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            z-index: 2;
-        }
-
-        .card.is-expanded {
-            z-index: 10;
-            border-color: var(--accent);
-            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.9), 0 0 40px var(--accent-glow);
-            background: var(--surface-solid); 
-        }
-
-        .card-default {
-            position: absolute;
-            inset: 0;
-            padding: 24px;
-            display: flex;
-            flex-direction: column;
-            transition: opacity 0.3s ease, transform 0.3s ease;
-            backface-visibility: hidden;
-        }
-
-        .card.is-expanded .card-default {
-            opacity: 0;
-            transform: scale(0.95) translateY(-10px);
-            pointer-events: none;
-        }
-
-        .card-expanded {
-            position: absolute;
-            inset: 0;
-            padding: 24px;
-            display: flex;
-            flex-direction: column;
-            opacity: 0;
-            transform: scale(1.05) translateY(10px);
-            pointer-events: none;
-            transition: opacity 0.3s ease 0.1s, transform 0.3s ease 0.1s;
-            z-index: 2;
-        }
-
-        .card.is-expanded .card-expanded {
-            opacity: 1;
-            transform: scale(1) translateY(0);
-            pointer-events: auto;
-        }
-
-        .expanded-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 12px;
-            flex-shrink: 0;
-        }
-
-        /* Ограничиваем заголовок, чтобы не сломал сетку */
-        .expanded-title {
-            font-family: var(--font-display);
-            font-size: 1.1rem;
-            font-weight: 800;
-            color: var(--text);
-            line-height: 1.1;
-            padding-right: 8px;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        .btn-close-circle {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border);
-            color: var(--text-muted);
-            cursor: pointer;
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: var(--font-mono);
-            font-size: 0.9rem;
-            transition: all 0.2s;
-            flex-shrink: 0;
-        }
-
-        .btn-close-circle:hover {
-            background: var(--accent);
-            color: #000;
-            border-color: var(--accent);
-            transform: rotate(90deg);
-        }
-
-        /* НОВАЯ СЕТКА РАЗДЕЛОВ БЕЗ СКРОЛЛА */
-        .expanded-sections {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 8px;
-            flex-grow: 1;
-            align-content: center; /* Центрируем по вертикали, если их мало */
-        }
-
-        /* Если 1 раздел - на всю ширину */
-        .card-expanded[data-count="1"] .expanded-sections {
-            grid-template-columns: 1fr;
-        }
-
-        /* Если 3 или 5 - первый на всю ширину, остальные 2х2 */
-        .card-expanded[data-count="3"] .expanded-sections > :first-child,
-        .card-expanded[data-count="5"] .expanded-sections > :first-child {
-            grid-column: span 2;
-        }
-
-        .inner-section-btn {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 14px;
-            background: rgba(0,0,0,0.3);
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            color: var(--text);
-            font-family: var(--font-display);
-            font-size: 0.85rem;
-            font-weight: 700;
-            transition: all 0.2s;
-            min-width: 0; /* Важно для обрезки текста */
-        }
-
-        .inner-section-btn:hover {
-            background: var(--accent);
-            color: #000;
-            border-color: var(--accent);
-            box-shadow: 0 0 15px var(--accent-glow);
-        }
-
-        .inner-section-btn .sec-name {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-        }
-        
-        .inner-section-btn .sec-index {
-            font-family: var(--font-mono);
-            font-size: 0.65rem;
-            opacity: 0.6;
-        }
-
-        .inner-section-btn:hover .sec-index { opacity: 1; }
-
-        .inner-section-btn .arrow {
-            font-family: var(--font-sans);
-            color: var(--accent);
-            transition: color 0.2s;
-            margin-left: 8px;
-        }
-
-        .inner-section-btn:hover .arrow { color: #000; }
-
-        /* Общие стили контента (по умолчанию) */
-        .card-header {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            margin-bottom: 16px;
-        }
-
-        .card-math-icon {
-            font-family: 'Times New Roman', Times, serif;
-            font-size: 2.2rem;
-            font-weight: normal;
-            color: var(--text-muted);
-            opacity: 0.35;
-            transition: all 0.4s ease;
-            line-height: 1;
-        }
-
-        .card.is-clickable:hover:not(.is-expanded) .card-math-icon {
-            color: var(--accent);
-            opacity: 1;
-            transform: scale(1.1) rotate(-5deg);
-            text-shadow: 0 0 15px var(--accent-glow);
-        }
-
-        .card-title {
-            font-family: var(--font-display);
-            font-size: 1.4rem;
-            font-weight: 800;
-            margin-bottom: 10px;
-            line-height: 1.2;
-            color: #FFFFFF;
-            letter-spacing: -0.01em;
-        }
-
-        .card-text {
-            font-size: 0.9rem;
-            color: var(--text); 
-            opacity: 0.8;
-            line-height: 1.5;
-            margin-bottom: 24px;
-            flex-grow: 1;
-            display: -webkit-box;
-            -webkit-line-clamp: 4; 
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        .card-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: auto;
-        }
-
-        .card-tag {
-            font-family: var(--font-mono);
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            color: var(--accent-light);
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 4px 10px;
-            border-radius: 20px;
-            transition: all 0.3s ease;
-        }
-
-        .status-message {
-            grid-column: 1 / -1; text-align: center; padding: 60px 20px;
-            color: var(--text-muted); font-family: var(--font-mono); text-transform: uppercase;
-        }
-
-        /* =========================================
-           МОБИЛЬНАЯ АДАПТАЦИЯ
-           ========================================= */
-        @media (max-width: 900px) {
-            .header-right { flex-direction: column; align-items: flex-end; gap: 8px; }
-            .header-meta { display: none; }
-        }
-
-        @media (max-width: 768px) {
-            .frame { padding: 0 12px; }
-            
-            header { flex-direction: column; align-items: flex-start; gap: 16px; padding: 20px 0; }
-            .header-right { flex-direction: row; align-items: center; width: 100%; justify-content: space-between; }
-            
-            .hero-top { flex-direction: column; gap: 16px; align-items: flex-start; }
-            .hero-bottom { grid-template-columns: 1fr; gap: 20px; }
-            
-            .cards-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; margin-top: 24px; }
-            
-            .card, .skeleton-card { height: 180px; border-radius: 10px; }
-            .card-default { padding: 12px 10px; }
-            .card-title { font-size: 1rem; margin-bottom: 4px; }
-            .card-text { font-size: 0.7rem; -webkit-line-clamp: 2; margin-bottom: 8px; }
-            .card-tag { font-size: 0.5rem; padding: 2px 4px; }
-            .card-math-icon { font-size: 1.4rem; }
-            
-            .card-expanded { padding: 12px 10px; }
-            .expanded-header { margin-bottom: 8px; }
-            .expanded-title { font-size: 0.9rem; }
-            .btn-close-circle { width: 24px; height: 24px; font-size: 0.8rem; }
-            
-            .expanded-sections { gap: 4px; }
-            .inner-section-btn { padding: 6px 8px; font-size: 0.75rem; }
-            .inner-section-btn .sec-index { display: none; }
-        }
-    </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<title>EPALLAXIS formulas</title>
+<link rel="icon" type="image/png" href="../../icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Manrope:wght@500;700;800&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" />
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<style>
+/* --- СЕЗОННЫЕ ПЕРЕМЕННЫЕ (ИЗ ГЛАВНОЙ) --- */
+:root {
+    --bg: #0A0705; 
+    --surface: linear-gradient(145deg, #291E17 0%, #140E0A 100%);
+    --surface-solid: #1C140F;
+    --surface-hover: linear-gradient(145deg, #382920 0%, #1C140F 100%);
+    --text: #FFFFFF;
+    --text-muted: #C0B8B0; 
+    --accent: #FF8A00; 
+    --accent-glow: rgba(255, 138, 0, 0.3);
+    --accent-light: #FFD166;
+    --border: rgba(255, 255, 255, 0.08);
+    --border-hover: rgba(255, 138, 0, 0.7);
+    
+    --font-sans: 'Inter', sans-serif;
+    --font-display: 'Manrope', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+
+    --header-h: 76px;
+    --radius-lg: 12px;
+}
+
+body.season-winter {
+    --bg: #080C14;
+    --surface: linear-gradient(145deg, #131C2E 0%, #0A101D 100%);
+    --surface-solid: #0A101D;
+    --surface-hover: linear-gradient(145deg, #1C283D 0%, #111827 100%);
+    --text-muted: #9CA3AF;
+    --accent: #3B82F6; 
+    --accent-glow: rgba(59, 130, 246, 0.3);
+    --accent-light: #93C5FD;
+    --border-hover: rgba(59, 130, 246, 0.7);
+}
+
+body.season-spring {
+    --bg: #0C0A0B; 
+    --surface: linear-gradient(145deg, #241A1D 0%, #140E10 100%);
+    --surface-solid: #140E10;
+    --surface-hover: linear-gradient(145deg, #332529 0%, #1A1214 100%);
+    --text-muted: #D1C4C7; 
+    --accent: #FFB7C5; 
+    --accent-glow: rgba(255, 183, 197, 0.3);
+    --accent-light: #FFE4E1; 
+    --border-hover: rgba(255, 183, 197, 0.7);
+}
+
+body.season-summer {
+    --bg: #060A08;
+    --surface: linear-gradient(145deg, #13221A 0%, #0B140F 100%);
+    --surface-solid: #0B140F;
+    --surface-hover: linear-gradient(145deg, #1A2E23 0%, #0F1C15 100%);
+    --text-muted: #9CA3AF;
+    --accent: #10B981; 
+    --accent-glow: rgba(16, 185, 129, 0.3);
+    --accent-light: #6EE7B7;
+    --border-hover: rgba(16, 185, 129, 0.7);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { width: 100%; max-width: 100vw; overflow-x: clip; }
+
+body {
+    font-family: var(--font-sans);
+    background-color: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.3s ease;
+}
+
+/* Фоновые свечения */
+body::before, body::after {
+    content: '';
+    position: fixed;
+    width: 100vmax;
+    height: 100vmax;
+    border-radius: 50%;
+    filter: blur(150px);
+    z-index: -1;
+    opacity: 0.15;
+    pointer-events: none;
+    transition: background 0.3s ease;
+}
+body::before { top: -50vmax; left: -50vmax; background: var(--accent); }
+body::after { bottom: -50vmax; right: -50vmax; background: var(--accent-light); opacity: 0.05; }
+
+button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+input, textarea { font-family: inherit; }
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+/* --- ШАПКА --- */
+header {
+    position: sticky; top: 0; left: 0; right: 0; width: 100%; z-index: 200;
+    background: rgba(10, 7, 5, 0.6);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 24px; display: flex; align-items: center; gap: 16px; flex-shrink: 0;
+    transition: border-color 0.3s ease;
+}
+.brand { display: flex; flex-direction: column; gap: 2px; min-width: 0; margin-right: auto; }
+.brand a { text-decoration: none; color: var(--text); display: block; }
+.brand h1 { 
+    font-family: var(--font-display); font-size: clamp(20px, 4vw, 24px); 
+    letter-spacing: 0.05em; line-height: 1.1; font-weight: 800; text-transform: uppercase; 
+}
+.brand h1 .accent-word { 
+    color: var(--accent); font-weight: 500; 
+    text-shadow: 0 0 20px var(--accent-glow); 
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+.brand p { font-family: var(--font-mono); font-size: clamp(10px, 1.5vw, 12px); color: var(--text-muted); margin-top: 4px; text-transform: uppercase; }
+
+.header-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.icon-btn {
+    width: 38px; height: 38px; border-radius: 10px; display: flex; align-items: center; justify-content: center;
+    color: var(--text-muted); transition: all 0.2s; border: 1px solid transparent;
+}
+.icon-btn:hover { background: var(--surface); color: var(--accent); border-color: var(--border); }
+.icon-btn svg { width: 20px; height: 20px; stroke: currentColor; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.icon-btn.hamburger { display: none; }
+@media(max-width: 960px) { .icon-btn.hamburger { display: flex; } }
+
+/* --- МАКЕТ --- */
+.app { display: grid; grid-template-columns: 320px 1fr; min-height: calc(100vh - var(--header-h)); flex: 1; }
+
+/* --- САЙДБАР --- */
+.sidebar {
+    background: rgba(20, 14, 10, 0.4); border-right: 1px solid var(--border);
+    display: flex; flex-direction: column; height: calc(100vh - var(--header-h));
+    position: sticky; top: var(--header-h); transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+.sb-top { padding: 20px 16px 16px; border-bottom: 1px solid var(--border); flex-shrink: 0; }
+
+.search-wrap { position: relative; margin-bottom: 12px; }
+.search-wrap input {
+    width: 100%; padding: 11px 36px 11px 38px;
+    background: rgba(0, 0, 0, 0.2); border: 1px solid var(--border);
+    border-radius: 8px; color: var(--text); font-size: 13.5px; outline: none; transition: all 0.2s;
+}
+.search-wrap input:focus { border-color: var(--accent); background: var(--surface-solid); box-shadow: 0 0 15px var(--accent-glow); }
+.search-wrap input::placeholder { color: var(--text-muted); opacity: 0.7; }
+.search-wrap .s-icon { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); color: var(--text-muted); width: 16px; height: 16px; pointer-events: none; display: flex; align-items: center; justify-content: center; }
+.search-wrap .s-icon svg { width: 100%; height: 100%; stroke: currentColor; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.search-wrap .s-clear { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); width: 24px; height: 24px; border-radius: 6px; color: var(--text-muted); display: none; align-items: center; justify-content: center; font-size: 15px; }
+.search-wrap.has-value .s-clear { display: flex; }
+.s-clear:hover { background: rgba(255,255,255,.05); color: var(--text); }
+
+.presets { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin-top: 16px; }
+.preset {
+    padding: 8px 4px; border-radius: 6px; font-size: 11.5px; font-weight: 600;
+    color: var(--text-muted); background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border);
+    text-align: center; transition: all 0.2s; line-height: 1.15; font-family: var(--font-display);
+}
+.preset:hover { background: var(--surface-solid); color: var(--accent); border-color: var(--border-hover); box-shadow: 0 0 10px var(--accent-glow); }
+
+.sb-actions { display: flex; gap: 6px; margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--border); flex-wrap: wrap; }
+.sb-actions button {
+    flex: 1; min-width: 0; padding: 8px 4px; border-radius: 6px; font-size: 11.5px; font-weight: 500;
+    color: var(--text-muted); background: rgba(255, 255, 255, 0.02); border: 1px solid transparent; transition: all 0.2s;
+}
+.sb-actions button:hover { color: var(--accent); background: var(--surface-solid); border-color: var(--border); }
+
+.tree { flex: 1; overflow-y: auto; overflow-x: hidden; padding: 12px; min-height: 0; }
+.tree-group { margin-bottom: 4px; user-select: none; }
+.tree-head {
+    display: flex; align-items: center; gap: 9px; padding: 10px 12px; border-radius: 8px;
+    cursor: pointer; transition: all 0.2s; font-size: 13px; font-weight: 600; color: var(--text); border: 1px solid transparent;
+}
+.tree-head:hover { background: rgba(255, 255, 255, 0.04); }
+.tree-head.open { background: var(--surface-solid); border-color: var(--border); }
+.tree-arrow { width: 14px; font-size: 9px; color: var(--text-muted); flex-shrink: 0; transition: transform 0.2s; display: inline-block; }
+.tree-head.open .tree-arrow { transform: rotate(90deg); color: var(--accent); }
+.tree-label { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-family: var(--font-display); }
+.tree-count { font-size: 10.5px; font-weight: 600; color: var(--text-muted); padding: 2px 8px; border-radius: 20px; background: rgba(255, 255, 255, 0.05); transition: all 0.2s; }
+.tree-count.partial { background: var(--accent-glow); color: var(--accent); }
+.tree-count.full { background: var(--accent); color: #000; }
+
+.tree-body { display: none; padding: 4px 0 6px 16px; border-left: 1px solid var(--border); margin-left: 18px; }
+.tree-head.open + .tree-body { display: block; }
+.tree-topic {
+    display: flex; align-items: center; gap: 9px; padding: 8px 10px; border-radius: 6px;
+    cursor: pointer; transition: all 0.15s; font-size: 12.5px; color: var(--text); border: 1px solid transparent;
+}
+.tree-topic:hover { background: rgba(255, 255, 255, 0.04); }
+.tree-topic.checked { background: var(--surface-solid); border-color: var(--border); }
+.tree-check { width: 15px; height: 15px; flex-shrink: 0; border: 1.5px solid var(--text-muted); border-radius: 4px; position: relative; transition: all 0.15s; }
+.tree-topic.checked .tree-check, .tree-head .tree-check.checked { border-color: var(--accent); background: var(--accent); }
+.tree-topic.checked .tree-check::after, .tree-head .tree-check.checked::after { content: ""; position: absolute; top: 2px; left: 4px; width: 4px; height: 8px; border: 2px solid #000; border-top: none; border-left: none; transform: rotate(45deg); }
+.tree-topic-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tree-topic-cnt { font-size: 10px; color: var(--text-muted); flex-shrink: 0; font-variant-numeric: tabular-nums; font-family: var(--font-mono); }
+
+.sb-foot { padding: 16px; border-top: 1px solid var(--border); background: rgba(0,0,0,0.2); flex-shrink: 0; }
+.sb-stat { display: flex; justify-content: space-between; font-size: 11.5px; color: var(--text-muted); margin-bottom: 12px; font-family: var(--font-mono); }
+.sb-stat b { color: var(--accent); font-weight: 700; font-variant-numeric: tabular-nums; }
+.start-buttons-container { display: flex; gap: 8px; width: 100%; }
+.start-btn {
+    flex: 1; padding: 12px 10px; border-radius: 8px; font-size: 13px; font-weight: 700;
+    transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 6px; white-space: nowrap;
+    font-family: var(--font-display);
+}
+.start-btn.btn-random { background: var(--accent); color: #000; box-shadow: 0 4px 18px var(--accent-glow); }
+.start-btn.btn-random:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 6px 26px var(--accent-glow); }
+.start-btn.btn-order { background: transparent; color: var(--accent); border: 1px solid var(--accent); box-shadow: none; }
+.start-btn.btn-order:hover:not(:disabled) { background: var(--accent-glow); transform: translateY(-2px); }
+.start-btn:disabled { opacity: 0.3; cursor: not-allowed; transform: none !important; box-shadow: none !important; }
+
+/* --- ОСНОВНОЙ КОНТЕНТ --- */
+.main { padding: 32px 40px 60px; max-width: 1200px; width: 100%; min-width: 0; }
+.crumbs { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 12.5px; color: var(--text-muted); margin-bottom: 20px; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.05em; }
+.crumbs b { color: var(--text); font-weight: 600; }
+.crumbs .c-accent { color: var(--accent); font-weight: 600; }
+
+.chips-bar { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; padding: 12px 16px; margin-bottom: 24px; background: var(--surface-solid); border: 1px solid var(--border); border-radius: 12px; }
+.chip {
+    display: inline-flex; align-items: center; gap: 6px; padding: 6px 8px 6px 12px; border-radius: 20px;
+    background: var(--surface); border: 1px solid var(--border); font-size: 11.5px; color: var(--text);
+    font-weight: 500; transition: all 0.2s; cursor: pointer; max-width: 240px;
+}
+.chip:hover { border-color: var(--border-hover); box-shadow: 0 0 10px var(--accent-glow); }
+.chip-txt { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-family: var(--font-mono); }
+.chip-x { width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; color: var(--text-muted); flex-shrink: 0; transition: all 0.2s; }
+.chip-x:hover { background: var(--accent); color: #000; }
+.chip-clear { padding: 6px 14px; border-radius: 20px; font-size: 11.5px; color: var(--text-muted); background: transparent; transition: all 0.2s; font-weight: 500; }
+.chip-clear:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+
+.topic-block { margin-bottom: 16px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
+.topic-head { display: flex; align-items: center; gap: 12px; padding: 16px 20px; cursor: pointer; transition: all 0.2s; }
+.topic-head:hover { background: var(--surface-hover); }
+.topic-head.open { background: var(--surface-hover); border-bottom: 1px solid var(--border); }
+.topic-arrow { font-size: 10px; color: var(--text-muted); flex-shrink: 0; transition: transform 0.25s; }
+.topic-head.open .topic-arrow { transform: rotate(90deg); color: var(--accent); }
+.topic-title { flex: 1; min-width: 0; font-family: var(--font-display); font-size: 15px; font-weight: 800; color: var(--text); display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.topic-title .tag { font-family: var(--font-mono); font-size: 10.5px; font-weight: 500; color: var(--accent); padding: 2px 8px; border-radius: 12px; background: var(--accent-glow); border: 1px solid rgba(255,255,255,0.05); }
+.topic-meta { font-size: 11.5px; color: var(--text-muted); flex-shrink: 0; font-variant-numeric: tabular-nums; font-family: var(--font-mono); }
+.topic-body { display: none; padding: 8px; }
+.topic-head.open + .topic-body { display: block; }
+
+.formula-row {
+    display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: start;
+    padding: 16px; margin: 4px; border-radius: 8px; background: rgba(0, 0, 0, 0.15);
+    border-left: 2px solid var(--border); transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.formula-row:hover {
+    transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    background: var(--surface-solid); border-left-color: var(--accent);
+}
+.formula-q { font-size: clamp(13.5px, 1.3vw, 15px); line-height: 1.6; color: var(--text); font-weight: 500; }
+.formula-a { font-size: clamp(14.5px, 1.5vw, 16.5px); line-height: 1.6; color: var(--accent); font-weight: 600; margin-top: 6px; }
+.formula-a .katex { color: var(--accent); text-shadow: 0 0 20px var(--accent-glow); }
+
+.row-actions { display: flex; gap: 4px; flex-shrink: 0; }
+.copy-btn {
+    width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+    color: var(--text-muted); transition: all 0.2s; opacity: 0; background: rgba(255,255,255,0.03);
+}
+.copy-btn svg { width: 16px; height: 16px; stroke: currentColor; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.formula-row:hover .copy-btn { opacity: 1; }
+.copy-btn:hover { background: var(--accent); color: #000; box-shadow: 0 0 10px var(--accent-glow); }
+
+.empty { padding: 80px 30px; text-align: center; color: var(--text-muted); font-size: 14.5px; line-height: 1.7; }
+.empty-icon { margin-bottom: 24px; opacity: 0.8; display: flex; justify-content: center; filter: drop-shadow(0 0 20px var(--accent-glow)); }
+.empty-icon svg { width: 120px; height: 120px; stroke: var(--accent); stroke-width: 2.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.empty h3 { font-family: var(--font-display); font-size: 20px; color: var(--text); margin-bottom: 12px; font-weight: 800; }
+.empty p { max-width: 440px; margin: 0 auto 20px; }
+.empty-tips { display: inline-flex; flex-direction: column; gap: 10px; text-align: left; padding: 16px 20px; background: var(--surface-solid); border-radius: 12px; border: 1px solid var(--border); font-size: 13px; }
+.empty-tips .tip { display: flex; gap: 10px; align-items: flex-start; color: var(--text-muted); }
+.empty-tips .tip b { color: var(--accent); font-weight: 600; flex-shrink: 0; }
+
+/* --- ТЕСТ / КАРТОЧКИ --- */
+.test-overlay { position: fixed; inset: 0; z-index: 300; background: var(--bg); display: none; flex-direction: column; transition: background-color 0.3s ease; }
+.test-overlay.active { display: flex; }
+.test-top { padding: 16px 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 16px; flex-shrink: 0; background: rgba(0,0,0,0.2); }
+.test-counter { display: flex; align-items: baseline; gap: 6px; font-variant-numeric: tabular-nums; font-family: var(--font-mono); }
+.test-counter .cur { font-size: 22px; font-weight: 700; color: var(--accent); }
+.test-counter .tot { font-size: 14px; color: var(--text-muted); }
+.test-top-actions { margin-left: auto; display: flex; gap: 8px; }
+.test-top-actions button { padding: 8px 16px; border-radius: 8px; font-size: 12.5px; font-weight: 600; color: var(--text-muted); background: rgba(255, 255, 255, 0.05); border: 1px solid transparent; transition: all 0.2s; font-family: var(--font-display); }
+.test-top-actions button:hover { color: var(--accent); border-color: var(--border-hover); background: var(--surface-solid); }
+.test-top-actions button.exit:hover { color: #FF5C7A; border-color: #FF5C7A; background: rgba(255, 92, 122, 0.1); }
+
+.progress-bar-wrap { padding: 0 24px; flex-shrink: 0; margin-top: 12px; }
+.progress-bar { height: 4px; background: rgba(255, 255, 255, 0.05); border-radius: 4px; overflow: hidden; }
+.progress-fill { height: 100%; width: 0; background: var(--accent); transition: width 0.3s ease; box-shadow: 0 0 12px var(--accent-glow); }
+
+/* НОВЫЙ ИНДИКАТОР ПРОГРЕССА (НОМЕРА) */
+.dots { 
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 8px; 
+    padding: 16px 24px; 
+    max-height: 100px; 
+    overflow-y: auto; 
+    flex-shrink: 0; 
+    align-items: center; 
+    justify-content: center; 
+}
+.dot { 
+    width: 34px; 
+    height: 34px; 
+    border-radius: 10px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    font-family: var(--font-mono); 
+    font-size: 13px; 
+    font-weight: 500;
+    background: var(--surface-solid); 
+    color: var(--text-muted);
+    border: 1px solid var(--border); 
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); 
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+.dot:hover { 
+    background: rgba(255, 255, 255, 0.1); 
+    color: var(--text); 
+    transform: translateY(-2px); 
+    border-color: var(--border-hover); 
+}
+.dot.done { 
+    background: rgba(255,255,255,0.05); 
+    border-color: var(--border-hover); 
+    color: var(--text); 
+    opacity: 0.8; 
+}
+.dot.current { 
+    background: var(--accent); 
+    color: #000; 
+    border-color: var(--accent); 
+    box-shadow: 0 0 15px var(--accent-glow); 
+    transform: scale(1.15); 
+    font-weight: 700;
+}
+
+.test-stage { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 24px 32px; gap: 24px; min-height: 0; overflow: auto; text-align: center; }
+.test-tag { font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); letter-spacing: 1.5px; text-transform: uppercase; font-weight: 500; }
+.test-q { font-size: clamp(26px, 5vw, 48px); line-height: 1.3; color: var(--text); font-weight: 500; max-width: 1300px; font-family: var(--font-sans); }
+.test-q .katex { font-size: 1em !important; }
+.test-a { font-size: clamp(26px, 5vw, 48px); line-height: 1.3; color: var(--accent); font-weight: 700; max-width: 1300px; opacity: 0; transform: translateY(10px); transition: opacity 0.3s ease, transform 0.3s ease; text-shadow: 0 0 60px var(--accent-glow); }
+.test-a.show { opacity: 1; transform: translateY(0); }
+.test-a.no-anim { transition: none !important; } /* Отключает анимацию для предотвращения мигания */
+.test-a .katex { font-size: 1em !important; color: var(--accent); }
+
+.test-bottom { padding: 20px 24px; border-top: 1px solid var(--border); flex-shrink: 0; background: rgba(0,0,0,0.2); }
+.test-controls { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px; }
+.tbtn {
+    padding: 14px 32px; border-radius: 10px; font-size: 14.5px; font-weight: 700;
+    background: var(--surface-solid); color: var(--text); border: 1px solid var(--border);
+    transition: all 0.2s; min-width: 140px; justify-content: center; font-family: var(--font-display);
+}
+.tbtn:hover:not(:disabled) { border-color: var(--border-hover); color: var(--accent); transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+.tbtn:disabled { opacity: 0.3; cursor: not-allowed; }
+.tbtn.primary { background: var(--accent); color: #000; border-color: transparent; box-shadow: 0 4px 18px var(--accent-glow); }
+.tbtn.primary:hover:not(:disabled) { box-shadow: 0 6px 24px var(--accent-glow); color: #000; }
+
+.test-hint { text-align: center; font-size: 11.5px; color: var(--text-muted); line-height: 1.6; font-family: var(--font-mono); }
+.test-hint kbd { display: inline-block; padding: 2px 6px; border-radius: 4px; background: rgba(255,255,255,.05); color: var(--text); font-size: 11px; font-family: inherit; margin: 0 2px; border: 1px solid var(--border); }
+
+/* --- МОДАЛКА СПРАВКИ --- */
+.modal-bg { position: fixed; inset: 0; z-index: 400; background: rgba(0,0,0,.7); backdrop-filter: blur(8px); display: none; align-items: center; justify-content: center; padding: 20px; }
+.modal-bg.active { display: flex; }
+.modal {
+    background: var(--surface-solid); border: 1px solid var(--border); border-radius: 16px;
+    padding: 32px; max-width: 600px; width: 100%; max-height: 90vh; overflow-y: auto;
+    box-shadow: 0 12px 40px rgba(0,0,0,.5), 0 0 40px var(--accent-glow);
+}
+.modal h2 { font-family: var(--font-display); font-size: 22px; margin-bottom: 8px; font-weight: 800; }
+.modal .sub { font-size: 13px; color: var(--text-muted); margin-bottom: 24px; font-family: var(--font-mono); }
+.modal-section { margin-bottom: 24px; }
+.modal-section h4 { font-family: var(--font-mono); font-size: 11px; font-weight: 700; letter-spacing: 1.2px; color: var(--accent); text-transform: uppercase; margin-bottom: 12px; }
+.modal-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.modal-list li { display: flex; gap: 12px; font-size: 13.5px; color: var(--text-muted); line-height: 1.5; }
+.modal-list kbd { display: inline-block; padding: 2px 6px; border-radius: 4px; background: rgba(255,255,255,.08); color: var(--text); font-size: 11.5px; margin: 0 2px; border: 1px solid var(--border); font-family: var(--font-mono); }
+.modal-close { margin-top: 12px; width: 100%; padding: 14px; background: var(--accent); color: #000; border-radius: 10px; font-size: 14.5px; font-weight: 700; transition: all 0.2s; font-family: var(--font-display); }
+.modal-close:hover { filter: brightness(1.1); box-shadow: 0 4px 15px var(--accent-glow); }
+
+/* --- АДАПТАЦИЯ --- */
+@media(max-width: 960px) {
+    .app { grid-template-columns: 1fr; }
+    .sidebar { position: fixed; left: 0; top: var(--header-h); width: 300px; height: calc(100vh - var(--header-h)); z-index: 180; transform: translateX(-100%); transition: transform .28s cubic-bezier(.4,0,.2,1); box-shadow: 0 12px 40px rgba(0,0,0,.5); background: var(--bg); }
+    .sidebar.open { transform: translateX(0); }
+    .main { padding: 24px 20px 60px; }
+    .formula-row { grid-template-columns: 1fr; position: relative; }
+    .row-actions { position: absolute; right: 12px; top: 12px; opacity: 1; }
+    .copy-btn { opacity: 0.6; }
+}
+@media(max-width: 600px) {
+    header { padding: 12px 16px; }
+    .brand p { display: none; }
+    .main { padding: 20px 16px 60px; }
+    .test-q, .test-a { font-size: clamp(20px, 6.5vw, 36px); }
+    .tbtn { padding: 12px 16px; font-size: 13px; min-width: 0; flex: 1 1 45%; }
+    .dots { padding: 12px 16px; gap: 6px; }
+    .dot { width: 28px; height: 28px; font-size: 11px; border-radius: 8px; }
+    .progress-bar-wrap { padding: 0 16px; }
+    .chip { font-size: 11px; max-width: 180px; }
+    .start-buttons-container { flex-direction: column; }
+}
+</style>
 </head>
 <body>
-    <div class="frame">
-        <header>
-            <div class="brand">EPALLAXIS<span>_math</span></div>
-            
-            <div class="header-right">
-                <div class="theme-switcher" id="theme-switcher">
-                    <button class="theme-btn" data-theme="auto">AUTO</button>
-                    <button class="theme-btn" data-theme="autumn">ОСЕНЬ</button>
-                    <button class="theme-btn" data-theme="winter">ЗИМА</button>
-                    <button class="theme-btn" data-theme="spring">ВЕСНА</button>
-                    <button class="theme-btn" data-theme="summer">ЛЕТО</button>
-                </div>
 
-                <div class="header-meta">
-                    SYS.STATUS: ONLINE<br>
-                    2024 — 2025
-                </div>
-            </div>
-        </header>
+<script type="text/plain" id="dataSource">
+=== 8 | Алгебра | Квадратные корни
+Квадратный корень из числа \(a\) | Число, квадрат которого равен \(a\) (например, квадратные корни из \(36\) — это \(6\) и \(-6\))
+Арифметический квадратный корень из числа \(a\) | Неотрицательное число, квадрат которого равен \(a\) (\(\sqrt{a} = b\), если \(b \ge 0\) и \(b^2 = a\))
 
-        <section class="hero-editorial">
-            <canvas id="spring-canvas"></canvas>
-            <div class="season-particles" id="particles-container"></div>
+=== 8 | Алгебра | Свойства квадратных корней
+Квадрат арифметического квадратного корня | \((\sqrt{a})^2 = a\), где \(a \ge 0\)
+Квадратный корень из квадрата числа | \(\sqrt{a^2} = |a|\)
+Корень из произведения | \(\sqrt{a \cdot b} = \sqrt{a} \cdot \sqrt{b}\), где \(a \ge 0, b \ge 0\)
+Корень из частного | \(\sqrt{\dfrac{a}{b}} = \dfrac{\sqrt{a}}{\sqrt{b}}\), где \(a \ge 0, b > 0\)
 
-            <div class="hero-top">
-                <h1 class="hero-title">
-                    Математика
-                    <span>5–11 классы</span>
-                </h1>
-                <div class="hero-side-text">
-                    Структурированная база знаний.<br>
-                    Теория / Практика / Экзамены.
-                </div>
-            </div>
-            
-            <div class="hero-bottom">
-                <div class="greek-quote">Ἐπάλλαξις — приводить систему в порядок</div>
-                <div class="hero-desc">
-                    Выберите свой класс из каталога ниже, чтобы перейти к учебным модулям и подготовке к экзаменам.
-                </div>
-            </div>
-        </section>
+=== 8 | Алгебра | Неполные квадратные уравнения
+Неполное квадратное уравнение | Квадратное уравнение, в котором хотя бы один из коэффициентов \(b\) или \(c\) равен нулю
+Вид \(ax^2 + bx = 0\) | Неполное квадратное уравнение, у которого \(b \neq 0, c = 0\)
+Вид \(ax^2 + c = 0\) | Неполное квадратное уравнение, у которого \(b = 0, c \neq 0\)
+Вид \(ax^2 = 0\) | Неполное квадратное уравнение, у которого \(b = 0, c = 0\)
 
-        <main>
-            <section id="cards-grid" class="cards-grid" aria-label="Список классов">
-                <div class="skeleton-card"></div>
-                <div class="skeleton-card"></div>
-                <div class="skeleton-card"></div>
-                <div class="skeleton-card"></div>
-            </section>
-        </main>
+=== 8 | Алгебра | Формулы корней квадратного уравнения
+Формула дискриминанта квадратного уравнения | \(D = b^2 - 4ac\)
+Формулы корней квадратного уравнения при \(D > 0\) | \(x_{1,2} = \dfrac{-b \pm \sqrt{D}}{2a}\)
+Формула корня квадратного уравнения при \(D = 0\) | \(x = -\dfrac{b}{2a}\)
+Сколько корней имеет квадратное уравнение, если \(D > 0\)? | Два различных действительных корня
+Сколько корней имеет квадратное уравнение, если \(D = 0\)? | Один корень (или два совпадающих)
+Сколько корней имеет квадратное уравнение, если \(D < 0\)? | Нет действительных корней
+
+=== 8 | Алгебра | Квадратный трехчлен
+Разложение квадратного трехчлена на множители | \(ax^2 + bx + c = a(x - x_1)(x - x_2)\), где \(x_1\) и \(x_2\) — корни квадратного уравнения \(ax^2 + bx + c = 0\)
+
+=== 9 | Геометрия | Синус, косинус, тангенс и котангенс острого угла
+Синус острого угла прямоугольного треугольника | \(\sin \alpha = \dfrac{a}{c}\) (отношение противолежащего катета к гипотенузе)
+Косинус острого угла прямоугольного треугольника | \(\cos \alpha = \dfrac{b}{c}\) (отношение прилежащего катета к гипотенузе)
+Тангенс острого угла прямоугольного треугольника | \(\operatorname{tg} \alpha = \dfrac{a}{b}\) (отношение противолежащего катета к прилежащему)
+Котангенс острого угла прямоугольного треугольника | \(\operatorname{ctg} \alpha = \dfrac{b}{a}\) (отношение прилежащего катета к противолежащему)
+
+=== 9 | Геометрия | Табличные значения тригонометрических функций (прямые и обратные вопросы)
+Значение \(\sin 30^\circ\) | \(\dfrac{1}{2}\)
+Значение \(\cos 30^\circ\) | \(\dfrac{\sqrt{3}}{2}\)
+Значение \(\operatorname{tg} 30^\circ\) | \(\dfrac{\sqrt{3}}{3}\)
+Значение \(\operatorname{ctg} 30^\circ\) | \(\sqrt{3}\)
+Значение \(\sin 45^\circ\) | \(\dfrac{\sqrt{2}}{2}\)
+Значение \(\cos 45^\circ\) | \(\dfrac{\sqrt{2}}{2}\)
+Значение \(\operatorname{tg} 45^\circ\) | \(1\)
+Значение \(\operatorname{ctg} 45^\circ\) | \(1\)
+Значение \(\sin 60^\circ\) | \(\dfrac{\sqrt{3}}{2}\)
+Значение \(\cos 60^\circ\) | \(\dfrac{1}{2}\)
+Значение \(\operatorname{tg} 60^\circ\) | \(\sqrt{3}\)
+Значение \(\operatorname{ctg} 60^\circ\) | \(\dfrac{\sqrt{3}}{3}\)
+\(\dfrac{1}{2}\) — значение какой тригонометрической функции и какого угла? | \(\sin 30^\circ\) или \(\cos 60^\circ\)
+\(\dfrac{\sqrt{3}}{2}\) — значение какой тригонометрической функции и какого угла? | \(\sin 60^\circ\) или \(\cos 30^\circ\)
+\(\dfrac{\sqrt{2}}{2}\) — значение какой тригонометрической функции и какого угла? | \(\sin 45^\circ\) или \(\cos 45^\circ\)
+\(\dfrac{\sqrt{3}}{3}\) — значение какой тригонометрической функции и какого угла? | \(\operatorname{tg} 30^\circ\) или \(\operatorname{ctg} 60^\circ\)
+\(\sqrt{3}\) — значение какой тригонометрической функции и какого угла? | \(\operatorname{tg} 60^\circ\) или \(\operatorname{ctg} 30^\circ\)
+\(1\) — значение какой тригонометрической функции и какого угла? | \(\operatorname{tg} 45^\circ\) или \(\operatorname{ctg} 45^\circ\)
+
+=== 9 | Геометрия | Решение прямоугольного треугольника
+Катет через гипотенузу и противолежащий угол | \(a = c \sin \alpha\)
+Катет через гипотенузу и прилежащий угол | \(b = c \cos \alpha\)
+Гипотенуза через катет и противолежащий угол | \(c = \dfrac{a}{\sin \alpha}\)
+Гипотенуза через катет и прилежащий угол | \(c = \dfrac{b}{\cos \alpha}\)
+Катет через другой катет и противолежащий угол | \(a = b \operatorname{tg} \alpha = \dfrac{b}{\operatorname{ctg} \alpha}\) (если \(a\) — противолежащий, \(b\) — прилежащий)
+Катет через другой катет и прилежащий угол | \(b = a \operatorname{ctg} \alpha = \dfrac{a}{\operatorname{tg} \alpha}\) (если \(b\) — прилежащий, \(a\) — противолежащий)
+
+=== 9 | Геометрия | Тригонометрические формулы
+Основное тригонометрическое тождество | \(\sin^2 \alpha + \cos^2 \alpha = 1\)
+Выражение синуса через косинус (для острого угла) | \(\sin \alpha = \sqrt{1 - \cos^2 \alpha}\)
+Выражение косинуса через синус (для острого угла) | \(\cos \alpha = \sqrt{1 - \sin^2 \alpha}\)
+Тангенс через синус и косинус | \(\operatorname{tg} \alpha = \dfrac{\sin \alpha}{\cos \alpha}\)
+Котангенс через синус и косинус | \(\operatorname{ctg} \alpha = \dfrac{\cos \alpha}{\sin \alpha}\)
+Связь тангенса и котангенса | \(\operatorname{tg} \alpha = \dfrac{1}{\operatorname{ctg} \alpha};\; \operatorname{ctg} \alpha = \dfrac{1}{\operatorname{tg} \alpha}\)
+
+=== 9 | Геометрия | Синус, косинус, тангенс и котангенс тупого угла
+\(\sin(180^\circ - \alpha) =\) | \(\sin \alpha\)
+\(\cos(180^\circ - \alpha) =\) | \(-\cos \alpha\)
+\(\operatorname{tg}(180^\circ - \alpha) =\) | \(-\operatorname{tg} \alpha\)
+\(\operatorname{ctg}(180^\circ - \alpha) =\) | \(-\operatorname{ctg} \alpha\)
+\(\sin \alpha =\) | \(\sin(180^\circ - \alpha)\)
+\(\cos \alpha =\) | \(-\cos(180^\circ - \alpha)\)
+\(\operatorname{tg} \alpha =\) | \(-\operatorname{tg}(180^\circ - \alpha)\)
+\(\operatorname{ctg} \alpha =\) | \(-\operatorname{ctg}(180^\circ - \alpha)\)
+
+=== 9 | Геометрия | Площадь треугольника и параллелограмма
+Формула площади треугольника через две стороны и угол между ними | \(S = \dfrac{1}{2}ab\sin\gamma\), где \(\gamma\) — угол между сторонами \(a\) и \(b\)
+Формула площади параллелограмма через две стороны и угол между ними | \(S = ab\sin\alpha\), где \(\alpha\) — угол между сторонами \(a\) и \(b\)
+
+=== 9 | Геометрия | Вписанная и описанная окружности (произвольного треугольника)
+Что такое описанная около треугольника окружность? | Окружность, на которой лежат все вершины треугольника
+Что такое вписанная в треугольник окружность? | Окружность, которая касается всех сторон треугольника
+Центр окружности, вписанной в произвольный треугольник | Точка пересечения биссектрис треугольника
+Центр окружности, описанной около произвольного треугольника | Точка пересечения серединных перпендикуляров к сторонам треугольника
+Формула площади треугольника через радиус вписанной окружности | \(S = pr\), где \(p\) — полупериметр, \(r\) — радиус вписанной окружности
+Формула радиуса окружности, вписанной в произвольный треугольник | \(r = \dfrac{S}{p}\)
+Формула площади треугольника через радиус описанной окружности | \(S = \dfrac{abc}{4R}\), где \(a, b, c\) — стороны треугольника, \(R\) — радиус описанной окружности
+Формула радиуса окружности, описанной около произвольного треугольника (через стороны и площадь) | \(R = \dfrac{abc}{4S}\)
+
+=== 9 | Геометрия | Вписанная и описанная окружности (прямоугольного треугольника)
+Центр окружности, описанной около прямоугольного треугольника | Лежит на середине гипотенузы
+Формула радиуса окружности, описанной около прямоугольного треугольника | \(R = \dfrac{c}{2}\), где \(c\) — гипотенуза
+Формула радиуса окружности, вписанной в прямоугольный треугольник | \(r = \dfrac{a+b-c}{2}\), где \(a, b\) — катеты, \(c\) — гипотенуза
+Следствие из формулы радиуса окружности, вписанной в прямоугольный треугольник | \(r = p - c\), где \(p\) — полупериметр
+
+=== 9 | Геометрия | Вписанные и описанные четырехугольники
+Свойство вписанного четырехугольника | Сумма противоположных углов четырехугольника, вписанного в окружность, равна \(180^\circ\) (т.е. \(\angle A + \angle C = 180^\circ\), \(\angle B + \angle D = 180^\circ\))
+Признак вписанного четырехугольника | Если сумма противоположных углов четырехугольника равна \(180^\circ\), то около него можно описать окружность
+Свойство описанного четырехугольника | Суммы противоположных сторон описанного четырехугольника равны между собой (т.е. \(a + c = b + d\))
+Признак описанного четырехугольника | Если суммы противоположных сторон выпуклого четырехугольника равны, то в него можно вписать окружность
+Формула площади описанного четырехугольника | \(S = pr\), где \(p\) — полупериметр, \(r\) — радиус вписанной окружности
+
+=== Треугольник | Геометрия | Площадь
+Формула площади треугольника через сторону и высоту | \(S = \dfrac{1}{2}ah\), где \(a\) — сторона, \(h\) — высота, проведенная к этой стороне
+Формула площади треугольника через две стороны и угол между ними | \(S = \dfrac{1}{2}ab\sin\gamma\), где \(a, b\) — стороны, \(\gamma\) — угол между ними
+Формула площади треугольника через три стороны (формула Герона) | \(S = \sqrt{p(p-a)(p-b)(p-c)}\), где \(a, b, c\) — стороны, \(p\) — полупериметр
+Формула площади треугольника через радиус вписанной окружности | \(S = pr\), где \(p\) — полупериметр, \(r\) — радиус вписанной окружности
+Формула площади треугольника через радиус описанной окружности | \(S = \dfrac{abc}{4R}\), где \(a, b, c\) — стороны, \(R\) — радиус описанной окружности
+
+=== Треугольник | Геометрия | Правильный треугольник
+Формула высоты правильного треугольника | \(h = \dfrac{a\sqrt{3}}{2}\), где a - сторона треугольника
+Формула площади правильного треугольника | \(S = \dfrac{a^2\sqrt{3}}{4}\), где a - сторона треугольника
+Формула радиуса окружности, описанной около правильного треугольника | \(R = \dfrac{a}{\sqrt{3}} = \dfrac{a\sqrt{3}}{3}\), где a - сторона треугольника
+Формула радиуса окружности, вписанной в правильный треугольник | \(r = \dfrac{a}{2\sqrt{3}} = \dfrac{a\sqrt{3}}{6}\), где a - сторона треугольника
+
+=== Четырехугольник | Геометрия | Площадь
+Формула площади четырехугольника через диагонали | \(S = \dfrac{1}{2}d1d2\sin\gamma\), где \(d1, d2\) — диагонали, \(\gamma\) — угол между ними
+</script>
+
+<header>
+  <button class="icon-btn hamburger" id="hamburger" aria-label="Меню">
+    <svg viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+  </button>
+  <div class="brand">
+    <a href="https://drapejnik.github.io/epallaxis/index.html">
+      <h1>EPALLAXIS <span class="accent-word">formulas</span></h1>
+    </a>
+    <p>Ἐπαλλάσσω — приводить систему в порядок</p>
+  </div>
+  <div class="header-actions">
+    <button class="icon-btn" id="helpBtn" title="Справка">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+    </button>
+  </div>
+</header>
+
+<div class="app">
+  <aside class="sidebar" id="sidebar">
+    <div class="sb-top">
+      <div class="search-wrap" id="topicSearchWrap">
+        <span class="s-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+        <input type="text" id="searchTopic" placeholder="Поиск темы..." autocomplete="off">
+        <button class="s-clear" id="searchTopicClear" aria-label="Очистить">✕</button>
+      </div>
+      <div class="search-wrap" id="formulaSearchWrap">
+        <span class="s-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+        <input type="text" id="searchFormula" placeholder="Поиск формулы..." autocomplete="off">
+        <button class="s-clear" id="searchFormulaClear" aria-label="Очистить">✕</button>
+      </div>
+      <div class="presets">
+        <button class="preset" data-preset="alg">Только<br>алгебра</button>
+        <button class="preset" data-preset="geom">Только<br>геометрия</button>
+        <button class="preset" data-preset="all">Всё<br>сразу</button>
+      </div>
+      <div class="sb-actions">
+        <button id="qInvert">Инвертировать</button>
+        <button id="qNone">Снять всё</button>
+        <button id="qCollapse" title="Свернуть все раскрытые разделы">⯅ Свернуть</button>
+      </div>
     </div>
+    <div class="tree" id="tree"></div>
+    <div class="sb-foot">
+      <div class="sb-stat">
+        <span>Выбрано: <b id="statTopics">0</b> тем</span>
+        <span><b id="statFormulas">0</b> формул</span>
+      </div>
+      <div class="start-buttons-container">
+        <button class="start-btn btn-random" id="startRandomBtn" disabled>🎲 Рандом</button>
+        <button class="start-btn btn-order" id="startOrderBtn" disabled>📋 По порядку</button>
+      </div>
+    </div>
+  </aside>
+  <main class="main" id="main"></main>
+</div>
 
-    <script>
-        (function () {
-            'use strict';
+<div class="backdrop" id="backdrop"></div>
+<button class="fab-top" id="fabTop" aria-label="Наверх">↑</button>
 
-            // ==========================================
-            // 1. ГРЕЧЕСКИЕ БУКВЫ
-            // ==========================================
-            const GREEK_LETTERS = [
-                'α', 'β', 'γ', 'δ', 'ε', 'ζ', 'η', 'θ', 'ι', 'κ', 'λ', 'μ', 
-                'ν', 'ξ', 'ο', 'π', 'ρ', 'σ', 'τ', 'υ', 'φ', 'χ', 'ψ', 'ω'
-            ];
-            let availableLetters = [];
+<div class="test-overlay" id="testOverlay">
+  <div class="test-top">
+    <div class="test-counter">
+      <span class="cur" id="testCur">0</span>
+      <span class="tot">/ <span id="testTotal">0</span></span>
+    </div>
+    <div class="test-top-actions">
+      <button id="testSkip" title="Отложить вопрос">⏭ Пропустить</button>
+      <button class="exit" id="testExit" title="Выйти (Esc)">✕</button>
+    </div>
+  </div>
+  <div class="progress-bar-wrap">
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+  <div class="dots" id="dots"></div>
+  <div class="test-stage">
+    <div class="test-tag" id="testTag"></div>
+    <div class="test-q" id="testQ"></div>
+    <div class="test-a" id="testA"></div>
+  </div>
+  <div class="test-bottom">
+    <div class="test-controls">
+      <button class="tbtn" id="testPrev">← Назад</button>
+      <button class="tbtn primary" id="testReveal">Показать ответ</button>
+      <button class="tbtn" id="testNext">Вперёд →</button>
+    </div>
+    <div class="test-hint">
+      <kbd>Space</kbd> показать/скрыть ответ · <kbd>←</kbd><kbd>→</kbd> переключение вопроса · <kbd>Esc</kbd> выход
+    </div>
+  </div>
+</div>
 
-            function shuffle(array) {
-                for (let i = array.length - 1; i > 0; i--) {
-                    const j = Math.floor(Math.random() * (i + 1));
-                    [array[i], array[j]] = [array[j], array[i]];
-                }
-                return array;
-            }
+<div class="modal-bg" id="helpModal">
+  <div class="modal">
+    <h2>Как пользоваться</h2>
+    <div class="sub">30 секунд чтения — и всё понятно.</div>
+    <div class="modal-section">
+      <h4>📖 Просмотр</h4>
+      <ul class="modal-list">
+        <li>Пресеты сверху — быстрые наборы</li>
+        <li>Дерево слева — раскрой группу и отметь темы (или кликни чекбокс группы)</li>
+        <li>Чипы над списком — показывают выбранное; клик = переход, ✕ = удалить</li>
+      </ul>
+    </div>
+    <div class="modal-section">
+      <h4>🎯 Проверка</h4>
+      <ul class="modal-list">
+        <li>Внизу слева можно выбрать режим: <b>🎲 Рандом</b> или <b>📋 По порядку</b></li>
+        <li><b>Space</b> — показать / скрыть ответ (только ответ!)</li>
+        <li><b>← →</b> — переключение между вопросами</li>
+        <li>Точки под прогрессом — клик = переход к любому вопросу</li>
+      </ul>
+    </div>
+    <div class="modal-section">
+      <h4>⌨️ Клавиши</h4>
+      <ul class="modal-list">
+        <li><kbd>/</kbd> — поиск</li>
+        <li><kbd>Space</kbd> — показать/скрыть ответ</li>
+        <li><kbd>←</kbd> <kbd>→</kbd> — переключение вопроса</li>
+        <li><kbd>Home</kbd> <kbd>End</kbd> — первый / последний вопрос</li>
+        <li><kbd>Esc</kbd> — выход из проверки</li>
+      </ul>
+    </div>
+    <button class="modal-close" id="helpClose">Понятно</button>
+  </div>
+</div>
 
-            function resetSymbols() {
-                availableLetters = shuffle([...GREEK_LETTERS]);
-            }
+<script>
+// Применяем тему из localStorage (синхронизация с главной)
+function getCurrentSeason() {
+    const month = new Date().getMonth();
+    if (month === 11 || month <= 1) return 'winter';
+    if (month >= 2 && month <= 4) return 'spring';
+    if (month >= 5 && month <= 7) return 'summer';
+    return 'autumn';
+}
 
-            function getUniqueSymbol() {
-                if (availableLetters.length === 0) resetSymbols();
-                return availableLetters.pop();
-            }
+function applyThemeFromMain() {
+    const savedTheme = localStorage.getItem('epallaxis_theme') || 'auto';
+    let activeSeason = savedTheme === 'auto' ? getCurrentSeason() : savedTheme;
+    document.body.className = 'season-' + activeSeason;
+}
 
-            // ==========================================
-            // 2. РЕАЛИСТИЧНЫЕ РЫБКИ
-            // ==========================================
-            const canvas = document.getElementById('spring-canvas');
-            const ctx = canvas.getContext('2d');
-            let animationFrameId;
-            let canvasActive = false;
-            let fishArray = [];
-            let ripples = [];
-            let mouse = { x: -1000, y: -1000 };
+applyThemeFromMain();
+// ---------------------------------------------
 
-            function resizeCanvas() {
-                const rect = canvas.parentElement.getBoundingClientRect();
-                canvas.width = rect.width;
-                canvas.height = rect.height;
-            }
+const DATA_ID='dataSource';
+const SUBJ_MAP={'алгебра':'algebra','геометрия':'geometry'};
+const SUBJ_LBL={algebra:'Алгебра',geometry:'Геометрия'};
 
-            class Fish {
-                constructor() {
-                    const side = Math.floor(Math.random() * 4);
-                    if (side === 0) { this.x = -50; this.y = Math.random() * canvas.height; }
-                    else if (side === 1) { this.x = canvas.width + 50; this.y = Math.random() * canvas.height; }
-                    else if (side === 2) { this.x = Math.random() * canvas.width; this.y = -50; }
-                    else { this.x = Math.random() * canvas.width; this.y = canvas.height + 50; }
+const SVG_COPY = '<svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>';
+const SVG_CHECK = '<svg viewBox="0 0 24 24" style="stroke:currentColor;color:#000"><polyline points="20 6 9 17 4 12"></polyline></svg>';
 
-                    this.angle = Math.atan2(canvas.height/2 - this.y, canvas.width/2 - this.x);
-                    this.wanderAngle = this.angle;
-                    
-                    this.maxSpeed = Math.random() * 0.5 + 1.2; 
-                    this.vx = Math.cos(this.angle) * this.maxSpeed;
-                    this.vy = Math.sin(this.angle) * this.maxSpeed;
-                    
-                    this.size = Math.random() * 5 + 11;
-                    this.hue = 340 + Math.random() * 20;
-                    this.tailPhase = Math.random() * Math.PI * 2;
-                    this.rippleTimer = 0;
-                    
-                    this.opacity = 0;
-                }
+const SVG_EMPTY = `
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <path d="M50 15 L88 85 L12 85 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M38 15 L41 3 L59 3 L62 15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M30 15 Q50 10 70 15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+  <ellipse cx="50" cy="50" rx="8" ry="13" fill="none" stroke="currentColor" stroke-width="2.5"/>
+  <line x1="50" y1="39" x2="50" y2="61" stroke="var(--accent)" stroke-width="3.5" stroke-linecap="round" style="filter: drop-shadow(0 0 5px var(--accent))"/>
+  <path d="M50 80 L32 72 L32 84 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M50 80 L68 72 L68 84 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+  <circle cx="50" cy="80" r="2.5" fill="currentColor"/>
+  <path d="M 26 50 L 12 62 L 24 72" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 74 50 L 88 62 L 78 72" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 84 92 L 84 62 C 84 50 72 50 72 58" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M 38 85 L 32 96 L 24 96" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 62 85 L 68 96 L 76 96" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="28" y1="75" x2="72" y2="75" stroke="currentColor" stroke-width="1.5" opacity="0.3" stroke-dasharray="4 3"/>
+  <line x1="22" y1="80" x2="78" y2="80" stroke="currentColor" stroke-width="1.5" opacity="0.3" stroke-dasharray="4 3"/>
+</svg>`;
 
-                update() {
-                    if (this.opacity < 1) this.opacity += 0.015;
+const state={DB:{},searchTopic:'',searchFormula:'',selected:new Set(),openGroups:new Set(),testQueue:[],testIdx:0,testRevealed:false};
 
-                    this.wanderAngle += (Math.random() - 0.5) * 0.2;
-                    let steerX = Math.cos(this.wanderAngle) * this.maxSpeed;
-                    let steerY = Math.sin(this.wanderAngle) * this.maxSpeed;
+function getInbuiltSource(){const el=document.getElementById(DATA_ID);return el?(el.textContent||''):''}
+function parseSource(raw){
+  const db={};let current=null;const lines=raw.split(/\r?\n/);
+  for(let i=0;i<lines.length;i++){
+    const t=lines[i].trim();
+    if(!t)continue;
+    if(t.startsWith('#'))continue;
+    if(t.startsWith('===')){
+      const rest=t.replace(/^=+\s*/,'').replace(/\s*=+\s*$/,'');
+      const parts=rest.split('|').map(s=>s.trim());
+      if(parts.length<3){current=null;continue}
+      const cls=parts[0]; 
+      const subjKey=SUBJ_MAP[parts[1].toLowerCase()];
+      const topic=parts[2];
+      if(!cls||!subjKey||!topic){current=null;continue}
+      if(!db[cls])db[cls]={};
+      if(!db[cls][subjKey])db[cls][subjKey]={};
+      if(!db[cls][subjKey][topic])db[cls][subjKey][topic]=[];
+      current=db[cls][subjKey][topic]
+    } else if(current){
+      const idx=t.indexOf('|');
+      if(idx<0)continue;
+      const q=t.slice(0,idx).trim();
+      const a=t.slice(idx+1).trim();
+      if(q&&a)current.push([q,a])
+    }
+  }
+  return db
+}
+function reloadDB(){state.DB=parseSource(getInbuiltSource())}
+function getClasses(){
+  return Object.keys(state.DB).sort((a,b) => {
+    const numA = Number(a);
+    const numB = Number(b);
+    if (!isNaN(numA) && !isNaN(numB)) return numA - numB;
+    if (!isNaN(numA)) return -1;
+    if (!isNaN(numB)) return 1;
+    return a.localeCompare(b);
+  });
+}
 
-                    const margin = 100;
-                    const turnForce = 0.15;
-                    if (this.x < margin) steerX += (margin - this.x) * turnForce;
-                    if (this.x > canvas.width - margin) steerX -= (this.x - (canvas.width - margin)) * turnForce;
-                    if (this.y < margin) steerY += (margin - this.y) * turnForce;
-                    if (this.y > canvas.height - margin) steerY -= (this.y - (canvas.height - margin)) * turnForce;
+function keyOf(c,s,t){return c+'|'+s+'|'+t}
+function parseKey(k){const i1=k.indexOf('|');const i2=k.indexOf('|',i1+1);return{c:k.slice(0,i1),s:k.slice(i1+1,i2),t:k.slice(i2+1)}}
+function getTopic(c,s,t){return(state.DB[c]&&state.DB[c][s]&&state.DB[c][s][t])||null}
+function countSelected(){let topics=0,formulas=0;state.selected.forEach(k=>{const{c,s,t}=parseKey(k);const arr=getTopic(c,s,t);if(arr){topics++;formulas+=arr.length}});return{topics,formulas}}
+function sortSelectedKeys(){
+  return [...state.selected].sort((a,b)=>{
+    const A=parseKey(a),B=parseKey(b);
+    const numA = Number(A.c), numB = Number(B.c);
+    if (!isNaN(numA) && !isNaN(numB)) {
+      if (numA !== numB) return numA - numB;
+    } else if (!isNaN(numA)) {
+      return -1;
+    } else if (!isNaN(numB)) {
+      return 1;
+    } else {
+      if (A.c !== B.c) return A.c.localeCompare(B.c);
+    }
+    if(A.s!==B.s)return A.s.localeCompare(B.s);
+    return A.t.localeCompare(B.t);
+  })
+}
+function escapeHtml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
 
-                    const dx = this.x - mouse.x;
-                    const dy = this.y - mouse.y;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
-                    let isFleeing = false;
+function smartSearch(text, query) {
+  if (!query || !query.trim()) return true;
+  const textLower = text.toLowerCase();
+  const queryWords = query.toLowerCase().split(/\s+/).filter(Boolean);
+  
+  return queryWords.every(qw => {
+    if (qw.length <= 3) return textLower.includes(qw);
+    const stem = qw.slice(0, 4);
+    return textLower.includes(stem);
+  });
+}
 
-                    if (dist < 150) {
-                        isFleeing = true;
-                        const force = (150 - dist) / 150;
-                        steerX += (dx / dist) * force * 4;
-                        steerY += (dy / dist) * force * 4;
-                        
-                        this.rippleTimer--;
-                        if (this.rippleTimer <= 0) {
-                            ripples.push(new Ripple(this.x - this.vx * 3, this.y - this.vy * 3));
-                            this.rippleTimer = 5;
-                        }
-                    } else {
-                        this.rippleTimer--;
-                        if (Math.random() < 0.01 && this.rippleTimer <= 0) {
-                            ripples.push(new Ripple(this.x, this.y));
-                            this.rippleTimer = 40;
-                        }
-                    }
+function matchTopic(c,s,t){
+  const q=state.searchTopic.trim();
+  if(!q)return true;
+  if(smartSearch(t, q) || smartSearch(c, q)) return true;
+  const arr=getTopic(c,s,t)||[];
+  return arr.some(pair => smartSearch(pair[0], q) || smartSearch(pair[1], q));
+}
 
-                    let desiredX = this.vx + steerX;
-                    let desiredY = this.vy + steerY;
-                    let desiredMag = Math.sqrt(desiredX * desiredX + desiredY * desiredY);
-                    let targetSpeed = isFleeing ? this.maxSpeed * 2.5 : this.maxSpeed;
-                    
-                    if (desiredMag > 0) {
-                        desiredX = (desiredX / desiredMag) * targetSpeed;
-                        desiredY = (desiredY / desiredMag) * targetSpeed;
-                    }
+function toggleGroup(c, s) {
+  const allTopics = Object.keys(state.DB[c][s]);
+  const allSel = allTopics.every(t => state.selected.has(keyOf(c, s, t)));
+  if (allSel) {
+    allTopics.forEach(t => state.selected.delete(keyOf(c, s, t)));
+  } else {
+    allTopics.forEach(t => state.selected.add(keyOf(c, s, t)));
+  }
+  renderAll();
+}
 
-                    let desiredAngle = Math.atan2(desiredY, desiredX);
-                    let angleDiff = desiredAngle - this.angle;
-                    
-                    while (angleDiff > Math.PI) angleDiff -= Math.PI * 2;
-                    while (angleDiff < -Math.PI) angleDiff += Math.PI * 2;
+function renderTree(){
+  const root=document.getElementById('tree');
+  const classes=getClasses();
+  const groups=[];
+  classes.forEach(c=>{
+    ['algebra','geometry'].forEach(s=>{
+      if(!state.DB[c]||!state.DB[c][s])return;
+      const all=Object.keys(state.DB[c][s]);
+      const filtered=all.filter(t=>matchTopic(c,s,t));
+      if(filtered.length===0)return;
+      groups.push({c,s,topics:filtered,all})
+    })
+  });
+  if(groups.length===0){
+    root.innerHTML='<div style="padding:24px 12px;text-align:center;color:var(--muted);font-size:13px;font-family:var(--font-mono)">Ничего не найдено</div>';
+    return;
+  }
+  root.innerHTML='';
+  groups.forEach(g=>{
+    const gKey=g.c+'|'+g.s;
+    const isOpen=state.openGroups.has(gKey);
+    const selCount=g.all.filter(t=>state.selected.has(keyOf(g.c,g.s,t))).length;
+    const totCount=g.all.length;
+    let cntClass='tree-count';
+    if(selCount===totCount&&totCount>0)cntClass+=' full';
+    else if(selCount>0)cntClass+=' partial';
+    
+    const wrap=document.createElement('div');wrap.className='tree-group';
+    const head=document.createElement('div');head.className='tree-head'+(isOpen?' open':'');
+    
+    const arrow=document.createElement('span');arrow.className='tree-arrow';arrow.textContent='▶';
+    
+    const check=document.createElement('span');check.className='tree-check';
+    const allSel=g.topics.every(t=>state.selected.has(keyOf(g.c,g.s,t)));
+    if(allSel)check.classList.add('checked');
+    check.onclick=(e)=>{e.stopPropagation();toggleGroup(g.c,g.s);};
+    
+    const label=document.createElement('span');label.className='tree-label';label.textContent=`${g.c} · ${SUBJ_LBL[g.s]}`;
+    
+    const count=document.createElement('span');count.className=cntClass;count.textContent=`${selCount}/${totCount}`;
+    
+    head.appendChild(arrow);
+    head.appendChild(check);
+    head.appendChild(label);
+    head.appendChild(count);
+    
+    head.onclick=()=>{
+      if(state.openGroups.has(gKey))state.openGroups.delete(gKey);
+      else state.openGroups.add(gKey);
+      renderTree();
+    };
+    wrap.appendChild(head);
+    
+    const body=document.createElement('div');body.className='tree-body';
+    g.topics.forEach(t=>{
+      const k=keyOf(g.c,g.s,t);
+      const checked=state.selected.has(k);
+      const cnt=(getTopic(g.c,g.s,t)||[]).length;
+      const item=document.createElement('div');
+      item.className='tree-topic'+(checked?' checked':'');
+      item.innerHTML='<span class="tree-check"></span><span class="tree-topic-name">'+escapeHtml(t)+'</span><span class="tree-topic-cnt">'+cnt+'</span>';
+      item.onclick=()=>{
+        if(state.selected.has(k)){
+          state.selected.delete(k);
+        }else{
+          state.selected.add(k);
+          state.openGroups.delete('T_'+k);
+        }
+        renderAll();
+      };
+      body.appendChild(item);
+    });
+    wrap.appendChild(body);
+    root.appendChild(wrap);
+  });
+}
 
-                    let turnRate = isFleeing ? 0.15 : 0.05;
-                    this.angle += angleDiff * turnRate;
+function renderMain(){
+  const main=document.getElementById('main');
+  const topicQ = state.searchTopic.trim();
+  const formulaQ = state.searchFormula.trim();
+  const isSearching = topicQ !== '' || formulaQ !== '';
 
-                    let currentSpeed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
-                    if (currentSpeed < targetSpeed) currentSpeed += 0.05;
-                    else currentSpeed -= 0.02;
-                    if (currentSpeed > targetSpeed) currentSpeed = targetSpeed;
-                    if (currentSpeed < 0.5) currentSpeed = 0.5;
+  if (isSearching) {
+    let html = `<div class="crumbs"><span class="pulse-dot"></span><span>Результаты поиска</span>`;
+    if (topicQ) html += `<span class="c-sep">/</span><b>тема: «${escapeHtml(state.searchTopic)}»</b>`;
+    if (formulaQ) html += `<span class="c-sep">/</span><b>формула: «${escapeHtml(state.searchFormula)}»</b>`;
+    html += `</div>`;
 
-                    this.vx = Math.cos(this.angle) * currentSpeed;
-                    this.vy = Math.sin(this.angle) * currentSpeed;
+    let foundAny = false;
+    
+    getClasses().forEach(c => {
+      ['algebra', 'geometry'].forEach(s => {
+        if (!state.DB[c] || !state.DB[c][s]) return;
+        Object.keys(state.DB[c][s]).forEach(t => {
+          if (topicQ) {
+            const topicMatch = smartSearch(t, topicQ) || smartSearch(c, topicQ);
+            if (!topicMatch) return;
+          }
 
-                    this.x += this.vx;
-                    this.y += this.vy;
-                    this.tailPhase += 0.15 + currentSpeed * 0.3;
-                }
+          const allItems = getTopic(c, s, t) || [];
+          let matching = allItems;
+          if (formulaQ) {
+            matching = allItems.filter(pair => 
+              smartSearch(pair[0], formulaQ) || 
+              smartSearch(pair[1], formulaQ)
+            );
+          }
 
-                draw() {
-                    ctx.save();
-                    ctx.globalAlpha = this.opacity;
-                    ctx.translate(this.x, this.y);
-                    ctx.rotate(this.angle);
-
-                    const L = this.size;
-                    const H = this.size * 0.32;
-                    const tailWag = Math.sin(this.tailPhase) * 0.6;
-
-                    ctx.save();
-                    ctx.translate(-L * 0.65, 0);
-                    ctx.rotate(tailWag);
-                    ctx.fillStyle = `hsla(${this.hue}, 75%, 78%, 0.65)`;
-                    ctx.beginPath();
-                    ctx.moveTo(0, 0);
-                    ctx.lineTo(-L * 0.55, -H * 2.2);
-                    ctx.quadraticCurveTo(-L * 0.25, -H * 0.4, -L * 0.2, 0);
-                    ctx.quadraticCurveTo(-L * 0.25, H * 0.4, -L * 0.55, H * 2.2);
-                    ctx.closePath();
-                    ctx.fill();
-                    ctx.strokeStyle = `hsla(${this.hue}, 70%, 55%, 0.3)`;
-                    ctx.lineWidth = 0.6;
-                    ctx.beginPath();
-                    ctx.moveTo(-L * 0.1, 0); ctx.lineTo(-L * 0.45, -H * 1.6);
-                    ctx.moveTo(-L * 0.1, 0); ctx.lineTo(-L * 0.45, H * 1.6);
-                    ctx.stroke();
-                    ctx.restore();
-
-                    ctx.fillStyle = `hsla(${this.hue}, 80%, 80%, 0.5)`;
-                    ctx.beginPath();
-                    ctx.moveTo(-L * 0.05, -H * 0.95);
-                    ctx.quadraticCurveTo(-L * 0.15, -H * 2.0, -L * 0.4, -H * 0.65);
-                    ctx.quadraticCurveTo(-L * 0.3, -H * 0.75, -L * 0.05, -H * 0.95);
-                    ctx.closePath();
-                    ctx.fill();
-                    ctx.beginPath();
-                    ctx.moveTo(-L * 0.15, H * 0.85);
-                    ctx.quadraticCurveTo(-L * 0.25, H * 1.7, -L * 0.45, H * 0.5);
-                    ctx.quadraticCurveTo(-L * 0.35, H * 0.6, -L * 0.15, H * 0.85);
-                    ctx.closePath();
-                    ctx.fill();
-
-                    const bodyGradient = ctx.createLinearGradient(0, -H, 0, H);
-                    bodyGradient.addColorStop(0, `hsla(${this.hue}, 80%, 88%, 0.75)`);
-                    bodyGradient.addColorStop(0.5, `hsla(${this.hue}, 85%, 75%, 0.7)`);
-                    bodyGradient.addColorStop(1, `hsla(${this.hue}, 80%, 60%, 0.6)`);
-                    ctx.fillStyle = bodyGradient;
-                    ctx.beginPath();
-                    ctx.moveTo(L * 0.78, 0);
-                    ctx.bezierCurveTo(L * 0.55, -H * 1.0, -L * 0.1, -H * 1.05, -L * 0.65, -H * 0.18);
-                    ctx.lineTo(-L * 0.65, H * 0.18);
-                    ctx.bezierCurveTo(-L * 0.1, H * 1.05, L * 0.55, H * 1.0, L * 0.78, 0);
-                    ctx.closePath();
-                    ctx.fill();
-
-                    ctx.save();
-                    ctx.translate(L * 0.15, H * 0.35);
-                    ctx.rotate(0.4 + Math.sin(this.tailPhase * 0.7) * 0.15);
-                    ctx.fillStyle = `hsla(${this.hue}, 80%, 82%, 0.55)`;
-                    ctx.beginPath();
-                    ctx.ellipse(0, 0, L * 0.22, H * 0.35, 0, 0, Math.PI * 2);
-                    ctx.fill();
-                    ctx.restore();
-
-                    ctx.strokeStyle = `hsla(${this.hue}, 50%, 45%, 0.35)`;
-                    ctx.lineWidth = 0.8;
-                    ctx.beginPath();
-                    ctx.moveTo(L * 0.3, -H * 0.55);
-                    ctx.quadraticCurveTo(L * 0.22, 0, L * 0.3, H * 0.55);
-                    ctx.stroke();
-
-                    ctx.beginPath();
-                    ctx.moveTo(L * 0.78, -H * 0.05);
-                    ctx.lineTo(L * 0.68, H * 0.08);
-                    ctx.stroke();
-
-                    ctx.fillStyle = 'rgba(255, 240, 245, 0.95)';
-                    ctx.beginPath(); ctx.arc(L * 0.5, -H * 0.28, H * 0.24, 0, Math.PI * 2); ctx.fill();
-                    ctx.fillStyle = 'rgba(30, 10, 20, 0.95)';
-                    ctx.beginPath(); ctx.arc(L * 0.53, -H * 0.28, H * 0.12, 0, Math.PI * 2); ctx.fill();
-                    ctx.fillStyle = 'rgba(255, 255, 255, 0.85)';
-                    ctx.beginPath(); ctx.arc(L * 0.56, -H * 0.34, H * 0.05, 0, Math.PI * 2); ctx.fill();
-
-                    ctx.restore();
-                }
-            }
-
-            class Ripple {
-                constructor(x, y) {
-                    this.x = x;
-                    this.y = y;
-                    this.radius = 2;
-                    this.opacity = 0.5;
-                }
-                update() {
-                    this.radius += 0.6;
-                    this.opacity -= 0.012;
-                }
-                draw() {
-                    ctx.beginPath();
-                    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                    ctx.strokeStyle = `rgba(255, 183, 197, ${this.opacity})`;
-                    ctx.lineWidth = 1.2;
-                    ctx.stroke();
-                }
-            }
-
-            function initSpringCanvas() {
-                resizeCanvas();
-                fishArray = [];
-                ripples = [];
-                for (let i = 0; i < 9; i++) {
-                    fishArray.push(new Fish());
-                }
-                canvasActive = true;
-                animateSpring();
-                
-                window.addEventListener('resize', resizeCanvas);
-                canvas.parentElement.addEventListener('mousemove', (e) => {
-                    const rect = canvas.getBoundingClientRect();
-                    mouse.x = e.clientX - rect.left;
-                    mouse.y = e.clientY - rect.top;
-                });
-                canvas.parentElement.addEventListener('mouseleave', () => {
-                    mouse.x = -1000;
-                    mouse.y = -1000;
-                });
-                canvas.parentElement.addEventListener('touchmove', (e) => {
-                    const rect = canvas.getBoundingClientRect();
-                    mouse.x = e.touches[0].clientX - rect.left;
-                    mouse.y = e.touches[0].clientY - rect.top;
-                }, {passive: true});
-                canvas.parentElement.addEventListener('touchend', () => {
-                    mouse.x = -1000;
-                    mouse.y = -1000;
-                });
-            }
-
-            function animateSpring() {
-                if (!canvasActive) return;
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                
-                ripples = ripples.filter(r => r.opacity > 0);
-                ripples.forEach(r => { r.update(); r.draw(); });
-                fishArray.forEach(f => { f.update(); f.draw(); });
-
-                animationFrameId = requestAnimationFrame(animateSpring);
-            }
-
-            function stopSpringCanvas() {
-                canvasActive = false;
-                cancelAnimationFrame(animationFrameId);
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-            }
-
-            // ==========================================
-            // 3. СЕЗОНЫ
-            // ==========================================
-            function getCurrentSeason() {
-                const month = new Date().getMonth();
-                if (month === 11 || month <= 1) return 'winter';
-                if (month >= 2 && month <= 4) return 'spring';
-                if (month >= 5 && month <= 7) return 'summer';
-                return 'autumn';
-            }
-
-            function applyTheme(themeName) {
-                const container = document.getElementById('particles-container');
-                const body = document.body;
-
-                container.innerHTML = '';
-                stopSpringCanvas();
-                canvas.style.opacity = 0;
-                
-                body.className = ''; 
-                if (body.classList.contains('modal-open')) body.classList.add('modal-open');
-
-                let activeSeason = themeName === 'auto' ? getCurrentSeason() : themeName;
-                body.classList.add('season-' + activeSeason);
-
-                document.querySelectorAll('.theme-btn').forEach(btn => {
-                    btn.classList.toggle('active', btn.dataset.theme === themeName);
-                });
-
-                if (activeSeason === 'spring') {
-                    canvas.style.display = 'block';
-                    canvas.style.opacity = 1;
-                    initSpringCanvas();
-                } else {
-                    canvas.style.display = 'none';
-                    let particleCount = 25; 
-                    for (let i = 0; i < particleCount; i++) {
-                        const p = document.createElement('div');
-                        p.className = 'particle p-' + activeSeason;
-                        
-                        if (activeSeason === 'summer') {
-                            p.style.left = (Math.random() * 90) + '%';
-                            p.style.top = (Math.random() * 90) + '%';
-                        } else {
-                            p.style.left = Math.random() * 100 + '%';
-                            p.style.top = '-20px';
-                        }
-                        
-                        let duration;
-                        if (activeSeason === 'autumn') duration = (Math.random() * 5 + 6) + 's'; 
-                        if (activeSeason === 'winter') duration = (Math.random() * 5 + 6) + 's'; 
-                        if (activeSeason === 'summer') duration = (Math.random() * 5 + 5) + 's'; 
-                        
-                        p.style.animationDuration = duration;
-                        p.style.animationDelay = (Math.random() * 5) + 's';
-                        
-                        if (activeSeason !== 'autumn') {
-                            p.style.transform = `scale(${Math.random() * 0.5 + 0.8})`;
-                        }
-                        
-                        container.appendChild(p);
-                    }
-                }
-            }
-
-            function initThemeSwitcher() {
-                const savedTheme = localStorage.getItem('epallaxis_theme') || 'auto';
-                applyTheme(savedTheme);
-
-                document.getElementById('theme-switcher').addEventListener('click', (e) => {
-                    if (e.target.classList.contains('theme-btn')) {
-                        const theme = e.target.dataset.theme;
-                        localStorage.setItem('epallaxis_theme', theme);
-                        applyTheme(theme);
-                    }
-                });
-            }
-
-            // ==========================================
-            // 4. КАРТОЧКИ
-            // ==========================================
-            const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTUP42gakKnz4G1oQfH3ddgNUshPTs8zyvRmc-Pxfio0INuAh3OAzDM2bgXoIcW5ezzSRdQsCz0zMzW/pub?gid=0&single=true&output=csv';
-
-            function parseCSV(text) {
-                const rows = []; let row = []; let cell = ''; let inQuotes = false;
-                for (let i = 0; i < text.length; i++) {
-                    const ch = text[i], next = text[i + 1];
-                    if (ch === '"') { if (inQuotes && next === '"') { cell += '"'; i++; } else { inQuotes = !inQuotes; } }
-                    else if (ch === ',' && !inQuotes) { row.push(cell.trim()); cell = ''; }
-                    else if ((ch === '\n' || ch === '\r') && !inQuotes) {
-                        if (ch === '\r' && next === '\n') i++;
-                        row.push(cell.trim()); if (row.some(c => c !== '')) rows.push(row); row = []; cell = '';
-                    } else { cell += ch; }
-                }
-                if (cell !== '' || row.length > 0) { row.push(cell.trim()); if (row.some(c => c !== '')) rows.push(row); }
-                return rows;
-            }
-
-            function escapeHTML(value) {
-                if (!value) return '';
-                return String(value).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
-            }
-
-            function createCardElement(item, index) {
-                const card = document.createElement(item.sections.length > 0 ? 'button' : 'div');
-                card.className = 'card';
-                card.style.animationDelay = (index * 0.08) + 's';
-
-                if (item.sections.length > 0) card.classList.add('is-clickable');
-
-                const uniqueLetter = getUniqueSymbol();
-
-                let tagsHTML = '';
-                if (item.sections.length > 0) {
-                    tagsHTML = `<div class="card-tags">
-                        ${item.sections.map(s => `<span class="card-tag">${escapeHTML(s.name)}</span>`).join('')}
-                    </div>`;
-                }
-
-                let sectionsHTML = item.sections.map((sec, idx) => `
-                    <a href="${escapeHTML(sec.link)}" class="inner-section-btn">
-                        <div class="sec-name">
-                            <span class="sec-index">0${idx + 1}</span>
-                            <span>${escapeHTML(sec.name)}</span>
-                        </div>
-                        <span class="arrow">→</span>
-                    </a>
-                `).join('');
-
-                card.innerHTML = `
-                    <div class="card-default">
-                        <div class="card-header">
-                            <span class="card-math-icon">${uniqueLetter}</span>
-                        </div>
-                        <h2 class="card-title">${escapeHTML(item.title)}</h2>
-                        <p class="card-text">${escapeHTML(item.text)}</p>
-                        ${tagsHTML}
+          if (matching.length > 0) {
+            foundAny = true;
+            html += `<div class="topic-block">
+                <div class="topic-head open" style="cursor:default;">
+                    <span class="topic-arrow" style="transform:rotate(90deg);color:var(--accent)">▶</span>
+                    <span class="topic-title">${escapeHtml(t)} <span class="tag">${c} · ${SUBJ_LBL[s]}</span></span>
+                    <span class="topic-meta">${matching.length} формул</span>
+                </div>
+                <div class="topic-body" style="display:block;">`;
+            matching.forEach(pair => {
+                const q = pair[0], a = pair[1];
+                const encoded = encodeURIComponent(a);
+                html += `<div class="formula-row">
+                    <div>
+                        <div class="formula-q">${q}</div>
+                        <div class="formula-a">${a}</div>
                     </div>
-                    <div class="card-expanded" data-count="${item.sections.length}">
-                        <div class="expanded-header">
-                            <div class="expanded-title">${escapeHTML(item.title)}</div>
-                            <button class="btn-close-circle" aria-label="Закрыть">✕</button>
-                        </div>
-                        <div class="expanded-sections">
-                            ${sectionsHTML}
-                        </div>
+                    <div class="row-actions">
+                        <button class="copy-btn" data-copy="${encoded}" title="Скопировать">${SVG_COPY}</button>
                     </div>
-                `;
-
-                if (item.sections.length > 0) {
-                    card.addEventListener('click', (e) => {
-                        if (e.target.closest('a') || e.target.closest('.btn-close-circle')) return;
-                        
-                        document.querySelectorAll('.card.is-expanded').forEach(c => {
-                            if (c !== card) c.classList.remove('is-expanded');
-                        });
-                        
-                        card.classList.toggle('is-expanded');
-                    });
-
-                    card.querySelector('.btn-close-circle').addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        card.classList.remove('is-expanded');
-                    });
-                }
-
-                return card;
-            }
-
-            async function loadCatalog() {
-                const container = document.getElementById('cards-grid');
-                
-                if (window.location.protocol === 'file:') {
-                    container.innerHTML = '<div class="status-message">ERROR: USE LIVE SERVER</div>';
-                    return;
-                }
-
-                try {
-                    const response = await fetch(CSV_URL);
-                    if (!response.ok) throw new Error('HTTP ' + response.status);
-                    const text = await response.text();
-                    const rows = parseCSV(text);
-
-                    const items = rows.slice(1).map(row => {
-                        const active = (row[13] || '').toUpperCase();
-                        if (active !== 'TRUE' && active !== '1' && active !== 'ИСТИНА' && active !== 'ДА') return null;
-
-                        const sections = [];
-                        for (let i = 3; i <= 11; i += 2) {
-                            if (row[i+1] && row[i+1].trim()) {
-                                sections.push({ name: row[i] || 'Раздел', link: row[i+1].trim() });
-                            }
-                        }
-
-                        return { title: row[1] || '', text: row[2] || '', sections: sections };
-                    }).filter(i => i !== null);
-
-                    if (items.length === 0) {
-                        container.innerHTML = '<div class="status-message">NO ACTIVE MODULES FOUND</div>';
-                        return;
-                    }
-
-                    resetSymbols();
-                    container.innerHTML = '';
-                    items.forEach((item, index) => {
-                        container.appendChild(createCardElement(item, index));
-                    });
-
-                } catch (error) {
-                    console.error(error);
-                    container.innerHTML = '<div class="status-message">DATA SYNC ERROR</div>';
-                }
-            }
-
-            document.addEventListener('DOMContentLoaded', () => {
-                canvas.style.opacity = 0;
-                initThemeSwitcher();
-                loadCatalog();
+                </div>`;
             });
-            
-        })();
-    </script>
+            html += `</div></div>`;
+          }
+        });
+      });
+    });
+    
+    if (!foundAny) {
+      html += `<div class="empty"><div class="empty-icon">${SVG_EMPTY}</div><h3>Ничего не найдено</h3><p>Попробуйте изменить критерии поиска.</p></div>`;
+    }
+    
+    main.innerHTML = html;
+    bindMainEvents(main);
+    renderMathIn(main);
+    return;
+  }
+
+  const {topics,formulas}=countSelected();
+  if(state.selected.size===0){
+    main.innerHTML=`<div class="empty"><div class="empty-icon">${SVG_EMPTY}</div><h3>Выбери темы слева</h3><p>Отметь галочками нужные темы — все формулы появятся здесь.</p><div class="empty-tips"><div class="tip"><b>1.</b> Раскрой группу или нажми на чекбокс группы</div><div class="tip"><b>2.</b> Отметь нужные темы</div><div class="tip"><b>3.</b> Или нажми пресет сверху — 1 клик</div><div class="tip"><b>💡</b> Поиск умный — учитывает падежи (площадь = площади)</div></div></div>`;
+    return;
+  }
+  
+  let html='';
+  html+='<div class="crumbs"><span>Формулы</span><span class="c-sep">/</span><b>'+topics+' тем</b><span class="c-sep">·</span><span class="c-accent">'+formulas+' формул</span></div>';
+  const keys=sortSelectedKeys();
+  html+='<div class="chips-bar">';
+  keys.forEach(k=>{
+    const{c,s,t}=parseKey(k);
+    html+='<div class="chip" data-key="'+k+'" title="'+escapeHtml(t)+'"><span class="chip-txt">'+c+' · '+(s==='algebra'?'Алг':'Геом')+' · '+escapeHtml(t)+'</span><span class="chip-x" data-remove="'+k+'">✕</span></div>'
+  });
+  html+='<button class="chip-clear" id="chipClear">Очистить всё</button></div>';
+  
+  keys.forEach((k,topicIdx)=>{
+    const{c,s,t}=parseKey(k);
+    const items=getTopic(c,s,t)||[];
+    const isOpen=state.openGroups.has('T_'+k);
+    html+='<div class="topic-block" id="block_'+topicIdx+'"><div class="topic-head'+(isOpen?' open':'')+'" data-topic-open="'+k+'"><span class="topic-arrow">▶</span><span class="topic-title">'+escapeHtml(t)+' <span class="tag">'+c+' · '+SUBJ_LBL[s]+'</span></span><span class="topic-meta">'+items.length+' формул</span></div><div class="topic-body">';
+    items.forEach(pair=>{
+      const q=pair[0],a=pair[1];
+      const encoded=encodeURIComponent(a);
+      html+='<div class="formula-row"><div><div class="formula-q">'+q+'</div><div class="formula-a">'+a+'</div></div><div class="row-actions"><button class="copy-btn" data-copy="'+encoded+'" title="Скопировать">'+SVG_COPY+'</button></div></div>'
+    });
+    html+='</div></div>'
+  });
+  main.innerHTML=html;
+  bindMainEvents(main);
+  renderMathIn(main);
+}
+
+function bindMainEvents(main){
+  main.querySelectorAll('[data-topic-open]').forEach(el=>{
+    el.onclick=()=>{
+      const k=el.dataset.topicOpen;
+      const tk='T_'+k;
+      if(state.openGroups.has(tk))state.openGroups.delete(tk);
+      else state.openGroups.add(tk);
+      renderMain();
+    }
+  });
+  
+  main.querySelectorAll('[data-remove]').forEach(el=>{
+    el.onclick=e=>{
+      e.stopPropagation();
+      state.selected.delete(el.dataset.remove);
+      renderAll();
+    }
+  });
+  
+  main.querySelectorAll('.chip').forEach(el=>{
+    el.onclick=e=>{
+      if(e.target.closest('[data-remove]'))return;
+      const k=el.dataset.key;
+      const arr=sortSelectedKeys();
+      const idx=arr.indexOf(k);
+      if(idx<0)return;
+      const block=document.getElementById('block_'+idx);
+      if(block){
+        const y=block.getBoundingClientRect().top+window.pageYOffset-90;
+        window.scrollTo({top:y,behavior:'smooth'});
+      }
+    }
+  });
+  
+  const chipClear=document.getElementById('chipClear');
+  if(chipClear)chipClear.onclick=()=>{state.selected.clear();renderAll()};
+  
+  main.querySelectorAll('.copy-btn').forEach(el=>{
+    el.onclick=e=>{
+      e.stopPropagation();
+      const txt=decodeURIComponent(el.dataset.copy);
+      if(navigator.clipboard&&navigator.clipboard.writeText){
+        navigator.clipboard.writeText(txt).then(()=>{
+          el.innerHTML=SVG_CHECK;
+          setTimeout(()=>{el.innerHTML=SVG_COPY},900);
+        }).catch(()=>{});
+      }
+    }
+  });
+}
+
+function applyPreset(name){
+  state.selected.clear();
+  getClasses().forEach(c=>{
+    ['algebra','geometry'].forEach(s=>{
+      if(!state.DB[c]||!state.DB[c][s])return;
+      let ok=false;
+      if(name==='alg')ok=(s==='algebra');
+      else if(name==='geom')ok=(s==='geometry');
+      else if(name==='all')ok=true;
+      if(!ok)return;
+      Object.keys(state.DB[c][s]).forEach(t=>state.selected.add(keyOf(c,s,t)))
+    })
+  });
+  if(state.selected.size>0){
+    state.openGroups.clear();
+    state.selected.forEach(k=>{
+      const{c,s}=parseKey(k);
+      state.openGroups.add(c+'|'+s);
+    })
+  }
+  renderAll();
+}
+
+function renderAll(){
+  const{topics,formulas}=countSelected();
+  document.getElementById('statTopics').textContent=topics;
+  document.getElementById('statFormulas').textContent=formulas;
+  const isEmpty = state.selected.size===0;
+  document.getElementById('startRandomBtn').disabled = isEmpty;
+  document.getElementById('startOrderBtn').disabled = isEmpty;
+  renderTree();
+  renderMain();
+}
+
+function buildQueue(){
+  const q=[];
+  state.selected.forEach(k=>{
+    const{c,s,t}=parseKey(k);
+    const items=getTopic(c,s,t)||[];
+    items.forEach(pair=>q.push({c,s,t,q:pair[0],a:pair[1]}));
+  });
+  return q;
+}
+
+function shuffleArr(a){const b=a.slice();for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const tmp=b[i];b[i]=b[j];b[j]=tmp}return b}
+
+function startTest(isRandom){
+  const rawQueue = buildQueue();
+  state.testQueue = isRandom ? shuffleArr(rawQueue) : rawQueue;
+  if(state.testQueue.length===0)return;
+  state.testIdx=0;
+  state.testRevealed=false;
+  document.getElementById('testOverlay').classList.add('active');
+  document.body.style.overflow='hidden';
+  showCard();
+}
+
+function showCard(){
+  const it=state.testQueue[state.testIdx];
+  if(!it)return;
+  const classLabel = isNaN(Number(it.c)) ? it.c : it.c + ' класс';
+  document.getElementById('testTag').textContent=classLabel+' · '+SUBJ_LBL[it.s]+' · '+it.t;
+  
+  const qEl=document.getElementById('testQ');
+  const aEl=document.getElementById('testA');
+  
+  // 1. Мгновенно скрываем ответ и отключаем анимацию
+  aEl.classList.add('no-anim');
+  aEl.classList.remove('show');
+  
+  // 2. Меняем контент
+  qEl.innerHTML=it.q;
+  aEl.innerHTML=it.a;
+  
+  // 3. Если ответ должен быть открыт, добавляем класс show ДО рендера
+  if(state.testRevealed){
+      aEl.classList.add('show');
+  }
+  
+  // 4. Форсируем перерисовку, чтобы браузер применил скрытое состояние
+  void aEl.offsetWidth;
+  
+  // 5. Включаем анимацию обратно
+  aEl.classList.remove('no-anim');
+  
+  document.getElementById('testCur').textContent=state.testIdx+1;
+  document.getElementById('testTotal').textContent=state.testQueue.length;
+  document.getElementById('progressFill').style.width=((state.testIdx+1)/state.testQueue.length*100)+'%';
+  
+  document.getElementById('testPrev').disabled=state.testIdx===0;
+  document.getElementById('testNext').disabled=state.testIdx===state.testQueue.length-1;
+  
+  // Индикатор прогресса (плашки с номерами)
+  const dots=document.getElementById('dots');
+  let dhtml='';
+  for(let i=0;i<state.testQueue.length;i++){
+    let cls='dot';
+    if(i<state.testIdx)cls+=' done';
+    if(i===state.testIdx)cls+=' current';
+    dhtml+='<div class="'+cls+'" data-i="'+i+'">'+(i+1)+'</div>';
+  }
+  dots.innerHTML=dhtml;
+  dots.querySelectorAll('.dot').forEach(d=>{
+    d.onclick=()=>{
+      state.testIdx=Number(d.dataset.i);
+      state.testRevealed=false;
+      showCard();
+    }
+  });
+  const cur=dots.querySelector('.dot.current');
+  if(cur)cur.scrollIntoView({block:'nearest',inline:'center',behavior:'smooth'});
+  
+  renderMathIn(qEl);
+  renderMathIn(aEl);
+}
+function goNext(){if(state.testIdx<state.testQueue.length-1){state.testIdx++;state.testRevealed=false;showCard()}}
+function goPrev(){if(state.testIdx>0){state.testIdx--;state.testRevealed=false;showCard()}}
+function toggleAnswer(){state.testRevealed=!state.testRevealed;document.getElementById('testA').classList.toggle('show',state.testRevealed)}
+function skipCurrent(){if(state.testQueue.length<2)return;const cur=state.testQueue.splice(state.testIdx,1)[0];state.testQueue.push(cur);state.testRevealed=false;showCard()}
+function exitTest(){document.getElementById('testOverlay').classList.remove('active');document.body.style.overflow=''}
+
+function renderMathIn(el){if(typeof renderMathInElement!=='function')return;try{renderMathInElement(el,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})}catch(e){console.warn('KaTeX error:',e)}}
+
+function syncHeaderHeight(){const h=document.querySelector('header').offsetHeight;document.documentElement.style.setProperty('--header-h',h+'px')}
+
+function bindEvents(){
+  document.querySelectorAll('.preset').forEach(p=>{p.onclick=()=>applyPreset(p.dataset.preset)});
+  document.getElementById('qInvert').onclick=()=>{const all=[];getClasses().forEach(c=>{['algebra','geometry'].forEach(s=>{if(!state.DB[c]||!state.DB[c][s])return;Object.keys(state.DB[c][s]).forEach(t=>all.push(keyOf(c,s,t)))})});all.forEach(k=>{if(state.selected.has(k))state.selected.delete(k);else state.selected.add(k)});renderAll()};
+  document.getElementById('qNone').onclick=()=>{state.selected.clear();renderAll()};
+  document.getElementById('qCollapse').onclick=()=>{state.openGroups.clear();renderAll()};
+
+  const searchTopicInput=document.getElementById('searchTopic');
+  const searchTopicWrap=document.getElementById('topicSearchWrap');
+  searchTopicInput.addEventListener('input',e=>{
+    state.searchTopic=e.target.value;
+    searchTopicWrap.classList.toggle('has-value',!!state.searchTopic);
+    renderTree();
+    renderMain();
+  });
+  document.getElementById('searchTopicClear').onclick=()=>{
+    searchTopicInput.value='';
+    state.searchTopic='';
+    searchTopicWrap.classList.remove('has-value');
+    renderTree();
+    renderMain();
+    searchTopicInput.focus();
+  };
+
+  const searchFormulaInput=document.getElementById('searchFormula');
+  const searchFormulaWrap=document.getElementById('formulaSearchWrap');
+  searchFormulaInput.addEventListener('input',e=>{
+    state.searchFormula=e.target.value;
+    searchFormulaWrap.classList.toggle('has-value',!!state.searchFormula);
+    renderMain();
+  });
+  document.getElementById('searchFormulaClear').onclick=()=>{
+    searchFormulaInput.value='';
+    state.searchFormula='';
+    searchFormulaWrap.classList.remove('has-value');
+    renderMain();
+    searchFormulaInput.focus();
+  };
+
+  document.getElementById('startRandomBtn').onclick=()=>startTest(true);
+  document.getElementById('startOrderBtn').onclick=()=>startTest(false);
+
+  document.getElementById('testExit').onclick=exitTest;
+  document.getElementById('testNext').onclick=goNext;
+  document.getElementById('testPrev').onclick=goPrev;
+  document.getElementById('testReveal').onclick=toggleAnswer;
+  document.getElementById('testSkip').onclick=skipCurrent;
+
+  document.getElementById('helpBtn').onclick=()=>document.getElementById('helpModal').classList.add('active');
+  document.getElementById('helpClose').onclick=()=>document.getElementById('helpModal').classList.remove('active');
+  document.getElementById('helpModal').onclick=e=>{if(e.target.id==='helpModal')document.getElementById('helpModal').classList.remove('active')};
+  
+  const sidebar=document.getElementById('sidebar');const backdrop=document.getElementById('backdrop');
+  document.getElementById('hamburger').onclick=()=>{sidebar.classList.toggle('open');backdrop.classList.toggle('show',sidebar.classList.contains('open'))};
+  backdrop.onclick=()=>{sidebar.classList.remove('open');backdrop.classList.remove('show')};
+  
+  const fabTop=document.getElementById('fabTop');
+  window.addEventListener('scroll',()=>{fabTop.classList.toggle('show',window.scrollY>300)},{passive:true});
+  fabTop.onclick=()=>window.scrollTo({top:0,behavior:'smooth'});
+  
+  document.addEventListener('keydown',e=>{
+    const testOpen=document.getElementById('testOverlay').classList.contains('active');
+    const helpOpen=document.getElementById('helpModal').classList.contains('active');
+    
+    if(helpOpen){if(e.key==='Escape'||e.key==='Enter')document.getElementById('helpModal').classList.remove('active');return}
+    
+    if(e.key==='/'&&!testOpen&&document.activeElement!==searchTopicInput&&document.activeElement!==searchFormulaInput){
+      e.preventDefault();
+      searchTopicInput.focus();
+      return;
+    }
+    
+    if(!testOpen)return;
+    
+    if(e.key==='ArrowRight'||e.key==='ArrowDown'||e.key==='PageDown'){e.preventDefault();if(e.repeat)return;goNext()}
+    else if(e.key==='ArrowLeft'||e.key==='ArrowUp'||e.key==='PageUp'){e.preventDefault();if(e.repeat)return;goPrev()}
+    else if(e.key===' '){e.preventDefault();if(e.repeat)return;toggleAnswer()}
+    else if(e.key==='Enter'){e.preventDefault();if(e.repeat)return;toggleAnswer()}
+    else if(e.key==='Escape'){exitTest()}
+    else if(e.key==='Home'){e.preventDefault();state.testIdx=0;state.testRevealed=false;showCard()}
+    else if(e.key==='End'){e.preventDefault();state.testIdx=state.testQueue.length-1;state.testRevealed=false;showCard()}
+  });
+  window.addEventListener('resize',syncHeaderHeight);
+}
+
+function init(){
+  syncHeaderHeight();
+  reloadDB();
+  bindEvents();
+  renderAll();
+}
+document.addEventListener('DOMContentLoaded',init);
+window.addEventListener('load',()=>{syncHeaderHeight();renderAll()});
+</script>
 </body>
 </html>

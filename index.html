@@ -1,1251 +1,1254 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <link rel="icon" type="image/png" href="/icon.png" />
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>EPALLAXIS</title>
-
-  <link rel="icon" type="image/png" href="icon.png" />
-
-  <style>
-    /* ===== Глобальные переменные ===== */
-    :root {
-      --bg: #060a10;
-      --panel: #0f1720;
-      --panel2: #111c26;
-      --text: #e8f0ea;
-      --muted: #9aa4b2;
-      --accent: #22ff88;
-      --border: rgba(34, 255, 136, 0.18);
-    }
-
-    /* ===== Базовые стили ===== */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
-    }
-
-    body {
-      background: radial-gradient(1200px 600px at 20% 0%, #0d1f18 0%, var(--bg) 60%);
-      color: var(--text);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      transition: opacity 0.5s ease;
-    }
-
-    /* ============================================================
-       БАЗОВЫЕ КЛЮЧЕВЫЕ КАДРЫ (ТОЛЬКО ДЛЯ ПОЯВЛЕНИЯ)
-    ============================================================ */
-    @keyframes fadeInDown {
-      0% { opacity: 0; transform: translateY(-30px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeInLeft {
-      0% { opacity: 0; transform: translateX(-40px); }
-      100% { opacity: 1; transform: translateX(0); }
-    }
-
-    @keyframes fadeInRight {
-      0% { opacity: 0; transform: translateX(40px) scale(0.96) rotate(-4deg); }
-      100% { opacity: 1; transform: translateX(0) scale(1) rotate(0deg); }
-    }
-
-    @keyframes fadeInUp {
-      0% { opacity: 0; transform: translateY(30px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes cardFadeIn {
-      0% { opacity: 0; transform: translateY(30px) scale(0.97); }
-      100% { opacity: 1; transform: translateY(0) scale(1); }
-    }
-
-    @keyframes heroSymbolsFade {
-      0% { opacity: 0; transform: scale(0.5) rotate(-10deg); }
-      100% { opacity: 1; transform: scale(1) rotate(0deg); }
-    }
-
-    /* ============================================================
-       HEADER (исправлен)
-    ============================================================ */
-    header {
-      position: sticky;
-      top: 0;
-      left: 0;
-      right: 0;
-      width: 100%;
-      z-index: 100;
-      background: rgba(6, 10, 16, 0.75);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--border);
-      padding: 14px 20px;
-      opacity: 0;
-      animation: fadeInDown 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-sizing: border-box;
-    }
-
-    .brand {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .brand h1 {
-      font-size: clamp(20px, 4vw, 28px);
-      letter-spacing: 2px;
-      line-height: 1.1;
-    }
-
-    .brand h1 span {
-      color: var(--accent);
-    }
-
-    .brand p {
-      font-size: clamp(11px, 1.5vw, 14px);
-      color: var(--muted);
-      margin-top: 2px;
-    }
-
-    /* ============================================================
-       HERO
-    ============================================================ */
-    .hero {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 40px 20px 30px;
-      display: flex;
-      justify-content: space-between;
-      gap: 30px;
-      align-items: center;
-    }
-
-    .hero-content {
-      flex: 1;
-      opacity: 0;
-      animation: fadeInLeft 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-      animation-delay: 0.15s;
-    }
-
-    .hero-content h1 {
-      font-size: clamp(32px, 6vw, 56px);
-      line-height: 1.05;
-      opacity: 0;
-      animation: fadeInLeft 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-      animation-delay: 0.2s;
-    }
-
-    .hero-content h1 span {
-      color: var(--accent);
-    }
-
-    .hero-content p {
-      margin-top: 12px;
-      color: var(--muted);
-      max-width: 420px;
-      font-size: clamp(14px, 1.4vw, 18px);
-      opacity: 0;
-      animation: fadeInLeft 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-      animation-delay: 0.35s;
-    }
-
-    .buttons {
-      margin-top: 24px;
-      opacity: 0;
-      animation: fadeInLeft 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-      animation-delay: 0.5s;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 12px 24px;
-      border-radius: 12px;
-      cursor: pointer;
-      border: 1px solid var(--accent);
-      color: var(--accent);
-      transition: 0.25s;
-      font-size: clamp(14px, 1.2vw, 18px);
-      background: transparent;
-      text-decoration: none;
-    }
-
-    .btn:hover {
-      background: rgba(34, 255, 136, 0.08);
-      transform: translateY(-2px);
-      box-shadow: 0 0 20px rgba(34, 255, 136, 0.1);
-    }
-
-    /* ===== Hero Box ===== */
-    .hero-box {
-      width: 280px;
-      height: 240px;
-      border-radius: 22px;
-      border: 1px solid var(--border);
-      background: linear-gradient(145deg, var(--panel), var(--panel2));
-      position: relative;
-      overflow: hidden;
-      flex-shrink: 0;
-      box-shadow: 0 0 40px rgba(34, 255, 136, 0.05);
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-template-rows: repeat(3, 1fr);
-      gap: 8px;
-      padding: 15px;
-      opacity: 0;
-      animation: fadeInRight 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-      animation-delay: 0.25s;
-    }
-
-    .hero-box::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(transparent 49%, rgba(34, 255, 136, 0.04) 50%, transparent 51%),
-        linear-gradient(90deg, transparent 49%, rgba(34, 255, 136, 0.04) 50%, transparent 51%);
-      background-size: 34px 34px;
-      opacity: 0.7;
-    }
-
-    .hero-box .symbol {
-      font-size: clamp(18px, 2.5vw, 26px);
-      color: rgba(34, 255, 136, 0.3);
-      text-shadow: 0 0 12px rgba(34, 255, 136, 0.15);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: 0.3s;
-      opacity: 0;
-      animation: heroSymbolsFade 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-      will-change: transform, opacity;
-    }
-
-    .hero-box .symbol:nth-child(1) { animation-delay: 0.5s; }
-    .hero-box .symbol:nth-child(2) { animation-delay: 0.55s; }
-    .hero-box .symbol:nth-child(3) { animation-delay: 0.6s; }
-    .hero-box .symbol:nth-child(4) { animation-delay: 0.65s; }
-    .hero-box .symbol:nth-child(5) { animation-delay: 0.7s; }
-    .hero-box .symbol:nth-child(6) { animation-delay: 0.75s; }
-    .hero-box .symbol:nth-child(7) { animation-delay: 0.8s; }
-    .hero-box .symbol:nth-child(8) { animation-delay: 0.85s; }
-    .hero-box .symbol:nth-child(9) { animation-delay: 0.9s; }
-    .hero-box .symbol:nth-child(10) { animation-delay: 0.95s; }
-    .hero-box .symbol:nth-child(11) { animation-delay: 1.0s; }
-    .hero-box .symbol:nth-child(12) { animation-delay: 1.05s; }
-
-    .hero-box .symbol:hover {
-      color: rgba(34, 255, 136, 0.6);
-      transform: scale(1.1);
-    }
-
-    /* ============================================================
-       GRID (КАРТОЧКИ)
-    ============================================================ */
-    .grid {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 20px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 16px;
-      flex: 1;
-    }
-
-    .card {
-      background: linear-gradient(145deg, var(--panel), var(--panel2));
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 18px;
-      cursor: pointer;
-      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color 0.4s, box-shadow 0.4s;
-      display: flex;
-      flex-direction: column;
-      position: relative;
-      overflow: visible;
-      z-index: 1;
-      opacity: 0;
-      transform: translateY(30px) scale(0.97);
-      animation: cardFadeIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-      will-change: transform, opacity;
-    }
-
-    .card:hover {
-      transform: translateY(-6px);
-      border-color: var(--accent);
-      box-shadow: 0 0 30px rgba(34, 255, 136, 0.08);
-    }
-
-    .card-extra {
-  border: 2px solid rgba(34,255,136,0.35);
-  background:
-    linear-gradient(
-      145deg,
-      rgba(34,255,136,0.12),
-      rgba(15,23,32,0.9)
-    );
-}
-
-
-.card-extra:hover {
-  border-color: var(--accent);
-  box-shadow:
-    0 0 40px rgba(34,255,136,0.25);
-}
-
-
-.card-extra h3 {
-  color: var(--accent);
-}
-
-
-
-    .card h3 {
-      font-size: clamp(18px, 2.5vw, 24px);
-      margin-top: 8px;
-    }
-
-/* =============================================================
-   ОБЪЯВЛЕНИЯ — САПФИРОВАЯ КАРТОЧКА
-============================================================= */
-
-.card-news {
-
-  border:2px solid rgba(120,160,255,.45);
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(80,120,255,.18),
-      rgba(15,23,32,.95)
-    );
-
-  box-shadow:
-    0 0 35px rgba(80,120,255,.08);
-
-}
-
-
-.card-news:hover {
-
-  border-color:#789cff;
-
-  box-shadow:
-    0 0 60px rgba(80,120,255,.3);
-
-}
-
-
-.card-news h3 {
-
-  color:#9bb6ff;
-
-}
-
-
-.card-news .go {
-
-  color:#9bb6ff;
-
-}
-
-    .card p {
-      margin-top: 6px;
-      color: var(--muted);
-      font-size: clamp(12px, 1.2vw, 14px);
-      flex: 1;
-    }
-
-    .go {
-      margin-top: 16px;
-      color: var(--accent);
-      font-size: clamp(13px, 1.2vw, 15px);
-      font-weight: 500;
-      transition: transform 0.3s;
-    }
-
-    .card:hover .go {
-      transform: translateX(4px);
-    }
-
-    /* =============================================================
-       11 КЛАСС — ЗОЛОТАЯ КАРТОЧКА
-    ============================================================= */
-    .card-gold {
-      border: 2px solid rgba(255, 215, 0, 0.5);
-      background: linear-gradient(135deg, rgba(255, 215, 0, 0.12), rgba(255, 215, 0, 0.03), rgba(255, 215, 0, 0.12));
-      background-size: 300% 300%;
-      animation: goldPulse 3s ease-in-out infinite, cardFadeIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-      box-shadow: 0 0 50px rgba(255, 215, 0, 0.08);
-      z-index: 2;
-      overflow: visible !important;
-    }
-
-    .card-gold::before {
-      content: "";
-      position: absolute;
-      inset: -3px;
-      border-radius: 20px;
-      padding: 3px;
-      background: conic-gradient(from var(--angle), #ffd700, #ffe066, #ffd700, #b8860b, #ffd700);
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      animation: rotateBorder 8s linear infinite;
-      z-index: -1;
-      pointer-events: none;
-    }
-
-    @property --angle {
-      syntax: '<angle>';
-      initial-value: 0deg;
-      inherits: false;
-    }
-    @keyframes rotateBorder { to { --angle: 360deg; } }
-
-    .card-gold:hover {
-      transform: translateY(-10px) scale(1.03);
-      border-color: #ffd700;
-      box-shadow: 0 0 80px rgba(255, 215, 0, 0.35), 0 0 150px rgba(255, 215, 0, 0.15);
-    }
-
-    .card-gold .go {
-      color: #ffd700;
-      text-shadow: 0 0 25px rgba(255, 215, 0, 0.4);
-    }
-
-    .gold-deco {
-      position: absolute;
-      pointer-events: none;
-      z-index: 5;
-      transition: transform 0.4s ease, filter 0.4s ease;
-    }
-
-    .laurel-left-gold {
-      top: -12px;
-      left: -12px;
-      font-size: 44px;
-      animation: laurelSway 3.5s ease-in-out infinite;
-      filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.5));
-    }
-    .laurel-right-gold {
-      top: -12px;
-      right: -12px;
-      font-size: 44px;
-      animation: laurelSway 3.5s ease-in-out infinite reverse;
-      filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.5));
-    }
-    @keyframes laurelSway {
-      0%, 100% { transform: rotate(-8deg) scale(1); }
-      50% { transform: rotate(8deg) scale(1.08); }
-    }
-
-    .trophy-gold {
-      bottom: -15px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 56px;
-      animation: trophyFloatGold 3s ease-in-out infinite;
-      filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.6));
-      text-shadow: 0 0 40px rgba(255, 215, 0, 0.3);
-      z-index: 6;
-    }
-    @keyframes trophyFloatGold {
-      0%, 100% { transform: translateX(-50%) translateY(0) scale(1) rotate(-3deg); }
-      50% { transform: translateX(-50%) translateY(-12px) scale(1.08) rotate(3deg); }
-    }
-
-    .ribbon-gold {
-      bottom: 10px;
-      left: 10px;
-      font-size: 28px;
-      animation: ribbonWave 4s ease-in-out infinite;
-      filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.3));
-    }
-    @keyframes ribbonWave {
-      0%, 100% { transform: rotate(-5deg) scale(1); }
-      50% { transform: rotate(5deg) scale(1.1); }
-    }
-
-    .sparkle-gold {
-      position: absolute;
-      font-size: 14px;
-      color: #ffd700;
-      opacity: 0;
-      animation: sparkleFallGold 5s linear infinite;
-      pointer-events: none;
-      z-index: 4;
-      text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
-    }
-    .sparkle-gold:nth-child(1) { left: 5%; animation-delay: 0s; }
-    .sparkle-gold:nth-child(2) { left: 15%; animation-delay: 0.8s; }
-    .sparkle-gold:nth-child(3) { left: 25%; animation-delay: 1.6s; }
-    .sparkle-gold:nth-child(4) { left: 35%; animation-delay: 0.4s; }
-    .sparkle-gold:nth-child(5) { left: 45%; animation-delay: 2.0s; }
-    .sparkle-gold:nth-child(6) { left: 55%; animation-delay: 1.2s; }
-    .sparkle-gold:nth-child(7) { left: 65%; animation-delay: 2.8s; }
-    .sparkle-gold:nth-child(8) { left: 75%; animation-delay: 0.2s; }
-    .sparkle-gold:nth-child(9) { left: 85%; animation-delay: 1.0s; }
-    .sparkle-gold:nth-child(10) { left: 95%; animation-delay: 2.4s; }
-
-    @keyframes sparkleFallGold {
-      0% { opacity: 0; transform: translateY(-30px) scale(0.5) rotate(0deg); }
-      10% { opacity: 1; }
-      90% { opacity: 1; }
-      100% { opacity: 0; transform: translateY(160px) scale(1.3) rotate(720deg); }
-    }
-
-    .card-gold:hover .sparkle-gold { animation-duration: 3s; }
-    .card-gold:hover .trophy-gold { animation-duration: 1.5s; }
-    .card-gold:hover .laurel-left-gold,
-    .card-gold:hover .laurel-right-gold { animation-duration: 1.8s; }
-
-    @keyframes goldPulse {
-      0%, 100% { background-position: 0% 50%; box-shadow: 0 0 40px rgba(255, 215, 0, 0.05); }
-      50% { background-position: 100% 50%; box-shadow: 0 0 70px rgba(255, 215, 0, 0.15); }
-    }
-
-    /* =============================================================
-       9 КЛАСС — СЕРЕБРЯНАЯ КАРТОЧКА
-    ============================================================= */
-    .card-exam {
-      border: 2px solid rgba(192, 192, 192, 0.4);
-      background: linear-gradient(135deg, rgba(192, 192, 192, 0.08), rgba(26, 42, 74, 0.06), rgba(192, 192, 192, 0.08));
-      background-size: 300% 300%;
-      animation: examPulse 4s ease-in-out infinite, cardFadeIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-      box-shadow: 0 0 40px rgba(192, 192, 192, 0.04);
-      z-index: 2;
-      overflow: visible !important;
-    }
-
-    .card-exam::before {
-      content: "";
-      position: absolute;
-      inset: -3px;
-      border-radius: 20px;
-      padding: 3px;
-      background: conic-gradient(from var(--angle-exam), #c0c0c0, #e8e8e8, #c0c0c0, #a0a0a0, #c0c0c0);
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      animation: rotateBorderExam 10s linear infinite;
-      z-index: -1;
-      pointer-events: none;
-    }
-
-    @property --angle-exam {
-      syntax: '<angle>';
-      initial-value: 0deg;
-      inherits: false;
-    }
-    @keyframes rotateBorderExam { to { --angle-exam: 360deg; } }
-
-    .card-exam:hover {
-      transform: translateY(-10px) scale(1.03);
-      border-color: #c0c0c0;
-      box-shadow: 0 0 70px rgba(192, 192, 192, 0.25), 0 0 140px rgba(26, 42, 74, 0.15);
-    }
-
-    .card-exam .go {
-      color: #c0c0c0;
-      text-shadow: 0 0 20px rgba(192, 192, 192, 0.3);
-    }
-
-    .exam-deco {
-      position: absolute;
-      pointer-events: none;
-      z-index: 5;
-      transition: transform 0.4s ease, filter 0.4s ease;
-    }
-
-    .cap-exam {
-      top: -12px;
-      left: -8px;
-      font-size: 42px;
-      animation: capFloat 5s ease-in-out infinite;
-      filter: drop-shadow(0 0 20px rgba(192, 192, 192, 0.4));
-    }
-    @keyframes capFloat {
-      0%, 100% { transform: translateY(0) rotate(-5deg) scale(1); }
-      50% { transform: translateY(-10px) rotate(5deg) scale(1.05); }
-    }
-
-    .scroll-exam {
-      bottom: -8px;
-      left: 10px;
-      font-size: 32px;
-      animation: scrollSway 4s ease-in-out infinite;
-      filter: drop-shadow(0 0 15px rgba(192, 192, 192, 0.2));
-    }
-    @keyframes scrollSway {
-      0%, 100% { transform: rotate(-10deg) scale(1); }
-      50% { transform: rotate(10deg) scale(1.1); }
-    }
-
-    .diploma-exam {
-      bottom: -8px;
-      right: 10px;
-      font-size: 34px;
-      animation: diplomaFloat 3.5s ease-in-out infinite;
-      filter: drop-shadow(0 0 15px rgba(192, 192, 192, 0.2));
-    }
-    @keyframes diplomaFloat {
-      0%, 100% { transform: translateY(0) rotate(3deg) scale(1); }
-      50% { transform: translateY(-6px) rotate(-3deg) scale(1.05); }
-    }
-
-    .sparkle-exam {
-      position: absolute;
-      font-size: 12px;
-      color: #c0c0c0;
-      opacity: 0;
-      animation: sparkleFallExam 6s linear infinite;
-      pointer-events: none;
-      z-index: 4;
-      text-shadow: 0 0 6px rgba(192, 192, 192, 0.4);
-    }
-    .sparkle-exam:nth-child(1) { left: 8%; animation-delay: 0s; }
-    .sparkle-exam:nth-child(2) { left: 20%; animation-delay: 1.0s; }
-    .sparkle-exam:nth-child(3) { left: 32%; animation-delay: 2.0s; }
-    .sparkle-exam:nth-child(4) { left: 44%; animation-delay: 0.5s; }
-    .sparkle-exam:nth-child(5) { left: 56%; animation-delay: 2.5s; }
-    .sparkle-exam:nth-child(6) { left: 68%; animation-delay: 1.5s; }
-    .sparkle-exam:nth-child(7) { left: 80%; animation-delay: 3.0s; }
-    .sparkle-exam:nth-child(8) { left: 92%; animation-delay: 0.3s; }
-
-    @keyframes sparkleFallExam {
-      0% { opacity: 0; transform: translateY(-40px) scale(0.4) rotate(0deg); }
-      10% { opacity: 1; }
-      90% { opacity: 1; }
-      100% { opacity: 0; transform: translateY(180px) scale(1.2) rotate(720deg); }
-    }
-
-    .card-exam:hover .sparkle-exam { animation-duration: 4s; }
-    .card-exam:hover .cap-exam { animation-duration: 2s; }
-    .card-exam:hover .scroll-exam,
-    .card-exam:hover .diploma-exam { animation-duration: 2s; }
-
-    @keyframes examPulse {
-      0%, 100% { background-position: 0% 50%; box-shadow: 0 0 30px rgba(192, 192, 192, 0.03); }
-      50% { background-position: 100% 50%; box-shadow: 0 0 60px rgba(192, 192, 192, 0.12); }
-    }
-
-    /* ============================================================
-       OVERLAY
-    ============================================================ */
-    .overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(10px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      pointer-events: none;
-      transition: 0.3s ease;
-      z-index: 200;
-    }
-
-    .overlay.active {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .overlay-panel {
-      width: 90%;
-      max-width: 400px;
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 20px;
-      transform: translateY(20px) scale(0.97);
-      opacity: 0;
-      transition: 0.3s ease;
-    }
-
-    .overlay.active .overlay-panel {
-      transform: translateY(0) scale(1);
-      opacity: 1;
-    }
-
-    .overlay-panel h3 {
-      font-size: clamp(20px, 4vw, 28px);
-      margin-bottom: 12px;
-    }
-
-    .option {
-      padding: 14px;
-      margin-top: 10px;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      cursor: pointer;
-      transition: 0.25s;
-      font-size: clamp(16px, 2vw, 20px);
-      text-align: center;
-      position: relative;
-      overflow: visible;
-    }
-
-    .option:hover {
-      border-color: var(--accent);
-      background: rgba(34, 255, 136, 0.05);
-      transform: scale(1.02);
-    }
-
-    .option-geometry:hover,
-    .option-geometry:active {
-      border-color: #4a9eff;
-      background: rgba(74, 158, 255, 0.08);
-      transform: scale(1.02);
-    }
-
-    .option-exam {
-      border: 2px solid rgba(192, 192, 192, 0.6);
-      background: linear-gradient(135deg, rgba(192, 192, 192, 0.12), rgba(26, 42, 74, 0.08));
-      animation: examPulse 3s ease-in-out infinite, floatButton 5s ease-in-out infinite;
-      font-weight: 700;
-      color: #c0c0c0;
-      padding: 16px 20px;
-      font-size: clamp(17px, 2.3vw, 22px);
-      letter-spacing: 0.5px;
-      text-shadow: 0 0 20px rgba(192, 192, 192, 0.2);
-      box-shadow: 0 0 20px rgba(192, 192, 192, 0.08);
-      transition: all 0.3s ease;
-    }
-    .option-exam::before {
-      content: "🎓";
-      margin-right: 10px;
-      display: inline-block;
-      animation: capFloat 3s ease-in-out infinite;
-    }
-    .option-exam::after {
-      content: "📜";
-      margin-left: 10px;
-      display: inline-block;
-      animation: scrollSway 3s ease-in-out infinite;
-    }
-    .option-exam:hover {
-      transform: scale(1.06);
-      border-color: #c0c0c0;
-      background: rgba(192, 192, 192, 0.15);
-      box-shadow: 0 0 60px rgba(192, 192, 192, 0.25), 0 0 120px rgba(26, 42, 74, 0.1);
-      color: #fff;
-      text-shadow: 0 0 30px rgba(192, 192, 192, 0.5);
-    }
-
-    .option-champion-gold {
-      border: 2px solid rgba(255, 215, 0, 0.6);
-      background: linear-gradient(135deg, rgba(255, 215, 0, 0.12), rgba(255, 215, 0, 0.03));
-      animation: goldPulse 2s ease-in-out infinite, floatButton 4s ease-in-out infinite;
-      font-weight: 800;
-      color: #ffd700;
-      padding: 18px 20px;
-      font-size: clamp(18px, 2.5vw, 24px);
-      letter-spacing: 1px;
-      text-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
-      box-shadow: 0 0 30px rgba(255, 215, 0, 0.1);
-      transition: all 0.3s ease;
-    }
-    .option-champion-gold::before {
-      content: "🏆";
-      margin-right: 10px;
-      display: inline-block;
-      animation: trophyFloatGold 2s ease-in-out infinite;
-    }
-    .option-champion-gold::after {
-      content: "🏁";
-      margin-left: 10px;
-      display: inline-block;
-      animation: floatButton 3s ease-in-out infinite;
-    }
-    .option-champion-gold .stars {
-      display: inline-block;
-      margin: 0 6px;
-      animation: sparkleFallGold 2s linear infinite;
-    }
-    .option-champion-gold:hover {
-      transform: scale(1.08);
-      border-color: #ffd700;
-      background: rgba(255, 215, 0, 0.18);
-      box-shadow: 0 0 80px rgba(255, 215, 0, 0.35), 0 0 150px rgba(255, 215, 0, 0.1);
-      color: #fff;
-      text-shadow: 0 0 40px rgba(255, 215, 0, 0.6);
-    }
-
-    footer {
-      text-align: center;
-      padding: 30px 20px;
-      color: var(--muted);
-      font-size: clamp(12px, 1.2vw, 14px);
-      border-top: 1px solid var(--border);
-      margin-top: 20px;
-      opacity: 0;
-      animation: fadeInUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-      animation-delay: 0.9s;
-    }
-
-    /* ============================================================
-       АДАПТИВНОСТЬ И ОПТИМИЗАЦИЯ ДЛЯ МОБИЛЬНЫХ
-       ============================================================ */
-
-    /* Отключаем тяжёлые анимации на всех устройствах с шириной ≤ 900px */
-    @media (max-width: 900px) {
-      .card-gold,
-      .card-exam {
-        animation: cardFadeIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards !important;
-      }
-      .card-gold::before,
-      .card-exam::before {
-        display: none !important;
-      }
-      .gold-deco,
-      .exam-deco,
-      .sparkle-gold,
-      .sparkle-exam {
-        animation: none !important;
-      }
-      .sparkle-gold,
-      .sparkle-exam {
-        opacity: 0 !important;
-      }
-      .option-champion-gold,
-      .option-exam {
-        animation: none !important;
-      }
-      .option-champion-gold::before,
-      .option-champion-gold::after,
-      .option-exam::before,
-      .option-exam::after {
-        animation: none !important;
-      }
-      .option-champion-gold .stars {
-        animation: none !important;
-      }
-
-      /* Убираем размытие для производительности */
-      header {
-        backdrop-filter: none !important;
-        background: rgba(6, 10, 16, 0.92);
-      }
-    }
-
-    /* Стили для самых маленьких экранов (≤640px) – размеры и отступы */
-    @media (max-width: 640px) {
-      .hero {
-        flex-direction: column;
-        align-items: stretch;
-        text-align: center;
-        padding: 20px 16px 10px;
-      }
-      .hero-content p {
-        max-width: 100%;
-        margin: auto;
-      }
-      .hero-box {
-        width: 100%;
-        height: 180px;
-        margin-top: 10px;
-        grid-template-columns: repeat(4, 1fr);
-        grid-template-rows: repeat(3, 1fr);
-        padding: 10px;
-      }
-      .grid {
-        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-        gap: 12px;
-        padding: 12px;
-      }
-      .card {
-        min-height:170px;
-        padding: 14px;
-        overflow: hidden;
-      }
-      .overlay-panel {
-        padding: 16px;
-        width: 95%;
-        max-width: 360px;
-      }
-      .option {
-        padding: 16px;
-        font-size: 18px;
-      }
-      .brand p {
-        font-size: 11px;
-      }
-      .btn {
-        padding: 14px 28px;
-        width: 100%;
-        max-width: 260px;
-      }
-      .buttons {
-        display: flex;
-        justify-content: center;
-      }
-
-      .laurel-left-gold,
-      .laurel-right-gold {
-        font-size: 24px !important;
-        top: -6px;
-        left: -6px;
-        right: -6px;
-      }
-      .trophy-gold {
-        font-size: 32px !important;
-        bottom: -8px;
-      }
-      .ribbon-gold {
-        font-size: 18px;
-        left: 4px;
-        bottom: 4px;
-      }
-      .cap-exam {
-        font-size: 24px !important;
-        top: -6px;
-        left: -4px;
-      }
-      .scroll-exam,
-      .diploma-exam {
-        font-size: 20px !important;
-        bottom: -4px;
-      }
-
-      .option-champion-gold {
-        font-size: 16px;
-        padding: 14px;
-      }
-      .option-champion-gold::before,
-      .option-champion-gold::after {
-        font-size: 18px;
-      }
-      .option-exam {
-        font-size: 15px;
-        padding: 14px;
-      }
-      .option-exam::before,
-      .option-exam::after {
-        font-size: 18px;
-      }
-    }
-
-    @media (max-width: 400px) {
-      .hero-content h1 {
-        font-size: 28px;
-      }
-      .hero-box {
-        height: 150px;
-        gap: 4px;
-      }
-      .grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 8px;
-      }
-      .card h3 {
-        font-size: 16px;
-      }
-    }
-
-    /* Вспомогательные анимации (определены выше, но оставляем для десктопа) */
-    @keyframes floatButton {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-4px); }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>EPALLAXIS — Математика</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Manrope:wght@500;700;800&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+    <style>
+        /* --- СЕЗОННЫЕ ПЕРЕМЕННЫЕ --- */
+        :root {
+            --bg: #0A0705; 
+            --surface: linear-gradient(145deg, #291E17 0%, #140E0A 100%);
+            --surface-solid: #1C140F;
+            --surface-hover: linear-gradient(145deg, #382920 0%, #1C140F 100%);
+            --text: #FFFFFF;
+            --text-muted: #C0B8B0; 
+            --accent: #FF8A00; 
+            --accent-glow: rgba(255, 138, 0, 0.3);
+            --accent-light: #FFD166;
+            --border: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(255, 138, 0, 0.7);
+            
+            --font-sans: 'Inter', sans-serif;
+            --font-display: 'Manrope', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        body.season-winter {
+            --bg: #080C14;
+            --surface: linear-gradient(145deg, #131C2E 0%, #0A101D 100%);
+            --surface-solid: #0A101D;
+            --surface-hover: linear-gradient(145deg, #1C283D 0%, #111827 100%);
+            --text-muted: #9CA3AF;
+            --accent: #3B82F6; 
+            --accent-glow: rgba(59, 130, 246, 0.3);
+            --accent-light: #93C5FD;
+            --border-hover: rgba(59, 130, 246, 0.7);
+        }
+
+        body.season-spring {
+            --bg: #0C0A0B; 
+            --surface: linear-gradient(145deg, #241A1D 0%, #140E10 100%);
+            --surface-solid: #140E10;
+            --surface-hover: linear-gradient(145deg, #332529 0%, #1A1214 100%);
+            --text-muted: #D1C4C7; 
+            --accent: #FFB7C5; 
+            --accent-glow: rgba(255, 183, 197, 0.3);
+            --accent-light: #FFE4E1; 
+            --border-hover: rgba(255, 183, 197, 0.7);
+        }
+
+        body.season-summer {
+            --bg: #060A08;
+            --surface: linear-gradient(145deg, #13221A 0%, #0B140F 100%);
+            --surface-solid: #0B140F;
+            --surface-hover: linear-gradient(145deg, #1A2E23 0%, #0F1C15 100%);
+            --text-muted: #9CA3AF;
+            --accent: #10B981; 
+            --accent-glow: rgba(16, 185, 129, 0.3);
+            --accent-light: #6EE7B7;
+            --border-hover: rgba(16, 185, 129, 0.7);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        html, body { 
+            background-color: var(--bg); 
+            scroll-behavior: smooth; 
+            transition: background-color 0.3s ease; 
+            width: 100%;
+            max-width: 100%;
+            overflow-x: clip; 
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            color: var(--text);
+            font-family: var(--font-sans);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        body::before, body::after {
+            content: '';
+            position: fixed;
+            width: 100vmax;
+            height: 100vmax;
+            border-radius: 50%;
+            filter: blur(150px);
+            z-index: -1;
+            opacity: 0.15;
+            pointer-events: none;
+            transition: background 0.3s ease;
+        }
+        body::before { top: -50vmax; left: -50vmax; background: var(--accent); }
+        body::after { bottom: -50vmax; right: -50vmax; background: var(--accent-light); opacity: 0.05; }
+
+        a { color: inherit; text-decoration: none; }
+
+        .frame {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px;
+            width: 100%;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            padding: 24px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .brand { 
+            font-family: var(--font-display); 
+            font-size: 1.2rem; 
+            font-weight: 800; 
+            letter-spacing: 0.05em; 
+            text-transform: uppercase;
+        }
+        
+        .brand span { 
+            color: var(--accent); 
+            font-weight: 500;
+            text-shadow: 0 0 20px var(--accent-glow);
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .theme-switcher {
+            display: flex;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 4px;
+            gap: 2px;
+            flex-wrap: wrap;
+            transition: border-color 0.3s ease;
+        }
+
+        .theme-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            padding: 6px 12px;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .theme-btn:hover { color: var(--text); }
+
+        .theme-btn.active {
+            background: var(--accent);
+            color: #000;
+            font-weight: 500;
+            box-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        .header-meta {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-align: right;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            letter-spacing: 0.1em;
+        }
+
+        .hero-editorial {
+            position: relative;
+            padding: 60px 0 40px;
+            border-bottom: 1px solid var(--border);
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            overflow: hidden; 
+            transition: border-color 0.3s ease;
+        }
+
+        .season-particles {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        #spring-canvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
+        }
+
+        .hero-top {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding-bottom: 20px;
+        }
+
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 6vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            text-transform: uppercase;
+        }
+
+        .hero-title span {
+            display: block;
+            background: linear-gradient(90deg, var(--accent-light), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 40px var(--accent-glow);
+            transition: background 0.3s ease;
+        }
+
+        .hero-side-text {
+            position: relative;
+            z-index: 1;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            max-width: 220px;
+            text-align: right;
+            line-height: 1.6;
+            text-transform: uppercase;
+        }
+
+        .hero-bottom {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .greek-quote {
+            font-size: 1rem;
+            font-style: italic;
+            color: var(--accent);
+            padding-left: 16px;
+            border-left: 2px solid var(--accent);
+            text-shadow: 0 0 15px var(--accent-glow);
+            transition: color 0.3s ease, border-color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        .hero-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        /* =========================================
+           АНИМАЦИИ ЧАСТИЦ
+           ========================================= */
+        .particle {
+            position: absolute;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0;
+            animation-fill-mode: both;
+        }
+
+        /* --- ОСЕНЬ --- */
+        .p-autumn { 
+            width: 24px; height: 24px; 
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            top: -30px;
+            animation: fall-and-spin linear infinite;
+        }
+        .p-autumn:nth-child(3n+1) { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50,5 L65,35 L95,35 L75,60 L85,90 L50,75 L15,90 L25,60 L5,35 L35,35 Z" fill="%23DC2626"/><path d="M50,5 L50,75 M65,35 L35,60 M35,35 L65,60" stroke="%237f1d1d" stroke-width="2" fill="none"/></svg>'); }
+        .p-autumn:nth-child(3n+2) { width: 28px; height: 28px; background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50,5 C60,20 75,20 75,35 C85,40 85,60 75,70 C85,85 60,95 50,95 C40,95 15,85 25,70 C15,60 15,40 25,35 C25,20 40,20 50,5 Z" fill="%23D97706"/><path d="M50,5 L50,95 M50,35 L70,25 M50,55 L75,45 M50,55 L25,45 M50,75 L65,65 M50,75 L35,65" stroke="%2392400e" stroke-width="2" fill="none"/></svg>'); }
+        .p-autumn:nth-child(3n+3) { width: 20px; height: 20px; background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50,5 C85,25 95,60 50,95 C5,60 15,25 50,5 Z" fill="%23FBBF24"/><path d="M50,10 L50,90 M50,30 L75,45 M50,30 L25,45 M50,55 L70,70 M50,55 L30,70" stroke="%23D97706" stroke-width="2" fill="none"/></svg>'); }
+
+        @keyframes fall-and-spin {
+            0% { transform: translateY(-10px) translateX(0) rotate(0deg) rotateX(0deg); opacity: 0; }
+            10% { opacity: 0.9; }
+            50% { transform: translateY(200px) translateX(40px) rotate(180deg) rotateX(60deg); }
+            90% { opacity: 0.9; }
+            100% { transform: translateY(450px) translateX(-20px) rotate(360deg) rotateX(0deg); opacity: 0; }
+        }
+
+        /* --- ЗИМА --- */
+        .p-winter { 
+            width: 4px; height: 4px; 
+            border-radius: 50%; 
+            background-color: #FFF; 
+            box-shadow: 0 0 6px #FFF; 
+            top: -20px;
+            animation: fall linear infinite;
+        }
+        .p-winter:nth-child(even) { width: 6px; height: 6px; opacity: 0.6; }
+
+        @keyframes fall {
+            0% { transform: translateY(-10px) translateX(0); opacity: 0; }
+            10% { opacity: 0.8; }
+            100% { transform: translateY(400px) translateX(30px); opacity: 0; }
+        }
+
+        /* --- ЛЕТО --- */
+        .p-summer {
+            width: 4px; height: 4px;
+            border-radius: 50%;
+            background: #FDE047;
+            box-shadow: 0 0 12px 2px #EAB308, 0 0 20px 4px rgba(234, 179, 8, 0.4);
+            animation: float-firefly linear infinite;
+        }
+        
+        .p-summer:nth-child(even) { width: 3px; height: 3px; }
+        .p-summer:nth-child(3n) { width: 5px; height: 5px; background: #FEF08A; }
+
+        @keyframes float-firefly {
+            0% { transform: translate(0, 0) scale(0.8); opacity: 0; }
+            20% { opacity: 1; }
+            50% { transform: translate(30px, -40px) scale(1.2); opacity: 0.6; }
+            80% { opacity: 0.8; }
+            100% { transform: translate(-20px, -100px) scale(0.8); opacity: 0; }
+        }
+
+        /* =========================================
+           КАРТОЧКИ (АДАПТИВНАЯ СЕТКА ВНУТРИ)
+           ========================================= */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 24px; 
+            margin: 48px 0 80px;
+            align-items: start; 
+        }
+
+        .skeleton-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            height: 240px; 
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skeleton-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+            transform: translateX(-100%);
+            animation: shimmer 1.5s infinite;
+        }
+
+        @keyframes shimmer { 100% { transform: translateX(100%); } }
+
+        @keyframes cardAppear {
+            0% { opacity: 0; transform: translateY(20px) scale(0.95); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .card {
+            background: var(--surface);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            border-top: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            position: relative;
+            width: 100%;
+            height: 240px; 
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            overflow: hidden;
+            
+            opacity: 0;
+            animation: cardAppear 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .card.is-clickable { cursor: pointer; }
+        
+        .card.is-clickable:hover:not(.is-expanded) {
+            background: var(--surface-hover);
+            border-color: var(--border-hover);
+            border-top-color: var(--accent);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.9), 0 0 30px var(--accent-glow), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            z-index: 2;
+        }
+
+        .card.is-expanded {
+            z-index: 10;
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.9), 0 0 40px var(--accent-glow);
+            background: var(--surface-solid); 
+        }
+
+        .card-default {
+            position: absolute;
+            inset: 0;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            backface-visibility: hidden;
+        }
+
+        .card.is-expanded .card-default {
+            opacity: 0;
+            transform: scale(0.95) translateY(-10px);
+            pointer-events: none;
+        }
+
+        .card-expanded {
+            position: absolute;
+            inset: 0;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            transform: scale(1.05) translateY(10px);
+            pointer-events: none;
+            transition: opacity 0.3s ease 0.1s, transform 0.3s ease 0.1s;
+            z-index: 2;
+        }
+
+        .card.is-expanded .card-expanded {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+            pointer-events: auto;
+        }
+
+        .expanded-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            flex-shrink: 0;
+        }
+
+        /* Ограничиваем заголовок, чтобы не сломал сетку */
+        .expanded-title {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--text);
+            line-height: 1.1;
+            padding-right: 8px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .btn-close-circle {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            cursor: pointer;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+
+        .btn-close-circle:hover {
+            background: var(--accent);
+            color: #000;
+            border-color: var(--accent);
+            transform: rotate(90deg);
+        }
+
+        /* НОВАЯ СЕТКА РАЗДЕЛОВ БЕЗ СКРОЛЛА */
+        .expanded-sections {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            flex-grow: 1;
+            align-content: center; /* Центрируем по вертикали, если их мало */
+        }
+
+        /* Если 1 раздел - на всю ширину */
+        .card-expanded[data-count="1"] .expanded-sections {
+            grid-template-columns: 1fr;
+        }
+
+        /* Если 3 или 5 - первый на всю ширину, остальные 2х2 */
+        .card-expanded[data-count="3"] .expanded-sections > :first-child,
+        .card-expanded[data-count="5"] .expanded-sections > :first-child {
+            grid-column: span 2;
+        }
+
+        .inner-section-btn {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 14px;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--text);
+            font-family: var(--font-display);
+            font-size: 0.85rem;
+            font-weight: 700;
+            transition: all 0.2s;
+            min-width: 0; /* Важно для обрезки текста */
+        }
+
+        .inner-section-btn:hover {
+            background: var(--accent);
+            color: #000;
+            border-color: var(--accent);
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        .inner-section-btn .sec-name {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        
+        .inner-section-btn .sec-index {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            opacity: 0.6;
+        }
+
+        .inner-section-btn:hover .sec-index { opacity: 1; }
+
+        .inner-section-btn .arrow {
+            font-family: var(--font-sans);
+            color: var(--accent);
+            transition: color 0.2s;
+            margin-left: 8px;
+        }
+
+        .inner-section-btn:hover .arrow { color: #000; }
+
+        /* Общие стили контента (по умолчанию) */
+        .card-header {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .card-math-icon {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 2.2rem;
+            font-weight: normal;
+            color: var(--text-muted);
+            opacity: 0.35;
+            transition: all 0.4s ease;
+            line-height: 1;
+        }
+
+        .card.is-clickable:hover:not(.is-expanded) .card-math-icon {
+            color: var(--accent);
+            opacity: 1;
+            transform: scale(1.1) rotate(-5deg);
+            text-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        .card-title {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            line-height: 1.2;
+            color: #FFFFFF;
+            letter-spacing: -0.01em;
+        }
+
+        .card-text {
+            font-size: 0.9rem;
+            color: var(--text); 
+            opacity: 0.8;
+            line-height: 1.5;
+            margin-bottom: 24px;
+            flex-grow: 1;
+            display: -webkit-box;
+            -webkit-line-clamp: 4; 
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: auto;
+        }
+
+        .card-tag {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            color: var(--accent-light);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 4px 10px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .status-message {
+            grid-column: 1 / -1; text-align: center; padding: 60px 20px;
+            color: var(--text-muted); font-family: var(--font-mono); text-transform: uppercase;
+        }
+
+        /* =========================================
+           МОБИЛЬНАЯ АДАПТАЦИЯ
+           ========================================= */
+        @media (max-width: 900px) {
+            .header-right { flex-direction: column; align-items: flex-end; gap: 8px; }
+            .header-meta { display: none; }
+        }
+
+        @media (max-width: 768px) {
+            .frame { padding: 0 12px; }
+            
+            header { flex-direction: column; align-items: flex-start; gap: 16px; padding: 20px 0; }
+            .header-right { flex-direction: row; align-items: center; width: 100%; justify-content: space-between; }
+            
+            .hero-top { flex-direction: column; gap: 16px; align-items: flex-start; }
+            .hero-bottom { grid-template-columns: 1fr; gap: 20px; }
+            
+            .cards-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; margin-top: 24px; }
+            
+            .card, .skeleton-card { height: 180px; border-radius: 10px; }
+            .card-default { padding: 12px 10px; }
+            .card-title { font-size: 1rem; margin-bottom: 4px; }
+            .card-text { font-size: 0.7rem; -webkit-line-clamp: 2; margin-bottom: 8px; }
+            .card-tag { font-size: 0.5rem; padding: 2px 4px; }
+            .card-math-icon { font-size: 1.4rem; }
+            
+            .card-expanded { padding: 12px 10px; }
+            .expanded-header { margin-bottom: 8px; }
+            .expanded-title { font-size: 0.9rem; }
+            .btn-close-circle { width: 24px; height: 24px; font-size: 0.8rem; }
+            
+            .expanded-sections { gap: 4px; }
+            .inner-section-btn { padding: 6px 8px; font-size: 0.75rem; }
+            .inner-section-btn .sec-index { display: none; }
+        }
+    </style>
 </head>
-
 <body>
-  <header>
-    <div class="brand">
-      <h1>EPALLAXIS <span>math</span></h1>
-      <p>Ἐπαλλάσσω — приводить систему в порядок</p>
+    <div class="frame">
+        <header>
+            <div class="brand">EPALLAXIS<span>_math</span></div>
+            
+            <div class="header-right">
+                <div class="theme-switcher" id="theme-switcher">
+                    <button class="theme-btn" data-theme="auto">AUTO</button>
+                    <button class="theme-btn" data-theme="autumn">ОСЕНЬ</button>
+                    <button class="theme-btn" data-theme="winter">ЗИМА</button>
+                    <button class="theme-btn" data-theme="spring">ВЕСНА</button>
+                    <button class="theme-btn" data-theme="summer">ЛЕТО</button>
+                </div>
+
+                <div class="header-meta">
+                    SYS.STATUS: ONLINE<br>
+                    2024 — 2025
+                </div>
+            </div>
+        </header>
+
+        <section class="hero-editorial">
+            <canvas id="spring-canvas"></canvas>
+            <div class="season-particles" id="particles-container"></div>
+
+            <div class="hero-top">
+                <h1 class="hero-title">
+                    Математика
+                    <span>5–11 классы</span>
+                </h1>
+                <div class="hero-side-text">
+                    Структурированная база знаний.<br>
+                    Теория / Практика / Экзамены.
+                </div>
+            </div>
+            
+            <div class="hero-bottom">
+                <div class="greek-quote">Ἐπάλλαξις — приводить систему в порядок</div>
+                <div class="hero-desc">
+                    Выберите свой класс из каталога ниже, чтобы перейти к учебным модулям и подготовке к экзаменам.
+                </div>
+            </div>
+        </section>
+
+        <main>
+            <section id="cards-grid" class="cards-grid" aria-label="Список классов">
+                <div class="skeleton-card"></div>
+                <div class="skeleton-card"></div>
+                <div class="skeleton-card"></div>
+                <div class="skeleton-card"></div>
+            </section>
+        </main>
     </div>
-  </header>
 
-  <section class="hero">
-    <div class="hero-content">
-      <h1>МАТЕМАТИКА<br><span>5–11 КЛАССЫ</span></h1>
-      <p>Структурированная система обучения: теория, практика, экзамены.</p>
-      <div class="buttons">
-        <div class="btn" onclick="scrollToClasses()">Выбрать класс</div>
-      </div>
-    </div>
+    <script>
+        (function () {
+            'use strict';
 
-    <div class="hero-box" id="staticBox">
-      <div class="symbol">√</div>
-      <div class="symbol">∑</div>
-      <div class="symbol">π</div>
-      <div class="symbol">∫</div>
-      <div class="symbol">∞</div>
-      <div class="symbol">x²</div>
-      <div class="symbol">a</div>
-      <div class="symbol">b</div>
-      <div class="symbol">c</div>
-      <div class="symbol">∠</div>
-      <div class="symbol">α</div>
-      <div class="symbol">β</div>
-    </div>
-  </section>
+            // ==========================================
+            // 1. ГРЕЧЕСКИЕ БУКВЫ
+            // ==========================================
+            const GREEK_LETTERS = [
+                'α', 'β', 'γ', 'δ', 'ε', 'ζ', 'η', 'θ', 'ι', 'κ', 'λ', 'μ', 
+                'ν', 'ξ', 'ο', 'π', 'ρ', 'σ', 'τ', 'υ', 'φ', 'χ', 'ψ', 'ω'
+            ];
+            let availableLetters = [];
 
-  <section class="grid" id="grid"></section>
+            function shuffle(array) {
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]];
+                }
+                return array;
+            }
 
-  <footer>
-    EPALLAXIS — Mathematics System 2026
-  </footer>
+            function resetSymbols() {
+                availableLetters = shuffle([...GREEK_LETTERS]);
+            }
 
-  <!-- OVERLAY -->
-  <div class="overlay" id="overlay">
-    <div class="overlay-panel">
-      <h3 id="overlayTitle">Выбор</h3>
-      <div id="optionsContainer"></div>
-    </div>
-  </div>
+            function getUniqueSymbol() {
+                if (availableLetters.length === 0) resetSymbols();
+                return availableLetters.pop();
+            }
 
-  <script>
-    // ================================================================
-    // 1. ПЛАВНЫЙ ПЕРЕХОД МЕЖДУ СТРАНИЦАМИ
-    // ================================================================
-    document.addEventListener('click', function(e) {
-      const link = e.target.closest('a');
-      if (link && link.href && link.href.indexOf(window.location.origin) === 0 && !link.target && link.getAttribute('href') !== '#') {
-        if (link.classList.contains('btn') || link.classList.contains('theme-dot')) return;
-        e.preventDefault();
-        document.body.style.opacity = '0';
-        document.body.style.transition = 'opacity 0.5s ease';
-        setTimeout(() => {
-          window.location.href = link.href;
-        }, 500);
-      }
-    });
+            // ==========================================
+            // 2. РЕАЛИСТИЧНЫЕ РЫБКИ
+            // ==========================================
+            const canvas = document.getElementById('spring-canvas');
+            const ctx = canvas.getContext('2d');
+            let animationFrameId;
+            let canvasActive = false;
+            let fishArray = [];
+            let ripples = [];
+            let mouse = { x: -1000, y: -1000 };
 
-    window.addEventListener('load', function() {
-      document.body.style.opacity = '1';
-    });
+            function resizeCanvas() {
+                const rect = canvas.parentElement.getBoundingClientRect();
+                canvas.width = rect.width;
+                canvas.height = rect.height;
+            }
 
-    // ================================================================
-    // 2. ГЕНЕРАЦИЯ КАРТОЧЕК И ОВЕРЛЕЙ
-    // ================================================================
-    const classes = [5, 6, 7, 8, 9, 10, 11];
-    const grid = document.getElementById('grid');
-    const overlay = document.getElementById('overlay');
-    const optionsContainer = document.getElementById('optionsContainer');
-    const overlayTitle = document.getElementById('overlayTitle');
+            class Fish {
+                constructor() {
+                    const side = Math.floor(Math.random() * 4);
+                    if (side === 0) { this.x = -50; this.y = Math.random() * canvas.height; }
+                    else if (side === 1) { this.x = canvas.width + 50; this.y = Math.random() * canvas.height; }
+                    else if (side === 2) { this.x = Math.random() * canvas.width; this.y = -50; }
+                    else { this.x = Math.random() * canvas.width; this.y = canvas.height + 50; }
 
-    classes.forEach((n, index) => {
-      const card = document.createElement('div');
-      card.className = 'card';
-      card.style.animationDelay = `${0.4 + index * 0.08}s`;
+                    this.angle = Math.atan2(canvas.height/2 - this.y, canvas.width/2 - this.x);
+                    this.wanderAngle = this.angle;
+                    
+                    this.maxSpeed = Math.random() * 0.5 + 1.2; 
+                    this.vx = Math.cos(this.angle) * this.maxSpeed;
+                    this.vy = Math.sin(this.angle) * this.maxSpeed;
+                    
+                    this.size = Math.random() * 5 + 11;
+                    this.hue = 340 + Math.random() * 20;
+                    this.tailPhase = Math.random() * Math.PI * 2;
+                    this.rippleTimer = 0;
+                    
+                    this.opacity = 0;
+                }
 
-      if (n === 11) {
-        card.classList.add('card-gold');
-        card.innerHTML = `
-          <span class="gold-deco laurel-left-gold">🌿</span>
-          <span class="gold-deco laurel-right-gold">🌿</span>
-          <span class="gold-deco trophy-gold">🏆</span>
-          <span class="gold-deco ribbon-gold">🎗️</span>
-          <span class="sparkle-gold">✦</span><span class="sparkle-gold">✦</span>
-          <span class="sparkle-gold">✦</span><span class="sparkle-gold">✦</span>
-          <span class="sparkle-gold">✦</span><span class="sparkle-gold">✦</span>
-          <span class="sparkle-gold">✦</span><span class="sparkle-gold">✦</span>
-          <span class="sparkle-gold">✦</span><span class="sparkle-gold">✦</span>
-          <h3>${n} класс</h3>
-          <p>Чемпионский выпуск!</p>
-          <div class="go">перейти →</div>
-        `;
-      } else if (n === 9) {
-        card.classList.add('card-exam');
-        card.innerHTML = `
-          <span class="exam-deco cap-exam">🎓</span>
-          <span class="exam-deco scroll-exam">📜</span>
-          <span class="exam-deco diploma-exam">📄</span>
-          <span class="sparkle-exam">✦</span><span class="sparkle-exam">✦</span>
-          <span class="sparkle-exam">✦</span><span class="sparkle-exam">✦</span>
-          <span class="sparkle-exam">✦</span><span class="sparkle-exam">✦</span>
-          <span class="sparkle-exam">✦</span><span class="sparkle-exam">✦</span>
-          <h3>${n} класс</h3>
-          <p>Экзаменационный выпуск</p>
-          <div class="go">перейти →</div>
-        `;
-      } else {
-        card.innerHTML = `
-          <h3>${n} класс</h3>
-          <p>Базовая структура обучения</p>
-          <div class="go">перейти →</div>
-        `;
-      }
+                update() {
+                    if (this.opacity < 1) this.opacity += 0.015;
 
-      card.addEventListener('click', () => openClass(n));
-      grid.appendChild(card);
-    });
+                    this.wanderAngle += (Math.random() - 0.5) * 0.2;
+                    let steerX = Math.cos(this.wanderAngle) * this.maxSpeed;
+                    let steerY = Math.sin(this.wanderAngle) * this.maxSpeed;
 
-const extraCard = document.createElement('div');
+                    const margin = 100;
+                    const turnForce = 0.15;
+                    if (this.x < margin) steerX += (margin - this.x) * turnForce;
+                    if (this.x > canvas.width - margin) steerX -= (this.x - (canvas.width - margin)) * turnForce;
+                    if (this.y < margin) steerY += (margin - this.y) * turnForce;
+                    if (this.y > canvas.height - margin) steerY -= (this.y - (canvas.height - margin)) * turnForce;
 
-extraCard.className = 'card card-extra';
+                    const dx = this.x - mouse.x;
+                    const dy = this.y - mouse.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    let isFleeing = false;
 
-extraCard.style.animationDelay = '1s';
+                    if (dist < 150) {
+                        isFleeing = true;
+                        const force = (150 - dist) / 150;
+                        steerX += (dx / dist) * force * 4;
+                        steerY += (dy / dist) * force * 4;
+                        
+                        this.rippleTimer--;
+                        if (this.rippleTimer <= 0) {
+                            ripples.push(new Ripple(this.x - this.vx * 3, this.y - this.vy * 3));
+                            this.rippleTimer = 5;
+                        }
+                    } else {
+                        this.rippleTimer--;
+                        if (Math.random() < 0.01 && this.rippleTimer <= 0) {
+                            ripples.push(new Ripple(this.x, this.y));
+                            this.rippleTimer = 40;
+                        }
+                    }
 
+                    let desiredX = this.vx + steerX;
+                    let desiredY = this.vy + steerY;
+                    let desiredMag = Math.sqrt(desiredX * desiredX + desiredY * desiredY);
+                    let targetSpeed = isFleeing ? this.maxSpeed * 2.5 : this.maxSpeed;
+                    
+                    if (desiredMag > 0) {
+                        desiredX = (desiredX / desiredMag) * targetSpeed;
+                        desiredY = (desiredY / desiredMag) * targetSpeed;
+                    }
 
-extraCard.innerHTML = `
+                    let desiredAngle = Math.atan2(desiredY, desiredX);
+                    let angleDiff = desiredAngle - this.angle;
+                    
+                    while (angleDiff > Math.PI) angleDiff -= Math.PI * 2;
+                    while (angleDiff < -Math.PI) angleDiff += Math.PI * 2;
 
-  <h3>
-    Еще
-  </h3>
+                    let turnRate = isFleeing ? 0.15 : 0.05;
+                    this.angle += angleDiff * turnRate;
 
-  <p>
-    Дополнительные материалы
-  </p>
+                    let currentSpeed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
+                    if (currentSpeed < targetSpeed) currentSpeed += 0.05;
+                    else currentSpeed -= 0.02;
+                    if (currentSpeed > targetSpeed) currentSpeed = targetSpeed;
+                    if (currentSpeed < 0.5) currentSpeed = 0.5;
 
-  <div class="go">
-    открыть →
-  </div>
+                    this.vx = Math.cos(this.angle) * currentSpeed;
+                    this.vy = Math.sin(this.angle) * currentSpeed;
 
-`;
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    this.tailPhase += 0.15 + currentSpeed * 0.3;
+                }
 
+                draw() {
+                    ctx.save();
+                    ctx.globalAlpha = this.opacity;
+                    ctx.translate(this.x, this.y);
+                    ctx.rotate(this.angle);
 
-extraCard.addEventListener('click', () => {
+                    const L = this.size;
+                    const H = this.size * 0.32;
+                    const tailWag = Math.sin(this.tailPhase) * 0.6;
 
-  window.location.href = 'extra/extra.html';
+                    ctx.save();
+                    ctx.translate(-L * 0.65, 0);
+                    ctx.rotate(tailWag);
+                    ctx.fillStyle = `hsla(${this.hue}, 75%, 78%, 0.65)`;
+                    ctx.beginPath();
+                    ctx.moveTo(0, 0);
+                    ctx.lineTo(-L * 0.55, -H * 2.2);
+                    ctx.quadraticCurveTo(-L * 0.25, -H * 0.4, -L * 0.2, 0);
+                    ctx.quadraticCurveTo(-L * 0.25, H * 0.4, -L * 0.55, H * 2.2);
+                    ctx.closePath();
+                    ctx.fill();
+                    ctx.strokeStyle = `hsla(${this.hue}, 70%, 55%, 0.3)`;
+                    ctx.lineWidth = 0.6;
+                    ctx.beginPath();
+                    ctx.moveTo(-L * 0.1, 0); ctx.lineTo(-L * 0.45, -H * 1.6);
+                    ctx.moveTo(-L * 0.1, 0); ctx.lineTo(-L * 0.45, H * 1.6);
+                    ctx.stroke();
+                    ctx.restore();
 
-});
+                    ctx.fillStyle = `hsla(${this.hue}, 80%, 80%, 0.5)`;
+                    ctx.beginPath();
+                    ctx.moveTo(-L * 0.05, -H * 0.95);
+                    ctx.quadraticCurveTo(-L * 0.15, -H * 2.0, -L * 0.4, -H * 0.65);
+                    ctx.quadraticCurveTo(-L * 0.3, -H * 0.75, -L * 0.05, -H * 0.95);
+                    ctx.closePath();
+                    ctx.fill();
+                    ctx.beginPath();
+                    ctx.moveTo(-L * 0.15, H * 0.85);
+                    ctx.quadraticCurveTo(-L * 0.25, H * 1.7, -L * 0.45, H * 0.5);
+                    ctx.quadraticCurveTo(-L * 0.35, H * 0.6, -L * 0.15, H * 0.85);
+                    ctx.closePath();
+                    ctx.fill();
 
+                    const bodyGradient = ctx.createLinearGradient(0, -H, 0, H);
+                    bodyGradient.addColorStop(0, `hsla(${this.hue}, 80%, 88%, 0.75)`);
+                    bodyGradient.addColorStop(0.5, `hsla(${this.hue}, 85%, 75%, 0.7)`);
+                    bodyGradient.addColorStop(1, `hsla(${this.hue}, 80%, 60%, 0.6)`);
+                    ctx.fillStyle = bodyGradient;
+                    ctx.beginPath();
+                    ctx.moveTo(L * 0.78, 0);
+                    ctx.bezierCurveTo(L * 0.55, -H * 1.0, -L * 0.1, -H * 1.05, -L * 0.65, -H * 0.18);
+                    ctx.lineTo(-L * 0.65, H * 0.18);
+                    ctx.bezierCurveTo(-L * 0.1, H * 1.05, L * 0.55, H * 1.0, L * 0.78, 0);
+                    ctx.closePath();
+                    ctx.fill();
 
-grid.appendChild(extraCard);
+                    ctx.save();
+                    ctx.translate(L * 0.15, H * 0.35);
+                    ctx.rotate(0.4 + Math.sin(this.tailPhase * 0.7) * 0.15);
+                    ctx.fillStyle = `hsla(${this.hue}, 80%, 82%, 0.55)`;
+                    ctx.beginPath();
+                    ctx.ellipse(0, 0, L * 0.22, H * 0.35, 0, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.restore();
 
-const newsCard = document.createElement('div');
+                    ctx.strokeStyle = `hsla(${this.hue}, 50%, 45%, 0.35)`;
+                    ctx.lineWidth = 0.8;
+                    ctx.beginPath();
+                    ctx.moveTo(L * 0.3, -H * 0.55);
+                    ctx.quadraticCurveTo(L * 0.22, 0, L * 0.3, H * 0.55);
+                    ctx.stroke();
 
+                    ctx.beginPath();
+                    ctx.moveTo(L * 0.78, -H * 0.05);
+                    ctx.lineTo(L * 0.68, H * 0.08);
+                    ctx.stroke();
 
-newsCard.className = 'card card-news';
+                    ctx.fillStyle = 'rgba(255, 240, 245, 0.95)';
+                    ctx.beginPath(); ctx.arc(L * 0.5, -H * 0.28, H * 0.24, 0, Math.PI * 2); ctx.fill();
+                    ctx.fillStyle = 'rgba(30, 10, 20, 0.95)';
+                    ctx.beginPath(); ctx.arc(L * 0.53, -H * 0.28, H * 0.12, 0, Math.PI * 2); ctx.fill();
+                    ctx.fillStyle = 'rgba(255, 255, 255, 0.85)';
+                    ctx.beginPath(); ctx.arc(L * 0.56, -H * 0.34, H * 0.05, 0, Math.PI * 2); ctx.fill();
 
+                    ctx.restore();
+                }
+            }
 
-newsCard.style.animationDelay = '1.1s';
+            class Ripple {
+                constructor(x, y) {
+                    this.x = x;
+                    this.y = y;
+                    this.radius = 2;
+                    this.opacity = 0.5;
+                }
+                update() {
+                    this.radius += 0.6;
+                    this.opacity -= 0.012;
+                }
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                    ctx.strokeStyle = `rgba(255, 183, 197, ${this.opacity})`;
+                    ctx.lineWidth = 1.2;
+                    ctx.stroke();
+                }
+            }
 
+            function initSpringCanvas() {
+                resizeCanvas();
+                fishArray = [];
+                ripples = [];
+                for (let i = 0; i < 9; i++) {
+                    fishArray.push(new Fish());
+                }
+                canvasActive = true;
+                animateSpring();
+                
+                window.addEventListener('resize', resizeCanvas);
+                canvas.parentElement.addEventListener('mousemove', (e) => {
+                    const rect = canvas.getBoundingClientRect();
+                    mouse.x = e.clientX - rect.left;
+                    mouse.y = e.clientY - rect.top;
+                });
+                canvas.parentElement.addEventListener('mouseleave', () => {
+                    mouse.x = -1000;
+                    mouse.y = -1000;
+                });
+                canvas.parentElement.addEventListener('touchmove', (e) => {
+                    const rect = canvas.getBoundingClientRect();
+                    mouse.x = e.touches[0].clientX - rect.left;
+                    mouse.y = e.touches[0].clientY - rect.top;
+                }, {passive: true});
+                canvas.parentElement.addEventListener('touchend', () => {
+                    mouse.x = -1000;
+                    mouse.y = -1000;
+                });
+            }
 
-newsCard.innerHTML = `
+            function animateSpring() {
+                if (!canvasActive) return;
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                ripples = ripples.filter(r => r.opacity > 0);
+                ripples.forEach(r => { r.update(); r.draw(); });
+                fishArray.forEach(f => { f.update(); f.draw(); });
 
-  <h3>
-    📢 Объявления
-  </h3>
+                animationFrameId = requestAnimationFrame(animateSpring);
+            }
 
+            function stopSpringCanvas() {
+                canvasActive = false;
+                cancelAnimationFrame(animationFrameId);
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+            }
 
-  <p>
-    Новости, обновления и важная информация
-  </p>
+            // ==========================================
+            // 3. СЕЗОНЫ
+            // ==========================================
+            function getCurrentSeason() {
+                const month = new Date().getMonth();
+                if (month === 11 || month <= 1) return 'winter';
+                if (month >= 2 && month <= 4) return 'spring';
+                if (month >= 5 && month <= 7) return 'summer';
+                return 'autumn';
+            }
 
+            function applyTheme(themeName) {
+                const container = document.getElementById('particles-container');
+                const body = document.body;
 
-  <div class="go">
-    открыть →
-  </div>
+                container.innerHTML = '';
+                stopSpringCanvas();
+                canvas.style.opacity = 0;
+                
+                body.className = ''; 
+                if (body.classList.contains('modal-open')) body.classList.add('modal-open');
 
-`;
+                let activeSeason = themeName === 'auto' ? getCurrentSeason() : themeName;
+                body.classList.add('season-' + activeSeason);
 
+                document.querySelectorAll('.theme-btn').forEach(btn => {
+                    btn.classList.toggle('active', btn.dataset.theme === themeName);
+                });
 
-newsCard.addEventListener('click', () => {
+                if (activeSeason === 'spring') {
+                    canvas.style.display = 'block';
+                    canvas.style.opacity = 1;
+                    initSpringCanvas();
+                } else {
+                    canvas.style.display = 'none';
+                    let particleCount = 25; 
+                    for (let i = 0; i < particleCount; i++) {
+                        const p = document.createElement('div');
+                        p.className = 'particle p-' + activeSeason;
+                        
+                        if (activeSeason === 'summer') {
+                            p.style.left = (Math.random() * 90) + '%';
+                            p.style.top = (Math.random() * 90) + '%';
+                        } else {
+                            p.style.left = Math.random() * 100 + '%';
+                            p.style.top = '-20px';
+                        }
+                        
+                        let duration;
+                        if (activeSeason === 'autumn') duration = (Math.random() * 5 + 6) + 's'; 
+                        if (activeSeason === 'winter') duration = (Math.random() * 5 + 6) + 's'; 
+                        if (activeSeason === 'summer') duration = (Math.random() * 5 + 5) + 's'; 
+                        
+                        p.style.animationDuration = duration;
+                        p.style.animationDelay = (Math.random() * 5) + 's';
+                        
+                        if (activeSeason !== 'autumn') {
+                            p.style.transform = `scale(${Math.random() * 0.5 + 0.8})`;
+                        }
+                        
+                        container.appendChild(p);
+                    }
+                }
+            }
 
-  window.location.href = 'news/news.html';
+            function initThemeSwitcher() {
+                const savedTheme = localStorage.getItem('epallaxis_theme') || 'auto';
+                applyTheme(savedTheme);
 
-});
+                document.getElementById('theme-switcher').addEventListener('click', (e) => {
+                    if (e.target.classList.contains('theme-btn')) {
+                        const theme = e.target.dataset.theme;
+                        localStorage.setItem('epallaxis_theme', theme);
+                        applyTheme(theme);
+                    }
+                });
+            }
 
+            // ==========================================
+            // 4. КАРТОЧКИ
+            // ==========================================
+            const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTUP42gakKnz4G1oQfH3ddgNUshPTs8zyvRmc-Pxfio0INuAh3OAzDM2bgXoIcW5ezzSRdQsCz0zMzW/pub?gid=0&single=true&output=csv';
 
-grid.appendChild(newsCard);
+            function parseCSV(text) {
+                const rows = []; let row = []; let cell = ''; let inQuotes = false;
+                for (let i = 0; i < text.length; i++) {
+                    const ch = text[i], next = text[i + 1];
+                    if (ch === '"') { if (inQuotes && next === '"') { cell += '"'; i++; } else { inQuotes = !inQuotes; } }
+                    else if (ch === ',' && !inQuotes) { row.push(cell.trim()); cell = ''; }
+                    else if ((ch === '\n' || ch === '\r') && !inQuotes) {
+                        if (ch === '\r' && next === '\n') i++;
+                        row.push(cell.trim()); if (row.some(c => c !== '')) rows.push(row); row = []; cell = '';
+                    } else { cell += ch; }
+                }
+                if (cell !== '' || row.length > 0) { row.push(cell.trim()); if (row.some(c => c !== '')) rows.push(row); }
+                return rows;
+            }
 
-    function openClass(n) {
-      if (n === 5) {
-        window.location.href = 'class5/class5.html';
-        return;
-      }
-      if (n === 6) {
-        window.location.href = 'class6/class6.html';
-        return;
-      }
+            function escapeHTML(value) {
+                if (!value) return '';
+                return String(value).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
+            }
 
-      overlay.classList.add('active');
-      optionsContainer.innerHTML = '';
-      overlayTitle.textContent = `${n} класс`;
+            function createCardElement(item, index) {
+                const card = document.createElement(item.sections.length > 0 ? 'button' : 'div');
+                card.className = 'card';
+                card.style.animationDelay = (index * 0.08) + 's';
 
-      let items = [];
-      if (n === 7 || n === 8) items = ['Алгебра', 'Геометрия'];
-      else if (n === 9) items = ['Алгебра', 'Геометрия', 'Экзамен'];
-      else if (n === 10) items = ['Алгебра', 'Геометрия'];
-      else if (n === 11) items = ['Алгебра', 'Геометрия', 'ЦЭ / ЦТ'];
+                if (item.sections.length > 0) card.classList.add('is-clickable');
 
-      const pathMap = {
-        7: {
-          'Алгебра': 'class7/algebra/class7alg.html',
-          'Геометрия': 'class7/geometry/class7geom.html'
-        },
-        8: {
-          'Алгебра': 'class8/algebra/class8alg.html',
-          'Геометрия': 'class8/geometry/class8geom.html'
-        },
-        9: {
-          'Алгебра': 'class9/algebra/class9alg.html',
-          'Геометрия': 'class9/geometry/class9geom.html',
-          'Экзамен': 'class9/exam/exam.html'
-        },
-        10: {
-          'Алгебра': 'class10/algebra/class10alg.html',
-          'Геометрия': 'class10/geometry/class10geom.html'
-        },
-        11: {
-          'Алгебра': 'class11/algebra/class11alg.html',
-          'Геометрия': 'class11/geometry/class11geom.html',
-          'ЦЭ / ЦТ': 'class11/CTandCE/CTandCE.html'
-        }
-      };
+                const uniqueLetter = getUniqueSymbol();
 
-      items.forEach(item => {
-        const option = document.createElement('div');
-        option.className = 'option';
+                let tagsHTML = '';
+                if (item.sections.length > 0) {
+                    tagsHTML = `<div class="card-tags">
+                        ${item.sections.map(s => `<span class="card-tag">${escapeHTML(s.name)}</span>`).join('')}
+                    </div>`;
+                }
 
-        if (item === 'Геометрия') {
-          option.classList.add('option-geometry');
-        }
+                let sectionsHTML = item.sections.map((sec, idx) => `
+                    <a href="${escapeHTML(sec.link)}" class="inner-section-btn">
+                        <div class="sec-name">
+                            <span class="sec-index">0${idx + 1}</span>
+                            <span>${escapeHTML(sec.name)}</span>
+                        </div>
+                        <span class="arrow">→</span>
+                    </a>
+                `).join('');
 
-        if (n === 11 && item === 'ЦЭ / ЦТ') {
-          option.classList.add('option-champion-gold');
-          option.innerHTML = `<span class="stars"></span> ${item} <span class="stars"></span>`;
-        } else if (n === 9 && item === 'Экзамен') {
-          option.classList.add('option-exam');
-          option.textContent = item;
-        } else {
-          option.textContent = item;
-        }
+                card.innerHTML = `
+                    <div class="card-default">
+                        <div class="card-header">
+                            <span class="card-math-icon">${uniqueLetter}</span>
+                        </div>
+                        <h2 class="card-title">${escapeHTML(item.title)}</h2>
+                        <p class="card-text">${escapeHTML(item.text)}</p>
+                        ${tagsHTML}
+                    </div>
+                    <div class="card-expanded" data-count="${item.sections.length}">
+                        <div class="expanded-header">
+                            <div class="expanded-title">${escapeHTML(item.title)}</div>
+                            <button class="btn-close-circle" aria-label="Закрыть">✕</button>
+                        </div>
+                        <div class="expanded-sections">
+                            ${sectionsHTML}
+                        </div>
+                    </div>
+                `;
 
-        option.addEventListener('click', () => {
-          overlay.classList.remove('active');
-          const path = pathMap[n]?.[item];
-          if (path) {
-            window.location.href = path;
-          } else {
-            alert(`Страница для ${n} класса, предмет "${item}" ещё не создана.`);
-          }
-        });
+                if (item.sections.length > 0) {
+                    card.addEventListener('click', (e) => {
+                        if (e.target.closest('a') || e.target.closest('.btn-close-circle')) return;
+                        
+                        document.querySelectorAll('.card.is-expanded').forEach(c => {
+                            if (c !== card) c.classList.remove('is-expanded');
+                        });
+                        
+                        card.classList.toggle('is-expanded');
+                    });
 
-        optionsContainer.appendChild(option);
-      });
-    }
+                    card.querySelector('.btn-close-circle').addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        card.classList.remove('is-expanded');
+                    });
+                }
 
-    overlay.addEventListener('click', (e) => {
-      if (e.target === overlay) {
-        overlay.classList.remove('active');
-      }
-    });
+                return card;
+            }
 
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && overlay.classList.contains('active')) {
-        overlay.classList.remove('active');
-      }
-    });
+            async function loadCatalog() {
+                const container = document.getElementById('cards-grid');
+                
+                if (window.location.protocol === 'file:') {
+                    container.innerHTML = '<div class="status-message">ERROR: USE LIVE SERVER</div>';
+                    return;
+                }
 
-    function scrollToClasses() {
-      document.getElementById('grid').scrollIntoView({ behavior: 'smooth' });
-    }
-  </script>
+                try {
+                    const response = await fetch(CSV_URL);
+                    if (!response.ok) throw new Error('HTTP ' + response.status);
+                    const text = await response.text();
+                    const rows = parseCSV(text);
+
+                    const items = rows.slice(1).map(row => {
+                        const active = (row[13] || '').toUpperCase();
+                        if (active !== 'TRUE' && active !== '1' && active !== 'ИСТИНА' && active !== 'ДА') return null;
+
+                        const sections = [];
+                        for (let i = 3; i <= 11; i += 2) {
+                            if (row[i+1] && row[i+1].trim()) {
+                                sections.push({ name: row[i] || 'Раздел', link: row[i+1].trim() });
+                            }
+                        }
+
+                        return { title: row[1] || '', text: row[2] || '', sections: sections };
+                    }).filter(i => i !== null);
+
+                    if (items.length === 0) {
+                        container.innerHTML = '<div class="status-message">NO ACTIVE MODULES FOUND</div>';
+                        return;
+                    }
+
+                    resetSymbols();
+                    container.innerHTML = '';
+                    items.forEach((item, index) => {
+                        container.appendChild(createCardElement(item, index));
+                    });
+
+                } catch (error) {
+                    console.error(error);
+                    container.innerHTML = '<div class="status-message">DATA SYNC ERROR</div>';
+                }
+            }
+
+            document.addEventListener('DOMContentLoaded', () => {
+                canvas.style.opacity = 0;
+                initThemeSwitcher();
+                loadCatalog();
+            });
+            
+        })();
+    </script>
 </body>
 </html>
