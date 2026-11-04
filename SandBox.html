@@ -61,7 +61,11 @@
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
         
-        html { background-color: var(--bg); scroll-behavior: smooth; transition: background-color 0.8s ease; }
+        html { 
+            background-color: var(--bg); 
+            scroll-behavior: smooth; 
+            transition: background-color 0.8s ease; 
+        }
 
         body {
             background-color: var(--bg);
@@ -75,13 +79,16 @@
             position: relative;
             overflow-x: hidden;
             transition: background-color 0.8s ease;
+            width: 100%;
         }
 
         body::before, body::after {
             content: '';
             position: absolute;
-            width: 700px;
-            height: 700px;
+            width: 100vw;
+            height: 100vw;
+            max-width: 700px;
+            max-height: 700px;
             border-radius: 50%;
             filter: blur(150px);
             z-index: -1;
@@ -89,8 +96,8 @@
             pointer-events: none;
             transition: background 0.8s ease;
         }
-        body::before { top: -250px; left: -250px; background: var(--accent); }
-        body::after { bottom: -250px; right: -250px; background: var(--accent-light); opacity: 0.05; }
+        body::before { top: -20vw; left: -20vw; background: var(--accent); }
+        body::after { bottom: -20vw; right: -20vw; background: var(--accent-light); opacity: 0.05; }
 
         a { color: inherit; text-decoration: none; }
 
@@ -124,7 +131,7 @@
             color: var(--accent); 
             font-weight: 500;
             text-shadow: 0 0 20px var(--accent-glow);
-            transition: color 0.8s ease;
+            transition: color 0.8s ease, text-shadow 0.8s ease;
         }
 
         .header-right {
@@ -140,6 +147,8 @@
             border-radius: 20px;
             padding: 4px;
             gap: 2px;
+            flex-wrap: wrap;
+            transition: border-color 0.8s ease;
         }
 
         .theme-btn {
@@ -152,7 +161,7 @@
             padding: 6px 12px;
             border-radius: 16px;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: background-color 0.8s ease, color 0.8s ease, box-shadow 0.8s ease;
         }
 
         .theme-btn:hover { color: var(--text); }
@@ -181,6 +190,7 @@
             grid-template-columns: 1fr;
             gap: 24px;
             overflow: hidden; 
+            transition: border-color 0.8s ease;
         }
 
         .season-particles {
@@ -188,6 +198,7 @@
             inset: 0;
             pointer-events: none;
             z-index: 0;
+            transition: opacity 0.4s ease;
         }
 
         #spring-canvas {
@@ -197,6 +208,7 @@
             height: 100%;
             z-index: 0;
             pointer-events: none;
+            transition: opacity 0.4s ease;
         }
 
         .hero-top {
@@ -210,7 +222,7 @@
 
         .hero-title {
             font-family: var(--font-display);
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-size: clamp(2rem, 6vw, 4.5rem);
             font-weight: 800;
             line-height: 1.1;
             letter-spacing: -0.03em;
@@ -254,7 +266,7 @@
             padding-left: 16px;
             border-left: 2px solid var(--accent);
             text-shadow: 0 0 15px var(--accent-glow);
-            transition: all 0.8s ease;
+            transition: color 0.8s ease, border-color 0.8s ease, text-shadow 0.8s ease;
         }
 
         .hero-desc {
@@ -271,9 +283,11 @@
             position: absolute;
             z-index: 0;
             pointer-events: none;
+            opacity: 0;
+            animation-fill-mode: both;
         }
 
-        /* --- ОСЕНЬ: РЕАЛИСТИЧНЫЕ ЛИСТЬЯ (SVG) --- */
+        /* --- ОСЕНЬ --- */
         .p-autumn { 
             width: 24px; height: 24px; 
             background-size: contain;
@@ -281,23 +295,10 @@
             background-position: center;
             top: -30px;
             animation: fall-and-spin linear infinite;
-            opacity: 0.8;
         }
-        
-        /* Кленовый лист (Красный) */
-        .p-autumn:nth-child(3n+1) { 
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50,5 L65,35 L95,35 L75,60 L85,90 L50,75 L15,90 L25,60 L5,35 L35,35 Z" fill="%23DC2626"/><path d="M50,5 L50,75 M65,35 L35,60 M35,35 L65,60" stroke="%237f1d1d" stroke-width="2" fill="none"/></svg>');
-        }
-        /* Дубовый лист (Оранжевый) */
-        .p-autumn:nth-child(3n+2) { 
-            width: 28px; height: 28px;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50,5 C60,20 75,20 75,35 C85,40 85,60 75,70 C85,85 60,95 50,95 C40,95 15,85 25,70 C15,60 15,40 25,35 C25,20 40,20 50,5 Z" fill="%23D97706"/><path d="M50,5 L50,95 M50,35 L70,25 M50,55 L75,45 M50,55 L25,45 M50,75 L65,65 M50,75 L35,65" stroke="%2392400e" stroke-width="2" fill="none"/></svg>');
-        }
-        /* Березовый лист (Желтый) */
-        .p-autumn:nth-child(3n+3) { 
-            width: 20px; height: 20px;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50,5 C85,25 95,60 50,95 C5,60 15,25 50,5 Z" fill="%23FBBF24"/><path d="M50,10 L50,90 M50,30 L75,45 M50,30 L25,45 M50,55 L70,70 M50,55 L30,70" stroke="%23D97706" stroke-width="2" fill="none"/></svg>');
-        }
+        .p-autumn:nth-child(3n+1) { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50,5 L65,35 L95,35 L75,60 L85,90 L50,75 L15,90 L25,60 L5,35 L35,35 Z" fill="%23DC2626"/><path d="M50,5 L50,75 M65,35 L35,60 M35,35 L65,60" stroke="%237f1d1d" stroke-width="2" fill="none"/></svg>'); }
+        .p-autumn:nth-child(3n+2) { width: 28px; height: 28px; background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50,5 C60,20 75,20 75,35 C85,40 85,60 75,70 C85,85 60,95 50,95 C40,95 15,85 25,70 C15,60 15,40 25,35 C25,20 40,20 50,5 Z" fill="%23D97706"/><path d="M50,5 L50,95 M50,35 L70,25 M50,55 L75,45 M50,55 L25,45 M50,75 L65,65 M50,75 L35,65" stroke="%2392400e" stroke-width="2" fill="none"/></svg>'); }
+        .p-autumn:nth-child(3n+3) { width: 20px; height: 20px; background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50,5 C85,25 95,60 50,95 C5,60 15,25 50,5 Z" fill="%23FBBF24"/><path d="M50,10 L50,90 M50,30 L75,45 M50,30 L25,45 M50,55 L70,70 M50,55 L30,70" stroke="%23D97706" stroke-width="2" fill="none"/></svg>'); }
 
         @keyframes fall-and-spin {
             0% { transform: translateY(-10px) translateX(0) rotate(0deg) rotateX(0deg); opacity: 0; }
@@ -307,7 +308,7 @@
             100% { transform: translateY(450px) translateX(-20px) rotate(360deg) rotateX(0deg); opacity: 0; }
         }
 
-        /* --- ЗИМА: СНЕЖИНКИ --- */
+        /* --- ЗИМА --- */
         .p-winter { 
             width: 4px; height: 4px; 
             border-radius: 50%; 
@@ -319,11 +320,12 @@
         .p-winter:nth-child(even) { width: 6px; height: 6px; opacity: 0.6; }
 
         @keyframes fall {
-            0% { transform: translateY(-10px) translateX(0); opacity: 0.8; }
+            0% { transform: translateY(-10px) translateX(0); opacity: 0; }
+            10% { opacity: 0.8; }
             100% { transform: translateY(400px) translateX(30px); opacity: 0; }
         }
 
-        /* --- ЛЕТО: СВЕТЛЯЧКИ --- */
+        /* --- ЛЕТО --- */
         .p-summer {
             width: 4px; height: 4px;
             border-radius: 50%;
@@ -439,7 +441,7 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             padding: 4px 10px;
             border-radius: 20px;
-            transition: all 0.3s;
+            transition: all 0.8s ease;
         }
 
         .card.is-clickable:hover .card-tag {
@@ -449,7 +451,9 @@
             box-shadow: 0 0 10px var(--accent-glow);
         }
 
-        /* Модалка */
+        /* =========================================
+           МОДАЛКА
+           ========================================= */
         dialog {
             margin: auto;
             background: var(--bg);
@@ -460,10 +464,16 @@
             padding: 0;
             max-width: 500px;
             width: 90%;
+            max-height: 85vh;
             box-shadow: 0 32px 80px rgba(0,0,0,0.9), 0 0 0 1px var(--accent-glow) inset;
         }
 
-        dialog[open] { animation: modal-in 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        dialog[open] { 
+            display: flex; 
+            flex-direction: column;
+            animation: modal-in 0.4s cubic-bezier(0.16, 1, 0.3, 1); 
+        }
+        
         @keyframes modal-in { from { opacity: 0; transform: scale(0.9) translateY(20px); } to { opacity: 1; transform: scale(1) translateY(0); } }
         dialog::backdrop { background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); }
 
@@ -474,6 +484,7 @@
             justify-content: space-between;
             align-items: flex-start;
             background: linear-gradient(180deg, var(--accent-glow) 0%, transparent 100%);
+            flex-shrink: 0;
         }
 
         .dialog-title { font-family: var(--font-display); font-size: 1.6rem; font-weight: 800; }
@@ -487,7 +498,13 @@
         }
         .dialog-close:hover { color: #000; background: var(--accent); border-color: var(--accent); box-shadow: 0 0 15px var(--accent-glow); transform: rotate(90deg); }
 
-        .dialog-mosaic { padding: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+        .dialog-mosaic { 
+            padding: 20px; 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
+            gap: 12px; 
+            overflow-y: auto;
+        }
 
         .section-btn {
             display: flex; align-items: center; justify-content: space-between;
@@ -513,18 +530,34 @@
             color: var(--text-muted); font-family: var(--font-mono); text-transform: uppercase;
         }
 
+        /* =========================================
+           МОБИЛЬНАЯ АДАПТАЦИЯ
+           ========================================= */
         @media (max-width: 900px) {
             .header-right { flex-direction: column; align-items: flex-end; gap: 8px; }
             .header-meta { display: none; }
         }
 
         @media (max-width: 768px) {
+            .frame { padding: 0 16px; }
+            
             header { flex-direction: column; align-items: flex-start; gap: 16px; padding: 20px 0; }
             .header-right { flex-direction: row; align-items: center; width: 100%; justify-content: space-between; }
+            
             .hero-top { flex-direction: column; gap: 16px; align-items: flex-start; }
             .hero-bottom { grid-template-columns: 1fr; gap: 20px; }
-            .cards-grid { grid-template-columns: 1fr; margin-top: 24px; gap: 16px; }
+            
+            .cards-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 24px; }
+            .card { padding: 16px 12px; min-height: 140px; border-radius: 10px; }
+            .card-title { font-size: 1.1rem; margin-bottom: 4px; }
+            .card-text { font-size: 0.75rem; margin-bottom: 12px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+            .card-tag { font-size: 0.55rem; padding: 2px 6px; }
+            .card-math-icon { font-size: 1.5rem; }
+            
             .dialog-mosaic { grid-template-columns: 1fr; }
+            .dialog-header { padding: 16px 20px; }
+            .dialog-title { font-size: 1.3rem; }
+            .section-btn { padding: 14px 16px; font-size: 0.95rem; }
         }
     </style>
 </head>
@@ -595,7 +628,7 @@
             'use strict';
 
             // ==========================================
-            // 1. УНИКАЛЬНЫЕ СТРОЧНЫЕ ГРЕЧЕСКИЕ БУКВЫ
+            // 1. УНИКАЛЬНЫЕ ГРЕЧЕСКИЕ БУКВЫ
             // ==========================================
             const GREEK_LETTERS = [
                 'α', 'β', 'γ', 'δ', 'ε', 'ζ', 'η', 'θ', 'ι', 'κ', 'λ', 'μ', 
@@ -621,7 +654,7 @@
             }
 
             // ==========================================
-            // 2. УМНЫЕ И ПЛАВНЫЕ РЫБКИ
+            // 2. РЕАЛИСТИЧНЫЕ РЫБКИ (STEERING BEHAVIORS)
             // ==========================================
             const canvas = document.getElementById('spring-canvas');
             const ctx = canvas.getContext('2d');
@@ -638,49 +671,66 @@
             }
 
             class Fish {
-                constructor() {
-                    this.x = Math.random() * canvas.width;
-                    this.y = Math.random() * canvas.height;
+                constructor(isSpawning = false) {
+                    // Спавн за пределами экрана (с краев)
+                    if (isSpawning) {
+                        if (Math.random() < 0.5) {
+                            this.x = Math.random() < 0.5 ? -50 : canvas.width + 50;
+                            this.y = Math.random() * canvas.height;
+                        } else {
+                            this.x = Math.random() * canvas.width;
+                            this.y = Math.random() < 0.5 ? -50 : canvas.height + 50;
+                        }
+                    } else {
+                        this.x = Math.random() * canvas.width;
+                        this.y = Math.random() * canvas.height;
+                    }
                     
-                    // Параметры плавного блуждания
-                    this.wanderAngle = Math.random() * Math.PI * 2;
-                    this.maxSpeed = Math.random() * 0.6 + 0.8; // Спокойная скорость
-                    this.maxForce = 0.05; // Плавность поворотов
+                    // Начальный угол - примерно к центру
+                    this.angle = Math.atan2(canvas.height/2 - this.y, canvas.width/2 - this.x);
+                    this.wanderAngle = this.angle;
                     
-                    this.vx = Math.cos(this.wanderAngle) * this.maxSpeed;
-                    this.vy = Math.sin(this.wanderAngle) * this.maxSpeed;
+                    this.maxSpeed = Math.random() * 0.5 + 1.2; // Базовая скорость
+                    this.vx = Math.cos(this.angle) * this.maxSpeed;
+                    this.vy = Math.sin(this.angle) * this.maxSpeed;
                     
                     this.size = Math.random() * 5 + 11;
                     this.hue = 340 + Math.random() * 20;
-                    this.angle = this.wanderAngle;
                     this.tailPhase = Math.random() * Math.PI * 2;
                     this.rippleTimer = 0;
+                    
+                    // Прозрачность для плавного появления
+                    this.opacity = isSpawning ? 0 : 1;
                 }
 
                 update() {
-                    // 1. Плавное блуждание (Wander behavior)
-                    this.wanderAngle += (Math.random() - 0.5) * 0.15; // Плавное изменение курса
+                    // Плавное появление
+                    if (this.opacity < 1) this.opacity += 0.02;
+
+                    // 1. Блуждание (Wander)
+                    this.wanderAngle += (Math.random() - 0.5) * 0.2;
                     let steerX = Math.cos(this.wanderAngle) * this.maxSpeed;
                     let steerY = Math.sin(this.wanderAngle) * this.maxSpeed;
 
-                    // 2. Отталкивание от стенок (плавное)
-                    const margin = 80;
-                    if (this.x < margin) steerX += (margin - this.x) * 0.03;
-                    if (this.x > canvas.width - margin) steerX -= (this.x - (canvas.width - margin)) * 0.03;
-                    if (this.y < margin) steerY += (margin - this.y) * 0.03;
-                    if (this.y > canvas.height - margin) steerY -= (this.y - (canvas.height - margin)) * 0.03;
+                    // 2. Избегание стен (Boundary Avoidance)
+                    const margin = 100;
+                    const turnForce = 0.15;
+                    if (this.x < margin) steerX += (margin - this.x) * turnForce;
+                    if (this.x > canvas.width - margin) steerX -= (this.x - (canvas.width - margin)) * turnForce;
+                    if (this.y < margin) steerY += (margin - this.y) * turnForce;
+                    if (this.y > canvas.height - margin) steerY -= (this.y - (canvas.height - margin)) * turnForce;
 
-                    // 3. Реакция на курсор
+                    // 3. Побег от курсора (Flee)
                     const dx = this.x - mouse.x;
                     const dy = this.y - mouse.y;
                     const dist = Math.sqrt(dx * dx + dy * dy);
                     let isFleeing = false;
 
-                    if (dist < 120) {
+                    if (dist < 150) {
                         isFleeing = true;
-                        const force = (120 - dist) / 120;
-                        steerX += (dx / dist) * force * 0.8;
-                        steerY += (dy / dist) * force * 0.8;
+                        const force = (150 - dist) / 150;
+                        steerX += (dx / dist) * force * 4;
+                        steerY += (dy / dist) * force * 4;
                         
                         this.rippleTimer--;
                         if (this.rippleTimer <= 0) {
@@ -688,7 +738,6 @@
                             this.rippleTimer = 5;
                         }
                     } else {
-                        // Случайные волны при обычном плавании
                         this.rippleTimer--;
                         if (Math.random() < 0.01 && this.rippleTimer <= 0) {
                             ripples.push(new Ripple(this.x, this.y));
@@ -696,43 +745,61 @@
                         }
                     }
 
-                    // 4. Применение рулевой силы (плавное ускорение к цели)
-                    let ax = steerX - this.vx;
-                    let ay = steerY - this.vy;
-                    let aMag = Math.sqrt(ax * ax + ay * ay);
-                    if (aMag > this.maxForce) {
-                        ax = (ax / aMag) * this.maxForce;
-                        ay = (ay / aMag) * this.maxForce;
+                    // 4. Расчет целевого вектора
+                    let desiredX = this.vx + steerX;
+                    let desiredY = this.vy + steerY;
+                    let desiredMag = Math.sqrt(desiredX * desiredX + desiredY * desiredY);
+                    
+                    let targetSpeed = isFleeing ? this.maxSpeed * 2.5 : this.maxSpeed;
+                    
+                    if (desiredMag > 0) {
+                        desiredX = (desiredX / desiredMag) * targetSpeed;
+                        desiredY = (desiredY / desiredMag) * targetSpeed;
                     }
-                    this.vx += ax;
-                    this.vy += ay;
 
-                    // 5. Ограничение скорости (при испуге рыба плывет быстрее)
-                    let speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
-                    let currentMax = isFleeing ? 3.5 : this.maxSpeed;
-                    if (speed > currentMax) {
-                        this.vx = (this.vx / speed) * currentMax;
-                        this.vy = (this.vy / speed) * currentMax;
+                    // 5. Плавный поворот (Ограничение угловой скорости)
+                    let desiredAngle = Math.atan2(desiredY, desiredX);
+                    let angleDiff = desiredAngle - this.angle;
+                    
+                    // Нормализация угла от -PI до PI
+                    while (angleDiff > Math.PI) angleDiff -= Math.PI * 2;
+                    while (angleDiff < -Math.PI) angleDiff += Math.PI * 2;
+
+                    // Реалистичная скорость поворота (рыбы не могут развернуться мгновенно)
+                    let turnRate = isFleeing ? 0.15 : 0.05;
+                    this.angle += angleDiff * turnRate;
+
+                    // 6. Обновление скорости с инерцией
+                    let currentSpeed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
+                    if (currentSpeed < targetSpeed) {
+                        currentSpeed += 0.05; // Ускорение
+                    } else {
+                        currentSpeed -= 0.02; // Замедление
                     }
+                    if (currentSpeed > targetSpeed) currentSpeed = targetSpeed;
+                    if (currentSpeed < 0.5) currentSpeed = 0.5; // Минимальная скорость, чтобы не замирали
+
+                    this.vx = Math.cos(this.angle) * currentSpeed;
+                    this.vy = Math.sin(this.angle) * currentSpeed;
 
                     this.x += this.vx;
                     this.y += this.vy;
-                    this.angle = Math.atan2(this.vy, this.vx);
 
-                    // Скорость виляния хвостом зависит от скорости плавания
-                    this.tailPhase += 0.1 + speed * 0.3;
+                    // Виляние хвостом зависит от скорости
+                    this.tailPhase += 0.15 + currentSpeed * 0.3;
                 }
 
                 draw() {
                     ctx.save();
+                    ctx.globalAlpha = this.opacity;
                     ctx.translate(this.x, this.y);
                     ctx.rotate(this.angle);
 
                     const L = this.size;
                     const H = this.size * 0.32;
-                    const tailWag = Math.sin(this.tailPhase) * 0.5;
+                    const tailWag = Math.sin(this.tailPhase) * 0.6;
 
-                    // Хвост-вилка
+                    // Хвост
                     ctx.save();
                     ctx.translate(-L * 0.65, 0);
                     ctx.rotate(tailWag);
@@ -753,7 +820,7 @@
                     ctx.stroke();
                     ctx.restore();
 
-                    // Спинной плавник
+                    // Плавники
                     ctx.fillStyle = `hsla(${this.hue}, 80%, 80%, 0.5)`;
                     ctx.beginPath();
                     ctx.moveTo(-L * 0.05, -H * 0.95);
@@ -762,7 +829,6 @@
                     ctx.closePath();
                     ctx.fill();
 
-                    // Брюшной плавник
                     ctx.beginPath();
                     ctx.moveTo(-L * 0.15, H * 0.85);
                     ctx.quadraticCurveTo(-L * 0.25, H * 1.7, -L * 0.45, H * 0.5);
@@ -785,7 +851,7 @@
                     ctx.closePath();
                     ctx.fill();
 
-                    // Грудной плавник
+                    // Боковой плавник
                     ctx.save();
                     ctx.translate(L * 0.15, H * 0.35);
                     ctx.rotate(0.4 + Math.sin(this.tailPhase * 0.7) * 0.15);
@@ -845,8 +911,9 @@
                 resizeCanvas();
                 fishArray = [];
                 ripples = [];
+                // Создаем рыбок со спавном с краев
                 for (let i = 0; i < 9; i++) {
-                    fishArray.push(new Fish());
+                    fishArray.push(new Fish(true));
                 }
                 canvasActive = true;
                 animateSpring();
@@ -858,6 +925,15 @@
                     mouse.y = e.clientY - rect.top;
                 });
                 canvas.parentElement.addEventListener('mouseleave', () => {
+                    mouse.x = -1000;
+                    mouse.y = -1000;
+                });
+                canvas.parentElement.addEventListener('touchmove', (e) => {
+                    const rect = canvas.getBoundingClientRect();
+                    mouse.x = e.touches[0].clientX - rect.left;
+                    mouse.y = e.touches[0].clientY - rect.top;
+                }, {passive: true});
+                canvas.parentElement.addEventListener('touchend', () => {
                     mouse.x = -1000;
                     mouse.y = -1000;
                 });
@@ -881,7 +957,7 @@
             }
 
             // ==========================================
-            // 3. СЕЗОНЫ И ПЕРЕКЛЮЧАТЕЛЬ
+            // 3. СЕЗОНЫ (ПЛАВНЫЙ ПЕРЕХОД)
             // ==========================================
             function getCurrentSeason() {
                 const month = new Date().getMonth();
@@ -895,52 +971,61 @@
                 const container = document.getElementById('particles-container');
                 const body = document.body;
 
-                container.innerHTML = '';
+                // Плавное затухание
+                container.style.opacity = 0;
                 stopSpringCanvas();
-                canvas.style.display = 'none';
+                canvas.style.opacity = 0;
                 
-                body.className = ''; 
-                if (body.classList.contains('modal-open')) body.classList.add('modal-open');
+                setTimeout(() => {
+                    container.innerHTML = '';
+                    body.className = ''; 
+                    if (body.classList.contains('modal-open')) body.classList.add('modal-open');
 
-                let activeSeason = themeName === 'auto' ? getCurrentSeason() : themeName;
-                body.classList.add('season-' + activeSeason);
+                    let activeSeason = themeName === 'auto' ? getCurrentSeason() : themeName;
+                    body.classList.add('season-' + activeSeason);
 
-                document.querySelectorAll('.theme-btn').forEach(btn => {
-                    btn.classList.toggle('active', btn.dataset.theme === themeName);
-                });
+                    document.querySelectorAll('.theme-btn').forEach(btn => {
+                        btn.classList.toggle('active', btn.dataset.theme === themeName);
+                    });
 
-                if (activeSeason === 'spring') {
-                    canvas.style.display = 'block';
-                    initSpringCanvas();
-                } else {
-                    let particleCount = 25; 
-                    for (let i = 0; i < particleCount; i++) {
-                        const p = document.createElement('div');
-                        p.className = 'particle p-' + activeSeason;
-                        
-                        if (activeSeason === 'summer') {
-                            p.style.left = (Math.random() * 90) + '%';
-                            p.style.top = (Math.random() * 90) + '%';
-                        } else {
-                            p.style.left = Math.random() * 100 + '%';
-                            p.style.top = '-20px';
+                    if (activeSeason === 'spring') {
+                        canvas.style.display = 'block';
+                        canvas.style.opacity = 1;
+                        initSpringCanvas();
+                    } else {
+                        canvas.style.display = 'none';
+                        let particleCount = 25; 
+                        for (let i = 0; i < particleCount; i++) {
+                            const p = document.createElement('div');
+                            p.className = 'particle p-' + activeSeason;
+                            
+                            if (activeSeason === 'summer') {
+                                p.style.left = (Math.random() * 90) + '%';
+                                p.style.top = (Math.random() * 90) + '%';
+                            } else {
+                                p.style.left = Math.random() * 100 + '%';
+                                p.style.top = '-20px';
+                            }
+                            
+                            let duration;
+                            if (activeSeason === 'autumn') duration = (Math.random() * 5 + 6) + 's'; 
+                            if (activeSeason === 'winter') duration = (Math.random() * 5 + 6) + 's'; 
+                            if (activeSeason === 'summer') duration = (Math.random() * 5 + 5) + 's'; 
+                            
+                            p.style.animationDuration = duration;
+                            p.style.animationDelay = (Math.random() * 5) + 's';
+                            
+                            if (activeSeason !== 'autumn') {
+                                p.style.transform = `scale(${Math.random() * 0.5 + 0.8})`;
+                            }
+                            
+                            container.appendChild(p);
                         }
-                        
-                        let duration;
-                        if (activeSeason === 'autumn') duration = (Math.random() * 5 + 6) + 's'; 
-                        if (activeSeason === 'winter') duration = (Math.random() * 5 + 6) + 's'; 
-                        if (activeSeason === 'summer') duration = (Math.random() * 5 + 5) + 's'; 
-                        
-                        p.style.animationDuration = duration;
-                        p.style.animationDelay = (Math.random() * 5) + 's';
-                        
-                        if (activeSeason !== 'autumn') {
-                            p.style.transform = `scale(${Math.random() * 0.5 + 0.8})`;
-                        }
-                        
-                        container.appendChild(p);
                     }
-                }
+                    
+                    // Плавное появление
+                    container.style.opacity = 1;
+                }, 400); 
             }
 
             function initThemeSwitcher() {
@@ -1097,6 +1182,7 @@
             }
 
             document.addEventListener('DOMContentLoaded', () => {
+                canvas.style.opacity = 0;
                 initThemeSwitcher();
                 loadCatalog();
             });
