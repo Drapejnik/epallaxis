@@ -3,24 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Алгебра 9 класс — EPALLAXIS</title>
-    <link rel="icon" type="image/png" href="../../icon.png">
+    <title>Одночлены — 7 класс | EPALLAXIS</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Manrope:wght@500;700;800&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body,{delimiters:[{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});"></script>
+
     <style>
         /* --- СЕЗОННЫЕ ПЕРЕМЕННЫЕ --- */
         :root {
-            --bg: #0A0705; 
-            --surface: linear-gradient(145deg, #1C1510 0%, #110B07 100%);
+            --bg: #0A0705;
+            --surface: linear-gradient(145deg, #291E17 0%, #140E0A 100%);
             --surface-solid: #1C140F;
-            --surface-hover: linear-gradient(145deg, #291E17 0%, #140E0A 100%);
+            --surface-hover: linear-gradient(145deg, #382920 0%, #1C140F 100%);
             --text: #FFFFFF;
-            --text-muted: #C0B8B0; 
-            --accent: #FF8A00; 
+            --text-muted: #C0B8B0;
+            --accent: #FF8A00;
             --accent-glow: rgba(255, 138, 0, 0.3);
+            --accent-light: #FFD166;
             --border: rgba(255, 255, 255, 0.08);
-            
+            --border-hover: rgba(255, 138, 0, 0.7);
             --font-sans: 'Inter', sans-serif;
             --font-display: 'Manrope', sans-serif;
             --font-mono: 'JetBrains Mono', monospace;
@@ -28,55 +33,60 @@
 
         body.season-winter {
             --bg: #080C14;
-            --surface: linear-gradient(145deg, #101724 0%, #070B12 100%);
+            --surface: linear-gradient(145deg, #131C2E 0%, #0A101D 100%);
             --surface-solid: #0A101D;
-            --surface-hover: linear-gradient(145deg, #131C2E 0%, #0A101D 100%);
+            --surface-hover: linear-gradient(145deg, #1C283D 0%, #111827 100%);
             --text-muted: #9CA3AF;
-            --accent: #3B82F6; 
+            --accent: #3B82F6;
             --accent-glow: rgba(59, 130, 246, 0.3);
+            --accent-light: #93C5FD;
+            --border-hover: rgba(59, 130, 246, 0.7);
         }
-
         body.season-spring {
-            --bg: #0C0A0B; 
-            --surface: linear-gradient(145deg, #1C1316 0%, #0F0A0C 100%);
+            --bg: #0C0A0B;
+            --surface: linear-gradient(145deg, #241A1D 0%, #140E10 100%);
             --surface-solid: #140E10;
-            --surface-hover: linear-gradient(145deg, #241A1D 0%, #140E10 100%);
-            --text-muted: #D1C4C7; 
-            --accent: #FFB7C5; 
+            --surface-hover: linear-gradient(145deg, #332529 0%, #1A1214 100%);
+            --text-muted: #D1C4C7;
+            --accent: #FFB7C5;
             --accent-glow: rgba(255, 183, 197, 0.3);
+            --accent-light: #FFE4E1;
+            --border-hover: rgba(255, 183, 197, 0.7);
         }
-
         body.season-summer {
             --bg: #060A08;
-            --surface: linear-gradient(145deg, #0D1812 0%, #060B08 100%);
+            --surface: linear-gradient(145deg, #13221A 0%, #0B140F 100%);
             --surface-solid: #0B140F;
-            --surface-hover: linear-gradient(145deg, #13221A 0%, #0B140F 100%);
+            --surface-hover: linear-gradient(145deg, #1A2E23 0%, #0F1C15 100%);
             --text-muted: #9CA3AF;
-            --accent: #10B981; 
+            --accent: #10B981;
             --accent-glow: rgba(16, 185, 129, 0.3);
+            --accent-light: #6EE7B7;
+            --border-hover: rgba(16, 185, 129, 0.7);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        html { scroll-behavior: smooth; }
-        
-        html, body { 
-            background-color: var(--bg); 
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html, body {
+            background-color: var(--bg);
+            scroll-behavior: smooth;
+            transition: background-color 0.3s ease;
+            width: 100%; max-width: 100%;
+            overflow-x: clip; margin: 0; padding: 0;
+        }
+        body {
             color: var(--text);
             font-family: var(--font-sans);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
             min-height: 100vh;
-            width: 100%;
-            max-width: 100vw;
-            /* Защита от горизонтального скролла */
-            overflow-x: clip; 
-            transition: background-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            position: relative;
         }
-
-        /* Фоновые свечения */
         body::before, body::after {
             content: '';
             position: fixed;
-            width: 100vmax;
-            height: 100vmax;
+            width: 100vmax; height: 100vmax;
             border-radius: 50%;
             filter: blur(150px);
             z-index: -1;
@@ -85,770 +95,1191 @@
             transition: background 0.3s ease;
         }
         body::before { top: -50vmax; left: -50vmax; background: var(--accent); }
-        body::after { bottom: -50vmax; right: -50vmax; background: var(--text); opacity: 0.03; }
+        body::after { bottom: -50vmax; right: -50vmax; background: var(--accent-light); opacity: 0.05; }
 
         a { color: inherit; text-decoration: none; }
 
-        /* --- ШАПКА --- */
-        header {
-            position: sticky; top: 0; z-index: 100;
-            background: rgba(10, 7, 5, 0.6);
-            backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-            border-bottom: 1px solid var(--border);
-            padding: 20px 24px;
-            transition: border-color 0.3s ease;
-        }
-
-        .header-row {
-            max-width: 1400px; /* Расширено */
+        .frame {
+            max-width: 1200px;
             margin: 0 auto;
+            padding: 0 24px;
+            width: 100%;
+            flex-grow: 1;
             display: flex;
-            align-items: center;
-            justify-content: space-between;
+            flex-direction: column;
         }
 
-        .brand h1 {
+        header {
+            padding: 24px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            gap: 24px;
+        }
+        .brand {
             font-family: var(--font-display);
-            font-size: clamp(20px, 4vw, 24px);
+            font-size: 1.2rem;
             font-weight: 800;
             letter-spacing: 0.05em;
-            line-height: 1.1;
             text-transform: uppercase;
         }
-        .brand h1 span {
+        .brand span {
             color: var(--accent);
             font-weight: 500;
             text-shadow: 0 0 20px var(--accent-glow);
             transition: color 0.3s ease, text-shadow 0.3s ease;
         }
-        .brand p {
-            font-family: var(--font-mono);
-            font-size: clamp(10px, 1.5vw, 12px);
-            color: var(--text-muted);
-            margin-top: 4px;
-            text-transform: uppercase;
-        }
+        .header-right { display: flex; align-items: center; gap: 24px; }
 
-        .progress-bar {
-            max-width: 1400px; /* Расширено */
-            margin: 16px auto 0;
-            height: 4px;
-            background: var(--surface-solid);
-            border-radius: 20px;
-            overflow: hidden;
+        .theme-switcher {
+            display: flex;
+            background: rgba(255, 255, 255, 0.03);
             border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 4px;
+            gap: 2px;
+            flex-wrap: wrap;
+            transition: border-color 0.3s ease;
         }
-        .progress-bar .fill {
-            height: 100%;
-            width: 0%;
+        .theme-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            padding: 6px 12px;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .theme-btn:hover { color: var(--text); }
+        .theme-btn.active {
             background: var(--accent);
-            box-shadow: 0 0 18px var(--accent-glow);
-            transition: width 0.35s ease;
+            color: #000;
+            font-weight: 500;
+            box-shadow: 0 0 10px var(--accent-glow);
         }
 
-        /* --- ЗАГОЛОВОК --- */
-        .page-title {
-            max-width: 1400px; /* Расширено */
-            margin: 40px auto 30px;
-            padding: 0 24px;
+        /* HERO */
+        .hero-editorial {
+            position: relative;
+            padding: 60px 0 40px;
+            border-bottom: 1px solid var(--border);
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            overflow: hidden;
+            transition: border-color 0.3s ease;
         }
-        .page-title h1 {
+        .season-particles {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            transition: opacity 0.2s ease;
+        }
+        #spring-canvas {
+            position: absolute;
+            inset: 0;
+            width: 100%; height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
+        }
+        .hero-top {
+            position: relative; z-index: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding-bottom: 20px;
+            gap: 24px;
+        }
+        .hero-title {
             font-family: var(--font-display);
-            font-size: clamp(32px, 5vw, 46px);
+            font-size: clamp(2rem, 6vw, 4.5rem);
             font-weight: 800;
+            line-height: 1.05;
             letter-spacing: -0.03em;
-            line-height: 1.1;
             text-transform: uppercase;
         }
-        .page-title h1 span {
-            color: var(--accent);
-            transition: color 0.3s ease;
+        .hero-title span {
+            display: block;
+            font-size: 0.42em;
+            margin-top: 12px;
+            background: linear-gradient(90deg, var(--accent-light), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 40px var(--accent-glow);
+            transition: background 0.3s ease;
         }
-        .page-title p {
-            margin-top: 10px;
-            font-size: 15px;
-            line-height: 1.5;
+        .hero-side-text {
+            position: relative; z-index: 1;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
             color: var(--text-muted);
-            max-width: 600px;
+            max-width: 240px;
+            text-align: right;
+            line-height: 1.6;
+            text-transform: uppercase;
+        }
+        .hero-bottom {
+            position: relative; z-index: 1;
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        .greek-quote {
+            font-size: 1rem;
+            font-style: italic;
+            color: var(--accent);
+            padding-left: 16px;
+            border-left: 2px solid var(--accent);
+            text-shadow: 0 0 15px var(--accent-glow);
+            transition: color 0.3s ease, border-color 0.3s ease, text-shadow 0.3s ease;
+        }
+        .hero-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            max-width: 640px;
+            line-height: 1.6;
         }
 
-        /* --- ROADMAP --- */
-        .roadmap {
-            max-width: 1400px; /* Расширено */
-            margin: 0 auto 50px;
-            padding: 0 24px;
-            position: relative;
+        /* ЧАСТИЦЫ */
+        .particle { position: absolute; z-index: 0; pointer-events: none; opacity: 0; animation-fill-mode: both; }
+
+        .p-autumn {
+            width: 24px; height: 24px;
+            background-size: contain; background-repeat: no-repeat; background-position: center;
+            top: -30px;
+            animation: fall-and-spin linear infinite;
+        }
+        .p-autumn:nth-child(3n+1) { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50,5 L65,35 L95,35 L75,60 L85,90 L50,75 L15,90 L25,60 L5,35 L35,35 Z" fill="%23DC2626"/><path d="M50,5 L50,75 M65,35 L35,60 M35,35 L65,60" stroke="%237f1d1d" stroke-width="2" fill="none"/></svg>'); }
+        .p-autumn:nth-child(3n+2) { width: 28px; height: 28px; background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50,5 C60,20 75,20 75,35 C85,40 85,60 75,70 C85,85 60,95 50,95 C40,95 15,85 25,70 C15,60 15,40 25,35 C25,20 40,20 50,5 Z" fill="%23D97706"/><path d="M50,5 L50,95 M50,35 L70,25 M50,55 L75,45 M50,55 L25,45 M50,75 L65,65 M50,75 L35,65" stroke="%2392400e" stroke-width="2" fill="none"/></svg>'); }
+        .p-autumn:nth-child(3n+3) { width: 20px; height: 20px; background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50,5 C85,25 95,60 50,95 C5,60 15,25 50,5 Z" fill="%23FBBF24"/><path d="M50,10 L50,90 M50,30 L75,45 M50,30 L25,45 M50,55 L70,70 M50,55 L30,70" stroke="%23D97706" stroke-width="2" fill="none"/></svg>'); }
+
+        @keyframes fall-and-spin {
+            0% { transform: translateY(-10px) translateX(0) rotate(0deg) rotateX(0deg); opacity: 0; }
+            10% { opacity: 0.9; }
+            50% { transform: translateY(200px) translateX(40px) rotate(180deg) rotateX(60deg); }
+            90% { opacity: 0.9; }
+            100% { transform: translateY(450px) translateX(-20px) rotate(360deg) rotateX(0deg); opacity: 0; }
         }
 
-        .roadmap-line {
-            position: absolute;
-            left: 42px;
+        .p-winter {
+            width: 4px; height: 4px; border-radius: 50%;
+            background-color: #FFF; box-shadow: 0 0 6px #FFF; top: -20px;
+            animation: fall linear infinite;
+        }
+        .p-winter:nth-child(even) { width: 6px; height: 6px; opacity: 0.6; }
+        @keyframes fall {
+            0% { transform: translateY(-10px) translateX(0); opacity: 0; }
+            10% { opacity: 0.8; }
+            100% { transform: translateY(400px) translateX(30px); opacity: 0; }
+        }
+
+        .p-summer {
+            width: 4px; height: 4px; border-radius: 50%;
+            background: #FDE047;
+            box-shadow: 0 0 12px 2px #EAB308, 0 0 20px 4px rgba(234, 179, 8, 0.4);
+            animation: float-firefly linear infinite;
+        }
+        .p-summer:nth-child(even) { width: 3px; height: 3px; }
+        .p-summer:nth-child(3n) { width: 5px; height: 5px; background: #FEF08A; }
+        @keyframes float-firefly {
+            0% { transform: translate(0, 0) scale(0.8); opacity: 0; }
+            20% { opacity: 1; }
+            50% { transform: translate(30px, -40px) scale(1.2); opacity: 0.6; }
+            80% { opacity: 0.8; }
+            100% { transform: translate(-20px, -100px) scale(0.8); opacity: 0; }
+        }
+
+        /* NAVIGATION */
+        .section-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
             top: 0;
-            bottom: 0;
-            width: 2px;
-            background: var(--surface-solid);
-            border-radius: 10px;
-            overflow: hidden;
-        }
-        .roadmap-line .fill {
-            position: absolute;
-            left: 0; top: 0; width: 100%; height: 0%;
-            background: var(--accent);
-            box-shadow: 0 0 18px var(--accent-glow);
-            transition: height 0.5s ease;
-        }
-
-        .roadmap-item {
-            position: relative;
-            padding-left: 80px;
-            padding-bottom: 32px;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-        .roadmap-item.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .roadmap-marker {
-            position: absolute;
-            left: 42px;
-            top: 36px;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
             background: var(--bg);
-            border: 3px solid var(--border);
-            transform: translateX(-50%);
-            transition: all 0.35s ease;
-            z-index: 2;
+            z-index: 20;
+            transition: background 0.3s ease, border-color 0.3s ease;
         }
-        .roadmap-item.active .roadmap-marker {
-            background: var(--accent);
+        .section-nav a {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            padding: 6px 12px;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            transition: all 0.2s;
+            letter-spacing: 0.05em;
+        }
+        .section-nav a:hover {
+            color: var(--text);
             border-color: var(--accent);
-            box-shadow: 0 0 25px var(--accent-glow);
+            background: rgba(255, 138, 0, 0.08);
         }
 
-        .roadmap-card {
-            position: relative;
+        /* THEORY */
+        .theory {
+            padding: 32px 0 48px;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+        .theory-block {
             background: var(--surface);
             border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 24px 28px;
-            cursor: pointer;
-            transition: all 0.35s ease;
-            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.8);
-            overflow: hidden;
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.8);
+            scroll-margin-top: 80px;
+            transition: border-color 0.3s ease, background 0.3s ease;
         }
-        .roadmap-card::before {
-            content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
-            background: var(--accent); opacity: 0.3; transition: opacity 0.3s;
-        }
-        .roadmap-card:hover {
-            background: var(--surface-hover);
-            border-color: var(--accent);
-            transform: translateX(6px);
-            box-shadow: 0 15px 40px -10px rgba(0,0,0,0.9), 0 0 25px var(--accent-glow);
-        }
-        .roadmap-card:hover::before { opacity: 1; }
-        .roadmap-card.active {
-            border-color: var(--accent);
-            background: var(--surface-hover);
-            box-shadow: 0 0 25px var(--accent-glow);
-        }
-        .roadmap-card.active::before { opacity: 1; }
-
-        .card-header {
+        .theory-block h2 {
+            font-family: var(--font-display);
+            font-size: clamp(1.4rem, 3vw, 1.9rem);
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            letter-spacing: -0.01em;
             display: flex;
             align-items: center;
-            gap: 16px;
-            position: relative;
-            z-index: 2;
+            gap: 12px;
         }
-        .card-number {
-            font-family: var(--font-mono);
-            font-size: 14px;
-            font-weight: 700;
+        .theory-block h2::before {
+            content: '◆';
             color: var(--accent);
-            min-width: 90px;
-            white-space: nowrap;
+            font-size: 0.7em;
+            text-shadow: 0 0 12px var(--accent-glow);
         }
-        .card-title {
-            flex: 1;
-            min-width: 0; /* Защита от переполнения */
-            font-family: var(--font-display);
-            font-size: clamp(18px, 3vw, 22px);
-            font-weight: 800;
-            line-height: 1.25;
+        .theory-block p, .theory-block li {
+            font-size: 0.98rem;
+            line-height: 1.7;
+            margin-bottom: 12px;
             color: var(--text);
-            word-break: break-word; /* Перенос длинных слов */
         }
-        .card-icon {
-            font-size: 28px;
-            opacity: 0.4;
-            transition: all 0.35s ease;
+        .theory-block ul, .theory-block ol {
+            padding-left: 1.6em;
+            margin-bottom: 12px;
         }
-        .roadmap-card:hover .card-icon {
-            opacity: 1; transform: scale(1.15);
-        }
-        .card-arrow {
-            font-size: 24px;
-            color: var(--accent);
-            opacity: 0.3;
-            transition: all 0.3s ease;
-        }
-        .roadmap-card:hover .card-arrow {
-            opacity: 1; transform: translateX(6px);
-        }
+        .theory-block li { margin-bottom: 6px; }
 
-        .card-text {
-            margin-top: 12px;
-            font-size: 14px;
-            line-height: 1.6;
-            color: var(--text-muted);
+        /* БЛОКИ ТИПА definition/pravilo/note/cheat/error/example */
+        .callout {
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin: 20px 0;
+            border: 1px solid;
             position: relative;
-            z-index: 2;
-            word-break: break-word;
         }
-        .card-count {
-            margin-top: 16px;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 6px 14px;
-            border-radius: 20px;
-            background: rgba(255,255,255,0.03);
-            border: 1px solid var(--border);
-            color: var(--accent);
-            font-family: var(--font-mono);
-            font-size: 12px;
-            font-weight: 500;
-        }
-
-        /* --- МАТЕРИАЛЫ --- */
-        .materials-section {
-            max-width: 1400px; /* Расширено */
-            margin: 0 auto 60px;
-            padding: 0 24px;
-            display: none;
-        }
-        .materials-title {
+        .callout-title {
             font-family: var(--font-display);
-            font-size: 28px;
             font-weight: 800;
-            margin-bottom: 24px;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+        .callout p:last-child, .callout ul:last-child, .callout ol:last-child { margin-bottom: 0; }
+
+        .callout-definition {
+            background: rgba(59, 130, 246, 0.10);
+            border-color: rgba(59, 130, 246, 0.5);
+        }
+        .callout-definition .callout-title { color: #93C5FD; }
+
+        .callout-rule {
+            background: rgba(16, 185, 129, 0.10);
+            border-color: rgba(16, 185, 129, 0.5);
+        }
+        .callout-rule .callout-title { color: #6EE7B7; }
+
+        .callout-note {
+            background: rgba(251, 191, 36, 0.10);
+            border-color: rgba(251, 191, 36, 0.5);
+        }
+        .callout-note .callout-title { color: #FCD34D; }
+
+        .callout-error {
+            background: rgba(239, 68, 68, 0.10);
+            border-color: rgba(239, 68, 68, 0.5);
+        }
+        .callout-error .callout-title { color: #FCA5A5; }
+
+        .callout-cheat {
+            background: rgba(168, 85, 247, 0.10);
+            border-color: rgba(168, 85, 247, 0.5);
+        }
+        .callout-cheat .callout-title { color: #D8B4FE; }
+
+        .callout-example {
+            background: rgba(255, 255, 255, 0.03);
+            border-color: var(--border);
+        }
+        .callout-example .callout-title { color: var(--accent-light); }
+
+        /* TASKS */
+        .section-heading {
+            font-family: var(--font-display);
+            font-size: clamp(1.6rem, 4vw, 2.4rem);
+            font-weight: 800;
             text-transform: uppercase;
             letter-spacing: -0.02em;
-        }
-        .materials-title span { color: var(--accent); }
-
-        .materials-grid {
-            display: grid;
-            /* Карточки будут растягиваться, заполняя всю ширину */
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 16px;
-        }
-
-        .material-card {
-            position: relative;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 20px;
+            margin: 48px 0 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
             display: flex;
             align-items: center;
-            gap: 16px;
-            transition: all 0.3s ease;
-            overflow: hidden;
+            gap: 12px;
         }
-        .material-card::before {
-            content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
-            background: var(--accent); opacity: 0.3; transition: opacity 0.3s;
+        .section-heading::before {
+            content: '◆◆';
+            color: var(--accent);
+            font-size: 0.6em;
+            text-shadow: 0 0 12px var(--accent-glow);
         }
-        .material-card:hover {
-            background: var(--surface-hover);
-            border-color: var(--accent);
-            transform: translateY(-4px);
-            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.8), 0 0 20px var(--accent-glow);
-        }
-        .material-card:hover::before { opacity: 1; }
 
-        .material-icon {
-            font-size: 24px;
-            flex-shrink: 0;
-            opacity: 0.8;
+        .task-block {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px 28px;
+            margin-bottom: 16px;
+            transition: border-color 0.3s ease;
         }
-        .material-info { 
-            flex: 1; 
-            min-width: 0; /* Защита от переполнения */
-        }
-        .material-name {
+        .task-block h3 {
             font-family: var(--font-display);
-            font-size: 16px;
-            font-weight: 700;
-            line-height: 1.35;
-            margin-bottom: 4px;
-            word-break: break-word;
+            font-size: 1.1rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            line-height: 1.3;
         }
-        .material-badge {
+        .task-block h3 .task-num {
+            color: var(--accent);
+            margin-right: 8px;
             font-family: var(--font-mono);
-            font-size: 11px;
+            font-size: 0.9em;
+        }
+        .task-list {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 10px 24px;
+        }
+        .task-list li {
+            font-size: 0.95rem;
+            padding: 6px 0;
+            line-height: 1.6;
+        }
+        .task-list li .item-num {
+            font-family: var(--font-mono);
             color: var(--text-muted);
+            font-size: 0.8em;
+            margin-right: 6px;
+        }
+
+        /* ANSWERS */
+        .answers-wrap {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            margin: 24px 0 80px;
+            overflow: hidden;
+            transition: border-color 0.3s ease;
+        }
+        .answers-wrap summary {
+            padding: 20px 28px;
+            cursor: pointer;
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: 1.05rem;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.2s;
+        }
+        .answers-wrap summary::-webkit-details-marker { display: none; }
+        .answers-wrap summary:hover { background: var(--surface-hover); }
+        .answers-wrap summary::after {
+            content: '▾';
+            color: var(--accent);
+            font-family: var(--font-mono);
+            transition: transform 0.2s;
+        }
+        .answers-wrap[open] summary::after { transform: rotate(180deg); }
+        .answers-body {
+            padding: 8px 28px 28px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .answers-group h3 {
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: 0.95rem;
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            word-break: break-word;
+            margin-bottom: 10px;
+            color: var(--accent-light);
         }
-        .material-arrow {
-            font-size: 20px;
-            color: var(--accent);
-            opacity: 0.3;
-            transition: all 0.3s ease;
+        .answers-group p {
+            font-size: 0.92rem;
+            line-height: 1.8;
+            color: var(--text);
         }
-        .material-card:hover .material-arrow {
-            opacity: 1; transform: translateX(4px);
+        .answers-group p .ans-num {
+            font-family: var(--font-mono);
+            color: var(--text-muted);
+            margin-right: 4px;
         }
 
-        /* --- ЗАГРУЗКА И СООБЩЕНИЯ --- */
-        .msg {
-            grid-column: 1 / -1;
-            padding: 40px 20px;
+        /* FOOTER */
+        footer {
+            padding: 32px 0;
+            border-top: 1px solid var(--border);
             text-align: center;
             font-family: var(--font-mono);
-            font-size: 14px;
-            color: var(--text-muted);
-            border: 1px dashed var(--border);
-            border-radius: 12px;
-            background: rgba(0,0,0,0.2);
-        }
-        .msg.error { color: #FF5C7A; border-color: #FF5C7A; background: rgba(255, 92, 122, 0.05); }
-
-        .page-loading { padding: 60px 0; text-align: center; }
-        .page-loading-icon { font-size: 40px; margin-bottom: 16px; opacity: 0.8; animation: pulse 1.5s infinite; }
-        .page-loading-title { font-family: var(--font-display); font-size: 20px; font-weight: 800; margin-bottom: 8px; }
-        .page-loading-text { font-family: var(--font-mono); font-size: 13px; color: var(--text-muted); }
-
-        @keyframes pulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
-
-        .reload-btn {
-            margin-top: 24px;
-            padding: 12px 24px;
-            border-radius: 8px;
-            border: 1px solid var(--accent);
-            background: transparent;
-            color: var(--accent);
-            font-family: var(--font-display);
-            font-size: 13px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.2s;
+            font-size: 0.7rem;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .reload-btn:hover:not(:disabled) { background: var(--accent-glow); transform: translateY(-2px); box-shadow: 0 0 15px var(--accent-glow); }
-        .reload-btn:disabled { opacity: 0.4; cursor: not-allowed; border-color: var(--border); color: var(--text-muted); }
-
-        /* --- КНОПКА НАЗАД --- */
-        .back-link {
-            position: fixed; left: 24px; bottom: 24px; z-index: 1000;
-            padding: 10px 22px; border-radius: 40px;
-            background: rgba(10, 7, 5, 0.8); backdrop-filter: blur(12px);
-            border: 1px solid var(--border); color: var(--text-muted);
-            text-decoration: none; font-family: var(--font-display);
-            font-size: 14px; font-weight: 600; transition: all 0.3s;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-        }
-        .back-link:hover {
-            color: var(--accent); border-color: var(--accent);
-            background: var(--accent-glow); transform: translateY(-2px);
-            box-shadow: 0 6px 25px var(--accent-glow);
+            color: var(--text-muted);
+            letter-spacing: 0.1em;
         }
 
-        /* --- АДАПТАЦИЯ --- */
-        @media(max-width: 768px) {
-            header { padding: 16px; }
-            .page-title { margin-top: 28px; padding: 0 16px; }
-            .roadmap { padding: 0 16px; }
-            .materials-section { padding: 0 16px; }
-            
-            .roadmap-line { left: 20px; }
-            .roadmap-item { padding-left: 50px; padding-bottom: 24px; }
-            .roadmap-marker { left: 20px; top: 28px; width: 14px; height: 14px; }
-            
-            .roadmap-card { padding: 20px; }
-            .card-header { gap: 12px; flex-wrap: wrap; }
-            .card-number { width: 100%; min-width: 0; margin-bottom: 4px; font-size: 12px; }
-            .card-title { font-size: 18px; }
-            .card-arrow { display: none; }
-            
-            .materials-grid { grid-template-columns: 1fr; }
-            .back-link { left: 16px; bottom: 16px; font-size: 13px; }
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .header-right { flex-direction: column; align-items: flex-end; gap: 8px; }
+            .hero-top { flex-direction: column; align-items: flex-start; }
+            .hero-side-text { text-align: left; max-width: none; }
+            .hero-bottom { grid-template-columns: 1fr; gap: 20px; }
+        }
+        @media (max-width: 768px) {
+            .frame { padding: 0 16px; }
+            header { flex-direction: column; align-items: flex-start; gap: 12px; padding: 20px 0; }
+            .header-right { flex-direction: row; width: 100%; justify-content: space-between; }
+            .theory-block { padding: 22px 18px; border-radius: 12px; }
+            .theory-block h2 { font-size: 1.25rem; }
+            .theory-block p, .theory-block li { font-size: 0.93rem; }
+            .task-block { padding: 18px 16px; }
+            .task-list { grid-template-columns: 1fr; }
+            .section-nav { padding: 16px 0; gap: 6px; }
+            .section-nav a { font-size: 0.65rem; padding: 5px 10px; }
+            .answers-wrap summary { padding: 16px 18px; font-size: 0.95rem; }
+            .answers-body { padding: 6px 18px 20px; }
         }
     </style>
 </head>
 <body>
-
-    <header>
-        <div class="header-row">
-            <div class="brand">
-                <a href="../../index.html">
-                    <h1>EPALLAXIS <span>algebra</span></h1>
-                </a>
-                <p>Ἐπαλλάσσω — приводить систему в порядок</p>
+    <div class="frame">
+        <header>
+            <div class="brand">EPALLAXIS<span>_math</span></div>
+            <div class="header-right">
+                <div class="theme-switcher" id="theme-switcher">
+                    <button class="theme-btn" data-theme="auto">AUTO</button>
+                    <button class="theme-btn" data-theme="autumn">ОСЕНЬ</button>
+                    <button class="theme-btn" data-theme="winter">ЗИМА</button>
+                    <button class="theme-btn" data-theme="spring">ВЕСНА</button>
+                    <button class="theme-btn" data-theme="summer">ЛЕТО</button>
+                </div>
             </div>
-        </div>
-        <div class="progress-bar">
-            <div class="fill" id="progressFill"></div>
-        </div>
-    </header>
+        </header>
 
-    <section class="page-title">
-        <h1>Алгебра <span>9 класс</span></h1>
-        <p>Изучайте главы последовательно или выбирайте любую</p>
-    </section>
+        <section class="hero-editorial">
+            <canvas id="spring-canvas"></canvas>
+            <div class="season-particles" id="particles-container"></div>
 
-    <section class="roadmap">
-        <div class="roadmap-line">
-            <div class="fill" id="lineFill"></div>
-        </div>
-        <div id="roadmapItems">
-            <div class="page-loading">
-                <div class="page-loading-icon">📘</div>
-                <div class="page-loading-title">Загрузка курса</div>
-                <div class="page-loading-text">Подготавливаем материалы</div>
+            <div class="hero-top">
+                <h1 class="hero-title">
+                    Одночлены
+                    <span>Алгебра · 7 класс</span>
+                </h1>
+                <div class="hero-side-text">
+                    Теория / Практика / Ответы<br>
+                    9 разделов · 18 задач
+                </div>
             </div>
-        </div>
-    </section>
+            <div class="hero-bottom">
+                <div class="greek-quote">Ἐπάλλαξις — приводить систему в порядок</div>
+                <div class="hero-desc">
+                    Базовый учебный модуль: определения, правила, типовые задания и разбор ошибок по теме «Одночлены».
+                </div>
+            </div>
+        </section>
 
-    <section class="materials-section" id="materialsSection">
-        <h2 class="materials-title">Материалы к <span id="chapterName">главе</span></h2>
-        <div class="materials-grid" id="materialsGrid">
-            <div class="msg">⏳ Загрузка заданий...</div>
-        </div>
-        <button class="reload-btn" id="reloadBtn">🔄 Обновить задания</button>
-    </section>
+        <nav class="section-nav" aria-label="Навигация по разделам">
+            <a href="#s1">01 · Что такое</a>
+            <a href="#s2">02 · Стандартный вид</a>
+            <a href="#s3">03 · Степень</a>
+            <a href="#s4">04 · Умножение</a>
+            <a href="#s5">05 · Деление</a>
+            <a href="#s6">06 · Возведение</a>
+            <a href="#s7">07 · Подобные</a>
+            <a href="#s8">08 · Сложение</a>
+            <a href="#s9">09 · Шпаргалка</a>
+        </nav>
 
-    <a href="../../index.html" class="back-link">← На главную</a>
+        <main>
+            <section class="theory" aria-label="Теория">
+
+                <article class="theory-block" id="s1">
+                    <h2>Что такое одночлен</h2>
+                    <p>Посмотрите на несколько выражений: \(5x\), \(-3a^2\), \(7xy^3\), \(-8\), \(x\). Что у них общего?</p>
+                    <p>Каждое из них — произведение чисел и переменных, причём переменные стоят в натуральных степенях. Такие выражения в алгебре называют <b>одночленами</b>.</p>
+                    <p>Чтобы точно понимать определение, вспомним, что означает запись \(x^3\). Это произведение трёх множителей, каждый из которых равен \(x\):</p>
+                    \[ x^3 = x \cdot x \cdot x. \]
+                    <p>Число \(3\) показывает, сколько раз повторяется множитель \(x\). Такую степень называют степенью с натуральным показателем. Натуральные показатели — это \(1, 2, 3, 4, \ldots\). Поэтому \(x^1 = x\), \(x^2 = x \cdot x\), \(x^4 = x \cdot x \cdot x \cdot x\).</p>
+                    <div class="callout callout-definition">
+                        <div class="callout-title">Определение</div>
+                        <p><b>Одночлен</b> — это произведение чисел, переменных и натуральных степеней переменных.</p>
+                    </div>
+                    <p>Отдельное число, отдельная переменная и натуральная степень переменной тоже считаются одночленами: это частные случаи произведения.</p>
+                    <p>Например, одночленами являются:</p>
+                    \[ 5x; \quad -3a^2; \quad 7xy^3; \quad 4m^2n^4; \quad -8; \quad x; \quad a^2. \]
+                    <p>А вот \(x+3\) одночленом не является: здесь \(x\) и \(3\) складываются, а не перемножаются. Выражение \(5a-2b\) тоже не одночлен, потому что его части соединены вычитанием.</p>
+                    <p>Одного умножения мало. Переменные должны стоять именно в натуральных степенях. Поэтому \(x^{-2}\) и \(3x^{-2}y\) одночленами не являются: показатель \(-2\) не натуральный.</p>
+                </article>
+
+                <article class="theory-block" id="s2">
+                    <h2>Стандартный вид и коэффициент</h2>
+                    <p>Один и тот же одночлен можно записать по-разному. Рассмотрим пример:</p>
+                    \[ 3 \cdot x \cdot 2 \cdot y^2. \]
+                    <p>Сначала перемножим числа: \(3 \cdot 2 = 6\). Получим \(6xy^2\). Это и есть стандартный вид.</p>
+                    <div class="callout callout-definition">
+                        <div class="callout-title">Определение</div>
+                        <p><b>Стандартный вид одночлена</b> — это запись в виде произведения числового множителя, стоящего на первом месте, и степеней различных переменных.</p>
+                    </div>
+                    <p>Числовой множитель в такой записи называют <b>коэффициентом одночлена</b>.</p>
+                    <p>Ещё пример:</p>
+                    \[ 2a \cdot 5b^2 \cdot a. \]
+                    <p>Перемножаем числа \(2 \cdot 5 = 10\), объединяем одинаковые переменные \(a \cdot a = a^2\). Получаем \(10a^2b^2\).</p>
+                    <p>Если числа перед буквами нет, коэффициент равен \(1\):</p>
+                    \[ x^4 = 1 \cdot x^4. \]
+                    <p>Если стоит знак минус, коэффициент равен \(-1\):</p>
+                    \[ -x^2y = -1 \cdot x^2y. \]
+                    <div class="callout callout-error">
+                        <div class="callout-title">Типичная ошибка</div>
+                        <ol>
+                            <li>Считать, что у \(x^4\) коэффициента нет. Коэффициент есть, он равен \(1\) и просто не записывается.</li>
+                            <li>Забывать знак минус. У одночлена \(-5a^3b\) коэффициент \(-5\), а не \(5\).</li>
+                        </ol>
+                    </div>
+                </article>
+
+                <article class="theory-block" id="s3">
+                    <h2>Степень одночлена</h2>
+                    <div class="callout callout-definition">
+                        <div class="callout-title">Определение</div>
+                        <p><b>Степень одночлена</b> — это сумма показателей степеней всех входящих в него переменных.</p>
+                    </div>
+                    <p>У одночлена \(5x^3y^2\) показатели \(3\) и \(2\), значит, степень равна \(3+2=5\). Коэффициент \(5\) при этом не учитывается.</p>
+                    <p>У одночлена \(-8a^4b^3c\) показатель \(c\) не записан, но \(c = c^1\). Поэтому степень равна \(4+3+1=8\).</p>
+                    <p>Если одночлен состоит только из числа, например \(-12\), его степень равна \(0\).</p>
+                    <div class="callout callout-error">
+                        <div class="callout-title">Типичная ошибка</div>
+                        <p>Иногда к показателям прибавляют ещё и коэффициент: \(-8a^4b^3c \to 8+4+3+1\). Так делать нельзя. Коэффициент \(-8\) не является показателем степени.</p>
+                    </div>
+                </article>
+
+                <article class="theory-block" id="s4">
+                    <h2>Умножение одночленов</h2>
+                    <p>При умножении одночленов перемножают коэффициенты, а степени одинаковых переменных объединяют по правилу умножения степеней.</p>
+                    <div class="callout callout-rule">
+                        <div class="callout-title">Правило</div>
+                        \[ a^n \cdot a^m = a^{n+m}. \]
+                    </div>
+                    <div class="callout callout-example">
+                        <div class="callout-title">Пример. \(3a^2b \cdot 4ab^3\)</div>
+                        <p>Перемножаем коэффициенты: \(3 \cdot 4 = 12\). Для переменной \(a\): \(a^2 \cdot a = a^3\). Для переменной \(b\): \(b \cdot b^3 = b^4\). Получаем \(12a^3b^4\).</p>
+                    </div>
+                    <div class="callout callout-example">
+                        <div class="callout-title">Пример. \(4m^3n^2 \cdot 3m^2n^5\)</div>
+                        <p>Коэффициенты: \(4 \cdot 3 = 12\). Для \(m\): \(m^3 \cdot m^2 = m^5\). Для \(n\): \(n^2 \cdot n^5 = n^7\). Получаем \(12m^5n^7\).</p>
+                    </div>
+                    <div class="callout callout-example">
+                        <div class="callout-title">Пример. \(-2a^4b \cdot 5ab^3\)</div>
+                        <p>Коэффициенты: \(-2 \cdot 5 = -10\). Для \(a\): \(a^4 \cdot a = a^5\). Для \(b\): \(b \cdot b^3 = b^4\). Получаем \(-10a^5b^4\).</p>
+                    </div>
+                </article>
+
+                <article class="theory-block" id="s5">
+                    <h2>Деление одночленов</h2>
+                    <p>При делении одночленов делят коэффициенты, а показатели одинаковых переменных вычитают.</p>
+                    <div class="callout callout-rule">
+                        <div class="callout-title">Правило</div>
+                        \[ a^n : a^m = a^{n-m}, \quad a \ne 0. \]
+                    </div>
+                    <div class="callout callout-example">
+                        <div class="callout-title">Пример. \(\frac{12x^5y^3}{3x^2y}\)</div>
+                        <p>Делим коэффициенты: \(12:3 = 4\). Для \(x\): \(x^5 : x^2 = x^3\). Для \(y\): \(y^3 : y = y^2\). Получаем \(4x^3y^2\).</p>
+                    </div>
+                    <div class="callout callout-example">
+                        <div class="callout-title">Пример. \(\frac{21m^4n^5}{7m^2n^3}\)</div>
+                        <p>Коэффициенты: \(21:7 = 3\). Для \(m\): \(m^4 : m^2 = m^2\). Для \(n\): \(n^5 : n^3 = n^2\). Получаем \(3m^2n^2\).</p>
+                    </div>
+                    <div class="callout callout-example">
+                        <div class="callout-title">Пример. \(\frac{-15c^7d^4}{5c^2d}\)</div>
+                        <p>Коэффициенты: \(-15:5 = -3\). Для \(c\): \(c^7 : c^2 = c^5\). Для \(d\): \(d^4 : d = d^3\). Получаем \(-3c^5d^3\).</p>
+                    </div>
+                    <div class="callout callout-note">
+                        <div class="callout-title">Замечание</div>
+                        <p>Делить на ноль нельзя. В выражении \(\frac{12x^5}{3x^2}\) делитель содержит \(x^2\), поэтому должно выполняться \(x \ne 0\).</p>
+                    </div>
+                </article>
+
+                <article class="theory-block" id="s6">
+                    <h2>Возведение одночлена в степень</h2>
+                    <p>Понадобятся два свойства степеней:</p>
+                    \[ (a^n)^m = a^{nm}, \qquad (ab)^n = a^n b^n. \]
+                    <p>Первое: при возведении степени в степень основание остаётся, показатели перемножаются. Второе: при возведении произведения в степень каждый множитель возводится в эту степень.</p>
+                    <p>Одночлен — произведение, поэтому при возведении в степень возводится каждый множитель: коэффициент — в эту степень, а показатели переменных перемножаются с показателем степени.</p>
+                    <div class="callout callout-example">
+                        <div class="callout-title">Пример. \((2x^3)^2\)</div>
+                        <p>Это \(2x^3 \cdot 2x^3\). По свойству произведения: \(2^2 \cdot (x^3)^2\). По свойству степени в степени: \(4x^6\).</p>
+                    </div>
+                    <div class="callout callout-example">
+                        <div class="callout-title">Пример. \((3a^2b)^3\)</div>
+                        <p>\((3a^2b)^3 = 3^3 \cdot (a^2)^3 \cdot b^3 = 27a^6b^3\).</p>
+                    </div>
+                    <div class="callout callout-example">
+                        <div class="callout-title">Пример. \((2m^2n^3)^2\)</div>
+                        <p>\((2m^2n^3)^2 = 2^2 \cdot (m^2)^2 \cdot (n^3)^2 = 4m^4n^6\).</p>
+                    </div>
+                    <div class="callout callout-error">
+                        <div class="callout-title">Типичная ошибка</div>
+                        <p>Неверно писать \((2x^3)^2 = 2x^6\). В степень возводится весь одночлен, в том числе коэффициент: \(2^2 = 4\).</p>
+                    </div>
+                </article>
+
+                <article class="theory-block" id="s7">
+                    <h2>Подобные одночлены</h2>
+                    <div class="callout callout-definition">
+                        <div class="callout-title">Определение</div>
+                        <p><b>Подобные одночлены</b> — это одночлены с одинаковой буквенной частью.</p>
+                    </div>
+                    <p>Например, \(3x^2y\) и \(-7x^2y\) подобны: буквенная часть у них одна и та же. Одночлены \(5a^2b\) и \(-3a^2b\) тоже подобны.</p>
+                    <p>А \(4x^2y\) и \(4xy^2\) не подобны: в первом случае буквенная часть \(x^2y\), во втором \(xy^2\). Показатели распределены по-разному.</p>
+                    <p>Порядок множителей не важен. Так как \(x^2y = yx^2\), одночлены \(x^2y\) и \(yx^2\) подобны. Точно так же \(3ab^2\) и \(3b^2a\) подобны.</p>
+                </article>
+
+                <article class="theory-block" id="s8">
+                    <h2>Сложение и вычитание подобных одночленов</h2>
+                    <p>Складывать и вычитать можно только подобные одночлены. При этом складываются коэффициенты, а буквенная часть сохраняется.</p>
+                    <div class="callout callout-rule">
+                        <div class="callout-title">Правило</div>
+                        <p>Если у одночленов одинаковая буквенная часть \(X\), то</p>
+                        \[ a \cdot X \pm b \cdot X = (a \pm b) \cdot X. \]
+                    </div>
+                    <div class="callout callout-example">
+                        <div class="callout-title">Пример. \(4x^2y + 7x^2y\)</div>
+                        <p>Складываем коэффициенты: \(4+7=11\). Буквенная часть \(x^2y\) остаётся. Получаем \(11x^2y\).</p>
+                    </div>
+                    <div class="callout callout-example">
+                        <div class="callout-title">Пример. \(9ab^2 - 4ab^2\)</div>
+                        <p>Вычитаем коэффициенты: \(9-4=5\). Получаем \(5ab^2\).</p>
+                    </div>
+                    <div class="callout callout-example">
+                        <div class="callout-title">Пример. \(-3m^2n + 8m^2n\)</div>
+                        <p>Складываем коэффициенты: \(-3+8=5\). Получаем \(5m^2n\).</p>
+                    </div>
+                    <div class="callout callout-error">
+                        <div class="callout-title">Типичная ошибка</div>
+                        <p>При сложении подобных одночленов нельзя складывать показатели степеней. \(2x^3 + 5x^3 = 7x^3\), а не \(7x^6\). Мы складываем одночлены, а не умножаем их.</p>
+                    </div>
+                </article>
+
+                <article class="theory-block" id="s9">
+                    <h2>Мини-шпаргалка</h2>
+                    <div class="callout callout-cheat">
+                        <div class="callout-title">Мини-шпаргалка</div>
+                        <ul>
+                            <li>Одночлен — произведение чисел, переменных и натуральных степеней переменных.</li>
+                            <li>Стандартный вид: коэффициент на первом месте, каждая переменная записана один раз.</li>
+                            <li>Коэффициент \(1\) и \(-1\) не записывается, но он есть.</li>
+                            <li>Степень одночлена — сумма показателей переменных, коэффициент не учитывается.</li>
+                            <li>Умножение: коэффициенты перемножить, показатели одинаковых переменных сложить.</li>
+                            <li>Деление: коэффициенты разделить, показатели вычесть; делить на ноль нельзя.</li>
+                            <li>Возведение в степень: в степень возводится каждый множитель, включая коэффициент.</li>
+                            <li>Подобные — с одинаковой буквенной частью; порядок множителей не важен.</li>
+                            <li>Сложение и вычитание: складываются коэффициенты, буквенная часть сохраняется.</li>
+                        </ul>
+                    </div>
+                </article>
+
+            </section>
+
+            <h2 class="section-heading">Задания для самостоятельного решения</h2>
+
+            <div class="task-block">
+                <h3><span class="task-num">01.</span>Определите, является ли выражение одночленом.</h3>
+                <ul class="task-list">
+                    <li><span class="item-num">1.1.</span>\(7a^3b\)</li>
+                    <li><span class="item-num">1.2.</span>\(4x^2-9\)</li>
+                    <li><span class="item-num">1.3.</span>\(-5m^{-2}n\)</li>
+                    <li><span class="item-num">1.4.</span>\(11pq^4\)</li>
+                    <li><span class="item-num">1.5.</span>\(6r^{1/2}\)</li>
+                </ul>
+            </div>
+
+            <div class="task-block">
+                <h3><span class="task-num">02.</span>Определите коэффициент и степень одночлена.</h3>
+                <ul class="task-list">
+                    <li><span class="item-num">2.1.</span>\(-9x^4y\)</li>
+                    <li><span class="item-num">2.2.</span>\(6a^2bc^3\)</li>
+                    <li><span class="item-num">2.3.</span>\(-t^5z^2\)</li>
+                    <li><span class="item-num">2.4.</span>\(13mn^3p^2\)</li>
+                </ul>
+            </div>
+
+            <div class="task-block">
+                <h3><span class="task-num">03.</span>Приведите одночлены к стандартному виду.</h3>
+                <ul class="task-list">
+                    <li><span class="item-num">3.1.</span>\(5a \cdot 4a^2b\)</li>
+                    <li><span class="item-num">3.2.</span>\(-3x^2y \cdot 2xy^4\)</li>
+                    <li><span class="item-num">3.3.</span>\(7mn^2 \cdot (-2m^3n)\)</li>
+                    <li><span class="item-num">3.4.</span>\(4p^2q \cdot 3p \cdot q^2\)</li>
+                </ul>
+            </div>
+
+            <div class="task-block">
+                <h3><span class="task-num">04.</span>Определите, являются ли одночлены подобными.</h3>
+                <ul class="task-list">
+                    <li><span class="item-num">4.1.</span>\(8a^3b\) и \(-2ba^3\)</li>
+                    <li><span class="item-num">4.2.</span>\(5x^2y^3\) и \(7x^3y^2\)</li>
+                    <li><span class="item-num">4.3.</span>\(-4mn^2\) и \(9n^2m\)</li>
+                    <li><span class="item-num">4.4.</span>\(6p^4q\) и \(-3p^4q^2\)</li>
+                </ul>
+            </div>
+
+            <div class="task-block">
+                <h3><span class="task-num">05.</span>Выполните действия.</h3>
+                <ul class="task-list">
+                    <li><span class="item-num">5.1.</span>\(7x^3y + 5x^3y\)</li>
+                    <li><span class="item-num">5.2.</span>\(11a^2b - 8a^2b\)</li>
+                    <li><span class="item-num">5.3.</span>\(-6m^4n + 9m^4n\)</li>
+                    <li><span class="item-num">5.4.</span>\(12p^2q - 17p^2q\)</li>
+                </ul>
+            </div>
+
+            <div class="task-block">
+                <h3><span class="task-num">06.</span>Выполните умножение.</h3>
+                <ul class="task-list">
+                    <li><span class="item-num">6.1.</span>\(4a^3 \cdot 5a^2\)</li>
+                    <li><span class="item-num">6.2.</span>\(-3x^2y \cdot 4xy^3\)</li>
+                    <li><span class="item-num">6.3.</span>\(6mn^2 \cdot (-2m^2n^4)\)</li>
+                </ul>
+            </div>
+
+            <div class="task-block">
+                <h3><span class="task-num">07.</span>Возведите одночлен в степень.</h3>
+                <ul class="task-list">
+                    <li><span class="item-num">7.1.</span>\((3x^2)^3\)</li>
+                    <li><span class="item-num">7.2.</span>\((-2ab^2)^2\)</li>
+                    <li><span class="item-num">7.3.</span>\((4m^3n)^2\)</li>
+                </ul>
+            </div>
+
+            <div class="task-block">
+                <h3><span class="task-num">08.</span>Выполните деление.</h3>
+                <ul class="task-list">
+                    <li><span class="item-num">8.1.</span>\(\frac{20a^6b^4}{4a^2b}\)</li>
+                    <li><span class="item-num">8.2.</span>\(\frac{18x^7y^5}{6x^3y^2}\)</li>
+                    <li><span class="item-num">8.3.</span>\(\frac{-24m^8n^3}{6m^4n}\)</li>
+                </ul>
+            </div>
+
+            <div class="task-block">
+                <h3><span class="task-num">09.</span>Найдите ошибку и исправьте её.</h3>
+                <ul class="task-list">
+                    <li><span class="item-num">9.1.</span>\(4x^2 + 6x^2 = 10x^4\)</li>
+                    <li><span class="item-num">9.2.</span>\((6p^2)^2 = 6p^4\)</li>
+                    <li><span class="item-num">9.3.</span>\(2a^3b\) и \(5ab^3\) — подобные одночлены</li>
+                    <li><span class="item-num">9.4.</span>\(4m^2 \cdot 3m^4 = 12m^8\)</li>
+                </ul>
+            </div>
+
+            <h2 class="section-heading">Домашняя работа</h2>
+
+            <div class="task-block">
+                <h3><span class="task-num">Д1.</span>Определите, является ли выражение одночленом.</h3>
+                <ul class="task-list">
+                    <li><span class="item-num">1.1.</span>\(-8c^2d^5\)</li>
+                    <li><span class="item-num">1.2.</span>\(9u^3+2u\)</li>
+                    <li><span class="item-num">1.3.</span>\(7k^{-1}\)</li>
+                    <li><span class="item-num">1.4.</span>\(-12vw^2\)</li>
+                </ul>
+            </div>
+
+            <div class="task-block">
+                <h3><span class="task-num">Д2.</span>Определите коэффициент и степень одночлена.</h3>
+                <ul class="task-list">
+                    <li><span class="item-num">2.1.</span>\(-7a^4c^3\)</li>
+                    <li><span class="item-num">2.2.</span>\(14x^2yz^4\)</li>
+                    <li><span class="item-num">2.3.</span>\(-q^6r\)</li>
+                </ul>
+            </div>
+
+            <div class="task-block">
+                <h3><span class="task-num">Д3.</span>Приведите к стандартному виду.</h3>
+                <ul class="task-list">
+                    <li><span class="item-num">3.1.</span>\(6b^2 \cdot 2b^3c\)</li>
+                    <li><span class="item-num">3.2.</span>\(-5uv^2 \cdot 2u^2v\)</li>
+                    <li><span class="item-num">3.3.</span>\(4s^3t \cdot (-3s^2t^2)\)</li>
+                </ul>
+            </div>
+
+            <div class="task-block">
+                <h3><span class="task-num">Д4.</span>Определите, являются ли одночлены подобными.</h3>
+                <ul class="task-list">
+                    <li><span class="item-num">4.1.</span>\(5c^2d^4\) и \(-9d^4c^2\)</li>
+                    <li><span class="item-num">4.2.</span>\(8u^3v\) и \(5u^3v^2\)</li>
+                    <li><span class="item-num">4.3.</span>\(-6rs^2\) и \(10sr^2\)</li>
+                </ul>
+            </div>
+
+            <div class="task-block">
+                <h3><span class="task-num">Д5.</span>Выполните действия.</h3>
+                <ul class="task-list">
+                    <li><span class="item-num">5.1.</span>\(10a^4b - 4a^4b\)</li>
+                    <li><span class="item-num">5.2.</span>\(-7x^2y + 12x^2y\)</li>
+                    <li><span class="item-num">5.3.</span>\(5m^3n - 14m^3n\)</li>
+                </ul>
+            </div>
+
+            <div class="task-block">
+                <h3><span class="task-num">Д6.</span>Выполните умножение.</h3>
+                <ul class="task-list">
+                    <li><span class="item-num">6.1.</span>\(7p^2 \cdot 3p^4\)</li>
+                    <li><span class="item-num">6.2.</span>\(-4xy^2 \cdot 5x^3y\)</li>
+                </ul>
+            </div>
+
+            <div class="task-block">
+                <h3><span class="task-num">Д7.</span>Возведите в степень.</h3>
+                <ul class="task-list">
+                    <li><span class="item-num">7.1.</span>\((5c^2)^2\)</li>
+                    <li><span class="item-num">7.2.</span>\((-3uv)^3\)</li>
+                </ul>
+            </div>
+
+            <div class="task-block">
+                <h3><span class="task-num">Д8.</span>Выполните деление.</h3>
+                <ul class="task-list">
+                    <li><span class="item-num">8.1.</span>\(\frac{24x^8y^3}{6x^2y}\)</li>
+                    <li><span class="item-num">8.2.</span>\(\frac{-21a^7b^5}{3a^3b^2}\)</li>
+                </ul>
+            </div>
+
+            <div class="task-block">
+                <h3><span class="task-num">Д9.</span>Найдите ошибку и исправьте её.</h3>
+                <ul class="task-list">
+                    <li><span class="item-num">9.1.</span>\(4x^3 + 7x^3 = 11x^6\)</li>
+                    <li><span class="item-num">9.2.</span>\((3a^2b)^2 = 3a^4b^2\)</li>
+                    <li><span class="item-num">9.3.</span>\(5m^2n\) и \(-8mn^2\) — подобные одночлены</li>
+                    <li><span class="item-num">9.4.</span>\(6p^2 \cdot 2p^3 = 12p^6\)</li>
+                </ul>
+            </div>
+
+            <h2 class="section-heading">Ответы</h2>
+
+            <details class="answers-wrap">
+                <summary>Показать ответы ко всем заданиям</summary>
+                <div class="answers-body">
+                    <div class="answers-group">
+                        <h3>Задания для самостоятельного решения</h3>
+                        <p><span class="ans-num">1.</span> 1.1 — да; 1.2 — нет; 1.3 — нет; 1.4 — да; 1.5 — нет.</p>
+                        <p><span class="ans-num">2.</span> 2.1 — коэффициент \(-9\), степень \(5\); 2.2 — коэффициент \(6\), степень \(6\); 2.3 — коэффициент \(-1\), степень \(7\); 2.4 — коэффициент \(13\), степень \(6\).</p>
+                        <p><span class="ans-num">3.</span> 3.1 — \(20a^3b\); 3.2 — \(-6x^3y^5\); 3.3 — \(-14m^4n^3\); 3.4 — \(12p^3q^3\).</p>
+                        <p><span class="ans-num">4.</span> 4.1 — да; 4.2 — нет; 4.3 — да; 4.4 — нет.</p>
+                        <p><span class="ans-num">5.</span> 5.1 — \(12x^3y\); 5.2 — \(3a^2b\); 5.3 — \(3m^4n\); 5.4 — \(-5p^2q\).</p>
+                        <p><span class="ans-num">6.</span> 6.1 — \(20a^5\); 6.2 — \(-12x^3y^4\); 6.3 — \(-12m^3n^6\).</p>
+                        <p><span class="ans-num">7.</span> 7.1 — \(27x^6\); 7.2 — \(4a^2b^4\); 7.3 — \(16m^6n^2\).</p>
+                        <p><span class="ans-num">8.</span> 8.1 — \(5a^4b^3\); 8.2 — \(3x^4y^3\); 8.3 — \(-4m^4n^2\).</p>
+                        <p><span class="ans-num">9.</span> 9.1 — \(10x^2\) (не \(10x^4\)); 9.2 — \(36p^4\) (не \(6p^4\)); 9.3 — не подобные (у них разные показатели у \(a\) и \(b\)); 9.4 — \(12m^6\) (не \(12m^8\)).</p>
+                    </div>
+                    <div class="answers-group">
+                        <h3>Домашняя работа</h3>
+                        <p><span class="ans-num">Д1.</span> 1.1 — да; 1.2 — нет; 1.3 — нет; 1.4 — да.</p>
+                        <p><span class="ans-num">Д2.</span> 2.1 — коэффициент \(-7\), степень \(7\); 2.2 — коэффициент \(14\), степень \(7\); 2.3 — коэффициент \(-1\), степень \(7\).</p>
+                        <p><span class="ans-num">Д3.</span> 3.1 — \(12b^5c\); 3.2 — \(-10u^3v^3\); 3.3 — \(-12s^5t^3\).</p>
+                        <p><span class="ans-num">Д4.</span> 4.1 — да; 4.2 — нет; 4.3 — нет.</p>
+                        <p><span class="ans-num">Д5.</span> 5.1 — \(6a^4b\); 5.2 — \(5x^2y\); 5.3 — \(-9m^3n\).</p>
+                        <p><span class="ans-num">Д6.</span> 6.1 — \(21p^6\); 6.2 — \(-20x^4y^3\).</p>
+                        <p><span class="ans-num">Д7.</span> 7.1 — \(25c^4\); 7.2 — \(-27u^3v^3\).</p>
+                        <p><span class="ans-num">Д8.</span> 8.1 — \(4x^6y^2\); 8.2 — \(-7a^4b^3\).</p>
+                        <p><span class="ans-num">Д9.</span> 9.1 — \(11x^3\) (не \(11x^6\)); 9.2 — \(9a^4b^2\) (не \(3a^4b^2\)); 9.3 — не подобные; 9.4 — \(12p^5\) (не \(12p^6\)).</p>
+                    </div>
+                </div>
+            </details>
+
+        </main>
+
+        <footer>
+            EPALLAXIS · Алгебра · 7 класс · Одночлены
+        </footer>
+    </div>
 
     <script>
-        // ==========================================
-        // 1. СИНХРОНИЗАЦИЯ ТЕМЫ (ИЗ ГЛАВНОЙ)
-        // ==========================================
-        function getCurrentSeason() {
-            const month = new Date().getMonth();
-            if (month === 11 || month <= 1) return 'winter';
-            if (month >= 2 && month <= 4) return 'spring';
-            if (month >= 5 && month <= 7) return 'summer';
-            return 'autumn';
-        }
+        (function () {
+            'use strict';
 
-        function applyThemeFromMain() {
-            const savedTheme = localStorage.getItem('epallaxis_theme') || 'auto';
-            let activeSeason = savedTheme === 'auto' ? getCurrentSeason() : savedTheme;
-            document.body.className = 'season-' + activeSeason;
-        }
+            // ==========================================
+            // РЫБКИ (весна)
+            // ==========================================
+            const canvas = document.getElementById('spring-canvas');
+            const ctx = canvas.getContext('2d');
+            let animationFrameId;
+            let canvasActive = false;
+            let fishArray = [];
+            let ripples = [];
+            let mouse = { x: -1000, y: -1000 };
 
-        applyThemeFromMain();
-        // ==========================================
+            function resizeCanvas() {
+                const rect = canvas.parentElement.getBoundingClientRect();
+                canvas.width = rect.width;
+                canvas.height = rect.height;
+            }
 
-        // ==========================================
-        // 2. ЛОГИКА ЗАГРУЗКИ ДАННЫХ
-        // ==========================================
-        const chaptersSheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQvHTb3SOfhmvWJAmeFnHtiCj9JSMel_M1yHofabPwinYq4fSoCpy3GrP3r73ks3krE0p-snzXlK3cJ/pubhtml?gid=0&single=true";
-
-        const roadmapItems = document.getElementById("roadmapItems");
-        const lineFill = document.getElementById("lineFill");
-        const progressFill = document.getElementById("progressFill");
-        const materialsSection = document.getElementById("materialsSection");
-        const materialsGrid = document.getElementById("materialsGrid");
-        const chapterName = document.getElementById("chapterName");
-        const reloadBtn = document.getElementById("reloadBtn");
-
-        let chapters = [];
-        let activeChapterIndex = -1;
-        let currentChapter = null;
-
-        function parseCSV(text) {
-            const rows = []; let row = []; let value = ""; let quotes = false;
-            for (let i = 0; i < text.length; i++) {
-                const char = text[i];
-                if (char === '"') {
-                    if (quotes && text[i + 1] === '"') { value += '"'; i++; }
-                    else { quotes = !quotes; }
+            class Fish {
+                constructor() {
+                    const side = Math.floor(Math.random() * 4);
+                    if (side === 0) { this.x = -50; this.y = Math.random() * canvas.height; }
+                    else if (side === 1) { this.x = canvas.width + 50; this.y = Math.random() * canvas.height; }
+                    else if (side === 2) { this.x = Math.random() * canvas.width; this.y = -50; }
+                    else { this.x = Math.random() * canvas.width; this.y = canvas.height + 50; }
+                    this.angle = Math.atan2(canvas.height/2 - this.y, canvas.width/2 - this.x);
+                    this.wanderAngle = this.angle;
+                    this.maxSpeed = Math.random() * 0.5 + 1.2;
+                    this.vx = Math.cos(this.angle) * this.maxSpeed;
+                    this.vy = Math.sin(this.angle) * this.maxSpeed;
+                    this.size = Math.random() * 5 + 11;
+                    this.hue = 340 + Math.random() * 20;
+                    this.tailPhase = Math.random() * Math.PI * 2;
+                    this.rippleTimer = 0;
+                    this.opacity = 0;
                 }
-                else if (char === ',' && !quotes) { row.push(value); value = ""; }
-                else if ((char === '\n' || char === '\r') && !quotes) {
-                    if (value !== "" || row.length > 0) { row.push(value); rows.push(row); }
-                    row = []; value = "";
-                    if (char === '\r' && text[i+1] === '\n') i++;
+                update() {
+                    if (this.opacity < 1) this.opacity += 0.015;
+                    this.wanderAngle += (Math.random() - 0.5) * 0.2;
+                    let steerX = Math.cos(this.wanderAngle) * this.maxSpeed;
+                    let steerY = Math.sin(this.wanderAngle) * this.maxSpeed;
+                    const margin = 100, turnForce = 0.15;
+                    if (this.x < margin) steerX += (margin - this.x) * turnForce;
+                    if (this.x > canvas.width - margin) steerX -= (this.x - (canvas.width - margin)) * turnForce;
+                    if (this.y < margin) steerY += (margin - this.y) * turnForce;
+                    if (this.y > canvas.height - margin) steerY -= (this.y - (canvas.height - margin)) * turnForce;
+                    const dx = this.x - mouse.x, dy = this.y - mouse.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    let fleeIntensity = 0;
+                    if (dist < 150) {
+                        fleeIntensity = (150 - dist) / 150;
+                        steerX += (dx / dist) * fleeIntensity * 4;
+                        steerY += (dy / dist) * fleeIntensity * 4;
+                        this.rippleTimer--;
+                        if (this.rippleTimer <= 0) {
+                            ripples.push(new Ripple(this.x - this.vx * 3, this.y - this.vy * 3));
+                            this.rippleTimer = 5;
+                        }
+                    } else {
+                        this.rippleTimer--;
+                        if (Math.random() < 0.01 && this.rippleTimer <= 0) {
+                            ripples.push(new Ripple(this.x, this.y));
+                            this.rippleTimer = 40;
+                        }
+                    }
+                    let desiredX = this.vx + steerX, desiredY = this.vy + steerY;
+                    let desiredMag = Math.sqrt(desiredX * desiredX + desiredY * desiredY);
+                    let targetSpeed = this.maxSpeed * (1 + fleeIntensity * 1.5);
+                    if (desiredMag > 0) {
+                        desiredX = (desiredX / desiredMag) * targetSpeed;
+                        desiredY = (desiredY / desiredMag) * targetSpeed;
+                    }
+                    let desiredAngle = Math.atan2(desiredY, desiredX);
+                    let angleDiff = desiredAngle - this.angle;
+                    while (angleDiff > Math.PI) angleDiff -= Math.PI * 2;
+                    while (angleDiff < -Math.PI) angleDiff += Math.PI * 2;
+                    let turnRate = 0.05 + fleeIntensity * 0.1;
+                    this.angle += angleDiff * turnRate;
+                    let currentSpeed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
+                    currentSpeed += (targetSpeed - currentSpeed) * 0.04;
+                    if (currentSpeed < 0.5) currentSpeed = 0.5;
+                    this.vx = Math.cos(this.angle) * currentSpeed;
+                    this.vy = Math.sin(this.angle) * currentSpeed;
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    this.tailPhase += 0.15 + currentSpeed * 0.3;
                 }
-                else { value += char; }
-            }
-            if (value !== "" || row.length > 0) { row.push(value); rows.push(row); }
-            return rows;
-        }
-
-        function escapeHTML(text) {
-            if (!text) return '';
-            return String(text)
-                .replace(/&/g, "&amp;")
-                .replace(/</g, "&lt;")
-                .replace(/>/g, "&gt;")
-                .replace(/"/g, "&quot;")
-                .replace(/'/g, "&#039;")
-                .replace(/\r?\n/g, "<br>");
-        }
-
-        function convertToCSV(url) {
-            if (!url) return "";
-            return url
-                .replace("/pubhtml", "/pub")
-                .replace(/\?gid=/, "?output=csv&gid=")
-                .replace("&single=true", "");
-        }
-
-        async function loadChapters() {
-            try {
-                const csvURL = convertToCSV(chaptersSheetURL);
-                const response = await fetch(csvURL + "&t=" + Date.now());
-                if (!response.ok) throw new Error("Не удалось загрузить таблицу глав");
-
-                const csv = await response.text();
-                const rows = parseCSV(csv);
-                if (rows.length < 2) throw new Error("Таблица глав пустая");
-
-                const headers = rows[0].map(item => item.trim().toLowerCase());
-                const orderIndex = headers.indexOf("порядок");
-                const chapterIndex = headers.indexOf("глава");
-                const titleIndex = headers.indexOf("заголовок");
-                const textIndex = headers.indexOf("текст");
-                const tableIndex = headers.indexOf("таблица");
-                const activityIndex = headers.indexOf("активность");
-
-                if (chapterIndex === -1 || titleIndex === -1 || tableIndex === -1 || activityIndex === -1) {
-                    throw new Error("В таблице глав отсутствуют обязательные столбцы");
+                draw() {
+                    ctx.save();
+                    ctx.globalAlpha = this.opacity;
+                    ctx.translate(this.x, this.y);
+                    ctx.rotate(this.angle);
+                    const L = this.size, H = this.size * 0.32;
+                    const tailWag = Math.sin(this.tailPhase) * 0.6;
+                    ctx.save();
+                    ctx.translate(-L * 0.65, 0);
+                    ctx.rotate(tailWag);
+                    ctx.fillStyle = `hsla(${this.hue}, 75%, 78%, 0.65)`;
+                    ctx.beginPath();
+                    ctx.moveTo(0, 0);
+                    ctx.lineTo(-L * 0.55, -H * 2.2);
+                    ctx.quadraticCurveTo(-L * 0.25, -H * 0.4, -L * 0.2, 0);
+                    ctx.quadraticCurveTo(-L * 0.25, H * 0.4, -L * 0.55, H * 2.2);
+                    ctx.closePath();
+                    ctx.fill();
+                    ctx.restore();
+                    const bodyGradient = ctx.createLinearGradient(0, -H, 0, H);
+                    bodyGradient.addColorStop(0, `hsla(${this.hue}, 80%, 88%, 0.75)`);
+                    bodyGradient.addColorStop(0.5, `hsla(${this.hue}, 85%, 75%, 0.7)`);
+                    bodyGradient.addColorStop(1, `hsla(${this.hue}, 80%, 60%, 0.6)`);
+                    ctx.fillStyle = bodyGradient;
+                    ctx.beginPath();
+                    ctx.moveTo(L * 0.78, 0);
+                    ctx.bezierCurveTo(L * 0.55, -H * 1.0, -L * 0.1, -H * 1.05, -L * 0.65, -H * 0.18);
+                    ctx.lineTo(-L * 0.65, H * 0.18);
+                    ctx.bezierCurveTo(-L * 0.1, H * 1.05, L * 0.55, H * 1.0, L * 0.78, 0);
+                    ctx.closePath();
+                    ctx.fill();
+                    ctx.fillStyle = 'rgba(255, 240, 245, 0.95)';
+                    ctx.beginPath(); ctx.arc(L * 0.5, -H * 0.28, H * 0.24, 0, Math.PI * 2); ctx.fill();
+                    ctx.fillStyle = 'rgba(30, 10, 20, 0.95)';
+                    ctx.beginPath(); ctx.arc(L * 0.53, -H * 0.28, H * 0.12, 0, Math.PI * 2); ctx.fill();
+                    ctx.restore();
                 }
+            }
 
-                chapters = [];
-                rows.slice(1).forEach(row => {
-                    const active = String(row[activityIndex]).trim().toLowerCase();
-                    if (active !== "true" && active !== "1" && active !== "да") return;
+            class Ripple {
+                constructor(x, y) { this.x = x; this.y = y; this.radius = 2; this.opacity = 0.5; }
+                update() { this.radius += 0.6; this.opacity -= 0.012; }
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                    ctx.strokeStyle = `rgba(255, 183, 197, ${this.opacity})`;
+                    ctx.lineWidth = 1.2;
+                    ctx.stroke();
+                }
+            }
 
-                    chapters.push({
-                        order: Number(row[orderIndex]) || 999,
-                        chapter: row[chapterIndex] || "",
-                        title: row[titleIndex] || "",
-                        text: row[textIndex] || "",
-                        table: row[tableIndex] || ""
-                    });
+            function initSpringCanvas() {
+                resizeCanvas();
+                fishArray = [];
+                ripples = [];
+                for (let i = 0; i < 9; i++) fishArray.push(new Fish());
+                canvasActive = true;
+                animateSpring();
+                window.addEventListener('resize', resizeCanvas);
+                canvas.parentElement.addEventListener('mousemove', (e) => {
+                    const rect = canvas.getBoundingClientRect();
+                    mouse.x = e.clientX - rect.left;
+                    mouse.y = e.clientY - rect.top;
                 });
-
-                chapters.sort((a, b) => a.order - b.order);
-                buildRoadmap();
-
-            } catch (error) {
-                console.error(error);
-                roadmapItems.innerHTML = `<div class="msg error">❌ ${escapeHTML(error.message)}</div>`;
-            }
-        }
-
-        async function getTaskCount(tableURL) {
-            try {
-                if (!tableURL) return 0;
-                const csvURL = convertToCSV(tableURL);
-                const response = await fetch(csvURL);
-                if (!response.ok) return 0;
-
-                const csv = await response.text();
-                const rows = parseCSV(csv);
-                if (rows.length < 2) return 0;
-
-                const headers = rows[0].map(item => item.trim().toLowerCase());
-                const activityIndex = headers.indexOf("активность");
-                if (activityIndex === -1) return 0;
-
-                let count = 0;
-                rows.slice(1).forEach(row => {
-                    const active = String(row[activityIndex]).trim().toLowerCase();
-                    if (active === "true" || active === "1" || active === "да") count++;
+                canvas.parentElement.addEventListener('mouseleave', () => {
+                    mouse.x = -1000; mouse.y = -1000;
                 });
-                return count;
-            } catch (error) {
-                console.error(error);
-                return 0;
-            }
-        }
-
-        async function buildRoadmap() {
-            roadmapItems.innerHTML = "";
-
-            for (let index = 0; index < chapters.length; index++) {
-                const chapter = chapters[index];
-                const item = document.createElement("div");
-                item.className = "roadmap-item";
-                item.dataset.index = index;
-                item.style.transitionDelay = `${index * 0.08}s`;
-
-                const cardNumber = chapter.chapter || `Глава ${index + 1}`;
-                const taskCount = await getTaskCount(chapter.table);
-
-                item.innerHTML = `
-                    <div class="roadmap-marker"></div>
-                    <div class="roadmap-card">
-                        <div class="card-header">
-                            <div class="card-number">${escapeHTML(cardNumber)}</div>
-                            <div class="card-title">${escapeHTML(chapter.title)}</div>
-                            <div class="card-icon">📘</div>
-                            <div class="card-arrow">→</div>
-                        </div>
-                        ${chapter.text ? `<div class="card-text">${escapeHTML(chapter.text)}</div>` : ""}
-                        <div class="card-count">📝 ${taskCount} шт.</div>
-                    </div>
-                `;
-
-                roadmapItems.appendChild(item);
-
-                const card = item.querySelector(".roadmap-card");
-                card.addEventListener("click", () => openChapter(chapter, index));
-            }
-
-            observeRoadmap();
-        }
-
-        function observeRoadmap() {
-            const items = document.querySelectorAll(".roadmap-item");
-            const observer = new IntersectionObserver(entries => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) entry.target.classList.add("visible");
+                canvas.parentElement.addEventListener('touchmove', (e) => {
+                    const rect = canvas.getBoundingClientRect();
+                    mouse.x = e.touches[0].clientX - rect.left;
+                    mouse.y = e.touches[0].clientY - rect.top;
+                }, {passive: true});
+                canvas.parentElement.addEventListener('touchend', () => {
+                    mouse.x = -1000; mouse.y = -1000;
                 });
-            }, { threshold: 0.15 });
-
-            items.forEach(item => observer.observe(item));
-        }
-
-        function openChapter(chapter, index) {
-            currentChapter = chapter;
-            activeChapterIndex = index;
-
-            document.querySelectorAll(".roadmap-item").forEach(item => item.classList.remove("active"));
-            const currentItem = document.querySelector(`.roadmap-item[data-index="${index}"]`);
-            if (currentItem) currentItem.classList.add("active");
-
-            chapterName.textContent = chapter.title || chapter.chapter || "глава";
-            materialsSection.style.display = "block";
-
-            setTimeout(() => {
-                materialsSection.scrollIntoView({ behavior: "smooth", block: "start" });
-            }, 200);
-
-            materialsGrid.innerHTML = `<div class="msg">⏳ Загрузка заданий...</div>`;
-            loadMaterials(chapter.table);
-            updateProgress();
-        }
-
-        async function loadMaterials(tableURL) {
-            try {
-                if (!tableURL || tableURL.trim() === "") throw new Error("Для этой главы не указана таблица заданий");
-
-                const csvURL = convertToCSV(tableURL);
-                const response = await fetch(csvURL + "&t=" + Date.now());
-                if (!response.ok) throw new Error("Не удалось загрузить таблицу заданий");
-
-                const csv = await response.text();
-                const rows = parseCSV(csv);
-                if (rows.length < 2) throw new Error("Таблица заданий пустая");
-
-                buildMaterials(rows);
-            } catch (error) {
-                console.error(error);
-                materialsGrid.innerHTML = `<div class="msg error">❌ ${escapeHTML(error.message)}</div>`;
-            }
-        }
-
-        function buildMaterials(rows) {
-            const headers = rows[0].map(item => item.trim().toLowerCase());
-            const orderIndex = headers.indexOf("порядок");
-            const titleIndex = headers.indexOf("заголовок");
-            const textIndex = headers.indexOf("текст");
-            const linkIndex = headers.indexOf("ссылка");
-            const activityIndex = headers.indexOf("активность");
-
-            if (titleIndex === -1 || linkIndex === -1 || activityIndex === -1) {
-                throw new Error("В таблице заданий отсутствуют обязательные столбцы");
             }
 
-            const tasks = [];
-            rows.slice(1).forEach(row => {
-                const active = String(row[activityIndex]).trim().toLowerCase();
-                if (active !== "true" && active !== "1" && active !== "да") return;
+            function animateSpring() {
+                if (!canvasActive) return;
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ripples = ripples.filter(r => r.opacity > 0);
+                ripples.forEach(r => { r.update(); r.draw(); });
+                fishArray.forEach(f => { f.update(); f.draw(); });
+                animationFrameId = requestAnimationFrame(animateSpring);
+            }
 
-                tasks.push({
-                    order: Number(row[orderIndex]) || 999,
-                    title: row[titleIndex] || "",
-                    text: row[textIndex] || "",
-                    link: row[linkIndex] || ""
+            function stopSpringCanvas() {
+                canvasActive = false;
+                cancelAnimationFrame(animationFrameId);
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+            }
+
+            // ==========================================
+            // СЕЗОНЫ
+            // ==========================================
+            function getCurrentSeason() {
+                const month = new Date().getMonth();
+                if (month === 11 || month <= 1) return 'winter';
+                if (month >= 2 && month <= 4) return 'spring';
+                if (month >= 5 && month <= 7) return 'summer';
+                return 'autumn';
+            }
+
+            function applyTheme(themeName) {
+                const container = document.getElementById('particles-container');
+                const body = document.body;
+                container.innerHTML = '';
+                stopSpringCanvas();
+                canvas.style.opacity = 0;
+                body.className = '';
+                let activeSeason = themeName === 'auto' ? getCurrentSeason() : themeName;
+                body.classList.add('season-' + activeSeason);
+                document.querySelectorAll('.theme-btn').forEach(btn => {
+                    btn.classList.toggle('active', btn.dataset.theme === themeName);
                 });
+                if (activeSeason === 'spring') {
+                    canvas.style.display = 'block';
+                    canvas.style.opacity = 1;
+                    initSpringCanvas();
+                } else {
+                    canvas.style.display = 'none';
+                    const particleCount = 25;
+                    for (let i = 0; i < particleCount; i++) {
+                        const p = document.createElement('div');
+                        p.className = 'particle p-' + activeSeason;
+                        if (activeSeason === 'summer') {
+                            p.style.left = (Math.random() * 90) + '%';
+                            p.style.top = (Math.random() * 90) + '%';
+                        } else {
+                            p.style.left = Math.random() * 100 + '%';
+                            p.style.top = '-20px';
+                        }
+                        let duration;
+                        if (activeSeason === 'autumn') duration = (Math.random() * 5 + 6) + 's';
+                        if (activeSeason === 'winter') duration = (Math.random() * 5 + 6) + 's';
+                        if (activeSeason === 'summer') duration = (Math.random() * 5 + 5) + 's';
+                        p.style.animationDuration = duration;
+                        p.style.animationDelay = (Math.random() * 5) + 's';
+                        if (activeSeason !== 'autumn') {
+                            p.style.transform = `scale(${Math.random() * 0.5 + 0.8})`;
+                        }
+                        container.appendChild(p);
+                    }
+                }
+            }
+
+            function initThemeSwitcher() {
+                const savedTheme = localStorage.getItem('epallaxis_theme') || 'auto';
+                applyTheme(savedTheme);
+                document.getElementById('theme-switcher').addEventListener('click', (e) => {
+                    if (e.target.classList.contains('theme-btn')) {
+                        const theme = e.target.dataset.theme;
+                        localStorage.setItem('epallaxis_theme', theme);
+                        applyTheme(theme);
+                    }
+                });
+            }
+
+            document.addEventListener('DOMContentLoaded', () => {
+                canvas.style.opacity = 0;
+                initThemeSwitcher();
             });
-
-            tasks.sort((a, b) => a.order - b.order);
-            renderMaterials(tasks);
-        }
-
-        function renderMaterials(tasks) {
-            materialsGrid.innerHTML = "";
-
-            if (tasks.length === 0) {
-                materialsGrid.innerHTML = `<div class="msg">Нет активных заданий</div>`;
-                return;
-            }
-
-            tasks.forEach((task, index) => {
-                const card = document.createElement("a");
-                card.className = "material-card";
-                card.href = task.link;
-                card.target = "_blank";
-                card.rel = "noopener noreferrer";
-                card.style.animationDelay = `${index * 0.06}s`;
-
-                card.innerHTML = `
-                    <div class="material-icon">📝</div>
-                    <div class="material-info">
-                        <div class="material-name">${escapeHTML(task.title)}</div>
-                        <div class="material-badge">${escapeHTML(task.text)}</div>
-                    </div>
-                    <div class="material-arrow">→</div>
-                `;
-
-                materialsGrid.appendChild(card);
-            });
-        }
-
-        function updateProgress() {
-            if (chapters.length === 0) return;
-            const percent = ((activeChapterIndex + 1) / chapters.length) * 100;
-            if (progressFill) progressFill.style.width = percent + "%";
-            if (lineFill) lineFill.style.height = percent + "%";
-        }
-
-        reloadBtn.addEventListener("click", async () => {
-            if (!currentChapter || reloadBtn.disabled) return;
-
-            reloadBtn.disabled = true;
-            reloadBtn.textContent = "⏳ Обновление...";
-            materialsGrid.innerHTML = `<div class="msg">⏳ Обновление материалов...</div>`;
-
-            await loadMaterials(currentChapter.table);
-
-            reloadBtn.disabled = false;
-            reloadBtn.textContent = "🔄 Обновить задания";
-        });
-
-        document.addEventListener("DOMContentLoaded", () => {
-            loadChapters();
-        });
+        })();
     </script>
 </body>
 </html>
