@@ -1,958 +1,1014 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-  <title>Диагностическая работа 5–9 | EPALLAXIS</title>
-  <link rel="icon" type="image/png" href="../../icon.png" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" />
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Manrope:wght@500;700;800&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
-  
-  <style>
-    /* --- СЕЗОННЫЕ ПЕРЕМЕННЫЕ --- */
-    :root {
-        --bg: #0A0705; 
-        --surface: linear-gradient(145deg, #1C1510 0%, #110B07 100%);
-        --surface-solid: #1C140F;
-        --surface-hover: linear-gradient(145deg, #291E17 0%, #140E0A 100%);
-        --text: #FFFFFF;
-        --text-muted: #C0B8B0; 
-        --accent: #FF8A00; 
-        --accent-glow: rgba(255, 138, 0, 0.3);
-        --accent-dim: rgba(255, 138, 0, 0.08);
-        --border: rgba(255, 255, 255, 0.08);
-        
-        --font-sans: 'Inter', sans-serif;
-        --font-display: 'Manrope', sans-serif;
-        --font-mono: 'JetBrains Mono', monospace;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Диагностическая работа 5–9 — EPALLAXIS</title>
+<link rel="icon" type="image/png" href="../../icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@500;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});"></script>
+<style>
+:root{
+--bg:#0A0705;--bg-elevated:#0F0B08;--surface:linear-gradient(160deg,#1A1310 0%,#0F0B08 100%);--surface-solid:#14100C;--surface-hover:linear-gradient(160deg,#241A14 0%,#14100C 100%);
+--text:#F5F0EB;--text-muted:#9C938C;--text-dim:#6B625C;
+--accent:#FF8A00;--accent-glow:rgba(255,138,0,0.25);--accent-light:#FFB454;--accent-dim:rgba(255,138,0,0.08);
+--border:rgba(255,255,255,0.06);--border-strong:rgba(255,255,255,0.1);--border-hover:rgba(255,138,0,0.4);
+--font-sans:'Inter',sans-serif;--font-display:'Manrope',sans-serif;--font-mono:'JetBrains Mono',monospace;
+--shadow-card:0 1px 0 rgba(255,255,255,0.04) inset,0 20px 40px -20px rgba(0,0,0,0.9),0 4px 12px -4px rgba(0,0,0,0.5)
+}
+body.season-winter{
+--bg:#080C14;--bg-elevated:#0B1019;--surface:linear-gradient(160deg,#141D2E 0%,#0B1019 100%);--surface-solid:#0E1422;--surface-hover:linear-gradient(160deg,#1A2436 0%,#0E1422 100%);
+--text:#EEF2F8;--text-muted:#8794A8;--text-dim:#5A6478;
+--accent:#3B82F6;--accent-glow:rgba(59,130,246,0.25);--accent-light:#7EB3FF;--accent-dim:rgba(59,130,246,0.08);
+--border:rgba(255,255,255,0.07);--border-strong:rgba(255,255,255,0.12);--border-hover:rgba(59,130,246,0.4)
+}
+body.season-spring{
+--bg:#0C0A0B;--bg-elevated:#120E10;--surface:linear-gradient(160deg,#231A1D 0%,#120E10 100%);--surface-solid:#180F13;--surface-hover:linear-gradient(160deg,#2E2024 0%,#180F13 100%);
+--text:#F7EEF0;--text-muted:#B9A6AB;--text-dim:#7C696E;
+--accent:#FFB7C5;--accent-glow:rgba(255,183,197,0.25);--accent-light:#FFD4DC;--accent-dim:rgba(255,183,197,0.08);
+--border:rgba(255,255,255,0.06);--border-strong:rgba(255,255,255,0.1);--border-hover:rgba(255,183,197,0.4)
+}
+body.season-summer{
+--bg:#060A08;--bg-elevated:#0A120E;--surface:linear-gradient(160deg,#122018 0%,#0A120E 100%);--surface-solid:#0C160F;--surface-hover:linear-gradient(160deg,#192E22 0%,#0C160F 100%);
+--text:#EDF5F0;--text-muted:#8FA69A;--text-dim:#5E7268;
+--accent:#10B981;--accent-glow:rgba(16,185,129,0.25);--accent-light:#4FD9A8;--accent-dim:rgba(16,185,129,0.08);
+--border:rgba(255,255,255,0.06);--border-strong:rgba(255,255,255,0.1);--border-hover:rgba(16,185,129,0.4)
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{background-color:var(--bg);scroll-behavior:smooth;transition:background-color .4s;width:100%;max-width:100%;overflow-x:clip}
+body{color:var(--text);font-family:var(--font-sans);line-height:1.55;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;min-height:100vh;display:flex;flex-direction:column;position:relative;font-feature-settings:"ss01","cv11"}
+body::before,body::after{content:'';position:fixed;width:100vmax;height:100vmax;border-radius:50%;filter:blur(160px);z-index:-1;pointer-events:none;transition:background .4s}
+body::before{top:-50vmax;left:-50vmax;background:var(--accent);opacity:.13}
+body::after{bottom:-50vmax;right:-50vmax;background:var(--accent-light);opacity:.04}
+a{color:inherit;text-decoration:none}
+.frame{max-width:1200px;margin:0 auto;padding:0 32px;width:100%;flex-grow:1;display:flex;flex-direction:column}
 
-    body.season-winter {
-        --bg: #080C14;
-        --surface: linear-gradient(145deg, #101724 0%, #070B12 100%);
-        --surface-solid: #0A101D;
-        --surface-hover: linear-gradient(145deg, #131C2E 0%, #0A101D 100%);
-        --text-muted: #9CA3AF;
-        --accent: #3B82F6; 
-        --accent-glow: rgba(59, 130, 246, 0.3);
-        --accent-dim: rgba(59, 130, 246, 0.08);
-    }
+header{padding:28px 0;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);gap:24px}
+.brand{font-family:var(--font-display);font-size:1.15rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;display:flex;align-items:baseline;gap:6px}
+.brand em{font-style:normal;color:var(--accent);font-weight:500;letter-spacing:.04em;text-shadow:0 0 24px var(--accent-glow);transition:color .4s,text-shadow .4s}
+.header-right{display:flex;align-items:center;gap:20px}
+.theme-switcher{display:inline-flex;background:rgba(255,255,255,.025);border:1px solid var(--border);border-radius:999px;padding:3px;gap:1px}
+.theme-btn{background:transparent;border:none;color:var(--text-dim);font-family:var(--font-mono);font-size:.65rem;font-weight:500;text-transform:uppercase;letter-spacing:.08em;padding:7px 13px;border-radius:999px;cursor:pointer;transition:background-color .25s,color .25s,box-shadow .25s}
+.theme-btn:hover{color:var(--text-muted)}
+.theme-btn.active{background:var(--accent);color:#0A0705;font-weight:600;box-shadow:0 0 14px var(--accent-glow)}
 
-    body.season-spring {
-        --bg: #0C0A0B; 
-        --surface: linear-gradient(145deg, #1C1316 0%, #0F0A0C 100%);
-        --surface-solid: #140E10;
-        --surface-hover: linear-gradient(145deg, #241A1D 0%, #140E10 100%);
-        --text-muted: #D1C4C7; 
-        --accent: #FFB7C5; 
-        --accent-glow: rgba(255, 183, 197, 0.3);
-        --accent-dim: rgba(255, 183, 197, 0.08);
-    }
+.hero{position:relative;padding:96px 0 64px;border-bottom:1px solid var(--border);overflow:hidden;transition:border-color .4s}
+.hero-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;transition:opacity .3s;opacity:0}
+.season-particles{position:absolute;inset:0;pointer-events:none;z-index:0}
+.hero-kicker{position:relative;z-index:1;font-family:var(--font-mono);font-size:.7rem;font-weight:500;text-transform:uppercase;letter-spacing:.22em;color:var(--text-dim);margin-bottom:28px;display:flex;align-items:center;gap:14px}
+.hero-kicker::before{content:'';width:32px;height:1px;background:var(--accent);box-shadow:0 0 12px var(--accent-glow)}
+.hero-title{position:relative;z-index:1;font-family:var(--font-display);font-size:clamp(2.4rem,6.5vw,5rem);font-weight:800;line-height:.98;letter-spacing:-.04em;text-transform:uppercase;margin-bottom:20px}
+.hero-title em{display:block;font-style:normal;font-size:.32em;font-weight:700;letter-spacing:-.01em;margin-top:18px;background:linear-gradient(90deg,var(--accent-light) 0%,var(--accent) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-shadow:0 0 40px var(--accent-glow);transition:background .4s}
+.hero-meta{position:relative;z-index:1;display:flex;flex-wrap:wrap;gap:10px;margin-bottom:44px}
+.hero-pill{display:inline-flex;align-items:baseline;gap:8px;padding:8px 14px;background:rgba(255,255,255,.025);border:1px solid var(--border);border-radius:999px;font-family:var(--font-mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-muted)}
+.hero-pill b{font-family:var(--font-display);font-weight:800;font-size:.95rem;color:var(--text);letter-spacing:-.01em}
+.hero-pill .dot{width:5px;height:5px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent-glow);align-self:center}
+.hero-bottom{position:relative;z-index:1;display:grid;grid-template-columns:minmax(220px,320px) 1fr;gap:64px;align-items:start;padding-top:32px;border-top:1px solid var(--border)}
+.greek-quote{font-size:.98rem;font-style:italic;color:var(--accent);padding-left:18px;border-left:2px solid var(--accent);text-shadow:0 0 16px var(--accent-glow);line-height:1.6;transition:color .4s,border-color .4s,text-shadow .4s}
+.hero-side{display:flex;flex-direction:column;gap:24px}
+.hero-desc{font-size:.95rem;color:var(--text-muted);line-height:1.7;max-width:620px}
+.hero-desc b{color:var(--text);font-weight:600}
+.progress-panel{display:flex;align-items:center;gap:20px;padding:18px 22px;background:var(--surface-solid);border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-card);max-width:520px;transition:border-color .3s}
+.progress-counter{display:flex;flex-direction:column;gap:2px;flex-shrink:0}
+.progress-counter .num{font-family:var(--font-display);font-size:1.4rem;font-weight:800;line-height:1;letter-spacing:-.02em;color:var(--text);font-variant-numeric:tabular-nums}
+.progress-counter .num span{color:var(--text-dim);font-weight:500;font-size:.9rem}
+.progress-counter .lbl{font-family:var(--font-mono);font-size:.6rem;text-transform:uppercase;letter-spacing:.14em;color:var(--text-dim);font-weight:500}
+.progress-bar-wrap{flex:1;display:flex;flex-direction:column;gap:8px;min-width:0}
+.progress-bar{height:4px;background:rgba(255,255,255,.05);border-radius:4px;overflow:hidden;position:relative}
+.progress-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--accent-light),var(--accent));border-radius:4px;transition:width .5s cubic-bezier(.4,0,.2,1);box-shadow:0 0 12px var(--accent-glow)}
+.progress-bar-meta{display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:.65rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-dim)}
+.progress-bar-meta b{color:var(--text-muted);font-weight:600}
+.reset-btn{background:transparent;border:1px solid var(--border);color:var(--text-dim);cursor:pointer;font-family:var(--font-mono);font-size:.62rem;text-transform:uppercase;letter-spacing:.12em;font-weight:500;padding:8px 14px;border-radius:999px;transition:all .25s;flex-shrink:0}
+.reset-btn:hover{color:#FF6B81;border-color:rgba(255,107,129,.4);background:rgba(255,107,129,.06)}
 
-    body.season-summer {
-        --bg: #060A08;
-        --surface: linear-gradient(145deg, #0D1812 0%, #060B08 100%);
-        --surface-solid: #0B140F;
-        --surface-hover: linear-gradient(145deg, #13221A 0%, #0B140F 100%);
-        --text-muted: #9CA3AF;
-        --accent: #10B981; 
-        --accent-glow: rgba(16, 185, 129, 0.3);
-        --accent-dim: rgba(16, 185, 129, 0.08);
-    }
+.particle{position:absolute;z-index:0;pointer-events:none;opacity:0;animation-fill-mode:both}
+.p-autumn{width:22px;height:22px;background-size:contain;background-repeat:no-repeat;background-position:center;top:-30px;animation:fall-and-spin linear infinite}
+.p-autumn:nth-child(3n+1){background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50,5 L65,35 L95,35 L75,60 L85,90 L50,75 L15,90 L25,60 L5,35 L35,35 Z" fill="%23DC2626" opacity="0.7"/></svg>')}
+.p-autumn:nth-child(3n+2){width:26px;height:26px;background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50,5 C60,20 75,20 75,35 C85,40 85,60 75,70 C85,85 60,95 50,95 C40,95 15,85 25,70 C15,60 15,40 25,35 C25,20 40,20 50,5 Z" fill="%23D97706" opacity="0.7"/></svg>')}
+.p-autumn:nth-child(3n+3){width:18px;height:18px;background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50,5 C85,25 95,60 50,95 C5,60 15,25 50,5 Z" fill="%23FBBF24" opacity="0.7"/></svg>')}
+@keyframes fall-and-spin{0%{transform:translateY(-10px) translateX(0) rotate(0) rotateX(0);opacity:0}10%{opacity:.7}50%{transform:translateY(200px) translateX(40px) rotate(180deg) rotateX(60deg)}90%{opacity:.7}100%{transform:translateY(450px) translateX(-20px) rotate(360deg) rotateX(0);opacity:0}}
+.p-winter{width:3px;height:3px;border-radius:50%;background:#FFF;box-shadow:0 0 6px #FFF;top:-20px;animation:fall linear infinite;opacity:.7}
+.p-winter:nth-child(even){width:5px;height:5px;opacity:.4}
+@keyframes fall{0%{transform:translateY(-10px) translateX(0);opacity:0}10%{opacity:.7}100%{transform:translateY(400px) translateX(30px);opacity:0}}
+.p-summer{width:3px;height:3px;border-radius:50%;background:#FDE047;box-shadow:0 0 12px 2px #EAB308,0 0 20px 4px rgba(234,179,8,.35);animation:float-firefly linear infinite}
+.p-summer:nth-child(even){width:2px;height:2px}
+.p-summer:nth-child(3n){width:4px;height:4px;background:#FEF08A}
+@keyframes float-firefly{0%{transform:translate(0,0) scale(.8);opacity:0}20%{opacity:.8}50%{transform:translate(30px,-40px) scale(1.2);opacity:.5}80%{opacity:.65}100%{transform:translate(-20px,-100px) scale(.8);opacity:0}}
 
-    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-    html, body { width: 100%; max-width: 100vw; overflow-x: clip; scroll-behavior: smooth; }
+.section-nav{display:flex;flex-wrap:wrap;gap:6px;padding:22px 0;border-bottom:1px solid var(--border);position:sticky;top:0;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);z-index:20;transition:background .4s,border-color .4s;margin:0 -32px;padding-left:32px;padding-right:32px}
+.section-nav a{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:.7rem;font-weight:500;text-transform:uppercase;letter-spacing:.1em;color:var(--text-dim);padding:8px 14px;border:1px solid transparent;border-radius:999px;transition:all .25s;position:relative}
+.section-nav a .nav-num{font-family:var(--font-mono);font-weight:500;color:var(--text-dim);opacity:.7;transition:color .25s,opacity .25s}
+.section-nav a .nav-dot{width:5px;height:5px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent-glow);opacity:0;transform:scale(0);transition:opacity .25s,transform .25s}
+.section-nav a:hover{color:var(--text-muted);background:rgba(255,255,255,.03)}
+.section-nav a.active{color:var(--text);border-color:var(--border-strong);background:rgba(255,255,255,.04)}
+.section-nav a.active .nav-num{color:var(--accent);opacity:1}
+.section-nav a.active .nav-dot{opacity:1;transform:scale(1)}
 
-    body {
-        font-family: var(--font-sans);
-        background-color: var(--bg);
-        color: var(--text);
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        position: relative;
-        -webkit-font-smoothing: antialiased;
-        transition: background-color 0.3s ease;
-        padding: 0 20px 40px;
-    }
+main{padding:48px 0 32px}
 
-    /* Фоновые свечения */
-    body::before, body::after {
-        content: '';
-        position: fixed;
-        width: 100vmax;
-        height: 100vmax;
-        border-radius: 50%;
-        filter: blur(150px);
-        z-index: -1;
-        opacity: 0.15;
-        pointer-events: none;
-        transition: background 0.3s ease;
-    }
-    body::before { top: -50vmax; left: -50vmax; background: var(--accent); }
-    body::after { bottom: -50vmax; right: -50vmax; background: var(--text); opacity: 0.03; }
+.block-card{counter-reset:topic;background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:44px 44px 32px;margin-bottom:32px;box-shadow:var(--shadow-card);position:relative;overflow:hidden;scroll-margin-top:100px;transition:border-color .35s,transform .35s}
+.block-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent 0%,var(--border-strong) 50%,transparent 100%);opacity:.6}
+.block-card:hover{border-color:var(--border-strong)}
+.block-card::after{content:attr(data-class);position:absolute;top:-30px;right:24px;font-family:var(--font-display);font-size:clamp(140px,20vw,220px);font-weight:800;letter-spacing:-.06em;line-height:1;color:var(--text);opacity:.035;pointer-events:none;user-select:none;transition:opacity .4s}
+.block-card:hover::after{opacity:.055}
 
-    /* --- ШАПКА --- */
-    header {
-        position: sticky; top: 0; left: 0; right: 0; width: 100%; z-index: 100;
-        background: rgba(10, 7, 5, 0.6);
-        backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-        border-bottom: 1px solid var(--border);
-        padding: 20px 24px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;
-        margin: 0 -20px; padding-left: 20px; padding-right: 20px;
-        transition: border-color 0.3s ease;
-    }
-    
-    .brand { display: flex; flex-direction: column; gap: 2px; }
-    .brand a { text-decoration: none; color: var(--text); display: inline-block; transition: transform 0.2s; }
-    .brand a:hover { transform: translateY(-1px); }
-    .brand h1 { 
-        font-family: var(--font-display); font-size: clamp(20px, 4vw, 24px); 
-        letter-spacing: 0.05em; line-height: 1.1; font-weight: 800; text-transform: uppercase; 
-    }
-    .brand h1 .accent-word { 
-        color: var(--accent); font-weight: 500; 
-        text-shadow: 0 0 20px var(--accent-glow); 
-        transition: color 0.3s ease, text-shadow 0.3s ease;
-    }
-    .brand p { font-family: var(--font-mono); font-size: clamp(10px, 1.5vw, 12px); color: var(--text-muted); margin-top: 4px; text-transform: uppercase; }
+.block-header{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:36px;padding-bottom:28px;border-bottom:1px solid var(--border);position:relative;z-index:1}
+.block-header-left{display:flex;flex-direction:column;gap:10px;min-width:0}
+.block-kicker{font-family:var(--font-mono);font-size:.68rem;font-weight:500;text-transform:uppercase;letter-spacing:.22em;color:var(--text-dim);display:flex;align-items:center;gap:12px}
+.block-kicker::before{content:'';width:20px;height:1px;background:var(--accent);box-shadow:0 0 10px var(--accent-glow)}
+.block-title{font-family:var(--font-display);font-size:clamp(1.75rem,3.5vw,2.6rem);font-weight:800;letter-spacing:-.03em;line-height:1.05;text-transform:uppercase}
+.block-title em{font-style:normal;color:var(--accent);transition:color .4s}
+.block-meta{display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0}
+.block-meta-count{font-family:var(--font-display);font-size:1.6rem;font-weight:800;line-height:1;color:var(--text);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.block-meta-lbl{font-family:var(--font-mono);font-size:.62rem;text-transform:uppercase;letter-spacing:.14em;color:var(--text-dim);font-weight:500}
 
-    .container { max-width: 1100px; margin: 0 auto; width: 100%; flex: 1; padding-top: 20px; }
+.topic-section{margin:44px 0 24px;padding:14px 0 12px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);display:flex;align-items:baseline;gap:14px}
+.topic-section:first-of-type{margin-top:0;padding-top:0;border-top:none}
+.topic-section-label{font-family:var(--font-mono);font-size:.7rem;font-weight:500;text-transform:uppercase;letter-spacing:.22em;color:var(--accent);opacity:.9;text-shadow:0 0 12px var(--accent-glow)}
+.topic-section-line{flex:1;height:1px;background:var(--border)}
 
-    /* --- НАВИГАЦИЯ ПО КЛАССАМ --- */
-    .nav-internal {
-        display: flex; flex-wrap: wrap; gap: 8px; padding: 12px 16px; margin-bottom: 24px;
-        background: var(--surface-solid); border-radius: 12px; border: 1px solid var(--border);
-        backdrop-filter: blur(4px); position: sticky; top: 80px; z-index: 50;
-        transition: border-color 0.3s ease;
-    }
-    .nav-internal a {
-        color: var(--text-muted); text-decoration: none; font-family: var(--font-mono); font-size: 13px; font-weight: 500;
-        padding: 6px 16px; border-radius: 8px; border: 1px solid transparent; transition: all 0.3s ease;
-        white-space: nowrap;
-    }
-    .nav-internal a:hover { color: var(--text); border-color: var(--border); background: rgba(255,255,255,0.03); }
-    .nav-internal a.active { 
-        color: var(--accent); border-color: var(--accent); background: var(--accent-dim); 
-        box-shadow: 0 0 20px var(--accent-glow); 
-    }
+.topic-header{display:flex;align-items:baseline;gap:16px;margin:36px 0 8px;padding-bottom:14px;position:relative;counter-increment:topic}
+.topic-header:first-of-type,.topic-section + .topic-header{margin-top:8px}
+.topic-header::before{content:counter(topic,decimal-leading-zero);font-family:var(--font-mono);font-size:.7rem;font-weight:500;color:var(--accent);letter-spacing:.08em;opacity:.9;flex-shrink:0;padding-top:4px}
+.topic-header::after{content:'';position:absolute;left:0;right:0;bottom:0;height:1px;background:linear-gradient(90deg,var(--border-strong) 0%,transparent 100%)}
+.topic-title{font-family:var(--font-display);font-size:clamp(.95rem,1.6vw,1.15rem);font-weight:700;color:var(--text);letter-spacing:-.005em;line-height:1.35}
 
-    /* --- ЗАГОЛОВОК --- */
-    .collection-header {
-        text-align: center; padding: 60px 0 30px;
-        position: relative;
-    }
-    .collection-header .deco-left, .collection-header .deco-right {
-        position: absolute; top: 50%; transform: translateY(-50%); font-size: 52px; color: var(--accent); opacity: 0.05;
-        font-family: 'Georgia', serif; pointer-events: none; user-select: none;
-    }
-    .collection-header .deco-left { left: 0; }
-    .collection-header .deco-right { right: 0; }
-    .collection-header h1 {
-        font-family: var(--font-display); font-size: clamp(32px, 5vw, 48px); font-weight: 800; color: var(--text); 
-        letter-spacing: -0.03em; text-transform: uppercase;
-        text-shadow: 0 0 80px var(--accent-glow); display: inline-block; padding: 0 20px; position: relative;
-    }
-    .collection-header h1::after {
-        content: ""; position: absolute; bottom: -6px; left: 50%; transform: translateX(-50%);
-        width: 50%; height: 3px; background: linear-gradient(90deg, transparent, var(--accent), transparent);
-        border-radius: 2px; opacity: 0.6;
-    }
-    .collection-header h2 {
-        font-family: var(--font-display); font-size: clamp(20px, 2.5vw, 28px); font-weight: 500; color: var(--text-muted); margin-top: 16px;
-    }
-    .collection-header h2 span { color: var(--accent); }
-    .collection-header .sub { font-family: var(--font-mono); font-size: 13px; color: var(--text-muted); margin-top: 12px; text-transform: uppercase; letter-spacing: 0.05em; }
+.task-list{list-style:none;padding:0;counter-reset:task;margin-bottom:4px}
+.task-list[start]{counter-reset:task calc(attr(start number,1) - 1)}
+.task-list > li{counter-increment:task;display:flex;align-items:flex-start;gap:14px;padding:11px 0;font-size:15px;line-height:1.62;color:var(--text);border-bottom:1px solid rgba(255,255,255,.025);transition:background .2s,padding .2s;position:relative}
+.task-list > li:last-child{border-bottom:none}
+.task-list > li::before{content:counter(task);font-family:var(--font-mono);font-size:.75rem;font-weight:500;color:var(--text-dim);opacity:.65;flex-shrink:0;min-width:26px;text-align:right;padding-top:4px;letter-spacing:.02em;transition:color .2s,opacity .2s}
+.task-list > li:hover::before{color:var(--accent);opacity:1}
 
-    /* --- ПРОГРЕСС-БАР --- */
-    .progress-container {
-        display: flex; align-items: center; gap: 12px; margin-top: 24px; max-width: 500px; margin-left: auto; margin-right: auto;
-        background: var(--surface-solid); padding: 8px 16px 8px 8px; border-radius: 40px; border: 1px solid var(--border);
-    }
-    .progress-bar { flex: 1; height: 6px; background: var(--border); border-radius: 6px; overflow: hidden; }
-    .progress-fill { height: 100%; width: 0%; background: var(--accent); border-radius: 6px; transition: width 0.4s ease; box-shadow: 0 0 10px var(--accent-glow); }
-    .progress-text { font-family: var(--font-mono); font-size: 13px; color: var(--text-muted); white-space: nowrap; font-weight: 500; min-width: 60px; text-align: right; }
-    .reset-btn {
-        background: transparent; border: none; color: var(--text-muted); cursor: pointer; font-family: var(--font-display); font-size: 13px; padding: 4px 12px;
-        border-radius: 20px; transition: 0.3s; font-weight: 600;
-    }
-    .reset-btn:hover { color: #FF5C7A; background: rgba(255, 92, 122, 0.1); }
+.task-checkbox{position:absolute;opacity:0;width:0;height:0;pointer-events:none}
+.task-checkbox + .task-checkbox-label{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;width:18px;height:18px;margin-top:5px;border:1.5px solid var(--text-dim);border-radius:5px;background:transparent;transition:all .25s cubic-bezier(.4,0,.2,1);cursor:pointer;position:relative}
+.task-checkbox + .task-checkbox-label::after{content:'';position:absolute;inset:3px;background:var(--accent);border-radius:2px;transform:scale(0);transition:transform .25s cubic-bezier(.34,1.56,.64,1);box-shadow:0 0 10px var(--accent-glow)}
+.task-checkbox:checked + .task-checkbox-label{border-color:var(--accent);background:var(--accent-dim)}
+.task-checkbox:checked + .task-checkbox-label::after{transform:scale(1)}
+.task-checkbox:focus-visible + .task-checkbox-label{outline:2px solid var(--accent);outline-offset:3px;border-radius:5px}
+.task-checkbox-label:hover{border-color:var(--text-muted)}
+.task-checkbox:checked ~ .task-text{color:var(--text-muted);opacity:.55;text-decoration:line-through;text-decoration-color:var(--text-dim);text-decoration-thickness:1px}
+.task-text{flex:1;transition:color .3s,opacity .3s,text-decoration .3s;min-width:0}
 
-    /* --- БЛОКИ --- */
-    .block-card {
-        background: var(--surface);
-        border: 1px solid var(--border); border-radius: 16px; padding: 28px 30px 24px; margin-bottom: 24px;
-        box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8); transition: transform 0.3s, border-color 0.3s;
-        position: relative; overflow: hidden; width: 100%; scroll-margin-top: 160px;
-    }
-    .block-card:hover { transform: translateY(-3px); border-color: var(--border-hover); }
-    .block-card::before {
-        content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%;
-        background: var(--accent); border-radius: 4px 0 0 4px; opacity: 0.5; transition: opacity 0.4s;
-    }
-    .block-card:hover::before { opacity: 1; box-shadow: 0 0 15px var(--accent); }
+.top-btn{position:fixed;bottom:28px;right:28px;z-index:1000;width:44px;height:44px;padding:0;border:1px solid var(--border);border-radius:50%;background:rgba(15,11,8,.85);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);color:var(--text-muted);font-family:var(--font-mono);font-size:1.1rem;font-weight:500;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s;box-shadow:0 8px 24px rgba(0,0,0,.5)}
+.top-btn:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-dim);transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.6),0 0 24px var(--accent-glow)}
 
-    .block-header {
-        display: flex; align-items: baseline; gap: 16px; margin-bottom: 20px; padding-bottom: 12px;
-        border-bottom: 1px solid var(--border);
-    }
-    .block-number { font-family: var(--font-display); font-size: 28px; font-weight: 800; color: var(--accent); opacity: 0.8; flex-shrink: 0; }
-    .block-title { font-family: var(--font-display); font-size: clamp(22px, 2.5vw, 30px); font-weight: 800; color: var(--text); letter-spacing: -0.02em; }
+footer{padding:40px 0 32px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.footer-brand{font-family:var(--font-mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.18em;color:var(--text-dim)}
+.footer-brand b{color:var(--text-muted);font-weight:500}
+.footer-meta{font-family:var(--font-mono);font-size:.65rem;text-transform:uppercase;letter-spacing:.14em;color:var(--text-dim);display:flex;gap:20px;flex-wrap:wrap}
+.footer-meta span{display:flex;align-items:center;gap:8px}
+.footer-meta span::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--accent);opacity:.6}
 
-    .topic-header {
-        margin-top: 28px; margin-bottom: 12px; padding: 10px 16px; background: var(--accent-dim);
-        border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; font-family: var(--font-display); font-size: clamp(18px, 2vw, 22px);
-        font-weight: 700; color: var(--accent); letter-spacing: 0.02em;
-    }
-    .topic-header:first-of-type { margin-top: 0; }
-
-    /* --- СПИСОК ЗАДАНИЙ --- */
-    .task-list { list-style: none; counter-reset: task-item; }
-    .task-list[start] { counter-reset: task-item calc(attr(start number, 1) - 1); }
-    
-    .task-list > li {
-        counter-increment: task-item;
-        padding: 10px 0; position: relative; font-size: 16px; line-height: 1.6; color: var(--text);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.03); transition: background 0.2s;
-        display: flex; align-items: flex-start; gap: 12px;
-    }
-    .task-list > li:last-child { border-bottom: none; }
-    .task-list > li:hover { background: rgba(255, 255, 255, 0.02); border-radius: 8px; padding-left: 8px; padding-right: 8px; margin-left: -8px; margin-right: -8px; }
-
-    .task-list > li::before {
-        content: counter(task-item) ".";
-        font-family: var(--font-mono); font-weight: 500; color: var(--accent);
-        opacity: 0.7; flex-shrink: 0; min-width: 30px; display: inline-block; text-align: right; margin-right: 4px;
-    }
-
-    /* --- ЧЕКБОКСЫ --- */
-    .task-checkbox { position: absolute; opacity: 0; width: 0; height: 0; pointer-events: none; }
-    
-    .task-checkbox + .task-checkbox-label {
-        display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
-        width: 22px; height: 22px; margin-top: 4px; border: 1.5px solid var(--text-muted); border-radius: 6px;
-        background: transparent; transition: all 0.25s ease; cursor: pointer; position: relative;
-    }
-    .task-checkbox + .task-checkbox-label::after {
-        content: ""; position: absolute; top: 4px; left: 4px; width: 12px; height: 12px;
-        background: var(--accent); border-radius: 3px; transform: scale(0);
-        transition: transform 0.2s cubic-bezier(0.22,1,0.36,1); box-shadow: 0 0 8px var(--accent);
-    }
-    .task-checkbox:checked + .task-checkbox-label { border-color: var(--accent); background: var(--accent-dim); }
-    .task-checkbox:checked + .task-checkbox-label::after { transform: scale(1); }
-    .task-checkbox:focus-visible + .task-checkbox-label { outline: 2px solid var(--accent); outline-offset: 2px; }
-    .task-checkbox-label:hover { border-color: var(--accent); }
-    .task-checkbox:checked ~ .task-text { text-decoration: line-through; opacity: 0.5; }
-
-    .task-text { flex: 1; transition: opacity 0.3s, text-decoration 0.3s; padding-top: 2px; }
-
-    /* --- КНОПКИ ВНИЗУ --- */
-    .back-link {
-        position: fixed; bottom: 24px; left: 24px; z-index: 1000; padding: 10px 22px;
-        border: 1px solid var(--accent); border-radius: 40px; background: rgba(10, 7, 5, 0.7); backdrop-filter: blur(12px);
-        color: var(--accent); text-decoration: none; font-family: var(--font-display); font-size: 14px; font-weight: 700; transition: all 0.3s;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-    }
-    .back-link:hover { background: var(--accent-dim); transform: translateY(-2px); box-shadow: 0 8px 25px var(--accent-glow); }
-    
-    .top-link {
-        position: fixed; bottom: 76px; left: 24px; z-index: 1000; padding: 10px 18px;
-        border: 1px solid var(--border); border-radius: 40px; background: rgba(10, 7, 5, 0.7); backdrop-filter: blur(12px);
-        color: var(--text-muted); font-family: var(--font-display); font-size: 14px; font-weight: 600; transition: all 0.3s; cursor: pointer;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-    }
-    .top-link:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); transform: translateY(-2px); }
-
-    /* --- АДАПТИВНОСТЬ --- */
-    @media (max-width: 640px) {
-        body { padding: 0 12px 30px; }
-        header { padding: 12px 16px; margin: 0 -12px; }
-        .nav-internal { padding: 8px 12px; gap: 6px; flex-wrap: nowrap; overflow-x: auto; top: 70px; margin-bottom: 16px; border-radius: 12px; scrollbar-width: none; }
-        .nav-internal::-webkit-scrollbar { display: none; }
-        .nav-internal a { font-size: 12px; padding: 4px 12px; }
-        
-        .collection-header { padding: 40px 0 20px; }
-        .collection-header .deco-left, .collection-header .deco-right { display: none; }
-        .collection-header h1 { font-size: 28px; padding: 0; }
-        .collection-header h2 { font-size: 18px; margin-top: 10px; }
-        .collection-header .sub { font-size: 11px; }
-        
-        .progress-container { max-width: 100%; padding: 4px 12px 4px 4px; gap: 8px; }
-        .progress-text { font-size: 12px; min-width: 50px; }
-        .reset-btn { font-size: 12px; padding: 2px 8px; }
-        
-        .block-card { padding: 18px 14px 16px; border-radius: 12px; margin-bottom: 18px; scroll-margin-top: 120px; }
-        .block-header { gap: 10px; flex-wrap: wrap; }
-        .block-number { font-size: 20px; }
-        .block-title { font-size: 20px; }
-        .topic-header { font-size: 16px; padding: 6px 12px; }
-        
-        .task-list > li { font-size: 14px; line-height: 1.5; padding: 8px 0; gap: 8px; }
-        .task-checkbox + .task-checkbox-label { width: 22px; height: 22px; margin-top: 2px; border-radius: 6px; }
-        .task-checkbox + .task-checkbox-label::after { width: 12px; height: 12px; top: 3px; left: 3px; }
-        .task-list > li::before { font-size: 13px; min-width: 24px; }
-        
-        .back-link { bottom: 16px; left: 16px; padding: 8px 18px; font-size: 13px; }
-        .top-link { bottom: 64px; left: 16px; padding: 8px 14px; font-size: 13px; }
-    }
-  </style>
+@media(max-width:960px){
+.hero{padding:72px 0 48px}
+.hero-bottom{grid-template-columns:1fr;gap:32px}
+.hero-side{gap:20px}
+.block-card{padding:32px 28px 24px;border-radius:16px}
+}
+@media(max-width:768px){
+.frame{padding:0 20px}
+header{flex-direction:column;align-items:flex-start;gap:16px;padding:20px 0}
+.header-right{flex-direction:row;width:100%;justify-content:space-between}
+.hero{padding:56px 0 40px}
+.hero-title{font-size:clamp(2rem,7vw,3rem)}
+.hero-meta{margin-bottom:32px}
+.hero-pill{padding:6px 12px;font-size:.65rem}
+.hero-pill b{font-size:.85rem}
+.hero-bottom{padding-top:24px;gap:24px}
+.section-nav{margin:0 -20px;padding-left:20px;padding-right:20px;padding:16px 20px;gap:4px}
+.section-nav a{font-size:.62rem;padding:6px 10px;letter-spacing:.08em}
+.section-nav a .nav-num{display:none}
+.block-card{padding:24px 18px 18px;border-radius:14px;margin-bottom:20px}
+.block-header{gap:16px;margin-bottom:24px;padding-bottom:20px;flex-wrap:wrap}
+.block-title{font-size:1.4rem}
+.block-meta-count{font-size:1.3rem}
+.topic-header{margin:28px 0 6px;gap:12px;padding-bottom:12px}
+.topic-header::before{font-size:.65rem}
+.topic-title{font-size:.95rem}
+.task-list > li{font-size:14px;padding:10px 0;gap:10px;line-height:1.55}
+.task-list > li::before{font-size:.7rem;min-width:22px}
+.task-checkbox + .task-checkbox-label{width:18px;height:18px;margin-top:4px}
+.top-btn{width:40px;height:40px;bottom:20px;right:20px;font-size:1rem}
+footer{flex-direction:column;align-items:flex-start;gap:12px;padding:32px 0}
+.progress-panel{padding:14px 16px;gap:14px}
+.progress-counter .num{font-size:1.2rem}
+.reset-btn{padding:6px 10px;font-size:.58rem}
+}
+@media(max-width:400px){
+.frame{padding:0 14px}
+.theme-btn{font-size:.55rem;padding:6px 9px;letter-spacing:.06em}
+.hero-title{font-size:1.6rem}
+.hero-title em{font-size:.35em;margin-top:14px}
+.block-card{padding:20px 14px 14px}
+.block-title{font-size:1.15rem}
+.block-meta-count{font-size:1.1rem}
+.task-list > li{font-size:13.5px}
+.topic-section{margin:32px 0 18px}
+}
+</style>
 </head>
 <body>
+<div class="frame">
 
 <header>
-  <div class="brand">
-    <a href="https://drapejnik.github.io/epallaxis/index.html">
-      <h1>EPALLAXIS <span class="accent-word">diagnostics</span></h1>
-    </a>
-    <p>Ἐπαλλάσσω — приводить систему в порядок</p>
-  </div>
+<a href="../../index.html" class="brand">EPALLAXIS<em>_diagnostics</em></a>
+<div class="header-right">
+<div class="theme-switcher" id="theme-switcher">
+<button class="theme-btn" data-theme="auto">AUTO</button>
+<button class="theme-btn" data-theme="autumn">ОСЕНЬ</button>
+<button class="theme-btn" data-theme="winter">ЗИМА</button>
+<button class="theme-btn" data-theme="spring">ВЕСНА</button>
+<button class="theme-btn" data-theme="summer">ЛЕТО</button>
+</div>
+</div>
 </header>
 
-<div class="container">
+<section class="hero">
+<canvas id="spring-canvas" class="hero-canvas"></canvas>
+<div class="season-particles" id="particles-container"></div>
 
-  <nav class="nav-internal" id="navInternal">
-    <a href="#block5" class="active">5 класс</a>
-    <a href="#block6">6 класс</a>
-    <a href="#block7">7 класс</a>
-    <a href="#block8">8 класс</a>
-    <a href="#block9">9 класс</a>
-  </nav>
+<div class="hero-kicker">Диагностика · Математика</div>
+<h1 class="hero-title">Диагностическая работа<em>5–9 классы</em></h1>
 
-  <div class="collection-header">
-    <span class="deco-left">∑ π</span>
-    <span class="deco-right">∫ √</span>
-    <h1>Диагностическая работа</h1>
-    <h2>Математика <span>5–9 классы</span></h2>
-    <div class="sub">Проводится для диагностики сугубо базового уровня знаний</div>
+<div class="hero-meta">
+<div class="hero-pill"><span class="dot"></span><b>5</b> классов</div>
+<div class="hero-pill"><span class="dot"></span><b>226</b> задач</div>
+<div class="hero-pill"><span class="dot"></span><b>12</b> тем</div>
+</div>
 
-    <div class="progress-container">
-      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
-      <span class="progress-text" id="progressText">0 из 0</span>
-      <button class="reset-btn" id="resetBtn">✕ сброс</button>
-    </div>
-  </div>
+<div class="hero-bottom">
+<div class="greek-quote">Ἐπάλλαξις — приводить систему в порядок</div>
+<div class="hero-side">
+<div class="hero-desc">Один срез на каждый класс — от натуральных чисел до тригонометрии. Отмечайте выполненные задания: <b>прогресс сохраняется в браузере</b> и остаётся при возвращении.</div>
+<div class="progress-panel">
+<div class="progress-counter">
+<div class="num" id="progressCounter">0<span>/226</span></div>
+<div class="lbl">решено</div>
+</div>
+<div class="progress-bar-wrap">
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+<div class="progress-bar-meta"><span id="progressPercent">0%</span><span id="progressText">0 из 226</span></div>
+</div>
+<button class="reset-btn" id="resetBtn">Сброс</button>
+</div>
+</div>
+</div>
+</section>
 
-  <!-- ============================================================
-     БЛОК 5 — 5 КЛАСС
-  ============================================================ -->
-  <div class="block-card" id="block5">
-    <div class="block-header">
-      <span class="block-number">5</span>
-      <span class="block-title">класс</span>
-    </div>
+<nav class="section-nav" id="navInternal" aria-label="Навигация по классам">
+<a href="#block5" class="active"><span class="nav-num">05</span>5 класс<span class="nav-dot"></span></a>
+<a href="#block6"><span class="nav-num">06</span>6 класс<span class="nav-dot"></span></a>
+<a href="#block7"><span class="nav-num">07</span>7 класс<span class="nav-dot"></span></a>
+<a href="#block8"><span class="nav-num">08</span>8 класс<span class="nav-dot"></span></a>
+<a href="#block9"><span class="nav-num">09</span>9 класс<span class="nav-dot"></span></a>
+</nav>
 
-    <div class="topic-header">1. Натуральные числа</div>
-    <ol class="task-list">
-      <li><input type="checkbox" class="task-checkbox" id="task-5-1-1" data-task-id="task-5-1-1"><label for="task-5-1-1" class="task-checkbox-label"></label><span class="task-text">Вычислите: \(48:6+7\cdot5-12\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-5-1-2" data-task-id="task-5-1-2"><label for="task-5-1-2" class="task-checkbox-label"></label><span class="task-text">Вычислите удобным способом: \(25\cdot48+25\cdot52\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-5-1-3" data-task-id="task-5-1-3"><label for="task-5-1-3" class="task-checkbox-label"></label><span class="task-text">Запишите произведение в виде степени: \(5\cdot5\cdot5\cdot5\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-5-1-4" data-task-id="task-5-1-4"><label for="task-5-1-4" class="task-checkbox-label"></label><span class="task-text">Вычислите: \(2^4+3^2\).</span></li>
-    </ol>
+<main>
 
-    <div class="topic-header">2. НОД и НОК</div>
-    <ol class="task-list" start="5">
-      <li><input type="checkbox" class="task-checkbox" id="task-5-2-1" data-task-id="task-5-2-1"><label for="task-5-2-1" class="task-checkbox-label"></label><span class="task-text">Найдите НОД чисел 36 и 48.</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-5-2-2" data-task-id="task-5-2-2"><label for="task-5-2-2" class="task-checkbox-label"></label><span class="task-text">Найдите НОК чисел 12 и 18.</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-5-2-3" data-task-id="task-5-2-3"><label for="task-5-2-3" class="task-checkbox-label"></label><span class="task-text">Один светофор переключается каждые 20 секунд, а другой — каждые 30 секунд. Сейчас они переключились одновременно. Через сколько секунд это произойдёт снова?</span></li>
-    </ol>
+<div class="block-card" id="block5" data-class="05">
+<div class="block-header">
+<div class="block-header-left">
+<div class="block-kicker">Класс 05</div>
+<div class="block-title">5 <em>класс</em></div>
+</div>
+<div class="block-meta">
+<div class="block-meta-count">31</div>
+<div class="block-meta-lbl">заданий</div>
+</div>
+</div>
 
-    <div class="topic-header">3. Выражения и уравнения</div>
-    <ol class="task-list" start="8">
-      <li><input type="checkbox" class="task-checkbox" id="task-5-3-1" data-task-id="task-5-3-1"><label for="task-5-3-1" class="task-checkbox-label"></label><span class="task-text">Найдите значение выражения \(3a+5\), если \(a=7\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-5-3-2" data-task-id="task-5-3-2"><label for="task-5-3-2" class="task-checkbox-label"></label><span class="task-text">Решите уравнение: \(x+17=43\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-5-3-3" data-task-id="task-5-3-3"><label for="task-5-3-3" class="task-checkbox-label"></label><span class="task-text">Решите уравнение: \(7x=56\).</span></li>
-    </ol>
+<div class="topic-header"><span class="topic-title">Натуральные числа</span></div>
+<ol class="task-list">
+<li><input type="checkbox" class="task-checkbox" id="task-5-1-1" data-task-id="task-5-1-1"><label for="task-5-1-1" class="task-checkbox-label"></label><span class="task-text">Вычислите: \(48:6+7\cdot5-12\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-5-1-2" data-task-id="task-5-1-2"><label for="task-5-1-2" class="task-checkbox-label"></label><span class="task-text">Вычислите удобным способом: \(25\cdot48+25\cdot52\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-5-1-3" data-task-id="task-5-1-3"><label for="task-5-1-3" class="task-checkbox-label"></label><span class="task-text">Запишите произведение в виде степени: \(5\cdot5\cdot5\cdot5\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-5-1-4" data-task-id="task-5-1-4"><label for="task-5-1-4" class="task-checkbox-label"></label><span class="task-text">Вычислите: \(2^4+3^2\).</span></li>
+</ol>
 
-    <div class="topic-header">4. Обыкновенные дроби</div>
-    <ol class="task-list" start="11">
-      <li><input type="checkbox" class="task-checkbox" id="task-5-4-1" data-task-id="task-5-4-1"><label for="task-5-4-1" class="task-checkbox-label"></label><span class="task-text">Сравните дроби: \(\frac{3}{7}\) и \(\frac{5}{7}\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-5-4-2" data-task-id="task-5-4-2"><label for="task-5-4-2" class="task-checkbox-label"></label><span class="task-text">Сократите дробь: \(\frac{24}{36}\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-5-4-3" data-task-id="task-5-4-3"><label for="task-5-4-3" class="task-checkbox-label"></label><span class="task-text">Выполните действие: \(\frac{2}{9}+\frac{4}{9}\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-5-4-4" data-task-id="task-5-4-4"><label for="task-5-4-4" class="task-checkbox-label"></label><span class="task-text">Выполните действие: \(\frac{1}{3}+\frac{1}{6}\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-5-4-5" data-task-id="task-5-4-5"><label for="task-5-4-5" class="task-checkbox-label"></label><span class="task-text">Найдите \(\frac{3}{5}\) от числа 40.</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-5-4-6" data-task-id="task-5-4-6"><label for="task-5-4-6" class="task-checkbox-label"></label><span class="task-text">Число 18 составляет \(\frac{3}{5}\) некоторого числа. Найдите это число.</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-5-4-7" data-task-id="task-5-4-7"><label for="task-5-4-7" class="task-checkbox-label"></label><span class="task-text">Переведите неправильную дробь \(\frac{7}{3}\) в смешанное число.</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-5-4-8" data-task-id="task-5-4-8"><label for="task-5-4-8" class="task-checkbox-label"></label><span class="task-text">Переведите смешанное число \(2\frac{3}{4}\) в неправильную дробь.</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-5-4-9" data-task-id="task-5-4-9"><label for="task-5-4-9" class="task-checkbox-label"></label><span class="task-text">Вычислите: \(1\frac{2}{5} + 2\frac{3}{5}\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-5-4-10" data-task-id="task-5-4-10"><label for="task-5-4-10" class="task-checkbox-label"></label><span class="task-text">Вычислите: \(3\frac{1}{4} - 1\frac{3}{4}\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-5-4-11" data-task-id="task-5-4-11"><label for="task-5-4-11" class="task-checkbox-label"></label><span class="task-text">Вычислите: \(2\frac{1}{3} + 1\frac{1}{6}\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-5-4-12" data-task-id="task-5-4-12"><label for="task-5-4-12" class="task-checkbox-label"></label><span class="task-text">Вычислите: \(4\frac{2}{5} - 2\frac{3}{10}\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-5-4-13" data-task-id="task-5-4-13"><label for="task-5-4-13" class="task-checkbox-label"></label><span class="task-text">Переведите неправильную дробь \(\frac{15}{6}\) в смешанное число и сократите дробную часть.</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-5-4-14" data-task-id="task-5-4-14"><label for="task-5-4-14" class="task-checkbox-label"></label><span class="task-text">Переведите смешанное число \(5\frac{2}{3}\) в неправильную дробь.</span></li>
-    </ol>
+<div class="topic-header"><span class="topic-title">НОД и НОК</span></div>
+<ol class="task-list" start="5">
+<li><input type="checkbox" class="task-checkbox" id="task-5-2-1" data-task-id="task-5-2-1"><label for="task-5-2-1" class="task-checkbox-label"></label><span class="task-text">Найдите НОД чисел 36 и 48.</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-5-2-2" data-task-id="task-5-2-2"><label for="task-5-2-2" class="task-checkbox-label"></label><span class="task-text">Найдите НОК чисел 12 и 18.</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-5-2-3" data-task-id="task-5-2-3"><label for="task-5-2-3" class="task-checkbox-label"></label><span class="task-text">Один светофор переключается каждые 20 секунд, а другой — каждые 30 секунд. Сейчас они переключились одновременно. Через сколько секунд это произойдёт снова?</span></li>
+</ol>
 
-    <div class="topic-header">5. Геометрия</div>
-    <ol class="task-list" start="25">
-      <li><input type="checkbox" class="task-checkbox" id="task-5-5-1" data-task-id="task-5-5-1"><label for="task-5-5-1" class="task-checkbox-label"></label><span class="task-text">Сколько градусов содержит прямой угол?</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-5-5-2" data-task-id="task-5-5-2"><label for="task-5-5-2" class="task-checkbox-label"></label><span class="task-text">Постройте угол \(60^\circ\) с помощью транспортира.</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-5-5-3" data-task-id="task-5-5-3"><label for="task-5-5-3" class="task-checkbox-label"></label><span class="task-text">Начертите две перпендикулярные прямые.</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-5-5-4" data-task-id="task-5-5-4"><label for="task-5-5-4" class="task-checkbox-label"></label><span class="task-text">Прямоугольник имеет стороны 8 см и 5 см. Найдите его периметр и площадь.</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-5-5-5" data-task-id="task-5-5-5"><label for="task-5-5-5" class="task-checkbox-label"></label><span class="task-text">Фигура состоит из двух прямоугольников площадью \(12\) см\(^2\) и \(8\) см\(^2\). Найдите площадь всей фигуры.</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-5-5-6" data-task-id="task-5-5-6"><label for="task-5-5-6" class="task-checkbox-label"></label><span class="task-text">Прямоугольный параллелепипед имеет размеры 2 см, 3 см и 5 см. Найдите его объём.</span></li>
-    </ol>
+<div class="topic-header"><span class="topic-title">Выражения и уравнения</span></div>
+<ol class="task-list" start="8">
+<li><input type="checkbox" class="task-checkbox" id="task-5-3-1" data-task-id="task-5-3-1"><label for="task-5-3-1" class="task-checkbox-label"></label><span class="task-text">Найдите значение выражения \(3a+5\), если \(a=7\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-5-3-2" data-task-id="task-5-3-2"><label for="task-5-3-2" class="task-checkbox-label"></label><span class="task-text">Решите уравнение: \(x+17=43\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-5-3-3" data-task-id="task-5-3-3"><label for="task-5-3-3" class="task-checkbox-label"></label><span class="task-text">Решите уравнение: \(7x=56\).</span></li>
+</ol>
 
-    <div class="topic-header">6. Среднее арифметическое</div>
-    <ol class="task-list" start="31">
-      <li><input type="checkbox" class="task-checkbox" id="task-5-6-1" data-task-id="task-5-6-1"><label for="task-5-6-1" class="task-checkbox-label"></label><span class="task-text">Найдите среднее арифметическое чисел 5, 8, 10 и 7.</span></li>
-    </ol>
-  </div>
+<div class="topic-header"><span class="topic-title">Обыкновенные дроби</span></div>
+<ol class="task-list" start="11">
+<li><input type="checkbox" class="task-checkbox" id="task-5-4-1" data-task-id="task-5-4-1"><label for="task-5-4-1" class="task-checkbox-label"></label><span class="task-text">Сравните дроби: \(\frac{3}{7}\) и \(\frac{5}{7}\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-5-4-2" data-task-id="task-5-4-2"><label for="task-5-4-2" class="task-checkbox-label"></label><span class="task-text">Сократите дробь: \(\frac{24}{36}\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-5-4-3" data-task-id="task-5-4-3"><label for="task-5-4-3" class="task-checkbox-label"></label><span class="task-text">Выполните действие: \(\frac{2}{9}+\frac{4}{9}\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-5-4-4" data-task-id="task-5-4-4"><label for="task-5-4-4" class="task-checkbox-label"></label><span class="task-text">Выполните действие: \(\frac{1}{3}+\frac{1}{6}\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-5-4-5" data-task-id="task-5-4-5"><label for="task-5-4-5" class="task-checkbox-label"></label><span class="task-text">Найдите \(\frac{3}{5}\) от числа 40.</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-5-4-6" data-task-id="task-5-4-6"><label for="task-5-4-6" class="task-checkbox-label"></label><span class="task-text">Число 18 составляет \(\frac{3}{5}\) некоторого числа. Найдите это число.</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-5-4-7" data-task-id="task-5-4-7"><label for="task-5-4-7" class="task-checkbox-label"></label><span class="task-text">Переведите неправильную дробь \(\frac{7}{3}\) в смешанное число.</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-5-4-8" data-task-id="task-5-4-8"><label for="task-5-4-8" class="task-checkbox-label"></label><span class="task-text">Переведите смешанное число \(2\frac{3}{4}\) в неправильную дробь.</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-5-4-9" data-task-id="task-5-4-9"><label for="task-5-4-9" class="task-checkbox-label"></label><span class="task-text">Вычислите: \(1\frac{2}{5} + 2\frac{3}{5}\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-5-4-10" data-task-id="task-5-4-10"><label for="task-5-4-10" class="task-checkbox-label"></label><span class="task-text">Вычислите: \(3\frac{1}{4} - 1\frac{3}{4}\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-5-4-11" data-task-id="task-5-4-11"><label for="task-5-4-11" class="task-checkbox-label"></label><span class="task-text">Вычислите: \(2\frac{1}{3} + 1\frac{1}{6}\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-5-4-12" data-task-id="task-5-4-12"><label for="task-5-4-12" class="task-checkbox-label"></label><span class="task-text">Вычислите: \(4\frac{2}{5} - 2\frac{3}{10}\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-5-4-13" data-task-id="task-5-4-13"><label for="task-5-4-13" class="task-checkbox-label"></label><span class="task-text">Переведите неправильную дробь \(\frac{15}{6}\) в смешанное число и сократите дробную часть.</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-5-4-14" data-task-id="task-5-4-14"><label for="task-5-4-14" class="task-checkbox-label"></label><span class="task-text">Переведите смешанное число \(5\frac{2}{3}\) в неправильную дробь.</span></li>
+</ol>
 
-  <!-- ============================================================
-     БЛОК 6 — 6 КЛАСС
-  ============================================================ -->
-  <div class="block-card" id="block6">
-    <div class="block-header">
-      <span class="block-number">6</span>
-      <span class="block-title">класс</span>
-    </div>
+<div class="topic-header"><span class="topic-title">Геометрия</span></div>
+<ol class="task-list" start="25">
+<li><input type="checkbox" class="task-checkbox" id="task-5-5-1" data-task-id="task-5-5-1"><label for="task-5-5-1" class="task-checkbox-label"></label><span class="task-text">Сколько градусов содержит прямой угол?</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-5-5-2" data-task-id="task-5-5-2"><label for="task-5-5-2" class="task-checkbox-label"></label><span class="task-text">Постройте угол \(60^\circ\) с помощью транспортира.</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-5-5-3" data-task-id="task-5-5-3"><label for="task-5-5-3" class="task-checkbox-label"></label><span class="task-text">Начертите две перпендикулярные прямые.</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-5-5-4" data-task-id="task-5-5-4"><label for="task-5-5-4" class="task-checkbox-label"></label><span class="task-text">Прямоугольник имеет стороны 8 см и 5 см. Найдите его периметр и площадь.</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-5-5-5" data-task-id="task-5-5-5"><label for="task-5-5-5" class="task-checkbox-label"></label><span class="task-text">Фигура состоит из двух прямоугольников площадью \(12\) см\(^2\) и \(8\) см\(^2\). Найдите площадь всей фигуры.</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-5-5-6" data-task-id="task-5-5-6"><label for="task-5-5-6" class="task-checkbox-label"></label><span class="task-text">Прямоугольный параллелепипед имеет размеры 2 см, 3 см и 5 см. Найдите его объём.</span></li>
+</ol>
 
-    <div class="topic-header">1. Десятичные дроби</div>
-    <ol class="task-list">
-      <li><input type="checkbox" class="task-checkbox" id="task-6-1-1" data-task-id="task-6-1-1"><label for="task-6-1-1" class="task-checkbox-label"></label><span class="task-text">Вычислите: \(4{,}7+2{,}35\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-6-1-2" data-task-id="task-6-1-2"><label for="task-6-1-2" class="task-checkbox-label"></label><span class="task-text">Вычислите: \(8{,}5-3{,}27\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-6-1-3" data-task-id="task-6-1-3"><label for="task-6-1-3" class="task-checkbox-label"></label><span class="task-text">Вычислите: \(3{,}5\cdot4\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-6-1-4" data-task-id="task-6-1-4"><label for="task-6-1-4" class="task-checkbox-label"></label><span class="task-text">Вычислите: \(12{,}6:3\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-6-1-5" data-task-id="task-6-1-5"><label for="task-6-1-5" class="task-checkbox-label"></label><span class="task-text">Округлите число \(12{,}786\) до сотых.</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-6-1-6" data-task-id="task-6-1-6"><label for="task-6-1-6" class="task-checkbox-label"></label><span class="task-text">Запишите обыкновенную дробь \(\frac{3}{4}\) в виде десятичной дроби.</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-6-1-7" data-task-id="task-6-1-7"><label for="task-6-1-7" class="task-checkbox-label"></label><span class="task-text">Запишите десятичную дробь \(0{,}6\) в виде обыкновенной дроби и сократите её.</span></li>
-    </ol>
+<div class="topic-header"><span class="topic-title">Среднее арифметическое</span></div>
+<ol class="task-list" start="31">
+<li><input type="checkbox" class="task-checkbox" id="task-5-6-1" data-task-id="task-5-6-1"><label for="task-5-6-1" class="task-checkbox-label"></label><span class="task-text">Найдите среднее арифметическое чисел 5, 8, 10 и 7.</span></li>
+</ol>
+</div>
 
-    <div class="topic-header">2. Проценты и пропорции</div>
-    <ol class="task-list" start="8">
-      <li><input type="checkbox" class="task-checkbox" id="task-6-2-1" data-task-id="task-6-2-1"><label for="task-6-2-1" class="task-checkbox-label"></label><span class="task-text">Найдите \(25\%\) от числа 240.</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-6-2-2" data-task-id="task-6-2-2"><label for="task-6-2-2" class="task-checkbox-label"></label><span class="task-text">Число 30 составляет \(20\%\) некоторого числа. Найдите это число.</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-6-2-3" data-task-id="task-6-2-3"><label for="task-6-2-3" class="task-checkbox-label"></label><span class="task-text">Цена товара была 800 рублей. После скидки \(10\%\) найдите новую цену товара.</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-6-2-4" data-task-id="task-6-2-4"><label for="task-6-2-4" class="task-checkbox-label"></label><span class="task-text">Найдите неизвестный член пропорции: \(\frac{3}{5}=\frac{x}{20}\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-6-2-5" data-task-id="task-6-2-5"><label for="task-6-2-5" class="task-checkbox-label"></label><span class="task-text">За 3 часа велосипедист проезжает 45 км. Сколько километров он проедет за 5 часов с такой же скоростью?</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-6-2-6" data-task-id="task-6-2-6"><label for="task-6-2-6" class="task-checkbox-label"></label><span class="task-text">Шесть рабочих выполняют работу за 12 дней. За сколько дней выполнят эту работу 8 рабочих, если производительность одинаковая?</span></li>
-    </ol>
+<div class="block-card" id="block6" data-class="06">
+<div class="block-header">
+<div class="block-header-left">
+<div class="block-kicker">Класс 06</div>
+<div class="block-title">6 <em>класс</em></div>
+</div>
+<div class="block-meta">
+<div class="block-meta-count">32</div>
+<div class="block-meta-lbl">заданий</div>
+</div>
+</div>
 
-    <div class="topic-header">3. Множества</div>
-    <ol class="task-list" start="14">
-      <li><input type="checkbox" class="task-checkbox" id="task-6-3-1" data-task-id="task-6-3-1"><label for="task-6-3-1" class="task-checkbox-label"></label><span class="task-text">Запишите множество всех чётных чисел меньше 10.</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-6-3-2" data-task-id="task-6-3-2"><label for="task-6-3-2" class="task-checkbox-label"></label><span class="task-text">Даны множества: \(A=\{1,2,3,4\},\ B=\{3,4,5,6\}\). Запишите их пересечение \(A\cap B\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-6-3-3" data-task-id="task-6-3-3"><label for="task-6-3-3" class="task-checkbox-label"></label><span class="task-text">В классе 20 учеников. 12 занимаются футболом, 8 занимаются баскетболом, а 5 учеников занимаются обоими видами спорта. Сколько учеников занимаются только футболом?</span></li>
-    </ol>
+<div class="topic-header"><span class="topic-title">Десятичные дроби</span></div>
+<ol class="task-list">
+<li><input type="checkbox" class="task-checkbox" id="task-6-1-1" data-task-id="task-6-1-1"><label for="task-6-1-1" class="task-checkbox-label"></label><span class="task-text">Вычислите: \(4{,}7+2{,}35\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-6-1-2" data-task-id="task-6-1-2"><label for="task-6-1-2" class="task-checkbox-label"></label><span class="task-text">Вычислите: \(8{,}5-3{,}27\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-6-1-3" data-task-id="task-6-1-3"><label for="task-6-1-3" class="task-checkbox-label"></label><span class="task-text">Вычислите: \(3{,}5\cdot4\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-6-1-4" data-task-id="task-6-1-4"><label for="task-6-1-4" class="task-checkbox-label"></label><span class="task-text">Вычислите: \(12{,}6:3\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-6-1-5" data-task-id="task-6-1-5"><label for="task-6-1-5" class="task-checkbox-label"></label><span class="task-text">Округлите число \(12{,}786\) до сотых.</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-6-1-6" data-task-id="task-6-1-6"><label for="task-6-1-6" class="task-checkbox-label"></label><span class="task-text">Запишите обыкновенную дробь \(\frac{3}{4}\) в виде десятичной дроби.</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-6-1-7" data-task-id="task-6-1-7"><label for="task-6-1-7" class="task-checkbox-label"></label><span class="task-text">Запишите десятичную дробь \(0{,}6\) в виде обыкновенной дроби и сократите её.</span></li>
+</ol>
 
-    <div class="topic-header">4. Рациональные числа</div>
-    <ol class="task-list" start="17">
-      <li><input type="checkbox" class="task-checkbox" id="task-6-4-1" data-task-id="task-6-4-1"><label for="task-6-4-1" class="task-checkbox-label"></label><span class="task-text">Вычислите: \(-7+12\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-6-4-2" data-task-id="task-6-4-2"><label for="task-6-4-2" class="task-checkbox-label"></label><span class="task-text">Вычислите: \(-8-(-3)\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-6-4-3" data-task-id="task-6-4-3"><label for="task-6-4-3" class="task-checkbox-label"></label><span class="task-text">Вычислите: \((-6)\cdot(-4)\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-6-4-4" data-task-id="task-6-4-4"><label for="task-6-4-4" class="task-checkbox-label"></label><span class="task-text">Вычислите: \((-7)\cdot5\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-6-4-5" data-task-id="task-6-4-5"><label for="task-6-4-5" class="task-checkbox-label"></label><span class="task-text">Вычислите: \((-36):(-9)\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-6-4-6" data-task-id="task-6-4-6"><label for="task-6-4-6" class="task-checkbox-label"></label><span class="task-text">Вычислите: \(-5+3\cdot(-2)-(-4)\).</span></li>
-    </ol>
+<div class="topic-header"><span class="topic-title">Проценты и пропорции</span></div>
+<ol class="task-list" start="8">
+<li><input type="checkbox" class="task-checkbox" id="task-6-2-1" data-task-id="task-6-2-1"><label for="task-6-2-1" class="task-checkbox-label"></label><span class="task-text">Найдите \(25\%\) от числа 240.</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-6-2-2" data-task-id="task-6-2-2"><label for="task-6-2-2" class="task-checkbox-label"></label><span class="task-text">Число 30 составляет \(20\%\) некоторого числа. Найдите это число.</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-6-2-3" data-task-id="task-6-2-3"><label for="task-6-2-3" class="task-checkbox-label"></label><span class="task-text">Цена товара была 800 рублей. После скидки \(10\%\) найдите новую цену товара.</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-6-2-4" data-task-id="task-6-2-4"><label for="task-6-2-4" class="task-checkbox-label"></label><span class="task-text">Найдите неизвестный член пропорции: \(\frac{3}{5}=\frac{x}{20}\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-6-2-5" data-task-id="task-6-2-5"><label for="task-6-2-5" class="task-checkbox-label"></label><span class="task-text">За 3 часа велосипедист проезжает 45 км. Сколько километров он проедет за 5 часов с такой же скоростью?</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-6-2-6" data-task-id="task-6-2-6"><label for="task-6-2-6" class="task-checkbox-label"></label><span class="task-text">Шесть рабочих выполняют работу за 12 дней. За сколько дней выполнят эту работу 8 рабочих, если производительность одинаковая?</span></li>
+</ol>
 
-    <div class="topic-header">5. Координатная плоскость и графики</div>
-    <ol class="task-list" start="23">
-      <li><input type="checkbox" class="task-checkbox" id="task-6-5-1" data-task-id="task-6-5-1"><label for="task-6-5-1" class="task-checkbox-label"></label><span class="task-text">Назовите координаты точки, которая находится на 3 единицы вправо и на 2 единицы вверх от начала координат.</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-6-5-2" data-task-id="task-6-5-2"><label for="task-6-5-2" class="task-checkbox-label"></label><span class="task-text">Постройте на координатной плоскости точки: \(A(2;3),\ B(-2;1)\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-6-5-3" data-task-id="task-6-5-3"><label for="task-6-5-3" class="task-checkbox-label"></label><span class="task-text">Температура воздуха в течение дня изменялась так: утром \(-3^\circ C\), днём \(5^\circ C\), вечером \(1^\circ C\). На сколько градусов температура увеличилась от утра до дня?</span></li>
-    </ol>
+<div class="topic-header"><span class="topic-title">Множества</span></div>
+<ol class="task-list" start="14">
+<li><input type="checkbox" class="task-checkbox" id="task-6-3-1" data-task-id="task-6-3-1"><label for="task-6-3-1" class="task-checkbox-label"></label><span class="task-text">Запишите множество всех чётных чисел меньше 10.</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-6-3-2" data-task-id="task-6-3-2"><label for="task-6-3-2" class="task-checkbox-label"></label><span class="task-text">Даны множества: \(A=\{1,2,3,4\},\ B=\{3,4,5,6\}\). Запишите их пересечение \(A\cap B\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-6-3-3" data-task-id="task-6-3-3"><label for="task-6-3-3" class="task-checkbox-label"></label><span class="task-text">В классе 20 учеников. 12 занимаются футболом, 8 занимаются баскетболом, а 5 учеников занимаются обоими видами спорта. Сколько учеников занимаются только футболом?</span></li>
+</ol>
 
-    <div class="topic-header">6. Окружность, круг и треугольники</div>
-    <ol class="task-list" start="26">
-      <li><input type="checkbox" class="task-checkbox" id="task-6-6-1" data-task-id="task-6-6-1"><label for="task-6-6-1" class="task-checkbox-label"></label><span class="task-text">Найдите длину окружности радиуса 5 см. Используйте \(\pi\approx3{,}14\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-6-6-2" data-task-id="task-6-6-2"><label for="task-6-6-2" class="task-checkbox-label"></label><span class="task-text">Найдите площадь круга радиуса 4 см. Используйте \(\pi\approx3{,}14\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-6-6-3" data-task-id="task-6-6-3"><label for="task-6-6-3" class="task-checkbox-label"></label><span class="task-text">Определите вид треугольника со сторонами 5 см, 5 см и 8 см.</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-6-6-4" data-task-id="task-6-6-4"><label for="task-6-6-4" class="task-checkbox-label"></label><span class="task-text">Определите вид треугольника, если его углы равны \(40^\circ,\ 60^\circ,\ 80^\circ\).</span></li>
-    </ol>
+<div class="topic-header"><span class="topic-title">Рациональные числа</span></div>
+<ol class="task-list" start="17">
+<li><input type="checkbox" class="task-checkbox" id="task-6-4-1" data-task-id="task-6-4-1"><label for="task-6-4-1" class="task-checkbox-label"></label><span class="task-text">Вычислите: \(-7+12\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-6-4-2" data-task-id="task-6-4-2"><label for="task-6-4-2" class="task-checkbox-label"></label><span class="task-text">Вычислите: \(-8-(-3)\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-6-4-3" data-task-id="task-6-4-3"><label for="task-6-4-3" class="task-checkbox-label"></label><span class="task-text">Вычислите: \((-6)\cdot(-4)\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-6-4-4" data-task-id="task-6-4-4"><label for="task-6-4-4" class="task-checkbox-label"></label><span class="task-text">Вычислите: \((-7)\cdot5\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-6-4-5" data-task-id="task-6-4-5"><label for="task-6-4-5" class="task-checkbox-label"></label><span class="task-text">Вычислите: \((-36):(-9)\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-6-4-6" data-task-id="task-6-4-6"><label for="task-6-4-6" class="task-checkbox-label"></label><span class="task-text">Вычислите: \(-5+3\cdot(-2)-(-4)\).</span></li>
+</ol>
 
-    <div class="topic-header">7. Симметрия</div>
-    <ol class="task-list" start="30">
-      <li><input type="checkbox" class="task-checkbox" id="task-6-7-1" data-task-id="task-6-7-1"><label for="task-6-7-1" class="task-checkbox-label"></label><span class="task-text">Какие из фигур имеют ось симметрии: квадрат, равносторонний треугольник, произвольный треугольник?</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-6-7-2" data-task-id="task-6-7-2"><label for="task-6-7-2" class="task-checkbox-label"></label><span class="task-text">Имеет ли прямоугольник центр симметрии? Ответ объясните.</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-6-7-3" data-task-id="task-6-7-3"><label for="task-6-7-3" class="task-checkbox-label"></label><span class="task-text">Постройте точку, симметричную точке \(A\) относительно данной прямой.</span></li>
-    </ol>
-  </div>
+<div class="topic-header"><span class="topic-title">Координатная плоскость и графики</span></div>
+<ol class="task-list" start="23">
+<li><input type="checkbox" class="task-checkbox" id="task-6-5-1" data-task-id="task-6-5-1"><label for="task-6-5-1" class="task-checkbox-label"></label><span class="task-text">Назовите координаты точки, которая находится на 3 единицы вправо и на 2 единицы вверх от начала координат.</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-6-5-2" data-task-id="task-6-5-2"><label for="task-6-5-2" class="task-checkbox-label"></label><span class="task-text">Постройте на координатной плоскости точки: \(A(2;3),\ B(-2;1)\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-6-5-3" data-task-id="task-6-5-3"><label for="task-6-5-3" class="task-checkbox-label"></label><span class="task-text">Температура воздуха в течение дня изменялась так: утром \(-3^\circ C\), днём \(5^\circ C\), вечером \(1^\circ C\). На сколько градусов температура увеличилась от утра до дня?</span></li>
+</ol>
 
-  <!-- ============================================================
-     БЛОК 7 — 7 КЛАСС
-  ============================================================ -->
-  <div class="block-card" id="block7">
-    <div class="block-header">
-      <span class="block-number">7</span>
-      <span class="block-title">класс</span>
-    </div>
+<div class="topic-header"><span class="topic-title">Окружность, круг и треугольники</span></div>
+<ol class="task-list" start="26">
+<li><input type="checkbox" class="task-checkbox" id="task-6-6-1" data-task-id="task-6-6-1"><label for="task-6-6-1" class="task-checkbox-label"></label><span class="task-text">Найдите длину окружности радиуса 5 см. Используйте \(\pi\approx3{,}14\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-6-6-2" data-task-id="task-6-6-2"><label for="task-6-6-2" class="task-checkbox-label"></label><span class="task-text">Найдите площадь круга радиуса 4 см. Используйте \(\pi\approx3{,}14\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-6-6-3" data-task-id="task-6-6-3"><label for="task-6-6-3" class="task-checkbox-label"></label><span class="task-text">Определите вид треугольника со сторонами 5 см, 5 см и 8 см.</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-6-6-4" data-task-id="task-6-6-4"><label for="task-6-6-4" class="task-checkbox-label"></label><span class="task-text">Определите вид треугольника, если его углы равны \(40^\circ,\ 60^\circ,\ 80^\circ\).</span></li>
+</ol>
 
-    <div class="topic-header">Алгебра</div>
-    <div class="topic-header" style="margin-top:8px;">1. Степень с целым показателем и стандартный вид числа</div>
-    <ol class="task-list">
-      <li><input type="checkbox" class="task-checkbox" id="task-7-1-1" data-task-id="task-7-1-1"><label for="task-7-1-1" class="task-checkbox-label"></label><span class="task-text">Упростите выражение: \(a^3\cdot a^5\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-7-1-2" data-task-id="task-7-1-2"><label for="task-7-1-2" class="task-checkbox-label"></label><span class="task-text">Запишите выражение без отрицательной степени: \(a^{-3}\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-7-1-3" data-task-id="task-7-1-3"><label for="task-7-1-3" class="task-checkbox-label"></label><span class="task-text">Запишите число \(4500000\) в стандартном виде.</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-7-1-4" data-task-id="task-7-1-4"><label for="task-7-1-4" class="task-checkbox-label"></label><span class="task-text">Вычислите: \((-2)^4\).</span></li>
-    </ol>
+<div class="topic-header"><span class="topic-title">Симметрия</span></div>
+<ol class="task-list" start="30">
+<li><input type="checkbox" class="task-checkbox" id="task-6-7-1" data-task-id="task-6-7-1"><label for="task-6-7-1" class="task-checkbox-label"></label><span class="task-text">Какие из фигур имеют ось симметрии: квадрат, равносторонний треугольник, произвольный треугольник?</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-6-7-2" data-task-id="task-6-7-2"><label for="task-6-7-2" class="task-checkbox-label"></label><span class="task-text">Имеет ли прямоугольник центр симметрии? Ответ объясните.</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-6-7-3" data-task-id="task-6-7-3"><label for="task-6-7-3" class="task-checkbox-label"></label><span class="task-text">Постройте точку, симметричную точке \(A\) относительно данной прямой.</span></li>
+</ol>
+</div>
 
-    <div class="topic-header">2. Одночлены и многочлены</div>
-    <ol class="task-list" start="5">
-      <li><input type="checkbox" class="task-checkbox" id="task-7-2-1" data-task-id="task-7-2-1"><label for="task-7-2-1" class="task-checkbox-label"></label><span class="task-text">Приведите одночлен к стандартному виду: \(3a\cdot2a^2\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-7-2-2" data-task-id="task-7-2-2"><label for="task-7-2-2" class="task-checkbox-label"></label><span class="task-text">Упростите выражение: \((3x^2+2x)+(5x^2-4x)\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-7-2-3" data-task-id="task-7-2-3"><label for="task-7-2-3" class="task-checkbox-label"></label><span class="task-text">Раскройте скобки: \(2x(x+3)\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-7-2-4" data-task-id="task-7-2-4"><label for="task-7-2-4" class="task-checkbox-label"></label><span class="task-text">Упростите выражение: \((6x^2-3x+5)-(2x^2+x-1)\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-7-2-5" data-task-id="task-7-2-5"><label for="task-7-2-5" class="task-checkbox-label"></label><span class="task-text">Найдите значение выражения \(2x^2-3x+1\) при \(x=2\).</span></li>
-    </ol>
+<div class="block-card" id="block7" data-class="07">
+<div class="block-header">
+<div class="block-header-left">
+<div class="block-kicker">Класс 07</div>
+<div class="block-title">7 <em>класс</em></div>
+</div>
+<div class="block-meta">
+<div class="block-meta-count">40</div>
+<div class="block-meta-lbl">заданий</div>
+</div>
+</div>
 
-    <div class="topic-header">3. Формулы сокращённого умножения</div>
-    <ol class="task-list" start="10">
-      <li><input type="checkbox" class="task-checkbox" id="task-7-3-1" data-task-id="task-7-3-1"><label for="task-7-3-1" class="task-checkbox-label"></label><span class="task-text">Раскройте скобки: \((x+5)^2\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-7-3-2" data-task-id="task-7-3-2"><label for="task-7-3-2" class="task-checkbox-label"></label><span class="task-text">Раскройте скобки: \((3a^3-2)^2\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-7-3-3" data-task-id="task-7-3-3"><label for="task-7-3-3" class="task-checkbox-label"></label><span class="task-text">Разложите на множители: \(x^2-16\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-7-3-4" data-task-id="task-7-3-4"><label for="task-7-3-4" class="task-checkbox-label"></label><span class="task-text">Разложите на множители: \(4x^2-25\).</span></li>
-    </ol>
+<div class="topic-section"><span class="topic-section-label">Алгебра</span><span class="topic-section-line"></span></div>
 
-    <div class="topic-header">4. Линейные уравнения</div>
-    <ol class="task-list" start="14">
-      <li><input type="checkbox" class="task-checkbox" id="task-7-4-1" data-task-id="task-7-4-1"><label for="task-7-4-1" class="task-checkbox-label"></label><span class="task-text">Решите уравнение: \(3x+5=17\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-7-4-2" data-task-id="task-7-4-2"><label for="task-7-4-2" class="task-checkbox-label"></label><span class="task-text">Решите уравнение: \(\frac{x}{3}+5=9\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-7-4-3" data-task-id="task-7-4-3"><label for="task-7-4-3" class="task-checkbox-label"></label><span class="task-text">Решите уравнение: \(2(x-3)=14\).</span></li>
-    </ol>
+<div class="topic-header"><span class="topic-title">Степень с целым показателем и стандартный вид числа</span></div>
+<ol class="task-list">
+<li><input type="checkbox" class="task-checkbox" id="task-7-1-1" data-task-id="task-7-1-1"><label for="task-7-1-1" class="task-checkbox-label"></label><span class="task-text">Упростите выражение: \(a^3\cdot a^5\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-7-1-2" data-task-id="task-7-1-2"><label for="task-7-1-2" class="task-checkbox-label"></label><span class="task-text">Запишите выражение без отрицательной степени: \(a^{-3}\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-7-1-3" data-task-id="task-7-1-3"><label for="task-7-1-3" class="task-checkbox-label"></label><span class="task-text">Запишите число \(4500000\) в стандартном виде.</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-7-1-4" data-task-id="task-7-1-4"><label for="task-7-1-4" class="task-checkbox-label"></label><span class="task-text">Вычислите: \((-2)^4\).</span></li>
+</ol>
 
-    <div class="topic-header">5. Линейные неравенства</div>
-    <ol class="task-list" start="17">
-      <li><input type="checkbox" class="task-checkbox" id="task-7-5-1" data-task-id="task-7-5-1"><label for="task-7-5-1" class="task-checkbox-label"></label><span class="task-text">Решите неравенство: \(3x+4>13\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-7-5-2" data-task-id="task-7-5-2"><label for="task-7-5-2" class="task-checkbox-label"></label><span class="task-text">Решите неравенство: \(-2x<8\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-7-5-3" data-task-id="task-7-5-3"><label for="task-7-5-3" class="task-checkbox-label"></label><span class="task-text">Запишите промежутком решение неравенства: \(5x-10\leq0\).</span></li>
-    </ol>
+<div class="topic-header"><span class="topic-title">Одночлены и многочлены</span></div>
+<ol class="task-list" start="5">
+<li><input type="checkbox" class="task-checkbox" id="task-7-2-1" data-task-id="task-7-2-1"><label for="task-7-2-1" class="task-checkbox-label"></label><span class="task-text">Приведите одночлен к стандартному виду: \(3a\cdot2a^2\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-7-2-2" data-task-id="task-7-2-2"><label for="task-7-2-2" class="task-checkbox-label"></label><span class="task-text">Упростите выражение: \((3x^2+2x)+(5x^2-4x)\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-7-2-3" data-task-id="task-7-2-3"><label for="task-7-2-3" class="task-checkbox-label"></label><span class="task-text">Раскройте скобки: \(2x(x+3)\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-7-2-4" data-task-id="task-7-2-4"><label for="task-7-2-4" class="task-checkbox-label"></label><span class="task-text">Упростите выражение: \((6x^2-3x+5)-(2x^2+x-1)\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-7-2-5" data-task-id="task-7-2-5"><label for="task-7-2-5" class="task-checkbox-label"></label><span class="task-text">Найдите значение выражения \(2x^2-3x+1\) при \(x=2\).</span></li>
+</ol>
 
-    <div class="topic-header">6. Линейная функция</div>
-    <ol class="task-list" start="20">
-      <li><input type="checkbox" class="task-checkbox" id="task-7-6-1" data-task-id="task-7-6-1"><label for="task-7-6-1" class="task-checkbox-label"></label><span class="task-text">Для функции \(y=3x-5\) назовите угловой коэффициент и свободный член.</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-7-6-2" data-task-id="task-7-6-2"><label for="task-7-6-2" class="task-checkbox-label"></label><span class="task-text">Заполните таблицу значений функции \(y=2x+1\) для \(x=-2,\ 0,\ 3\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-7-6-3" data-task-id="task-7-6-3"><label for="task-7-6-3" class="task-checkbox-label"></label><span class="task-text">Постройте график функции \(y=-x+4\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-7-6-4" data-task-id="task-7-6-4"><label for="task-7-6-4" class="task-checkbox-label"></label><span class="task-text">Определите взаимное расположение графиков функций \(y=2x+1\) и \(y=2x-5\).</span></li>
-    </ol>
+<div class="topic-header"><span class="topic-title">Формулы сокращённого умножения</span></div>
+<ol class="task-list" start="10">
+<li><input type="checkbox" class="task-checkbox" id="task-7-3-1" data-task-id="task-7-3-1"><label for="task-7-3-1" class="task-checkbox-label"></label><span class="task-text">Раскройте скобки: \((x+5)^2\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-7-3-2" data-task-id="task-7-3-2"><label for="task-7-3-2" class="task-checkbox-label"></label><span class="task-text">Раскройте скобки: \((3a^3-2)^2\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-7-3-3" data-task-id="task-7-3-3"><label for="task-7-3-3" class="task-checkbox-label"></label><span class="task-text">Разложите на множители: \(x^2-16\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-7-3-4" data-task-id="task-7-3-4"><label for="task-7-3-4" class="task-checkbox-label"></label><span class="task-text">Разложите на множители: \(4x^2-25\).</span></li>
+</ol>
 
-    <div class="topic-header">7. Системы линейных уравнений</div>
-    <ol class="task-list" start="24">
-      <li><input type="checkbox" class="task-checkbox" id="task-7-7-1" data-task-id="task-7-7-1"><label for="task-7-7-1" class="task-checkbox-label"></label><span class="task-text">Решите систему способом сложения: \(\begin{cases}x+y=7,\\ x-y=1.\end{cases}\)</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-7-7-2" data-task-id="task-7-7-2"><label for="task-7-7-2" class="task-checkbox-label"></label><span class="task-text">Решите систему способом выражения одной переменной через другую: \(\begin{cases}y=2x+1,\\ 3x+y=13.\end{cases}\)</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-7-7-3" data-task-id="task-7-7-3"><label for="task-7-7-3" class="task-checkbox-label"></label><span class="task-text">Решите с помощью системы: в двух коробках 30 карандашей. В первой коробке на 6 карандашей больше, чем во второй. Сколько карандашей в каждой коробке?</span></li>
-    </ol>
+<div class="topic-header"><span class="topic-title">Линейные уравнения</span></div>
+<ol class="task-list" start="14">
+<li><input type="checkbox" class="task-checkbox" id="task-7-4-1" data-task-id="task-7-4-1"><label for="task-7-4-1" class="task-checkbox-label"></label><span class="task-text">Решите уравнение: \(3x+5=17\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-7-4-2" data-task-id="task-7-4-2"><label for="task-7-4-2" class="task-checkbox-label"></label><span class="task-text">Решите уравнение: \(\frac{x}{3}+5=9\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-7-4-3" data-task-id="task-7-4-3"><label for="task-7-4-3" class="task-checkbox-label"></label><span class="task-text">Решите уравнение: \(2(x-3)=14\).</span></li>
+</ol>
 
-    <div class="topic-header">Геометрия</div>
-    <div class="topic-header" style="margin-top:8px;">8. Начальные геометрические понятия</div>
-    <ol class="task-list" start="27">
-      <li><input type="checkbox" class="task-checkbox" id="task-7-8-1" data-task-id="task-7-8-1"><label for="task-7-8-1" class="task-checkbox-label"></label><span class="task-text">Назовите, сколько прямых можно провести через две различные точки.</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-7-8-2" data-task-id="task-7-8-2"><label for="task-7-8-2" class="task-checkbox-label"></label><span class="task-text">Объясните, чем отличается луч от отрезка.</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-7-8-3" data-task-id="task-7-8-3"><label for="task-7-8-3" class="task-checkbox-label"></label><span class="task-text">Определите вид угла величиной \(120^\circ\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-7-8-4" data-task-id="task-7-8-4"><label for="task-7-8-4" class="task-checkbox-label"></label><span class="task-text">Один из смежных углов равен \(65^\circ\). Найдите второй угол.</span></li>
-    </ol>
+<div class="topic-header"><span class="topic-title">Линейные неравенства</span></div>
+<ol class="task-list" start="17">
+<li><input type="checkbox" class="task-checkbox" id="task-7-5-1" data-task-id="task-7-5-1"><label for="task-7-5-1" class="task-checkbox-label"></label><span class="task-text">Решите неравенство: \(3x+4>13\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-7-5-2" data-task-id="task-7-5-2"><label for="task-7-5-2" class="task-checkbox-label"></label><span class="task-text">Решите неравенство: \(-2x<8\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-7-5-3" data-task-id="task-7-5-3"><label for="task-7-5-3" class="task-checkbox-label"></label><span class="task-text">Запишите промежутком решение неравенства: \(5x-10\leq0\).</span></li>
+</ol>
 
-    <div class="topic-header">9. Признаки равенства треугольников</div>
-    <ol class="task-list" start="31">
-      <li><input type="checkbox" class="task-checkbox" id="task-7-9-1" data-task-id="task-7-9-1"><label for="task-7-9-1" class="task-checkbox-label"></label><span class="task-text">Какие элементы треугольников нужно сравнить, чтобы применить первый признак равенства треугольников?</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-7-9-2" data-task-id="task-7-9-2"><label for="task-7-9-2" class="task-checkbox-label"></label><span class="task-text">В треугольниках \(ABC\) и \(A_1B_1C_1\): \(AB=A_1B_1,\ AC=A_1C_1,\ \angle A=\angle A_1\). Можно ли утверждать, что треугольники равны? Объясните.</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-7-9-3" data-task-id="task-7-9-3"><label for="task-7-9-3" class="task-checkbox-label"></label><span class="task-text">В равнобедренном треугольнике боковые стороны равны 7 см, а основание равно 4 см. Найдите периметр треугольника.</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-7-9-4" data-task-id="task-7-9-4"><label for="task-7-9-4" class="task-checkbox-label"></label><span class="task-text">В равнобедренном треугольнике угол при вершине равен \(40^\circ\). Найдите углы при основании.</span></li>
-    </ol>
+<div class="topic-header"><span class="topic-title">Линейная функция</span></div>
+<ol class="task-list" start="20">
+<li><input type="checkbox" class="task-checkbox" id="task-7-6-1" data-task-id="task-7-6-1"><label for="task-7-6-1" class="task-checkbox-label"></label><span class="task-text">Для функции \(y=3x-5\) назовите угловой коэффициент и свободный член.</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-7-6-2" data-task-id="task-7-6-2"><label for="task-7-6-2" class="task-checkbox-label"></label><span class="task-text">Заполните таблицу значений функции \(y=2x+1\) для \(x=-2,\ 0,\ 3\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-7-6-3" data-task-id="task-7-6-3"><label for="task-7-6-3" class="task-checkbox-label"></label><span class="task-text">Постройте график функции \(y=-x+4\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-7-6-4" data-task-id="task-7-6-4"><label for="task-7-6-4" class="task-checkbox-label"></label><span class="task-text">Определите взаимное расположение графиков функций \(y=2x+1\) и \(y=2x-5\).</span></li>
+</ol>
 
-    <div class="topic-header">10. Параллельность прямых</div>
-    <ol class="task-list" start="35">
-      <li><input type="checkbox" class="task-checkbox" id="task-7-10-1" data-task-id="task-7-10-1"><label for="task-7-10-1" class="task-checkbox-label"></label><span class="task-text">Какие прямые называются параллельными?</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-7-10-2" data-task-id="task-7-10-2"><label for="task-7-10-2" class="task-checkbox-label"></label><span class="task-text">При пересечении двух прямых секущей один из соответственных углов равен \(75^\circ\). Каким будет второй соответственный угол, если прямые параллельны?</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-7-10-3" data-task-id="task-7-10-3"><label for="task-7-10-3" class="task-checkbox-label"></label><span class="task-text">Две параллельные прямые пересечены секущей. Один из внутренних односторонних углов равен \(110^\circ\). Найдите второй угол.</span></li>
-    </ol>
+<div class="topic-header"><span class="topic-title">Системы линейных уравнений</span></div>
+<ol class="task-list" start="24">
+<li><input type="checkbox" class="task-checkbox" id="task-7-7-1" data-task-id="task-7-7-1"><label for="task-7-7-1" class="task-checkbox-label"></label><span class="task-text">Решите систему способом сложения: \(\begin{cases}x+y=7,\\ x-y=1.\end{cases}\)</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-7-7-2" data-task-id="task-7-7-2"><label for="task-7-7-2" class="task-checkbox-label"></label><span class="task-text">Решите систему способом выражения одной переменной через другую: \(\begin{cases}y=2x+1,\\ 3x+y=13.\end{cases}\)</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-7-7-3" data-task-id="task-7-7-3"><label for="task-7-7-3" class="task-checkbox-label"></label><span class="task-text">Решите с помощью системы: в двух коробках 30 карандашей. В первой коробке на 6 карандашей больше, чем во второй. Сколько карандашей в каждой коробке?</span></li>
+</ol>
 
-    <div class="topic-header">11. Сумма углов треугольника</div>
-    <ol class="task-list" start="38">
-      <li><input type="checkbox" class="task-checkbox" id="task-7-11-1" data-task-id="task-7-11-1"><label for="task-7-11-1" class="task-checkbox-label"></label><span class="task-text">Найдите третий угол треугольника, если два его угла равны \(50^\circ\) и \(60^\circ\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-7-11-2" data-task-id="task-7-11-2"><label for="task-7-11-2" class="task-checkbox-label"></label><span class="task-text">Внешний угол треугольника равен \(120^\circ\). Один из внутренних углов, не смежных с ним, равен \(50^\circ\). Найдите второй внутренний угол.</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-7-11-3" data-task-id="task-7-11-3"><label for="task-7-11-3" class="task-checkbox-label"></label><span class="task-text">В треугольнике одна сторона больше другой. Какой угол лежит напротив большей стороны: больший или меньший?</span></li>
-    </ol>
-  </div>
+<div class="topic-section"><span class="topic-section-label">Геометрия</span><span class="topic-section-line"></span></div>
 
-  <!-- ============================================================
-     БЛОК 8 — 8 КЛАСС
-  ============================================================ -->
-  <div class="block-card" id="block8">
-    <div class="block-header">
-      <span class="block-number">8</span>
-      <span class="block-title">класс</span>
-    </div>
+<div class="topic-header"><span class="topic-title">Начальные геометрические понятия</span></div>
+<ol class="task-list" start="27">
+<li><input type="checkbox" class="task-checkbox" id="task-7-8-1" data-task-id="task-7-8-1"><label for="task-7-8-1" class="task-checkbox-label"></label><span class="task-text">Назовите, сколько прямых можно провести через две различные точки.</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-7-8-2" data-task-id="task-7-8-2"><label for="task-7-8-2" class="task-checkbox-label"></label><span class="task-text">Объясните, чем отличается луч от отрезка.</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-7-8-3" data-task-id="task-7-8-3"><label for="task-7-8-3" class="task-checkbox-label"></label><span class="task-text">Определите вид угла величиной \(120^\circ\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-7-8-4" data-task-id="task-7-8-4"><label for="task-7-8-4" class="task-checkbox-label"></label><span class="task-text">Один из смежных углов равен \(65^\circ\). Найдите второй угол.</span></li>
+</ol>
 
-    <div class="topic-header">Алгебра</div>
-    <div class="topic-header" style="margin-top:8px;">1. Квадратные корни и действительные числа</div>
-    <ol class="task-list">
-      <li><input type="checkbox" class="task-checkbox" id="task-8-1-1" data-task-id="task-8-1-1"><label for="task-8-1-1" class="task-checkbox-label"></label><span class="task-text">Вычислите: \(\sqrt{49}\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-8-1-2" data-task-id="task-8-1-2"><label for="task-8-1-2" class="task-checkbox-label"></label><span class="task-text">Сравните числа: \(\sqrt{15}\) и \(4\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-8-1-3" data-task-id="task-8-1-3"><label for="task-8-1-3" class="task-checkbox-label"></label><span class="task-text">Упростите: \(\sqrt{12}\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-8-1-4" data-task-id="task-8-1-4"><label for="task-8-1-4" class="task-checkbox-label"></label><span class="task-text">Укажите иррациональное число: \(2,\ \sqrt3,\ \frac{5}{7}\).</span></li>
-    </ol>
+<div class="topic-header"><span class="topic-title">Признаки равенства треугольников</span></div>
+<ol class="task-list" start="31">
+<li><input type="checkbox" class="task-checkbox" id="task-7-9-1" data-task-id="task-7-9-1"><label for="task-7-9-1" class="task-checkbox-label"></label><span class="task-text">Какие элементы треугольников нужно сравнить, чтобы применить первый признак равенства треугольников?</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-7-9-2" data-task-id="task-7-9-2"><label for="task-7-9-2" class="task-checkbox-label"></label><span class="task-text">В треугольниках \(ABC\) и \(A_1B_1C_1\): \(AB=A_1B_1,\ AC=A_1C_1,\ \angle A=\angle A_1\). Можно ли утверждать, что треугольники равны? Объясните.</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-7-9-3" data-task-id="task-7-9-3"><label for="task-7-9-3" class="task-checkbox-label"></label><span class="task-text">В равнобедренном треугольнике боковые стороны равны 7 см, а основание равно 4 см. Найдите периметр треугольника.</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-7-9-4" data-task-id="task-7-9-4"><label for="task-7-9-4" class="task-checkbox-label"></label><span class="task-text">В равнобедренном треугольнике угол при вершине равен \(40^\circ\). Найдите углы при основании.</span></li>
+</ol>
 
-    <div class="topic-header">2. Преобразования выражений с квадратными корнями</div>
-    <ol class="task-list" start="5">
-      <li><input type="checkbox" class="task-checkbox" id="task-8-2-1" data-task-id="task-8-2-1"><label for="task-8-2-1" class="task-checkbox-label"></label><span class="task-text">Упростите: \(\sqrt2\cdot\sqrt8\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-8-2-2" data-task-id="task-8-2-2"><label for="task-8-2-2" class="task-checkbox-label"></label><span class="task-text">Упростите: \(3\sqrt5+2\sqrt5\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-8-2-3" data-task-id="task-8-2-3"><label for="task-8-2-3" class="task-checkbox-label"></label><span class="task-text">Освободите знаменатель от иррациональности: \(\frac{5}{\sqrt2}\).</span></li>
-    </ol>
+<div class="topic-header"><span class="topic-title">Параллельность прямых</span></div>
+<ol class="task-list" start="35">
+<li><input type="checkbox" class="task-checkbox" id="task-7-10-1" data-task-id="task-7-10-1"><label for="task-7-10-1" class="task-checkbox-label"></label><span class="task-text">Какие прямые называются параллельными?</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-7-10-2" data-task-id="task-7-10-2"><label for="task-7-10-2" class="task-checkbox-label"></label><span class="task-text">При пересечении двух прямых секущей один из соответственных углов равен \(75^\circ\). Каким будет второй соответственный угол, если прямые параллельны?</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-7-10-3" data-task-id="task-7-10-3"><label for="task-7-10-3" class="task-checkbox-label"></label><span class="task-text">Две параллельные прямые пересечены секущей. Один из внутренних односторонних углов равен \(110^\circ\). Найдите второй угол.</span></li>
+</ol>
 
-    <div class="topic-header">3. Квадратные уравнения</div>
-    <ol class="task-list" start="8">
-      <li><input type="checkbox" class="task-checkbox" id="task-8-3-1" data-task-id="task-8-3-1"><label for="task-8-3-1" class="task-checkbox-label"></label><span class="task-text">Назовите коэффициенты \(a\), \(b\), \(c\) квадратного уравнения \(2x^2-5x+3=0\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-8-3-2" data-task-id="task-8-3-2"><label for="task-8-3-2" class="task-checkbox-label"></label><span class="task-text">Решите уравнение: \(x^2-5x+6=0\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-8-3-3" data-task-id="task-8-3-3"><label for="task-8-3-3" class="task-checkbox-label"></label><span class="task-text">Решите уравнение: \(x^2-9=0\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-8-3-4" data-task-id="task-8-3-4"><label for="task-8-3-4" class="task-checkbox-label"></label><span class="task-text">Сколько корней имеет уравнение \(x^2+4x+8=0\)?</span></li>
-    </ol>
+<div class="topic-header"><span class="topic-title">Сумма углов треугольника</span></div>
+<ol class="task-list" start="38">
+<li><input type="checkbox" class="task-checkbox" id="task-7-11-1" data-task-id="task-7-11-1"><label for="task-7-11-1" class="task-checkbox-label"></label><span class="task-text">Найдите третий угол треугольника, если два его угла равны \(50^\circ\) и \(60^\circ\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-7-11-2" data-task-id="task-7-11-2"><label for="task-7-11-2" class="task-checkbox-label"></label><span class="task-text">Внешний угол треугольника равен \(120^\circ\). Один из внутренних углов, не смежных с ним, равен \(50^\circ\). Найдите второй внутренний угол.</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-7-11-3" data-task-id="task-7-11-3"><label for="task-7-11-3" class="task-checkbox-label"></label><span class="task-text">В треугольнике одна сторона больше другой. Какой угол лежит напротив большей стороны: больший или меньший?</span></li>
+</ol>
+</div>
 
-    <div class="topic-header">4. Теорема Виета и квадратный трёхчлен</div>
-    <ol class="task-list" start="12">
-      <li><input type="checkbox" class="task-checkbox" id="task-8-4-1" data-task-id="task-8-4-1"><label for="task-8-4-1" class="task-checkbox-label"></label><span class="task-text">Найдите сумму и произведение корней уравнения \(x^2-7x+10=0\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-8-4-2" data-task-id="task-8-4-2"><label for="task-8-4-2" class="task-checkbox-label"></label><span class="task-text">Не решая уравнение полностью, найдите его корни (используйте т. Виета): \(x^2-5x+6=0\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-8-4-3" data-task-id="task-8-4-3"><label for="task-8-4-3" class="task-checkbox-label"></label><span class="task-text">Разложите многочлен на множители: \(x^2-9x+20\).</span></li>
-    </ol>
+<div class="block-card" id="block8" data-class="08">
+<div class="block-header">
+<div class="block-header-left">
+<div class="block-kicker">Класс 08</div>
+<div class="block-title">8 <em>класс</em></div>
+</div>
+<div class="block-meta">
+<div class="block-meta-count">51</div>
+<div class="block-meta-lbl">заданий</div>
+</div>
+</div>
 
-    <div class="topic-header">5. Квадратичная функция</div>
-    <ol class="task-list" start="15">
-      <li><input type="checkbox" class="task-checkbox" id="task-8-5-1" data-task-id="task-8-5-1"><label for="task-8-5-1" class="task-checkbox-label"></label><span class="task-text">Для функции \(y=2x^2-4x+3\) назовите коэффициенты \(a\), \(b\), \(c\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-8-5-2" data-task-id="task-8-5-2"><label for="task-8-5-2" class="task-checkbox-label"></label><span class="task-text">В какую сторону направлены ветви параболы \(y=-3x^2+2x+1\)?</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-8-5-3" data-task-id="task-8-5-3"><label for="task-8-5-3" class="task-checkbox-label"></label><span class="task-text">Найдите координаты вершины параболы \(y=x^2-4x+3\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-8-5-4" data-task-id="task-8-5-4"><label for="task-8-5-4" class="task-checkbox-label"></label><span class="task-text">Постройте график функции \(y=x^2-4\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-8-5-5" data-task-id="task-8-5-5"><label for="task-8-5-5" class="task-checkbox-label"></label><span class="task-text">Укажите промежутки возрастания и убывания функции \(y=x^2\).</span></li>
-    </ol>
+<div class="topic-section"><span class="topic-section-label">Алгебра</span><span class="topic-section-line"></span></div>
 
-    <div class="topic-header">6. Квадратные неравенства</div>
-    <ol class="task-list" start="20">
-      <li><input type="checkbox" class="task-checkbox" id="task-8-6-1" data-task-id="task-8-6-1"><label for="task-8-6-1" class="task-checkbox-label"></label><span class="task-text">Решите неравенство: \(x^2-4>0\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-8-6-2" data-task-id="task-8-6-2"><label for="task-8-6-2" class="task-checkbox-label"></label><span class="task-text">Решите неравенство: \(-x^2+9\geq0\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-8-6-3" data-task-id="task-8-6-3"><label for="task-8-6-3" class="task-checkbox-label"></label><span class="task-text">Решите систему неравенств: \(\begin{cases}x^2-5x+6\leq0,\\ x^2-4x-5>0.\end{cases}\)</span></li>
-    </ol>
+<div class="topic-header"><span class="topic-title">Квадратные корни и действительные числа</span></div>
+<ol class="task-list">
+<li><input type="checkbox" class="task-checkbox" id="task-8-1-1" data-task-id="task-8-1-1"><label for="task-8-1-1" class="task-checkbox-label"></label><span class="task-text">Вычислите: \(\sqrt{49}\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-8-1-2" data-task-id="task-8-1-2"><label for="task-8-1-2" class="task-checkbox-label"></label><span class="task-text">Сравните числа: \(\sqrt{15}\) и \(4\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-8-1-3" data-task-id="task-8-1-3"><label for="task-8-1-3" class="task-checkbox-label"></label><span class="task-text">Упростите: \(\sqrt{12}\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-8-1-4" data-task-id="task-8-1-4"><label for="task-8-1-4" class="task-checkbox-label"></label><span class="task-text">Укажите иррациональное число: \(2,\ \sqrt3,\ \frac{5}{7}\).</span></li>
+</ol>
 
-    <div class="topic-header">7. Другие функции</div>
-    <ol class="task-list" start="23">
-      <li><input type="checkbox" class="task-checkbox" id="task-8-7-1" data-task-id="task-8-7-1"><label for="task-8-7-1" class="task-checkbox-label"></label><span class="task-text">Как называется график функции \(y=\frac{k}{x},\ k\neq0\)?</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-8-7-2" data-task-id="task-8-7-2"><label for="task-8-7-2" class="task-checkbox-label"></label><span class="task-text">Укажите область определения функции \(y=\frac{5}{x}\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-8-7-3" data-task-id="task-8-7-3"><label for="task-8-7-3" class="task-checkbox-label"></label><span class="task-text">Укажите, является ли функция \(y=x^3\) возрастающей или убывающей на всей числовой прямой.</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-8-7-4" data-task-id="task-8-7-4"><label for="task-8-7-4" class="task-checkbox-label"></label><span class="task-text">Найдите значение функции \(y=|x|\) при \(x=-7\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-8-7-5" data-task-id="task-8-7-5"><label for="task-8-7-5" class="task-checkbox-label"></label><span class="task-text">Найдите область определения функции \(y=\sqrt{x-3}\).</span></li>
-    </ol>
+<div class="topic-header"><span class="topic-title">Преобразования выражений с квадратными корнями</span></div>
+<ol class="task-list" start="5">
+<li><input type="checkbox" class="task-checkbox" id="task-8-2-1" data-task-id="task-8-2-1"><label for="task-8-2-1" class="task-checkbox-label"></label><span class="task-text">Упростите: \(\sqrt2\cdot\sqrt8\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-8-2-2" data-task-id="task-8-2-2"><label for="task-8-2-2" class="task-checkbox-label"></label><span class="task-text">Упростите: \(3\sqrt5+2\sqrt5\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-8-2-3" data-task-id="task-8-2-3"><label for="task-8-2-3" class="task-checkbox-label"></label><span class="task-text">Освободите знаменатель от иррациональности: \(\frac{5}{\sqrt2}\).</span></li>
+</ol>
 
-    <div class="topic-header">Геометрия</div>
-    <div class="topic-header" style="margin-top:8px;">8. Четырёхугольники</div>
-    <ol class="task-list" start="28">
-      <li><input type="checkbox" class="task-checkbox" id="task-8-8-1" data-task-id="task-8-8-1"><label for="task-8-8-1" class="task-checkbox-label"></label><span class="task-text">Определите вид четырёхугольника, если его противоположные стороны попарно равны и параллельны.</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-8-8-2" data-task-id="task-8-8-2"><label for="task-8-8-2" class="task-checkbox-label"></label><span class="task-text">В параллелограмме один из углов равен \(70^\circ\). Найдите остальные углы.</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-8-8-3" data-task-id="task-8-8-3"><label for="task-8-8-3" class="task-checkbox-label"></label><span class="task-text">Диагональ прямоугольника равна \(10\) см. Чему равна вторая диагональ?</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-8-8-4" data-task-id="task-8-8-4"><label for="task-8-8-4" class="task-checkbox-label"></label><span class="task-text">Каким свойством обладают диагонали ромба?</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-8-8-5" data-task-id="task-8-8-5"><label for="task-8-8-5" class="task-checkbox-label"></label><span class="task-text">В равнобедренной трапеции один из углов при основании равен \(60^\circ\). Найдите второй угол при этом основании.</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-8-8-6" data-task-id="task-8-8-6"><label for="task-8-8-6" class="task-checkbox-label"></label><span class="task-text">Стороны прямоугольника равны \(6\) см и \(8\) см. Найдите длину его диагонали.</span></li>
-    </ol>
+<div class="topic-header"><span class="topic-title">Квадратные уравнения</span></div>
+<ol class="task-list" start="8">
+<li><input type="checkbox" class="task-checkbox" id="task-8-3-1" data-task-id="task-8-3-1"><label for="task-8-3-1" class="task-checkbox-label"></label><span class="task-text">Назовите коэффициенты \(a\), \(b\), \(c\) квадратного уравнения \(2x^2-5x+3=0\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-8-3-2" data-task-id="task-8-3-2"><label for="task-8-3-2" class="task-checkbox-label"></label><span class="task-text">Решите уравнение: \(x^2-5x+6=0\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-8-3-3" data-task-id="task-8-3-3"><label for="task-8-3-3" class="task-checkbox-label"></label><span class="task-text">Решите уравнение: \(x^2-9=0\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-8-3-4" data-task-id="task-8-3-4"><label for="task-8-3-4" class="task-checkbox-label"></label><span class="task-text">Сколько корней имеет уравнение \(x^2+4x+8=0\)?</span></li>
+</ol>
 
-    <div class="topic-header">9. Площади многоугольников</div>
-    <ol class="task-list" start="34">
-      <li><input type="checkbox" class="task-checkbox" id="task-8-9-1" data-task-id="task-8-9-1"><label for="task-8-9-1" class="task-checkbox-label"></label><span class="task-text">Найдите площадь прямоугольника со сторонами \(6\) см и \(9\) см.</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-8-9-2" data-task-id="task-8-9-2"><label for="task-8-9-2" class="task-checkbox-label"></label><span class="task-text">Основание параллелограмма равно \(8\) см, а высота, проведённая к этому основанию, равна \(5\) см. Найдите площадь параллелограмма.</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-8-9-3" data-task-id="task-8-9-3"><label for="task-8-9-3" class="task-checkbox-label"></label><span class="task-text">Основание треугольника равно \(12\) см, а высота к нему — \(7\) см. Найдите площадь треугольника.</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-8-9-4" data-task-id="task-8-9-4"><label for="task-8-9-4" class="task-checkbox-label"></label><span class="task-text">Основания трапеции равны \(5\) см и \(11\) см, а высота равна \(4\) см. Найдите площадь трапеции.</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-8-9-5" data-task-id="task-8-9-5"><label for="task-8-9-5" class="task-checkbox-label"></label><span class="task-text">Диагонали ромба равны \(10\) см и \(14\) см. Найдите площадь ромба.</span></li>
-    </ol>
+<div class="topic-header"><span class="topic-title">Теорема Виета и квадратный трёхчлен</span></div>
+<ol class="task-list" start="12">
+<li><input type="checkbox" class="task-checkbox" id="task-8-4-1" data-task-id="task-8-4-1"><label for="task-8-4-1" class="task-checkbox-label"></label><span class="task-text">Найдите сумму и произведение корней уравнения \(x^2-7x+10=0\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-8-4-2" data-task-id="task-8-4-2"><label for="task-8-4-2" class="task-checkbox-label"></label><span class="task-text">Не решая уравнение полностью, найдите его корни (используйте т. Виета): \(x^2-5x+6=0\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-8-4-3" data-task-id="task-8-4-3"><label for="task-8-4-3" class="task-checkbox-label"></label><span class="task-text">Разложите многочлен на множители: \(x^2-9x+20\).</span></li>
+</ol>
 
-    <div class="topic-header">10. Теорема Пифагора</div>
-    <ol class="task-list" start="39">
-      <li><input type="checkbox" class="task-checkbox" id="task-8-10-1" data-task-id="task-8-10-1"><label for="task-8-10-1" class="task-checkbox-label"></label><span class="task-text">Катеты прямоугольного треугольника равны \(6\) см и \(8\) см. Найдите гипотенузу.</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-8-10-2" data-task-id="task-8-10-2"><label for="task-8-10-2" class="task-checkbox-label"></label><span class="task-text">Стороны треугольника равны \(5\) см, \(12\) см и \(13\) см. Является ли этот треугольник прямоугольным?</span></li>
-    </ol>
+<div class="topic-header"><span class="topic-title">Квадратичная функция</span></div>
+<ol class="task-list" start="15">
+<li><input type="checkbox" class="task-checkbox" id="task-8-5-1" data-task-id="task-8-5-1"><label for="task-8-5-1" class="task-checkbox-label"></label><span class="task-text">Для функции \(y=2x^2-4x+3\) назовите коэффициенты \(a\), \(b\), \(c\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-8-5-2" data-task-id="task-8-5-2"><label for="task-8-5-2" class="task-checkbox-label"></label><span class="task-text">В какую сторону направлены ветви параболы \(y=-3x^2+2x+1\)?</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-8-5-3" data-task-id="task-8-5-3"><label for="task-8-5-3" class="task-checkbox-label"></label><span class="task-text">Найдите координаты вершины параболы \(y=x^2-4x+3\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-8-5-4" data-task-id="task-8-5-4"><label for="task-8-5-4" class="task-checkbox-label"></label><span class="task-text">Постройте график функции \(y=x^2-4\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-8-5-5" data-task-id="task-8-5-5"><label for="task-8-5-5" class="task-checkbox-label"></label><span class="task-text">Укажите промежутки возрастания и убывания функции \(y=x^2\).</span></li>
+</ol>
 
-    <div class="topic-header">11. Подобие треугольников</div>
-    <ol class="task-list" start="41">
-      <li><input type="checkbox" class="task-checkbox" id="task-8-11-1" data-task-id="task-8-11-1"><label for="task-8-11-1" class="task-checkbox-label"></label><span class="task-text">Какой признак подобия треугольников используется, если равны два угла одного треугольника и два угла другого?</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-8-11-2" data-task-id="task-8-11-2"><label for="task-8-11-2" class="task-checkbox-label"></label><span class="task-text">Стороны одного треугольника в 3 раза больше соответствующих сторон другого. Во сколько раз его площадь больше?</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-8-11-3" data-task-id="task-8-11-3"><label for="task-8-11-3" class="task-checkbox-label"></label><span class="task-text">Два подобных треугольника имеют соответствующие стороны \(4\) см и \(10\) см. Сторона второго треугольника, соответствующая стороне первого длиной \(6\) см, равна \(x\). Найдите \(x\).</span></li>
-    </ol>
+<div class="topic-header"><span class="topic-title">Квадратные неравенства</span></div>
+<ol class="task-list" start="20">
+<li><input type="checkbox" class="task-checkbox" id="task-8-6-1" data-task-id="task-8-6-1"><label for="task-8-6-1" class="task-checkbox-label"></label><span class="task-text">Решите неравенство: \(x^2-4>0\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-8-6-2" data-task-id="task-8-6-2"><label for="task-8-6-2" class="task-checkbox-label"></label><span class="task-text">Решите неравенство: \(-x^2+9\geq0\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-8-6-3" data-task-id="task-8-6-3"><label for="task-8-6-3" class="task-checkbox-label"></label><span class="task-text">Решите систему неравенств: \(\begin{cases}x^2-5x+6\leq0,\\ x^2-4x-5>0.\end{cases}\)</span></li>
+</ol>
 
-    <div class="topic-header">12. Окружность</div>
-    <ol class="task-list" start="44">
-      <li><input type="checkbox" class="task-checkbox" id="task-8-12-1" data-task-id="task-8-12-1"><label for="task-8-12-1" class="task-checkbox-label"></label><span class="task-text">Как называется отрезок, соединяющий две точки окружности и проходящий через её центр?</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-8-12-2" data-task-id="task-8-12-2"><label for="task-8-12-2" class="task-checkbox-label"></label><span class="task-text">Касательная к окружности проведена в точке \(A\). Какой угол образует радиус, проведённый в точку касания, с касательной?</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-8-12-3" data-task-id="task-8-12-3"><label for="task-8-12-3" class="task-checkbox-label"></label><span class="task-text">Две хорды одной окружности находятся на одинаковом расстоянии от центра. Что можно сказать об их длинах?</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-8-12-4" data-task-id="task-8-12-4"><label for="task-8-12-4" class="task-checkbox-label"></label><span class="task-text">Центральный угол, опирающийся на дугу, равен \(100^\circ\). Чему равен вписанный угол, опирающийся на эту же дугу?</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-8-12-5" data-task-id="task-8-12-5"><label for="task-8-12-5" class="task-checkbox-label"></label><span class="task-text">Внутри окружности пересекаются две хорды. Одна хорда разделена точкой пересечения на отрезки \(3\) см и \(8\) см, а другая — на отрезки \(4\) см и \(x\) см. Найдите \(x\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-8-12-6" data-task-id="task-8-12-6"><label for="task-8-12-6" class="task-checkbox-label"></label><span class="task-text">Дуга окружности составляет половину всей окружности. Найдите соответствующий ей центральный угол.</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-8-12-7" data-task-id="task-8-12-7"><label for="task-8-12-7" class="task-checkbox-label"></label><span class="task-text">Центральный угол, опирающийся на дугу, равен \(140^\circ\). Найдите вписанный угол, опирающийся на эту же дугу.</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-8-12-8" data-task-id="task-8-12-8"><label for="task-8-12-8" class="task-checkbox-label"></label><span class="task-text">Четырёхугольник вписан в окружность. Один из его углов равен \(65^\circ\). Найдите противоположный угол.</span></li>
-    </ol>
-  </div>
+<div class="topic-header"><span class="topic-title">Другие функции</span></div>
+<ol class="task-list" start="23">
+<li><input type="checkbox" class="task-checkbox" id="task-8-7-1" data-task-id="task-8-7-1"><label for="task-8-7-1" class="task-checkbox-label"></label><span class="task-text">Как называется график функции \(y=\frac{k}{x},\ k\neq0\)?</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-8-7-2" data-task-id="task-8-7-2"><label for="task-8-7-2" class="task-checkbox-label"></label><span class="task-text">Укажите область определения функции \(y=\frac{5}{x}\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-8-7-3" data-task-id="task-8-7-3"><label for="task-8-7-3" class="task-checkbox-label"></label><span class="task-text">Укажите, является ли функция \(y=x^3\) возрастающей или убывающей на всей числовой прямой.</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-8-7-4" data-task-id="task-8-7-4"><label for="task-8-7-4" class="task-checkbox-label"></label><span class="task-text">Найдите значение функции \(y=|x|\) при \(x=-7\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-8-7-5" data-task-id="task-8-7-5"><label for="task-8-7-5" class="task-checkbox-label"></label><span class="task-text">Найдите область определения функции \(y=\sqrt{x-3}\).</span></li>
+</ol>
 
-  <!-- ============================================================
-     БЛОК 9 — 9 КЛАСС
-  ============================================================ -->
-  <div class="block-card" id="block9">
-    <div class="block-header">
-      <span class="block-number">9</span>
-      <span class="block-title">класс</span>
-    </div>
+<div class="topic-section"><span class="topic-section-label">Геометрия</span><span class="topic-section-line"></span></div>
 
-    <div class="topic-header">Алгебра</div>
-    <div class="topic-header" style="margin-top:8px;">1. Рациональные выражения</div>
-    <ol class="task-list">
-      <li><input type="checkbox" class="task-checkbox" id="task-9-1-1" data-task-id="task-9-1-1"><label for="task-9-1-1" class="task-checkbox-label"></label><span class="task-text">Найдите область определения выражения \(\frac{3}{x-5}\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-9-1-2" data-task-id="task-9-1-2"><label for="task-9-1-2" class="task-checkbox-label"></label><span class="task-text">Сократите дробь \(\frac{x^2-16}{x-4}\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-9-1-3" data-task-id="task-9-1-3"><label for="task-9-1-3" class="task-checkbox-label"></label><span class="task-text">Выполните умножение: \(\frac{x^2-9}{x}\cdot\frac{x}{x+3}\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-9-1-4" data-task-id="task-9-1-4"><label for="task-9-1-4" class="task-checkbox-label"></label><span class="task-text">Выполните деление: \(\frac{x}{x+2}:\frac{3x}{x+2}\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-9-1-5" data-task-id="task-9-1-5"><label for="task-9-1-5" class="task-checkbox-label"></label><span class="task-text">Упростите: \(\frac{2}{x}+\frac{1}{x+1}\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-9-1-6" data-task-id="task-9-1-6"><label for="task-9-1-6" class="task-checkbox-label"></label><span class="task-text">Упростите выражение: \(\frac{x^2-4}{x^2-2x}\cdot\frac{x}{x+2}\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-9-1-7" data-task-id="task-9-1-7"><label for="task-9-1-7" class="task-checkbox-label"></label><span class="task-text">Выполните вычитание: \(\frac{3}{x}-\frac{1}{x}\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-9-1-8" data-task-id="task-9-1-8"><label for="task-9-1-8" class="task-checkbox-label"></label><span class="task-text">Упростите: \(\frac{x}{x-1}-\frac{2}{x-1}\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-9-1-9" data-task-id="task-9-1-9"><label for="task-9-1-9" class="task-checkbox-label"></label><span class="task-text">Возведите дробь в степень: \(\left(\frac{x}{3}\right)^2\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-9-1-10" data-task-id="task-9-1-10"><label for="task-9-1-10" class="task-checkbox-label"></label><span class="task-text">Упростите выражение: \(\frac{x^2-9}{x^2-6x+9}\).</span></li>
-    </ol>
+<div class="topic-header"><span class="topic-title">Четырёхугольники</span></div>
+<ol class="task-list" start="28">
+<li><input type="checkbox" class="task-checkbox" id="task-8-8-1" data-task-id="task-8-8-1"><label for="task-8-8-1" class="task-checkbox-label"></label><span class="task-text">Определите вид четырёхугольника, если его противоположные стороны попарно равны и параллельны.</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-8-8-2" data-task-id="task-8-8-2"><label for="task-8-8-2" class="task-checkbox-label"></label><span class="task-text">В параллелограмме один из углов равен \(70^\circ\). Найдите остальные углы.</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-8-8-3" data-task-id="task-8-8-3"><label for="task-8-8-3" class="task-checkbox-label"></label><span class="task-text">Диагональ прямоугольника равна \(10\) см. Чему равна вторая диагональ?</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-8-8-4" data-task-id="task-8-8-4"><label for="task-8-8-4" class="task-checkbox-label"></label><span class="task-text">Каким свойством обладают диагонали ромба?</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-8-8-5" data-task-id="task-8-8-5"><label for="task-8-8-5" class="task-checkbox-label"></label><span class="task-text">В равнобедренной трапеции один из углов при основании равен \(60^\circ\). Найдите второй угол при этом основании.</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-8-8-6" data-task-id="task-8-8-6"><label for="task-8-8-6" class="task-checkbox-label"></label><span class="task-text">Стороны прямоугольника равны \(6\) см и \(8\) см. Найдите длину его диагонали.</span></li>
+</ol>
 
-    <div class="topic-header">2. Преобразования графиков функций</div>
-    <ol class="task-list" start="11">
-      <li><input type="checkbox" class="task-checkbox" id="task-9-2-1" data-task-id="task-9-2-1"><label for="task-9-2-1" class="task-checkbox-label"></label><span class="task-text">Как изменится график функции \(y=x^2+5\) по сравнению с графиком \(y=x^2\)?</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-9-2-2" data-task-id="task-9-2-2"><label for="task-9-2-2" class="task-checkbox-label"></label><span class="task-text">Как получить график функции \(y=(x-3)^2\) из графика \(y=x^2\)?</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-9-2-3" data-task-id="task-9-2-3"><label for="task-9-2-3" class="task-checkbox-label"></label><span class="task-text">Как изменится график функции \(y=4x^2\) по сравнению с графиком \(y=x^2\)?</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-9-2-4" data-task-id="task-9-2-4"><label for="task-9-2-4" class="task-checkbox-label"></label><span class="task-text">Как изменится график функции \(y=-x^2\) по сравнению с графиком \(y=x^2\)?</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-9-2-5" data-task-id="task-9-2-5"><label for="task-9-2-5" class="task-checkbox-label"></label><span class="task-text">Найдите область определения функции \(y=\frac{1}{x^2-9}\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-9-2-6" data-task-id="task-9-2-6"><label for="task-9-2-6" class="task-checkbox-label"></label><span class="task-text">Найдите нули функции \(y=x^2-4x\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-9-2-7" data-task-id="task-9-2-7"><label for="task-9-2-7" class="task-checkbox-label"></label><span class="task-text">Укажите промежутки возрастания и убывания функции \(y=(x-1)^2\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-9-2-8" data-task-id="task-9-2-8"><label for="task-9-2-8" class="task-checkbox-label"></label><span class="task-text">Опишите, как получить график функции \(y=-2(x+1)^2+3\) из графика \(y=x^2\).</span></li>
-    </ol>
+<div class="topic-header"><span class="topic-title">Площади многоугольников</span></div>
+<ol class="task-list" start="34">
+<li><input type="checkbox" class="task-checkbox" id="task-8-9-1" data-task-id="task-8-9-1"><label for="task-8-9-1" class="task-checkbox-label"></label><span class="task-text">Найдите площадь прямоугольника со сторонами \(6\) см и \(9\) см.</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-8-9-2" data-task-id="task-8-9-2"><label for="task-8-9-2" class="task-checkbox-label"></label><span class="task-text">Основание параллелограмма равно \(8\) см, а высота, проведённая к этому основанию, равна \(5\) см. Найдите площадь параллелограмма.</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-8-9-3" data-task-id="task-8-9-3"><label for="task-8-9-3" class="task-checkbox-label"></label><span class="task-text">Основание треугольника равно \(12\) см, а высота к нему — \(7\) см. Найдите площадь треугольника.</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-8-9-4" data-task-id="task-8-9-4"><label for="task-8-9-4" class="task-checkbox-label"></label><span class="task-text">Основания трапеции равны \(5\) см и \(11\) см, а высота равна \(4\) см. Найдите площадь трапеции.</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-8-9-5" data-task-id="task-8-9-5"><label for="task-8-9-5" class="task-checkbox-label"></label><span class="task-text">Диагонали ромба равны \(10\) см и \(14\) см. Найдите площадь ромба.</span></li>
+</ol>
 
-    <div class="topic-header">3. Дробно-рациональные уравнения и неравенства</div>
-    <ol class="task-list" start="19">
-      <li><input type="checkbox" class="task-checkbox" id="task-9-3-1" data-task-id="task-9-3-1"><label for="task-9-3-1" class="task-checkbox-label"></label><span class="task-text">Найдите недопустимые значения переменной: \(\frac{x+2}{x-4}=3\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-9-3-2" data-task-id="task-9-3-2"><label for="task-9-3-2" class="task-checkbox-label"></label><span class="task-text">Решите уравнение: \(\frac{3}{x}=1\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-9-3-3" data-task-id="task-9-3-3"><label for="task-9-3-3" class="task-checkbox-label"></label><span class="task-text">Решите уравнение: \(\frac{x+1}{x-2}=2\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-9-3-4" data-task-id="task-9-3-4"><label for="task-9-3-4" class="task-checkbox-label"></label><span class="task-text">Решите уравнение: \(\frac{x^2-4}{x-2}=x+3\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-9-3-5" data-task-id="task-9-3-5"><label for="task-9-3-5" class="task-checkbox-label"></label><span class="task-text">Решите неравенство: \(\frac{x-2}{x+1}>0\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-9-3-6" data-task-id="task-9-3-6"><label for="task-9-3-6" class="task-checkbox-label"></label><span class="task-text">Решите неравенство: \(\frac{(x-3)(x+2)}{x-1}\leq0\).</span></li>
-    </ol>
+<div class="topic-header"><span class="topic-title">Теорема Пифагора</span></div>
+<ol class="task-list" start="39">
+<li><input type="checkbox" class="task-checkbox" id="task-8-10-1" data-task-id="task-8-10-1"><label for="task-8-10-1" class="task-checkbox-label"></label><span class="task-text">Катеты прямоугольного треугольника равны \(6\) см и \(8\) см. Найдите гипотенузу.</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-8-10-2" data-task-id="task-8-10-2"><label for="task-8-10-2" class="task-checkbox-label"></label><span class="task-text">Стороны треугольника равны \(5\) см, \(12\) см и \(13\) см. Является ли этот треугольник прямоугольным?</span></li>
+</ol>
 
-    <div class="topic-header">4. Арифметическая прогрессия</div>
-    <ol class="task-list" start="25">
-      <li><input type="checkbox" class="task-checkbox" id="task-9-4-1" data-task-id="task-9-4-1"><label for="task-9-4-1" class="task-checkbox-label"></label><span class="task-text">Найдите разность арифметической прогрессии: \(5;\ 8;\ 11;\ldots\)</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-9-4-2" data-task-id="task-9-4-2"><label for="task-9-4-2" class="task-checkbox-label"></label><span class="task-text">Найдите десятый член арифметической прогрессии, если \(a_1=3,\ d=4\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-9-4-3" data-task-id="task-9-4-3"><label for="task-9-4-3" class="task-checkbox-label"></label><span class="task-text">Найдите сумму первых десяти членов арифметической прогрессии: \(2;\ 5;\ 8;\ldots\)</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-9-4-4" data-task-id="task-9-4-4"><label for="task-9-4-4" class="task-checkbox-label"></label><span class="task-text">Являются ли числа \(7\), \(12\), \(17\) последовательными членами арифметической прогрессии? Объясните.</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-9-4-5" data-task-id="task-9-4-5"><label for="task-9-4-5" class="task-checkbox-label"></label><span class="task-text">Ученик каждый день откладывает на \(5\) рублей больше, чем в предыдущий. В первый день он отложил \(10\) рублей. Сколько рублей он отложит в десятый день?</span></li>
-    </ol>
+<div class="topic-header"><span class="topic-title">Подобие треугольников</span></div>
+<ol class="task-list" start="41">
+<li><input type="checkbox" class="task-checkbox" id="task-8-11-1" data-task-id="task-8-11-1"><label for="task-8-11-1" class="task-checkbox-label"></label><span class="task-text">Какой признак подобия треугольников используется, если равны два угла одного треугольника и два угла другого?</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-8-11-2" data-task-id="task-8-11-2"><label for="task-8-11-2" class="task-checkbox-label"></label><span class="task-text">Стороны одного треугольника в 3 раза больше соответствующих сторон другого. Во сколько раз его площадь больше?</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-8-11-3" data-task-id="task-8-11-3"><label for="task-8-11-3" class="task-checkbox-label"></label><span class="task-text">Два подобных треугольника имеют соответствующие стороны \(4\) см и \(10\) см. Сторона второго треугольника, соответствующая стороне первого длиной \(6\) см, равна \(x\). Найдите \(x\).</span></li>
+</ol>
 
-    <div class="topic-header">5. Геометрическая прогрессия</div>
-    <ol class="task-list" start="30">
-      <li><input type="checkbox" class="task-checkbox" id="task-9-5-1" data-task-id="task-9-5-1"><label for="task-9-5-1" class="task-checkbox-label"></label><span class="task-text">Найдите знаменатель геометрической прогрессии: \(2;\ 6;\ 18;\ldots\)</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-9-5-2" data-task-id="task-9-5-2"><label for="task-9-5-2" class="task-checkbox-label"></label><span class="task-text">Найдите пятый член геометрической прогрессии, если \(b_1=3,\ q=2\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-9-5-3" data-task-id="task-9-5-3"><label for="task-9-5-3" class="task-checkbox-label"></label><span class="task-text">Найдите сумму первых пяти членов геометрической прогрессии: \(1;\ 2;\ 4;\ldots\)</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-9-5-4" data-task-id="task-9-5-4"><label for="task-9-5-4" class="task-checkbox-label"></label><span class="task-text">Известно, что числа \(4\), \(x\), \(36\) являются последовательными членами геометрической прогрессии. Найдите \(x\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-9-5-5" data-task-id="task-9-5-5"><label for="task-9-5-5" class="task-checkbox-label"></label><span class="task-text">Вклад каждый год увеличивается в \(2\) раза. В первый год сумма составляла \(500\) рублей. Какой станет сумма через 4 года?</span></li>
-    </ol>
+<div class="topic-header"><span class="topic-title">Окружность</span></div>
+<ol class="task-list" start="44">
+<li><input type="checkbox" class="task-checkbox" id="task-8-12-1" data-task-id="task-8-12-1"><label for="task-8-12-1" class="task-checkbox-label"></label><span class="task-text">Как называется отрезок, соединяющий две точки окружности и проходящий через её центр?</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-8-12-2" data-task-id="task-8-12-2"><label for="task-8-12-2" class="task-checkbox-label"></label><span class="task-text">Касательная к окружности проведена в точке \(A\). Какой угол образует радиус, проведённый в точку касания, с касательной?</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-8-12-3" data-task-id="task-8-12-3"><label for="task-8-12-3" class="task-checkbox-label"></label><span class="task-text">Две хорды одной окружности находятся на одинаковом расстоянии от центра. Что можно сказать об их длинах?</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-8-12-4" data-task-id="task-8-12-4"><label for="task-8-12-4" class="task-checkbox-label"></label><span class="task-text">Центральный угол, опирающийся на дугу, равен \(100^\circ\). Чему равен вписанный угол, опирающийся на эту же дугу?</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-8-12-5" data-task-id="task-8-12-5"><label for="task-8-12-5" class="task-checkbox-label"></label><span class="task-text">Внутри окружности пересекаются две хорды. Одна хорда разделена точкой пересечения на отрезки \(3\) см и \(8\) см, а другая — на отрезки \(4\) см и \(x\) см. Найдите \(x\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-8-12-6" data-task-id="task-8-12-6"><label for="task-8-12-6" class="task-checkbox-label"></label><span class="task-text">Дуга окружности составляет половину всей окружности. Найдите соответствующий ей центральный угол.</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-8-12-7" data-task-id="task-8-12-7"><label for="task-8-12-7" class="task-checkbox-label"></label><span class="task-text">Центральный угол, опирающийся на дугу, равен \(140^\circ\). Найдите вписанный угол, опирающийся на эту же дугу.</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-8-12-8" data-task-id="task-8-12-8"><label for="task-8-12-8" class="task-checkbox-label"></label><span class="task-text">Четырёхугольник вписан в окружность. Один из его углов равен \(65^\circ\). Найдите противоположный угол.</span></li>
+</ol>
+</div>
 
-    <div class="topic-header">6. Бесконечно убывающая геометрическая прогрессия</div>
-    <ol class="task-list" start="35">
-      <li><input type="checkbox" class="task-checkbox" id="task-9-6-1" data-task-id="task-9-6-1"><label for="task-9-6-1" class="task-checkbox-label"></label><span class="task-text">При каком условии бесконечно убывающая геометрическая прогрессия имеет сумму?</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-9-6-2" data-task-id="task-9-6-2"><label for="task-9-6-2" class="task-checkbox-label"></label><span class="task-text">Найдите сумму бесконечно убывающей геометрической прогрессии: \(6;\ 3;\ 1{,}5;\ldots\)</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-9-6-3" data-task-id="task-9-6-3"><label for="task-9-6-3" class="task-checkbox-label"></label><span class="task-text">Найдите сумму бесконечной геометрической прогрессии: \(12;\ -6;\ 3;\ldots\)</span></li>
-    </ol>
+<div class="block-card" id="block9" data-class="09">
+<div class="block-header">
+<div class="block-header-left">
+<div class="block-kicker">Класс 09</div>
+<div class="block-title">9 <em>класс</em></div>
+</div>
+<div class="block-meta">
+<div class="block-meta-count">72</div>
+<div class="block-meta-lbl">заданий</div>
+</div>
+</div>
 
-    <div class="topic-header">Геометрия</div>
-    <div class="topic-header" style="margin-top:8px;">7. Тригонометрия острого и тупого угла</div>
-    <ol class="task-list" start="38">
-      <li><input type="checkbox" class="task-checkbox" id="task-9-7-1" data-task-id="task-9-7-1"><label for="task-9-7-1" class="task-checkbox-label"></label><span class="task-text">В прямоугольном треугольнике катет, лежащий напротив угла \(A\), равен \(6\) см, а гипотенуза — \(10\) см. Найдите \(\sin A\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-9-7-2" data-task-id="task-9-7-2"><label for="task-9-7-2" class="task-checkbox-label"></label><span class="task-text">В прямоугольном треугольнике гипотенуза равна \(13\) см, прилежащий к углу катет равен \(5\) см. Найдите \(\cos A\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-9-7-3" data-task-id="task-9-7-3"><label for="task-9-7-3" class="task-checkbox-label"></label><span class="task-text">В прямоугольном треугольнике катеты равны \(3\) см и \(4\) см. Найдите тангенс угла, противолежащего катету \(3\) см.</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-9-7-4" data-task-id="task-9-7-4"><label for="task-9-7-4" class="task-checkbox-label"></label><span class="task-text">Известно, что \(\sin A=\frac{3}{5}\) и угол \(A\) острый. Найдите \(\cos A\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-9-7-5" data-task-id="task-9-7-5"><label for="task-9-7-5" class="task-checkbox-label"></label><span class="task-text">Угол \(A\) тупой. Может ли выполняться равенство \(\cos A=\frac{1}{2}\)? Объясните.</span></li>
-    </ol>
+<div class="topic-section"><span class="topic-section-label">Алгебра</span><span class="topic-section-line"></span></div>
 
-    <div class="topic-header">8. Решение прямоугольных треугольников</div>
-    <ol class="task-list" start="43">
-      <li><input type="checkbox" class="task-checkbox" id="task-9-8-1" data-task-id="task-9-8-1"><label for="task-9-8-1" class="task-checkbox-label"></label><span class="task-text">Катеты прямоугольного треугольника равны \(6\) см и \(8\) см. Найдите гипотенузу.</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-9-8-2" data-task-id="task-9-8-2"><label for="task-9-8-2" class="task-checkbox-label"></label><span class="task-text">Гипотенуза прямоугольного треугольника равна \(13\) см, один из катетов — \(5\) см. Найдите второй катет.</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-9-8-3" data-task-id="task-9-8-3"><label for="task-9-8-3" class="task-checkbox-label"></label><span class="task-text">В прямоугольном треугольнике гипотенуза равна \(12\) см, а \(\sin A=\frac{1}{2}\). Найдите катет, лежащий напротив угла \(A\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-9-8-4" data-task-id="task-9-8-4"><label for="task-9-8-4" class="task-checkbox-label"></label><span class="task-text">В прямоугольном треугольнике катеты равны \(7\) см и \(24\) см. Найдите тангенс меньшего острого угла.</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-9-8-5" data-task-id="task-9-8-5"><label for="task-9-8-5" class="task-checkbox-label"></label><span class="task-text">Лестница длиной \(5\) м приставлена к стене. Расстояние от стены до основания лестницы равно \(3\) м. На какую высоту поднимается верхний конец лестницы?</span></li>
-    </ol>
+<div class="topic-header"><span class="topic-title">Рациональные выражения</span></div>
+<ol class="task-list">
+<li><input type="checkbox" class="task-checkbox" id="task-9-1-1" data-task-id="task-9-1-1"><label for="task-9-1-1" class="task-checkbox-label"></label><span class="task-text">Найдите область определения выражения \(\frac{3}{x-5}\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-9-1-2" data-task-id="task-9-1-2"><label for="task-9-1-2" class="task-checkbox-label"></label><span class="task-text">Сократите дробь \(\frac{x^2-16}{x-4}\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-9-1-3" data-task-id="task-9-1-3"><label for="task-9-1-3" class="task-checkbox-label"></label><span class="task-text">Выполните умножение: \(\frac{x^2-9}{x}\cdot\frac{x}{x+3}\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-9-1-4" data-task-id="task-9-1-4"><label for="task-9-1-4" class="task-checkbox-label"></label><span class="task-text">Выполните деление: \(\frac{x}{x+2}:\frac{3x}{x+2}\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-9-1-5" data-task-id="task-9-1-5"><label for="task-9-1-5" class="task-checkbox-label"></label><span class="task-text">Упростите: \(\frac{2}{x}+\frac{1}{x+1}\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-9-1-6" data-task-id="task-9-1-6"><label for="task-9-1-6" class="task-checkbox-label"></label><span class="task-text">Упростите выражение: \(\frac{x^2-4}{x^2-2x}\cdot\frac{x}{x+2}\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-9-1-7" data-task-id="task-9-1-7"><label for="task-9-1-7" class="task-checkbox-label"></label><span class="task-text">Выполните вычитание: \(\frac{3}{x}-\frac{1}{x}\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-9-1-8" data-task-id="task-9-1-8"><label for="task-9-1-8" class="task-checkbox-label"></label><span class="task-text">Упростите: \(\frac{x}{x-1}-\frac{2}{x-1}\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-9-1-9" data-task-id="task-9-1-9"><label for="task-9-1-9" class="task-checkbox-label"></label><span class="task-text">Возведите дробь в степень: \(\left(\frac{x}{3}\right)^2\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-9-1-10" data-task-id="task-9-1-10"><label for="task-9-1-10" class="task-checkbox-label"></label><span class="task-text">Упростите выражение: \(\frac{x^2-9}{x^2-6x+9}\).</span></li>
+</ol>
 
-    <div class="topic-header">9. Площади фигур (тригонометрические формулы)</div>
-    <ol class="task-list" start="48">
-      <li><input type="checkbox" class="task-checkbox" id="task-9-9-1" data-task-id="task-9-9-1"><label for="task-9-9-1" class="task-checkbox-label"></label><span class="task-text">Найдите площадь треугольника, если две его стороны равны \(6\) см и \(10\) см, а угол между ними равен \(30^\circ\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-9-9-2" data-task-id="task-9-9-2"><label for="task-9-9-2" class="task-checkbox-label"></label><span class="task-text">Найдите площадь параллелограмма, если его стороны равны \(8\) см и \(5\) см, а угол между ними равен \(60^\circ\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-9-9-3" data-task-id="task-9-9-3"><label for="task-9-9-3" class="task-checkbox-label"></label><span class="task-text">Высота, проведённая к гипотенузе прямоугольного треугольника, делит её на отрезки \(4\) см и \(9\) см. Найдите длину высоты.</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-9-9-4" data-task-id="task-9-9-4"><label for="task-9-9-4" class="task-checkbox-label"></label><span class="task-text">Найдите площадь треугольника со сторонами \(5\) см, \(5\) см и \(6\) см, используя формулу Герона.</span></li>
-    </ol>
+<div class="topic-header"><span class="topic-title">Преобразования графиков функций</span></div>
+<ol class="task-list" start="11">
+<li><input type="checkbox" class="task-checkbox" id="task-9-2-1" data-task-id="task-9-2-1"><label for="task-9-2-1" class="task-checkbox-label"></label><span class="task-text">Как изменится график функции \(y=x^2+5\) по сравнению с графиком \(y=x^2\)?</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-9-2-2" data-task-id="task-9-2-2"><label for="task-9-2-2" class="task-checkbox-label"></label><span class="task-text">Как получить график функции \(y=(x-3)^2\) из графика \(y=x^2\)?</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-9-2-3" data-task-id="task-9-2-3"><label for="task-9-2-3" class="task-checkbox-label"></label><span class="task-text">Как изменится график функции \(y=4x^2\) по сравнению с графиком \(y=x^2\)?</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-9-2-4" data-task-id="task-9-2-4"><label for="task-9-2-4" class="task-checkbox-label"></label><span class="task-text">Как изменится график функции \(y=-x^2\) по сравнению с графиком \(y=x^2\)?</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-9-2-5" data-task-id="task-9-2-5"><label for="task-9-2-5" class="task-checkbox-label"></label><span class="task-text">Найдите область определения функции \(y=\frac{1}{x^2-9}\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-9-2-6" data-task-id="task-9-2-6"><label for="task-9-2-6" class="task-checkbox-label"></label><span class="task-text">Найдите нули функции \(y=x^2-4x\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-9-2-7" data-task-id="task-9-2-7"><label for="task-9-2-7" class="task-checkbox-label"></label><span class="task-text">Укажите промежутки возрастания и убывания функции \(y=(x-1)^2\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-9-2-8" data-task-id="task-9-2-8"><label for="task-9-2-8" class="task-checkbox-label"></label><span class="task-text">Опишите, как получить график функции \(y=-2(x+1)^2+3\) из графика \(y=x^2\).</span></li>
+</ol>
 
-    <div class="topic-header">10. Вписанные и описанные окружности</div>
-    <ol class="task-list" start="52">
-      <li><input type="checkbox" class="task-checkbox" id="task-9-10-1" data-task-id="task-9-10-1"><label for="task-9-10-1" class="task-checkbox-label"></label><span class="task-text">Найдите радиус окружности, вписанной в равносторонний треугольник со стороной \(12\) см.</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-9-10-2" data-task-id="task-9-10-2"><label for="task-9-10-2" class="task-checkbox-label"></label><span class="task-text">Найдите радиус окружности, описанной около равностороннего треугольника со стороной \(6\) см.</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-9-10-3" data-task-id="task-9-10-3"><label for="task-9-10-3" class="task-checkbox-label"></label><span class="task-text">Площадь треугольника равна \(36\) см\(^2\), а радиус вписанной окружности — \(3\) см. Найдите полупериметр треугольника.</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-9-10-4" data-task-id="task-9-10-4"><label for="task-9-10-4" class="task-checkbox-label"></label><span class="task-text">Около прямоугольного треугольника с катетами \(6\) см и \(8\) см описана окружность. Найдите её радиус.</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-9-10-5" data-task-id="task-9-10-5"><label for="task-9-10-5" class="task-checkbox-label"></label><span class="task-text">В прямоугольный треугольник с катетами \(9\) см и \(12\) см вписана окружность. Найдите её радиус.</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-9-10-6" data-task-id="task-9-10-6"><label for="task-9-10-6" class="task-checkbox-label"></label><span class="task-text">Треугольник имеет стороны \(5\) см, \(5\) см и \(6\) см. Найдите радиус описанной около него окружности.</span></li>
-    </ol>
+<div class="topic-header"><span class="topic-title">Дробно-рациональные уравнения и неравенства</span></div>
+<ol class="task-list" start="19">
+<li><input type="checkbox" class="task-checkbox" id="task-9-3-1" data-task-id="task-9-3-1"><label for="task-9-3-1" class="task-checkbox-label"></label><span class="task-text">Найдите недопустимые значения переменной: \(\frac{x+2}{x-4}=3\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-9-3-2" data-task-id="task-9-3-2"><label for="task-9-3-2" class="task-checkbox-label"></label><span class="task-text">Решите уравнение: \(\frac{3}{x}=1\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-9-3-3" data-task-id="task-9-3-3"><label for="task-9-3-3" class="task-checkbox-label"></label><span class="task-text">Решите уравнение: \(\frac{x+1}{x-2}=2\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-9-3-4" data-task-id="task-9-3-4"><label for="task-9-3-4" class="task-checkbox-label"></label><span class="task-text">Решите уравнение: \(\frac{x^2-4}{x-2}=x+3\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-9-3-5" data-task-id="task-9-3-5"><label for="task-9-3-5" class="task-checkbox-label"></label><span class="task-text">Решите неравенство: \(\frac{x-2}{x+1}>0\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-9-3-6" data-task-id="task-9-3-6"><label for="task-9-3-6" class="task-checkbox-label"></label><span class="task-text">Решите неравенство: \(\frac{(x-3)(x+2)}{x-1}\leq0\).</span></li>
+</ol>
 
-    <div class="topic-header">11. Теоремы синусов и косинусов</div>
-    <ol class="task-list" start="58">
-      <li><input type="checkbox" class="task-checkbox" id="task-9-11-1" data-task-id="task-9-11-1"><label for="task-9-11-1" class="task-checkbox-label"></label><span class="task-text">В треугольнике две стороны равны \(5\) см и \(7\) см, а угол между ними равен \(60^\circ\). Найдите третью сторону.</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-9-11-2" data-task-id="task-9-11-2"><label for="task-9-11-2" class="task-checkbox-label"></label><span class="task-text">Стороны треугольника равны \(5\) см, \(6\) см и \(7\) см. Найдите косинус угла, лежащего напротив стороны \(7\) см.</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-9-11-3" data-task-id="task-9-11-3"><label for="task-9-11-3" class="task-checkbox-label"></label><span class="task-text">В треугольнике сторона \(a=8\) см лежит напротив угла \(30^\circ\). Найдите сторону, лежащую напротив угла \(45^\circ\).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-9-11-4" data-task-id="task-9-11-4"><label for="task-9-11-4" class="task-checkbox-label"></label><span class="task-text">В треугольнике сторона \(a=10\) см, сторона \(b=5\sqrt2\) см, угол \(A=90^\circ\). Найдите угол \(B\) (сторона \(a\) лежит напротив угла \(A\)).</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-9-11-5" data-task-id="task-9-11-5"><label for="task-9-11-5" class="task-checkbox-label"></label><span class="task-text">Две стороны треугольника равны \(9\) см и \(12\) см, а угол между ними равен \(30^\circ\). Найдите площадь треугольника.</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-9-11-6" data-task-id="task-9-11-6"><label for="task-9-11-6" class="task-checkbox-label"></label><span class="task-text">Две стороны треугольника равны \(5\) см и \(8\) см, а угол между ними равен \(120^\circ\). Найдите третью сторону.</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-9-11-7" data-task-id="task-9-11-7"><label for="task-9-11-7" class="task-checkbox-label"></label><span class="task-text">В треугольнике \(ABC\) угол \(A=40^\circ\), угол \(B=70^\circ\), а сторона \(a=10\) см. Найдите сторону \(b\).</span></li>
-    </ol>
+<div class="topic-header"><span class="topic-title">Арифметическая прогрессия</span></div>
+<ol class="task-list" start="25">
+<li><input type="checkbox" class="task-checkbox" id="task-9-4-1" data-task-id="task-9-4-1"><label for="task-9-4-1" class="task-checkbox-label"></label><span class="task-text">Найдите разность арифметической прогрессии: \(5;\ 8;\ 11;\ldots\)</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-9-4-2" data-task-id="task-9-4-2"><label for="task-9-4-2" class="task-checkbox-label"></label><span class="task-text">Найдите десятый член арифметической прогрессии, если \(a_1=3,\ d=4\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-9-4-3" data-task-id="task-9-4-3"><label for="task-9-4-3" class="task-checkbox-label"></label><span class="task-text">Найдите сумму первых десяти членов арифметической прогрессии: \(2;\ 5;\ 8;\ldots\)</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-9-4-4" data-task-id="task-9-4-4"><label for="task-9-4-4" class="task-checkbox-label"></label><span class="task-text">Являются ли числа \(7\), \(12\), \(17\) последовательными членами арифметической прогрессии? Объясните.</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-9-4-5" data-task-id="task-9-4-5"><label for="task-9-4-5" class="task-checkbox-label"></label><span class="task-text">Ученик каждый день откладывает на \(5\) рублей больше, чем в предыдущий. В первый день он отложил \(10\) рублей. Сколько рублей он отложит в десятый день?</span></li>
+</ol>
 
-    <div class="topic-header">12. Правильные многоугольники</div>
-    <ol class="task-list" start="65">
-      <li><input type="checkbox" class="task-checkbox" id="task-9-12-1" data-task-id="task-9-12-1"><label for="task-9-12-1" class="task-checkbox-label"></label><span class="task-text">Как называется многоугольник, у которого все стороны равны и все углы равны?</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-9-12-2" data-task-id="task-9-12-2"><label for="task-9-12-2" class="task-checkbox-label"></label><span class="task-text">Найдите угол между радиусами, проведёнными к соседним вершинам правильного десятиугольника.</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-9-12-3" data-task-id="task-9-12-3"><label for="task-9-12-3" class="task-checkbox-label"></label><span class="task-text">Угол между радиусами, проведёнными к соседним вершинам правильного многоугольника, равен \(45^\circ\). Сколько сторон имеет этот многоугольник?</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-9-12-4" data-task-id="task-9-12-4"><label for="task-9-12-4" class="task-checkbox-label"></label><span class="task-text">В правильный шестиугольник вписана окружность радиуса \(5\) см. Найдите длину стороны шестиугольника.</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-9-12-5" data-task-id="task-9-12-5"><label for="task-9-12-5" class="task-checkbox-label"></label><span class="task-text">Найдите радиус окружности, описанной около правильного шестиугольника со стороной \(8\) см.</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-9-12-6" data-task-id="task-9-12-6"><label for="task-9-12-6" class="task-checkbox-label"></label><span class="task-text">Найдите величину внутреннего угла правильного восьмиугольника.</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-9-12-7" data-task-id="task-9-12-7"><label for="task-9-12-7" class="task-checkbox-label"></label><span class="task-text">Сумма внутренних углов правильного многоугольника равна \(1440^\circ\). Сколько сторон имеет этот многоугольник?</span></li>
-      <li><input type="checkbox" class="task-checkbox" id="task-9-12-8" data-task-id="task-9-12-8"><label for="task-9-12-8" class="task-checkbox-label"></label><span class="task-text">Найдите площадь правильного шестиугольника, если его периметр равен \(36\) см, а радиус вписанной окружности равен \(3\sqrt3\) см.</span></li>
-    </ol>
-  </div>
+<div class="topic-header"><span class="topic-title">Геометрическая прогрессия</span></div>
+<ol class="task-list" start="30">
+<li><input type="checkbox" class="task-checkbox" id="task-9-5-1" data-task-id="task-9-5-1"><label for="task-9-5-1" class="task-checkbox-label"></label><span class="task-text">Найдите знаменатель геометрической прогрессии: \(2;\ 6;\ 18;\ldots\)</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-9-5-2" data-task-id="task-9-5-2"><label for="task-9-5-2" class="task-checkbox-label"></label><span class="task-text">Найдите пятый член геометрической прогрессии, если \(b_1=3,\ q=2\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-9-5-3" data-task-id="task-9-5-3"><label for="task-9-5-3" class="task-checkbox-label"></label><span class="task-text">Найдите сумму первых пяти членов геометрической прогрессии: \(1;\ 2;\ 4;\ldots\)</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-9-5-4" data-task-id="task-9-5-4"><label for="task-9-5-4" class="task-checkbox-label"></label><span class="task-text">Известно, что числа \(4\), \(x\), \(36\) являются последовательными членами геометрической прогрессии. Найдите \(x\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-9-5-5" data-task-id="task-9-5-5"><label for="task-9-5-5" class="task-checkbox-label"></label><span class="task-text">Вклад каждый год увеличивается в \(2\) раза. В первый год сумма составляла \(500\) рублей. Какой станет сумма через 4 года?</span></li>
+</ol>
+
+<div class="topic-header"><span class="topic-title">Бесконечно убывающая геометрическая прогрессия</span></div>
+<ol class="task-list" start="35">
+<li><input type="checkbox" class="task-checkbox" id="task-9-6-1" data-task-id="task-9-6-1"><label for="task-9-6-1" class="task-checkbox-label"></label><span class="task-text">При каком условии бесконечно убывающая геометрическая прогрессия имеет сумму?</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-9-6-2" data-task-id="task-9-6-2"><label for="task-9-6-2" class="task-checkbox-label"></label><span class="task-text">Найдите сумму бесконечно убывающей геометрической прогрессии: \(6;\ 3;\ 1{,}5;\ldots\)</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-9-6-3" data-task-id="task-9-6-3"><label for="task-9-6-3" class="task-checkbox-label"></label><span class="task-text">Найдите сумму бесконечной геометрической прогрессии: \(12;\ -6;\ 3;\ldots\)</span></li>
+</ol>
+
+<div class="topic-section"><span class="topic-section-label">Геометрия</span><span class="topic-section-line"></span></div>
+
+<div class="topic-header"><span class="topic-title">Тригонометрия острого и тупого угла</span></div>
+<ol class="task-list" start="38">
+<li><input type="checkbox" class="task-checkbox" id="task-9-7-1" data-task-id="task-9-7-1"><label for="task-9-7-1" class="task-checkbox-label"></label><span class="task-text">В прямоугольном треугольнике катет, лежащий напротив угла \(A\), равен \(6\) см, а гипотенуза — \(10\) см. Найдите \(\sin A\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-9-7-2" data-task-id="task-9-7-2"><label for="task-9-7-2" class="task-checkbox-label"></label><span class="task-text">В прямоугольном треугольнике гипотенуза равна \(13\) см, прилежащий к углу катет равен \(5\) см. Найдите \(\cos A\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-9-7-3" data-task-id="task-9-7-3"><label for="task-9-7-3" class="task-checkbox-label"></label><span class="task-text">В прямоугольном треугольнике катеты равны \(3\) см и \(4\) см. Найдите тангенс угла, противолежащего катету \(3\) см.</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-9-7-4" data-task-id="task-9-7-4"><label for="task-9-7-4" class="task-checkbox-label"></label><span class="task-text">Известно, что \(\sin A=\frac{3}{5}\) и угол \(A\) острый. Найдите \(\cos A\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-9-7-5" data-task-id="task-9-7-5"><label for="task-9-7-5" class="task-checkbox-label"></label><span class="task-text">Угол \(A\) тупой. Может ли выполняться равенство \(\cos A=\frac{1}{2}\)? Объясните.</span></li>
+</ol>
+
+<div class="topic-header"><span class="topic-title">Решение прямоугольных треугольников</span></div>
+<ol class="task-list" start="43">
+<li><input type="checkbox" class="task-checkbox" id="task-9-8-1" data-task-id="task-9-8-1"><label for="task-9-8-1" class="task-checkbox-label"></label><span class="task-text">Катеты прямоугольного треугольника равны \(6\) см и \(8\) см. Найдите гипотенузу.</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-9-8-2" data-task-id="task-9-8-2"><label for="task-9-8-2" class="task-checkbox-label"></label><span class="task-text">Гипотенуза прямоугольного треугольника равна \(13\) см, один из катетов — \(5\) см. Найдите второй катет.</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-9-8-3" data-task-id="task-9-8-3"><label for="task-9-8-3" class="task-checkbox-label"></label><span class="task-text">В прямоугольном треугольнике гипотенуза равна \(12\) см, а \(\sin A=\frac{1}{2}\). Найдите катет, лежащий напротив угла \(A\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-9-8-4" data-task-id="task-9-8-4"><label for="task-9-8-4" class="task-checkbox-label"></label><span class="task-text">В прямоугольном треугольнике катеты равны \(7\) см и \(24\) см. Найдите тангенс меньшего острого угла.</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-9-8-5" data-task-id="task-9-8-5"><label for="task-9-8-5" class="task-checkbox-label"></label><span class="task-text">Лестница длиной \(5\) м приставлена к стене. Расстояние от стены до основания лестницы равно \(3\) м. На какую высоту поднимается верхний конец лестницы?</span></li>
+</ol>
+
+<div class="topic-header"><span class="topic-title">Площади фигур (тригонометрические формулы)</span></div>
+<ol class="task-list" start="48">
+<li><input type="checkbox" class="task-checkbox" id="task-9-9-1" data-task-id="task-9-9-1"><label for="task-9-9-1" class="task-checkbox-label"></label><span class="task-text">Найдите площадь треугольника, если две его стороны равны \(6\) см и \(10\) см, а угол между ними равен \(30^\circ\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-9-9-2" data-task-id="task-9-9-2"><label for="task-9-9-2" class="task-checkbox-label"></label><span class="task-text">Найдите площадь параллелограмма, если его стороны равны \(8\) см и \(5\) см, а угол между ними равен \(60^\circ\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-9-9-3" data-task-id="task-9-9-3"><label for="task-9-9-3" class="task-checkbox-label"></label><span class="task-text">Высота, проведённая к гипотенузе прямоугольного треугольника, делит её на отрезки \(4\) см и \(9\) см. Найдите длину высоты.</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-9-9-4" data-task-id="task-9-9-4"><label for="task-9-9-4" class="task-checkbox-label"></label><span class="task-text">Найдите площадь треугольника со сторонами \(5\) см, \(5\) см и \(6\) см, используя формулу Герона.</span></li>
+</ol>
+
+<div class="topic-header"><span class="topic-title">Вписанные и описанные окружности</span></div>
+<ol class="task-list" start="52">
+<li><input type="checkbox" class="task-checkbox" id="task-9-10-1" data-task-id="task-9-10-1"><label for="task-9-10-1" class="task-checkbox-label"></label><span class="task-text">Найдите радиус окружности, вписанной в равносторонний треугольник со стороной \(12\) см.</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-9-10-2" data-task-id="task-9-10-2"><label for="task-9-10-2" class="task-checkbox-label"></label><span class="task-text">Найдите радиус окружности, описанной около равностороннего треугольника со стороной \(6\) см.</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-9-10-3" data-task-id="task-9-10-3"><label for="task-9-10-3" class="task-checkbox-label"></label><span class="task-text">Площадь треугольника равна \(36\) см\(^2\), а радиус вписанной окружности — \(3\) см. Найдите полупериметр треугольника.</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-9-10-4" data-task-id="task-9-10-4"><label for="task-9-10-4" class="task-checkbox-label"></label><span class="task-text">Около прямоугольного треугольника с катетами \(6\) см и \(8\) см описана окружность. Найдите её радиус.</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-9-10-5" data-task-id="task-9-10-5"><label for="task-9-10-5" class="task-checkbox-label"></label><span class="task-text">В прямоугольный треугольник с катетами \(9\) см и \(12\) см вписана окружность. Найдите её радиус.</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-9-10-6" data-task-id="task-9-10-6"><label for="task-9-10-6" class="task-checkbox-label"></label><span class="task-text">Треугольник имеет стороны \(5\) см, \(5\) см и \(6\) см. Найдите радиус описанной около него окружности.</span></li>
+</ol>
+
+<div class="topic-header"><span class="topic-title">Теоремы синусов и косинусов</span></div>
+<ol class="task-list" start="58">
+<li><input type="checkbox" class="task-checkbox" id="task-9-11-1" data-task-id="task-9-11-1"><label for="task-9-11-1" class="task-checkbox-label"></label><span class="task-text">В треугольнике две стороны равны \(5\) см и \(7\) см, а угол между ними равен \(60^\circ\). Найдите третью сторону.</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-9-11-2" data-task-id="task-9-11-2"><label for="task-9-11-2" class="task-checkbox-label"></label><span class="task-text">Стороны треугольника равны \(5\) см, \(6\) см и \(7\) см. Найдите косинус угла, лежащего напротив стороны \(7\) см.</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-9-11-3" data-task-id="task-9-11-3"><label for="task-9-11-3" class="task-checkbox-label"></label><span class="task-text">В треугольнике сторона \(a=8\) см лежит напротив угла \(30^\circ\). Найдите сторону, лежащую напротив угла \(45^\circ\).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-9-11-4" data-task-id="task-9-11-4"><label for="task-9-11-4" class="task-checkbox-label"></label><span class="task-text">В треугольнике сторона \(a=10\) см, сторона \(b=5\sqrt2\) см, угол \(A=90^\circ\). Найдите угол \(B\) (сторона \(a\) лежит напротив угла \(A\)).</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-9-11-5" data-task-id="task-9-11-5"><label for="task-9-11-5" class="task-checkbox-label"></label><span class="task-text">Две стороны треугольника равны \(9\) см и \(12\) см, а угол между ними равен \(30^\circ\). Найдите площадь треугольника.</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-9-11-6" data-task-id="task-9-11-6"><label for="task-9-11-6" class="task-checkbox-label"></label><span class="task-text">Две стороны треугольника равны \(5\) см и \(8\) см, а угол между ними равен \(120^\circ\). Найдите третью сторону.</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-9-11-7" data-task-id="task-9-11-7"><label for="task-9-11-7" class="task-checkbox-label"></label><span class="task-text">В треугольнике \(ABC\) угол \(A=40^\circ\), угол \(B=70^\circ\), а сторона \(a=10\) см. Найдите сторону \(b\).</span></li>
+</ol>
+
+<div class="topic-header"><span class="topic-title">Правильные многоугольники</span></div>
+<ol class="task-list" start="65">
+<li><input type="checkbox" class="task-checkbox" id="task-9-12-1" data-task-id="task-9-12-1"><label for="task-9-12-1" class="task-checkbox-label"></label><span class="task-text">Как называется многоугольник, у которого все стороны равны и все углы равны?</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-9-12-2" data-task-id="task-9-12-2"><label for="task-9-12-2" class="task-checkbox-label"></label><span class="task-text">Найдите угол между радиусами, проведёнными к соседним вершинам правильного десятиугольника.</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-9-12-3" data-task-id="task-9-12-3"><label for="task-9-12-3" class="task-checkbox-label"></label><span class="task-text">Угол между радиусами, проведёнными к соседним вершинам правильного многоугольника, равен \(45^\circ\). Сколько сторон имеет этот многоугольник?</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-9-12-4" data-task-id="task-9-12-4"><label for="task-9-12-4" class="task-checkbox-label"></label><span class="task-text">В правильный шестиугольник вписана окружность радиуса \(5\) см. Найдите длину стороны шестиугольника.</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-9-12-5" data-task-id="task-9-12-5"><label for="task-9-12-5" class="task-checkbox-label"></label><span class="task-text">Найдите радиус окружности, описанной около правильного шестиугольника со стороной \(8\) см.</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-9-12-6" data-task-id="task-9-12-6"><label for="task-9-12-6" class="task-checkbox-label"></label><span class="task-text">Найдите величину внутреннего угла правильного восьмиугольника.</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-9-12-7" data-task-id="task-9-12-7"><label for="task-9-12-7" class="task-checkbox-label"></label><span class="task-text">Сумма внутренних углов правильного многоугольника равна \(1440^\circ\). Сколько сторон имеет этот многоугольник?</span></li>
+<li><input type="checkbox" class="task-checkbox" id="task-9-12-8" data-task-id="task-9-12-8"><label for="task-9-12-8" class="task-checkbox-label"></label><span class="task-text">Найдите площадь правильного шестиугольника, если его периметр равен \(36\) см, а радиус вписанной окружности равен \(3\sqrt3\) см.</span></li>
+</ol>
+</div>
+
+</main>
+
+<footer>
+<div class="footer-brand"><b>EPALLAXIS</b> · Диагностика</div>
+<div class="footer-meta">
+<span>226 задач</span>
+<span>5–9 классы</span>
+<span>2026</span>
+</div>
+</footer>
 
 </div>
 
-<!-- ===== КНОПКИ ВНИЗУ ===== -->
-<button class="top-link" id="topBtn">↑ Наверх</button>
+<button class="top-btn" id="topBtn" aria-label="Наверх">↑</button>
 
 <script>
-  // 1. СИНХРОНИЗАЦИЯ ТЕМЫ (ИЗ ГЛАВНОЙ)
-  function getCurrentSeason() {
-      const month = new Date().getMonth();
-      if (month === 11 || month <= 1) return 'winter';
-      if (month >= 2 && month <= 4) return 'spring';
-      if (month >= 5 && month <= 7) return 'summer';
-      return 'autumn';
-  }
+(function(){
+'use strict';
 
-  function applyThemeFromMain() {
-      const savedTheme = localStorage.getItem('epallaxis_theme') || 'auto';
-      let activeSeason = savedTheme === 'auto' ? getCurrentSeason() : savedTheme;
-      document.body.className = 'season-' + activeSeason;
-  }
+var canvas=document.getElementById('spring-canvas');
+var ctx=canvas.getContext('2d');
+var animationFrameId,canvasActive=false,fishArray=[],ripples=[];
+var mouse={x:-1000,y:-1000};
 
-  applyThemeFromMain();
+function resizeCanvas(){var r=canvas.parentElement.getBoundingClientRect();canvas.width=r.width;canvas.height=r.height}
 
-  document.addEventListener('DOMContentLoaded', function() {
-    // ===== ПРОГРЕСС =====
-    const checkboxes = document.querySelectorAll('.task-checkbox');
-    const progressFill = document.getElementById('progressFill');
-    const progressText = document.getElementById('progressText');
-    const resetBtn = document.getElementById('resetBtn');
+function Fish(){
+var side=Math.floor(Math.random()*4);
+if(side===0){this.x=-50;this.y=Math.random()*canvas.height}
+else if(side===1){this.x=canvas.width+50;this.y=Math.random()*canvas.height}
+else if(side===2){this.x=Math.random()*canvas.width;this.y=-50}
+else{this.x=Math.random()*canvas.width;this.y=canvas.height+50}
+this.angle=Math.atan2(canvas.height/2-this.y,canvas.width/2-this.x);
+this.wanderAngle=this.angle;
+this.maxSpeed=Math.random()*0.5+1.2;
+this.vx=Math.cos(this.angle)*this.maxSpeed;
+this.vy=Math.sin(this.angle)*this.maxSpeed;
+this.size=Math.random()*5+11;
+this.hue=340+Math.random()*20;
+this.tailPhase=Math.random()*Math.PI*2;
+this.rippleTimer=0;this.opacity=0;
+}
+Fish.prototype.update=function(){
+if(this.opacity<1)this.opacity+=0.015;
+this.wanderAngle+=(Math.random()-0.5)*0.2;
+var steerX=Math.cos(this.wanderAngle)*this.maxSpeed;
+var steerY=Math.sin(this.wanderAngle)*this.maxSpeed;
+var margin=100,turnForce=0.15;
+if(this.x<margin)steerX+=(margin-this.x)*turnForce;
+if(this.x>canvas.width-margin)steerX-=(this.x-(canvas.width-margin))*turnForce;
+if(this.y<margin)steerY+=(margin-this.y)*turnForce;
+if(this.y>canvas.height-margin)steerY-=(this.y-(canvas.height-margin))*turnForce;
+var dx=this.x-mouse.x,dy=this.y-mouse.y;
+var dist=Math.sqrt(dx*dx+dy*dy);
+var flee=0;
+if(dist<150){flee=(150-dist)/150;steerX+=(dx/dist)*flee*4;steerY+=(dy/dist)*flee*4;
+this.rippleTimer--;if(this.rippleTimer<=0){ripples.push(new Ripple(this.x-this.vx*3,this.y-this.vy*3));this.rippleTimer=5}}
+else{this.rippleTimer--;if(Math.random()<0.01&&this.rippleTimer<=0){ripples.push(new Ripple(this.x,this.y));this.rippleTimer=40}}
+var dX=this.vx+steerX,dY=this.vy+steerY,mag=Math.sqrt(dX*dX+dY*dY);
+var target=this.maxSpeed*(1+flee*1.5);
+if(mag>0){dX=dX/mag*target;dY=dY/mag*target}
+var da=Math.atan2(dY,dX),diff=da-this.angle;
+while(diff>Math.PI)diff-=Math.PI*2;
+while(diff<-Math.PI)diff+=Math.PI*2;
+this.angle+=diff*(0.05+flee*0.1);
+var cs=Math.sqrt(this.vx*this.vx+this.vy*this.vy);
+cs+=(target-cs)*0.04;
+if(cs<0.5)cs=0.5;
+this.vx=Math.cos(this.angle)*cs;
+this.vy=Math.sin(this.angle)*cs;
+this.x+=this.vx;this.y+=this.vy;
+this.tailPhase+=0.15+cs*0.3;
+};
+Fish.prototype.draw=function(){
+ctx.save();ctx.globalAlpha=this.opacity*0.85;
+ctx.translate(this.x,this.y);ctx.rotate(this.angle);
+var L=this.size,H=this.size*0.32;
+var wag=Math.sin(this.tailPhase)*0.6;
+ctx.save();ctx.translate(-L*0.65,0);ctx.rotate(wag);
+ctx.fillStyle='hsla('+this.hue+',65%,72%,0.55)';
+ctx.beginPath();ctx.moveTo(0,0);ctx.lineTo(-L*0.55,-H*2.2);
+ctx.quadraticCurveTo(-L*0.25,-H*0.4,-L*0.2,0);
+ctx.quadraticCurveTo(-L*0.25,H*0.4,-L*0.55,H*2.2);
+ctx.closePath();ctx.fill();ctx.restore();
+var g=ctx.createLinearGradient(0,-H,0,H);
+g.addColorStop(0,'hsla('+this.hue+',70%,82%,0.65)');
+g.addColorStop(0.5,'hsla('+this.hue+',75%,68%,0.6)');
+g.addColorStop(1,'hsla('+this.hue+',70%,55%,0.5)');
+ctx.fillStyle=g;
+ctx.beginPath();ctx.moveTo(L*0.78,0);
+ctx.bezierCurveTo(L*0.55,-H,-L*0.1,-H*1.05,-L*0.65,-H*0.18);
+ctx.lineTo(-L*0.65,H*0.18);
+ctx.bezierCurveTo(-L*0.1,H*1.05,L*0.55,H,L*0.78,0);
+ctx.closePath();ctx.fill();
+ctx.fillStyle='rgba(255,240,245,0.9)';
+ctx.beginPath();ctx.arc(L*0.5,-H*0.28,H*0.22,0,Math.PI*2);ctx.fill();
+ctx.fillStyle='rgba(30,10,20,0.9)';
+ctx.beginPath();ctx.arc(L*0.53,-H*0.28,H*0.11,0,Math.PI*2);ctx.fill();
+ctx.restore();
+};
+function Ripple(x,y){this.x=x;this.y=y;this.radius=2;this.opacity=0.4}
+Ripple.prototype.update=function(){this.radius+=0.5;this.opacity-=0.01};
+Ripple.prototype.draw=function(){ctx.beginPath();ctx.arc(this.x,this.y,this.radius,0,Math.PI*2);ctx.strokeStyle='rgba(255,183,197,'+this.opacity+')';ctx.lineWidth=1;ctx.stroke()};
 
-    function updateProgress() {
-      const total = checkboxes.length;
-      const checked = document.querySelectorAll('.task-checkbox:checked').length;
-      const percent = total > 0 ? Math.round((checked / total) * 100) : 0;
-      progressFill.style.width = percent + '%';
-      progressText.textContent = `${checked} из ${total}`;
-    }
+function initSpringCanvas(){
+resizeCanvas();fishArray=[];ripples=[];
+for(var i=0;i<8;i++)fishArray.push(new Fish());
+canvasActive=true;animateSpring();
+window.addEventListener('resize',resizeCanvas);
+canvas.parentElement.addEventListener('mousemove',function(e){var r=canvas.getBoundingClientRect();mouse.x=e.clientX-r.left;mouse.y=e.clientY-r.top});
+canvas.parentElement.addEventListener('mouseleave',function(){mouse.x=-1000;mouse.y=-1000});
+canvas.parentElement.addEventListener('touchmove',function(e){var r=canvas.getBoundingClientRect();mouse.x=e.touches[0].clientX-r.left;mouse.y=e.touches[0].clientY-r.top},{passive:true});
+canvas.parentElement.addEventListener('touchend',function(){mouse.x=-1000;mouse.y=-1000});
+}
+function animateSpring(){
+if(!canvasActive)return;
+ctx.clearRect(0,0,canvas.width,canvas.height);
+ripples=ripples.filter(function(r){return r.opacity>0});
+ripples.forEach(function(r){r.update();r.draw()});
+fishArray.forEach(function(f){f.update();f.draw()});
+animationFrameId=requestAnimationFrame(animateSpring);
+}
+function stopSpringCanvas(){
+canvasActive=false;cancelAnimationFrame(animationFrameId);
+ctx.clearRect(0,0,canvas.width,canvas.height);
+}
 
-    checkboxes.forEach(cb => {
-      const id = cb.dataset.taskId;
-      if (id) {
-        const saved = localStorage.getItem('task_' + id);
-        if (saved === 'true') cb.checked = true;
-      }
-      cb.addEventListener('change', function() {
-        if (this.dataset.taskId) localStorage.setItem('task_' + this.dataset.taskId, this.checked);
-        updateProgress();
-      });
-    });
+function getCurrentSeason(){
+var m=new Date().getMonth();
+if(m===11||m<=1)return'winter';
+if(m>=2&&m<=4)return'spring';
+if(m>=5&&m<=7)return'summer';
+return'autumn';
+}
 
-    resetBtn.addEventListener('click', function() {
-      if (confirm('Сбросить все отметки о выполнении?')) {
-        checkboxes.forEach(cb => {
-          cb.checked = false;
-          if (cb.dataset.taskId) localStorage.removeItem('task_' + cb.dataset.taskId);
-        });
-        updateProgress();
-      }
-    });
-    updateProgress();
+function applyTheme(name){
+var c=document.getElementById('particles-container');
+var b=document.body;
+c.innerHTML='';stopSpringCanvas();canvas.style.opacity=0;
+b.className='';
+var active=name==='auto'?getCurrentSeason():name;
+b.classList.add('season-'+active);
+document.querySelectorAll('.theme-btn').forEach(function(btn){btn.classList.toggle('active',btn.dataset.theme===name)});
+if(active==='spring'){canvas.style.display='block';canvas.style.opacity=1;initSpringCanvas()}
+else{
+canvas.style.display='none';
+for(var i=0;i<22;i++){
+var p=document.createElement('div');p.className='particle p-'+active;
+if(active==='summer'){p.style.left=(Math.random()*90)+'%';p.style.top=(Math.random()*90)+'%'}
+else{p.style.left=Math.random()*100+'%';p.style.top='-20px'}
+var d;
+if(active==='autumn')d=(Math.random()*5+6)+'s';
+if(active==='winter')d=(Math.random()*5+6)+'s';
+if(active==='summer')d=(Math.random()*5+5)+'s';
+p.style.animationDuration=d;
+p.style.animationDelay=(Math.random()*5)+'s';
+if(active!=='autumn')p.style.transform='scale('+(Math.random()*0.5+0.8)+')';
+c.appendChild(p);
+}
+}
+}
 
-    // ===== НАВИГАЦИЯ ПО ЯКОРЯМ =====
-    document.querySelectorAll('.nav-internal a').forEach(link => {
-      link.addEventListener('click', function(e) {
-        const targetId = this.getAttribute('href');
-        if (targetId && targetId.startsWith('#')) {
-          e.preventDefault();
-          const targetElement = document.querySelector(targetId);
-          if (targetElement) {
-            const headerHeight = document.querySelector('header').offsetHeight;
-            const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20;
-            window.scrollTo({ top: targetPosition, behavior: 'smooth' });
-            document.querySelectorAll('.nav-internal a').forEach(a => a.classList.remove('active'));
-            this.classList.add('active');
-          }
-        }
-      });
-    });
+function initThemeSwitcher(){
+var saved=localStorage.getItem('epallaxis_theme')||'auto';
+applyTheme(saved);
+document.getElementById('theme-switcher').addEventListener('click',function(e){
+if(e.target.classList.contains('theme-btn')){
+var t=e.target.dataset.theme;
+localStorage.setItem('epallaxis_theme',t);
+applyTheme(t);
+}
+});
+}
 
-    // ===== ПОДСВЕТКА АКТИВНОЙ СЕКЦИИ =====
-    const sections = document.querySelectorAll('.block-card');
-    const navLinks = document.querySelectorAll('.nav-internal a');
-    let ticking = false;
-    window.addEventListener('scroll', function() {
-      if (!ticking) {
-        window.requestAnimationFrame(function() {
-          let currentId = '';
-          sections.forEach(section => {
-            const rect = section.getBoundingClientRect();
-            if (rect.top <= 150) currentId = section.id;
-          });
-          navLinks.forEach(link => {
-            const href = link.getAttribute('href');
-            link.classList.toggle('active', href === '#' + currentId);
-          });
-          ticking = false;
-        });
-        ticking = true;
-      }
-    });
+document.querySelectorAll('.task-list[start]').forEach(function(ol){
+var s=parseInt(ol.getAttribute('start'),10);
+if(s>1)ol.style.counterReset='task '+(s-1);
+});
 
-    setTimeout(() => {
-      const firstSection = document.querySelector('.block-card');
-      if (firstSection) {
-        const id = firstSection.id;
-        navLinks.forEach(link => {
-          link.classList.toggle('active', link.getAttribute('href') === '#' + id);
-        });
-      }
-    }, 100);
+document.addEventListener('DOMContentLoaded',function(){
+canvas.style.opacity=0;
+initThemeSwitcher();
 
-    // ===== КНОПКА "НАВЕРХ" =====
-    document.getElementById('topBtn').addEventListener('click', function() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+var checkboxes=document.querySelectorAll('.task-checkbox');
+var progressFill=document.getElementById('progressFill');
+var progressCounter=document.getElementById('progressCounter');
+var progressPercent=document.getElementById('progressPercent');
+var progressText=document.getElementById('progressText');
+var resetBtn=document.getElementById('resetBtn');
+var total=checkboxes.length;
 
-    // ===== KATEX =====
-    if (typeof renderMathInElement === 'function') {
-      renderMathInElement(document.body, {
-        delimiters: [
-          {left: '$$', right: '$$', display: true},
-          {left: '$', right: '$', display: false},
-          {left: '\\(', right: '\\)', display: false},
-          {left: '\\[', right: '\\]', display: true}
-        ],
-        throwOnError: false
-      });
-    }
-    window.addEventListener('load', function() {
-      if (typeof renderMathInElement === 'function') {
-        renderMathInElement(document.body, {
-          delimiters: [
-            {left: '$$', right: '$$', display: true},
-            {left: '$', right: '$', display: false},
-            {left: '\\(', right: '\\)', display: false},
-            {left: '\\[', right: '\\]', display: true}
-          ],
-          throwOnError: false
-        });
-      }
-    });
-  });
+function updateProgress(){
+var checked=document.querySelectorAll('.task-checkbox:checked').length;
+var percent=total>0?Math.round((checked/total)*100):0;
+progressFill.style.width=percent+'%';
+progressCounter.innerHTML=checked+'<span>/'+total+'</span>';
+progressPercent.textContent=percent+'%';
+progressText.textContent=checked+' из '+total;
+}
+
+checkboxes.forEach(function(cb){
+var id=cb.dataset.taskId;
+if(id){var saved=localStorage.getItem('task_'+id);if(saved==='true')cb.checked=true}
+cb.addEventListener('change',function(){if(this.dataset.taskId)localStorage.setItem('task_'+this.dataset.taskId,this.checked);updateProgress()});
+});
+
+resetBtn.addEventListener('click',function(){
+if(confirm('Сбросить все отметки о выполнении?')){
+checkboxes.forEach(function(cb){cb.checked=false;if(cb.dataset.taskId)localStorage.removeItem('task_'+cb.dataset.taskId)});
+updateProgress();
+}
+});
+updateProgress();
+
+document.querySelectorAll('.section-nav a').forEach(function(link){
+link.addEventListener('click',function(e){
+var targetId=this.getAttribute('href');
+if(targetId&&targetId.startsWith('#')){
+e.preventDefault();
+var targetElement=document.querySelector(targetId);
+if(targetElement){
+var navHeight=document.querySelector('.section-nav').offsetHeight;
+var targetPosition=targetElement.getBoundingClientRect().top+window.pageYOffset-navHeight-24;
+window.scrollTo({top:targetPosition,behavior:'smooth'});
+}
+}
+});
+});
+
+var sections=document.querySelectorAll('.block-card');
+var navLinks=document.querySelectorAll('.section-nav a');
+var ticking=false;
+window.addEventListener('scroll',function(){
+if(!ticking){window.requestAnimationFrame(function(){
+var currentId='';
+sections.forEach(function(section){var rect=section.getBoundingClientRect();if(rect.top<=180)currentId=section.id});
+navLinks.forEach(function(link){link.classList.toggle('active',link.getAttribute('href')==='#'+currentId)});
+ticking=false;
+});ticking=true}
+});
+
+document.getElementById('topBtn').addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
+});
+})();
 </script>
 </body>
 </html>
