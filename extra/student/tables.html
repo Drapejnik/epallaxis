@@ -66,11 +66,14 @@ header{padding:24px 0;display:flex;justify-content:space-between;align-items:cen
 .hero-kicker::before{content:'';width:32px;height:1px;background:var(--accent);box-shadow:0 0 12px var(--accent-glow)}
 .hero-title{position:relative;z-index:1;font-family:var(--font-display);font-size:clamp(2.2rem,5.8vw,4.2rem);font-weight:800;line-height:.98;letter-spacing:-.04em;text-transform:uppercase;margin-bottom:18px}
 .hero-title em{display:block;font-style:normal;font-size:.32em;font-weight:700;letter-spacing:-.01em;margin-top:16px;background:linear-gradient(90deg,var(--accent-light) 0%,var(--accent) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-shadow:0 0 40px var(--accent-glow);transition:background .4s}
-.hero-bottom{position:relative;z-index:1;display:grid;grid-template-columns:minmax(220px,320px) 1fr;gap:56px;align-items:start;padding-top:28px;border-top:1px solid var(--border);margin-top:32px}
+
+.hero-bottom{position:relative;z-index:1;display:grid;grid-template-columns:minmax(220px,320px) 1fr;gap:56px;align-items:center;padding-top:28px;border-top:1px solid var(--border);margin-top:32px}
 .greek-quote{font-size:.95rem;font-style:italic;color:var(--accent);padding-left:18px;border-left:2px solid var(--accent);text-shadow:0 0 16px var(--accent-glow);line-height:1.6;transition:color .4s,border-color .4s,text-shadow .4s}
-.hero-side{display:flex;flex-direction:column;gap:18px}
-.hero-desc{font-size:.95rem;color:var(--text-muted);line-height:1.7;max-width:620px}
-.hero-desc b{color:var(--text);font-weight:600}
+.hero-symbols{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;line-height:1}
+.hero-symbols .sym{font-family:'Georgia','Times New Roman',serif;font-size:clamp(1.3rem,2.2vw,1.7rem);color:var(--text);opacity:.6;line-height:1;transition:opacity .25s,color .25s,text-shadow .25s,transform .25s;cursor:default;user-select:none}
+.hero-symbols .sym:hover{opacity:1;color:var(--accent);text-shadow:0 0 24px var(--accent-glow);transform:translateY(-2px)}
+.hero-symbols .sym.accent{color:var(--accent);opacity:.85;text-shadow:0 0 20px var(--accent-glow)}
+.hero-symbols .sep{font-family:var(--font-mono);font-size:.58rem;font-weight:500;color:var(--text-dim);opacity:.45;line-height:1;letter-spacing:.1em;user-select:none}
 
 .particle{position:absolute;z-index:0;pointer-events:none;opacity:0;animation-fill-mode:both}
 .p-autumn{width:22px;height:22px;background-size:contain;background-repeat:no-repeat;background-position:center;top:-30px;animation:fall-and-spin linear infinite}
@@ -108,8 +111,8 @@ main{padding:40px 0 48px}
 .tables-content{min-width:0}
 
 .block-card{display:none;background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:40px 40px 28px;box-shadow:var(--shadow-card);position:relative;overflow:hidden;transition:border-color .3s}
-.block-card.active{display:block;animation:panelIn .35s cubic-bezier(.16,1,.3,1)}
-@keyframes panelIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.block-card.active{display:block;animation:panelIn .3s cubic-bezier(.16,1,.3,1)}
+@keyframes panelIn{from{opacity:0}to{opacity:1}}
 .block-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent 0%,var(--border-strong) 50%,transparent 100%);opacity:.6}
 .block-card::after{content:attr(data-num);position:absolute;top:-32px;right:20px;font-family:var(--font-display);font-size:clamp(120px,14vw,180px);font-weight:800;letter-spacing:-.06em;line-height:1;color:var(--text);opacity:.03;pointer-events:none;user-select:none}
 
@@ -225,7 +228,9 @@ footer{padding:32px 0 28px;border-top:1px solid var(--border);display:flex;justi
 header{padding:18px 0;gap:12px}
 .hero{padding:48px 0 32px}
 .hero-title{font-size:clamp(1.9rem,7vw,2.8rem)}
-.hero-bottom{grid-template-columns:1fr;gap:24px;padding-top:24px;margin-top:24px}
+.hero-bottom{grid-template-columns:1fr;gap:20px;padding-top:20px;margin-top:24px;align-items:start}
+.hero-symbols{gap:8px 12px}
+.hero-symbols .sym{font-size:1.15rem}
 .tables-layout{grid-template-columns:1fr;gap:16px}
 .tables-nav{position:sticky;top:70px;flex-direction:row;overflow-x:auto;overflow-y:hidden;padding:6px;border-radius:14px;gap:4px;z-index:20;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);background:color-mix(in srgb,var(--bg) 88%,transparent);max-height:none;scrollbar-width:none}
 .tables-nav::-webkit-scrollbar{display:none}
@@ -268,6 +273,7 @@ footer{flex-direction:column;align-items:flex-start;gap:12px;padding:24px 0}
 .theme-btn{font-size:.55rem;padding:6px 9px;letter-spacing:.06em}
 .hero-title{font-size:1.55rem}
 .hero-title em{font-size:.35em;margin-top:14px}
+.hero-symbols .sym{font-size:1.05rem}
 .tables-nav-item{padding:7px 11px}
 .nav-title{font-size:.7rem}
 .block-card{padding:18px 14px 14px}
@@ -304,8 +310,38 @@ footer{flex-direction:column;align-items:flex-start;gap:12px;padding:24px 0}
 
 <div class="hero-bottom">
 <div class="greek-quote">Ἐπάλλαξις — приводить систему в порядок</div>
-<div class="hero-side">
-<div class="hero-desc">Восемь ключевых таблиц и формул. <b>Выбирайте слева</b> — каждая открывается мгновенно, без прокрутки. Наведите курсор на ячейку: подсветятся её строка и столбец. В таблицах квадратов и простых чисел есть поиск.</div>
+<div class="hero-symbols" aria-hidden="true">
+<span class="sym">∂</span>
+<span class="sep">·</span>
+<span class="sym">∫</span>
+<span class="sep">·</span>
+<span class="sym accent">π</span>
+<span class="sep">·</span>
+<span class="sym">∑</span>
+<span class="sep">·</span>
+<span class="sym">∞</span>
+<span class="sep">·</span>
+<span class="sym accent">√</span>
+<span class="sep">·</span>
+<span class="sym">∆</span>
+<span class="sep">·</span>
+<span class="sym">∇</span>
+<span class="sep">·</span>
+<span class="sym">α</span>
+<span class="sep">·</span>
+<span class="sym accent">β</span>
+<span class="sep">·</span>
+<span class="sym">γ</span>
+<span class="sep">·</span>
+<span class="sym">≈</span>
+<span class="sep">·</span>
+<span class="sym">≠</span>
+<span class="sep">·</span>
+<span class="sym accent">≤</span>
+<span class="sep">·</span>
+<span class="sym">≥</span>
+<span class="sep">·</span>
+<span class="sym">∈</span>
 </div>
 </div>
 </section>
@@ -909,7 +945,7 @@ var PANELS=['table-1','table-2','table-3','table-4','table-5','table-6','table-7
 var navItems=Array.prototype.slice.call(document.querySelectorAll('.tables-nav-item'));
 var panelEls=Array.prototype.slice.call(document.querySelectorAll('.block-card'));
 
-function activateTab(id,updateHash,scrollToTop){
+function activateTab(id,updateHash){
 if(PANELS.indexOf(id)===-1)id='table-1';
 navItems.forEach(function(btn){
 var on=btn.dataset.tab===id;
@@ -923,18 +959,11 @@ p.classList.toggle('active',p.dataset.panel===id);
 if(updateHash){
 try{history.replaceState(null,'','#'+id)}catch(e){location.hash=id}
 }
-if(scrollToTop){
-var navEl=document.getElementById('tablesNav');
-var navH=navEl.offsetHeight;
-var layout=document.querySelector('.tables-layout');
-var top=layout.getBoundingClientRect().top+window.pageYOffset-navH-16;
-window.scrollTo({top:Math.max(0,top),behavior:'smooth'});
-}
 }
 
 navItems.forEach(function(btn){
 btn.addEventListener('click',function(){
-activateTab(btn.dataset.tab,true,true);
+activateTab(btn.dataset.tab,true);
 });
 btn.addEventListener('keydown',function(e){
 var idx=navItems.indexOf(btn);
@@ -942,36 +971,36 @@ if(e.key==='ArrowDown'||e.key==='ArrowRight'){
 e.preventDefault();
 var next=navItems[(idx+1)%navItems.length];
 next.focus();
-activateTab(next.dataset.tab,true,true);
+activateTab(next.dataset.tab,true);
 }
 if(e.key==='ArrowUp'||e.key==='ArrowLeft'){
 e.preventDefault();
 var prev=navItems[(idx-1+navItems.length)%navItems.length];
 prev.focus();
-activateTab(prev.dataset.tab,true,true);
+activateTab(prev.dataset.tab,true);
 }
 if(e.key==='Home'){
 e.preventDefault();
 navItems[0].focus();
-activateTab(navItems[0].dataset.tab,true,true);
+activateTab(navItems[0].dataset.tab,true);
 }
 if(e.key==='End'){
 e.preventDefault();
 var last=navItems[navItems.length-1];
 last.focus();
-activateTab(last.dataset.tab,true,true);
+activateTab(last.dataset.tab,true);
 }
 });
 });
 
 window.addEventListener('hashchange',function(){
 var h=location.hash.slice(1);
-if(h)activateTab(h,false,false);
+if(h)activateTab(h,false);
 });
 
 var initialHash=location.hash.slice(1);
 if(initialHash&&PANELS.indexOf(initialHash)!==-1){
-activateTab(initialHash,false,false);
+activateTab(initialHash,false);
 }
 
 var multThead=document.getElementById('mult-thead');
